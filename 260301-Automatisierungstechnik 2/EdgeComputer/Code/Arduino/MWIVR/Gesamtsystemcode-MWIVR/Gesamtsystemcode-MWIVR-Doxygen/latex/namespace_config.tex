@@ -1,0 +1,193 @@
+\doxysection{Config Namespace Reference}
+\hypertarget{namespace_config}{}\label{namespace_config}\index{Config@{Config}}
+
+
+Namespace containing all configuration parameters for the application.  
+
+
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{namespace_config_aca973185daad9724c7451748fa809906}{SCREEN\+\_\+\+WIDTH}} = 128
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{namespace_config_a2bff8f18de0d877a0eb528b23de2b161}{SCREEN\+\_\+\+HEIGHT}} = 64
+\item 
+const int8\+\_\+t \mbox{\hyperlink{namespace_config_ab9556c90335130c5b972ec39aa82118d}{OLED\+\_\+\+RESET}} = -\/1
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{namespace_config_a2e82977fa2dc13154906cfafa062a300}{OLED\+\_\+\+ADDRESS}} = 0x3C
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{namespace_config_ac0898632b4f41259a96489c662bfe836}{RED\+\_\+\+LED\+\_\+\+PIN}} = 11
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{namespace_config_a4cc57301563e3c5c906dbad9f19a7d94}{GREEN\+\_\+\+LED\+\_\+\+PIN}} = 12
+\item 
+const int \mbox{\hyperlink{namespace_config_a2fc7a0e529e7fd7a6c003be2f6779df6}{AUDIO\+\_\+\+ACTIVITY\+\_\+\+THRESHOLD}} = 300
+\item 
+const float \mbox{\hyperlink{namespace_config_a5b908ab9fc958ed44b8fc0f9ca88cd49}{CONFIDENCE\+\_\+\+THRESHOLD}} = 0.\+85f
+\item 
+const int \mbox{\hyperlink{namespace_config_a89fe3fd07d1e4efc8cad8f478dc73fce}{PDM\+\_\+\+GAIN}} = 60
+\item 
+const uint16\+\_\+t \mbox{\hyperlink{namespace_config_ad5411086e2c4fb5f254f412848f934ff}{PDM\+\_\+\+BUFFER\+\_\+\+SIZE}} = 4096
+\item 
+const unsigned long \mbox{\hyperlink{namespace_config_aa76832cf8db9d7a1c781241fb6d86c6c}{COMMAND\+\_\+\+DURATION\+\_\+\+MS}} = 10000
+\item 
+const unsigned long \mbox{\hyperlink{namespace_config_aa1cef532035f5116c7b87ce80b92422f}{BLINK\+\_\+\+INTERVAL\+\_\+\+MS}} = 500
+\item 
+const unsigned long \mbox{\hyperlink{namespace_config_a1d653cbe64bb0e2c28a6d48a43d75506}{DISPLAY\+\_\+\+UPDATE\+\_\+\+INTERVAL\+\_\+\+MS}} = 200
+\item 
+const unsigned long \mbox{\hyperlink{namespace_config_a4c99a632c07178924dd048e7c5efc056}{READY\+\_\+\+DELAY\+\_\+\+MS}} = 500
+\item 
+const unsigned long \mbox{\hyperlink{namespace_config_af3d5a4a819aa946cd15fbe6842dfb800}{ERROR\+\_\+\+DELAY\+\_\+\+MS}} = 1000
+\item 
+const unsigned long \mbox{\hyperlink{namespace_config_a62b82d9f46d6ddccd29ca7f115f2b2c8}{WELCOME\+\_\+\+DELAY\+\_\+\+MS}} = 5000
+\item 
+const unsigned long \mbox{\hyperlink{namespace_config_a5512cd0de88d19485063437096028442}{REPEAT\+\_\+\+MESSAGE\+\_\+\+DELAY\+\_\+\+MS}} = 1000
+\item 
+const unsigned long \mbox{\hyperlink{namespace_config_a32351bcfc00491c79e622f4656d0bceb}{INFERENCE\+\_\+\+TIMEOUT\+\_\+\+MS}} = 5000
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{namespace_config_ac0eb5c79f825b6601b246e1a8edd7d2c}{VALID\+\_\+\+LABELS}} \mbox{[}$\,$\mbox{]} = \{ "{}rot"{}, "{}gruen"{}, "{}beide"{}, "{}blinken"{} \}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{namespace_config_a26c1172230a68598ed014fa97c4a7694}{IGNORED\+\_\+\+LABELS}} \mbox{[}$\,$\mbox{]} = \{ "{}noise"{}, "{}background"{}, "{}Noise"{} \}
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{namespace_config_a785e20ed9cbab98505a8fb2a2f592eee}{VALID\+\_\+\+LABELS\+\_\+\+COUNT}} = sizeof(\mbox{\hyperlink{namespace_config_ac0eb5c79f825b6601b246e1a8edd7d2c}{VALID\+\_\+\+LABELS}}) / sizeof(\mbox{\hyperlink{namespace_config_ac0eb5c79f825b6601b246e1a8edd7d2c}{VALID\+\_\+\+LABELS}}\mbox{[}0\mbox{]})
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{namespace_config_a9075060f32707cd64b1b53aab0949498}{IGNORED\+\_\+\+LABELS\+\_\+\+COUNT}} = sizeof(\mbox{\hyperlink{namespace_config_a26c1172230a68598ed014fa97c4a7694}{IGNORED\+\_\+\+LABELS}}) / sizeof(\mbox{\hyperlink{namespace_config_a26c1172230a68598ed014fa97c4a7694}{IGNORED\+\_\+\+LABELS}}\mbox{[}0\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Namespace containing all configuration parameters for the application. 
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespace_config_a2fc7a0e529e7fd7a6c003be2f6779df6}\index{Config@{Config}!AUDIO\_ACTIVITY\_THRESHOLD@{AUDIO\_ACTIVITY\_THRESHOLD}}
+\index{AUDIO\_ACTIVITY\_THRESHOLD@{AUDIO\_ACTIVITY\_THRESHOLD}!Config@{Config}}
+\doxysubsubsection{\texorpdfstring{AUDIO\_ACTIVITY\_THRESHOLD}{AUDIO\_ACTIVITY\_THRESHOLD}}
+{\footnotesize\ttfamily \label{namespace_config_a2fc7a0e529e7fd7a6c003be2f6779df6} 
+const int AUDIO\+\_\+\+ACTIVITY\+\_\+\+THRESHOLD = 300}
+
+Amplitude threshold for detecting audio activity. \Hypertarget{namespace_config_aa1cef532035f5116c7b87ce80b92422f}\index{Config@{Config}!BLINK\_INTERVAL\_MS@{BLINK\_INTERVAL\_MS}}
+\index{BLINK\_INTERVAL\_MS@{BLINK\_INTERVAL\_MS}!Config@{Config}}
+\doxysubsubsection{\texorpdfstring{BLINK\_INTERVAL\_MS}{BLINK\_INTERVAL\_MS}}
+{\footnotesize\ttfamily \label{namespace_config_aa1cef532035f5116c7b87ce80b92422f} 
+const unsigned long BLINK\+\_\+\+INTERVAL\+\_\+\+MS = 500}
+
+Interval in milliseconds for LED blinking when \textquotesingle{}blinken\textquotesingle{} command is active. \Hypertarget{namespace_config_aa76832cf8db9d7a1c781241fb6d86c6c}\index{Config@{Config}!COMMAND\_DURATION\_MS@{COMMAND\_DURATION\_MS}}
+\index{COMMAND\_DURATION\_MS@{COMMAND\_DURATION\_MS}!Config@{Config}}
+\doxysubsubsection{\texorpdfstring{COMMAND\_DURATION\_MS}{COMMAND\_DURATION\_MS}}
+{\footnotesize\ttfamily \label{namespace_config_aa76832cf8db9d7a1c781241fb6d86c6c} 
+const unsigned long COMMAND\+\_\+\+DURATION\+\_\+\+MS = 10000}
+
+Duration in milliseconds a recognized command remains active. \Hypertarget{namespace_config_a5b908ab9fc958ed44b8fc0f9ca88cd49}\index{Config@{Config}!CONFIDENCE\_THRESHOLD@{CONFIDENCE\_THRESHOLD}}
+\index{CONFIDENCE\_THRESHOLD@{CONFIDENCE\_THRESHOLD}!Config@{Config}}
+\doxysubsubsection{\texorpdfstring{CONFIDENCE\_THRESHOLD}{CONFIDENCE\_THRESHOLD}}
+{\footnotesize\ttfamily \label{namespace_config_a5b908ab9fc958ed44b8fc0f9ca88cd49} 
+const float CONFIDENCE\+\_\+\+THRESHOLD = 0.\+85f}
+
+Minimum confidence score required for a keyword to be considered recognized. \Hypertarget{namespace_config_a1d653cbe64bb0e2c28a6d48a43d75506}\index{Config@{Config}!DISPLAY\_UPDATE\_INTERVAL\_MS@{DISPLAY\_UPDATE\_INTERVAL\_MS}}
+\index{DISPLAY\_UPDATE\_INTERVAL\_MS@{DISPLAY\_UPDATE\_INTERVAL\_MS}!Config@{Config}}
+\doxysubsubsection{\texorpdfstring{DISPLAY\_UPDATE\_INTERVAL\_MS}{DISPLAY\_UPDATE\_INTERVAL\_MS}}
+{\footnotesize\ttfamily \label{namespace_config_a1d653cbe64bb0e2c28a6d48a43d75506} 
+const unsigned long DISPLAY\+\_\+\+UPDATE\+\_\+\+INTERVAL\+\_\+\+MS = 200}
+
+Interval in milliseconds for updating the OLED display during command execution. \Hypertarget{namespace_config_af3d5a4a819aa946cd15fbe6842dfb800}\index{Config@{Config}!ERROR\_DELAY\_MS@{ERROR\_DELAY\_MS}}
+\index{ERROR\_DELAY\_MS@{ERROR\_DELAY\_MS}!Config@{Config}}
+\doxysubsubsection{\texorpdfstring{ERROR\_DELAY\_MS}{ERROR\_DELAY\_MS}}
+{\footnotesize\ttfamily \label{namespace_config_af3d5a4a819aa946cd15fbe6842dfb800} 
+const unsigned long ERROR\+\_\+\+DELAY\+\_\+\+MS = 1000}
+
+Delay in milliseconds after displaying an error message. \Hypertarget{namespace_config_a4cc57301563e3c5c906dbad9f19a7d94}\index{Config@{Config}!GREEN\_LED\_PIN@{GREEN\_LED\_PIN}}
+\index{GREEN\_LED\_PIN@{GREEN\_LED\_PIN}!Config@{Config}}
+\doxysubsubsection{\texorpdfstring{GREEN\_LED\_PIN}{GREEN\_LED\_PIN}}
+{\footnotesize\ttfamily \label{namespace_config_a4cc57301563e3c5c906dbad9f19a7d94} 
+const uint8\+\_\+t GREEN\+\_\+\+LED\+\_\+\+PIN = 12}
+
+Digital pin connected to the green LED. \Hypertarget{namespace_config_a26c1172230a68598ed014fa97c4a7694}\index{Config@{Config}!IGNORED\_LABELS@{IGNORED\_LABELS}}
+\index{IGNORED\_LABELS@{IGNORED\_LABELS}!Config@{Config}}
+\doxysubsubsection{\texorpdfstring{IGNORED\_LABELS}{IGNORED\_LABELS}}
+{\footnotesize\ttfamily \label{namespace_config_a26c1172230a68598ed014fa97c4a7694} 
+const char\texorpdfstring{$\ast$}{*} IGNORED\+\_\+\+LABELS\mbox{[}$\,$\mbox{]} = \{ "{}noise"{}, "{}background"{}, "{}Noise"{} \}}
+
+Array of labels to be ignored (e.\+g., background noise). \Hypertarget{namespace_config_a9075060f32707cd64b1b53aab0949498}\index{Config@{Config}!IGNORED\_LABELS\_COUNT@{IGNORED\_LABELS\_COUNT}}
+\index{IGNORED\_LABELS\_COUNT@{IGNORED\_LABELS\_COUNT}!Config@{Config}}
+\doxysubsubsection{\texorpdfstring{IGNORED\_LABELS\_COUNT}{IGNORED\_LABELS\_COUNT}}
+{\footnotesize\ttfamily \label{namespace_config_a9075060f32707cd64b1b53aab0949498} 
+const uint8\+\_\+t IGNORED\+\_\+\+LABELS\+\_\+\+COUNT = sizeof(\mbox{\hyperlink{namespace_config_a26c1172230a68598ed014fa97c4a7694}{IGNORED\+\_\+\+LABELS}}) / sizeof(\mbox{\hyperlink{namespace_config_a26c1172230a68598ed014fa97c4a7694}{IGNORED\+\_\+\+LABELS}}\mbox{[}0\mbox{]})}
+
+Number of ignored labels. \Hypertarget{namespace_config_a32351bcfc00491c79e622f4656d0bceb}\index{Config@{Config}!INFERENCE\_TIMEOUT\_MS@{INFERENCE\_TIMEOUT\_MS}}
+\index{INFERENCE\_TIMEOUT\_MS@{INFERENCE\_TIMEOUT\_MS}!Config@{Config}}
+\doxysubsubsection{\texorpdfstring{INFERENCE\_TIMEOUT\_MS}{INFERENCE\_TIMEOUT\_MS}}
+{\footnotesize\ttfamily \label{namespace_config_a32351bcfc00491c79e622f4656d0bceb} 
+const unsigned long INFERENCE\+\_\+\+TIMEOUT\+\_\+\+MS = 5000}
+
+Timeout in milliseconds for audio inference to complete. \Hypertarget{namespace_config_a2e82977fa2dc13154906cfafa062a300}\index{Config@{Config}!OLED\_ADDRESS@{OLED\_ADDRESS}}
+\index{OLED\_ADDRESS@{OLED\_ADDRESS}!Config@{Config}}
+\doxysubsubsection{\texorpdfstring{OLED\_ADDRESS}{OLED\_ADDRESS}}
+{\footnotesize\ttfamily \label{namespace_config_a2e82977fa2dc13154906cfafa062a300} 
+const uint8\+\_\+t OLED\+\_\+\+ADDRESS = 0x3C}
+
+I2C address of the OLED display. \Hypertarget{namespace_config_ab9556c90335130c5b972ec39aa82118d}\index{Config@{Config}!OLED\_RESET@{OLED\_RESET}}
+\index{OLED\_RESET@{OLED\_RESET}!Config@{Config}}
+\doxysubsubsection{\texorpdfstring{OLED\_RESET}{OLED\_RESET}}
+{\footnotesize\ttfamily \label{namespace_config_ab9556c90335130c5b972ec39aa82118d} 
+const int8\+\_\+t OLED\+\_\+\+RESET = -\/1}
+
+OLED reset pin (-\/1 indicates no dedicated reset pin). \Hypertarget{namespace_config_ad5411086e2c4fb5f254f412848f934ff}\index{Config@{Config}!PDM\_BUFFER\_SIZE@{PDM\_BUFFER\_SIZE}}
+\index{PDM\_BUFFER\_SIZE@{PDM\_BUFFER\_SIZE}!Config@{Config}}
+\doxysubsubsection{\texorpdfstring{PDM\_BUFFER\_SIZE}{PDM\_BUFFER\_SIZE}}
+{\footnotesize\ttfamily \label{namespace_config_ad5411086e2c4fb5f254f412848f934ff} 
+const uint16\+\_\+t PDM\+\_\+\+BUFFER\+\_\+\+SIZE = 4096}
+
+Size of the PDM microphone buffer in bytes. \Hypertarget{namespace_config_a89fe3fd07d1e4efc8cad8f478dc73fce}\index{Config@{Config}!PDM\_GAIN@{PDM\_GAIN}}
+\index{PDM\_GAIN@{PDM\_GAIN}!Config@{Config}}
+\doxysubsubsection{\texorpdfstring{PDM\_GAIN}{PDM\_GAIN}}
+{\footnotesize\ttfamily \label{namespace_config_a89fe3fd07d1e4efc8cad8f478dc73fce} 
+const int PDM\+\_\+\+GAIN = 60}
+
+Gain setting for the PDM microphone. \Hypertarget{namespace_config_a4c99a632c07178924dd048e7c5efc056}\index{Config@{Config}!READY\_DELAY\_MS@{READY\_DELAY\_MS}}
+\index{READY\_DELAY\_MS@{READY\_DELAY\_MS}!Config@{Config}}
+\doxysubsubsection{\texorpdfstring{READY\_DELAY\_MS}{READY\_DELAY\_MS}}
+{\footnotesize\ttfamily \label{namespace_config_a4c99a632c07178924dd048e7c5efc056} 
+const unsigned long READY\+\_\+\+DELAY\+\_\+\+MS = 500}
+
+Delay in milliseconds after displaying "{}bereit"{} (ready) message. \Hypertarget{namespace_config_ac0898632b4f41259a96489c662bfe836}\index{Config@{Config}!RED\_LED\_PIN@{RED\_LED\_PIN}}
+\index{RED\_LED\_PIN@{RED\_LED\_PIN}!Config@{Config}}
+\doxysubsubsection{\texorpdfstring{RED\_LED\_PIN}{RED\_LED\_PIN}}
+{\footnotesize\ttfamily \label{namespace_config_ac0898632b4f41259a96489c662bfe836} 
+const uint8\+\_\+t RED\+\_\+\+LED\+\_\+\+PIN = 11}
+
+Digital pin connected to the red LED. \Hypertarget{namespace_config_a5512cd0de88d19485063437096028442}\index{Config@{Config}!REPEAT\_MESSAGE\_DELAY\_MS@{REPEAT\_MESSAGE\_DELAY\_MS}}
+\index{REPEAT\_MESSAGE\_DELAY\_MS@{REPEAT\_MESSAGE\_DELAY\_MS}!Config@{Config}}
+\doxysubsubsection{\texorpdfstring{REPEAT\_MESSAGE\_DELAY\_MS}{REPEAT\_MESSAGE\_DELAY\_MS}}
+{\footnotesize\ttfamily \label{namespace_config_a5512cd0de88d19485063437096028442} 
+const unsigned long REPEAT\+\_\+\+MESSAGE\+\_\+\+DELAY\+\_\+\+MS = 1000}
+
+Duration in milliseconds the "{}bitte wiederholen"{} message is displayed. \Hypertarget{namespace_config_a2bff8f18de0d877a0eb528b23de2b161}\index{Config@{Config}!SCREEN\_HEIGHT@{SCREEN\_HEIGHT}}
+\index{SCREEN\_HEIGHT@{SCREEN\_HEIGHT}!Config@{Config}}
+\doxysubsubsection{\texorpdfstring{SCREEN\_HEIGHT}{SCREEN\_HEIGHT}}
+{\footnotesize\ttfamily \label{namespace_config_a2bff8f18de0d877a0eb528b23de2b161} 
+const uint8\+\_\+t SCREEN\+\_\+\+HEIGHT = 64}
+
+Height of the OLED display in pixels. \Hypertarget{namespace_config_aca973185daad9724c7451748fa809906}\index{Config@{Config}!SCREEN\_WIDTH@{SCREEN\_WIDTH}}
+\index{SCREEN\_WIDTH@{SCREEN\_WIDTH}!Config@{Config}}
+\doxysubsubsection{\texorpdfstring{SCREEN\_WIDTH}{SCREEN\_WIDTH}}
+{\footnotesize\ttfamily \label{namespace_config_aca973185daad9724c7451748fa809906} 
+const uint8\+\_\+t SCREEN\+\_\+\+WIDTH = 128}
+
+Width of the OLED display in pixels. \Hypertarget{namespace_config_ac0eb5c79f825b6601b246e1a8edd7d2c}\index{Config@{Config}!VALID\_LABELS@{VALID\_LABELS}}
+\index{VALID\_LABELS@{VALID\_LABELS}!Config@{Config}}
+\doxysubsubsection{\texorpdfstring{VALID\_LABELS}{VALID\_LABELS}}
+{\footnotesize\ttfamily \label{namespace_config_ac0eb5c79f825b6601b246e1a8edd7d2c} 
+const char\texorpdfstring{$\ast$}{*} VALID\+\_\+\+LABELS\mbox{[}$\,$\mbox{]} = \{ "{}rot"{}, "{}gruen"{}, "{}beide"{}, "{}blinken"{} \}}
+
+Array of recognized valid command labels. \Hypertarget{namespace_config_a785e20ed9cbab98505a8fb2a2f592eee}\index{Config@{Config}!VALID\_LABELS\_COUNT@{VALID\_LABELS\_COUNT}}
+\index{VALID\_LABELS\_COUNT@{VALID\_LABELS\_COUNT}!Config@{Config}}
+\doxysubsubsection{\texorpdfstring{VALID\_LABELS\_COUNT}{VALID\_LABELS\_COUNT}}
+{\footnotesize\ttfamily \label{namespace_config_a785e20ed9cbab98505a8fb2a2f592eee} 
+const uint8\+\_\+t VALID\+\_\+\+LABELS\+\_\+\+COUNT = sizeof(\mbox{\hyperlink{namespace_config_ac0eb5c79f825b6601b246e1a8edd7d2c}{VALID\+\_\+\+LABELS}}) / sizeof(\mbox{\hyperlink{namespace_config_ac0eb5c79f825b6601b246e1a8edd7d2c}{VALID\+\_\+\+LABELS}}\mbox{[}0\mbox{]})}
+
+Number of valid labels. \Hypertarget{namespace_config_a62b82d9f46d6ddccd29ca7f115f2b2c8}\index{Config@{Config}!WELCOME\_DELAY\_MS@{WELCOME\_DELAY\_MS}}
+\index{WELCOME\_DELAY\_MS@{WELCOME\_DELAY\_MS}!Config@{Config}}
+\doxysubsubsection{\texorpdfstring{WELCOME\_DELAY\_MS}{WELCOME\_DELAY\_MS}}
+{\footnotesize\ttfamily \label{namespace_config_a62b82d9f46d6ddccd29ca7f115f2b2c8} 
+const unsigned long WELCOME\+\_\+\+DELAY\+\_\+\+MS = 5000}
+
+Duration in milliseconds the welcome message is displayed. 

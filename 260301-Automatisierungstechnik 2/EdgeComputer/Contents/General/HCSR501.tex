@@ -1,0 +1,276 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% $Autor: Wings $
+% $Datum: 2020-07-24 09:05:07Z $
+% $Pfad:  HCSR501$
+% $Version: 4732 $
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% source: https://www.makerguides.com/hc-sr501-arduino-tutorial/
+% source: https://www.reichelt.de/de/de/shop/produkt/gehaeusezubehoer_-_ir-bewegungsmelder_halterung-254112
+% source: Datenblätter
+
+\chapter{PIR-Sensor   HC-SR501}
+
+In this tutorial, you will learn how the HC-SR501 PIR motion sensor works and how you can use it with Arduino. You can find Passive Infrared (PIR) sensors all around you, they are not only used for security purposes, but also in most automatically-activated lighting systems.
+
+In this article, I have included a wiring diagram and example codes so you can start experimenting with your sensor. After each example, I break down and explain how the code works, so you should have no problems modifying it to suit your needs.
+
+First I will show you how you can use the HC-SR501 as a standalone unit. Next, we will connect it to an Arduino UNO and I will show you how to use it as a simple alarm system.
+
+This tutorial focuses on the HC-SR501 sensor, but you can also use the provided code for similar sensors like the HC-SR505 or AM312. The main difference is that these cheaper sensors have a smaller detection range and don’t have a potentiometer to adjust the sensitivity and time delay.
+
+
+\section{PIR Motion Sensor}
+
+PIR motion sensors consist of two main parts: a pyroelectric sensing element and a fresnel lens. The pyroelectric sensing element can detect infrared radiation. All objects with a temperature above absolute zero (0 Kelvin / -273.15 $^\circ$C) emit heat energy in the form of infrared radiation, including human bodies.
+
+\begin{center}
+  \includegraphics[width=\textwidth]{Sensor/HCSR501/HCSR501P01.jpg}
+  \captionof{figure}{Function of a PIR Sensor}
+\end{center}
+
+
+A pyroelectric sensor has two rectangular slots in it made of a material that allows the infrared radiation to pass. Behind these, there are two separate infrared sensor electrodes, one responsible for producing a positive output and the other a negative output. The reason for that is that we are looking for a change in IR levels and not ambient IR levels. The two electrodes are wired up so that they cancel each other out. If one half sees more or less IR radiation than the other, the output will swing high or low.
+
+The on-board signal processing IC processes this signal and turns the output pin of the sensor HIGH or LOW accordingly.
+
+\begin{center}
+	\includegraphics[width=\textwidth]{Sensor/HCSR501/HCSR501Housing.jpg}
+	\captionof{figure}{Housing of a PIR Sensor}
+\end{center}
+
+The white dome in front of the sensing element is a fresnel lens. This lens focuses the infrared radiation onto the sensor.
+
+\begin{center}
+	\includegraphics[width=\textwidth]{Sensor/HCSR501/HCSR501Housing.jpg}
+	\captionof{figure}{Fresnel Lens of a PIR Sensor}
+\end{center}
+
+\section{HC-SR501 PIR Motion Sensor}
+
+
+The HC-SR501 PIR motion sensor is built around the BISS0001 Micro Power PIR Motion Detector IC. This IC is specifically developed to process the signal from PIR motion sensors.
+	
+If you remove the fresnel lens, you will see the RE200B pyroelectric sensing element. On the PCB you can also find a built-in voltage regulator. This means you can power the board with a large DC voltage range, typically 5 V is used.
+
+\subsection{Specifications}
+	
+The specifications of the HC-SR501 are given in the table below, note that there might be small differences between manufacturers.
+
+\begin{center}
+  \begin{tabular}{ll}
+    HC-SR501          & Specifications \\ \hline
+    Operating voltage & 4.5 - 20 V \\
+    Quiescent current & 50 $\mu$A \\
+    Level output      & HIGH 3.3 V / LOW 0 V \\
+    Trigger           & L single trigger / H repeating trigger \\
+    Delay time        & 3 - 300 s \\
+    Blocking time     & 2.5 s (default) \\
+    Trigger           & L single trigger / H repeating trigger \\
+    Measuring range   & 3 - 7 m maximum \\
+                      & 2 mm\\
+    Measuring angle	  & $< 110^\circ$ cone angle  \\
+    PCB dimensions    & 32.5 $\times$ 24 mm \\
+    Mounting holes    & 2 mm, 28.5 mm spacing \\
+    Fresnel lens dimensions	& 15 mm $\times$  23 mm diameter\\
+    Operating temperature	& -15 - 70 $\circ$C \\
+%   Cost                    & \HREF{https://www.amazon.com/s?k=hc-sr501&language=en_US&linkCode=sl2&linkId=50534c919f32c00fc6319fcaee19c848&tag=makerguides03-20&tag=makerguides03-20&ref=nb_sb_noss_2}{Check price} \\
+  \end{tabular}
+\end{center}	
+
+
+\subsection{Adjusting the HC-SR501}
+
+On the back of the board you will find two potentiometers and a jumper, which you can use to adjust several parameters:
+
+\begin{center}
+	\includegraphics[width=\textwidth]{Sensor/HCSR501/HCSR501Adjusting}
+	\captionof{figure}{Adjusting a PIR Sensor}
+\end{center}
+
+
+\subsection{Sensitivity (range) adjustment}
+
+The HC-SR501 has a maximum sensing distance (detection range) of 7 meters. You can adjust the sensing distance by rotating the sensitivity potentiometer CW or CCW (see picture above). Rotating the potentiometer clockwise increases the sensing distance to a maximum of 7 meters. Rotating it counterclockwise decreases the sensing distance to a minimum of 3 meters.
+
+\subsection{Time-delay adjustment (Tx)}
+
+This potentiometer can be used to adjust the time that the output stays HIGH for after motion is detected. At a minimum, the delay is 3 seconds and at a maximum, it is 300 seconds or 5 minutes. Turn the potentiometer clockwise to increase the delay and counterclockwise to decrease the delay.
+
+\subsection{Trigger selection jumper}
+
+The (yellow) jumper can be used to select one of the two trigger modes. It can be set to either L (single trigger) or H (repeating trigger):
+
+\begin{itemize}
+  \item Single trigger - The output will turn HIGH as soon as motion is detected. It will stay HIGH for the time set by the potentiometer. Any movement during this period is not processed and does not restart the timer.
+  \item Repeating trigger – Every time motion is detected, the delay timer is restarted.
+\end{itemize}
+
+
+The difference between the single and repeating trigger mode is shown in the figure below.
+
+\begin{center}
+	\includegraphics[width=\textwidth]{Sensor/HCSR501/HCSR501TriggerMode}
+	\captionof{figure}{Difference between single and repeating trigger mode. The arrows indicate the set delay-time}
+\end{center}
+
+\subsection{Adding a thermistor and/or LDR to the HC-SR501}
+
+As can be seen in the image below, the HC-SR501 has solder pads for two additional components. These pads are typically labeled ‘RL’ and ‘RT’.
+
+\begin{center}
+	\includegraphics[width=\textwidth]{Sensor/HCSR501/HCSR501Thermistor}
+	\captionof{figure}{HC-SR501-RL-and-RT-solder-pads}
+\end{center}
+
+\begin{itemize}
+  \item RL – Here you can add a light dependent resistor (LDR) or photoresistor which has a low resistance under strong ambient light. This causes the detector to be operational only when the detection area is sufficiently dark.
+  \item RT – This pad is meant for a thermistor. Adding this makes the sensitivity of the sensor less dependent on the ambient temperature
+Unfortunately, no additional information is provided in the datasheets, so I am not entirely sure about what component values you should use.
+\end{itemize}
+
+
+
+\section{Using the HC-SR501 PIR motion sensor as a standalone unit}
+
+For most applications, you can just use the HC-SR501 as a standalone unit. You can use the output signal to trigger things like relays and LEDs.
+
+The wiring is very simple as can be seen in the picture below. Simply connect VCC and GND to a battery and a red LED between the output pin and ground. The output voltage is 3.3 V, so I added a 68 $\Omega$ current limiting resistor in series with the LED.
+
+HCSR501Standalone
+
+HC-SR501-PIR-motion-sensor-with-LED-wiring-diagram-schematic
+HC-SR501 PIR motion sensor with LED wiring diagram
+
+
+Note that after powering up the sensor, you need to wait 30 – 60 seconds for the sensor to initialize. During this period, the LED might blink a couple of times. After waiting for a minute, you can wave your hand in front of the sensor and you should be able to see the LED light up.
+
+With this setup, it is easy to test the functionality of the sensor. This is also a good moment to play around with the sensitivity and time-delay settings, as well as the two different trigger modes.
+
+\section{Wiring – Connecting HC-SR501 PIR motion sensor to Arduino UNO}
+
+By connecting the motion sensor to a microcontroller like the Arduino UNO, you can use it to control all kinds of things: LEDs, relays, motors, buzzers etc.
+
+In the wiring diagram below, you can see how to hook it up to the Arduino. You can read the sensor with one of the general-purpose input/output (GPIO) pins of the Arduino. In this example, I connected it to digital pin 2. The VCC and GND pins are connected to 5 V and GND respectively.
+
+HCSR501Uno
+HC-SR501-PIR-motion-sensor-with-Arduino-UNO-wiring-diagram-schematic
+HC-SR501 PIR motion sensor with Arduino wiring diagram
+
+
+The connections are also given in the table below:
+
+
+\begin{center}
+  \begin{tabular}{ll}
+    VCC  & 5 V\\
+    OUT  & Pin 2\\
+    GND  & GND\\
+  \end{tabular}	
+  \captionof{table}{HC-SR501 PIR Motion Sensor Connections}
+\end{center}
+
+
+Once you have wired up the sensor, the next step is to upload some example code.
+
+\section{HC-SR501 PIR motion sensor with Arduino UNO example code}
+
+With the following example code, you can read out the sensor and control the on-board LED of the Arduino (connected to pin 13). This code can also be used to control simple relays to turn a bigger light on or off.
+
+You can upload the example code with the Arduino IDE.
+
+For this code to work properly, it is best to set the trigger mode jumper to ‘H’ (repeat trigger mode). Also adjust the time-delay potentiometer to the lowest value. Turn it counterclockwise as far as it will go.
+
+The code will read the state of the sensor (HIGH or LOW) and turn on or off the on-board LED accordingly. It will also print a message to the Serial Monitor, which you can access under Tools or type (Ctrl+Shift+M).
+
+
+
+
+\captionof{code}{HC-SR501 simple application}\label{HCSR501Sample}
+\ArduinoExternal{}{../../Code/Arduino/HCSR501/HCSR501Sample/HCSR501Sample.ino}
+
+You should see the following output in the serial monitor:
+
+
+
+\begin{center}
+	\includegraphics[width=\textwidth]{Sensor/HCSR501/HCSR501SerialMonitor}
+	\captionof{figure}{HC-SR501 PIR motion sensor Serial Monitor output}
+\end{center}
+
+
+
+
+\section{Code explanation}
+
+
+The code is quite simple and you don’t need any Arduino libraries to use this sensor.
+
+The sketch starts with defining the PIR sensor pin and LED pin. I connected them to Arduino pin 2 and 13 (on-board LED).
+
+The statement \PYTHON{\#define} is used to give a name to a constant value. The compiler will replace any references to this constant with the defined value when the program is compiled. So everywhere you mention pirPin, the compiler will replace it with the value 2 when the program is compiled.
+
+I also created two variables, val and motionState, which are an integer and boolean (true/false) respectively. The variable val is used to store the output of the PIR sensor (HIGH or LOW) and motionState will turn to true while motion is detected and to false when there is no motion.
+
+
+\captionof{code}{HC-SR501 simple application}\label{HCSR501Sample}
+\ArduinoExternal{firstline=4,lastline=10}{../../Code/Arduino/HCSR501/HCSR501Sample/HCSR501Sample.ino}
+
+
+In the \PYTHON{setup()}, we set the pins as input or output with the function \PYTHON{pinMode(pin,mode)}. The \PYTHON{pirPin} is an input and the \PYTHON{ledPin} is an output. We also begin serial communication at a baud rate of 9600. Make sure that the Serial Monitor is also set to 9600.
+
+
+\captionof{code}{HC-SR501 simple application}\label{HCSR501Sample}
+\ArduinoExternal{firstline=11,lastline=18}{../../Code/Arduino/HCSR501/HCSR501Sample/HCSR501Sample.ino}
+
+
+
+In the \PYTHON{loop()}, I first read out the sensor with the function \PYTHON{digitalRead(pin)}. This function returns \PYTHON{HIGH} or \PYTHON{LOW}.
+
+\captionof{code}{HC-SR501 simple application}\label{HCSR501Sample}
+\ArduinoExternal{firstline=21,lastline=22}{../../Code/Arduino/HCSR501/HCSR501Sample/HCSR501Sample.ino}
+
+
+When the sensor output/val is \PYTHON{HIGH}, I turn the LED on with the function \PYTHON{digitalWrite(pin,value)}.
+
+\captionof{code}{HC-SR501 simple application}\label{HCSR501Sample}
+\ArduinoExternal{firstline=25,lastline=33}{../../Code/Arduino/HCSR501/HCSR501Sample/HCSR501Sample.ino}
+
+
+Next, the \PYTHON{motionState} is changed to true and the message ``Motion detected!'' is printed to the Serial Monitor. Note that I first check the current \PYTHON{motionState}, this makes sure that the message is only printed once per motion event.
+
+
+If there is no longer motion in front of the sensor, val will change to \PYTHON{LOW} and the LED is turned off and the message ``Motion ended!'' is printed to the serial monitor.
+
+\section{Create an alarm system with PIR motion sensor and buzzer}
+
+
+With some simple changes, you can create an alarm system with the HC-SR501 and a piezoelectric buzzer. I connected the buzzer with a 100 $\Omega$ resistor between digital pin 5 and GND. You can probably use the buzzer without a resistor (this makes it louder), but it will not sound as nice.
+
+
+\begin{center}
+	\includegraphics[width=\textwidth]{Sensor/HCSR501/HCSR501Alarm}
+	\captionof{figure}{HC-SR501 PIR motion sensor with Arduino UNO and buzzer wiring diagram.}
+\end{center}
+
+
+
+The code below is mostly the same as the previous example. I only added a function to create the beeping alarm sound. You can change the pitch of the buzzer by changing the input parameter of the function \PYTHON{alarm(duration,frequency)}.
+
+
+\captionof{code}{HC-SR501  application with a buzzer}\label{HCSR501Buzzer}
+\ArduinoExternal{}{../../Code/Arduino/HCSR501/HCSR501Buzzer/HCSR501Buzzer.ino}
+
+
+
+\section{Things to consider when designing a PIR sensor system}
+
+Just like other PIR sensors, the HC-SR501 needs some time to initialize and adjust to the infrared levels in the room. This takes approximately 1 minute when it is first powered up. Try to eliminate any motion in front of the sensor during this period.
+
+Wind and a light source close to the sensor can cause interference, so try to adjust your setup to avoid this. Also, note that you must mount the sensor horizontally since most motion will happen in the horizontal plane (e.g. walking).
+
+Besides the delay-time (Tx), the sensor also has a ``blocking-time'' (Ti). By default, the blocking time is 2.5 seconds and it is not very easy to change (see BISS0001 datasheet). Each time the output goes from \PYTHON{HIGH} to \PYTHON{LOW}, the blocking period start. During this time period, the sensor will not detect any motion.
+
+When designing a system based on the HC-SR501, you will need to take these delay periods into account.

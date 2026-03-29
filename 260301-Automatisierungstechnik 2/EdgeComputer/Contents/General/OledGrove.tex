@@ -1,0 +1,380 @@
+%%%%%%%%%%%%
+%
+% $Autor: Wings $
+% $Datum: 2025-05 $
+% $Pfad: OLEDGrove.tex $
+% $Version: 4250 $
+% !TeX spellcheck = en_GB/de_DE
+% !TeX encoding = utf8
+% !TeX root = filename 
+% !TeX TXS-program:bibliography = txs:///biber
+%
+%%%%%%%%%%%%
+
+% Structure
+\chapter{Grove-OLED-Display} \label{sec:Grove-OLED-Display}
+
+Das Grove-OLED-Modul wird verwendet um direktes Feedback an einen Benutzer zu geben. Im Folgenden Unterkapitel wird Aufbau, Funktionsweise und praktische Implementierung des Displays behandelt.
+
+\section{Grundlagen der OLED-Technologie}
+
+\subsection{Was ist eine OLED?}
+Eine Organische Leuchtdiode (OLED) ist ein dünnfilmiges Bauelement, das Licht durch elektrische Anregung organischer Halbleitermaterialien emittiert. Im Gegensatz zu herkömmlichen LEDs basieren OLEDs nicht auf anorganischen Kristallen (z.B. Galliumnitrid), sondern auf Kohlenwasserstoffverbindungen \cite{Bartlett:2023} . Dieser Unterschied ermöglicht: 
+
+\begin{itemize}
+	\item Flexible Bauformen (z.B. auf Polymerfolien)
+	\item Flächige, gleichmäßige Beleuchtung ohne Hintergrundlicht
+	\item Hohe Energieeffizienz durch Direktemission
+\end{itemize}
+\cite{Bartlett:2023} \cite{Stotz:2019} \cite{Wellmann:2017} 
+
+\subsection{Aufbau einer OLED}
+Abbildung \ref{fig:OLEDAufbau} zeigt den typischen Schichtaufbau:
+\begin{itemize}
+	\item Substrat: Trägermaterial aus Glas oder flexibler Kunststofffolie (z.B. Polyimid)
+	\item Anode: Transparentes Indium-Zinn-Oxid (ITO) zur Injektion positiver Ladungsträger
+	\item Organische Funktionsschichten (Gesamtdicke < 500 nm):
+	\begin{itemize}
+		\item Lochtransportlayer (HTL): Leitet positive Ladungen (z.B. Kupferphthalocyanin)
+		\item Emitterschicht (EML): Erzeugt Licht durch Rekombination (z.B. Alq\textsubscript{3})
+		\item Elektronentransportlayer (ETL): Leitet negative Ladungen (z.B. BCP)
+	\end{itemize}
+	\item Kathode: Metallschicht (z.B. Al/Ca) für Elektroneninjektion
+\end{itemize}
+\cite{Bartlett:2023} \cite{Stotz:2019} \cite{Wellmann:2017}
+
+\begin{center}	\begin{circuitikz}
+        \tikzstyle{every node}=[font=\Large]
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (-4.75,9.25) rectangle (-3.75,8.25);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (-3.5,9.25) rectangle (-2.5,8.25);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (-2.25,9.25) rectangle (-1.25,8.25);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (-1,9.25) rectangle (0,8.25);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (0.25,9.25) rectangle (1.25,8.25);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (1.5,9.25) rectangle (2.5,8.25);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (2.75,9.25) rectangle (3.75,8.25);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (-4.75,8) rectangle (-3.75,7);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (-3.5,8) rectangle (-2.5,7);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (-2.25,8) rectangle (-1.25,7);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (-1,8) rectangle (0,7);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (0.25,8) rectangle (1.25,7);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (1.5,8) rectangle (2.5,7);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (2.75,8) rectangle (3.75,7);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (-4.75,6.75) rectangle (-3.75,5.75);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (-3.5,6.75) rectangle (-2.5,5.75);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (-2.25,6.75) rectangle (-1.25,5.75);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (-1,6.75) rectangle (0,5.75);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (0.25,6.75) rectangle (1.25,5.75);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (1.5,6.75) rectangle (2.5,5.75);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (2.75,6.75) rectangle (3.75,5.75);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (-4.75,5.5) rectangle (-3.75,4.5);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (-3.5,5.5) rectangle (-2.5,4.5);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (-2.25,5.5) rectangle (-1.25,4.5);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (-1,5.5) rectangle (0,4.5);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (0.25,5.5) rectangle (1.25,4.5);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (1.5,5.5) rectangle (2.5,4.5);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (2.75,5.5) rectangle (3.75,4.5);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (-4.75,4.25) rectangle (-3.75,3.25);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (-3.5,4.25) rectangle (-2.5,3.25);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (-2.25,4.25) rectangle (-1.25,3.25);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (-1,4.25) rectangle (0,3.25);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (0.25,4.25) rectangle (1.25,3.25);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (1.5,4.25) rectangle (2.5,3.25);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (2.75,4.25) rectangle (3.75,3.25);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (-3.5,3) rectangle (-2.5,2);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (-2.25,3) rectangle (-1.25,2);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (-1,3) rectangle (0,2);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (1.5,3) rectangle (2.5,2);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (2.75,3) rectangle (3.75,2);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (-4.75,1.75) rectangle (-3.75,0.75);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (-3.5,1.75) rectangle (-2.5,0.75);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (-2.25,1.75) rectangle (-1.25,0.75);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (-1,1.75) rectangle (0,0.75);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (0.25,1.75) rectangle (1.25,0.75);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (1.5,1.75) rectangle (2.5,0.75);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (2.75,1.75) rectangle (3.75,0.75);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (-4.75,0.5) rectangle (-3.75,-0.5);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (-3.5,0.5) rectangle (-2.5,-0.5);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (-2.25,0.5) rectangle (-1.25,-0.5);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (-1,0.5) rectangle (0,-0.5);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (0.25,0.5) rectangle (1.25,-0.5);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (1.5,0.5) rectangle (2.5,-0.5);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (2.75,0.5) rectangle (3.75,-0.5);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (4,9.25) rectangle (5,8.25);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (4,8) rectangle (5,7);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (4,6.75) rectangle (5,5.75);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (4,5.5) rectangle (5,4.5);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (4,4.25) rectangle (5,3.25);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (4,3) rectangle (5,2);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (4,1.75) rectangle (5,0.75);
+        \draw [ fill={rgb,255:red,217; green,217; blue,217} ] (4,0.5) rectangle (5,-0.5);
+        \draw [ fill={rgb,255:red,194; green,220; blue,255} ] (-7.75,9) rectangle (5.75,8.5);
+        \draw [ fill={rgb,255:red,194; green,220; blue,255} ] (-7.75,7.75) rectangle (5.75,7.25);
+        \draw [ fill={rgb,255:red,194; green,220; blue,255} ] (-7.75,6.5) rectangle (5.75,6);
+        \draw [ fill={rgb,255:red,194; green,220; blue,255} ] (-7.75,5.25) rectangle (5.75,4.75);
+        \draw [ fill={rgb,255:red,194; green,220; blue,255} ] (-7.75,4) rectangle (5.75,3.5);
+        \draw [ fill={rgb,255:red,194; green,220; blue,255} ] (-7.75,2.75) rectangle (5.75,2.25);
+        \draw [ fill={rgb,255:red,194; green,220; blue,255} ] (-7.75,1.5) rectangle (5.75,1);
+        \draw [ fill={rgb,255:red,194; green,220; blue,255} ] (-7.75,0.25) rectangle (5.75,-0.25);
+        \begin{scope}[opacity=0.5]
+            \draw [ fill={rgb,255:red,250; green,250; blue,250} , rotate around={-90:(-4.25, 3.25)}] (-11,3.5) rectangle (2.5,3);
+            \draw [ fill={rgb,255:red,250; green,250; blue,250} , rotate around={-90:(-3, 3.25)}] (-9.75,3.5) rectangle (3.75,3);
+            \draw [ fill={rgb,255:red,250; green,250; blue,250} , rotate around={-90:(-1.75, 3.25)}] (-8.5,3.5) rectangle (5,3);
+            \draw [ fill={rgb,255:red,250; green,250; blue,250} , rotate around={-90:(-0.5, 3.25)}] (-7.25,3.5) rectangle (6.25,3);
+            \draw [ fill={rgb,255:red,250; green,250; blue,250} , rotate around={-90:(0.75, 3.25)}] (-6,3.5) rectangle (7.5,3);
+            \draw [ fill={rgb,255:red,250; green,250; blue,250} , rotate around={-90:(2, 3.25)}] (-4.75,3.5) rectangle (8.75,3);
+            \draw [ fill={rgb,255:red,250; green,250; blue,250} , rotate around={-90:(3.25, 3.25)}] (-3.5,3.5) rectangle (10,3);
+            \draw [ fill={rgb,255:red,250; green,250; blue,250} , rotate around={-90:(4.5, 3.25)}] (-2.25,3.5) rectangle (11.25,3);
+        \end{scope}
+        \draw [ fill={rgb,255:red,43; green,0; blue,255} ] (-4.75,3) rectangle (-3.75,2);
+        \draw [ fill={rgb,255:red,43; green,0; blue,255} ] (0.25,3) rectangle (1.25,2);
+        \draw [ fill={rgb,255:red,43; green,0; blue,255} ] (-7,2.5) -- (-6.5,2) -- (-6,2.5) -- (-6.5,3) -- cycle;
+        \draw [ color={rgb,255:red,250; green,250; blue,250} , fill={rgb,255:red,254; green,255; blue,255}] (-7.5,3.25) rectangle (-6.5,2.75);
+        \draw [ color={rgb,255:red,250; green,250; blue,250} , fill={rgb,255:red,254; green,250; blue,250}] (-7.5,2.25) rectangle (-6.5,1.75);
+        \draw [ color={rgb,255:red,0; green,30; blue,255} , fill={rgb,255:red,43; green,0; blue,255}] (-7.75,2.75) rectangle (-6.5,2.25);
+        \draw [ fill={rgb,255:red,43; green,0; blue,255} ] (-10,3) rectangle (-8,2);
+        \node [font=\LARGE, color={rgb,255:red,255; green,255; blue,255}] at (-9,2.5) {aktiv};
+        \draw [ color={rgb,255:red,255; green,255; blue,255}, ->, >=Stealth] (-4.25,-3.5) -- (-4.25,-4.75);
+        \draw [ color={rgb,255:red,43; green,0; blue,255}, line width=1pt, ->, >=Stealth] (-4.25,-4.75) -- (-4.25,-3.5);
+        \draw [ color={rgb,255:red,43; green,0; blue,255}, line width=1pt, ->, >=Stealth] (0.75,-4.75) -- (0.75,-3.5);
+        \node [font=\Large, color={rgb,255:red,153; green,197; blue,255}] at (7.5,8.25) {Kathode};
+        \node [font=\Large, color={rgb,255:red,153; green,197; blue,255}] at (7.25,7.75) {Ca/AI};
+        \node [font=\Large, color={rgb,255:red,217; green,217; blue,217}] at (7.5,7) {Polymer};
+        \node [font=\Large, color={rgb,255:red,217; green,217; blue,217}] at (8,6.5) {PEDOT/PPV};
+        \node [font=\Large] at (7.25,5.75) {Anode};
+        \node [font=\LARGE] at (7,5.25) {ITO};
+    \end{circuitikz}
+    
+	\captionof{figure}{Vereinfachte Darstellung des OLED-Schichtaufbaus (adaptiert nach Wellmann, 2017, Kap. 3.4.2 Abb.3-83) \cite{Wellmann:2017}}
+	\label{fig:OLEDAufbau}
+\end{center}
+
+\subsection{Funktionsprinzip}
+OLEDs nutzen Elektrolumineszenz – die Umwandlung elektrischer Energie in Licht. Dieser Prozess erfolgt in vier Schritten:
+\begin{enumerate}
+	\item \textbf{Ladungsinjektion:}
+	Bei Anlegen einer Gleichspannung (3–5 V) injiziert die Kathode Elektronen in die ETL, während die Anode Löcher (positive Ladungsträger) in die HTL einbringt.
+	
+	\item \textbf{Ladungstransport:}  
+	Die Ladungsträger wandern durch die organischen Schichten – Elektronen zur EML, Löcher zur EML.  
+	
+	\item \textbf{Rekombination:}  
+	In der EML kombinieren Elektronen und Löcher unter Freisetzung von Energie. Nur 20–25\% dieser Energie wird als Licht abgegeben (sichtbarer Bereich: 450–650 nm), der Rest geht als Wärme verloren.  
+	
+	\item \textbf{Lichtaustritt:}  
+	Photonen durchdringen die transparente Anode. Optische Verluste durch Reflexion begrenzen die Effizienz auf ca.20\%  \cite{Wellmann:2017}.  
+\end{enumerate}
+
+\section{Vor- und Nachteile gegenüber alternativen Technologien}
+\subsection{Stärken von OLEDs}
+\begin{itemize}
+	\item Bildqualität:
+	Nahezu unbegrenzter Kontrast (da Pixel komplett abschaltbar)
+	\item Bauhöhe:
+	Ultraflach (< 1 mm) durch fehlende Hintergrundbeleuchtung
+	\item Energieverbrauch:
+	Geringer Strombedarf bei dunklen Bildinhalten
+\end{itemize}
+\cite{Bartlett:2023} \cite{Stotz:2019} \cite{Wellmann:2017}
+
+\subsection{Herausforderungen}
+\begin{itemize}
+	\item Lebensdauer:
+	Organische Materialien degradieren unter Sauerstoff- und Feuchteeinfluss 
+	\item Herstellungskosten:
+	Hochvakuumprozesse für SM-OLEDs sind teurer als LCD-Fertigung
+	\item Helligkeit:
+	Begrenzte Maximalhelligkeit verglichen mit Micro-LEDs
+\end{itemize}
+
+\cite{Bartlett:2023} \cite{Stotz:2019} \cite{Wellmann:2017}
+
+\section{Anwendung im Grove-OLED-Modul}
+Das Grove-OLED-Modul nutzt eine passive Matrix mit 128x64 Pixeln. Charakteristika:
+\begin{itemize}
+	\item Schnittstelle: I²C-Kommunikation (3.3–5 V Betriebsspannung)
+	\item Materialien:
+	\begin{itemize}
+		\item Emitterschicht aus fluoreszierendem Polymer (PLED-Technologie)
+		\item Flexible Encapsulation durch dünne Glasabdeckung
+	\end{itemize}
+	\item Einsatzgebiete:
+	Echtzeit-Datenvisualisierung in IoT-Geräten, Wearables und Industrie-Steuerungen
+\end{itemize}
+\cite{Seeedstudio:2025b}
+
+
+
+\section{Grove-OLED-Display SSD1308}
+
+Das Grove OLED-Display SSD1308 von Arduino ist ein kompaktes, hochauflösendes Display (128x64 Pixel), das sich ideal für die Integration in platzsensitive Projekte der Embedded-Entwicklung eignet. Mittels der Grove-Schnittstelle ermöglicht es eine einfache Anbindung an Mikrocontroller wie Arduino über das I²C-Protokoll, ohne aufwendige Verkabelung. Dank des SSD1308-Controllers und der Arduino-kompatiblen Bibliotheken eignet es sich besonders für Anwendungen in Edge-Geräten, bei denen Übersichtlichkeit und Zuverlässigkeit im Vordergrund stehen. \cite{Seeedstudio:2025b}
+
+\section{Spezifikationen}
+
+\subsection{Display-Eigenschaften} 
+
+\begin{itemize}
+	\item Display-Typ: OLED (Organic Light Emitting Diode)
+	
+	\item Größe: 0,96 Zoll (24,38 mm Diagonale)
+	
+	\item Auflösung: 128 × 64 Pixel
+	
+	\item Farbtiefe: Monochrom (Weiß auf schwarzem Hintergrund)
+	
+	\item Controller: SSD1308 (kompatibel mit SSD1306-Treibern)
+	
+	\item Betrachtungswinkel: ca. 160°
+	
+	\item Helligkeit: Anpassbar über Software
+\end{itemize}
+\cite{Seeedstudio:2025b}
+
+\subsection{Elektrische Spezifikationen}
+
+\begin{itemize}
+	\item Betriebsspannung: 3,3 V – 5 V (Grove-kompatibel)
+	
+	\item Stromverbrauch:
+	
+	\item Typisch: ca. 20 mA (abhängig von Helligkeit und angezeigten Inhalten)
+	
+	\item Standby: < 1 mA
+	
+	\item Schnittstelle: I$^2$C (Standard-Adresse: 0x3C)
+\end{itemize}
+\cite{Seeedstudio:2025b}
+
+\subsection{Mechanische Spezifikationen}
+
+\begin{itemize}
+	\item Abmessungen (Displaymodul):
+	
+	\item Breite: 26 mm
+	
+	\item Höhe: 26 mm
+	
+	\item Tiefe: 7 mm (mit Grove-Stecker)
+	
+	\item Gewicht: ca. 5 g
+\end{itemize}
+\cite{Seeedstudio:2025b}
+
+\subsection{Anschluss \& Kompatibilität}
+
+\begin{itemize}
+	\item Grove-Stecker: Vereinfachte Anbindung an Arduino- und Raspberry-Pi-Boards
+	
+	\item Kompatible Plattformen:
+	
+	\item Arduino (über I$^2$C)
+	
+	\item Raspberry Pi (mit entsprechenden Bibliotheken)
+	
+	\item Andere Mikrocontroller mit I$^2$C-Unterstützung
+\end{itemize}
+\cite{Seeedstudio:2025b}
+
+\section{Bibliothek}
+
+\subsection{Adafruit\_GFX} \label{sec:Adafruit_GFX.h}
+
+\subsubsection{Beschreibung}
+
+Die Adafruit\_GFX-Bibliothek ist eine universelle C++-Grafikbibliothek, die grundlegende Zeichenfunktionen wie das Zeichnen von Pixeln, Linien, Kreisen, Rechtecken und das Schreiben von Text auf grafischen Displays bereitstellt. Sie dient als zentrale Abstraktionsschicht, die es ermöglicht, auf einer Vielzahl von Displays mit unterschiedlichen Controllern einen einheitlichen Satz an Grafikfunktionen zu verwenden. Die eigentliche Hardwarekommunikation (z.B. via I2C oder SPI) wird durch spezifische Treiberbibliotheken übernommen, wie etwa Adafruit\_SSD1306 für OLED-Displays. Adafruit\_GFX verwaltet intern einen Grafikpuffer, in dem alle Zeichenoperationen vorbereitet werden, bevor dieser anschließend auf das Display übertragen wird. Die Bibliothek ist damit besonders leistungsfähig für Embedded-Anwendungen mit text- und grafikbasierten Benutzeroberflächen. Eine vollständige Dokumentation und der Quellcode finden sich in der offiziellen Adafruit-GFX-Dokumentation \cite{Adafruit:2024GFX}\cite{Adafruit:2024GFXLibrary}.
+
+\subsubsection{Bibliotheksversion:}
+
+Die aktuelle Version ist über den Library Manager verfügbar. In der Regel wird sie automatisch mit anderen Adafruit-Displaybibliotheken installiert. Mit Stand Mai 2025 ist die aktuelle Version 1.11.5 \cite{Adafruit:2024GFX}.
+
+\subsubsection{Installation}
+
+Über Arduino Library Manager: \glqq Adafruit GFX Library\grqq{} suchen und installieren.
+
+\subsubsection{Funktionen}
+
+Die Bibliothek Adafruit\_GFX stellt grundlegende Zeichenfunktionen für grafische Ausgaben zur Verfügung \cite{Adafruit:2024GFX}.
+
+\begin{itemize}
+	\item \PYTHON{setCursor(x, y)} – Position des Textcursors
+	
+	\item \PYTHON{setTextSize(size)} – Schriftgröße einstellen
+	
+	\item \PYTHON{setTextColor(color)} – Textfarbe festlegen
+	
+	\item \PYTHON{print()/println()} – Textausgabe
+	
+	\item \PYTHON{drawPixel(x, y)} – Einzelnes Pixel zeichnen
+	
+	\item \PYTHON{drawLine()}, \PYTHON{drawRect()}, \PYTHON{fillRect()}, \PYTHON{drawCircle()}, \PYTHON{fillCircle()} – Formelemente
+\end{itemize}
+
+\subsubsection{Beispielcode mit Beschreibung}
+
+In diesem Beispiel \ref{lst:AdafruitGFX-Example} wird das Display mit 128×64 Pixeln initialisiert und ein einfacher Text angezeigt. Dabei wird Adafruit\_GFX als Basisklasse verwendet, während Adafruit\_SSD1306 die konkrete Ansteuerung des OLED-Displays übernimmt. Die Methoden setTextSize, setCursor und println demonstrieren die Textausgabe (vgl. \cite{Adafruit:2024GFX}).
+
+{
+	\captionof{code}{Beispiel Adafruit\_GFX}\label{lst:AdafruitGFX-Example}
+	\ArduinoExternal{}{../../Code/Arduino/OledGrove/AdafruitGFX/AdafruitGFX.ino}
+}
+
+\subsection{Adafruit\_SSD1306} \label{sec:Adafruit_SSD1306.h}
+
+\subsubsection{Beschreibung}
+
+Die Bibliothek Adafruit\_SSD1306 ist eine spezifische Display-Treiberbibliothek für OLED-Displays, die auf dem SSD1306-Controller basieren. Sie unterstützt sowohl die Kommunikation über I2C als auch SPI und abstrahiert die Low-Level-Kommandos, die zum Ansteuern des Controllers notwendig sind. Intern basiert sie auf der Bibliothek Adafruit\_GFX, die grundlegende Zeichenfunktionen wie Linien, Kreise, Rechtecke und Textausgabe bereitstellt. Die Adafruit\_SSD1306-Bibliothek kümmert sich insbesondere um die Initialisierung des Displays, die Verwaltung eines internen Bildpuffers (Framebuffer) und das periodische Aktualisieren des Displays über die Methode \PYTHON{display()}. Dieses Verfahren minimiert Bildschirmflackern und erlaubt effiziente Darstellung auch auf leistungsschwachen Mikrocontrollern. Die Bibliothek ist quelloffen und vollständig dokumentiert im Adafruit Learning System sowie über das GitHub-Repository von Adafruit verfügbar \cite{Adafruit:2024OLED}\cite{Adafruit:2024GFXLibrary}.
+
+\subsubsection{Bibliotheksversion}
+
+Verfügbar über den Library Manager als "Adafruit SSD1306". Mit Stand Mai 2025 ist die empfohlene Version 2.5.7 \cite{Adafruit:2024GFXLibrary}.
+
+\subsubsection{Installation}
+
+Arduino IDE > Sketch > Bibliothek einbinden > Bibliotheken verwalten > "Adafruit SSD1306" installieren.
+
+\subsubsection{Funktionen}
+
+Die Bibliothek Adafruit\_SSD1306 stellt zentrale Funktionen zur Steuerung und Darstellung auf SSD1306-OLED-Displays bereit \cite{Adafruit:2024OLED}.
+
+\begin{itemize}
+	\item \PYTHON{begin(vccstate, address)} – Initialisiert Display
+	
+	\item \PYTHON{clearDisplay()} – Bildschirm löschen
+	
+	\item \PYTHON{setCursor(x, y)} – Cursorposition setzen
+	
+	\item \PYTHON{print()/println()} – Textausgabe
+	
+	\item \PYTHON{display()} – Display aktualisieren
+\end{itemize}
+
+\subsubsection{Beispielcode mit Beschreibung}
+
+Dieser Beispielcode \ref{lst:AdafruitSSD1306-Example} zeigt die Initialisierung eines SSD1306 Treiber-basierten OLED-Displays über I2C. Nach dem Start wird das Display gelöscht und der Text „Start“ in doppelter Schriftgröße auf dem Bildschirm angezeigt. Die Kombination aus Adafruit\_GFX und Adafruit\_SSD1306 ist ideal für Mikrocontroller mit begrenztem Speicher, wie etwa den Arduino Nano 33 BLE Sense (vgl. \cite{Adafruit:2024OLED}).
+
+{
+	\captionof{code}{Beispiel Adafruit\_GFX}\label{lst:AdafruitSSD1306-Example}
+	\ArduinoExternal{}{../../Code/Arduino/OledGrove/AdafruitSSD1306/AdafruitSSD1306.ino}
+}
+
+
+%\section{Tests}
+
+%\subsection{Simple Function Test}
+
+%\subsection{Test all Functions}
+
+\section{Weiterführende Literatur}
+
+Peter Adam Hoeher, Visible Light Communications \cite{Hoeher:2019}
+
+\medskip
+
+Dieses Buch bietet einen umfassenden Überblick über die Theorie und Praxis der sichtbaren Lichtkommunikation (VLC). Es beschreibt die Nutzung von LED-Technologien zur gleichzeitigen Beleuchtung und Datenübertragung, wobei auch organische Leuchtdioden (OLEDs) als alternative Lichtquelle berücksichtigt werden. OLEDs werden als potenzielle Komponenten für zukünftige VLC-Systeme genannt, insbesondere aufgrund ihrer flexiblen Formfaktoren und flächigen Lichtabstrahlung, auch wenn ihre derzeitige Effizienz und Modulationsgeschwindigkeit noch hinter der von Standard-LEDs zurückbleibt.\\
+
+\bigskip
+
+Leonhard Stiny: Aktive elektronische Bauelemente \cite{Stiny:2019}
+
+\medskip
+
+Dieses Buch stellt umfassendes Wissen zur Elektronikpraxis im Bereich der Halbleitertechnik bereit. Dabei werden Bauteile beschrieben, erläutert und erklärt, wie diese in Schaltungen integriert werden können, um fehlerfreie und sichere Ergebnisse zu erzielen. Auf zentrale Bauelemente wie unter anderem Dioden, bzw. LEDs (auch OLED) wird besonders Bezug genommen.

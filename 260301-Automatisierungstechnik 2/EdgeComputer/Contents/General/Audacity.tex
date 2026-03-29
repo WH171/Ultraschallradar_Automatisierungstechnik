@@ -1,0 +1,78 @@
+%%%
+%
+% $Autor: Wings $
+% $Datum: 2021-05-14 $
+% $Pfad: GitLab/Audacity $
+% $Dateiname: 
+% $Version: 4620 $
+%
+% !TeX spellcheck = de_DE/GB
+% !TeX program = pdflatex
+% !BIB program = biber/bibtex
+% !TeX encoding = utf8
+%
+%%%
+
+
+\chapter{Audacity}
+
+\section{How to Record your Own voice}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Audacity/EditRecordedinAudacity}
+    \caption{Audacity user interface} \label{fig:Audacity}
+\end{figure}
+
+\begin{enumerate}
+    \item Record your voice using a recording device.
+    \item Change the format to WAV.
+    \item Use Audacity for editing.
+    \item Set the project rate to 16kHz.
+    \item Resample the entire recording to match the 16kHz sample rate.
+    \item Select one second of audio.
+    \item Export each second of audio as a WAV file. Use 32-bit float as the encoding, matching the bit depth of other samples.
+    \item The file name can be chosen according to one's own preferences.
+    \item Create a new folder and name it after your keyword (e.g., "Hello").
+    \item Move all the samples to this folder.
+    \item Place the folder alongside other sample keyword folders.
+    \begin{itemize}
+        \item prevent bias
+    \end{itemize}
+\end{enumerate}
+
+\subsubsection{Aim for a Balanced Dataset to Avoid Bias}
+
+Note that the aim should be set for a balanced dataset. For example a dataset where each class or category of interest has approximately the same number of instances. This is particularly important when training a model, as an imbalanced dataset may lead the model to be biased toward the majority class, potentially hindering its ability to generalize well to minority classes.
+
+For example, if you're training a model to recognize different accents, having a balanced dataset would mean ensuring that you have a similar number of examples for each accent you want the model to identify. This helps prevent the model from becoming overly influenced by the accent with the most instances and allows it to learn patterns from all classes more effectively.
+
+
+\subsection{How to Install Audacity}
+
+\subsubsection{Windows:}
+
+\begin{enumerate}
+    \item Visit the official Audacity website: \texttt{https://www.audacityteam.org/}
+    \item Navigate to the "Download" section.
+    \item Click on the Windows logo to download the installer for Windows.
+    \item Run the downloaded installer file.
+    \item Follow the on-screen instructions to complete the installation.
+\end{enumerate}
+
+\subsubsection{macOS:}
+
+\begin{enumerate}
+    \item Visit the official Audacity website: \texttt{https://www.audacityteam.org/}
+    \item Navigate to the  section ``Download''.
+    \item Click on the Apple logo to download the installer for macOS.
+    \item Open the downloaded DMG file.
+    \item Drag the Audacity application to your Applications folder.
+\end{enumerate}
+
+After installation, you can launch Audacity and start using it for audio editing.
+
+\subsection{License of Audacity Software Product}
+
+Audacity is released under the GNU General Public License (GPL). Specifically, Audacity is licensed under the GNU GPL version 2 or later. The GPL is a free software license that allows users to run, study, modify, and distribute the software and its source code.
+

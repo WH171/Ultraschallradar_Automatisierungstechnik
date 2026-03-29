@@ -1,0 +1,137 @@
+%%%
+%
+% $Autor: Wings $
+% $Datum: 2021-05-14 $
+% $Pfad: GitLab/SpeechRecognitionData $
+% $Dateiname: 
+% $Version: 4620 $
+%
+% !TeX spellcheck = de_DE/GB
+% !TeX program = pdflatex
+% !BIB program = biber/bibtex
+% !TeX encoding = utf8
+%
+%%%
+
+\chapter{SpeechRecognitionData}
+
+
+
+
+\subsection{Input Data for Speech Recognition Applications}
+\label{subsection:InputDataSpeech}
+
+It's important to note that he model does not process raw audio sample data; instead, it operates on spectrograms \cite{Warden:2020}; two dimensional arrays comprised of slices of frequency information, each derived from distinct time windows. Figure \ref{subfig:SpectralYes} visually depicts a spectrogram generated from a one-second audio clip of the word "yes," while Figure \ref{subfig:SpectralsNo} illustrates the same for the word "no."
+
+\begin{figure}[h!]
+    \centering
+    
+    \begin{subfigure}{0.45\textwidth}
+        \includegraphics[width=\linewidth]{SpeechRecognition/SpectrogramYes.jpg}
+        \caption{}    % \caption{} is kept to keep (a), (b), (c) etc. below each subfigure.
+        \label{subfig:SpectralYes}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \includegraphics[width=\linewidth]{SpeechRecognition/SpectrogramNo.jpg}
+        \caption{}    % \caption{} is kept to keep (a), (b), (c) etc. below each subfigure.
+        \label{subfig:SpectralsNo}
+    \end{subfigure}
+    
+    \caption{Spectral representations of "yes" and "no" \cite{Warden:2020}. (\subref{subfig:SpectralYes}) Spectral representation of the word "yes." (\subref{subfig:SpectralsNo}) Spectral representation of the word "no."}
+    \label{fig:SpectralYesNoCombined}
+\end{figure}
+
+By isolating frequency information during preprocessing, we simplify the model's training. It sidesteps the need to decipher raw audio data and instead operates with a higher-layer abstraction, distilling the most pertinent information. As a spectrogram is a two-dimensional array, it is inputted into the model as a 2D tensor.
+
+Figure \ref{subfig:SpectralYes} depicts the input fed into the neural network, represented as a 2D array with a single channel, resembling a monochrome image. Working with 16 KHz audio sample data, the goal is to employ "feature generation" to transform a challenging input format (16,000 numerical values per second of audio) into a more machine-friendly representation. While machine vision often deals easily with images, domains like audio and natural language processing commonly require preprocessing before feeding data into a model.
+
+To understand why preprocessing aids model comprehension, examine the original raw representations of audio recordings in Figures \ref{subfig:WaveformYesFirst} through \ref{subfig:WaveformNoSecond}. Without labels, distinguishing identical words is challenging. In contrast, Figures \ref{subfig:SpectrogramYesFirst} through \ref{subfig:SpectrogramNoSecond} demonstrate the spectrograms of the same recordings. Spectrograms, compared to raw waveforms, make differences more discernible, facilitating model interpretation.
+
+\begin{figure}[h!]
+    \centering
+    
+    \begin{subfigure}{0.45\textwidth}
+        \includegraphics[width=\linewidth]{SpeechRecognition/WaveformYesFirst.jpg}
+        \caption{}    % \caption{} is kept to keep (a), (b), (c) etc. below each subfigure.
+        \label{subfig:WaveformYesFirst}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \includegraphics[width=\linewidth]{SpeechRecognition/WaveformYesSecond.jpg}
+        \caption{}    % \caption{} is kept to keep (a), (b), (c) etc. below each subfigure.
+        \label{subfig:WaveformYesSecond}
+    \end{subfigure}
+    
+    \medskip 
+    
+    \begin{subfigure}{0.45\textwidth}
+        \includegraphics[width=\linewidth]{SpeechRecognition/WaveformNoFirst.jpg}
+        \caption{}    % \caption{} is kept to keep (a), (b), (c) etc. below each subfigure.
+        \label{subfig:WaveformNoFirst}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \includegraphics[width=\linewidth]{SpeechRecognition/WaveformNoSecond.jpg}
+        \caption{}    % \caption{} is kept to keep (a), (b), (c) etc. below each subfigure.
+        \label{subfig:WaveformNoSecond}
+    \end{subfigure}
+    
+    \caption{Audio waveforms of "yes" and "no" \cite{Warden:2020}. (\subref{subfig:WaveformYesFirst}) "yes" audio waveform. (\subref{subfig:WaveformYesSecond}) Another "yes" audio waveform. (\subref{subfig:WaveformNoFirst}) "no" audio waveform. (\subref{subfig:WaveformNoSecond}) Another "no" audio waveform.}
+    \label{fig:audioWaveforms}
+\end{figure}
+
+
+\begin{figure}[h!]
+    \centering
+    
+    \begin{subfigure}{0.45\textwidth}
+        \includegraphics[width=\linewidth]{SpeechRecognition/SpectrogramYesFirst.jpg}
+        \caption{}    % \caption{} is kept to keep (a), (b), (c) etc. below each subfigure.
+        \label{subfig:SpectrogramYesFirst}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \includegraphics[width=\linewidth]{SpeechRecognition/spectrogramYesSecond.jpg}
+        \caption{}    % \caption{} is kept to keep (a), (b), (c) etc. below each subfigure.
+        \label{subfig:SpectrogramYesSecond}
+    \end{subfigure}
+    
+    \medskip 
+    
+    \begin{subfigure}{0.45\textwidth}
+        \includegraphics[width=\linewidth]{SpeechRecognition/SpectrogramNoFirst.jpg}
+        \caption{}    % \caption{} is kept to keep (a), (b), (c) etc. below each subfigure.
+        \label{subfig:SpectrogramNoFirst}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \includegraphics[width=\linewidth]{SpeechRecognition/SpectrogramNoSecond.jpg}
+        \caption{}    % \caption{} is kept to keep (a), (b), (c) etc. below each subfigure.
+        \label{subfig:SpectrogramNoSecond}
+    \end{subfigure}
+    
+    \caption{Audio Spectrograms of "yes" and "no" \cite{Warden:2020}. (\subref{subfig:SpectrogramYesFirst}) "yes" audio spectrogram (\subref{subfig:SpectrogramYesSecond}) Another "yes" audio spectrogram. (\subref{subfig:SpectrogramNoFirst}) "no" audio spectrogram. (\subref{subfig:SpectrogramNoSecond}) Another "no" audio spectrogram.}
+    \label{fig:audioSpectrograms}
+\end{figure}
+
+Additionally, generated spectrograms are much smaller than raw sample data, with each containing 1,960 numeric values instead of 16,000 in the waveform. This summarization reduces the neural network's workload. While models like DeepMind's WaveNet \cite{Oord:2016} can handle raw data, they often entail more computation than the combination of a neural network with hand-engineered features, making the latter preferable for resource-constrained environments like embedded systems.
+
+\subsection{How to Convert Audio to a Spectrogram}
+\label{subsection:convertAudio}
+
+The process of converting audio into a spectrogram involves creating a 2D array to represent an audio snippet, with each row reflecting a segment of the audio split into frequency buckets. This occurs in a loop, generating new features efficiently for the time elapsed since the last iteration \cite{Warden:2020}.
+
+For each row, a segment of the audio undergoes fast Fourier transform (FFT) to analyze frequency distribution, resulting in condensed frequency information. The 2D array is formed by combining results from consecutive slices of the audio signal, ensuring continuity.
+
+The decision on which slices to generate is based on time intervals between operations, optimizing computational efficiency. The loop retrieves audio samples for each new slice, and after processing, a comprehensive spectrogram is obtained. The subsequent steps involve using this spectrogram for inference with the model, and the results are interpreted for recognition.
+
+In the Figure \ref{fig:audioProcessings} the diagram of audio samples being processed is shown. The process in this example involves converting audio into a spectrogram by analyzing one-second audio snippets in a loop. Each 30-millisecond audio segment undergoes a fast Fourier transform (FFT), producing an array of 256 frequency buckets, which are then averaged into 43 buckets to distill relevant frequency information. These steps are repeated for consecutive segments with a 20-millisecond overlap, ensuring continuity. The resulting frequency data forms a 2D array, representing the entire one-second audio sample.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{SpeechRecognition/audioProcessing.jpg}
+    \caption{Diagram of the processing of audio samples \cite{Warden:2020}.} 
+    \label{fig:audioProcessings}
+\end{figure}
+

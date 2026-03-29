@@ -1,0 +1,53 @@
+%%%%%%%%%%%%
+%
+% $Autor: Wings $
+% $Datum: 2019-03-05 08:03:15Z $
+% $Pfad: TemplateSensor $
+% $Version: 4250 $
+% !TeX spellcheck = en_GB/de_DE
+% !TeX encoding = utf8
+% !TeX root = filename 
+% !TeX TXS-program:bibliography = txs:///biber
+%
+%%%%%%%%%%%%
+
+\chapter{Objektorientierte Sensorarchitektur}
+
+Dieses Kapitel beschreibt die objektorientierte Softwarestruktur, die als gemeinsame Grundlage für die Kommunikation und Verwaltung verschiedener Sensortypen dient. Durch den Einsatz eines universellen Interfaces können unterschiedliche Sensoren – beispielsweise Strom-, Kraft-, oder Temperatursensoren – über ein einheitliches Schema angesprochen, initialisiert und ausgelesen werden. Dies ermöglicht eine modulare, wiederverwendbare und leicht erweiterbare Architektur, die unabhängig von den jeweiligen Sensortreibern funktioniert.
+	
+\section{Konzept der gemeinsamen Schnittstelle}
+	
+Das Interface \PYTHON{ISensor} definiert die grundlegenden Methoden, die jeder Sensortyp implementieren muss: 
+
+\PYTHON{init()} zur Initialisierung, \PYTHON{update()} zur Messwertaktualisierung und \PYTHON{getValue()} zur Bereitstellung des aktuellen Messwerts. Diese Vereinheitlichung ermöglicht es, alle Sensoren im System polymorph zu behandeln – also mit derselben Schnittstelle zu arbeiten, unabhängig vom Sensortyp. 
+	
+\begin{itemize}
+	\item \textbf{Flexibilität:} Neue Sensoren können hinzugefügt werden, ohne den bestehenden Code zu verändern.
+		\item \textbf{Modularität:} Jeder Sensor ist in einer eigenen Klasse gekapselt.
+		\item \textbf{Wiederverwendbarkeit:} Gleiche Schnittstelle, unterschiedliche Implementierung.
+		\item \textbf{Erweiterbarkeit:} Einfache Integration neuer physikalischer Messgrö{\ss}en (z. B. Spannung, Kraft, Druck).
+\end{itemize}
+	
+\section{Interface für die Sensoren}
+
+	{
+		\captionof{code}{Interface \PYTHON{ISensor}: gemeinsame Schnittstelle für verschiedene Sensortypen}
+		\ArduinoExternal{}{../../Code/MKRWAN1310/SoftwareArchitecture/ISensor.h}
+	}
+
+	Ein Hauptprogramm kann alle Sensorobjekte in einer gemeinsamen Liste verwalten, 
+	ohne deren konkreten Typ kennen zu müssen. Dadurch können beliebige Kombinationen von Sensoren dynamisch eingebunden werden:
+	
+	\begin{lstlisting}[language=C++,caption={Beispielhafter Polymorphismus für mehrere Sensortypen}]
+		ISensor* sensors[] = {
+			new CTemperatureSensor(7, "DS18B20"),
+			new CCurrentSensor(A1, 10.1, 1480, "SCT013")
+		};
+		
+		for (auto* s : sensors) {
+			s->init();
+			s->update();
+			Serial.println(s->getValue());
+		}
+	\end{lstlisting}
+	

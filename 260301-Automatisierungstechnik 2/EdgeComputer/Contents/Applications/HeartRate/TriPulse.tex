@@ -1,0 +1,62 @@
+%%%%%%%%%%%%
+%
+% $Autor: Mariella Remus
+% $Datum: 2025-07
+
+% !TeX spellcheck = en_GB/de_DE
+% !TeX encoding = utf8
+% !TeX root = filename 
+% !TeX TXS-program:bibliography = txs:///biber
+%
+%%%%%%%%%%%%
+
+% Structure
+\chapter{Applikation TriPulse-Herzschlagmessgerät}
+
+Der TriPulse ist ein kompaktes, tragbares Messgerät zur kontinuierlichen Erfassung und Anzeige der Herzfrequenz. Die Anwendung basiert auf einem optischen Sensorprinzip (Photoplethysmographie), bei dem der Puls über einen Ohr- oder Fingersensor detektiert wird. Die Messwerte werden in der Einheit BPM (Beats per Minute) auf einem gut ablesbaren OLED-Display dargestellt. Ein besonderes Augenmerk wurde auf die Benutzerfreundlichkeit und Mobilität des Geräts gelegt – es kann mithilfe eines Gürtelclips an der Kleidung befestigt oder frei auf einer Oberfläche abgelegt werden.
+
+Der Sensor-Clip wird über ein fest verbundenes Kabel mit dem Gerät gekoppelt und muss für eine zuverlässige Signalverarbeitung direkt auf der Haut angebracht werden. Dabei ist zu beachten, dass der Sensor-Clip stabil sitzt, ohne den Blutfluss zu beeinträchtigen. Die Messdaten werden laufend aktualisiert und auf dem Bildschirm angezeigt, begleitet von einer Batteriestatusanzeige, die dem Nutzer jederzeit Rückmeldung über die verbleibende Energieversorgung gibt.
+
+Eine zentrale Funktion des TriPulse besteht in der Speicherung der Messdaten auf einer externen MicroSD-Karte. Die erfassten Daten enthalten nicht nur die Herzfrequenz, sondern werden zusätzlich mit einem Zeitstempel versehen, der das genaue Datum und die Uhrzeit der jeweiligen Messung enthält. Diese Funktion wird durch eine integrierte Echtzeituhr (RTC-Modul DS1307) realisiert. Die MicroSD-Karte ist über eine Gehäuseöffnung leicht zugänglich und kann ohne Demontage des Geräts entnommen werden. Die gespeicherten Daten liegen im CSV-Format vor und lassen sich problemlos mit Analyseprogrammen wie Microsoft Excel weiterverarbeiten.
+
+Für eine robuste und störungsfreie Anwendung wurden System- und Fehlermeldungen implementiert, die ebenfalls auf dem Display erscheinen. Dazu zählen Hinweise wie „Messung startet, bitte Geduld“, „Bitte SD-Karte einsetzen!“ oder im Fehlerfall „Kein Signal“. Diese Rückmeldungen helfen, typische Anwendungsfehler schnell zu identifizieren und zu beheben.
+
+Das Gesamtsystem wird über einen zweipoligen Wippschalter eingeschaltet und von einer handelsüblichen 9V-Blockbatterie versorgt. Alle elektronischen Komponenten sind in einem eigens konstruierten Kunststoffgehäuse untergebracht, das per 3D-Druck gefertigt wurde. Die kompakte, mobile Ausführung und die einfache Bedienbarkeit machen den TriPulse zu einem vielseitigen Werkzeug zur nichtinvasiven Herzfrequenzüberwachung im sportlichen, privaten oder prototypischen Umfeld – unter dem klaren Hinweis, dass es sich nicht um ein medizinisch zertifiziertes Diagnostikgerät handelt.
+
+\section{Komponenten}
+Der TriPulse verfügt über mehrere Komponenten, die im folgenden aufgelistet werden und in den verlinkten Kapiteln näher beschrieben werden:
+
+\begin{itemize}
+	\item \textbf{Arduino Nano 33 BLE Sense Lite} \ref{ch:Arduino}
+	
+	\item \textbf{SD-Karten-Modul} \ref{ch:SDKartenModul}
+	
+	\item \textbf{Real Time Clock} \ref{ch:RTC}
+	
+	\item \textbf{1,3 Zoll OLED Display} \ref{ch:Display}
+	
+	\item \textbf{GRV Heart Rate 3 Sensor} \ref{ch:HRSensor}
+	
+	\item \textbf{Wippschalter} \ref{ch:Wippschalter}
+	
+	\item \textbf{Batterie} \ref{ch:Batterie}
+	
+	\item \textbf{Steckbrücken} \ref{ch:Steckbrücken}
+	
+	\item \textbf{Gehäuse} \ref{ch:Gehäuse}
+	
+\end{itemize}
+
+Die verwendeten Materialien werden in der Materialliste in Kapitel \ref{ch:Materialliste} aufgelistet. 
+
+\section{Schaltplan}
+In Abbildung \ref{fig:TriPulseSchaltplan} ist der Schaltplan zu sehen, der zeigt, wie das gesamte System miteinander verbunden ist. 
+
+
+\begin{center}
+	\includegraphics[width=12cm]{Applications/HeartRate/Circuit}
+	\captionof{figure}{TriPulse Schaltplan}
+	\label{fig:TriPulseSchaltplan}
+\end{center}
+
+

@@ -1,0 +1,55 @@
+\chapter{Beispielimplementierung: Stromsensor SCT013}
+
+	Die Implementierung der Klasse \PYTHON{CCurrentSensor} folgt der Struktur des Interfaces \PYTHON{ISensor} 
+	und definiert die drei Pflichtmethoden:
+	
+	\begin{itemize}
+		\item \PYTHON{init()}:
+		
+		Initialisiert den Sensor, setzt die Auflösung des ADC und konfiguriert die interne EmonLib-Instanz. 
+		Nach erfolgreicher Initialisierung wird das Flag \PYTHON{initialized\_} aktiviert. 
+		Diese Methode führt keine Messung durch, sondern bereitet den Sensor auf den Betrieb vor. 
+		
+		\textbf{Rückgabewert:} 
+		
+		\begin{itemize}
+			\item \PYTHON{SensorError::SUCCESS} – die Initialisierung wurde erfolgreich abgeschlossen. 
+		\end{itemize}
+		
+		\item \PYTHON{update()}:
+		Führt eine neue RMS-Strommessung durch. Dazu werden mehrere ADC-Werte eingelesen, mit \PYTHON{EmonLib::calcIrms()} ausgewertet und das Ergebnis validiert. 
+		Der gemessene Effektivwert wird anschlie{\ss}end in \PYTHON{lastReadVal\_} gespeichert.
+		
+		\textbf{Rückgabewerte:}
+		
+		\begin{itemize}
+			\item \PYTHON{SensorError::SUCCESS} – die Messung wurde erfolgreich durchgeführt und der Wert gespeichert. 
+			\item \PYTHON{SensorError::NOT\_INITIALIZED} – die Methode wurde aufgerufen, bevor \PYTHON{init()} ausgeführt wurde. 
+			\item \PYTHON{SensorError::READ\_ERROR} – das Messergebnis war ungültig (z.\,B. \PYTHON{NaN} oder ein negativer Wert), 
+			daher wurde der Wert verworfen. 
+		\end{itemize}
+		
+		\item \PYTHON{getValue()}:
+		
+		Gibt den zuletzt gespeicherten Stromwert über eine Referenzvariable aus, 
+		ohne eine neue Messung auszuführen. 
+		Diese Methode dient ausschlie{\ss}lich dem Abruf des letzten gültigen Messwertes. 
+		
+		\textbf{Rückgabewerte:}
+
+		\begin{itemize}
+			\item \PYTHON{SensorError::SUCCESS} – ein gültiger Messwert liegt vor und wurde erfolgreich zurückgegeben. 
+			\item \PYTHON{SensorError::NOT\_INITIALIZED} – der Sensor wurde noch nicht initialisiert, 
+			daher ist kein gültiger Messwert verfügbar. 
+		\end{itemize}
+	\end{itemize}
+
+{
+  \captionof{code}{Klasse \PYTHON{CCurrentSensor}: Implementierung des Interfaces \PYTHON{ISensor} für RMS-Strommessung}
+  \ArduinoExternal{}{../../Code/MKRWAN1310/SoftwareArchitecture/CCurrentSensor.h}
+}
+	
+{
+  \captionof{code}{Implementierung der Methoden des Stromsensors \PYTHON{CCurrentSensor}}
+  \ArduinoExternal{}{../../Code/MKRWAN1310/SoftwareArchitecture/CCurrentSensor.cpp}
+}

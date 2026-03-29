@@ -1,0 +1,181 @@
+%%%%%%%%%%%%
+%
+% $Autor: Wings $
+% $Datum: 2019-03-05 08:03:15Z $
+% $Pfad: TemplateSensor $
+% $Version: 4250 $
+% !TeX spellcheck = en_GB/de_DE
+% !TeX encoding = utf8
+% !TeX root = filename 
+% !TeX TXS-program:bibliography = txs:///biber
+%
+%%%%%%%%%%%%
+
+% Structure
+\chapter{Grove - Bodenfeuchtigkeitssensor}
+Dieses Kapitel beschreibt den Grove-Bodenfeuchtigkeitssensor, seinen Aufbau und seine Funktionsweise. Es werden die Unterschiede zwischen resistiven und kapazitiven Sensoren erläutert und der Grove Moisture Sensor als resistiver Sensor vorgestellt, dessen analoges Ausgangssignal direkt über einen ADC erfasst wird. Zudem werden typische Einflussfaktoren, Spezifikationen und Messbereiche dargestellt.
+
+
+\section{General}  
+Bodenfeuchtigkeitssensoren messen den Anteil des Wassers in der Erde. Es gibt zwei Typen dieser Sensoren, die nach unterschiedlichen Prinzipien funktionieren:  
+
+\begin{enumerate}  
+	\item Resistive Sensoren – Diese Sensoren besitzen zwei Elektroden, die in der Erde platziert sind. Der Widerstand zwischen den Elektroden wird gemessen – je mehr Wasser im Boden ist, desto besser leitet er Strom (geringerer Widerstand). Ist der Boden trocken, steigt der Widerstand. Diese Sensoren haben eine einfache Bauweise und sind kostengünstig. Allerdings können die Elektroden korrodieren, was die Messergebnisse beeinträchtigen kann.  
+	\item Kapazitive Sensoren – Sie messen die Änderungen der elektrischen Kapazität des Bodens. Der Sensor bildet einen Kondensator, wobei der Boden als Dielektrikum dient. Feuchter Boden hat eine höhere dielektrische Konstante als trockener, was die Kapazität beeinflusst. Durch die Messung der Kapazität lässt sich die Bodenfeuchtigkeit bestimmen. Diese Sensoren sind langlebiger, da sie keine direkten Elektroden besitzen und somit nicht korrodieren. Allerdings sind sie teurer und erfordern eine Kalibrierung.  
+\end{enumerate}  
+
+
+\begin{center}
+	%todo tikz picture with strip red - red - black - brown 1\%
+	% or red - red - black - gold 5\%
+	\includegraphics[width=0.8\textwidth]{Sensor/GroveSen/GroveMoistSen}
+	\captionof{figure}{Grove Bodenfeuchtigkeitsensor\cite{Huang:2023a}}
+\end{center}
+
+\begin{center}
+	\begin{tikzpicture}
+		\GrooveMoistureSensor
+	\end{tikzpicture}
+	\captionof{figure}{Grove Bodenfeuchtigkeitsensor}
+\end{center}
+
+
+\section{Specific Sensor}  
+
+Der Grove Moisture Sensor ist ein resistiver Sensor. Er misst den Widerstand zwischen zwei Elektroden. Der Sensor wird mit einer Spannung zwischen 3,3V und 5V betrieben. Er gibt ein analoges Ausgangssignal zurück, das mithilfe eines ADC interpretiert werden kann. Die Signalstärke (Spannung) steigt mit zunehmender Feuchtigkeit, da der Widerstand kleiner wird. Das Ausgangssignal ist eine Spannung, die zwischen 0V und der Versorgungsspannung variiert.  
+
+Der Grove Moisture Sensor verfügt über einen 3-poligen Anschluss, der eine einfache Verbindung zu Plattformen wie Arduino oder Raspberry Pi mithilfe eines Grove-Kabels ermöglicht. \\  
+
+Bedeutung der Pins am Grove Moisture Sensor:
+\begin{enumerate}  
+	\item VCC – Stromversorgung des Sensors (3,3V oder 5V, je nach System).  
+	\item GND – Masse (GND).  
+	\item SIG (Signal) – Analogausgang, der eine Spannung proportional zur Bodenfeuchtigkeit liefert.  
+\end{enumerate}  
+
+Für den Betrieb müssen VCC, GND und SIG mit den entsprechenden Pins eines Mikrocontrollers (z. B. Arduino) verbunden werden.  
+
+Man soll es in Betracht ziehen, dass es gewisse Faktoren gibt, die die Messung beeinflussen können:
+\begin{itemize}
+	\item Bodentyp - Unterschiedliche Böden haben unterschiedliche Leitfähigkeiten.
+	\item Temperatur - Die Temperatur des Bodens kann den Widerstand beeinflüssen.
+	\item Korrosion -  Langfristige Benutzung führt zur Oxidation, wodurch sich die Messgenauigkeit verschlechtert.
+\end{itemize}
+\section{Specification}
+Der Grove - Lichtsensor verwendet eine analoge Kommunikation. Das Ausgangssignal ist eine Spannung, die proportional zur Lichtintensität ist. Dabei kann die Spannung niemals höher sein als die angelegte Versorgungsspannung.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|}
+		\hline
+		Spannung & 3.3 - 5V \\
+		\hline
+		Strom & 0 - 35 mA \\
+		\hline
+	\end{tabular}
+	\caption{Grove Moisture Sensor Parameter}	% <- BIB
+\end{table}
+
+Messwerte des Grove Moisture Sensors in verschiedenen Bodenbedingungen:
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|}
+		\hline
+		\textbf{Bodenbedingung} & \textbf{Sensorwert} \\
+		\hline
+		Trockener Boden & 0 - 300 \\
+		\hline
+		Feuchter Boden & 300 - 700 \\
+		\hline
+		Im Wasser & 700 - 950 \\
+		\hline
+	\end{tabular}
+	\caption{Ausgangswerte des Grove Moisture Sensors}
+\end{table}
+
+
+\section{Bibliothek}
+Der Grove Moisture Sensor ist ein analoger Sensor, daher sind keine zusätzlichen Bibliotheken erforderlich. Die Daten können mithilfe von `analogRead()` ausgelesen werden.
+
+%\subsection{Description}
+
+%\subsection{Installation}
+
+%\subsection{Functions}
+
+%\subsection{Example - Manual}
+
+%\subsection{Example}
+
+%\subsection{Example - Code}
+
+%\subsection{Example - Files}
+
+
+
+\section{Calibration}
+
+Der Grove Sensor benötigt keine Kalibrierung, weil sein Ausgang analog ist und direkt von der Lichtverhältnissen abhängt. Allerdings eine Skalierung den ADC Werten auch andere Skala z.B 0 - 100 eine plausible lösung ist. Eine gute Praxis ist es, den Sensor zunächst an dem Ort zu testen, an dem er eingesetzt werden soll. Wir sollten den Sensor in der Erde platzieren, deren Feuchtigkeitsgehalt bekannt ist. Zuerst testen wir den Sensor in trockener und feuchter Erde. Auf diese Weise können wir eine Skala erstellen und die ADC-Werte (0 - 1023) mit den tatsächlichen Feuchtigkeitszuständen abgleichen.
+
+
+\section{Simple Code}
+Sobald der Sensor an das Arduino Board angeschlossen wird, kann er benutzt werden. Die Installation der zusätzlichen Bibliotheken ist nicht erforderlich.
+
+\begin{enumerate}
+	\item  Zunächst müssen wir sicherstellen, dass der Sensor an einen analogen Eingang angeschlossen ist. Im Code definieren wir den entsprechenden Pin:
+	
+	{
+		\captionof{code}{Definition des Pins für den Moisture Sensor}
+		\begin{Arduino}
+			const int moistSensorPin = A5;
+		\end{Arduino}
+	}
+	\item Im nächsten Schritt muss der pin in \PYTHON{setup} initialisiert werden:
+	
+	{
+		\captionof{code}{Initialisierung des Pins für den Lichtsensor}
+		\begin{Arduino}
+			pinMode(moistSensorPin, INPUT)   
+		\end{Arduino}
+	}
+	\item Nun können wir den Sensor in der \PYTHON{loop} - Funktion verwenden.Der ausgelesene Wert wird ausgegeben, und schließlich warten wir 5 Sekunden, bevor der nächste Wert gelesen wird.
+	
+	{
+		\captionof{code}{Werte auslesen und ausgeben}
+		\begin{Arduino}
+			// Signal von der Sensor auslesen        
+			int readValue = analogRead(moistSensorPin);
+			
+			Serial.print("Ausgelesener Wert: ");
+			Serial.println(readValue);
+			
+			// Warte 5 sekunden
+			delay(5000);
+		\end{Arduino}
+	}
+	
+\end{enumerate}
+
+%\section{Simple Application}
+
+
+
+%\section{Tests}
+
+%\subsection{Simple Function Test}
+
+%\subsection{Test all Functions}
+
+\section{Simple Application}
+
+Der Moisture-Sensor kann zur Überwachung der Feuchtigkeit der Erde einer Pflanze eingesetzt werden. Wenn die Erde trocken wird, schaltet sich eine kleine Pumpe ein, die die Pflanze mit Wasser versorgt.
+
+{
+	\captionof{code}{Pumpensteuerung mithilfe von Feuchtigkeitssensoren}
+	\ArduinoExternal{}{../../Code/MKRWAN1310/SimpleApplicationGroveMoistSen/SimpleApplicationGroveMoistSen.ino}
+	
+}
+
+
+%\section{Further Readings}
+

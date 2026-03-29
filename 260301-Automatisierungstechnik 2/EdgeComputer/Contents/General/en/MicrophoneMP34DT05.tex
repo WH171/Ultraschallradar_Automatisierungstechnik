@@ -1,0 +1,1153 @@
+%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% $Autor: Wings $
+% $Datum: 2025-04-01 $
+% $Pfad: MicrophoneMP34DT05.tex $
+% $Version: 4624 $
+%
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+% !TeX spellcheck = de_DE/GB
+% !TeX program = pdflatex
+% !BIB program = biber/bibtex
+% !TeX encoding = utf8
+%
+%%%
+
+
+\chapter{Microphone MP34DT05-A}\label{MicrophoneMP34DT05}
+
+\section{Background}
+
+\bigskip
+Microphones are devices designed to convert acoustic energy (sound waves) into electrical signals. They are used in numerous applications, from studio recording and live performances to mobile communication and embedded sensing systems \cite{Eargle:2012}. Key categories of microphones include:
+
+\subsection{Dynamic Microphones}
+
+\bigskip
+These rely on electromagnetic induction: a diaphragm attached to a coil moves within a magnetic field to produce a voltage. Dynamic microphones are rugged and handle high sound pressure levels effectively.
+
+\subsection{Condenser Microphones}
+
+\bigskip
+These operate using a charged diaphragm and backplate, creating a capacitor whose capacitance varies with sound-induced vibrations. Known for accurate frequency response and sensitivity, condenser microphones are widely used in studio recording and precise measurement applications \cite{Ballou:2015}.
+
+\subsection{MEMS (Micro-Electro-Mechanical Systems) Microphones}
+
+\bigskip
+These miniature microphones are fabricated using silicon-based micro-machining processes. MEMS microphones offer small form factor, low power consumption, and an easily integrated digital or analog output. They are commonly found in smartphones, wearables, and Internet of Things (IoT) devices \cite{STMicroelectronics:2021b}.
+
+\bigskip
+Regardless of type, microphones must be carefully selected and positioned to achieve the desired balance of frequency response, sensitivity, and noise performance. Enclosures, ambient temperature, humidity, and electromagnetic interference can also affect microphone performance.
+
+\section{Considerations}
+
+\bigskip
+When integrating microphones into embedded systems or electronic devices, the following considerations often apply:
+
+\subsection{Signal Conditioning}
+
+\bigskip
+Many modern MEMS microphones provide built-in amplification or digitization (e.g., PDM output), simplifying downstream signal processing. Still, designers must ensure correct voltage levels and clock signals are provided.
+
+\subsection{Mounting and Orientation}
+
+\bigskip
+Proper mounting ensures minimal mechanical stress and optimal exposure to the acoustic environment. Misalignment or obstruction can degrade frequency response and introduce unwanted resonances.
+
+\subsection{Environmental Factors}
+
+\bigskip
+Temperature changes, humidity, and external vibrations can influence microphone sensitivity or introduce noise. Special materials, enclosures, or protective mesh are sometimes required to mitigate environmental effects \cite{Eargle:2012}.
+
+\subsection{Power and Grounding}
+
+\bigskip
+Clean and stable power supplies, as well as careful grounding and shielding, are critical for noise-sensitive components like microphones. Ground loops or power supply noise can degrade audio quality significantly.
+
+\section{Calibration and Testing of the Microphone}
+
+\bigskip
+Calibration and testing ensure the microphone’s output corresponds accurately to known sound pressure levels (SPL). A typical procedure involves:
+
+\begin{enumerate}
+	\item \textbf{Reference Tone:} Expose the microphone to a calibrated sound source, such as a 94 dB SPL tone at 1 kHz.
+	
+	\item \textbf{Signal Capture and Analysis:} Record the microphone output and convert it to a measurable format (e.g., PCM) using appropriate hardware or software tools. Compare the digital amplitude against the known reference level.
+	
+	\item \textbf{Gain Adjustment:} Apply any necessary digital or analog gain to align the measured output with the reference SPL. This step ensures consistent loudness across different devices.
+	
+	\item \textbf{Frequency Response Verification:} Sweep across the microphone’s intended bandwidth (e.g., 100 Hz to 10 kHz for speech-focused applications) to check amplitude consistency and detect irregularities.
+	
+	\item \textbf{Noise Floor and Distortion Tests:} Measure the microphone’s noise floor under quiet conditions. Record a pure tone at varying amplitudes to calculate total harmonic distortion (THD), helping to identify non-linearities.
+\end{enumerate}
+
+\section{Algorithms for Evaluating a Microphone}
+
+\bigskip
+Several analytical methods can be employed to assess microphone performance in both research and practical deployments:
+
+\begin{itemize}
+	\item \textbf{Signal-to-Noise Ratio (SNR):} Compares the strength of the desired signal to the background noise level. A higher SNR indicates clearer audio.
+	
+	\item \textbf{Total Harmonic Distortion (THD):} Evaluates how much the microphone alters a pure test tone. Lower THD values reflect more faithful signal reproduction \cite{Ward:2001}.
+	
+	\item \textbf{Spectral Analysis (FFT/Spectrogram):} Displays frequency components over time, useful for detecting resonance, filter roll-offs, or interference at specific frequencies.
+	
+	\item \textbf{Impulse Response:} Examines how quickly and accurately the microphone responds to short transient sounds, revealing phase or time-domain artifacts.
+	
+	\item \textbf{Cross-correlation:} Compares a reference audio signal to the microphone’s output, providing insights into timing shifts or fidelity loss.
+\end{itemize}
+
+\section{Evaluation of the MP34DT05 Microphone}
+
+\bigskip
+The MP34DT05 is a digital MEMS microphone designed by STMicroelectronics. It is featured on platforms such as the Arduino Nano 33 BLE Sense. Key points in its evaluation include:
+
+\bigskip
+\textbf{Digital PDM Output:} The MP34DT05 provides a pulse density modulation (PDM) output, which requires decimation and filtering steps to yield a usable PCM signal.
+
+\bigskip
+\textbf{Frequency Response and Sensitivity:} It typically supports a 100 Hz -- 10 kHz response range, suitable for voice and general sound applications. Sensitivity is calibrated to align with standard SPL references.
+
+\bigskip
+\textbf{Signal-to-Noise Ratio (SNR):} With an SNR of approximately 61 dB, the microphone captures speech and environmental sounds with good clarity and minimal self-noise \cite{STMicroelectronics:2021b}.
+
+\bigskip
+\textbf{Power Consumption:} Its low operating current makes it ideal for battery-operated and low-power IoT applications \cite{Arduino:2021}.
+
+\bigskip
+When integrated into the Arduino Nano 33 BLE Sense, the MP34DT05’s performance was found to align with its datasheet specifications when tested under typical indoor conditions. The combined hardware and software ecosystem on the board simplifies tasks like data acquisition, real-time filtering, and machine learning inference for sound-based applications.
+
+
+\subsection{Sound and Frequencies}\label{Sound and Frequencies}
+
+Sound, also known as acoustic pressure, more precisely refers to a single sound frequency that causes mechanical deformation in the medium of air, which propagates as a longitudinal wave.
+
+The frequency $f$, measured in hertz (Hz), represents the number of pressure fluctuations in the air per second within a sound wave. For example, the human auditory system can typically perceive frequencies in the range of approximately 20 Hz to 20,000 Hz.
+
+The following equations are used to describe the properties of sound:
+
+\bigskip
+\begin{center}    
+	\begin{tikzpicture}
+		%\node at (0,0) (Board) {\includegraphics{Arduino/Nano33BLE/Nano33BLESense}};
+		
+		\ArduinoNanoTikz;
+		
+		\fill[gray, opacity=0.7] (-11.2,-0.2) rectangle (0.1,4.7);
+		
+		\coordinate (A) at (-4.3,2.55);
+		\coordinate (B) at (-3.3,1.85);    
+		
+		
+		
+		\begin{scope}
+			\clip (A) rectangle (B);
+			
+			\ArduinoNanoTikz
+			
+			%\node at (0,0) (Board) {\includegraphics{Arduino/Nano33BLE/Nano33BLESense}};
+			
+		\end{scope}
+		
+	\end{tikzpicture}    
+	
+	\captionof{figure}{Arduino Nano 33 BLE Sense's RGB LED with Pin 22, Pin 23, and Pin 24}  
+\end{center}
+
+\bigskip
+
+
+\begin{itemize}
+	\item \textbf{Particle velocity} \( \nu \):
+	\begin{equation}
+		\nu(t) = \hat{\nu} \cdot \cos(\omega \cdot t)
+		\label{eq:schallschnelle}
+	\end{equation}
+	where \( \hat{\nu} \) is the amplitude of the particle velocity.
+	
+	\item \textbf{Speed of sound} \( c \) (for gases):
+	\begin{equation}
+		c = \sqrt{\frac{\kappa \cdot p}{\rho}}
+		\label{eq:schallgeschwindigkeit}
+	\end{equation}
+	where \( \kappa \) is the adiabatic index (isentropic exponent), \( p \) is the pressure, and \( \rho \) is the density of the medium.
+	
+	\medskip
+	
+	In air, the speed of sound is approximately \( c_{\text{air}} = 331.2\,\frac{\text{m}}{\text{s}} \).
+\end{itemize}
+
+The faster the oscillations occur, the higher the frequency and thus the perceived pitch of the sound. The larger the amplitude, the louder the sound.
+
+Loudness is characterized by the amplitude, which is generated by the sound pressure. Loudness is measured in decibels (dB). It is defined relative to a reference sound pressure level. The human hearing threshold is defined at \( P_{\text{ref}} = 2 \cdot 10^{-5}\,\text{Pa} \). Any sound below this level (i.e., with negative dB values) is generally inaudible to the human ear~\cite{Luders:2017}.
+
+In sound processing systems, these oscillations are typically captured mechanically, most commonly using microphones.
+
+\subsection{Difference Between Tone, Timbre, and Noise}
+
+A tone can be described by a harmonic function with a constant frequency. \cite{Rossing:2002} 
+In contrast, a timbre (or sound in a musical context) is a more complex but still periodic acoustic signal.  
+A key characteristic of a timbre is the superposition of a fundamental frequency with its overtones (harmonics). \cite{Zwicker:1999}
+Noise, on the other hand, is generally a non-periodic signal and exhibits irregular and varying structures. \cite{Smith:2007}
+
+\subsection{Microphones}
+
+The fundamental operating principles of different types of microphones are largely similar.  
+Sound waves set a diaphragm into motion, and this mechanical vibration is converted into electrical signals using various transduction methods (see Figure~\ref{fig:Mikrofonarten}).
+
+Since computer processors cannot directly process these analog electrical signals, they must be converted into digital signals by electronic converters.  
+First, we consider several methods suitable for transforming diaphragm vibrations into electrical signals. These include physical principles such as electromagnetic induction, changes in capacitance, piezoelectric effects, or variations in electrical resistance (as in carbon microphones).
+
+In addition to these commonly used sound transduction methods, there are also a number of other, less widespread techniques.
+
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=1\linewidth]{Microphon/MikrofonArten.png}
+	\caption{Overview of Different Microphone Types and Their Operating Principles}
+	\label{fig:Mikrofonarten}
+\end{figure}
+
+In this case, the microphone used is the Thomann t.bone SC 420.  
+The microphone’s datasheet (see Figure~\ref{fig:Datenblatt Mikrofon}) provides the following specifications:
+
+\begin{itemize}
+	\item The microphone is a condenser type.
+	\item The usable frequency range is from 80 Hz to 18,000 Hz.
+	\item The digital signal is mono, with a resolution of 16 bits at a sampling rate of 48 kHz.
+	\item It features a supercardioid polar pattern.
+	\item The operating temperature range is between 0°C and 40°C, with a permissible relative humidity between 20\% and 80\%.
+\end{itemize}
+
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=1\linewidth]{Microphon/MikrofonTechnischeDaten.png}
+	\caption{Datasheet of the microphone under consideration}
+	\label{fig:Datenblatt Mikrofon}
+\end{figure}
+
+\subsubsection{Condenser Microphone}
+
+In a condenser microphone (see Figure~\ref{fig:Kondensator Mikrofon}), the diaphragm forms one of the electrodes of a capacitor.  
+When sound waves cause the diaphragm to move, the distance to the back electrode changes, resulting in a variation in the capacitance of the capacitor.  
+The capacitor is charged via a high-impedance resistor. Changes in capacitance lead to corresponding changes in the voltage across the capacitor.  
+This voltage variation can be measured using a suitable voltage detection circuit.
+
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=1\linewidth]{Microphon/BeispielKondensatorMikrofon.png}
+	\caption{Construction of a condenser microphone}
+	\label{fig:Kondensator Mikrofon}
+\end{figure}
+
+Subsequently, the analog electrical signal must be converted into a digital signal (see Figure~\ref{fig:AD-Wandler}).  
+This step is necessary because computer processors can only process digital signals.  
+To achieve this, analog-to-digital converters (ADCs) are used.  
+These ADCs can either be integrated directly into the microphone or be external components.  
+Modern computers typically have built-in ADCs; however, in professional audio applications, high-quality external ADCs are often preferred.
+
+In this project, a microphone with an integrated ADC is used.  
+The resulting digital signal is transmitted to the computer in binary form via a USB interface.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=1\linewidth]{Microphon/AD-Wandler.png}
+	\caption{Functional principle of an analog-to-digital converter} (\cite{Weinzierl:2020})
+	\label{fig:AD-Wandler}
+\end{figure}
+
+\subsection{WAV File Format}
+
+Uncompressed audio data is typically stored in the WAV file format (see Figure~\ref{fig:AufbauWave}).  
+This file format was introduced by Microsoft and IBM in 1991 for the digital storage of audio data.  
+It is based on the RIFF (Resource Interchange File Format) structure.
+
+A key feature of the RIFF format is that it stores metadata about the structure of the file content at the beginning of the file.  
+WAV audio files are essentially RIFF files with a WAVE container.  
+These usually contain raw audio data encoded using PCM (Pulse-Code Modulation), a method that converts analog signals into digital form through pulse modulation.
+
+Typically, a RIFF audio file with a WAVE container includes two subchunks:
+\begin{itemize}
+	\item The \texttt{fmt} chunk, which defines the format of the audio data and how it is stored.
+	\item The \texttt{data} chunk, which contains the actual audio samples encoded in the format specified in the \texttt{fmt} chunk.
+\end{itemize}
+
+The first 4 bytes of a WAV file contain the ASCII characters \texttt{RIFF}.  
+The next 4 bytes store the size of the remaining data in the file (in little-endian format).  
+Finally, another 4 bytes indicate the file type—\texttt{WAVE} in this case.
+
+\label{ascii}
+ASCII stands for \glqq American Standard Code for Information Interchange\grqq~and is a 7-bit character encoding standard corresponding to ISO 646.
+
+The encoding defines a total of 128 characters, of which 95 are printable and 33 are non-printable control characters.  
+Some examples include:
+\begin{itemize}
+	\item Letters: A, B, C, …, Z, a, b, c, …, z
+	\item Digits: 0, 1, 2, …, 9
+	\item Punctuation marks: !, ", \#, \$, \%, \&
+\end{itemize}
+
+A detailed representation is shown in Figure~\ref{fig:ASCII}.
+
+It is important to note that each character corresponds to a defined numerical value.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=1\linewidth]{Microphon/ASCII.png}
+	\caption{Symbols and numerical values of the ASCII format}
+	\label{fig:ASCII}
+\end{figure}
+
+The terms little-endian (LE) and big-endian (BE) indicate the byte order in which numerical values are stored and interpreted.
+
+\begin{itemize}
+	\item \textbf{Big-endian (BE)} stores the most significant byte first. When reading multiple bytes, the first byte (or the lowest memory address) holds the highest value.
+	\item \textbf{Little-endian (LE)} stores the least significant byte first. When reading multiple bytes, the first byte contains the smallest value.
+\end{itemize}
+
+In the \glqq fmt\grqq~(format) subchunk, all specifications regarding the structure of the following audio data are defined:
+
+\begin{itemize}
+	\item \textbf{Format Identifier:} The first 4 bytes mark the start of the format subchunk with the ASCII characters \texttt{f}, \texttt{m}, \texttt{t}, and a space (BE).
+	\item \textbf{Subchunk1Size:} The next 4 bytes specify the remaining size of the \texttt{fmt} subchunk (LE).
+	\item \textbf{AudioFormat:} The following 2 bytes indicate the audio encoding format (typically 1 = PCM, uncompressed) (LE).
+	\item \textbf{NumChannels:} These 2 bytes define the number of audio channels (mono = 1, stereo = 2, etc.) (LE).
+	\item \textbf{SampleRate:} The next 4 bytes indicate the sampling rate of the audio signal in hertz (Hz) (LE).
+	\item \textbf{ByteRate:} These 4 bytes represent the byte rate, i.e., the number of bytes transmitted per second (LE).
+	\item \textbf{BlockAlign:} These 2 bytes specify the block alignment. A block is defined as the number of bytes per sample multiplied by the number of channels.  
+	\[
+	\text{BlockAlign} = \left(\frac{\text{BitsPerSample} \times \text{NumChannels}}{8}\right)
+	\]
+	\item \textbf{BitsPerSample:} The final 2 bytes in this example specify the bit depth per audio sample. 8 bits correspond to one byte (LE).
+\end{itemize}
+
+
+If a format other than PCM were used for the audio data, an additional subchunk would follow the current section to specify that particular format.  
+\bigskip
+
+Finally, the actual audio samples are stored in the \texttt{data} subchunk, as specified above.  
+This subchunk begins with the ASCII characters \texttt{data} in the first 4 bytes.  
+The following 4 bytes (in little-endian format) indicate the size of the audio data in bytes.
+
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=1\linewidth]{Microphon/AufbauWaveDatei.png}
+	\caption{Structure of the WAV file format with explanation\cite{Wilson:2003}}
+	\label{fig:AufbauWave}
+\end{figure}
+
+\subsection{Package \PYTHON{PyAudio} Version 0.2.14}
+
+The \texttt{PyAudio} library provides access to a microphone. In this case, the built-in microphone of the computer is used.
+
+To demonstrate how the library is integrated into code, an example is shown for playing back a WAV file.
+
+\begin{code}[!htp]
+	\caption{Python script to record audio using PyAudio and save it as a WAV file} 
+	\label{Code:Python:File:recordAudioWaveFile}
+	\ArduinoExternal{}{../../Code/Microphone/recordAudioWaveFile.py}  
+\end{code} 
+
+It can be seen that the library is first imported using the command \PYTHON{import pyaudio}.  
+Access to the library is then established with \PYTHON{pyaudio.PyAudio()}.  
+The command \PYTHON{pyaudio.PyAudio.open()} opens a stream, which enables a continuous data flow from which audio data can be read using \PYTHON{pyaudio.PyAudio.Stream.read()}.
+
+To terminate the stream — i.e., the continuous flow of audio data — the command \PYTHON{stream.close()} is used.  
+To release access to the microphone, the function \PYTHON{p.terminate()} is called.  
+(cf. PyAudio Documentation — PyAudio 0.2.14 documentation, mit.edu)
+
+The PyAudio library offers many additional features.  
+However, for this project, the most important functionality is access to both microphone and speaker, and the ability to establish a stream for continuous audio data transmission~\cite{Pham:2006}.
+
+\subsection{Package \PYTHON{wave} Version 3.12}
+
+The \texttt{wave} library is integrated into Python and enables reading of WAV files.
+
+To illustrate its usage, a sample code snippet is shown below.
+
+\begin{code}[!htp]
+	\caption{Generate a stereo sine wave audio signal and save it as a WAV file} 
+	\label{Code:Python:File:StereoSineWaveGenerator}
+	\ArduinoExternal{}{../../Code/Microphone/stereoSineWaveGenerator.py}    
+\end{code} 
+
+The sample shown above creates an audio file containing a 440 Hz tone played through the left speaker and a 480 Hz tone played through the right speaker. Both tones are played simultaneously for a duration of 2.5 seconds.
+
+The use of the \PYTHON{wave} library begins with the import statement \PYTHON{import wave}.  
+Next, a sine wave is generated using the function \PYTHON{sound\_wave}.  
+The frequency values to be played through the left and right speakers are defined using the \PYTHON{frequency} parameter.  
+The duration of the audio output for both channels is set with the \PYTHON{num\_seconds} variable.
+
+In line 17, the tones generated by \PYTHON{sound\_wave(frequency, num\_seconds)} are merged and written into a new WAV file named \FILE{output.wav} using the context manager:
+\PYTHON{with wave.open("output.wav", mode="wb") as wav\_file:}~\cite{Python:2024Wave}.
+
+
+\subsection{Package \PYTHON{NumPy} Version 1.26}
+
+NumPy is a large and comprehensive library.  
+For the purpose of this project, the function of primary interest is its capability for fast data processing.  
+Therefore, only this aspect of the library will be described here.
+
+
+\begin{code}[!htp]
+	\caption{Record microphone input and compute averaged samples over fixed segments} 
+	\label{Code:Python:File:MicAudioAveragingRecorder}
+	\ArduinoExternal{}{../../Code/Microphone/micAudioAveragingRecorder.py}    
+\end{code}    
+
+
+The sample shown here is inspired by the one previously used to demonstrate the \PYTHON{PyAudio} library.  
+It has been extended with several lines utilizing the \PYTHON{NumPy} library in order to illustrate the specific functionality relevant to this project.
+
+The code begins with the command \PYTHON{import numpy as np}.  
+Here, the library is assigned the alias \PYTHON{np}, allowing all subsequent NumPy functions to be accessed via this shorthand.
+
+The \PYTHON{PyAudio} library provides audio data in binary format.  
+Since this format is not directly suitable for analysis, the data must be converted into an array using the command \PYTHON{np.frombuffer(in\_data, np.int16)}.  
+With the command \PYTHON{np.concatenate((data, in\_data))}, the newly created data array is concatenated with the original data.
+
+Lines 24 to 26 filter out all samples associated with the right audio channel, so that only the left channel data remains.  
+In line 26, the array is padded or trimmed to a fixed target length.  
+This target length must be divisible by 1024, which is defined by the variable \PYTHON{MAX\_LENGTH}.  
+In line 28, the array is reshaped into a two-dimensional array with a length of 1024.  
+Line 29 then computes the arithmetic mean across the second dimension.
+
+Finally, the processed result is printed using \PYTHON{print(data)} and the audio stream is properly closed using \PYTHON{stream.close()}~\cite{Numpy:2022}.
+
+
+\subsection{Package \PYTHON{Guizero} Version 1.5.0}
+
+\PYTHON{guizero} is a library built on top of Python’s built-in \PYTHON{tkinter} library.  
+It provides a convenient way to create graphical dashboards and offers a range of widgets and functions that simplify the design process.  
+Compared to \PYTHON{tkinter}, \PYTHON{guizero} enables a more user-friendly and streamlined development experience.
+
+\begin{code}[!htp]
+	\caption{Create a simple GUI with menu options using guizero library} 
+	\label{Code:Python:File:SimpleMenuGuiApp}
+	\ArduinoExternal{}{../../Code/Microphone/simpleMenuGuiApp.py}    
+\end{code}    
+
+The sample demonstrates the use of the function for creating a menu bar using the \PYTHON{guizero} library.  
+First, the required classes \PYTHON{App} and \PYTHON{MenuBar} are imported from the \PYTHON{guizero} module using the command \PYTHON{from guizero import App, MenuBar}.
+
+The \PYTHON{App} function is used to create the main application window.  
+Subsequently, \PYTHON{MenuBar} is used to define a menu bar with the main entries \PYTHON{File} and \PYTHON{Edit}, and their respective sub-options \PYTHON{File option 1}, \PYTHON{File option 2}, \PYTHON{Edit option 1}, and \PYTHON{Edit option 2}.
+
+Each of the sub-options is linked to a function that is executed upon selection—\PYTHON{file\_function} for file-related options and \PYTHON{edit\_function} for edit-related options~\cite{Sach:2020}.
+
+
+\subsection{Package \PYTHON{Threading} (Version 3.7)}
+
+\PYTHON{threading} is a library that enables the parallelization of computationally intensive tasks.
+
+\begin{code}[!htp]
+	\caption{Simple multithreading example with logging in Python} 
+	\label{Code:Python:File:ThreadLoggingExample}
+	\ArduinoExternal{}{../../Code/Microphone/threadLoggingExample.py}    
+\end{code}
+
+This sample demonstrates the use of the \PYTHON{threading} library, specifically the functionality required in this context.  
+As usual, the code begins by importing the library with \PYTHON{import threading}.  
+The program then creates a total of three concurrently running threads.  
+Each thread executes the function \PYTHON{thread\_function(name)}, which pauses execution for two seconds using \PYTHON{time.sleep(2)}.
+
+Finally, a \PYTHON{for} loop is used to wait for all threads to complete.  
+Once a thread finishes execution, the message \PYTHON{Main : thread \%d done} is logged.  
+The placeholder \PYTHON{\%d} is replaced by the corresponding thread name~\cite{Python:2024Threading}.
+
+
+\subsection{Package \PYTHON{librosa} Version 0.10.2}
+
+\PYTHON{librosa} is a library that offers a wide range of audio processing functions.  
+For the purposes of this project, only the submodule \PYTHON{librosa.effects} is of interest.
+
+\begin{code}[!htp]
+	\caption{Demonstrates time-stretching effects using Librosa to modify audio speed} 
+	\label{Code:Python:File:TimeStretchingLibrosa}
+	\ArduinoExternal{}{../../Code/Microphone/timeStretchingLibrosa.py}    
+\end{code}
+
+The sample above demonstrates how an audio file can be loaded using \PYTHON{librosa}, although this step is not required in this specific case, as the audio data is obtained through a different method.  
+Subsequently, the playback speed is doubled and, in a second example, halved using the \PYTHON{time\_stretch} function.
+
+\begin{code}[!htp]
+	\caption{Demonstrates pitch shifting in audio using Librosa's pitch manipulation functions} 
+	\label{Code:Python:File:PitchShiftingLibrosa}
+	\ArduinoExternal{}{../../Code/Microphone/pitchShiftingLibrosa.py}    
+\end{code}
+
+The sample above demonstrates another function from the \PYTHON{librosa.effects} submodule.  
+In the first example, the pitch of the audio track is increased by four semitones;  
+in the second example, it is decreased by six semitones;  
+and in the third example, it is increased by three quarter-tones~\cite{McFee:2023}.
+
+\section{Functions}
+
+\subsection{Loading}
+
+\begin{code}[!htp]
+	\caption{Extracts and prints basic audio properties from a WAV file} 
+	\label{Code:Python:File:waveFileInfoReader}
+	\ArduinoExternal{}{../../Code/Microphone/waveFileInfoReader.py}    
+\end{code}
+
+
+This sample demonstrates how a WAV file can be loaded.  
+Key parameters such as the number of channels, sample rate, number of frames, and sample width are extracted and displayed.  
+A prerequisite for successfully loading the file is that the file path corresponds to the actual storage location of the sample file.  
+This path must be specified in the \PYTHON{wave.open} command.
+
+
+\subsection{Playback}
+
+\begin{code}[!htp]
+	\caption{Simple wave file playback using PyAudio and the wave module} 
+	\label{Code:Python:File:playAudioWithPyAudio}
+	\ArduinoExternal{}{../../Code/Microphone/playAudioWithPyAudio.py}    
+\end{code}    
+
+\subsection{Playback}
+
+The same requirements apply to the \glqq Playback\grqq~ sample as to loading a WAV file—specifically, that the file path to the audio file must be correctly defined in the program.  
+The sample opens the file \FILE{audio.wav} in read mode and initializes the audio stream using the corresponding parameters extracted from the WAV file.  
+To accomplish this, the \PYTHON{stream} command from the \PYTHON{PyAudio} library is used.  
+Playback continues until all data from the WAV file has been processed.  
+Finally, the audio stream is stopped using the command \PYTHON{stream.stop\_stream}.
+
+\subsection{Saving}
+
+A prerequisite for the \glqq Save\grqq~ operation is that a WAV file must already be opened.  
+This step is included in the following samples.  
+
+When saving for the first time, the \glqq Save As\grqq~ dialog is automatically opened.  
+Here, the file format and destination folder must be specified.  
+Using the WAV format is recommended, as it allows further processing within the application and is the standard format for uncompressed audio files.
+
+For future edits, the \glqq Save\grqq~ command can be used, provided that the audio file has been saved at least once before.
+
+\begin{code}[!htp]
+	\caption{Save a new wave file using a file dialog with guizero and wave} 
+	\label{Code:Python:File:saveWaveFileDialog}
+	\ArduinoExternal{}{../../Code/Microphone/saveWaveFileDialog.py}    
+\end{code}    
+
+In this sample, the \glqq Save\grqq~ function is defined, which enables the saving of a WAV file.  
+First, a file explorer window is opened to select the destination folder, and the audio file can then be saved in the specified file format (WAV).  
+The selected WAV file is opened in write mode, and its parameters (e.g., number of channels, sample rate, etc.) are defined accordingly.  
+A message is displayed to indicate whether the file was saved successfully or if the operation was canceled.
+
+It is important to note that this sample assumes a WAV file has already been selected—this selection step is not shown in the code.
+
+\begin{code}[!htp]
+	\caption{Program to read a WAV file and write its contents to a new WAV file using the wave module} 
+	\label{Code:Python:File:copyWavFile}
+	\ArduinoExternal{}{../../Code/Microphone/copyWavFile.py}    
+\end{code}    
+
+In the \glqq Save\grqq~ sample, an existing WAV file is overwritten using parameters defined by the user.  
+First, the original file is read, and then new parameters are set.  
+Finally, the original file is overwritten with the updated configuration.
+
+\subsection{Displaying Two Audio Files}
+
+To visualize two audio files in a single diagram using \texttt{matplotlib}, the \PYTHON{wave} library can be used to load the audio files, which can then be plotted with \PYTHON{matplotlib}.
+
+The process begins by importing the required libraries.
+
+Next, the audio data from both files is loaded and converted into arrays using the \PYTHON{NumPy} library.  
+\texttt{matplotlib} is then used to generate a diagram in which the audio data from both files is plotted together.  
+The \PYTHON{label} parameters within the plotting functions are used to generate a legend, making it clear which line corresponds to which audio file.
+
+It is important that the correct file paths to the audio files are specified.  
+If the files are not located in the same directory as the Python script, an absolute path such as \texttt{C:/Users/YourName/Documents/audio1.wav} must be used instead of \texttt{audio1.wav}.
+
+Additionally, it is essential that all required libraries are installed before the code is executed.
+
+\begin{code}[!htp]
+	\caption{Program to visualize and compare two audio waveforms using Matplotlib} 
+	\label{Code:Python:File:plotAudioWaveforms}
+	\ArduinoExternal{}{../../Code/Microphone/plotAudioWaveforms.py}    
+\end{code}
+
+
+\begin{figure}[!htp]
+    \centering
+    \includegraphics[width=1\linewidth]{Microphon/BeispielAnzeigenZweiAudiodatein.png}
+	\caption{Example: Visualization of two audio files}
+	\label{fig:smoothing}
+\end{figure}
+
+\subsection{Smoothing Audio Files}
+
+Exponential smoothing is used for smoothing the audio file.  
+It is one of the fundamental algorithms for smoothing time series data.  
+In exponential smoothing, the importance of previous values is weighted by the parameter \( \alpha \).  
+The smaller \( \alpha \), the more weight is given to previous data points.  
+If the audio file contains a high level of noise, a lower \( \alpha \) should be chosen;  
+if the goal is to minimally alter the original audio, a larger \( \alpha \) is preferable.  
+The usable range for \( \alpha \) is \( 1 \geq \alpha \geq 0 \).
+
+The formula used for exponential smoothing is:
+
+\begin{itemize}
+	\item[] \( S_{i} = \alpha \cdot data_i + (1 - \alpha) \cdot S_{i-1} \)
+	\item[] \( S_{i} \): Smoothed value at time point \( i \)
+	\item[] \( \alpha \): Smoothing factor
+	\item[] \( data_i \): Original data value at time point \( i \)
+	\item[] \( S_{i-1} \): Smoothed value at time point \( i - 1 \)
+\end{itemize}
+
+The required modules for implementation are \PYTHON{wave} and \PYTHON{numpy}.  
+To use the program, \FILE{inputAudio.wav} must be replaced with the path to the WAV file that is to be smoothed.  
+The output file name can be specified by modifying \FILE{smoothedAudio.wav}.
+
+\begin{code}[!htp]
+	\caption{Program to apply exponential moving average smoothing to a WAV audio file} 
+	\label{Code:Python:File:smoothAudioWithEMA}
+	\ArduinoExternal{}{../../Code/Microphone/smoothAudioWithEMA.py}    
+\end{code}
+
+The difference between the original and the smoothed audio file can be clearly observed in Figure~\ref{fig:glättung}.  
+The figure shows the original audio file (Audio 1) and its smoothed version (Audio 2), using a smoothing factor of \( \alpha = 0.01 \).
+
+The difference between the original and the smoothed audio file can be clearly observed in Figure~\ref{fig:glättung}.  
+The figure shows the original audio file (Audio 1) and its smoothed version (Audio 2) using a smoothing factor of \( \alpha = 0.01 \).
+
+\subsection{Audio Segment Playback}
+
+To play a specific segment of a WAV file in Python, the \PYTHON{wave} and \PYTHON{pyaudio} libraries can be used.  
+The \PYTHON{wave} library is required for Python to read audio files in the WAV format,  
+while \PYTHON{pyaudio} is used to play the loaded audio data.
+
+To use the program, the correct WAV file must first be opened by specifying the file path.  
+After that, the desired starting point (in seconds) and the duration of the segment (also in seconds) can be set by assigning appropriate values.
+
+\begin{code}[!htp]
+	\caption{Program to extract, play, and save a specific time segment from a WAV audio file} 
+	\label{Code:Python:File:playAndSaveAudioSegment}
+	\ArduinoExternal{}{../../Code/Microphone/playAndSaveAudioSegment.py}    
+\end{code}
+
+\subsection{Zooming in Matplotlib}
+
+To zoom into a specific portion of a waveform displayed using \texttt{matplotlib}, the time range must be adjusted.  
+This is achieved by modifying the start and end time of the graph to be displayed in \texttt{matplotlib}.  
+In this example, the WAV file is shown from second 0 to second 2.  
+To display a different segment, the values of \PYTHON{start\_time} and \PYTHON{end\_time} must be updated accordingly.
+
+\begin{code}[!htp]
+	\caption{Program to visualize a specific segment of a WAV file as a waveform plot} 
+	\label{Code:Python:File:visualizeAudioSegment}
+	\ArduinoExternal{}{../../Code/Microphone/visualizeAudioSegment.py}    
+\end{code}
+
+The plot can then be closed using \PYTHON{wave\_file.close}.
+
+In addition to zooming by entering specific time values, it is also possible to implement zooming using the mouse wheel.  
+The following sample demonstrates this functionality using a sine wave as an example audio signal.
+
+\begin{code}[!htp]
+	\caption{Interactive audio waveform plot with zoom and scroll functionality using matplotlib} 
+	\label{Code:Python:File:audioWaveformSliderZoom}
+	\ArduinoExternal{}{../../Code/Microphone/audioWaveformSliderZoom.py}    
+\end{code}
+
+Matplotlib is used as the plotting interface.  
+The \glqq Zoom\grqq~ function handles the zoom effect triggered by mouse scroll events.  
+Additionally, the code section that includes the \glqq slider\grqq~ command allows the view to be shifted along the time axis.  
+The interactive zoom functionality is enabled through the final block of code.
+
+\subsection{Pitch and Speed Modification}
+
+When changing pitch or applying frequency scaling, the digital signal is adjusted afterward without affecting other aspects of the sound, such as playback speed.  
+The phenomenon in which altering the frequency also changes the length (and thus the duration) of the audio file is avoided by using a method called \textit{pitch shifting}.
+
+A similar situation occurs when changing playback speed.  
+Simply altering the playback rate results in pitch distortion.  
+Therefore, the goal is to compress or stretch the playback duration without affecting the spectral content—this process is known as \textit{time stretching}.
+
+Thus, for both operations, the following applies:  
+In order to change one parameter (pitch or time), the interdependence between frequency and time scaling must be suppressed.  
+This is achieved using \PYTHON{librosa.effects.pitch\_shift} and \PYTHON{librosa.effects.time\_stretch}.
+
+The method is based on a phase vocoder that applies the \textit{Fast Fourier Transform} (FFT) (see Chapter~\ref{Frequenzanalyse}).  
+Below, the algorithm behind the phase vocoder is briefly and simplified for explanation purposes.
+
+The first step in phase vocoder analysis is the windowing function.  
+In this step, the digital sample signal is divided into multiple time segments, and each segment is multiplied by an envelope function.  
+The shape of the window function influences the resulting sound of the processed audio.  
+Common window shapes for phase vocoders are usually bell-shaped.  
+The effect of this signal modification is illustrated in Figure~\ref{fig:Window-Funktion}.
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{Microphon/PhaseVocoder.jpg}
+    \caption{Window Function}
+    \label{fig:Window-Funktion}
+\end{figure}
+
+Subsequently, each windowed segment undergoes spectral analysis using the Short-Time Fourier Transform (STFT).  
+The STFT algorithm applies the Discrete Fourier Transform (DFT) successively to the windowed sample segments.  
+Therefore, the STFT can be understood as a sequence of DFTs.  
+A DFT analysis is discrete in both time and frequency domains, resulting in the representation of isolated spectral lines.
+
+Next, the number of frequency bands must be defined.  
+This is achieved by mirroring each positive frequency band into the negative (imaginary) domain.  
+Both mirrored frequency bands represent halves of the amplitude of the measured real frequency band.  
+Among the various post-processing steps, the phase vocoder discards the negative frequencies and doubles the amplitude of the positive ones.
+
+The result of a single FFT on a windowed sample is referred to as a \textit{frame}.  
+A frame consists of two sets of values: the magnitudes (or amplitudes) of all frequency bands, and the initial phases of those bands.  
+Additionally, the phase difference relative to the previous frame is computed, providing insight into where the pitch may lie within a given frequency band.  
+The combination of amplitude and phase difference information for each band is referred to as a \textit{bin}.  
+These amplitude-phase data pairs are represented as x- and y-coordinates for each bin.
+
+Another key analysis parameter is the \textit{hop size}, which defines the distance between the starting points of consecutive windows.  
+Closely related is the overlap factor, which influences the amount of information captured in the analysis.  
+An excessively high overlap factor can lead to a blurred or smeared audio result.
+
+Based on the collected analysis data, resynthesis of the signal is performed.  
+This involves applying an inverse STFT, during which the ongoing tracking of phase differences from frame to frame is executed—a process referred to as \textit{phase unwrapping}.
+
+The resynthesis phase is where the procedures for pitch shifting and time stretching diverge:
+
+\begin{itemize}
+	\item For \textbf{pitch shifting}, the frames are played back at the same rate as in the original analysis.  
+	However, the frequencies of the entire spectrum can be proportionally shifted upward or downward.  
+	This results in a change in pitch without altering the playback speed.
+	
+	\item For \textbf{time stretching}, the rate at which the frames are reconstructed is either increased or decreased, depending on the desired playback speed.  
+	The phase vocoder interpolates between individual frames, adding new data points to create smoother transitions.  
+	Since the spectral content of each frame remains unchanged, modifying the speed does not affect the pitch.
+\end{itemize}
+
+\Mynote{cite}
+
+\bigskip
+
+\textbf{Sample: Changing Pitch}
+
+\begin{code}[!htp]
+	\caption{Code for applying pitch shift to a stereo WAV file and saving the result} 
+	\label{Code:Python:File:pitchShiftWavWrite}
+	\ArduinoExternal{}{../../Code/Microphone/pitchShiftWavWrite.py}    
+\end{code}    
+
+
+\textbf{Sample: Changing Speed}
+
+\begin{code}[!htp]
+	\caption{Speed up a WAV audio file and save the modified version} 
+	\label{Code:Python:File:SpeedChangeAudio}
+	\ArduinoExternal{}{../../Code/Microphone/speedChangeAudio.py}    
+\end{code}    
+
+\subsection{Frequency Analysis} \label{Frequenzanalyse}
+
+Sound can be recorded using a microphone, which captures the voltage–time profile of the signal.  
+However, it is difficult to identify the signal components directly in this form.  
+Through frequency analysis, the signal characteristics can be determined, and important patterns can be recognized.
+
+One method for frequency analysis is spectral analysis based on the Fast Fourier Transform (FFT).  
+FFT is a widely used technique in audio and acoustic measurement technology.  
+It decomposes a discrete-time signal into its frequency components, allowing for detailed analysis.  
+Spectral analysis is a fundamental tool in signal processing.  
+It is used to investigate the frequency content of a signal, identifying which frequency components are present and how they are distributed~\Mynote{cite}.
+
+FFT is an algorithm for calculating the Fourier series, applied to discrete signals as the Discrete Fourier Transform (DFT).
+
+The Fourier series representation for the discrete Fourier transform is given in Equation~\ref{eq: DFT1}, with the discrete Fourier coefficients defined in Equation~\ref{eq: DFT2}.
+
+\begin{equation}
+	f_T(t) = \sum_{k=-\infty}^{\infty} \gamma_k e^{ik\omega t} \quad \text{with} \quad \omega = \frac{2\pi}{\tau}
+\end{equation}
+\label{eq: DFT1}
+
+\begin{equation}
+	\gamma_k \equiv \gamma_k(f) = \frac{1}{T} \cdot \int_{-T/2}^{T/2} f_T(\tau) e^{-ik\omega \tau} \, d\tau 
+	\quad \text{for} \quad k = 0, \pm1, \pm2, \dots
+\end{equation}
+\label{eq: DFT2}
+
+\begin{itemize}
+	\item[] Where:
+	\item[] \( f_T \): Time-continuous, \( T \)-periodic signal
+	\item[] \( e^{-ik\omega \tau} \): Fundamental frequency component
+	\item[] \( \omega = \frac{2\pi}{\tau} \): Frequency
+	\item[] \( \gamma_k \): Amplitude factor of the \( k \)-th harmonic
+\end{itemize}
+
+The Fourier series formula generally describes the representation of periodic signals in the frequency domain as a sum of sine and cosine waves of different frequencies.  
+In the case of the Discrete Fourier Transform (DFT), continuous, periodic signals are converted into discrete, non-periodic signals~\Mynote{cite}.
+
+To perform such a computational operation, the following spectral analysis parameters must be defined:
+
+\begin{itemize}
+	\item Number of sampled points (NFFT)
+	\item Sampling frequency
+\end{itemize}
+
+These parameters determine the frequency resolution of the analysis.
+
+For the frequency analysis sample, the libraries \PYTHON{matplotlib.pyplot} and \PYTHON{numpy} are used.  
+The signal in the sample is generated synthetically and does not reference any external audio file.
+
+\begin{code}[!htp]
+	\caption{Python program for signal generation and spectrogram analysis} 
+	\label{Code:Python:Signal:SpectrogramAnalysis}
+	\ArduinoExternal{}{../../Code/Microphone/signalSpectrogramAnalysis.py} 
+\end{code}   
+
+The output of the code consists of two diagrams.  
+The upper diagram displays the signal, while the lower one shows the frequency analysis based on the FFT (see Figure\ref{fig: Sampleaugabe Frequenzanalyse})
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.75\linewidth]{Microphon/AusgabeSampleFrequenzanalyse.png}
+    \caption{Sample Frequency Analysis}
+    \label{fig: Sampleaugabe Frequenzanalyse}
+\end{figure}
+
+\subsection{Overlay}
+
+The following sample is limited to playing three WAV files simultaneously.
+
+\begin{code}[!htp]
+	\caption{Parallel Playback of Multiple Audio Files Using Threads}
+	\label{Code:Python:File:audioPlaybackInParallel}
+	\ArduinoExternal{}{../../Code/Microphone/audioPlaybackInParallel.py}    
+\end{code}
+
+In this sample, the files \FILE{sound1.wav}, \FILE{sound2.wav}, and \FILE{sound3.wav} must be replaced with the desired file paths.  
+The total playback duration is determined by the longest audio file, since the code does not terminate until all files have finished playing.
+
+The implementation uses two loops. The first loop iterates through the audio files listed in the \PYTHON{files} list.  
+For each file, a separate thread is created, enabling synchronous playback of all files by calling the \PYTHON{playsound} function with the respective audio file as its argument.  
+In parallel, the second loop waits for all threads to complete before the program exits.
+
+
+\section{General}
+
+General description
+
+\Mynote{cite books}
+
+
+
+
+\subsection{Decibels}
+
+In electronics one often wants to represent the ratio of two signals on a logarithmic scale. For this we use the decibel, $dB$. If we have two powers $P_1$ and $P_2$
+
+$$dB = 10 \log_{10} \left(\frac{P_2}{P_1}\right)$$
+
+or equivalently -- when comparing two signals with the same kind of waveform --
+
+$$dB = 20 \log_{10} \left(\frac{V_2}{VP_1}\right).$$
+
+
+Note $dB$ is a relative unit of measurement, i.e. \textit{This amplifier has a gain of 10 dB.} dB can be positive or 
+negative. For example, $+10 dB$ corresponds to $P_2$ greater than $P_1$ by a factor of $10$, and $-3 dB$ 
+corresponds to $P_2$ less than $P_1$ by approximately a factor of $2$. 
+
+For an absolute measure on a logarithmic scale there are a variety of other units. A common one is $dBm$.
+
+$$dBm = 10 \log_{10} (P [mW])$$
+
+Zero $dBm$ corresponds to $1 mW$ of power. And in a $50 \Omega$ system $0 dBm$ corresponds to $220 mVrms$.
+\Mynote{cite books}
+
+\subsection{Puls-Dichtemodulation}
+
+Pulsdichtemodulation (PDM) ist eine faszinierende Technik, die im Arduino Nano 33 BLE Sense verwendet wird, um Audiosignale zu digitalisieren. PDM wandelt analoge Audiosignale in digitale Daten um, indem es die Dichte der Impulse misst.
+Statt kontinuierlicher Werte verwendet PDM nur zwei Zustände: 1 (Impuls vorhanden) oder 0 (kein Impuls).  Um das Mikrofon zu verwenden, steht die Bibliothek \FILE{pdm.h} zur Verfügung. PDM arbeitet mit einer hohen Samplingrate, um genaue Audioinformationen zu erfassen. Die Impulse werden als Bitstream übertragen, der später in Audiodaten umgewandelt wird. 
+
+Die Puls-Dichtemodulation (PDM) ist eine interessante Technik, die sowohl Vor- als auch Nachteile aufweist. 
+
+Die Puls-Dichtemodulation (PDM) hat folgende Vorteile:
+
+
+\begin{itemize}
+    \item Einfachheit: PDM ist weniger komplex als einige andere Modulationsverfahren. Die Implementierung von Sendern und Empfängern für PDM ist vergleichsweise unkompliziert.
+    \item Robustheit gegenüber Störungen: PDM ist widerstandsfähig gegenüber Rauschen und Interferenzen.
+    \item Hohe Samplingrate: PDM arbeitet mit einer hohen Abtastrate, um genaue Audioinformationen zu erfassen.
+    \item Geringe Verluste: Im Vergleich zu analogen Steuerungen verursacht PDM weniger Verluste, da es die Versorgungsspannung schnell ein- und ausschaltet.
+\end{itemize}
+
+\bigskip
+
+Die Nachteile der Puls-Dichtemodulation (PDM) sind:
+
+\begin{itemize}
+    \item Große Lasten: Die Steuerung großer Verbraucher erfordert hohe Spannungen und Ströme. Standard-Analogschaltungen und DACs sind hierbei weniger effizient.
+    \item Wärmeentwicklung: Leistungstransistoren, die in PDM-Schaltungen verwendet werden, erzeugen Wärme und Verluste.
+\end{itemize}
+
+Insgesamt ist PDM eine leistungsstarke Technik, die in verschiedenen Anwendungen wie Spracherkennung, Klanganalyse und Datenübertragung eingesetzt wird. Es ist wichtig, die Vor- und Nachteile je nach Kontext zu berücksichtigen
+
+\Mynote{citations}
+
+
+\section{Specific Sensor}
+
+cite board
+
+\section{Specification}
+
+\begin{itemize}
+    \item cite data sheet
+    \item Circuit Diagram
+\end{itemize}
+
+
+
+ Der Sensor hat folgende Spezifikationen:
+ 
+\begin{itemize}
+  \item Signal-Rausch-Verhältnis: 64 dB
+  \item Empfindlichkeit: -26 dBFS $\pm 3$ dB
+  \item Temperaturbereich: -40 bis 85 $1\circ$C
+\end{itemize}
+
+Mikrofone werden in Mobilgeräten, Spracherkennungssystemen und sogar in Gaming- und Virtual-Reality-Eingabegeräten eingesetzt.\Mynote{cite}
+
+Mit dem eingebetteten MP34DT05-Sensor können Sie die Schallwerte Ihrer Umgebung messen und anzeigen.
+
+
+\section{Bibliothek \FILE{pdm.h}}
+
+\subsection{Description}
+
+Die PDM-Bibliothek ermöglicht die einfache Verwendung des integrierten Mikrofons und ist auch über die Bibliothek \PYTHON{ArduinoSound} zugänglich.
+
+\subsection{Installation}
+
+\subsection{Functions}
+
+Die PDM-Bibliothek für den Arduino Nano 33 BLE Sense ermöglicht die Verwendung von Puls-Dichtemodulation (PDM)-Mikrofonen, wie dem integrierten MP34DT05 auf dem Board. Hier sind die wichtigsten Funktionen, die diese Bibliothek bereitstellt:
+
+\begin{description}
+  \item [\PYTHON{begin()}]: Diese Funktion initialisiert die PDM-Schnittstelle. Sie nimmt zwei Parameter entgegen:
+    \begin{description}
+      \item[Parameter \PYTHON{channels}]: Die Anzahl der Kanäle (1 für Mono, 2 für Stereo).
+      \item[Parameter \PYTHON{sampleRate}]: Die gewünschte Abtastrate in Hertz.
+      
+       Beispiel:
+       
+ \begin{Arduino}
+if (!PDM.begin(1, 16000)) {
+    Serial.println("Fehler beim Starten der PDM!");
+    while (1);
+}
+ \end{Arduino}      
+    \end{description}
+
+  \item [\PYTHON{end()}]: Mit dieser Funktion wird die PDM-Schnittstelle deinitialisiert:
+  
+ \begin{Arduino}
+PDM.end();
+ \end{Arduino}      
+
+  \item 
+  
+    \item [\PYTHON{available()}]: Diese Funktion gibt die Anzahl der verfügbaren Bytes im PDM-Empfangspuffer zurück. Das sind bereits eingetroffene Daten, die darauf warten, gelesen zu werden:
+
+ \begin{Arduino}
+int bytesAvailable = PDM.available();
+ \end{Arduino}      
+  
+  \item [\PYTHON{read()}]: Mit dieser Funktion liest man Daten aus dem PDM in einen angegebenen Puffer:
+  
+ \begin{Arduino}
+  short sampleBuffer[256]; // Puffer fuer Samples (16-Bit)
+  int bytesRead = PDM.read(sampleBuffer, bytesAvailable);
+ \end{Arduino}      
+  
+  \item [\PYTHON{onReceive()}]: Diese Funktion setzt die Callback-Funktion, die aufgerufen wird, wenn neue PDM-Daten zum Lesen bereit sind:
+  
+ \begin{Arduino}
+void onPDMdata() {
+      int bytesAvailable = PDM.available();
+      // Weitere Verarbeitung der Daten...
+  }
+  PDM.onReceive(onPDMdata);
+ \end{Arduino}      
+
+    \end{description}
+
+
+\subsection{Example - Manual}
+
+\subsection{Example}
+
+
+Der Code verwendet die folgenden Bibliotheken:
+
+\begin{itemize}
+    \item \FILE{PDM.h}: Diese Bibliothek ermöglicht die Kommunikation mit dem Mikrofon zur Aufnahme von \ac{pdm}-Signalen \cite{ArduinoPDM:2023} 
+\end{itemize}
+
+
+
+\subsection{Example - Code}
+
+{
+    \captionof{code}{Simple sketch to control the built-in LED}\label{Nano:BuiltinLEDTest}
+    \ArduinoExternal{}{../../Code/Nano33BLESense/Test/TestLEDBuiltin.ino}
+}
+
+\subsection{Example - Files}
+
+
+\section{Calibration}
+
+cite method
+
+\section{Simple Code}
+
+
+\section{Simple Application}
+
+\Mynote{Description}
+
+\subsection{Pin-Konfiguration}
+
+Die verwendeten Pins werden zu Beginn des Codes definiert:
+
+\begin{itemize}
+    \item \PYTHON{microphoneDataPin}: Der Datenpin für das Mikrofon
+    \item \PYTHON{microphoneClockPin}: Der Clock-Pin für das Mikrofon
+\end{itemize}
+
+
+\subsection{Initialisierung und Setup}
+
+In der Funktion \PYTHON{setup()} werden die erforderlichen Initialisierungen durchgeführt:
+
+\begin{itemize}
+    \item \PYTHON{PDM.onReceive(onPDMdata)}: Registriert den Empfang des Mikrofonsignals als PDM-Signal
+\end{itemize} 
+
+\subsection{Messungssteuerung}
+
+Die Funktion \PYTHON{onPDMdata()} wird aufgerufen, wenn Daten vom Mikrofon verfügbar sind. Dies liest die Daten in einen Array ein und zählt die Anzahl der gelesenen Samples.
+
+{
+    \captionof{code}{Einlesen der Daten}\label{TestMicrophone:ReadData}
+    \ArduinoExternal{firstline=61,lastline=65}{../../Code/Nano33BLESense/Test/TestMicrophone.ino}
+}
+
+
+
+
+Die Hauptfunktion \PYTHON{loop()} enthält zwei Funktionen für die Messungssteuerung und die Benutzeroberfläche:
+
+
+{
+    \captionof{code}{Messungssteuerung}\label{TestMicrophone:Handle}
+    \ArduinoExternal{firstline=67,lastline=70}{../../Code/Nano33BLESense/Test/TestMicrophone.ino}
+}
+
+
+Die Funktion \PYTHON{HandleInput()} überwacht den Zustand der beiden Taster und steuert somit den Messungsablauf:
+
+{
+    \captionof{code}{Überwachung}\label{TestMicrophone:Ueberwachung}
+    \ArduinoExternal{firstline=72,lastline=110}{../../Code/Nano33BLESense/Test/TestMicrophone.ino}
+}
+
+
+\begin{itemize}
+    \item Wenn der blaue Taster gedrückt wird, wird die Messung gestartet, indem \PYTHON{isMeasuring} auf \PYTHON{true} gesetzt wird und die Funktion \PYTHON{StartSampling()} aufgerufen wird.
+    \item Wenn der rote Taster gedrückt wird, wird die Messung beendet, indem \PYTHON{isMeasuring} auf \PYTHON{false} gesetzt wird und die Funktion \PYTHON{StopSampling()} aufgerufen wird. Je nach vorherigem Zustand des roten Tasters wird entweder der maximale Wert SPL in dB angezeigt (\PYTHON{ShowMaxdBspl()}) oder der durchschnittliche dB SPL-Wert (\PYTHON{ShowAveragedBspl()}).
+    \item \PYTHON{isDelayOver} wird auf \PYTHON{true} gesetzt, wenn die Startverzögerung (definiert durch \PYTHON{measureThresholdMilliseconds}) von 1200ms abgelaufen ist.
+    \item Es gibt eine kurze Verzögerung (\PYTHON{delay(50)}) zwischen den Schleifendurchläufen, um Tastenprellungen zu vermeiden.
+\end{itemize} 
+
+\subsection{Mikrofondatenverarbeitung}
+
+Die Funktion \PYTHON{StartSampling()} initialisiert die Datenverarbeitung:
+
+{
+    \captionof{code}{Initialisierung der Datenverarbeitung}\label{TestMicrophone:Init}
+    \ArduinoExternal{firstline=119,lastline=128}{../../Code/Nano33BLESense/Test/TestMicrophone.ino}
+}
+
+
+\PYTHON{PDM.begin(1, 16000)}: Initialisiert eine Abtastrate von 16.000 Hz.
+Die Funktion \PYTHON{StopSampling()} beendet die Aufnahme von Audiodaten.
+
+
+\subsection{Anzeige der Ergebnisse}
+
+Die Funktionen \PYTHON{ShowResult()} und \PYTHON{ShowMicrophoneValues()} sind für die Anzeige der Messergebnisse auf dem OLED-Display verantwortlich. \PYTHON{ShowResult()} zeigt den aktuellen SPL-Wert in dB auf dem Display an und aktualisiert den maximalen Wert SPL in dB, wenn nach der Startverzögerung ein neuer Höchstwert erreicht wird. \PYTHON{ShowMicrophoneValues()} verarbeitet die vom Mikrofon empfangenen Signale. Der maximale Samplewert wird ermittelt und verwendet, um den Wert SPL in dB zu berechnen. Die Funktion berechnet auch einen Durchschnittswert über eine bestimmte Zeit, \PYTHON{averagingTime = 200ms}, und zeigt das Ergebnis auf dem Display an. Die Funktionen \PYTHON{ShowMaxdBspl()} und \PYTHON{ShowAveragedBspl()} zeigen den maximalen bzw. den durchschnittlichen Wert SPL in dB auf dem Display an.
+
+\subsection{Umrechnung auf den Wert dBSPL}
+
+Die Umrechnung des Mikrofonsignals auf den dBSPL-Wert erfolgt in der Funktion \PYTHON{getDbValueFromPMC()}:
+
+{
+    \captionof{code}{Umrechnung des Mikrofonsignals}\label{TestMicrophone:dBSPL}
+    \ArduinoExternal{firstline=148,lastline=152}{../../Code/Nano33BLESense/Test/TestMicrophone.ino}
+}
+
+\PYTHON{MaxSampleVoltage} wird berechnet, indem der maximale Samplewert \PYTHON{maxSampleValue} mit der Referenzspannung des Mikrocontrollers („Vref = 3,3 V“) multipliziert und durch den maximalen Wert eines 16-Bit-Signed-Integers (32767) dividiert wird. 32767 ist der maximale Wert eines 16-Bit-Signed-Integers, der der maximalen Amplitude des Audiosignals entspricht.
+Der dB SPL-Wert („dBspl“) wird mit der Formel „20 * log10(Voltage / Vrms) + sensitivity“ berechnet [Quelle der Fomel: PDF Decibels Formula https://physicscourses.colorado.edu/phys3330/phys3330\_sp19/resources/Decibels\_Phys\_3330.pdf University of Colorado System], wobei „Voltage“ der berechnete „maxSampleVoltage“ ist, und „sensitivity“ die Empfindlichkeit des Mikrofons in dBV (Dezibel-Volt) ist. „Vrms“ ist die RMS-Spannung (Root Mean Square), die einem Schalldruckpegel von 94 dB SPL entspricht. Dieser Wert wurde experimentell ermittelt.
+
+% https://physicscourses.colorado.edu/phys3330/phys3330\_sp19/resources/Decibels\_Phys\_3330.pdf
+
+\subsection{Benutzeroberfläche}
+Die Funktion \PYTHON{HandleUI()} aktualisiert OLED-Display Anzeige:
+
+
+{
+    \captionof{code}{Aktualisierung des Bildschirms}\label{TestMicrophone:OLED}
+    \ArduinoExternal{firstline=216,lastline=223}{../../Code/Nano33BLESense/Test/TestMicrophone.ino}
+}
+
+
+Wenn eine Messung aktiv ist (\PYTHON{isMeasuring == true}), werden die aktuellen Messwerte auf dem Display angezeigt. Andernfalls wird der Displayinhalt aktualisiert, ohne neue Werte anzuzeigen.
+
+
+
+
+\section{Tests}
+
+
+The embed on-board MP34DT05 sensor in Arduino Nano 33 BLE Sense has the funcnality to sense audio voice from the environment. There is build in Arduino library for this particular sensor, which is PDM as shown in the figure.  \ref{fig:7}
+
+\begin{center}
+    \includegraphics[width=8.5cm]{Nano33BLESense/9}
+    \captionof{figure}{MP34DT05, Digital Microphone}
+    \label{fig:7}
+\end{center}
+
+By following the same steps, for this sensor we can see the output the resulted frequency in the serial plotter instaed of serial monitor as shown in figure.  \ref{fig:8}  It is more convenient to understand if we change the loudness of voice the plotter shows us a different frequency curve. MP34DT05 use to detect different voices or words too, with the help of these funcnality we can easily make the valuable application with Arduino Nano 33 BLE Sense by adding some external devices with GPIO pins with the help of 3.3V relay.
+
+\begin{center}
+    \includegraphics[width=8.5cm]{Nano33BLESense/10}
+    \captionof{figure}{MP34DT05, Serial Plotter}
+    \label{fig:8}
+\end{center}
+
+\subsection{Simple Function Test}
+
+\subsection{Test all Functions}
+
+
+
+
+\section{Further Readings}
+
+
+\Mynote{citations}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+

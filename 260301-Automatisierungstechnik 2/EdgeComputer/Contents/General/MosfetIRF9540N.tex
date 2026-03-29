@@ -1,0 +1,602 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% $ Autor: Gruppe 07 $
+% $ Projekt: Magic Faucet Fountain $
+% $ Pfad: LaTeXTemplate/Nano33BLESense/Contents/General/Hardwarebeschreibung/Mosfet.tex $
+% $ Kurzbeschreibung: In diesem Dokument wird eine generelle Übersicht über MOSFETs gegeben und spezifisch über den IRF9540N. $
+%
+% !TeX spellcheck = de_DE/GB
+% !TeX program = pdflatex
+% !BIB program = biber/bibtex
+% !TeX encoding = utf8
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\chapter{MOS-FET}\label{Mosfet}
+
+\section{Einleitung}
+MOS-FETs (Metal-Oxide-Semiconductor Field-Effect Transistors) sind spannungsgesteuerte Halbleiterbauelemente, bei denen das Gate durch eine isolierende SiO$_2$-Schicht vom Halbleiter getrennt ist. Sie ermöglichen das Schalten und Regeln von Strömen mit sehr geringem Steuerstrom und werden daher häufig in digitalen und analogen Schaltungen eingesetzt. \cite{Alles:2024}
+\section{Grundlegende Informationen}
+Der Metall-Oxid-Halbleiter-Feldeffekttransistor (MOS-FET) ist ein spannungsgesteuerter Transistor, der in vier Grundtypen unterteilt wird: n-Kanal- und p-Kanal-Typen, jeweils als Anreicherungs- oder Verarmungstyp. Der am häufigsten verwendete Typ ist der n-Kanal-MOS-FET im Anreicherungstyp, der bei einer Gate-Source-Spannung von 0 V gesperrt ist (selbstsperrend).\cite{Alles:2024}
+
+Ein MOS-FET besteht aus zwei n-dotierten Bereichen – Source und Drain –, die auf einem p-dotierten Substrat liegen. Zwischen diesen Bereichen befindet sich ein isoliertes Gate. Wird eine positive Spannung am Gate angelegt, zieht sie Elektronen an und bildet einen leitfähigen Kanal zwischen Source und Drain. Die Stromleitung erfolgt dabei nahezu verlustfrei über diesen Kanal, wobei der Steuerstrom sehr gering ist, da das Gate durch eine Oxidschicht elektrisch isoliert ist.\cite{Alles:2024}
+
+Je nach Höhe der Gate-Source-Spannung (UGS) im Verhältnis zur Schwellenspannung (UTh) ergeben sich drei Betriebsbereiche \cite{Alles:2024}:
+
+\begin{itemize}
+	\item Sperrbetrieb (UGS < UTh): Kein leitender Kanal – der Transistor sperrt.
+	\item Abschnürbereich (UGS > UTh, aber UGS - UTh < UDS): Der Kanal ist nur teilweise ausgebildet – Strom fließt eingeschränkt.
+	\item Ohmscher Bereich (UGS - UTh > UDS): Der Kanal reicht vollständig von Source bis Drain – der Transistor verhält sich wie ein variabler Widerstand.
+\end{itemize}
+
+Die Eingangswiderstände von MOS-FETs sind extrem hoch (im G$\Omega$-Bereich), was sie ideal für Anwendungen mit geringer Steuerleistung macht. Jedoch kann bei hohen Frequenzen die Gate-Kapazität zu Nachteilen führen, da sie zu Umladeströmen führt, die wiederum die Geschwindigkeit der Schaltung begrenzen.\cite{Alles:2024}
+
+Die Kennlinienfelder, die das Verhalten von Drainstrom (ID) in Abhängigkeit von UGS und UDS zeigen, weisen zum Teil deutliche Unterschiede zwischen Simulation und realen Messungen auf. Diese Abweichungen entstehen u.a. durch Parameterstreuungen bei der Fertigung, insbesondere bei der Thresholdspannung und der sogenannten Kanallängenmodulation (Early-Effekt). Dies spielt in digitalen Schaltungen oft eine untergeordnete Rolle, kann jedoch in analogen Anwendungen zu Problemen führen, vor allem bei hohen Temperaturen.\cite{Alles:2024}
+
+Insgesamt bietet der MOS-FET viele Vorteile wie hohe Energieeffizienz und einfache Ansteuerung, erfordert aber eine sorgfältige Berücksichtigung seiner physikalischen Eigenschaften, insbesondere bei hohen Frequenzen oder großen Temperaturbereichen.\cite{Alles:2024}
+
+
+MOS-FETs lassen sich grundsätzlich in zwei Hauptgruppen unterteilen: n-Kanal- und p-Kanal-MOS-FETs. Diese Bezeichnungen beziehen sich auf die Art der Dotierung des Halbleitermaterials. Die Dotierung erfolgt entweder mit Donatoren (n-Typ, negativ) oder Akzeptoren (p-Typ, positiv), wodurch sich die elektrische Leitfähigkeit des Siliziums erhöht. \cite{RSOnlineMOSFET:2025}
+
+\subsection{N-Kanal-MOS-FET}
+\begin{itemize}
+	\item Geläufige Bezeichnungen: N-Channel-MOS-FET, NMOS, NMOS-FET
+	\item Dotierung: Elektronen-Donatoren – das Fremdatom besitzt ein zusätzliches Elektron, das als Ladungsträger fungiert
+	\item Majoritätsladungsträger: Elektronen
+	\item Funktionsweise: Der Transistor leitet bei positiver Spannung am Gate-Anschluss
+	\item Schaltverhalten: Das Source-Potential ist niedriger als das Drain-Potential
+\end{itemize}
+
+\subsection{P-Kanal-MOS-FET}
+\begin{itemize}
+	\item Geläufige Bezeichnungen: P-Channel-MOS-FET, PMOS, PMOS-FET
+	\item Dotierung: Elektronen-Akzeptoren – dem Fremdatom fehlt ein Elektron, es entsteht ein sogenanntes „Loch“
+	\item Majoritätsladungsträger: Löcher (Defektelektronen)
+	\item Funktionsweise: Der Transistor leitet bei negativer Gate-Spannung relativ zur Source
+	\item Schaltverhalten: Das Source-Potential ist höher als das Drain-Potential
+\end{itemize}
+
+\section{MOS-FET IRF9540N}
+
+Der COM-MOS-FET ist ein p-Kanal MOS-FET, der für die Steuerung von höheren Spannungen entwickelt wurde. Er eignet sich besonders für Anwendungen, bei denen eine effektive Spannung mit Hilfe von Pulsweitenmodulation (PWM) gesenkt werden soll, wie z. B. beim Dimmen von LED-Beleuchtungen.\cite{ReicheltMOS:2025} \ref{skizzeMosfet}
+\begin{center}
+	\captionof{figure}{Skizze des MOS-FETs}
+	\label{skizzeMosfet}
+	\resizebox{0.5\textwidth}{!}{%
+		\rotatebox{90}{%
+			\begin{circuitikz}
+				\tikzstyle{every node}=[font=\Huge]
+				\draw [ fill={rgb,255:red,72; green,72; blue,72} , line width=1.2pt ] (1.25,-4.25) rectangle (10,-13);
+				\draw [line width=1.2pt, short] (1.25,-5.5) -- (1,-5.5);
+				\draw [line width=1.2pt, short] (1,-5.5) -- (1,-2.5);
+				\draw [line width=1.2pt, short] (1,-2.5) -- (1.5,-2.25);
+				\draw [line width=1.2pt, short] (1.5,-2.25) -- (1.5,-1.25);
+				\draw [line width=1.2pt, short] (1.5,-1.25) -- (1,-0.75);
+				\draw [line width=1.2pt, short] (1,-0.75) -- (1,0.75);
+				\draw [line width=1.2pt, short] (1,0.75) -- (10.25,0.75);
+				\draw [line width=1.2pt, short] (10,-5.5) -- (10.25,-5.5);
+				\draw [line width=1.2pt, short] (10.25,-5.5) -- (10.25,-2.5);
+				\draw [line width=1.2pt, short] (10.25,-2.5) -- (9.75,-2.25);
+				\draw [line width=1.2pt, short] (9.75,-2.25) -- (9.75,-1.25);
+				\draw [line width=1.2pt, short] (9.75,-1.25) -- (10.25,-0.75);
+				\draw [line width=1.2pt, short] (10.25,-0.75) -- (10.25,0.75);
+				\draw [ line width=1.2pt ] (5.75,-1.75) circle (1.25cm);
+				\draw [line width=1.2pt, short] (1.25,-5.5) -- (1.25,-4.25);
+				\draw [line width=1.2pt, short] (1.25,-4.25) -- (10,-4.25);
+				\draw [line width=1.2pt, short] (10,-4.25) -- (10,-5.5);
+				\draw [line width=1.2pt, short] (1.75,-13) -- (1.75,-14.25);
+				\draw [line width=1.2pt, short] (1.75,-14.25) -- (2,-14.5);
+				\draw [line width=1.2pt, short] (2,-14.5) -- (2,-20.25);
+				\draw [line width=1.2pt, short] (2,-20.25) -- (2.25,-20.75);
+				\draw [line width=1.2pt, short] (2.25,-20.75) -- (2.5,-20.75);
+				\draw [line width=1.2pt, short] (2.5,-20.75) -- (2.75,-20.25);
+				\draw [line width=1.2pt, short] (2.75,-20.25) -- (2.75,-14.5);
+				\draw [line width=1.2pt, short] (2.75,-14.5) -- (3,-14.25);
+				\draw [line width=1.2pt, short] (3,-14.25) -- (3,-13);
+				\draw [line width=1.2pt, short] (9.5,-13) -- (9.5,-14.25);
+				\draw [line width=1.2pt, short] (9.5,-14.25) -- (9.25,-14.5);
+				\draw [line width=1.2pt, short] (9.25,-14.5) -- (9.25,-20.25);
+				\draw [line width=1.2pt, short] (9.25,-20.25) -- (9,-20.75);
+				\draw [line width=1.2pt, short] (9,-20.75) -- (8.75,-20.75);
+				\draw [line width=1.2pt, short] (8.75,-20.75) -- (8.5,-20.25);
+				\draw [line width=1.2pt, short] (8.5,-20.25) -- (8.5,-14.5);
+				\draw [line width=1.2pt, short] (8.5,-14.5) -- (8.25,-14.25);
+				\draw [line width=1.2pt, short] (8.25,-14.25) -- (8.25,-13);
+				\draw [line width=1.2pt, short] (5,-13) -- (5,-14.25);
+				\draw [line width=1.2pt, short] (5,-14.25) -- (5.25,-14.5);
+				\draw [line width=1.2pt, short] (5.25,-14.5) -- (5.25,-20.25);
+				\draw [line width=1.2pt, short] (5.25,-20.25) -- (5.5,-20.75);
+				\draw [line width=1.2pt, short] (5.5,-20.75) -- (5.75,-20.75);
+				\draw [line width=1.2pt, short] (5.75,-20.75) -- (6,-20.25);
+				\draw [line width=1.2pt, short] (6,-20.25) -- (6,-14.5);
+				\draw [line width=1.2pt, short] (6,-14.5) -- (6.25,-14.25);
+				\draw [line width=1.2pt, short] (6.25,-14.25) -- (6.25,-13);
+				\node [font=\Huge, color={rgb,255:red,178; green,178; blue,178}] at (5.75,-6) {IRF9540N};
+				\node [font=\Huge, color={rgb,255:red,178; green,178; blue,178}] at (5.75,-8) {IORH228D};
+				\node [font=\Huge, color={rgb,255:red,178; green,178; blue,178}] at (5.75,-9) {B9P0};
+			\end{circuitikz}
+		}%
+	}%
+\end{center}
+
+\section{Spezifikation}
+
+\subsubsection{Hauptmerkmale \cite{ReicheltMOS:2025}}
+
+\begin{itemize}
+	\item Modell: IRF9540N
+	\item Farbe der Platine: Schwarz
+	\item Kompatibilität: Arduino, Raspberry Pi, etc.
+	\item Besonderheiten: Der MOS-FET bezieht Spannung auch über den SBC, wenn keine Source-Spannung verfügbar ist.
+	\item Effektivspannung lässt sich mit PWM senken.
+	\item Abmessungen: 40 mm x 22 mm x 20 mm
+	\item Maximale Eingangsspannung: 36 V
+	\item Maximale Eingangsstrom: 2 A
+\end{itemize}
+
+\subsubsection{Steuerung und Anschlüsse \cite{ReicheltMOS:2025}}
+\begin{itemize}
+	\item Steuerspannung: Mindestspannung 2 V
+	\item Anschlüsse:
+	\begin{itemize}
+		\item 2x 2 Pin Anschlussblöcke
+		\item 4 Pin female JST-Buchse
+	\end{itemize}
+	\item Pinbelegung gemäß der Tabelle \ref{PinBelegungMOSFET} \ref{MOSFETpin}
+	
+	\begin{center}
+		\captionof{table}{Pinbelegung für das MOS-FET \cite{ReicheltMOSFETManual:2025}}
+		\begin{tabular}{c|c}
+			Arduino & MOS-FET\\ \hline
+			GND & GND (Pin1)\\
+			5 V & VCC (Pin2)\\
+			NC & NC (Pin3)\\
+			Digital Pin 2 & Signal (Pin4)\\
+		\end{tabular}
+		\label{PinBelegungMOSFET}
+	\end{center}
+\end{itemize}
+\begin{figure}[H]
+	\centering
+	\caption{Pinbelegung des MOS-FETs}
+	\label{MOSFETpin}
+	\resizebox{1\textwidth}{!}{%
+		\begin{circuitikz}
+			\tikzstyle{every node}=[font=\Huge]
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (-12.5,11.5) rectangle  node {\LARGE Text} (42.5,-46.25);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,41; green,153; blue,207}] (-7.5,3) rectangle (38.75,-13.25);
+			\draw [ color={rgb,255:red,255; green,255; blue,255} , fill={rgb,255:red,249; green,249; blue,249}, line width=2pt ] (-5.75,1.75) circle (0.75cm);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (-6.25,0.5) rectangle (-3.75,-0.5);
+			\draw [ color={rgb,255:red,123; green,198; blue,142} , fill={rgb,255:red,123; green,198; blue,142}] (-5,0) circle (0.75cm);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,224; green,224; blue,224}] (-8.75,-1.25) rectangle (-1,-9);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,243; green,243; blue,243}] (-8.25,-1.25) rectangle (-7.75,-9);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,243; green,243; blue,243}] (-6.75,-1.25) rectangle (-6.25,-9);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,243; green,243; blue,243}] (-5.25,-1.25) rectangle (-4.75,-9);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,243; green,243; blue,243}] (-3.75,-1.25) rectangle (-3.25,-9);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,243; green,243; blue,243}] (-2.25,-1.25) rectangle (-1.75,-9);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (-6,-12) circle (0.75cm);
+			\draw [ color={rgb,255:red,243; green,243; blue,243} , fill={rgb,255:red,224; green,224; blue,224}, rounded corners = 3.6] (-1.75,0.25) rectangle (-0.75,-0.5);
+			\draw [ color={rgb,255:red,243; green,243; blue,243} , fill={rgb,255:red,238; green,238; blue,238}, rounded corners = 3.6] (0.25,0.25) rectangle (1.25,-0.5);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (-1.5,0.25) rectangle (-1,-0.5);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (0.5,0.25) rectangle (1,-0.5);
+			\node [font=\Large, color={rgb,255:red,249; green,249; blue,249}] at (-1.25,-1) {ON};
+			\draw [ color={rgb,255:red,243; green,243; blue,243} , fill={rgb,255:red,243; green,243; blue,243}] (-0.25,-1) rectangle (1.75,-2);
+			\draw [ color={rgb,255:red,232; green,190; blue,134} , fill={rgb,255:red,232; green,190; blue,134}] (0,-1) rectangle (1.5,-2);
+			\node [font=\Large, color={rgb,255:red,249; green,249; blue,249}] at (4,0.5) {NANO 33 BLE};
+			\node [font=\Large, color={rgb,255:red,249; green,249; blue,249}] at (4,0) {SENSE REV2};
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (-2,1.75) circle (0.75cm);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (0.5,1.75) circle (0.75cm);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (3,1.75) circle (0.75cm);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (5.5,1.75) circle (0.75cm);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (8,1.75) circle (0.75cm);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (10.5,1.75) circle (0.75cm);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (13,1.75) circle (0.75cm);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (15.5,1.75) circle (0.75cm);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (18,1.75) circle (0.75cm);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (20.5,1.75) circle (0.75cm);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (23,1.75) circle (0.75cm);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (25.5,1.75) circle (0.75cm);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (28,1.75) circle (0.75cm);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (30.5,1.75) circle (0.75cm);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (33,1.75) circle (0.75cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (36.75,1.75) circle (0.75cm);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (-2,-12) circle (0.75cm);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (0.5,-12) circle (0.75cm);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (3,-12) circle (0.75cm);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (5.5,-12) circle (0.75cm);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (8,-12) circle (0.75cm);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (10.5,-12) circle (0.75cm);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (13,-12) circle (0.75cm);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (15.5,-12) circle (0.75cm);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (18,-12) circle (0.75cm);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (20.5,-12) circle (0.75cm);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (23,-12) circle (0.75cm);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (25.5,-12) circle (0.75cm);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (28,-12) circle (0.75cm);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (30.5,-12) circle (0.75cm);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (33,-12) circle (0.75cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (36.75,-12) circle (0.75cm);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (-2.75,1.75) rectangle (-1.25,3);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (-0.25,1.75) rectangle (1.25,3);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (2.25,3) rectangle (3.75,1.75);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (4.75,3) rectangle (6.25,1.75);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (7.25,1.75) rectangle (8.75,3);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (9.75,1.75) rectangle (11.25,3);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (12.25,3) rectangle (13.75,1.75);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (14.75,3) rectangle (16.25,1.75);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (17.25,1.75) rectangle (18.75,3);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (19.75,3) rectangle (21.25,1.75);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (22.25,3) rectangle (23.75,1.75);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (24.75,3) rectangle (26.25,1.75);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (27.25,3) rectangle (28.75,1.75);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (29.75,3) rectangle (31.25,1.75);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (32.25,3) rectangle (33.75,1.75);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (33,1.75) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (33,3) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (30.5,1.75) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (30.5,3) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (28,1.75) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (28,3) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (25.5,3) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (25.5,1.75) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (23,3) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (23,1.75) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (20.5,1.75) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (20.5,3) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (18,3) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (18,1.75) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (15.5,1.75) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (15.5,3) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (13,3) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (13,1.75) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (10.5,3) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (10.5,1.75) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (8,1.75) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (8,3) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (5.5,3) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (5.5,1.75) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (3,3) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (3,1.75) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (0.5,3) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (0.5,1.75) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (-2,3) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (-2,1.75) circle (0.5cm);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (-6,-9.75) rectangle (-3.5,-10.75);
+			\draw [ color={rgb,255:red,220; green,135; blue,20} , fill={rgb,255:red,220; green,135; blue,20}] (-4.75,-10.25) circle (0.75cm);
+			\draw [ color={rgb,255:red,185; green,214; blue,173} , fill={rgb,255:red,185; green,214; blue,173}] (38.75,0) rectangle (25,-10.25);
+			\draw [ color={rgb,255:red,138; green,188; blue,114} , fill={rgb,255:red,138; green,188; blue,114}] (30.75,-5.25) -- (35.5,-0.875) -- (40.25,-5.25) -- (35.5,-9.625) -- cycle;
+			\draw [ color={rgb,255:red,138; green,188; blue,114} , fill={rgb,255:red,138; green,188; blue,114}] (34.5,-0.75) rectangle (35.5,-9.5);
+			\draw [ color={rgb,255:red,185; green,214; blue,173} , fill={rgb,255:red,185; green,214; blue,173}] (30.5,-0.75) rectangle (34.5,-9.5);
+			\draw [ color={rgb,255:red,192; green,192; blue,192} , fill={rgb,255:red,192; green,192; blue,192}] (25,0) rectangle (34,-10.25);
+			\draw [ color={rgb,255:red,210; green,210; blue,210} , fill={rgb,255:red,234; green,234; blue,234}] (25.5,-0.5) rectangle (33.5,-9.75);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}, rounded corners = 21.6] (26.25,-2) rectangle (32.75,-8.5);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (38.75,0.25) rectangle (41.75,-10.75);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (40,-1.75) rectangle (42,-1.75);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (-2.75,-12) rectangle (-1.25,-13.25);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (-0.25,-12) rectangle (1.25,-13.25);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (2.25,-12) rectangle (3.75,-13.25);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (4.75,-12) rectangle (6.25,-13.25);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (7.25,-12) rectangle (8.75,-13.25);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (9.75,-12) rectangle (11.25,-13.25);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (12.25,-12) rectangle (13.75,-13.25);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (14.75,-12) rectangle (16.25,-13.25);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (17.25,-12) rectangle (18.75,-13.25);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (19.75,-12) rectangle (21.25,-13.25);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (22.25,-12) rectangle (23.75,-13.25);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (24.75,-12) rectangle (26.25,-13.25);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (22.25,-12) rectangle (23.5,-13.25);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (24.75,-12) rectangle (26.25,-13.25);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (27.25,-12) rectangle (28.75,-13.25);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (29.75,-12) rectangle (31.25,-13.25);
+			\draw [ color={rgb,255:red,242; green,231; blue,85} , fill={rgb,255:red,242; green,231; blue,85}] (32.25,-12) rectangle (33.75,-13.25);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (-2,-12) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (-2,-13.25) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (0.5,-12) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (0.5,-13.25) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (3,-12) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (5.5,-12) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (10.5,-12) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (13,-12) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (8,-12) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (15.5,-12) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (18,-12) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (20.5,-12) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (23,-12) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (25.5,-12) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (28,-12) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (30.5,-12) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (33,-12) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (33,-13.25) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (30.5,-13.25) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (28,-13.25) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (25.5,-13.25) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (23,-13.25) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (20.5,-13.25) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (18,-13.25) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (15.5,-13.25) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (13,-13.25) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (10.5,-13.25) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (8,-13.25) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (5.5,-13.25) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (3,-13.25) circle (0.5cm);
+			\draw [ color={rgb,255:red,235; green,235; blue,235} , fill={rgb,255:red,229; green,229; blue,229}, rounded corners = 3.6] (-2,-10) rectangle (-1,-10.75);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (-1.75,-10) rectangle (-1.25,-10.75);
+			\node [font=\LARGE, color={rgb,255:red,243; green,243; blue,243}] at (-1.5,-9.5) {L};
+			\draw [ fill={rgb,255:red,0; green,0; blue,0} ] (-0.5,-4.5) rectangle (2,-5.75);
+			\draw [ fill={rgb,255:red,0; green,0; blue,0} ] (0.5,-7.25) rectangle (1.25,-8.75);
+			\draw [ fill={rgb,255:red,0; green,0; blue,0} ] (0.5,-9.25) rectangle (3.25,-10.75);
+			\draw [ fill={rgb,255:red,0; green,0; blue,0} ] (7.25,-7) rectangle (8.75,-9.75);
+			\draw [ fill={rgb,255:red,0; green,0; blue,0} ] (12,-8) rectangle  node {\LARGE Text} (13.75,-9.75);
+			\draw [ fill={rgb,255:red,0; green,0; blue,0} ] (7.25,-2.25) rectangle (9.75,-3.75);
+			\draw [ fill={rgb,255:red,0; green,0; blue,0} ] (11.5,-4.25) rectangle (14.75,-6.75);
+			\draw [ fill={rgb,255:red,0; green,0; blue,0} ] (16.75,-5) rectangle (19.75,-7);
+			\draw [ fill={rgb,255:red,0; green,0; blue,0} ] (20.25,-5.25) rectangle (21.25,-7.25);
+			\draw [ fill={rgb,255:red,0; green,0; blue,0} ] (21.5,-3) rectangle (24.5,-7.25);
+			\draw [ fill={rgb,255:red,0; green,0; blue,0} ] (18.25,-3) rectangle (19.75,-4.5);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (3.75,-2.5) rectangle (5.25,-7.5);
+			\draw [ color={rgb,255:red,243; green,243; blue,243} , fill={rgb,255:red,234; green,234; blue,234}] (3,-3) rectangle (6,-7);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (4.5,-5) circle (1cm);
+			\node [font=\LARGE, color={rgb,255:red,243; green,243; blue,243}, rotate around={90:(0,0)}] at (2.5,-5) {RST};
+			\draw [ color={rgb,255:red,243; green,243; blue,243} , fill={rgb,255:red,243; green,243; blue,243}, rounded corners = 3.6] (4,-1.25) rectangle (5,-2);
+			\draw [ color={rgb,255:red,243; green,243; blue,243} , fill={rgb,255:red,207; green,207; blue,207}] (4.25,-1.25) rectangle (4.75,-2);
+			\draw [ color={rgb,255:red,243; green,243; blue,243} , fill={rgb,255:red,243; green,243; blue,243}] (4,-0.75) circle (0.25cm);
+			\draw [ color={rgb,255:red,243; green,243; blue,243} , fill={rgb,255:red,243; green,243; blue,243}] (4.75,-0.75) circle (0.25cm);
+			\draw [ color={rgb,255:red,243; green,243; blue,243} , fill={rgb,255:red,243; green,243; blue,243}] (6.5,-0.75) circle (0.25cm);
+			\draw [ color={rgb,255:red,243; green,243; blue,243} , fill={rgb,255:red,243; green,243; blue,243}] (7.25,-0.75) circle (0.25cm);
+			\draw [ color={rgb,255:red,243; green,243; blue,243} , fill={rgb,255:red,243; green,243; blue,243}] (-0.25,-4.75) rectangle (0.25,-3.75);
+			\draw [ color={rgb,255:red,243; green,243; blue,243} , fill={rgb,255:red,243; green,243; blue,243}] (1.25,-4.75) rectangle (1.75,-3.75);
+			\draw [ color={rgb,255:red,243; green,243; blue,243} , fill={rgb,255:red,243; green,243; blue,243}] (-0.25,-5.5) rectangle (0.25,-6.5);
+			\draw [ color={rgb,255:red,243; green,243; blue,243} , fill={rgb,255:red,243; green,243; blue,243}] (1.25,-5.5) rectangle (1.75,-6.5);
+			\draw [ color={rgb,255:red,243; green,243; blue,243} , fill={rgb,255:red,243; green,243; blue,243}] (1,-7.5) rectangle (1.5,-7.75);
+			\draw [ color={rgb,255:red,243; green,243; blue,243} , fill={rgb,255:red,243; green,243; blue,243}] (1,-8.25) rectangle (1.5,-8.5);
+			\draw [ color={rgb,255:red,243; green,243; blue,243} , fill={rgb,255:red,243; green,243; blue,243}] (0.25,-7.75) rectangle (0.75,-8);
+			\draw [ color={rgb,255:red,243; green,243; blue,243} , fill={rgb,255:red,243; green,243; blue,243}] (0.25,-9.5) rectangle (0.75,-10.5);
+			\draw [ color={rgb,255:red,243; green,243; blue,243} , fill={rgb,255:red,243; green,243; blue,243}] (3,-9.5) rectangle (3.5,-10.5);
+			\draw [ color={rgb,255:red,243; green,243; blue,243} , fill={rgb,255:red,243; green,243; blue,243}] (3.75,-8) rectangle (4.25,-10);
+			\draw [ color={rgb,255:red,243; green,243; blue,243} , fill={rgb,255:red,243; green,243; blue,243}] (5.25,-8) rectangle (4.75,-10);
+			\draw [ color={rgb,255:red,232; green,190; blue,134} , fill={rgb,255:red,232; green,190; blue,134}] (3.75,-8.25) rectangle (4.25,-9.75);
+			\draw [ color={rgb,255:red,232; green,190; blue,134} , fill={rgb,255:red,232; green,190; blue,134}] (4.75,-8.25) rectangle (5.25,-9.75);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}, rounded corners = 2.4] (2,-7.5) rectangle (2.5,-8.25);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}, rounded corners = 2.4] (2.75,-7.5) rectangle (3.25,-8.25);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (2,-7.75) rectangle (2.5,-8);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (2.75,-7.75) rectangle (3.25,-8);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (10,-7.5) rectangle (11.5,-9.25);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (10,-7.75) rectangle (11.5,-9);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}, rounded corners = 2.4] (9.25,-7) rectangle (9.75,-7.75);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (9.25,-7.25) rectangle (9.75,-7.5);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (7,-7) rectangle (7.25,-7.25);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (7,-7.75) rectangle (7.25,-8);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (7,-8.75) rectangle (7.25,-9);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (7,-9.5) rectangle (7.25,-9.75);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (8.75,-7) rectangle (9,-7.25);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (8.75,-7.75) rectangle (9,-8);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (8.75,-8.75) rectangle (9,-9);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (8.75,-9.5) rectangle (9,-9.75);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (7.25,-5) rectangle (10.25,-5.75);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (7.25,-6) rectangle (10.25,-6.75);
+			\draw [ color={rgb,255:red,232; green,190; blue,134} , fill={rgb,255:red,232; green,190; blue,134}] (7.5,-5) rectangle (10,-5.75);
+			\draw [ color={rgb,255:red,232; green,190; blue,134} , fill={rgb,255:red,232; green,190; blue,134}] (7.5,-6) rectangle (10,-6.75);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (7.25,-3.75) rectangle (7.5,-4.5);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (8,-3.75) rectangle (8.25,-4.5);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (8.75,-3.75) rectangle (9,-4.5);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (9.5,-3.75) rectangle (9.75,-4.5);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (7.25,-2.25) rectangle (7.5,-1.5);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (8,-2.25) rectangle (8.25,-1.5);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (8.75,-2.25) rectangle (9,-1.5);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (9.5,-2.25) rectangle (9.75,-1.5);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (11.25,-4.5) rectangle (11.75,-4.75);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (11.25,-5) rectangle (11.75,-5.25);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (11.25,-5.75) rectangle (11.75,-5.5);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (11.25,-6) rectangle (11.75,-6.25);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (14.5,-4.5) rectangle (15,-4.75);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (14.5,-5) rectangle (15,-5.25);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (14.5,-5.5) rectangle (15,-5.75);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (14.5,-6) rectangle (15,-6.25);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (12.75,-4) rectangle (13,-4.5);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (13.25,-4) rectangle (13.5,-4.5);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (13.75,-4) rectangle (14,-4.5);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (13.25,-6.5) rectangle (13.5,-7);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (13.75,-6.5) rectangle (14,-7);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (12.75,-6.5) rectangle (13,-7);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (17.75,-6) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (20.75,-6.25) circle (0.5cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}, rounded corners = 3.6] (20.5,-3.5) rectangle (21.25,-4.5);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (20.5,-3.75) rectangle (21.25,-4.25);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (12.25,-1.25) rectangle (14.5,-3.5);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}, rounded corners = 3.6] (12.25,-0.25) rectangle (13.25,-0.75);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}, rounded corners = 3.6] (13.5,-0.25) rectangle (14.5,-0.75);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (12.5,-0.25) rectangle (13,-0.75);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (13.75,-0.25) rectangle (14.25,-0.75);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}, rounded corners = 3.6] (21.75,-0.25) rectangle (22.75,-0.75);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}, rounded corners = 3.6] (23.25,-0.25) rectangle (24.25,-0.75);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}, rounded corners = 3.6] (21.75,-1.25) rectangle (22.75,-1.75);
+			\draw [ color={rgb,255:red,113; green,231; blue,240} , fill={rgb,255:red,113; green,231; blue,240}] (23.25,-1.25) rectangle (23.75,-1.75);
+			\draw [ color={rgb,255:red,113; green,231; blue,240} , fill={rgb,255:red,113; green,231; blue,240}] (24,-1.25) rectangle (24.5,-1.75);
+			\draw [ color={rgb,255:red,113; green,231; blue,240} , fill={rgb,255:red,113; green,231; blue,240}] (23.25,-2) rectangle (23.75,-2.5);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (24,-2) rectangle (24.25,-2.25);
+			\draw [ color={rgb,255:red,113; green,231; blue,240} , fill={rgb,255:red,113; green,231; blue,240}] (24,-2) rectangle (24.5,-2.5);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (23.5,-1.5) rectangle (24.25,-2.25);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (22,-0.25) rectangle (22.5,-0.75);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (23.5,-0.25) rectangle (24,-0.75);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (22,-1.25) rectangle (22.5,-1.75);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (23.25,-4.5) circle (0.5cm);
+			\draw [ fill={rgb,255:red,0; green,0; blue,0} ] (23.25,-4.5) circle (0.25cm);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}, rounded corners = 3.6] (31,1) rectangle (32.25,0.25);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (31.25,1) rectangle (32,0.25);
+			\node [font=\LARGE, color={rgb,255:red,249; green,249; blue,249}] at (28,0.5) {ARDUINO CC};
+			\draw [ color={rgb,255:red,249; green,249; blue,249}, ->, >=Stealth] (19.25,-2) -- (19.25,-0.5);
+			\draw [ color={rgb,255:red,249; green,249; blue,249}, ->, >=Stealth] (19.25,-2) -- (17.75,-2);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (19.25,-2) circle (0.25cm);
+			\node [font=\LARGE, color={rgb,255:red,249; green,249; blue,249}] at (17.25,-2) {y};
+			\node [font=\LARGE, color={rgb,255:red,249; green,249; blue,249}] at (19.75,-2) {z};
+			\node [font=\LARGE, color={rgb,255:red,249; green,249; blue,249}] at (19.75,-0.25) {x};
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}, rounded corners = 6.0] (6.25,-10.25) rectangle (7.5,-11);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}, rounded corners = 6.0] (8.25,-10.25) rectangle (9.5,-11);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}, rounded corners = 6.0] (10.25,-10.25) rectangle (11.5,-11);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}, rounded corners = 6.0] (12.25,-10.25) rectangle  node {\LARGE Text} (13.5,-11);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}, rounded corners = 6.0] (14.25,-10.25) rectangle (15.5,-11);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (6.5,-10.25) rectangle (7.25,-11);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (8.5,-10.25) rectangle (9.25,-11);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (10.5,-10.25) rectangle (11.25,-11);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (12.5,-10.25) rectangle (13.25,-11);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (14.5,-10.25) rectangle (15.25,-11);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (19.5,-10.5) circle (0.5cm);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (21,-10.5) circle (0.5cm);
+			\node [font=\Huge, color={rgb,255:red,249; green,249; blue,249}] at (20.25,-9.5) {VUSB};
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}, rounded corners = 3.6] (23.5,-10.75) rectangle (24.75,-11.25);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}, rounded corners = 3.6] (26.25,-10.5) rectangle (27.5,-11);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}, rounded corners = 3.6] (28,-10.5) rectangle (29.25,-11);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}, rounded corners = 3.6] (29.75,-10.5) rectangle (31,-11);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}, rounded corners = 3.6] (31.5,-10.5) rectangle (32.75,-11);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (23.75,-10.75) rectangle (24.5,-11.25);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (26.5,-10.5) rectangle (27.25,-11);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (28.25,-10.5) rectangle (29,-11);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (30,-10.5) rectangle (30.75,-11);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (31.75,-10.5) rectangle (32.5,-11);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}, rounded corners = 3.6] (9.75,-9.5) rectangle (11,-10);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (10,-9.5) rectangle (10.5,-9.5);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (10,-9.5) rectangle (10.75,-10);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}, rounded corners = 3.6] (18.5,-7.5) rectangle (19.75,-8);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}, rounded corners = 3.6] (18.5,-8.25) rectangle (19.75,-8.75);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}, rounded corners = 3.6] (20.25,-7.75) rectangle (20.75,-9);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}, rounded corners = 3.6] (21.5,-7.5) rectangle (22.75,-8);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}, rounded corners = 3.6] (21.5,-8.25) rectangle (22.75,-8.75);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (18.75,-7.5) rectangle (19.5,-8);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (18.75,-8.25) rectangle (19.5,-8.75);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (20.25,-8) rectangle (20.75,-8.75);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (21.75,-7.5) rectangle (22.5,-8);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (21.75,-8.25) rectangle (22.5,-8.75);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (23.75,-8.5) circle (0.25cm);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (23.75,-9.25) circle (0.25cm);
+			\node [font=\Huge, rotate around={90:(0,0)}] at (5.5,4.5) {(12) ~D9};
+			\node [font=\Huge, rotate around={90:(0,0)}] at (-2,5.75) {(15) ~D2/MISO };
+			\node [font=\Huge, rotate around={90:(0,0)}] at (3,4.75) {(13) ~D10};
+			\node [font=\Huge, color={rgb,255:red,207; green,207; blue,207}] at (5.25,6.25) {};
+			\node [font=\Huge, rotate around={90:(0,0)}] at (0.5,5.75) {(14) ~D2/MOSI};
+			\node [font=\Huge, rotate around={90:(0,0)}] at (8,4.5) {(11) ~D8};
+			\node [font=\Huge, rotate around={90:(0,0)}] at (10.5,4.5) {(10) ~D7};
+			\node [font=\Huge, rotate around={90:(0,0)}] at (13,4.25) {(9) ~D6};
+			\node [font=\Huge, rotate around={90:(0,0)}] at (15.5,4.25) {(8) ~D5};
+			\node [font=\Huge, rotate around={90:(0,0)}] at (18,4.25) {(7) ~D4};
+			\node [font=\Huge, rotate around={90:(0,0)}] at (20.5,4.25) {(6) ~D3};
+			\node [font=\Huge, rotate around={90:(0,0)}] at (25.5,4.75) {(4) ~GND};
+			\node [font=\Huge, rotate around={90:(0,0)}] at (28,4.75) {(3) ~Reset};
+			\node [font=\Huge, rotate around={90:(0,0)}] at (33,4.75) {(1) D1/TX};
+			\node [font=\Huge, rotate around={90:(0,0)}] at (30.5,5) {(2) ~D0/RX};
+			\node [font=\Huge, rotate around={90:(0,0)}] at (-2,-16) {SCK/~D13 (16)};
+			\node [font=\Huge, rotate around={90:(0,0)}] at (0.5,-15.25) {+3V3 (17)};
+			\node [font=\Huge, rotate around={90:(0,0)}] at (3,-15.25) {AREF (18)};
+			\node [font=\Huge, rotate around={90:(0,0)}] at (5.5,-14.75) {A0 (19)};
+			\node [font=\Huge, rotate around={90:(0,0)}] at (8,-14.75) {A1 (20)};
+			\node [font=\Huge, rotate around={90:(0,0)}] at (10.5,-14.75) {A2 (21)};
+			\node [font=\Huge, rotate around={90:(0,0)}] at (13,-14.75) {A3 (22)};
+			\node [font=\Huge, rotate around={90:(0,0)}] at (15.5,-15.5) {SDA/A4 (23)};
+			\node [font=\Huge, rotate around={90:(0,0)}] at (18,-15.5) {SCL/A5 (24)};
+			\node [font=\Huge, rotate around={90:(0,0)}] at (20.5,-14.75) {A6 (25)};
+			\node [font=\Huge, rotate around={90:(0,0)}] at (23,-14.75) {A7 (26)};
+			\node [font=\Huge, rotate around={90:(0,0)}] at (33,-15) {Vin (30)};
+			\node [font=\Huge, rotate around={90:(0,0)}] at (28,-15.25) {Reset (28)};
+			\draw [ color={rgb,255:red,65; green,65; blue,65} , fill={rgb,255:red,56; green,56; blue,56}] (-2,-30) rectangle (26.5,-43.5);
+			\draw [ fill={rgb,255:red,249; green,249; blue,249} ] (-0.5,-31.5) circle (1.25cm);
+			\draw [ fill={rgb,255:red,249; green,249; blue,249} ] (-0.5,-42) circle (1.25cm);
+			\draw [ fill={rgb,255:red,249; green,249; blue,249} ] (25,-31.5) circle (1.25cm);
+			\draw [ fill={rgb,255:red,249; green,249; blue,249} ] (24.75,-41.75) circle (1.25cm);
+			\draw [ fill={rgb,255:red,0; green,0; blue,0} ] (15.25,-40.75) rectangle (21,-42.25);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (15.25,-42.25) rectangle (21,-42.75);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (15.5,-40.25) rectangle (16.75,-40.75);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (17.25,-40.25) rectangle (19,-40.75);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (19.5,-40.25) rectangle (20.75,-40.75);
+			\draw [ fill={rgb,255:red,0; green,0; blue,0} ] (10,-39.75) rectangle (11.75,-40.5);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (10,-39.25) rectangle (10.5,-39.75);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (11.25,-39.25) rectangle (11.75,-39.75);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (10.5,-40.5) rectangle (11.25,-41);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (7.25,-39.25) rectangle (8.25,-41.5);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,253; green,94; blue,94}, rounded corners = 6.6] (7.5,-39.5) rectangle (8,-41.25);
+			\draw [ color={rgb,255:red,73; green,173; blue,248} , fill={rgb,255:red,73; green,173; blue,248}] (-1.5,-33.75) rectangle (1.75,-40);
+			\draw [ color={rgb,255:red,73; green,173; blue,248} , fill={rgb,255:red,73; green,173; blue,248}] (22.75,-33.5) rectangle (26,-39.75);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,0; green,128; blue,192}] (1.75,-33.75) rectangle (3.25,-40);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,0; green,128; blue,192}] (22.75,-33.5) rectangle (21.25,-39.75);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (0,-35.5) circle (1.25cm);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (0,-38.5) circle (1.25cm);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (24.5,-35.25) circle (1.25cm);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (24.5,-38.25) circle (1.25cm);
+			\draw [ color={rgb,255:red,207; green,207; blue,207} , fill={rgb,255:red,207; green,207; blue,207}] (16,-36.25) rectangle (18.75,-37.25);
+			\draw [ fill={rgb,255:red,0; green,0; blue,0} ] (16.5,-36.25) rectangle (18.25,-37.25);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (16,-32.75) rectangle (17,-35);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (17.5,-32.75) rectangle (18.5,-35);
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (19.25,-31.25) rectangle (22.25,-32.25);
+			\draw [ fill={rgb,255:red,0; green,0; blue,0} ] (19.75,-30.75) rectangle (21.75,-32.75);
+			\draw [ color={rgb,255:red,192; green,192; blue,192} , fill={rgb,255:red,192; green,192; blue,192}] (6.25,-36) circle (1cm);
+			\draw [ color={rgb,255:red,192; green,192; blue,192} , fill={rgb,255:red,192; green,192; blue,192}] (8.5,-36) circle (1cm);
+			\draw [ color={rgb,255:red,192; green,192; blue,192} , fill={rgb,255:red,192; green,192; blue,192}] (10.75,-36) circle (1cm);
+			\draw [ color={rgb,255:red,192; green,192; blue,192} , fill={rgb,255:red,192; green,192; blue,192}] (13,-36) circle (1cm);
+			\draw [ color={rgb,255:red,192; green,192; blue,192} , fill={rgb,255:red,192; green,192; blue,192}] (5.75,-36.25) rectangle (6.75,-28.75);
+			\draw [ color={rgb,255:red,192; green,192; blue,192} , fill={rgb,255:red,192; green,192; blue,192}] (8,-36.25) rectangle (9,-28.75);
+			\draw [ color={rgb,255:red,192; green,192; blue,192} , fill={rgb,255:red,192; green,192; blue,192}] (10.25,-36.25) rectangle (11.25,-28.75);
+			\draw [ color={rgb,255:red,192; green,192; blue,192} , fill={rgb,255:red,192; green,192; blue,192}] (12.5,-36.25) rectangle (13.5,-28.75);
+			\draw [ fill={rgb,255:red,0; green,0; blue,0} ] (5.25,-32.75) rectangle (14,-34.5);
+			\draw [ fill={rgb,255:red,0; green,0; blue,0} ] (16,-33.25) rectangle (17,-34.5);
+			\draw [ fill={rgb,255:red,0; green,0; blue,0} ] (17.5,-33.25) rectangle (18.5,-34.5);
+			\node [font=\LARGE] at (13,-36) {GND};
+			\node [font=\LARGE] at (10.75,-36) {VCC};
+			\node [font=\LARGE] at (6.25,-36) {SIG};
+			\node [font=\LARGE] at (8.5,-36) {NC};
+			\node [font=\LARGE, color={rgb,255:red,249; green,249; blue,249}] at (18,-32) {R3};
+			\node [font=\LARGE, color={rgb,255:red,249; green,249; blue,249}] at (11,-41.5) {Q2};
+			\node [font=\LARGE, color={rgb,255:red,249; green,249; blue,249}] at (16.5,-32) {R2};
+			\node [font=\LARGE, color={rgb,255:red,249; green,249; blue,249}] at (17.5,-35.75) {D2};
+			\node [font=\LARGE, color={rgb,255:red,249; green,249; blue,249}] at (1.75,-40.75) {Vout};
+			\node [font=\LARGE, color={rgb,255:red,249; green,249; blue,249}] at (7.75,-42.25) {D1};
+			\node [font=\LARGE, color={rgb,255:red,249; green,249; blue,249}] at (22.25,-40.5) {Vin};
+			\draw [ color={rgb,255:red,249; green,249; blue,249} , fill={rgb,255:red,249; green,249; blue,249}] (19.75,-36.75) rectangle (20.75,-39);
+			\draw [ fill={rgb,255:red,0; green,0; blue,0} ] (19.75,-37.25) rectangle (20.75,-38.5);
+			\node [font=\LARGE, color={rgb,255:red,249; green,249; blue,249}] at (20.25,-36.25) {R1};
+			\draw [ color={rgb,255:red,128; green,64; blue,64} , fill={rgb,255:red,128; green,64; blue,64}, line width=2pt ] (12.75,-28.75) rectangle (13.25,-21);
+			\draw [ color={rgb,255:red,128; green,64; blue,64} , fill={rgb,255:red,128; green,64; blue,64}, line width=2pt ] (13.25,-21) rectangle (30.5,-21.5);
+			\draw [ color={rgb,255:red,128; green,64; blue,64} , fill={rgb,255:red,128; green,64; blue,64}, line width=2pt ] (30.25,-21.5) rectangle (30.75,-11.75);
+			\node [font=\Huge, rotate around={90:(0,0)}] at (31.25,-15) {GND (29)};
+			\draw [ color={rgb,255:red,255; green,0; blue,0} , fill={rgb,255:red,255; green,0; blue,0}, line width=2pt ] (10.5,-28.75) rectangle (11,-19.5);
+			\draw [ color={rgb,255:red,255; green,0; blue,0} , fill={rgb,255:red,255; green,0; blue,0}, line width=2pt ] (10.5,-19.25) rectangle (12.5,-19.25);
+			\draw [ color={rgb,255:red,255; green,0; blue,0} , fill={rgb,255:red,255; green,0; blue,0}, line width=2pt ] (10.5,-19.25) rectangle (25.75,-19.75);
+			\draw [ color={rgb,255:red,255; green,0; blue,0} , fill={rgb,255:red,255; green,0; blue,0}, line width=2pt ] (25.25,-11.75) rectangle (25.75,-19.25);
+			\node [font=\Huge, rotate around={90:(0,0)}] at (26.5,-15.25) {+5V (27)};
+			\draw [ color={rgb,255:red,0; green,128; blue,64} , fill={rgb,255:red,0; green,128; blue,64}, line width=2pt ] (6.5,-28.75) rectangle (6,-20.5);
+			\draw [ color={rgb,255:red,0; green,128; blue,64} , fill={rgb,255:red,0; green,128; blue,64}, line width=2pt ] (6.25,-21) rectangle (-10.5,-20.5);
+			\draw [ color={rgb,255:red,0; green,128; blue,64} , fill={rgb,255:red,0; green,128; blue,64}, line width=2pt ] (-10.5,-20.75) rectangle (-10,9.25);
+			\draw [ color={rgb,255:red,0; green,128; blue,64} , fill={rgb,255:red,0; green,128; blue,64}, line width=2pt ] (-10.5,9.5) rectangle (23,9);
+			\draw [ color={rgb,255:red,0; green,128; blue,64} , fill={rgb,255:red,0; green,128; blue,64}, line width=2pt ] (22.75,9.5) rectangle (23.25,1.75);
+			\node [font=\Huge, rotate around={90:(0,0)}] at (23.75,4.75) {(5) ~D2};
+		\end{circuitikz}
+	}%
+	
+	
+\end{figure}
+\section{Einfacher Code}
+Dies ist ein einfacher Code zur Ansteuerung eines MOS-FETs.
+Wird der Signal-Pin auf High gesetzt, aktiviert sich der Ausgang.
+Im folgenden Codebeispiel wird der Ausgang alle 15 Sekunden für eine Dauer von 10 Sekunden eingeschaltet.\cite{ReicheltMOSFETManual:2025}
+
+{
+	\captionof{code}{Einfacher Code zum Testen des MOS-FETs}
+	\label{code:simpleMOSFET}
+	\ArduinoExternal{}{../../Code/Arduino/Mosfet/Simple/simple.ino}
+}
+
+\section{Tests}
+Um einen MOS-FET zu testen, kann man eine einfache Widerstandsmessung mit einem Multimeter durchführen. Zuerst stellt man das Multimeter auf Widerstandsmessung und verbindet die Messspitzen mit den Drain- und Source-Anschlüssen des MOS-FETs. Ist keine Spannung am Gate angelegt, sollte der Widerstand zwischen Drain und Source hoch sein, was bedeutet, dass der MOS-FET „aus“ ist und keinen Strom fließen lässt. Wird jedoch eine Spannung (z. B. 9 V) zwischen Gate und Source angelegt, sollte der Widerstand zwischen Drain und Source stark sinken, da der MOS-FET nun „ein“ ist und den Stromfluss ermöglicht. Diese einfache Prüfung bestätigt, ob der MOS-FET ordnungsgemäß funktioniert.
+
+\section{Einfache Anwendung}
+In dieser einfachen Schaltung wird ein MOS-FET (z.B. IRF9540N) verwendet, um eine LED ein- und auszuschalten. Der Gate-Anschlus des MOS-FETs wird direkt von einem digitalen Ausgang eines Mikrocontrollers (z.B Arduino) angesteuert. Wenn das Gate auf einen bestimmten Pegel geschaltet wird, leitet der MOS-FET und die LED leuchtet. Wird das Gate-Signal entfernt oder umgekehrt, unterbricht der MOS-FET den Stromfluss und die LED geht aus. Diese Anwendung zeigt das grundlegende Prinzip: ein kleiner Steuerstrom am Gate kann eine größere Last im Drain-Source-Zweig ein- oder ausschalten. 
+
+{
+	\captionof{code}{Einfache Anwendung zum Verwenden des MOS-FETs}
+	\label{code:AnwendungMOSFET}
+	\ArduinoExternal{}{../../Code/Arduino/Mosfet/Test/Test.ino}
+}
+
+\section{Further Readings}
+Alles, Martin - Einführung in die elektronische Schaltungstechnik, Springer Verlag, 2024. \cite{Alles:2024}
+\begin{itemize}
+	\item Dieses Lehrbuch bietet eine fundierte Einführung in die elektronische Schaltungstechnik und behandelt zentrale Themen wie Dioden, Transistoren und Grundschaltungen.
+\end{itemize}

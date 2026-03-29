@@ -1,0 +1,207 @@
+%%%%%%%%%%%%
+%
+% $Autor: Wings $
+% $Datum: 2019-03-05 08:03:15Z $
+% $Pfad: TemplateSensor $
+% $Version: 4250 $
+% !TeX spellcheck = en_GB/de_DE
+% !TeX encoding = utf8
+% !TeX root = filename 
+% !TeX TXS-program:bibliography = txs:///biber
+%
+%%%%%%%%%%%%
+
+% Structure
+\chapter{Batterie}
+
+Dieses Kapitel behandelt den Einsatz eines Li-Ion-Akkus als Energie- und Backup-Versorgung für das System. Es beschreibt grundlegende Eigenschaften und elektrische Parameter der verwendeten Zelle, deren Anschluss an den Arduino MKR WAN 1310 sowie die Funktion des integrierten Power-Management-Controllers. Zusätzlich wird die Messung der Batteriespannung mittels Spannungsteiler erläutert und durch Schaltplan und Codebeispiele ergänzt.
+
+\section{Li-Ion Akku}
+
+Lithium-Ionen-Akkumulatoren (kurz: Li-Ion-Akkus) stellen eine der modernsten und am weitesten verbreiteten wiederaufladbaren Energiespeichertechnologien dar. Sie wurden in den frühen 1990er-Jahren zur Marktreife gebracht und haben sich seitdem aufgrund ihrer hohen Energiedichte, geringen Selbstentladung und langen Lebensdauer in zahlreichen Anwendungsbereichen etabliert. Besonders in mobilen Geräten wie Smartphones, Laptops, Elektrowerkzeugen sowie in der Elektromobilität und tragbarer Messtechnik kommen Li-Ion-Zellen zum Einsatz.
+
+Die Technologie basiert auf der reversiblen Einlagerung von Lithium-Ionen zwischen der positiven Elektrode (Kathode) und der negativen Elektrode (Anode). Während des Lade- und Entladevorgangs wandern die Ionen durch einen flüssigen oder festen Elektrolyten zwischen den beiden Elektroden, wobei elektrische Energie gespeichert bzw. abgegeben wird.
+
+Typische Bauformen umfassen zylindrische Zellen (z.\,B. 18650), prismatische Zellen sowie Pouch-Zellen. Jede Bauform hat spezifische Vor- und Nachteile hinsichtlich Energiedichte, Wärmeabfuhr, mechanischer Stabilität und Einbauraum.
+
+Wichtige elektrische Parameter sind unter anderem:
+\begin{itemize}
+	\item \textbf{Nennspannung:} meist 3{,}6\,V oder 3{,}7\,V pro Zelle
+	\item \textbf{Ladeschlussspannung:} typischerweise 4{,}2\,V
+	\item \textbf{Entladeschlussspannung:} etwa 2{,}5\,V
+	\item \textbf{Typische Kapazität:} abhängig von Zelltyp, oft zwischen 1000\,mAh und 3500\,mAh bei 18650-Zellen
+\end{itemize}
+
+In dem vorliegenden Projekt wird eine einzelne Li-Ion-Zelle mit einer Kapazität von 1800\,mAh verwendet, die sich durch ihre kompakte Bauform und die bereits vorinstallierten Anschlusskabel auszeichnet. Sie dient als Backup, um bei einem Netzausfall den weiteren Betrieb zu gewährleisten.
+
+\begin{center}
+	\begin{tikzpicture}
+		\liIonBattery
+	\end{tikzpicture}
+	\captionof{figure}{Darstellung eines Li-Ion-Akkus}
+\end{center}
+
+
+\section{Spezifikation}
+
+\begin{table}[H]
+	\centering
+	\renewcommand{\arraystretch}{1.3}
+	\begin{tabular}{|l|l|}
+		\hline
+		\textbf{Eigenschaft} & \textbf{Wert} \\
+		\hline
+		Kapazität & 1800\,mAh \\
+		\hline
+		Nennspannung & 3{,}7\,V \\
+		\hline
+		Innenwiderstand & Zelle: $\leq$ 80\,m$\Omega$, Akku: $\leq$ 90\,m$\Omega$ \\
+		\hline
+		Ladeschlussspannung & 4{,}25\,V \\
+		\hline
+		Standard-Ladestrom & 900\,mA \\
+		\hline
+		Maximaler Ladestrom & 1800\,mA \\
+		\hline
+		Entladeschlussspannung & 2{,}5\,V $\pm$ 0{,}1\,V \\
+		\hline
+		Betriebstemperatur & 0 bis +45\, $^{\circ}$C beim Laden,\\ 
+		& -10 bis +60\,$^{\circ}$C beim Entladen \\
+		\hline
+		Lagertemperatur & -20 bis +45\, $^{\circ}$C(weniger als 1 Monat),\\ 
+		& -20 bis +35\,$^{\circ}$C (weniger als 6 Monate) \\
+		\hline
+	\end{tabular}
+	\caption{Technische Daten des verwendeten Li-Ion-Akkumulators}
+	%\label{tab:liion_specs}
+\end{table}
+
+
+\section{Anschluss eines Li-Ion-Akkus an den Arduino}
+	Da der Arduino MKR WAN 1310 über einen Akkuanschluss verfügt, kann ein Li-Ion-Akku direkt am entsprechenden Stecker angeschlossen werden. Der Arduino verfügt über keinen Knopf zum starten, deswegen soll der Akkustand es Ausreichend, wird der Arduino automatisch starten.
+	
+	Beim Anschlie{\ss}en muss beachtet werden, dass bei manchen Modellen Plus- und Minuspol vertauscht sein können. Ist ein solches Modell vorhanden, müssen die Kabel gegebenenfalls vertauscht werden, um eine Beschädigung des Arduino zu vermeiden.
+	
+	\begin{center}
+		\begin{tikzpicture}
+			\batteryConnector
+		\end{tikzpicture}
+		\captionof{figure}{JST-Stecker – korrekte Kabelführung}
+	\end{center}
+
+	Der Arduino MKR WAN 1310 verfügt über einen integrierten Power Management Controller (PMC), der automatisch die Stromversorgung verwaltet. Dieser übernimmt unter anderem das Laden des angeschlossenen Li-Ion-Akkus sowie die Umschaltung zwischen externer Stromquelle und Akku. Dadurch ist sichergestellt, dass der Mikrocontroller jederzeit zuverlässig mit Energie versorgt wird, ohne dass zusätzliche Schaltungen erforderlich sind. Eine Anpassung der Ladeströme und der Ladespannung ist jedoch mithilfe der Bibliothek \hyperref[battery:PMIClibrary] {Arduino\_BQ24195 }  möglich. Dadurch kann das Ladeverhalten des Akkus individuell an die jeweilige Anwendung oder an die Eigenschaften des verwendeten Akkus angepasst werden.
+
+\section{Baterriespannung Messen}
+	Die Überwachung der Batteriespannung ist ein wesentlicher Aspekt bei der Verwaltung von Akkus in elektronischen Geräten. Die Batteriespannung gibt uns wertvolle Informationen über den aktuellen Ladezustand des Akkus und ermöglicht es, rechtzeitig Ma{\ss}nahmen zu ergreifen, bevor der Akku vollständig entladen ist.
+
+\subsection{Prinzip}
+	Die Spannung eines Akkus sinkt mit fortschreitender Entladung. Ein niedriger Spannungswert deutet auf eine geringe Kapazität hin, was wiederum das Risiko eines plötzlichen Ausfalls erhöht. Um die Lebensdauer und Funktionsfähigkeit des Systems zu gewährleisten, ist es entscheidend, die Batteriespannung kontinuierlich zu überwachen.
+	
+	Der Arduino MKR WAN 1310 verfügt jedoch über keinen integrierten Mechanismus zur direkten Messung der Batteriespannung. Aus diesem Grund muss eine externe Schaltung mit einem Spannungsteiler (siehe \ref{voltageDivider}) aufgebaut werden, um die Akkuspannung auf einen Bereich zu bringen, der vom ADC (Analog-Digital-Wandler) des Arduino verarbeitet werden kann. Hierzu wird ein analoger Pin verwendet.
+	
+	Die Referenzspannung des ADC beträgt 3,3 V. Um die Akkuspannung, deren Nennspannung bei 3,7 V liegt, mit dieser Referenz vergleichen zu können, muss die Spannung zuvor reduziert werden. Die dafür erforderlichen Widerstände können mithilfe des Verfahrens aus \ref{voltageDivider:example} ermittelt werden. Die gewählten Werte lauten:$R_1 = 39\,k\Omega$ und $R_2 = 100\,k\Omega$. 
+	
+	Die mit der Formel aus \ref{voltageDivider:formula} berechneten Spannungen ergeben sich wie folgt:
+		\begin{itemize}
+			\item \(U_{in} = 3,7\,V \) 
+			\item \(U_{in_{max}} = 4,2\,V \)
+			\item \(R_{1} = 39\,k\Omega \)
+			\item  \(R_{2} = 100\,k\Omega \)
+			\item \(U_{2}\): \[U_{2} = 3,7\,V \cdot \frac{100\,k\Omega}{139\,k\Omega}\]
+			\item \(U_{2_{max}} = 4,2\,V \cdot \frac{100\,k\Omega}{139\,k\Omega} \approx 3,02\,V\)
+	\end{itemize}
+	
+	
+
+\subsection{Schaltung}
+		\begin{center}
+		\begin{circuitikz}[european]
+			\draw (6,0) node[ocirc, label=right:{--}]{}-- (0,0) to [battery, v<=$U_{batt}$, invert]  (0,2) -- (1,2) node[circ](A){} -- (6,2) node[ocirc, label=right:{+}]{}; 
+			\draw (A) -- ++(0,1) to[R, l=\(R_{39k\Omega}\)] ++(2,0) node[circ](B){} to[R, l=\(R_{100k\Omega}\)] (6,3) node[ocirc, label=right:GND]{};
+			\draw (B) -- ++(0,1) -- (6,4) node[ocirc, label=right:\(analogPin_{Arduino}\)]{} node[right]{};
+			\draw (6,2) to[open, v^=$U_{batt}$, voltage=straight, voltage shift=2] (6,0);
+			\draw (6,4) to[open, v^=$U_{mess}$, voltage=straight, voltage shift=2] (6,3);
+		\end{circuitikz}
+		\captionof{figure}{Spannungsteiler zur Ermittlung der Akkuspannung}
+	\end{center}
+
+
+	
+\subsection{Spannungsauswertung mit dem Arduino ADC}
+	Die Spannung des Akkus kann ähnlich wie bei \ref{powerSupply:codeExample} ausgewertet werden. 
+	{
+		\captionof{code}{Akkuspannung Auslesen}
+		\ArduinoExternal{}{../../Code/MKRWAN1310/Battery/checkBatteryLevel.cpp}
+	}	
+
+
+%\section{Bibliothek\label{battery:PMIClibrary}}
+%
+%\subsection{Beschreibung}
+%	Die Arduino\_BQ24195-Bibliothek ermöglicht die Kommunikation mit dem integrierten Ladecontroller BQ24195, der im Arduino MKR WAN 1310 verbaut ist. Mit dieser Bibliothek können wichtige Ladeparameter wie Ladestrom, Ladespannung oder das Stromversorgungsprofil konfiguriert und überwacht werden.
+%\subsection{Installation}
+%	Die Bibliothek kann unter folgender Adresse abgerufen werden: \url{https://registry.platformio.org/libraries/arduino-libraries/Arduino\_BQ24195}. Sie sollte zum Projekt hinzugefügt werden, wie im Abschnitt TBD beschrieben.
+%\subsection{Funktionen}
+%	Im Folgenden werden die wichtigsten Funktionen beschrieben, die für die Konfiguration des PMICs essenziell sind:
+%	\begin{itemize}
+%		\item \PYTHON{setInputVoltageLimit(float voltage)}
+%		Diese Funktion legt die maximale Eingangsspannung fest, die beim Laden des Akkus verwendet werden darf. Sie nimmt einen Wert in Volt entgegen und gibt \PYTHON{true} zurück, wenn der Wert erfolgreich übernommen wurde, andernfalls \PYTHON{false}.
+%		
+%		\item \PYTHON{setInputCurrentLimit(float current)}
+%		Mit dieser Funktion kann der maximale Eingangsstrom begrenzt werden, mit dem der Akku geladen wird. Sie erwartet einen Wert in Ampere und gibt \PYTHON{true} bei erfolgreicher Übernahme, sonst \PYTHON{false}.
+%		
+%		\item \PYTHON{setMinimumSystemVoltage(float voltage)}
+%		Diese Funktion bestimmt die minimale Systemspannung, die notwendig ist, um den Mikrocontroller und andere Komponenten zuverlässig zu betreiben. Dies ist besonders nützlich, um eine zu niedrige Spannung und damit mögliche Instabilitäten im System zu vermeiden. Sie nimmt die Spannung in Volt als Argument und gibt \PYTHON{true} zurück, wenn der Wert akzeptiert wurde, andernfalls \PYTHON{false}.
+%		
+%		\item\PYTHON{setChargeCurrent(float current)}
+%		Diese Funktion legt den Ladestrom für den angeschlossenen Li-Ion- oder Li-Po-Akku fest. Dadurch kann der Ladevorgang an die Kapazität und die Eigenschaften des Akkus angepasst werden, um ein sicheres und akkuschonendes Laden zu gewährleisten. Als Parameter wird der gewünschte Strom in Ampere übergeben. Rückgabewert: \PYTHON{true} bei Erfolg, \PYTHON{false} bei Fehler.
+%		
+%		\item \PYTHON{setChargeVoltage(float voltage)}
+%		Mit dieser Funktion wird die maximale Ladespannung definiert, mit der der Akku geladen werden darf. Das ist entscheidend für die Lebensdauer und Sicherheit des Akkus. Als Parameter wird die Spannung in Volt übergeben. Bei erfolgreicher Übernahme wird \PYTHON{true} zurückgegeben, andernfalls \PYTHON{false}.
+%		
+%		\item \PYTHON{enableCharge()}
+%		Diese Funktion aktiviert den Ladevorgang des angeschlossenen Akkus über den integrierten Power-Management-Controller (PMIC). 
+%		Die Funktion hat keine Parameter und gibt \PYTHON{true} zurück, wenn der Ladevorgang erfolgreich aktiviert wurde, andernfalls \PYTHON{false}.
+%		
+%		\item \PYTHON{disableCharge()}
+%		Diese Funktion deaktiviert den Ladevorgang des angeschlossenen Akkus über den integrierten Power-Management-Controller (PMIC). Sie kann verwendet werden, um das Laden zu stoppen, wenn es nicht mehr erforderlich ist oder wenn das System vollständig geladen ist.
+%		Die Funktion hat keine Parameter und gibt \PYTHON{true} zurück, wenn der Ladevorgang erfolgreich aktiviert wurde, andernfalls \PYTHON{false}.
+%		
+%		\item \PYTHON{canRunOnBattery()}
+%		Diese Funktion überprüft, ob die aktuelle Batteriespannung unter der minimalen Systemspannung liegt, die für den Betrieb erforderlich ist.
+%		Die Funktion hat keine Parameter und gibt \PYTHON{true} zurück, wenn der Betrieb auf Akku möglich ist, andernfalls \PYTHON{false}.
+%	\end{itemize}
+%
+%%\subsection{Example - Manual}
+%
+%%\subsection{Example}
+%
+%\subsection{Beispiel - Code}
+%	{
+%		\captionof{code}{Batterieladung mit dem Arduino}
+%		\ArduinoExternal{}{../../../MKRWAN1310/Code/MKRWAN1310/Battery/chargeBattery.cpp}
+%	}	
+%%\subsection{Example - Files}
+
+
+
+%\section{Calibration}
+
+%\section{Simple Code}
+
+
+%\section{Simple Application}
+	
+
+
+%\section{Tests}
+
+%\subsection{Simple Function Test}
+
+%\subsection{Test all Functions}
+
+%\section{Simple Application}
+
+
+%\section{Further Readings}
+

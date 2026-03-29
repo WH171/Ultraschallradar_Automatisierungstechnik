@@ -1,0 +1,105 @@
+%%%
+%
+% $Autor: Wings $
+% $Datum: 2021-05-14 $
+% $Pfad: ArduinoSerial $
+% $Dateiname: 
+% $Version: 4620 $
+%
+% !TeX spellcheck = en_GB/de_D
+% !TeX program = pdflatex
+% !BIB program = biber/bibtex
+% !TeX encoding = utf8
+%
+%%%
+
+
+
+\chapter{Serielle Kommunikation zwischen PC und Arduino} \label{SerialCom}
+
+Um eine Kommunikation zwischen dem PC und dem Arduino Nano 33 BLE Sense über USB mit Python zu realisieren, bietet sich die Verwendung des seriellen Protokolls an.
+
+In diesem Kapitel wird anhand eines einfachen Beispiels gezeigt, wie über die serielle Schnittstelle eine RGB-LED gesteuert werden kann.
+
+Die Umsetzung erfolgt in fünf Schritten:
+
+\begin{enumerate}
+	\item Installation einer Bibliothek auf dem PC
+	\item Entwicklung des Python-Programms auf dem PC
+	\item Vorbereitung des Arduino-Boards
+	\item Entwicklung des Arduino-Sketches
+	\item Einheitliche Konfiguration der seriellen Schnittstelle
+\end{enumerate}
+
+\section{Installation einer Bibliothek auf dem PC}
+
+Das serielle Protokoll ermöglicht den Datenaustausch zwischen Geräten über eine serielle Schnittstelle. Unter Windows kann zur Kommunikation mit seriellen Geräten das Python-Paket \PYTHON{PySerial} verwendet werden.
+
+Im ersten Schritt ist das Paket \PYTHON{PySerial} mithilfe des Programms \SHELL{pip} zu installieren:
+
+\medskip
+
+\SHELL{pip install pyserial}
+
+\section{Entwicklung des Python-Programms auf dem PC}
+
+Nach der Installation des Pakets \FILE{PySerial} kann die Klasse \PYTHON{serial} verwendet werden. Die Methode \PYTHON{serial.Serial} erzeugt ein Objekt, das die Verbindung zum Arduino repräsentiert. Dabei müssen der Portname (z.B. COM7) und die Baudrate (z.B. 9600) mit denen im Arduino-Sketch übereinstimmen. Über die Methoden \PYTHON{write} und \PYTHON{read} können Daten zum Arduino gesendet bzw. von diesem empfangen werden. Das folgende Beispiel demonstriert das Senden eines Zeichens an den Arduino und das Empfangen einer Antwort:
+
+{
+	\captionof{code}{Python-Programm für den Windows-PC zur Kommunikation mit einem Arduino über die serielle Schnittstelle.}
+	\label{Nano:TestSerialPC}
+	\PythonExternalO{../../Code/Nano33BLESense/Serial/TestSerialPC.py}
+}
+
+\section{Entwicklung des Arduino-Sketches und Vorbereitung des Arduino}
+
+{
+	\captionof{code}{Arduino-Sketch zur Kommunikation mit einem Windows-PC über die serielle Schnittstelle.}
+	\label{Nano:TestSerial}
+	\ArduinoExternal{}{../../Code/Nano33BLESense/Serial/TestSerial.ino}
+}
+
+\bigskip
+
+\begin{itemize}
+	\item Das Arduino-Board wird über ein USB-Kabel mit dem Computer verbunden.
+	\item Der gewünschte Sketch wird auf das Arduino geladen.
+\end{itemize}
+
+\section{Einheitliche Konfiguration der seriellen Schnittstelle}
+
+Folgende Anpassungen sind erforderlich:
+
+\begin{itemize}
+	\item Der Port \PYTHON{ArduinoPort} ist entsprechend der Arduino-Verbindung anzupassen.
+	\item Die Baudrate \PYTHON{Baudrate} muss mit der im Arduino-Sketch verwendeten Baudrate übereinstimmen.
+\end{itemize}
+
+\section{Weiterführende Literatur}
+
+\begin{itemize}
+	\item
+	\HREF{https://www.instructables.com/Python-Serial-Port-Communication-Between-PC-and-Ar/}{Python Serial Port Communication Between PC and Arduino Using PySerial Library}
+	
+	pgsql
+	Kopieren
+	\item \HREF{https://arduino.stackexchange.com/questions/4891/how-would-i-establish-a-serial-connection-with-python-without-using-the-serial-m}{How would I establish a serial connection with Python without using the serial monitor?}
+\end{itemize}
+
+\bigskip
+
+\textbf{Verwendung des seriellen Monitors:}
+
+\begin{itemize}
+	\item Der serielle Monitor der Arduino-IDE kann geöffnet werden, wobei darauf zu achten ist, dass dort dieselbe Baudrate eingestellt ist.
+	\item Über den seriellen Monitor lassen sich Daten zwischen dem Arduino und dem Computer senden und empfangen.
+\end{itemize}
+
+\bigskip
+
+Ein Beispiel für ein Python-Programm, mit dem sich die RGB-LED des Arduino Nano 33 BLE Sense mithilfe des Pakets \PYTHON{pySerial} steuern lässt, ist \HREF{https://arduino.stackexchange.com/questions/91319/serial-communication-between-python-and-arduino-nano-ble-sense-33-for-running-si}{hier} zu finden. Der zugehörige Arduino-Sketch, der die serielle Bibliothek verwendet, befindet sich unter folgendem Link: \HREF{https://micropython.org/download/ARDUINO_NANO_33_BLE_SENSE/}{hier}.
+
+\section{Beispiel: Übertragung eines Bildes über die serielle Schnittstelle}
+
+Dieses Beispiel ist in der zweiten Auflage des TinyML Cookbooks dokumentiert. \cite{Iodice:2023}, ab Seite 361.
+

@@ -1,0 +1,539 @@
+%%%%%%
+%
+% $Author: Wings $
+% $Date: today $
+% $Pfad: BLENRFConnect.tex $
+% $Version: 1 $
+%
+%%%%%%
+
+
+
+\chapter{NRF Connect App}
+\label{chap:list_of_items}
+
+
+\section{Download and Install the NRF Connect App on Your Mobile}
+
+To download and install the \textbf{nRF Connect} app on Android or iOS devices, follow these simple steps:
+
+\subsection{For Android}
+
+\begin{itemize}
+	\item Open the \textbf{Google Play Store} on your Android device.
+	\item In the search bar, type \textit{"nRF Connect for Mobile"}.
+	\item Select the app by \textbf{Nordic Semiconductor ASA}.
+	\item Tap the button \textbf{``Install''} to download and install the app.
+	\item Once installed, you can open the app from your home screen or app drawer.
+\end{itemize}
+
+
+\subsection{For iOS}
+
+\begin{itemize}
+	\item Open the \textbf{App Store} on your iOS device.
+	\item In the search bar, type \textit{``nRF Connect for Mobile''}.
+	\item Select the app by \textbf{Nordic Semiconductor ASA}.
+	\item Tap the button \textbf{``Get''} to download and install the app.
+	\item Once installed, you can open the app from your home screen or app drawer.
+\end{itemize}\noindent The \textbf{nRF Connect} app allows you to interact with \textbf{Bluetooth Low Energy (BLE)} devices, such as the Arduino Nano 33 BLE, and monitor their services and data.
+
+\begin{center}
+	\includegraphics[width=0.5\textwidth]{BLE/NRFConnect}
+	\captionof{figure}{NRF Connect Application}
+	\label{fig:NRFConnectDownloadPage}
+\end{center}
+
+\section{Power ON the Arduino Nano 33 BLE Sense Lite}
+To power on the Arduino Nano 33 BLE, connect it to your computer or a USB power adapter using the micro-USB cable provided in the box.
+
+\subsection{Connect to Arduino Nano 33 BLE Sense Lite through NRFconnect}
+
+\subsection{For Android}
+\begin{enumerate}[label=\textbullet]
+	\item \textbf{Open the NRFconnect App}: Open the app and start scanning for nearby BLE devices.
+	\item \textbf{Find The Arduino}: You should see a device named \textbf{``MyProctName''} in the list of available devices.
+	\item \textbf{Connect}: Tap on the ArduinoNano33 device to connect. The Arduino Nano will now show ``Connected'' in the Mobile application.
+\end{enumerate}
+
+\subsection{For iOS}
+\begin{enumerate}[label=\textbullet]
+	\item \textbf{Open the NRFconnect App}: Open the app and start scanning for nearby BLE devices.
+	\item \textbf{Find Your Arduino}: Look for \textbf{``MyProctName''} in the list of detected BLE devices.
+	\item \textbf{Connect}: Tap the device name to connect. You will be able to see connection status in the Mobile application.
+\end{enumerate}
+
+\begin{center}
+	%\begin{subfigure}[b]{0.45\textwidth} % First image (45% of text width)
+	%\centering
+	\includegraphics[width=0.45\textwidth]{BLE/BlueToothIcon.jpg}
+	\captionof{figure}{Landing page}
+	\label{fig:Landing page of App}
+\end{center}
+
+\bigskip
+
+\begin{center}
+	%\begin{subfigure}[b]{0.45\textwidth} % Second image (45% of text width)
+
+	\includegraphics[width=0.45\textwidth]{BLE/ListOfDevices} % Replace with your second image
+	\captionof{figure}{List of devices}
+	\label{fig:List of devices}
+\end{center}
+
+
+
+\chapter{Benutzerschnittstelle nRF Connect}\label{nRF}
+\label{chap:einstiegNRF}
+
+
+\section{Installation der nRF Connect App auf dem Smartphone}
+\subsection{Auf Android:}
+Da uns leider kein Android-Smartphone zur Verfügung steht, können wir die Anbindung zu Android Geräten leider nicht weiter erläutern.
+
+\subsection{Auf iOS:}
+Die Installation der aktuellen Version 2.7.19 läuft wie folgt ab: \ref{fig:nrfInstallation}
+\begin{enumerate}
+    \item Öffnen Sie den \textbf{App Store} auf Ihrem iPhone.
+    \item Drücken Sie auf \menu{Suchen} und geben Sie in der Suchleiste \glqq nRF Connect for Mobile\grqq\ ein. Wählen Sie das erste Suchergebnis aus.
+    \item Tippen Sie auf \menu{Laden}, um die App zu installieren. Nach erfolgreichem Download erscheint das Icon auf Ihrem Home Screen.
+\end{enumerate}
+
+\begin{center}
+    \begin{minipage}[t]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{nRFConnect/AppStore.png}
+        
+        {1. App Store öffnen}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{nRFConnect/nrfInstallieren.png}
+        
+        {2. nRF Connect suchen und auswählen}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{nRFConnect/nrfHomescreen.png}
+        
+        {3. App auf dem Home Screen}
+    \end{minipage}
+    \captionof{figure}{Installation der App \glqq nRF Connect\grqq\ auf iOS}
+    \label{fig:nrfInstallation}
+\end{center}
+
+\section{Einrichtung von nRF auf dem Arduino}
+Um nRF auf dem Arduino einzurichten, öffnen Sie zuerst die \textbf{Arduino IDE} und erstellen gehen auf \menu{Datei > Neuer Sketch}. Benutzen Sie folgenden Code, dieser macht den Arduino mit BLE sichtbar und gibt ihm den Namen: \glqq Mein Arduino\grqq. 
+
+{
+    \captionof{code}{Einfacher Code zur Einrichtung von nRF Connect auf dem Arduino}
+    \label{code:einrichtungNRF}
+    \ArduinoExternal{}{../../Code/Arduino/nRFConnect/GettingStarted/GettingStarted.ino}
+}
+
+
+
+\section{nRF Connect App mit dem Arduino verbinden}
+
+\subsection{Auf iOS:}
+
+Öffnen Sie nun die nRF Connect App auf Ihrem iPhone, gehen Sie wie folgt vor: \ref{fig:nrfScan}
+
+\begin{enumerate}
+    \item Scannen Sie nach BLE-Geräten in der Umgebung durch ein Wischen nach unten wischen oder auf den Bildschirm tippen.
+    \item Wählen Sie \glqq Mein Arduino\grqq aus und tippen Sie auf \menu{Connect}
+    \item Sie sind nun mit dem Arduino über nRF verbunden, es wird die Menü-Ansicht angezeigt.
+\end{enumerate}
+
+\begin{center}
+    \begin{minipage}[t]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{nRFConnect/nrfScan.png}
+        
+        {1. BLE-Geräte Scannen}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{nRFConnect/nrfAnsicht.png}
+        
+        {2. Auswahl}
+    \end{minipage}
+    \captionof{figure}{Scannen und hinzufügen von BLE-Geräten}
+    \label{fig:nrfScan}
+    \hfill
+\end{center}
+
+\chapter{nRF Connect}
+
+	\section{Entwicklungsumgebung nRF Connect}
+
+\subsection{Beschreibung und Version}
+nRF Connect for Mobile ist eine App von Nordic Semiconductor zur Analyse und Kommunikation mit Bluetooth Low Energy (BLE)-Geräten. Die App kann BLE-Geräte in der Umgebung scannen und zeigt dabei auch die Werbedaten an, die diese aussenden. Zusätzlich wird die Signalstärke (RSSI) grafisch dargestellt, was bei der Bewertung der Verbindungsqualität hilft.
+\cite{Nordic:Mobile}
+
+\vspace{1\baselineskip}
+
+Nach dem Verbinden mit einem Gerät zeigt die App alle verfügbaren Dienste und Eigenschaften (Services und Characteristics) an. Diese können gelesen und beschrieben werden. Auch das Aktivieren oder Deaktivieren von Benachrichtigungen und Indikationen wird unterstützt, was vor allem bei der Arbeit mit Sensoren nützlich ist.
+\cite{Nordic:Mobile}
+
+\vspace{1\baselineskip}
+
+Alle Aktionen und Ereignisse werden in einem Log festgehalten, was die Fehlersuche deutlich erleichtert. Außerdem lässt sich über die App ein Firmware-Update per DFU (Device Firmware Update) durchführen – direkt über die Luftschnittstelle mit einer HEX- oder ZIP-Datei.
+\cite{Nordic:Mobile}
+
+\vspace{1\baselineskip}
+
+Die aktuellste Version der App für Android die Version 4.29.1, veröffentlicht am 12. Dezember 2024. Die neueste Version für iOS ist 2.7.17 und wurde am 11. März 2025 veröffentlicht.
+\cite{Nordic:Mobile:Apple}
+\cite{Nordic:Mobile:Android}
+
+
+\subsection{Installation}
+\textbf{Installation IOS Betriebssystem}
+Um nRF Connect for Mobile auf einem iPhone oder iPad zu installieren, öffnet man den App Store und sucht nach „nRF Connect for Mobile“. Die App ist kostenlos und kann direkt heruntergeladen und installiert werden. Nach der Installation steht sie wie gewohnt auf dem Homescreen zur Verfügung. Wichtig ist, dass das Gerät mindestens iOS 16 oder neuer verwendet, da ältere Versionen nicht unterstützt werden.
+\cite{Nordic:Mobile:Apple}
+
+\vspace{1\baselineskip}
+
+\textbf{Installation Android Betriebssystem}
+Auf Android-Geräten kann die App über den Google Play Store installiert werden. Dazu öffnet man den Play Store, sucht nach „nRF Connect for Mobile“ und tippt auf „Installieren“. Die App ist ebenfalls kostenlos und läuft ab Android 4.3 aufwärts. Nach der Installation kann die App direkt gestartet und verwendet werden.
+\cite{Nordic:Mobile:Android}
+
+\subsection{Konfiguration IOS}
+\textbf{1. App starten und Scannen}
+\begin{itemize}
+    \item Beim Starten wechselt die App automatisch in den \textbf{Scan-Modus}.
+    
+    \item Die Scandauer beträgt standardmäßig \textbf{30 Sekunden}, ist jedoch in den Einstellungen anpassbar.
+    
+    \item Die Scanergebnisse bleiben bestehen, ein Pull-Down auf dem Bildschirm aktualisiert die Liste.
+\end{itemize}
+\cite{Nordic:2018:Apple}
+
+\vspace{1\baselineskip}
+
+\textbf{2. Geräte filtern}
+\begin{itemize}
+    \item \textbf{Name}: Filtert nach Zeichenfolgen im Gerätenamen.
+    
+    \item \textbf{Typ}: Bestimmte BLE-Gerätetypen (z.\,B.\ Eddystone); iBeacons werden nicht unterstützt.
+    
+    \item \textbf{RSSI}: Zeigt Geräte ab einer bestimmten Signalstärke (Received Signal Strength Indicator).
+    
+    \item \textbf{Favoriten}: Geräte manuell als Favorit markieren (blaues Sternsymbol).
+\end{itemize}
+\cite{Nordic:2018:Apple}
+
+\vspace{1\baselineskip}
+
+3. Dienste und Eigenschaften anzeigen:\
+    
+Nach dem Aufbau einer Verbindung zu einem Bluetooth Low Energy (BLE) Gerät listet die App automatisch alle vom Gerät bereitgestellten \textbf{GATT-Dienste} (Generic Attribute Profile) auf.
+\cite{Nordic:2018:Apple}
+
+\vspace{1\baselineskip}
+
+Innerhalb dieser Dienste können einzelne Charakteristiken angezeigt werden. Abhängig von den Zugriffsrechten des jeweiligen Geräts bietet die App folgende Funktionen:
+\cite{Nordic:2018:Apple}
+
+\begin{itemize}
+    \item \textbf{Lesen (READ)}: Auslesen des aktuellen Wertes einer Charakteristik.
+    
+    \item \textbf{Schreiben (WRITE)}: Senden eines neuen Wertes an die Charakteristik (im Hex-Format).
+    
+    \item \textbf{Benachrichtigung abonnieren (NOTIFY/INDICATE)}: Automatisches Empfangen von Änderungen an einer Charakteristik in Echtzeit.
+\end{itemize}
+
+\vspace{1\baselineskip}
+
+\textbf{4. Sensordaten lesen oder schreiben}  
+Um mit einem bestimmten Sensorwert zu interagieren, wählt man zunächst die entsprechende Charakteristik, z.\,B.\ für Temperatur, Bewegung oder Batteriestatus.
+\cite{Nordic:2018:Apple}
+
+\vspace{1\baselineskip}
+
+Je nach unterstützter Funktion des Peripheriegeräts stehen folgende Optionen zur Verfügung:
+\begin{itemize}
+    \item \textbf{READ}: Der aktuelle Wert der Charakteristik wird ausgelesen.
+    
+    \item \textbf{WRITE}: Ein neuer Wert wird an das Gerät gesendet.
+    
+    \item \textbf{NOTIFY/INDICATE}: Änderungen am Wert werden automatisch angezeigt, ohne manuelles Auslesen.
+\end{itemize}
+
+\subsection{Konfiguration Android}
+Die App \textbf{nRF Connect for Android} von Nordic Semiconductor ist ein vielseitiges Werkzeug für Entwickler von Bluetooth Low Energy (BLE) Anwendungen. Sie ermöglicht das Scannen, Bewerben und Kommunizieren mit BLE-Geräten.
+\cite{Philips:Mobile:Android}
+
+\textbf{Berechtigungen}
+Für den vollen Funktionsumfang der App sind bestimmte Berechtigungen erforderlich:
+
+\begin{itemize}
+    \item \textbf{Standortzugriff:} Ab Android 6.0 (Marshmallow) ist die Standortberechtigung erforderlich, um nach BLE-Geräten zu scannen. Dies liegt daran, dass einige BLE-Geräte, sogenannte Beacons, zur Standortbestimmung verwendet werden können. Die App selbst nutzt jedoch keine Standortinformationen. Ohne diese Berechtigung funktioniert das Scannen nicht, jedoch können bereits gekoppelte oder verbundene Geräte weiterhin genutzt werden.
+    
+    \item \textbf{Speicherzugriff:} Diese Berechtigung wird benötigt, um Dateien auf dem lokalen Dateisystem zu speichern. Sie ist optional, aber erforderlich, wenn der Benutzer Protokolle speichern, Makros exportieren oder GATT-Server-Konfigurationen sichern möchte.
+\end{itemize}
+
+\vspace{1\baselineskip}
+
+\textbf{Scanner}
+Der \textbf{Scanner}-Tab listet alle in Reichweite befindlichen BLE-Geräte auf. Mithilfe von Filtern kann die Liste nach Namen, MAC-Adressen, Advertising-Daten oder RSSI-Werten eingegrenzt werden.
+\cite{Philips:Mobile:Android}
+
+\begin{itemize}
+    \item \textbf{Verbinden:} Tippen Sie auf die Schaltfläche \textit{CONNECT}, um eine Verbindung zu einem Gerät herzustellen. Ab Android 8.0 (Oreo) erscheint diese Schaltfläche nur bei verbindungsfähigen Geräten.
+    
+    \item \textbf{Weitere Optionen:} Über das Drei-Punkte-Menü neben der \textit{CONNECT}-Schaltfläche können zusätzliche Verbindungsoptionen ausgewählt werden, wie z.B. \textit{autoConnect} oder das Festlegen der bevorzugten PHY.
+    
+    \item \textbf{RSSI-Diagramm:} Durch Wischen nach rechts oder über das Menü kann ein durchschnittliches RSSI-Diagramm angezeigt werden.
+\end{itemize}
+
+\vspace{1\baselineskip}
+
+\textbf{GATT-Server konfigurieren}
+Über das Navigationsmenü kann der GATT-Server konfiguriert werden. Diese Funktion ermöglicht es, lokale Dienste, Charakteristiken und Deskriptoren zu erstellen, die für verbundene BLE-Geräte verfügbar sind.
+\cite{Philips:Mobile:Android}
+
+\begin{itemize}
+    \item \textbf{Dienst hinzufügen:} Erstellen Sie benutzerdefinierte Dienste, indem Sie UUIDs, Charakteristiken und Deskriptoren manuell definieren.
+    
+    \item \textbf{Vordefinierte Dienste:} Wählen Sie aus vordefinierten Diensten wie ``Link Loss``, ``Immediate Alert`` oder ``Current Time``.
+\end{itemize}
+
+\vspace{1\baselineskip}
+
+\textbf{Verbindung herstellen}
+Nach dem Verbinden mit einem Gerät versucht nRF Connect automatisch, die Dienste auf dem Gerät zu entdecken (sofern diese Option in den Einstellungen aktiviert ist). Der \textbf{CLIENT}-Tab listet die Dienste des entfernten Geräts auf, während der \textbf{SERVER}-Tab die lokalen Dienste anzeigt.
+\cite{Philips:Mobile:Android}
+
+\begin{itemize}
+    \item \textbf{Protokoll anzeigen:} Durch Wischen nach rechts oder über das Menü kann ein detailliertes Protokoll aller Ereignisse angezeigt werden. Dieses kann bei Bedarf exportiert werden.
+\end{itemize}
+
+
+\subsection{Erste Schritte; Beschreibung der Benutzerschnittstelle}
+Nach dem Start der App befindet man sich im Scan-Bildschirm, der automatisch nach verfügbaren BLE-Geräten in der Nähe sucht. Die Scan-Ergebnisse werden in einer Liste angezeigt, wobei jedes gefundene Gerät mit seinem Namen, der Signalstärke (RSSI) und weiteren relevanten Informationen dargestellt wird.
+\cite{Philips:Mobile:Android}
+\cite{Nordic:2018:Apple}
+
+\vspace{1\baselineskip}
+
+\textbf{Elemente der Benutzeroberfläche:}
+\begin{itemize}
+    \item Geräteliste: Zeigt alle erkannten BLE-Geräte mit Details wie Gerätename und RSSI-Wert.
+    
+    \item Filteroptionen: Ermöglichen das Filtern der Geräteliste nach Name, Gerätetyp, RSSI oder Favoriten.
+    
+    \item RSSI-Diagramm: Visualisiert die Signalstärke der erkannten Geräte über die Zeit.
+    
+    \item Navigationsleiste: Bietet Zugriff auf zusätzliche Funktionen wie den Logger und die DFU (Device Firmware Update) Funktion.
+\end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Nordic Semiconductor}
+Nordic Semiconductor (nRF) ist eine Produktreihe mit stromsparenden Funkchips, die für drahtlose Kommunikation genutzt werden. Die Chips der nRF-Serie unterstützen unter anderem Bluetooth Low Energy (BLE), Zigbee, Thread, Matter und eigene Funkprotokolle. Man findet sie oft in Geräten wie Smartwatches, Sensoren, \ac{iot}-Anwendungen oder auch in der Medizintechnik. Neben den Chips bietet Nordic auch Software und Tools an. Zum Beispiel die App nRF Connect for Mobile, mit der man als Entwickler direkt mit den Geräten arbeiten kann. \cite{Nordic:2025}
+
+\subsection{Beschreibung und Konzept von nRF Connect}
+nRF Connect for Mobile ist eine mobile Anwendung, mit der sich BLE-Geräte analysieren, verbinden und testen lassen. Über die App kann man in der Umgebung Bluetooth-Geräte erkennen und sich mit ihnen verbinden. Dabei zeigt sie deren Signalstärke, überträgt Daten, analysiert GATT-Services und ermöglicht Firmware-Updates per Bluetooth. Auch RSSI-Graphen und Event-Logs helfen, das Verhalten der Geräte im Detail zu verfolgen. Die App wird regelmäßig aktualisiert und ist quelloffen auf GitHub, was eine tiefere Integration in Entwicklungsprojekte erlaubt. \cite{NordicApplications:2025}
+\cite{NordicBluetooth:2025}
+
+\vspace{1\baselineskip}
+
+Die Idee hinter der App ist es, ein mobil einsetzbares, technisches BLE-Werkzeug bereitzustellen, direkt auf dem Smartphone und ohne Zusatzhardware. Im Vergleich zu Desktop-Programmen erlaubt sie schnellere Tests, flexiblere Entwicklungszyklen und eine unmittelbare Verbindung mit BLE-Geräten im Umfeld. Damit unterstützt sie Entwickler bei der Fehlersuche, Reichweitenanalyse, beim Prototyping und bei der Gerätewartung. Die offene Architektur (Open Source) sowie die Cross-Plattform-Verfügbarkeit machen sie besonders vielseitig und anpassbar.
+\cite{NordicApplications:2025}\cite{NordicBluetooth:2025}
+
+\subsection{Struktur der App nRF Connect}
+
+Die App nRF Connect for Mobile bietet beim Starten vier Hauptmenüpunkte am unteren Rand der App:
+
+\begin{itemize}
+    \item Settings (Einstellungen)
+    \item Peripheral
+    \item RSSI Graph
+    \item Scanner
+\end{itemize}
+
+\subsection{Einstellungen}
+Die Einstellungen sind in vier Bereiche unterteilt: general Settings, Online-Ressources, Privacy und About the App Einstellungen.
+
+\begin{itemize}
+    \item In dem Bereich der general Settings lassen sich grundlegende Funktionen der App konfigurieren. Dazu gehören Einstellungen zu dem Scanner im Hauptmenü, das Importieren von Daten, sowie die Auswahl eines App-Icons.
+    \item Bei den Online Resources lässt sich der aktuelle Update Status der App anzeigen und Aktualisieren. Zudem findet man eine Auswahl zu einem externen Link zur offiziellen Bluetooth-Spezifikationsliste.
+    \item Im Privacy Bereich kann eingesehen werden, welche Daten gerade verarbeitet werden. Hier sieht man den Scanner State und den Zustand des Peripherals.
+    \item Der Bereich About the App liefert grundlegende Informationen zur App, darunter die Version, die Build Number, sowie Verweise auf den offiziellen Blog, den Source Code und das genutzte Bertiebssystem.
+\end{itemize}
+
+\subsection{Peripheral}
+Im Bereich Peripheral lassen sich Advertiser und Server verwalten oder hinzufügen. Über die Import-Funktion kann ein Server aus einer XML-Datei hinzugefügt werden.
+
+\begin{itemize}
+    \item Advertiser: Ein Advertiser sendet regelmäßig Datenpakete, um auf sich aufmerksam zu machen – z. B. zur Geräteerkennung.
+    \item Server: Ein Server stellt Services und Characteristic-Daten bereit, die ein verbundenes Gerät lesen oder schreiben kann.
+\end{itemize}
+
+\subsection{RSSI-Graph}
+Der RSSI Graph zeigt alle in der Nähe befindlichen BLE-Geräte an und stellt deren Signalstärke (RSSI) in Echtzeit dar. Dies ist besonders hilfreich, um Geräte mit schwachen oder instabilen Signal zu identifizieren oder um z. B. Reichweitenanalysen durchzuführen.
+
+\subsection{Scanner}
+Der Scanner sucht aktiv nach Bluetooth-Geräten in der Nähe, mit denen eine Verbindung aufgebaut werden kann.
+Sobald ein Gerät verbunden ist, wird es in einer detaillierten Ansicht angezeigt.
+
+\vspace{1\baselineskip}
+
+In dieser Ansicht stehen fünf Symbole zur Verfügung, über die man verschiedene Aktionen durchführen kann:
+
+\begin{itemize}
+    \item \textbf{Live-Daten / RSSI-Graph:} Dieser Bereich zeigt ein Live-Diagramm mit der Signalstärke (RSSI) über die Zeit. Es visualisiert, wie stabil die Verbindung zum Gerät ist, und listet zusätzlich empfangene Pakete in chronologischer Reihenfolge auf. Dies ist besonders hilfreich zur Analyse der Verbindung und Signalqualität in Echtzeit.\cite{Nordic:Mobile}\cite{Nordic:Mobile:Android}
+    
+    \item \textbf{Gatt-Service Explorer:} Hier wird die gesamte GATT-Struktur des verbundenen Geräts angezeigt – einschließlich der verfügbaren Services und Characteristics. Es ist möglich, Daten zu lesen, zu schreiben oder Benachrichtigungen (Notify/Indicate) zu aktivieren. Diese Ansicht ist der zentrale Einstiegspunkt zur Kommunikation mit einem BLE-Gerät.\cite{Nordic:Mobile}\cite{Nordic:Mobile:Android}
+    
+    \item \textbf{Rohdaten / Attribut-Tabelle:} Diese Ansicht zeigt die Attributstruktur in einer technischen Darstellung. Sie listet UUIDs, Handles und Eigenschaften der einzelnen GATT-Elemente auf. Diese Rohform eignet sich besonders für Entwickler, die auf niedriger Ebene mit dem Bluetooth-Protokoll arbeiten.\cite{Nordic:Mobile}\cite{Nordic:Mobile:Android}
+    
+    \item \textbf{Log-Ansicht und Filter:} In diesem Bereich werden alle BLE-Aktivitäten chronologisch aufgezeichnet – z. B. Verbindungsereignisse, Schreib- oder Lesevorgänge. Mithilfe von Filtern lassen sich bestimmte Ereignistypen gezielt anzeigen. Die Ansicht ist besonders nützlich zur Fehlersuche und zur Nachverfolgung der Kommunikation.\cite{Nordic:Mobile}\cite{Nordic:Mobile:Android}
+    
+    \item \textbf{DFU (Device Firmware Update):} Dieser Bereich ermöglicht Firmware-Updates auf unterstützte Geräte. Voraussetzung ist eine aktive Verbindung zu einem Gerät, das DFU-kompatibel ist. Über diese Funktion kann eine neue Firmware über BLE aufgespielt werden.\cite{Nordic:Mobile:Android} \cite{Nordic:Mobile}
+\end{itemize}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=10cm]{nRFConnect/FlowChart}
+    \caption{Flussdiagramm zur Funktion von nRF Connect [Eigene Darstellung]}
+    \label{fig:Flussdiagramm NRF} 
+\end{figure}
+
+\chapter{App nRFConnect}
+
+\section{Eine BLE Verbindung aufbauen}\label{nRFConnect}
+
+\subsection{Einfaches Programm}
+
+Das einfache Programm \ref{lst:CodeBLEVerbinden} dient dazu, die Verbindung zwischen Smartphone und dem Arduino Nano33BLESense herzustellen. Es wird ein Peripherieger\"at erstellt. Darauf k\"onnen sp\"ater die Smartphones zugreifen.
+Um dies zu realisieren wird zun\"achst das Programm \ref{lst:CodeBLEVerbinden} nach dem bekannten Muster auf den Nano33BLESense geladen. 
+
+
+\captionof{figure}{Verbindung mit dem Nano33BLESense}\label{lst:CodeBLEVerbinden}
+\ArduinoExternal{}{../../Code/Nano33BLESense/Bluetooth/DeviceConnect/DeviceConnect.ino}
+
+
+
+\subsection{Installation nrf Connect}
+
+Nach dem erfolgreichen Hochladen des Programms muss zunächst die ''App nRF Connect'' auf einem Bluetooth fähigem Smartphone installiert werden. Die App ist im AppStore und im Playstore verf\"ugbar und kann so wie andere Apps auch installiert werden. Im folgenden wird die Installation im Appstore und Playstore erläutert. Für IOS Geräte sind die Bilder im Dunkelmodus. Ähnlich dazu ist die Installation für Android Geräte im Hellenmodus. Da die Schritte vergleichbar sind werden sie hier nicht zusätzlich aufgeführt. Es wird die Bezeichnung Appstore verwendet damit ist für Android Geräte der Playstore gemeint usw. 
+
+Zunächst wird die App im Appstore gesucht \ref{fig:ble_setup}. Dann kann diese wie andere Apps mit dem Installationsbutton installiert werden. 
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.49\textwidth]{nRFConnect/nrfinstall1}
+	\includegraphics[width=0.49\textwidth]{nRFConnect/SetupAndroid1}
+	\caption{Installation der App und Bluetooth-Einrichtung unter Android}
+	\label{fig:ble_setup}
+\end{figure}
+
+
+Nach erfolgreicher Installation kann die App geöffnet werden \ref{fig:nrfinstall2}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.49\textwidth]{nRFConnect/nrfinstall2}
+	\includegraphics[width=0.49\textwidth]{nRFConnect/SetupAndroid2}
+	\caption{nRF Connect im Appstore [eigene Darstellung]}
+	\label{fig:nrfinstall2}
+\end{figure}
+
+
+
+Nach dem Öffnen der App erscheint ein Pop-Up. Zum Test der Anwendung ist es erforderlich, die Nutzung von Bluetooth auf dem Gerät zuzulassen. Dies kann in den Einstellungen nachträglich geändert werden. Allerdings ist dies nicht zu empfehlen, da es zusätzliche Schritte erfordert \ref{fig:nrfinstall3}. 
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.49\textwidth]{nRFConnect/nrfinstall3}
+	\includegraphics[width=0.49\textwidth]{nRFConnect/SetupAndroid3}
+	\caption{nRF Connect im Appstore [eigene Darstellung]}
+	\label{fig:nrfinstall3}
+\end{figure}
+
+
+Es erscheint ein weiteres Pop-Up über neue Änderungen. Dieses kann einfach geschlossen werden
+\ref{fig:nrfinstall4}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.49\textwidth]{nRFConnect/nrfinstall4}
+	\includegraphics[width=0.49\textwidth]{nRFConnect/SetupAndroid4}
+	\caption{nRF Connect im Appstore [eigene Darstellung]}
+	\label{fig:nrfinstall4}
+\end{figure}
+
+Nach dem Schließen des Pop-Ups öffnet sich der Scanner (siehe Abbildung~\ref{fig:nrfinstall5}).  
+Der Scanner zeigt nach wenigen Sekunden Geräte in der Umgebung an.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.49\textwidth]{nRFConnect/nrfinstall5}
+	\includegraphics[width=0.49\textwidth]{nRFConnect/SetupAndroid5}
+	\caption{Geräte-Scanner in nRF Connect [eigene Darstellung]}
+	\label{fig:nrfinstall5}
+\end{figure}
+
+
+
+Nach der Installation verlangt die App Zugriff auf Bluetooth, diese Einstellung muss f\"ur diesen Test akzeptiert werden. Danach \"offnet sich die Scanner Umgebung. Ein Login ist nicht erforderlich und das Suchen bzw. Scannen kann direkt beginnen.
+
+
+\subsection{Test des einfachen Codes mit nrf Connect}
+
+Nach der Installation kann der Nano33BLESense mit einer Stromquelle verbunden werden. In der Suche taucht der Nano33BLESense auf. Bei vielen Geräten in der Umgebung lohnt es sich den Filter, wie in Abbildung~\ref{fig:nrfUse1} dargestellt, zu verwenden. Der Name des Nano33BLESense wurde im Code auf NanoRFID festgelegt.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.49\textwidth]{nRFConnect/Use/UseApple1}
+	\includegraphics[width=0.49\textwidth]{nRFConnect/Use/UseAndr1}
+	\caption{Verbinden mit dem Nano33BLESense [eigene Darstellung]}
+	\label{fig:nrfUse1}
+\end{figure}
+
+
+Das Verbinden dauert ein paar Sekunden. Um Probleme zu vermeiden sollte sich immer nur ein Gerät mit dem Nano33BLESense gleichzeitig verbinden. Wie es zum Beispiel bei Bluetooth-Musikboxen der Fall ist. Nach dem Verbinden sollte die Ansicht wie folgt aussehen Abbildung~\ref{fig:nrfUse2}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.49\textwidth]{nRFConnect/Use/UseApple2}
+	\includegraphics[width=0.49\textwidth]{nRFConnect/Use/UseAndr2}
+	\caption{Verbindung mit dem Nano33BLESense hergestellt [eigene Darstellung]}
+	\label{fig:nrfUse2}
+\end{figure}
+
+Um das Ergebnis anzeigen zu lassen sind zwei Zwischenschritte nötig. Wird auf die in Abbildung~\ref{fig:nrfUse2} markierten Flächen getippt. Es ergeben sich folgende Abbildungen~\ref{fig:nrfUse3}.
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.49\textwidth]{nRFConnect/Use/UseApple3}
+	\includegraphics[width=0.49\textwidth]{nRFConnect/Use/UseAndr3}
+	\caption{Ablesen des Ergebnis vorbereiten [eigene Darstellung]}
+	\label{fig:nrfUse3}
+\end{figure}
+Bei der Verwendung eines IOS Geräts muss der Datentyp auf \PYTHON{UTF-8} eingestellt werden. Bei der Verwendung eines Android Geräts werden per Download die Daten aktualisiert (vgl.Abbildungen~\ref{fig:nrfUse3}).  Ggf. kann auf dem Android Gerät der Reiter \textbf{Device Information} über einen klick ausgeklappt werden. 
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.49\textwidth]{nRFConnect/Use/UseApple4}
+	\includegraphics[width=0.49\textwidth]{nRFConnect/Use/UseAndr4}
+	\caption{Ergebnis ablesen nrfConnect [eigene Darstellung]}
+	\label{fig:nrfUse4}
+\end{figure}
+
+
+
+
+Nun kann in den Attributen des Nano33BLESense der Eintrag \textbf{Hello} abgelesen werden. Dieser Eintrag wird sp\"ater ersetzt.
+Die Folgende Abbildung~\ref{fig:nrfUse4} zeigt das Ergebnis.
+
+
+

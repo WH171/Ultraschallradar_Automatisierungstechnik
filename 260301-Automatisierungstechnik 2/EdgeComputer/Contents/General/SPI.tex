@@ -1,0 +1,64 @@
+%%%%%%%%%%%%%%%
+%
+% $Autor: Wings $
+% $Datum: 2020-01-29 07:55:27Z $
+% $Pfad: General/I2C.tex
+% $Version: 1785 $
+%
+%
+%%%%%%%%%%%%%%%
+
+\chapter{\textcolor{red}{Serial Peripheral Interface SPI}}\label{SPI}
+
+Das Akronym SPI steht für Serial Peripheral Interface. Dieses Protokoll wird von Mikrocontrollern genutzt, um eine schnelle Kommunikation mit einem oder mehreren Peripheriegeräten zu ermöglichen. Es gibt drei gemeinsame Pins für alle Peripheriegeräte:
+
+\begin{itemize}
+  \item SCK: Dies steht für Serial Clock und erzeugt Taktimpulse zur Synchronisation der Datenübertragung.
+  \item MISO: Dies steht für Master Input/Slave Output und wird genutzt, um Daten an den Master zu senden.
+  \item MOSI: Dies steht für Master Output/Slave Input und wird genutzt, um Daten an die Slaves/Peripheriegeräte zu senden.
+\end{itemize}
+
+\Mynote{Was ist richtig: 3 oder 4 Leitungen?}
+
+Die SPI-Pins auf der Platine sind D13 (SCK), D12 (MISO) und D11 (MOSI). RXD und TXD werden für die serielle Kommunikation genutzt.
+Der TXD-Pin wird zur Übertragung von Daten genutzt. Die RXD-Pin für den Empfang von Daten, während der seriellen Kommunikation. Die Pins stellen auch den erfolgreichen Datenfluss vom Computer zur Platine her. Die UART-Pins auf der Platine sind D0 (TX) und D1 (RX).
+
+\section{SPI}
+
+Das Serial Peripheral Interface (SPI) ist ein synchrones, serielles Kommunikationsprotokoll, das zur schnellen Datenübertragung zwischen einem Controller-Gerät, z.\,B.\ einem Arduino, und einem oder mehreren Peripheral-Geräten, z.\,B.\ Sensoren, Speicherchips, Displays, verwendet wird. Alle SPI-Einstellungen werden durch das Arduino SPI Control Register (SPCR) bestimmt. Ein Register ist nur ein Byte des Mikrocontrollerspeichers, das gelesen oder beschrieben werden kann. Register dienen im Allgemeinen drei Zwecken: Steuerung, Daten und Status.  \cite{Arduino:2024SPI} \cite{Arduino:2022SPI}
+
+\begin{itemize}
+	\item Controller-Peripheral-Kommunikation: Der Controller (z.\,B.\ Arduino) steuert die Kommunikation. 
+	\item Synchroner Datenaustausch: Beide Geräte tauschen gleichzeitig Daten aus – im Vollduplex.
+	\item Datenübertragung über vier Leitungen:
+	\begin{itemize}
+		\item COPI – Controller Out Peripheral In
+		\item CIPO – Controller In Peripheral Out
+		\item SCLK – Serial Clock (vom Master)
+		\item CS – Chip Select (zur Auswahl des Peripheriegeräts)
+	\end{itemize}
+\end{itemize}
+
+\section{Übertragungsmodi}
+
+Es gibt vier Übertragungsmodi die steuern, ob die Daten bei der steigenden oder fallenden Flanke des Datentaktsignals ein- und ausgeschoben werden (Taktphase) und ob der Takt im Leerlauf hoch oder niedrig ist (Taktpolarität). Die vier Modi kombinieren Polarität und Phase gemäß der Tabelle~\ref{TransmissionMode}.
+
+\begin{center}
+	\captionof{table}{Übertragungsmodi SPI \cite{Arduino:2024SPI}}
+	\begin{tabular}{|l|l|l|l|l|}
+		\hline
+		Modi & Taktpolarität (CPOL) & Taktphase (CPHA) & Ausgangsflanke & Datenerfassung
+		\\ \hline
+		SPI\_MODE0 & 0   & 0 & Falling & Rising  \\
+		\hline
+		SPI\_MODE1 & 0   & 1 & Rising  & Falling \\
+		\hline
+		SPI\_MODE2 & 1   & 0 & Rising  & Falling \\
+		\hline
+		SPI\_MODE3 & 1   & 1 & Falling & Rising  \\
+		\hline
+	\end{tabular}
+	\label{TransmissionMode} 
+\end{center}
+
+

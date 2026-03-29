@@ -1,0 +1,433 @@
+%%%
+%
+% $Autor: Wings $
+% $Datum: 2021-05-14 $
+% $Pfad: ArduinoIDE2 $
+% $Dateiname: 
+% $Version: 4620 $
+%
+% !TeX spellcheck = de_DE/GB
+% !TeX program = pdflatex
+% !BIB program = biber/bibtex
+% !TeX encoding = utf8
+%
+%%%
+
+
+\chapter{Arduino IDE 2.3.x - Overview }\label{ArduinoIDE2Overview}
+
+\section{Sidebar}
+
+The Arduino IDE 2 features a new sidebar, making the most commonly used tools more accessible. ~\ref{ide2Overview} \cite{arduinodescription:2024}
+
+\begin{itemize}
+
+    \item \textbf{Verify / Upload} These functions are used to compile and upload code to an Arduino board.
+    \item \textbf{Select Board and Port} detected Arduino boards automatically show up here, along with the port number.
+    \item \textbf{Sketchbook} This section serves as a centralized repository for all sketches that are stored locally on the user’s computer. The Sketchbook is designed to provide a structured, easily accessible space for managing, organizing, and editing code developed within the Arduino environment. Additionally, the Sketchbook offers a synchronization feature with the Arduino Cloud, enabling seamless access to stored sketches across devices. This cloud integration allows users to retrieve and edit sketches from the online Arduino environment
+    \item \textbf{Boards Manager} browse through Arduino and third party packages that can be installed. For example, using a MKR WiFi 1010 board requires the Arduino SAMD Boards package installed.
+    \item \textbf{Library Manager} browse through thousands of Arduino libraries, made by Arduino and its community.
+    \item \textbf{Debugger} test and debug programs in real time.
+    \item \textbf{Search} search for keywords in the written code.
+    \item \textbf{Open Serial Monitor} opens the Serial Monitor tool, as a new tab in the console.
+\end{itemize}
+
+
+\begin{center}
+        \includegraphics[width=\linewidth]{Arduino/ArdiunoIDE2/ide2Overview.png}
+        \captionof{figure}{Overview}\label{ide2Overview}
+\end{center}
+
+
+\section{Features}
+The Arduino IDE 2 is a versatile development tool offering features like direct library installation, cloud synchronization for sketches, and built-in debugging tools. This section highlights some of its core features, with links to more detailed resources.
+
+\subsection{Sketchbook}
+
+The Sketchbook is where Arduino code files, known as sketches, are stored. These files are saved with the  extension .ino. To maintain proper organization, each sketch must be placed in a folder named exactly the same as the sketch file. For example, a sketch named \FILE{MySketch.ino} must be saved in a folder named \FILE{MySketch}. This naming convention is essential for the Arduino IDE to correctly identify and manage the sketches. As seen in Figure ~\ref{local-sketchbook}.
+
+Typically, sketches are stored in a folder named \FILE{Arduino} located within the Documents directory of the system.
+
+To access the Sketchbook, the icon folder in the sidebar of the Arduino IDE can be selected. This action opens the directory where the sketches are stored, allowing for efficient management and access to the sketches.
+
+
+\begin{center}
+        \includegraphics[width=0.7\linewidth]{Arduino/ArdiunoIDE2/localSketchbook.png}
+        \captionof{figure}{Sketchbook}\label{local-sketchbook}
+\end{center}
+
+
+\subsection{Boards Manager}
+The Board Manager can be found in the following steps: \menu{Tools > Board > Board Manager}.
+
+The Boards Manager in the Arduino IDE allows the installation of different board packages, as shown in Figure ~\ref{boardManager}.
+ A board package provides the necessary files and instructions to compile and upload code to specific types of Arduino boards. 
+
+
+Various board packages are available, such as avr, samd and megaavr. Each package supports different Arduino board families. For example, avr is for older boards like the Arduino Uno, while samd is used for newer boards like the Arduino Zero. Using the Boards Manager ensures that the right tools and files are installed for programming the selected board. 
+
+\begin{center}
+        \includegraphics[width=0.7\linewidth]{Arduino/ArdiunoIDE2/boardManager.png}
+        \captionof{figure}{Board Manager}\label{boardManager}
+\end{center}
+
+
+\subsection{Library Manager}
+The Library Manager can be found in the following steps: \menu{Tools > Manage Libraries}.
+
+The Library Manager in the Arduino IDE allows users to browse and install a wide range of libraries. Libraries extend the core Arduino functions, making it easier to perform tasks such as controlling servo motors, reading data from specific sensors, or working with modules like Wi-Fi. 
+These libraries provide prewritten code to handle specific hardware components and simplify complex tasks, allowing for faster and more efficient development in Arduino projects. As seen in Figure ~\ref{librarymanager}.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{center}
+        \includegraphics[width=0.7\linewidth]{Arduino/ArdiunoIDE2/libraryManager.png}
+        \captionof{figure}{Library Manager}\label{librarymanager}
+\end{center}
+
+
+
+
+
+
+
+{
+\section{Integrating and Using a Custom Library in Arduino IDE}
+
+In the development of embedded systems using the Arduino platform, libraries are essential for abstracting and simplifying complex functionality. A custom library is particularly beneficial when a specific functionality or hardware interface is repeatedly used across different projects. This section outlines the process of creating, installing, and using a custom library within an Arduino project, in the Arduino Integrated Development Environment (IDE).
+
+
+\subsection{Creating the Library Files} 
+
+
+	
+
+
+A well-structured custom Arduino library typically consists of at least two key components:
+
+	\menu{Header File (.h)}: This file contains the declarations of classes, functions, and variables that define the interface of the library. 
+		It provides the necessary definitions for the functions and classes to be used by external programs.
+		
+		
+	\menu{Source File (.cpp)}: This file contains the actual implementation of the functions and methods declared in the header file. 
+		It defines the behavior of the functions and 	classes.
+		The library structure is organized in a way that allows for clear separation between the declaration and implementation of its functionalities.
+
+
+
+
+
+
+\subsection{Installation and Integration of the Library}
+
+Once the custom library has been created, it must be properly installed and integrated into the Arduino IDE to be used in projects.
+
+To install a custom library in Arduino follow these steps:
+
+\begin{enumerate}
+	\item Locate the Libraries Folder: The Arduino IDE searches for libraries in the libraries folder, which is located within the Arduino sketchbook directory. The typical path to this directory is:
+	
+	\medskip
+	
+	{\small\SHELL{ C:/Users/<username>/Documents/Arduino/libraries}}
+	
+	\item Copy the custom library folder, e.g., \FILE{Nano33BLESenseLE}, into the  directory \FILE{libraries}. The final path should look like this:
+	
+	\medskip
+	
+	{\small\SHELL{C:/Users/<username>/Documents/Arduino/libraries/Nano33BLESenseLED}}
+	
+	\item Restart the Arduino IDE: After placing the library in the correct directory, restart the Arduino IDE to ensure that it recognizes the newly added library.
+	
+\end{enumerate}
+
+
+
+
+
+\subsection{Using Symbolic Links for Library Integration}
+
+In some cases, it may be more convenient or necessary to store the library files outside the default library directory. For example, if the libraries are stored in a GitHub repository or for better version control, the command \menu{mklink} can be used to create a symbolic link. This allows the Arduino IDE to access the library files as if they were in the default directory, without duplicating the files.
+
+
+\subsection{Windows Tool \SHELL{mklink} to Create Symbolic Links}
+
+Symbolic links allow libraries to be stored in a different location while still being treated by the Arduino IDE as if they reside in the standard directory \FILE{libraries}. This can be particularly useful for version-controlled environments, such as when using Git, or to organize libraries without duplicating files.
+
+Steps for Creating a Symbolic Link:
+
+
+
+\begin{enumerate}
+
+
+
+\item \textbf{Open Command Prompt with Administrator Privileges:} Press \menu{Win + S} and search for \menu{cmd}, click on \menu{Command Prompt} and select \menu{Run as Administrator} as seen in Figure \ref{fig:cmdLink}
+
+\begin{center}\centering
+	\includegraphics[width=8cm]{Arduino/ArdiunoIDE2/mklinkCmd.png}
+	\captionof{figure}{Command Prompt with Administrator Privileges}
+	\label{fig:cmdLink}		
+\end{center}
+
+
+\Mynote{Figure 1.17, 1.18 with an english sytem, so the figures are on english}
+
+
+
+\item \textbf{Execute the Command mklink :} The command for creating a symbolic link is: {\small \SHELL {mklink /D "TargetPath" "SourcePath"}}
+
+\begin{itemize}
+	\item 	\textbf{TargetPath:} The location where the Arduino IDE expects the library to be, here \FILE{libraries}.
+	\item 	\textbf{SourcePath:} The actual location of the library.
+\end{itemize}
+		
+			
+\end{enumerate}
+		
+\bigskip
+
+		
+For this example, the library is located at: 
+
+
+{\small\SHELL{C:/Users/MSRLabor/Documents/GitHub/241031ArduinoNano33BLESense/report/Code/Nano33BLESense/Nano33BLESenseLED}}
+
+\medskip
+
+
+The target path in the Arduino IDE’s libraries folder is: 
+
+
+{\small\SHELL{C:/Users/MSRLabor/Documents/Arduino/libraries/Nano33BLESenseLED}}
+
+\medskip
+
+The full command can be seen in Figure \ref{fig:cmdSynthax}.
+
+\begin{center}\centering
+	\includegraphics[width=10cm]{Arduino/ArdiunoIDE2/cmdSynthax.png}
+	\captionof{figure}{Command Prompt}
+	\label{fig:cmdSynthax}		
+\end{center}
+
+
+\textbf{Verifying the Symbolic Link:} After executing the command, navigate to the folder \FILE{libraries}. A folder named \FILE{Nano33BLESenseLED} should be present, acting as a symbolic link pointing to the actual library location.
+
+
+
+
+
+
+
+
+
+\subsection{MacOS Command \SHELL{ln -s} to Create Symbolic Links}
+
+
+\begin{enumerate}
+	
+	\item Open Terminal: Open the \menu{Terminal} application by searching for it in \menu{Applications}, go to \menu{Utilities}.
+	
+	\item Execute the Command \SHELL{ln -s} : The command for creating a symbolic link is: 
+	
+	\SHELL{ln -s "SourcePath" "TargetPath"}
+	
+	
+	
+	
+	\begin{itemize}
+		\item 	\textbf{TargetPath:} The location where the Arduino IDE expects the library to be, here \FILE{libraries}.
+		\item 	\textbf{SourcePath:} The actual location of the library.
+	\end{itemize}
+	
+\end{enumerate}
+		
+		
+		
+\bigskip
+
+		
+For this example, the library is located at: 
+
+
+{\small\SHELL{C:/Users/MSRLabor/Documents/GitHub/241031ArduinoNano33BLESense/report/Code/Nano33BLESense/Nano33BLESenseLED}}
+
+\medskip
+
+
+
+The target path in the Arduino IDE’s libraries folder is: 
+
+
+{\small\SHELL{C:/Users/MSRLabor/Documents/Arduino/libraries/Nano33BLESenseLED}}
+
+\medskip
+
+The full command would be: 
+
+{\small\SHELL{ln -s "/Users/username/Documents/GitHub/241031ArduinoNano33BLESense/report/Code/Nano33BLESense/Nano33BLESenseLED" "/Users/username/Documents/Arduino/libraries/Nano33BLESenseLED"}}
+
+
+\medskip
+
+
+Verifying the Symbolic Link: After executing the command, navigate to the folder \FILE{libraries}. A folder named \FILE{Nano33BLESenseLED} should be present, acting as a symbolic link pointing to the actual library location.
+
+\bigskip
+
+\Mynote{here are some pictures necessary as in 1.5.4}
+
+
+
+
+
+\bigskip
+
+
+
+\subsection{Verifying Library Availability in the Arduino IDE}
+
+To ensure that the custom library has been successfully integrated and is recognized by the Arduino IDE, follow these steps:
+
+\begin{enumerate}
+	
+	\item Restart the Arduino IDE:
+	If the Arduino IDE was open during the library installation or after creating the symbolic link, close and reopen it. This step ensures the IDE reloads its list of available libraries.
+	
+	\item Check the Library Menu: Navigate to \menu{Sketch} go to \menu{Include Library} and select the Library \FILE{Nano33BLESenseLED}, as seen in Figure \ref{fig:OwnLibrary}
+	
+	\item Verify Inclusion in the List:
+	If the library is listed, it indicates successful recognition by the IDE. If not, double-check the directory structure and symbolic link to confirm they are correctly configured.
+	
+	\item Compile a Test Program:
+	Write a simple test program using functions or classes from the library. Compile the sketch to ensure there are no errors, which confirms that the library has been successfully integrated.
+	
+\end{enumerate}
+
+
+\begin{center}\centering
+	\includegraphics[width=10cm]{Arduino/ArdiunoIDE2/includelibrary.png}
+	\captionof{figure}{Including the Nano33BLESenseLED Library}
+	\label{fig:OwnLibrary}		
+\end{center}
+
+Once the program compiles without errors, the library is ready to use, and you can confidently include it in your Arduino projects.
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Serial Monitor}
+
+
+The Serial Monitor can be found in the following steps: \menu {Tool > Serial Monitor}
+
+The Serial Monitor is a tool that allows to view data streaming from the board, via for example the command \PYTHON{Serial.print()}.
+
+Historically, this tool was located in a separate window but is now integrated with the editor, making it easy to run multiple instances simultaneously on your computer. The Serial Monitor can be seen in Figure  ~\ref{serialMonitor}.
+
+
+\begin{center}
+        \includegraphics[width=0.7\linewidth]{Arduino/ArdiunoIDE2/serialMonitor.png}
+        \captionof{figure}{Serial Monitor}\label{serialMonitor}
+\end{center}
+
+
+\subsection{Serial Plotter}
+
+The tool Serial Plotter is great for visualizing data with graphs and monitoring, such as voltage peaks. It can monitor multiple variables simultaneously, with the option to enable specific types.
+
+
+\section{Examples}
+
+A significant component of the Arduino Documentation is the set of example sketches bundled with various libraries. These examples demonstrate the practical application of library functions, showcasing their intended uses and main features. Libraries included with certain board packages may also contain their own example sketches.
+To access these example sketches whether from libraries installed manually or those included with board packages navigate to \menu{File > Examples}, and locate the desired library from the list.
+
+For instance, when an UNO R4 WiFi board is connected, the examples list appears with options specific to that board. An example sketch demonstrating a pre-loaded Tetris animation can be accessed by navigating to \menu{File > Examples > LED Matrix > MatrixIntro} and uploading it to the connected board. This example shows how the board’s bundled code can be used in practice, assisting users in learning how to control various hardware functions directly. 
+
+\begin{center}
+        \includegraphics[width=0.7\linewidth]{Arduino/ArdiunoIDE2/examplesketches.png}
+        \captionof{figure}{Examples}\label{examplesketches}
+\end{center}
+
+
+In Figure  ~\ref{examplesketches} above, the examples list is shown when a UNO R4 WiFi board is connected to the computer.
+
+
+
+\section{Debugging}
+
+The tool Debugger in Arduino IDE 2.3.3 is designed to assist in testing and debugging programs by providing the ability to step through code execution in a controlled manner. This tool allows users to set breakpoints, step through code line-by-line, and inspect variables, helping to identify issues such as logic errors or incorrect variable values. The debugger enables users to pause execution at specific points in the program, allowing for a detailed examination of the program's behavior and memory state. This feature enhances the development process by making it easier to locate and fix errors during runtime, rather than relying solely on print statements or trial and error. ~\ref{Debug}
+
+
+\begin{center}
+        \includegraphics[width=0.7\linewidth]{Arduino/ArdiunoIDE2/Debug.png}
+        \captionof{figure}{Debugging Example}\label{Debug}
+\end{center}
+
+
+
+\Mynote{Debugging Bild muss ersetzt werden, weil nicht zu lesen}
+
+
+\section{Autocompletion}
+
+Autocompletion is a key feature in Arduino IDE version 2, making it easier to code by suggesting functions and elements from the Arduino API. This feature helps identify and complete code more quickly, improving efficiency and accuracy.
+
+For autocompletion to work, the board must be selected in the IDE. This ensures that the editor recognizes the correct functions and libraries for the specific board, allowing accurate suggestions. ~\ref{autocomplete}
+
+
+\begin{center}
+        \includegraphics[width=0.7\linewidth]{Arduino/ArdiunoIDE2/autocomplete.png}
+        \captionof{figure}{Autocomplete}\label{autocomplete}
+\end{center}
+
+
+\section{Conclusion}
+This guide provides an overview of key features in Arduino IDE 2, along with references to detailed articles for further exploration. Each section aims to enhance understanding and enjoyment of the wide range of functionalities included in the IDE.
+
+
+
+\begin{figure}[H]\centering
+    \includegraphics[width=10cm]{Arduino/ArdiunoIDE2/MenuBarOption}
+    \caption{Menu Bar Option}
+    \label{fig::MenuBarOption}		
+\end{figure}
+
+
+%
+\section{To-Do}
+
+
+\begin{itemize}
+ \item \textcolor{red}{Mac Instalation nochmal durchführen und aktualisieren (gilt auch für die Bilder)}
+  \item \textcolor{red}{In Discription: Item-Punkte anpassen mit den Bildsymbolen} 
+  \item \textcolor{red}{MyNote Kommentare beachten}
+\end{itemize}
+
+%
+
+
+
+
+
+

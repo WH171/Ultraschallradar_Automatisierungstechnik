@@ -1,0 +1,317 @@
+%%%%%%%%%%%%
+%
+% $Autor: Wings $
+% $Datum: 2019-03-05 08:03:15Z $
+% $Pfad: TemplateSensor $
+% $Version: 4250 $
+% !TeX spellcheck = en_GB/de_DE
+% !TeX encoding = utf8
+% !TeX root = filename 
+% !TeX TXS-program:bibliography = txs:///biber
+%
+%%%%%%%%%%%%
+
+% Structure
+\chapter{Pressure and Temperature Sensor LPS22HB}
+
+The sensor LPS22HB is a piezoresistive absolute pressure sensor that is integrated into the Arduino Nano 33 BLE Sense board. It's a digital sensor that measures atmospheric pressure and temperature. The sensor uses a piezoresistive technology to detect changes in pressure. The LPS22HB has an accuracy of $\pm1.5$ hPa and a resolution of 0.01 hPa. It can measure pressures from 260 to 1260 hPa. The sensor also measures temperature with an accuracy of $\pm0.12^\circ$C and a resolution of $0.01^\circ$C. The temperature range is from $-40^\circ$C to $85^\circ$C. 
+
+The LPS22HB communicates with the Arduino board using the protocol I\textsuperscript{2}C. It has a low power consumption of 1.5 $\mu A$ in sleep mode and 1.5 mA in active mode. The sensor is also resistant to shock and vibration. It's a sensor for projects that require accurate pressure and temperature measurements, such as weather stations, altimeters. \cite{Arduino:2023a,Arduino:2023}
+
+Arduino Nano 33 BLE Sense Lite hat  keine HTS221-Temperatur- und Feuchtigkeitssensoren, sondern nur den LPS22HB-Drucksensor, der allerdings auch die Temperatur messen kann
+
+Arduino Nano 33 BLE Sense Rev2 hat  einen HTS221-Temperatur- und Feuchtigkeitssensor und den LPS22HB-Drucksensor, der allerdings auch die Temperatur messen kann.
+
+
+Unterschiede:
+
+Inertiale Messeinheit (IMU):
+Rev 1: Verfügt über eine einzelne 9-Achsen-IMU.
+Rev 2: Hat eine Kombination aus zwei IMUs: eine 6-Achsen-IMU (BMI270) und eine 3-Achsen-IMU (BMM150), was die Möglichkeiten zur Bewegungserkennung erweitert1.
+
+Design und Zugänglichkeit:
+Rev 2: Integriert neue Pads und Testpunkte für USB, SWDIO und SWCLK, was den Zugang zu diesen wichtigen Punkten auf der Platine erleichtert1.
+Rev 1: Hat diese zusätzlichen Pads und Testpunkte nicht.
+Stromversorgung:
+
+Rev 2: Verwendet den MP2322 als Stromversorgungskomponente, was die Leistung verbessert1.
+
+Rev 1: Nutzt eine andere Stromversorgungskomponente.
+Der Arduino Nano 33 BLE Sense Rev 1 verwendet den MPS MP2144 als Stromversorgungskomponente
+
+\begin{center}    
+    \begin{tikzpicture}
+        %\node at (0,0) (Board) {\includegraphics{Arduino/Nano33BLE/Nano33BLESense}};
+        
+        \ArduinoNanoTikz;
+        
+        \fill[gray, opacity=0.7] (-11.2,-0.2) rectangle (0.1,4.7);
+        
+        \coordinate (A) at (-6.55,2.4);
+        \coordinate (B) at (-5.9,3.05);    
+        
+        
+        
+        \begin{scope}
+            \clip (A) rectangle (B);
+            
+            \ArduinoNanoTikz
+            
+            %\node at (0,0) (Board) {\includegraphics{Arduino/Nano33BLE/Nano33BLESense}};
+            
+        \end{scope}
+        
+        
+        \draw[yellow,line width=2pt] (A)  rectangle (B);        
+    \end{tikzpicture}    
+    
+    \captionof{figure}{Arduino Nano 33 BLE Sense's pressure and temperature sensor LPS22HB}  
+\end{center}
+
+
+
+
+\section{General}
+
+A pressure sensor is a device that measures the pressure of its surroundings. It works by converting the mechanical energy of the environment into an electrical signal. The sensor typically consists of a diaphragm or membrane, which is a thin, flexible material that changes its shape in response to changes in pressure. The diaphragm or membrane is usually connected to a microcontroller or other electronic device, which reads the electrical signal and converts it into a pressure reading. The pressure sensor can be calibrated to provide accurate readings over a specific pressure range. The sensor can be used in a variety of applications, including industrial control systems, medical devices, and consumer electronics.
+
+Pressure sensors can be classified into two main types: absolute and differential. Absolute pressure sensors measure the absolute pressure of the environment, while differential pressure sensors measure the difference in pressure between two points. Pressure sensors can be used to measure a wide range of pressures, from very low pressures to very high pressures. The accuracy of a pressure sensor depends on its calibration and the quality of its components. Pressure sensors can be affected by various factors, including temperature, humidity, and air flow. Pressure sensors can be used to monitor and control pressure in a variety of applications, including heating and cooling systems, refrigeration systems, and food processing systems. Pressure sensors can be used to detect pressure anomalies and alert users to potential problems. \cite{Gan:2024}
+
+\bigskip
+
+% temperatur
+A temperature sensor is a device that measures the temperature of its surroundings. It works by converting the thermal energy of the environment into an electrical signal. The sensor typically consists of a thermistor or thermocouple, which is a device that changes its electrical resistance or voltage in response to changes in temperature. The thermistor or thermocouple is usually connected to a microcontroller or other electronic device, which reads the electrical signal and converts it into a temperature reading. The temperature sensor can be calibrated to provide accurate readings over a specific temperature range. The sensor can be used in a variety of applications, including industrial control systems, medical devices, and consumer electronics.
+
+Temperature sensors can be classified into two main types: contact and non-contact. Contact temperature sensors, such as thermocouples, come into direct contact with the object being measured. Non-contact temperature sensors, such as infrared sensors, do not come into contact with the object being measured.
+
+Temperature sensors can be used to measure a wide range of temperatures, from very low temperatures to very high temperatures. The accuracy of a temperature sensor depends on its calibration and the quality of its components. Temperature sensors can be affected by various factors, including humidity, air flow, and radiation. Temperature sensors can be used to monitor and control temperature in a variety of applications, including heating and cooling systems, refrigeration systems, and food processing systems. Temperature sensors can be used to detect temperature anomalies and alert users to potential problems.
+
+
+
+\Mynote{cite books, applications, board}
+
+\section{Specific Sensor}
+
+The pressure sensor of the LPS22HB is a piezoresistive sensor that changes its electrical resistance in response to changes in pressure. The pressure sensor of the LPS22HB is connected to the Arduino Nano 33 BLE Sense, which reads the electrical signal and converts it into a pressure reading. The pressure sensor of the LPS22HB is calibrated to provide accurate readings over a pressure range of 260 to 1260 mbar. The pressure sensor of the LPS22HB is a non-contact sensor, meaning that it does not come into direct contact with the object being measured. The pressure sensor of the LPS22HB is affected by various factors, including temperature and humidity. The pressure sensor of the LPS22HB can be used to monitor and control pressure in a variety of applications, including industrial control systems and consumer electronics. The pressure sensor of the LPS22HB can be used to detect pressure anomalies and alert users to potential problems. The pressure sensor of the LPS22HB has an accuracy of $\pm0.12$ mbar. 
+
+The pressure sensor of the LPS22HB is a low-power sensor, making it suitable for use in battery-powered devices. 
+
+\bigskip
+% Temperatur
+
+The LPS22HB is a digital pressure sensor that also includes a temperature sensor. The temperature sensor of the LPS22HB is a thermistor that changes its electrical resistance in response to changes in temperature. The thermistor is connected to the  microcontroller Arduino Nano 33 BLE Sense, which reads the electrical signal and converts it into a temperature reading. The temperature sensor of the LPS22HB is calibrated to provide accurate readings over a temperature range of $-40^\circ$C to $85^\circ$C. The temperature sensor of the LPS22HB is a non-contact sensor, meaning that it does not come into direct contact with the object being measured. 
+
+The temperature sensor of the LPS22HB is affected by various factors, including humidity and air flow. The temperature sensor of the LPS22HB can be used to monitor and control temperature in a variety of applications, including industrial control systems and consumer electronics. The temperature sensor of the LPS22HB can be used to detect temperature anomalies and alert users to potential problems. The temperature sensor of the LPS22HB is a high-accuracy sensor, with an accuracy of $\pm0.12^\circ$C and a resolution of $0.01^\circ$C. 
+
+The temperature sensor of the LPS22HB is a low-power sensor, making it suitable for use in battery-powered devices. 
+
+\Mynote{cite board}
+
+\section{Specification}
+
+The LPS22HB is a digital pressure sensor that measures pressure in the range of 260 to 1260 mbar. It has a high accuracy of $\pm0.12$ mbar and a resolution of 0.01 mbar. The sensor is calibrated to provide accurate readings over a temperature range of $-40^\circ$C to $85^\circ$C. It has a non-contact measurement principle, which means that it does not come into direct contact with the object being measured. The LPS22HB is a compact sensor, measuring $3.5 \times 3.5 \times 1.1$ mm in size. 
+
+It has a low power consumption of $1.5 \mu A$ in active mode and $0.1 \mu A$ in sleep mode.
+
+The sensor has a sampling rate of up to 100 Hz and a data transfer rate of up to 400 kbps. Note that the sampling rate of the sensor LPS22HB can be adjusted using the function \PYTHON{setSamplingRate()} in the Arduino library. The default sampling rate is 100 Hz, but it can be set to 50 Hz, 25 Hz, or 10 Hz using the following code:
+
+\medskip
+
+\PYTHON{lps22hb.setSamplingRate(50); // 50 Hz}
+
+\PYTHON{lps22hb.setSamplingRate(25); // 25 Hz}
+
+\PYTHON{lps22hb.setSamplingRate(10); // 10 Hz}
+
+\medskip
+
+
+It's worth noting that the sampling rate of the sensor LPS22HB can affect the accuracy and reliability of the measurements. A higher sampling rate can provide more accurate measurements, but it can also increase the power consumption of the sensor.
+
+
+ The sensor is also resistant to shock, vibration, and temperature changes. It has a high sensitivity and a low noise level, making it suitable for use in applications where high accuracy is required. 
+
+
+
+\begin{itemize}
+  \item cite data sheet
+  \item Circuit Diagram
+\end{itemize}
+
+\section{Library}
+
+To program the sensor LPS22HB on the Arduino Nano 33 BLE Sense, you will need to use the library LPS22HB. \cite{ArduinoLPS22HB:2024}
+
+\subsection{Description}
+
+The library LPS22HB is a library for the Arduino platform that provides a simple interface for interacting with the sensor LPS22HB. It allows you to read temperature and pressure values from the sensor, as well as set the sensor's mode and power mode. \cite{ArduinoLPS22HB:2024}
+
+
+\subsection{Installation}
+
+To use the library LPS22HB, you will need to install it on your Arduino IDE. You can do this by following these steps:
+
+\begin{itemize}
+    \item Open the Arduino IDE and navigate to the menu \menu{Sketch}.
+    \item Select \menu{Sketch -> Include Library -> Manage Libraries}.
+    \item Search for ``LPS22HB'' in the library search bar.
+    \item Click on the library ``LPS22HB''  and then click on the buttion ``Install''.
+    \item Wait for the library to install and then restart the Arduino IDE.
+\end{itemize}
+
+\medskip
+
+Once you have installed the library LPS22HB, you can use it to program the sensor LPS22HB on the Arduino Nano 33 BLE Sense. Here is an example~\ref{LPS22HBSimpleExample} of how you can use the library to read temperature and pressure values from the sensor:
+
+\medskip
+
+{
+    \captionof{code}{Example code for the sensor LPS22HB on the Arduino Nano 33 BLE Sense}\label{LPS22HBSimpleExample.ino}
+    \ArduinoExternal{}{../../Code/Nano33BLESense/SensorLPS22HB/LPS22HBSimpleExample.ino}
+}
+
+\medskip
+
+This sketch \ref{LPS22HBSimpleExample.ino} uses the library LPS22HB to read temperature and pressure values from the sensor LPS22HB and print them to the serial console.
+
+Note that you will need to have the Arduino Nano 33 BLE Sense board connected to your computer and the Arduino IDE installed on your computer in order to use the LPS22HB library.
+
+
+\subsection{Functions}
+Here are the functions of the Arduino library LPS22HB:
+
+\begin{itemize}
+  \item Initialization Functions
+    \begin{itemize}
+      \item \PYTHON{begin()}: Initializes the sensor LPS22HB and sets it up for use.
+      \item \PYTHON{reset()}: Resets the sensor LPS22HB to its default state.
+    \end{itemize}
+  \item Reading Functions
+    \begin{itemize}
+      \item \PYTHON{readTemperature()}: Reads the temperature value from the sensor LPS22HB.
+      \item \PYTHON{readPressure()}: Reads the pressure value from the sensor LPS22HB.
+      \item \PYTHON{readAltitude()}: Reads the altitude value from the sensor LPS22HB.
+      \item \PYTHON{readTemperatureAndPressure()}: Reads both the temperature and pressure values from the sensor LPS22HB.
+    \end{itemize}
+  \item Setting Functions
+    \begin{itemize}
+      \item \PYTHON{setMode()}: Sets the mode of the sensor LPS22HB.
+      \item \PYTHON{setPowerMode()}: Sets the power mode of the sensor LPS22HB.
+      \item \PYTHON{setSamplingRate()}: Sets the sampling rate of the sensor LPS22HB.
+      \item \PYTHON{setFilter()}: Sets the filter of the sensor LPS22HB.
+    \end{itemize}
+  \item Getting Functions
+    \begin{itemize}
+      \item \PYTHON{getMode()}: Gets the current mode of the sensor LPS22HB.
+      \item \PYTHON{getPowerMode()}: Gets the current power mode of the sensor LPS22HB.
+      \item \PYTHON{getSamplingRate()}: Gets the current sampling rate of the sensor LPS22HB.
+      \item \PYTHON{getFilter()}: Gets the current filter of the sensor LPS22HB.
+    \end{itemize}
+  \item Sleep Functions
+    \begin{itemize}
+      \item \PYTHON{sleep()}: Puts the sensor LPS22HB into sleep mode.
+      \item \PYTHON{wakeUp()}: Wakes up the sensor LPS22HB from sleep mode.
+    \end{itemize}
+  \item Other Functions
+    \begin{itemize}
+      \item \PYTHON{checkStatus()}: Checks the status of the sensor LPS22HB.
+      \item \PYTHON{getError()}: Gets the error code of the sensor LPS22HB.
+      \item \PYTHON{resetError()}: Resets the error code of the sensor LPS22HB.
+    \end{itemize}
+\end{itemize}
+
+\medskip
+
+Note that this list may not be exhaustive, and the library may have additional functions not listed here.
+
+\subsection{Example - Manual}
+
+\subsection{Example}
+
+\subsection{Example - Code}
+
+\subsection{Example - Files}
+
+
+
+\section{Calibration}
+
+To calibrate the sensor LPS22HB on the Arduino Nano 33 BLE Sense, you will need to follow these steps. First, upload the calibration code to the Arduino Nano 33 BLE Sense. The calibration code will prompt you to enter the calibration parameters, such as the temperature and pressure values. Enter the calibration parameters, and the code will store them in the sensor's memory. The calibration process will take a few minutes to complete. During the calibration process, the sensor will take multiple readings of the temperature and pressure values. The sensor will then calculate the average of the readings and store it as the calibration value. Once the calibration process is complete, the sensor will be ready to use. To verify the calibration, you can use the calibration code to read the temperature and pressure values from the sensor. Compare the readings with the expected values to ensure that the sensor is calibrated correctly. If the readings are not accurate, you may need to repeat the calibration process. The calibration process can be repeated as many times as necessary to achieve accurate readings. The calibration values can be stored in the sensor's memory and retrieved later. By following these steps, you can calibrate the sensor LPS22HB on the Arduino Nano 33 BLE Sense and ensure accurate readings.
+
+\Mynote{cite method, more mathematics!}
+
+
+
+
+The code \ref{LPS22HBCalibration.ino} reads the temperature and pressure values from the sensor LPS22HB, stores them in the sensor's memory, and prints them to the serial console. The storeCalibration function is used to store the calibration values in the sensor's memory.
+
+\medskip
+
+{
+    \captionof{code}{Simple sketch calibrating the sensor LPS22HB}\label{LPS22HBCalibration.ino}
+    \ArduinoExternal{}{../../Code/Nano33BLESense/SensorLPS22HB/LPS22HBCalibration.ino}
+}
+
+\medskip
+
+
+Note that this is just an example code and you may need to modify it to suit your specific needs. Additionally, you will need to make sure that the sensor LPS22HB is properly connected to the Arduino Nano 33 BLE Sense and that the I2C interface is enabled.
+
+\section{Simple Code}
+
+\section{Sleep Mode}
+
+
+
+{
+    \captionof{code}{Sketch for the Arduino Nano 33 BLE Sense to switch the sensor LPS22HB into sleep mode}\label{LPS22HBSleep.ino}
+    \ArduinoExternal{}{../../Code/Nano33BLESense/SensorLPS22HB/LPS22HBSleep.ino}
+}
+
+\medskip
+
+
+This sketch \ref{LPS22HBSleep.ino} uses the function \PYTHON{sleep()} to switch the sensor into sleep mode, and the function \PYTHON{wakeUp()} to switch the sensor out of sleep mode. The function \PYTHON{sleep()} puts the sensor into a low-power state, and the function \PYTHON{wakeUp()} restores the sensor to its normal operating state.
+
+Note that the function \PYTHON{sleep()} must be called before the sensor can be put into sleep mode, and the function \PYTHON{wakeUp()} must be called before the sensor can be restored to its normal operating state.
+
+Also, note that the function \PYTHON{sleep()}  can only be called when the sensor is in a valid state, and the function \PYTHON{wakeUp()} can only be called when the sensor is in a valid state.
+
+You can also use the function \PYTHON{setMode()} to set the sensor to sleep mode, and the function \PYTHON{getMode()} to get the current mode of the sensor.
+
+\medskip
+
+\PYTHON{lps22hb.setMode(LPS22HB\_MODE\_SLEEP);}
+
+\PYTHON{lps22hb.getMode();}
+
+\medskip
+
+This will set the sensor to sleep mode and get the current mode of the sensor.
+
+You can also use the function \PYTHON{setPowerMode()}  to set the power mode of the sensor, and the function \PYTHON{getPowerMode()} to get the current power mode of the sensor.
+
+\medskip
+
+\PYTHON{lps22hb.setPowerMode(LPS22HB\_POWER\_MODE\_SLEEP);}
+
+\PYTHON{lps22hb.getPowerMode();}
+
+
+This will set the power mode of the sensor to sleep mode and get the current power mode of the sensor.
+
+\section{Simple Application}
+
+
+
+\section{Tests}
+
+\subsection{Simple Function Test}
+
+\subsection{Test all Functions}
+
+\section{Simple Application}
+
+
+\section{Further Readings}
+

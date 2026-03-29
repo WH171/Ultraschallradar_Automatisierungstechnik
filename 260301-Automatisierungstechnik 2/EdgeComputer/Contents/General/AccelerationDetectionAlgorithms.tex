@@ -1,0 +1,147 @@
+%%%
+%
+% $Autor: Wings $
+% $Date: 2024-10-31 11:15:45Z $
+% $File: AccelerationDetectionAlgorithms.tex $
+% $Version: 1 $
+%
+%%%
+
+
+\chapter{Distance,  Speed and Acceleration Detection Algorithms}
+
+\section{Review of Distance Measurement Methods}
+
+Since Mitsubishi released the first cruise control with distance control in 1995, the vast majority of ACC functions have been based on Laser Radar or millimeter-wave radar (MWR). \footnote{MI-PILOT, Mitsubishi Motors, \url{https://www.mitsubishi-motors.com/en/brand/technology/mipilot2/index.html}} But a few have opted to use a binocular camera as the basis for the technology, such as Subaru's EyeSight technology. \footnote{EyeSight technology, Subaru, \url{https://www.subaru.com/eyesight.html}}
+
+Each of these different sets of technical solutions has its own advantages and disadvantages:
+
+\begin{table}[h]
+	\centering
+	\resizebox{\textwidth}{!}{
+		\begin{tabular}{|p{3cm}|p{6cm}|p{6cm}|}
+			\hline
+			\textbf{Technology} & \textbf{Advantages} & \textbf{Disadvantages} \\ \hline
+			\textbf{Laser Radar (LiDAR)} & 
+			\begin{tabular}[c]{@{}p{6cm}@{}}
+				- High accuracy and resolution \\
+				- Capable of creating detailed 3D maps \\
+				- Effective for object detection and classification
+			\end{tabular} &
+			\begin{tabular}[c]{@{}p{6cm}@{}}
+				- Expensive \\
+				- Affected by adverse weather conditions \\
+				- High power consumption
+			\end{tabular} \\ \hline
+			
+			\textbf{Millimeter-Wave Radar} &
+			\begin{tabular}[c]{@{}p{6cm}@{}}
+				- Less affected by weather conditions \\
+				- Long-range detection capabilities \\
+				- Lower cost compared to LiDAR
+			\end{tabular} &
+			\begin{tabular}[c]{@{}p{6cm}@{}}
+				- Lower resolution than LiDAR \\
+				- Limited in detecting small or non-metallic objects \\
+				- Can be affected by interference
+			\end{tabular} \\ \hline
+			
+			\textbf{Binocular Camera Systems} &
+			\begin{tabular}[c]{@{}p{6cm}@{}}
+				- Lower cost compared to LiDAR and radar \\
+				- High resolution for nearby objects \\
+				- Uses passive sensing (no emissions)
+			\end{tabular} &
+			\begin{tabular}[c]{@{}p{6cm}@{}}
+				- Computationally intensive \\
+				- Accuracy decreases with distance \\
+				- Affected by lighting conditions
+			\end{tabular} \\ \hline
+		\end{tabular}
+	}
+	\caption{Comparison of distance measurement technologies: LiDAR, Millimeter-Wave Radar, and Binocular Cameras}
+	\label{tab:comparison}
+\end{table}
+
+For cars using Laser Radar, LiDAR operates by emitting laser pulses towards objects in front of the vehicle. When these pulses hit an object, they are reflected back to the sensor, which measures the time it takes for the pulses to return. This time-of-flight measurement allows the system to calculate the precise distance to the object, as well as its relative speed and position. For cars using millimeter-wave radar, the functional implementation is similar.
+
+For systems that use binocular cameras, this process can be relatively more complex; essentially distance recognition for binocular camera-based systems utilizes bionics: Binocular disparity. This method involves using a pair of cameras positioned at a certain distance apart to capture two images with different viewing angles. By comparing the disparity between the two images (i.e., the difference in pixel positions).\footnote{Mansour, M., Davidson, P., Stepanov, O. and Piché, R., 2019. Relative Importance of Binocular Disparity and Motion Parallax for Depth Estimation: A Computer Vision Approach. Remote Sensing, 11(17), p.1990. \url{https://doi.org/10.3390/rs11171990}}
+
+\begin{equation}
+	\text{depth} = \frac{f \times \text{baseline}}{\text{disparity}}
+\end{equation}
+
+where depth represents the distance of an object from the camera, f denotes the focal length of the camera, baseline is the distance between the two cameras, and disparity is the difference in image location of the object in the two camera views.
+
+\begin{figure}[H]
+	\centering
+	\begin{minipage}{1\textwidth}
+		\centering
+		\includegraphics[width= 0.75\linewidth]{AccelerationDetectionAlgorithms/Baseline.png}
+		\caption{Design of OAK-D Pro camera}
+	\end{minipage}
+\end{figure}
+
+For the OAK-D Pro camera, the baseline distance, which is the distance between the two monochrome cameras, is 7.5 cm. \footnote{OAK-D Pro Camera Documentation, Luxonis, 2021}
+
+According to OAK's official documentation\footnote{OAK China official Website, OAK China, 2024}, the OAK-D Pro can reach a theoretical maximum of 35m, but at this distance there is a very significant margin of error (about 33\% of the theoretical error\footnote{Depth range enhancement, Luxonis Community, 2022}) where the distance fluctuates very significantly. However, there are ways to improve the accuracy of distance detection, such as half-pixel mode to improve the accuracy of distance detection, and averaging distances over a period of time to calculate relative distances to improve the accuracy of relative speed calculations.
+
+
+\section{Review of Speed and Acceleration Detection Algorithms}
+
+For the measurement of relative velocity, the three schemes mentioned above will actually have two different principles and calculations.
+
+Millimeter-wave radar primarily calculates the relative speed of objects using the Doppler effect. When the radar signal hits a moving object, the frequency of the reflected wave changes depending on the relative speed between the radar and the object. This frequency shift (Doppler shift) is directly proportional to the relative speed of the object. \footnote{Millimeter Wave Radar Sensors: Fundamentals, Texas Instruments, 2018}
+
+For LiDAR and Binocular Camera Systems, the relative speed of objects is calculated based on the change in distance over time. By continuously measuring the distance to an object and comparing it with previous measurements.
+
+Each of these different sets of technical solutions has its own advantages and disadvantages:
+
+\begin{table}[h]
+	\centering
+	\resizebox{\textwidth}{!}{
+		\begin{tabular}{|p{3cm}|p{6cm}|p{6cm}|}
+			\hline
+			\textbf{Technology} & \textbf{Advantages} & \textbf{Disadvantages} \\ \hline
+			\textbf{Laser Radar (LiDAR)} & 
+			\begin{tabular}[c]{@{}p{6cm}@{}}
+				- High accuracy and resolution \\
+				- Capable of creating detailed 3D maps \\
+				- Effective for object detection and classification
+			\end{tabular} &
+			\begin{tabular}[c]{@{}p{6cm}@{}}
+				- Expensive \\
+				- Affected by adverse weather conditions \\
+				- High power consumption
+			\end{tabular} \\ \hline
+			
+			\textbf{Millimeter-Wave Radar} &
+			\begin{tabular}[c]{@{}p{6cm}@{}}
+				- Less affected by weather conditions \\
+				- Long-range detection capabilities \\
+				- Lower cost compared to LiDAR
+			\end{tabular} &
+			\begin{tabular}[c]{@{}p{6cm}@{}}
+				- Lower resolution than LiDAR \\
+				- Limited in detecting small or non-metallic objects \\
+				- Can be affected by interference
+			\end{tabular} \\ \hline
+			
+			\textbf{Binocular Camera Systems} &
+			\begin{tabular}[c]{@{}p{6cm}@{}}
+				- Lower cost compared to LiDAR and radar \\
+				- High resolution for nearby objects \\
+				- Uses passive sensing (no emissions)
+			\end{tabular} &
+			\begin{tabular}[c]{@{}p{6cm}@{}}
+				- Computationally intensive \\
+				- Accuracy decreases with distance \\
+				- Affected by lighting conditions
+			\end{tabular} \\ \hline
+		\end{tabular}
+	}
+	\caption{Comparison of distance measurement technologies: LiDAR, Millimeter-Wave Radar, and Binocular Cameras}
+	\label{tab:comparison}
+\end{table}
+
+

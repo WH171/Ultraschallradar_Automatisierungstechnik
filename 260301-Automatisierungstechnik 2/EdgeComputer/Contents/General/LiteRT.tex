@@ -1,0 +1,402 @@
+%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% $Autor: Akshay Joseph $
+% $Datum: 2025-04-02 $
+% $Pfad: GitHub/ML24-EX01-KeywordSpotting/Nano33BLESense/Contents/General/LiteRT.tex $
+% $Version: 1 $
+%
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%
+
+% !TeX spellcheck = GB
+
+% !TeX program = pdflatex
+
+% !TeX encoding = utf8
+
+%
+
+%%%
+
+
+
+
+
+\chapter{Tool  \FILE{LiteRT}}\index{LiteRT}
+
+\section{Introduction}
+
+
+
+LiteRT, formerl is a runtime designed for executing machine learning inference on edge platforms. It is part of the TensorFlow deployment stack and focuses on enabling efficient execution of trained models on constrained devices, such as microcontrollers, mobile systems, and embedded Linux boards. LiteRT executes models that have been converted to the TensorFlow Lite format (.tflite), using an interpreter that allocates tensors, invokes computation kernels, and manages the flow of inference.
+
+
+
+\bigskip
+
+
+
+The LiteRT runtime separates model execution from the training infrastructure, allowing for integration with C/C++ or platform-native application code. It is suitable for systems where resources such as RAM, compute cycles, and power are limited. The runtime has support for multiple hardware acceleration backends via delegates and is designed to operate with minimal system dependencies \cite{Google:2025}.
+
+
+
+\section{Description}
+
+
+
+LiteRT provides a modular framework for deploying machine learning models on non-cloud environments. It supports only the inference phase and does not include model training functionality. Models must be converted beforehand using the TensorFlow Lite Converter, typically from a full TensorFlow \PYTHON{SavedModel} or Keras  format \FILE{.h5} into a  FlatBuffer representation \FILE{.tflite}.
+
+
+
+\section{System Components}
+
+
+
+The core components of LiteRT include:
+
+
+
+\begin{itemize}
+
+	\item \textbf{FlatBuffer Model Loader:} Parses statically defined model graphs in format \FILE{.tflite}. This reduces load time and avoids dynamic memory allocation.
+
+	\item \textbf{Interpreter Engine:} The interpreter allocates memory for tensors, applies operator implementations (kernels), and evaluates model layers sequentially.
+
+	\item \textbf{Kernel Registry:} Maintains a mapping between operation codes in the model graph and corresponding computational kernels.
+
+	\item \textbf{Delegate Interface:} Provides abstraction for offloading supported operations to hardware-specific implementations such as GPU, EdgeTPU, or NNAPI.
+
+\end{itemize}
+
+\Mynote{citations}
+
+
+\section{Target Platforms}
+
+
+
+LiteRT supports multiple classes of devices:
+
+
+
+\begin{itemize}
+
+	\item \textbf{Embedded Linux boards} (e.g., Raspberry Pi, BeagleBone): Using the full interpreter in C++ or via Python bindings.
+
+	\item \textbf{Mobile phones} (Android and iOS): Through platform integration and delegates (e.g., Android NNAPI, iOS Core ML).
+
+	\item \textbf{Microcontrollers} (e.g., ARM Cortex-M series): Through the Micro variant of LiteRT (\texttt{tensorflow/lite/micro}), implemented in C++ and designed to operate without dynamic memory allocation or OS support.
+
+\end{itemize}
+
+\Mynote{citations}
+
+
+\section{Model Execution Flow}
+
+
+
+The general flow for deploying a model with LiteRT includes:
+
+
+
+\begin{itemize}
+
+	\item Training and exporting a TensorFlow model in format \PYTHON{SavedModel}.
+
+	\item Converting the model to \FILE{.tflite} using the TensorFlow Lite Converter.
+
+	\item Optionally applying optimizations such as quantization to reduce model size and latency.
+
+	\item Loading the model into LiteRT using the interpreter API.
+
+	\item Allocating tensors and executing inference using input buffers and output results.
+
+\end{itemize}
+
+
+
+\section{Model Optimization}
+
+
+
+LiteRT is compatible with quantized models, including:
+
+
+
+\begin{itemize}
+
+	\item \textbf{Post-training quantization:} Converts weights and activations to \PYTHON{INT8} or \PYTHON{float16} for reduced memory and computational requirements.
+
+	\item \textbf{Quantization-aware training:} Embeds quantization effects during training for better post-conversion accuracy.
+
+\end{itemize}
+
+
+
+These optimizations enable deployment on devices with tight memory budgets (e.g., \textless256 KB SRAM).
+
+\Mynote{citations}
+
+
+\section{Hardware Acceleration}
+
+
+
+Delegates allow certain operators to be offloaded from the CPU to more efficient hardware. Common delegate targets include:
+
+
+
+\begin{itemize}
+
+	\item NNAPI (Android)
+
+	\item GPUDelegate (OpenCL/Vulkan)
+
+	\item EdgeTPU (Coral devices)
+
+	\item CoreMLDelegate (iOS)
+
+\end{itemize}
+
+
+
+
+The runtime selectively dispatches subgraphs to these backends if the operators are supported by the delegate.
+
+\section{Installation}
+
+
+
+Installation of LiteRT depends on the target platform. The following outlines common installation pathways for embedded microcontrollers and Linux-based systems.
+
+
+
+\subsection{Microcontrollers (TensorFlow Lite Micro)}
+
+
+
+LiteRT for microcontrollers is distributed as part of the TensorFlow repository. There is no standalone binary or pip package. Integration typically follows these steps:
+
+
+
+\bigskip
+
+
+
+Clone the TensorFlow repository:
+
+\medskip
+
+
+\SHELL{git clone https://github.com/tensorflow/tensorflow.git}
+
+\medskip
+
+
+Include the micro runtime in the build system of the embedded application. The directory \FILE{tensorflow/lite/micro}  contains all necessary runtime code.
+
+
+
+\bigskip
+
+
+
+For Arduino-based platforms, use the library \PYTHON{Arduino\_TensorFlowLite} , available via the Arduino Library Manager.
+
+
+
+\subsection{Linux or Embedded Linux (e.g., Raspberry Pi)}
+
+
+
+LiteRT is available through the TensorFlow pip package:
+
+\medskip
+
+
+\SHELL{pip install tflite-runtime}
+
+\medskip
+
+
+
+Alternatively, build from source for specific architecture optimizations:
+
+\medskip
+
+{
+  \captionof{code}{Installing optimized version for Raspberry Pi (ARMv7)}
+  
+  \medskip
+
+\SHELL{sudo apt-get install python3-dev}
+
+\SHELL{pip install numpy}
+
+\SHELL{pip install https://github.com/google-coral/pycoral/releases/download/release-fix/tflite\_runtime-2.10.0-cp37-cp37m-linux\_armv7l.whl}
+
+}
+
+
+
+\subsection{Android or iOS}
+
+
+
+LiteRT is typically included as a dependency in a mobile application.
+
+
+
+\subsubsection{Android (Gradle):}
+
+\SHELL{implementation 'org.tensorflow:tensorflow-lite:2.10.0'}
+
+\bigskip
+
+
+\subsubsection{iOS (CocoaPods):}
+
+
+
+\SHELL{pod 'TensorFlowLiteSwift'}
+
+
+
+Ensure the model \FILE{.tflite}  is bundled within the mobile application assets.
+
+
+
+\section{Example with Code}
+
+
+
+This example demonstrates how to run inference using a model \FILE{.tflite} model with the LiteRT interpreter in Python. The same logic applies to embedded platforms, though implemented in C++.
+
+
+
+\subsection{Load Model and Allocate Tensors}
+
+
+
+{   
+  \captionof{code}{Loading a model and allocating tensors}
+  \begin{Python}
+import numpy as np
+import tflite_runtime.interpreter as tflite
+
+# Load the model
+interpreter = tflite.Interpreter(model_path="model.tflite")
+interpreter.allocate_tensors()
+  \end{Python}
+}
+
+
+\subsection{Retrieve Input and Output Details}
+
+
+
+\begin{lstlisting}[language=Python, caption={Retrieving tensor details}]
+input_details = interpreter.get_input_details()
+output_details = interpreter.get_output_details()
+\end{lstlisting}
+
+
+
+\subsection{Prepare Input Data}
+
+
+
+Assume the model expects a 1D input of 49 float32 values:
+
+
+
+\medskip
+{
+  \captionof{code}{Preparing input data}
+  \begin{Python}
+input_data = np.array([[0.1] * 49], dtype=np.float32)
+interpreter.set_tensor(input_details[0]['index'], input_data)
+  \end{Python}
+}
+
+
+\subsection{Run Inference}
+
+
+
+{
+  \captionof{code}{Invoking the interpreter and reading results}
+  \begin{Python}
+interpreter.invoke()
+output_data = interpreter.get_tensor(output_details[0]['index'])
+print("Inference result:", output_data)
+  \end{Python}
+}
+
+
+\subsection{Embedded (C++) Context}
+
+
+
+On microcontrollers, similar steps are performed using the C++ API. For example, on Arduino:
+
+
+\medskip
+
+  \captionof{code}{Inference using TensorFlow Lite Micro on Arduino}
+  \begin{Python}
+interpreter->Invoke();
+TfLiteTensor* output = interpreter->output(0);
+// Process output->data.f or output->data.int8
+  \end{Python}
+
+
+
+\section{Further Reading}
+
+
+
+\nocite{Google:2025}
+
+\nocite{David:2021}
+
+\nocite{Warden:2020}
+
+
+
+	% Überschrift ein Level unter `refsection=chapter`, also \section*:
+
+   \printbibliography[heading=subbibliography, segment=\therefsegment]
+
+\ToDo{
+\begin{itemize}
+  \item citations
+  \item differences between tool, part of TensorFlow, and Arduino package
+  \item Including external code
+  \item no description of the files
+  \item no description of the paths
+\end{itemize}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

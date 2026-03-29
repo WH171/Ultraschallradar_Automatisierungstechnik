@@ -1,0 +1,75 @@
+%%%%%%%%%%%%
+%
+% $Autor: Wings $
+% $Datum: 2019-03-05 08:03:15Z $
+% $Pfad: TemplateSensor $
+% $Version: 4250 $
+% !TeX spellcheck = en_GB/de_DE
+% !TeX encoding = utf8
+% !TeX root = filename 
+% !TeX TXS-program:bibliography = txs:///biber
+%
+%%%%%%%%%%%%
+
+% Structure
+\chapter{Systemarchitektur}
+	Dieses Kapitel beschreibt den Aufbau der gesamten Messinfrastruktur und erläutert das Zusammenspiel beteiligten Komponenten.
+	
+\section{Architekturüberblick}
+	Die Abbildung \ref{fig:sysArch} zeigt die einzelnen Komponenten der Systemarchitektur sowie die verwendeten Kommunikationstypen entlang des Uplink-Pfads.
+
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\tikzset{
+				node distance=0.5cm and 0.4cm,
+				textDef/.style={font=\sffamily\small,},
+				lineDef/.style={line width={2pt}},
+				arrowStyle/.style={line width=2pt, >=stealth, red},
+			}
+			\sensorEndNode{1}{0}{-7}{0.2}{E1}
+			\gatewayNode{1}{0}{-3}{1.45}{G1}
+			\serverNode{0.6}{0}{0}{0}{S1}
+			\serverNode{0.6}{0}{3}{0}{A1}
+			
+			\draw[arrowStyle, <->] (E1.east) -- (G1.west) node[textDef, midway, above] {\shortstack{LoRa\\Modulation}};
+			\draw[arrowStyle, <->] (G1.east) -- (S1.west) node[textDef, midway, above] {\shortstack{\acs{wan}\\Backhaul}};
+			\draw[arrowStyle, ->] (S1.east) -- (A1.west) node[textDef, midway, above] {\shortstack{MQTT}};
+			
+			\node[textDef, below= of E1.south] {Endgerät};
+			\node[textDef, below= of G1.south] {Gateway};
+			\node[textDef, below= of S1.south] {\shortstack{LoRaWAN\\Server}};
+			\node[textDef, below= of A1.south] {\shortstack{Anwendung}};
+			
+		\end{tikzpicture}
+		\captionof{figure}{Kommunikationspfad eines Uplinks im LoRaWAN}
+		\label{fig:sysArch}
+	\end{figure}
+
+\subsection{Endgerät}
+	Das Endgerät besteht aus einem Arduino MKR WAN 1310 mit einem integrierten LoRa-Funkmodul sowie den angeschlossenen Sensoren. Es erfasst periodisch Messwerte, verarbeitet diese im internen Logikmodul und kodiert sie als \acs{lorawan}-Payloads. Anschlie{\ss}end übermittelt das Endgerät die Daten über die Funkschnittstelle an das Gateway und wechselt – abhängig vom Betriebsmodus – in einen energieeffizienten Schlafzustand. 
+	
+\subsection{LoRa Gateway}
+	Das LoRa Gateway dient als reiner Weiterleitungs- und Aggregationspunkt zwischen den Endgeräten und dem Netzwerkserver. Es empfängt LoRa-Frames auf Funkebene, ohne deren Inhalt auszuwerten, und ergänzt diese um Metadaten wie Zeitstempel, \PYTHON{RSSI} und \PYTHON{SNR} (siehe~\autoref{lora:general}). Anschlie{\ss}end leitet es die Pakete über das IP-Netzwerk an den Network Server weiter (siehe~\autoref{gateway:backhaul}). Das Gateway unterstützt mehrere parallele Kanäle und ermöglicht dadurch die gleichzeitige Kommunikation zahlreicher Endgeräte (siehe~\autoref{gateway:info}).
+	
+\subsection{ChirpStack LoRaWAN Server (Network- und Application-Server)}
+	Die Serverfunktionalität des \acs{lorawan}-Systems wird durch die ChirpStack-Plattform bereitgestellt, welche den Network Server (NS) und den Application Server (AS) als integrierte Komponenten in einem gemeinsamen Softwarestack implementiert (siehe~\autoref{LNS:ChirpstackGeneral}).
+	
+	Der Network-Server-Anteil übernimmt die Entgegennahme und Validierung eingehender \acs{lorawan}-Frames, verwaltet Frame-Counter und Gerätezustände und implementiert Mechanismen wie Adaptive Data Rate (ADR). Parallel dazu dekodiert der Application-Server-Anteil die übertragenen Payloads, strukturiert die Messwerte und stellt sie über standardisierte MQTT Schnittstelle für die Backend-Applikation bereit. Ebenso werden Downlink-Kommandos intern verarbeitet, geplant und zum geeigneten Empfangsfenster (RX1/RX2) über die verfügbaren Gateways an das Endgerät übermittelt (siehe~\autoref{server:lns} und \autoref{server:appserver}).
+	
+\subsection{Anwendung}
+	Die Anwendung empfängt die strukturierten Daten über MQTT und visualisiert diese in Form eines Dashboards und speichert sie zur weiteren Analyse (siehe~\autoref{dataFormatt:mqtt}). 
+
+\section{Ablaufdiagramm des gesamten Systems}
+	Die Abbildung \ref{fig:FlowEntireSystem} zeigt den Ablauf eines Uplink-Datenpfads, beginnend bei der Erfassung der Nutzerdaten am Endgerät bis zur Verarbeitung innerhalb des Systems.
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\textwidth]{LoRaAndLoRaWAN/Flowcharts/SensorsAPI/SensorsAPIWholeSystemFlow}
+		\caption{Ablaufdiagramm des gesamten Systems}
+		\label{fig:FlowEntireSystem}
+	\end{figure}
+
+	
+% Diagram pokazujący przepływ od Endnode az do Anwendung

@@ -1,0 +1,413 @@
+%%%%%%
+%
+% $Autor: Wings $
+% $Datum: 2020-01-18 11:15:45Z $
+% $Pfad: WuSt/Skript/Produktspezifikation/powerpoint/ImageProcessing.tex $
+% $Version: 4620 $
+%
+%%%%%%
+
+
+\chapter{Materialliste \label{MaterialList}}
+
+Im Folgenden werden die Geräte und deren Komponenten aufgelistet, die für den Aufbau benötigt werden:
+
+\begin{itemize}
+	\item 3 Strommessgeräte – jedes bestehend aus den Teilen unter Stromsensor (\ref{order:currentElements}), Platine (\ref{order:PCBParts}) und Gehäuse (\ref{order:enclosureElements}). Ungefähre Kosten pro Gerät: 148,19 €.
+	\item 2 Temperaturmessgeräte – jedes bestehend aus den Teilen unter Temperatursensor (\ref{order:temeratureSensorElements}), Platine (\ref{order:PCBParts}) und Gehäuse (\ref{order:enclosureElements}). Ungefähre Kosten pro Gerät: 130,66 €.
+\end{itemize}
+
+Zusätzlich wird ein LoRa-Gateway mit Antenne benötigt (siehe \ref{order:LoRaGateway}).
+
+\section{LoRa Server}
+\begin{longtable}{|p{2cm}|p{1cm}|p{2.5cm}|p{3.2cm}|p{2cm}|p{1cm}|}
+	\caption{Materialliste für den LoRaWAN Server} \\
+	\hline
+	Name & Menge & Parameter & Bild & Link & Preis \\
+	\hline
+	\endfirsthead
+	
+	\hline
+	Name & Menge & Parameter & Bild & Link & Preis \\
+	\hline
+	\endhead
+	
+	\hline
+	Raspberry Pi 4 B& 1 & 4x 1,5 GHz, 8 GB RAM, WLAN, BT  & \includegraphics[width=3cm]{Applications/LoRa/BOM/RaspberryPi4} & \href{https://www.reichelt.de/de/de/shop/produkt/raspberry\_pi\_4\_b\_4x\_1\_5\_ghz\_8\_gb\_ram\_wlan\_bt-276923}{Reichelt.de} & 66,99\euro  \\
+	\hline
+	Raspberry Pi - Netzteil & 1 & 5,1 V, 3,0 A, USB Type-C, EU-Stecker &  \includegraphics[width=3cm]{Applications/LoRa/BOM/RaspberryPiPowerSupply} & \href{https://www.reichelt.de/de/de/shop/produkt/raspberry\_pi\_-\_netzteil\_5\_1\_v\_3\_0\_a\_usb\_type-c\_eu-stecker\_s-260010}{Reichelt.de} & 7,10\euro \\
+	\hline
+	Speicherkarte 32GB & 1 & 32GB  & \includegraphics[width=2cm]{Applications/LoRa/BOM/SpeicherKarte} & \href{https://www.reichelt.de/de/de/shop/produkt/microsdhc-speicherkarte\_32gb\_sandisk\_ultra-297179}{Reichelt.de} & 6,50\euro  \\
+	\hline
+\end{longtable}
+
+\newpage
+\section{LoRa Gateway\label{order:LoRaGateway}}
+\begin{longtable}{|p{2cm}|p{1cm}|p{2.5cm}|p{3.2cm}|p{2cm}|p{1cm}|}
+	\caption{Materialliste für den Temperatursensor} \\
+	\hline
+	Name & Menge & Parameter & Bild & Link & Preis \\
+	\hline
+	\endfirsthead
+	
+	\hline
+	Name & Menge & Parameter & Bild & Link & Preis \\
+	\hline
+	\endhead
+	
+	\hline
+	Mikrotech KNOT LR 8 & 1 &  & \includegraphics[width=3cm]{Applications/LoRa/BOM/LoRaGateway} & \href{https://www.mikrotik-store.eu/en/mikrotik-rb924i-2nd-bt5bg77r11e-lr8-knot-lr8-kit}{mikrotik-store} & 184,45\euro  \\
+	\hline
+	Antenne & 1 & LoRa 868 MHz Antenne SMA 3 dBi omnidirektional, Kippgelenk &  \includegraphics[width=2cm]{Applications/LoRa/BOM/delockAntenna} & \href{https://www.reichelt.de/de/de/shop/produkt/lora_868_mhz_antenne_sma_3_dbi_omnidirektional_kippgelenk-236860}{Reichelt.de} & 13,50\euro \\
+	\hline
+\end{longtable}
+
+\newpage
+\section{Stromsensor\label{order:currentElements}}
+\begin{longtable}{|p{2cm}|p{1cm}|p{2.5cm}|p{3.2cm}|p{2cm}|p{1cm}|}
+	\caption{Materialliste für den Stromsensor} \\
+	\hline
+	Name & Menge & Parameter & Bild & Link & Preis \\
+	\hline
+	\endfirsthead
+	
+	\hline
+	Name & Menge & Parameter & Bild & Link & Preis \\
+	\hline
+	\endhead
+		\hline
+		Analoger AC-Sensor & 1 & bis zu 10 A mit Ausgangsspannung bis 1V & \includegraphics[width=2cm]{Applications/LoRa/BOM/AcDcSensor} & \href{https://botland.de/schwerkraft-stromsensoren/19898-schwerkraft-analoger-ac-sensor-bis-zu-10-a-dfrobot-sen0288-6959420915675.html}{Botland.de} & 22,90\euro  \\
+		\hline
+		WAGO Verbindungsklemme & 3 & 3 - Leiteranschluss & \includegraphics[width=2cm]{Applications/LoRa/BOM/wagoClamp} &\href{https://www.reichelt.de/de/de/shop/produkt/verbindungsklemme\_3-leiteranschluss-149799?PROVID=2788\&gad\_source=1\&gad\_campaignid=21157097500\&gbraid=0AAAAADwnxtYfk32iyJtb2u3XIqJbCY7JI\&gclid=Cj0KCQjwuvrBBhDcARIsAKRrkjfw2x-VuQzIDsspjwzz9feu-TxzS23IDrBryfVHM0yNXYOuAC\_bVfoaAqZGEALw\_wcB}{Reichelt.de} & 0,52\euro \\
+		\hline
+		Kabelverschraubung & 2 & M16 x 1,5 mm, Ø 5,0 - 10,0 mm & \includegraphics[width=3cm]{Applications/LoRa/BOM/Enclosure/cableConnector} &\href{https://www.reichelt.de/de/de/shop/produkt/kabelverschraubung\_syntec\_m16\_x\_1\_5\_mm\_5\_0\_-\_10\_0\_mm-299754}{Reichelt.de} & 0,72\euro \\
+		\hline
+		Sicherung & 1 & 250V / 10\,A & \includegraphics[width=3cm]{Applications/LoRa/BOM/fuse} & \href{https://botland.de/taster-und-elektrische-schalter/8394-sicherung-mit-230v-10a-reset-funktion-5904422311681.html}{Botland.de} & 0,90 \euro{} \\
+		\hline
+		Kupplung & 1 & 250V / 16\,A, IP54 & \includegraphics[width=3cm]{Applications/LoRa/BOM/highVoltConnector} & \href{https://www.reichelt.de/de/de/shop/produkt/schutzkontaktkupplung\_ip54\_spritzwassergeschuetzt-329258?PROVID=2788\&gad\_source=1\&gad\_campaignid=21154720511\&gbraid=0AAAAADwnxtYieeAzGFBFIqKgqyskixnoZ\&gclid=CjwKCAjw3f\_BBhAPEiwAaA3K5IGBIQahbAo7OWyegO5qGtzTh0RlbPScPbVWPAwYysIJGfZpUoZfSRoC95sQAvD\_BwE}{Reichelt.de} & 3,65 \euro{}\\
+		\hline
+\end{longtable}
+Zu den oben genannten Teilen sollen au{\ss}erdem die Teile für die Platine (\ref{order:PCBParts}) sowie für das Gehäuse (\ref{order:enclosureElements}) bestellt werden.
+
+\newpage
+\section{Temperatursensor\label{order:temeratureSensorElements}}
+\begin{longtable}{|p{2cm}|p{1cm}|p{2.5cm}|p{3.2cm}|p{2cm}|p{1cm}|}
+		\caption{Materialliste für den Temperatursensor} \\
+		\hline
+		Name & Menge & Parameter & Bild & Link & Preis \\
+		\hline
+		\endfirsthead
+		
+		\hline
+		Name & Menge & Parameter & Bild & Link & Preis \\
+		\hline
+		\endhead
+	
+		\hline
+		Wasserdichte Sonde mit Temperatursensor & 1 & Sonde mit Temperatursensor DS18B20, Kabellänge 5m & \includegraphics[width=2cm]{Applications/LoRa/BOM/temperaturSensor} & \href{https://botland.de/wasserdichte-sonden/16556-wasserdichte-sonde-mit-temperatursensor-ds18b20-okystar-5m-5904422307059.html}{Botland.de} & 11,50\euro  \\
+		\hline
+		Kabelverschraubung & 1 & M16 x 1,5 mm, Ø 5,0 - 10,0 mm & \includegraphics[width=3cm]{Applications/LoRa/BOM/Enclosure/cableConnector} &\href{https://www.reichelt.de/de/de/shop/produkt/kabelverschraubung\_syntec\_m16\_x\_1\_5\_mm\_5\_0\_-\_10\_0\_mm-299754}{Reichelt.de} & 0,72\euro \\
+		\hline
+		Kabelverschraubung & 1 & M12 x 1,5 mm, Ø 2,5 - 6,5 mm & \includegraphics[width=3cm]{Applications/LoRa/BOM/Enclosure/cableConnector} &\href{https://www.reichelt.de/de/de/shop/produkt/kabelverschraubung\_syntec\_m12\_x\_1\_5\_mm\_2\_5\_-\_6\_5\_mm-299753}{Reichelt.de} & 0,70\euro \\
+		\hline
+\end{longtable}
+Zu den oben genannten Teilen sollen au{\ss}erdem die Teile für die Platine (\ref{order:PCBParts}) sowie für das Gehäuse (\ref{order:enclosureElements}) bestellt werden.
+
+\newpage
+\section{Platine\label{order:PCBParts}}
+
+\begin{longtable}{|p{2cm}|p{1cm}|p{2.5cm}|p{3.2cm}|p{2cm}|p{1cm}|}
+	\caption{Materialliste für die Platine} \\
+	\hline
+	Name & Menge & Parameter & Bild & Link & Preis \\
+	\hline
+	\endfirsthead
+	% Definicja nagłówka dla kolejnych stron tabeli:
+	\hline
+	Name & Menge & Parameter & Bild & Link & Preis \\
+	\hline
+	\endhead
+	
+	\hline
+	Arduino MKR WAN 1310 & 1 & -- & \includegraphics[width=3cm]{Applications/LoRa/BOM/MKRWAN1310} & \href{https://www.reichelt.de/de/de/shop/produkt/arduino\_mkr\_wan\_1310\_samd21\_cortex-m0\_32\_bit\_arm-292450}{Reichelt.de} & 43,80\euro \\
+	\hline
+	AC/DC Wandler & 1 & 85 - 264 V AC, 5 V DC 3 A, 15 W & \includegraphics[width=3cm]{Applications/LoRa/BOM/powerSupply} & \href{https://www.reichelt.de/de/de/shop/produkt/ac_dc-wandler_85_-_264_v_ac_5_v_dc_modul-157857?PROVID=2788\&gad_source=1\&gad_campaignid=18336599199\&gbraid=0AAAAADwnxtaEz0mjnHFErsY09fxyv9MwF\&gclid=EAIaIQobChMI0NSfycWijQMVEURBAh2P0B68EAQYASABEgIwGvD_BwE}{Reichelt.de} & 9,95\euro \\
+	\hline
+	Widerstand 330 $\Omega$ & 3 &  330~$\Omega$, SMD, DIN 1206 & \includegraphics[width=3cm]{Applications/LoRa/BOM/PCBElements/resistor}  & \href{https://www.reichelt.com/de/en/shop/product/smd\_chip\_resistor\_1206\_330\_ohm\_250\_mw\_1\_-238114}{Reichelt.de} & 0,15\euro \\
+	\hline
+	Widerstand 4,7 k$\Omega$ & 3 &  4,7 k$\Omega$, SMD, DIN 1206 & \includegraphics[width=3cm]{Applications/LoRa/BOM/PCBElements/resistor} & \href{https://www.reichelt.de/de/de/shop/produkt/smd-widerstand\_1206\_4\_7\_kohm\_250\_mw\_0\_1\_-377367}{Reichelt.de} & 0,04 \euro\\
+	\hline
+	Widerstand 10 k$\Omega$ & 3 &  10 k$\Omega$, SMD, DIN 1206 & \includegraphics[width=3cm]{Applications/LoRa/BOM/PCBElements/resistor} & \href{https://www.reichelt.com/de/en/shop/product/smd\_chip\_resistor\_1206\_10\_ohm\_250\_mw\_1\_-238103}{Reichelt.de}& 0,04 \euro\\
+	\hline
+	Widerstand 39\,k$\Omega$ & 1 &  39\,k$\Omega$, SMD, DIN 1204 & \includegraphics[width=3cm]{Applications/LoRa/BOM/PCBElements/resistor}  & \href{https://www.reichelt.de/de/de/shop/produkt/smd-widerstand\_1206\_39\_kohm\_250\_mw\_0\_1\_-377363}{Reichelt.de} & 0,85\euro \\
+	\hline
+	Widerstand 62\,k$\Omega$ & 1 &  62\,k$\Omega$, SMD, DIN 1204 & \includegraphics[width=3cm]{Applications/LoRa/BOM/PCBElements/resistor}  & \href{https://www.reichelt.de/de/de/shop/produkt/smd-widerstand\_1206\_62\_kohm\_250\_mw\_0\_1\_-377375}{Reichelt.de} & 0,99\euro \\
+	\hline
+	Widerstand 100\,k$\Omega$ & 2 &  100k$\Omega$, SMD, DIN 1206 & \includegraphics[width=3cm]{Applications/LoRa/BOM/PCBElements/resistor}  & \href{https://www.reichelt.com/de/en/shop/product/smd\_chip\_resistor\_1206\_100\_ohm\_250\_mw\_1\_-238101}{Reichelt.de} & 0,18\euro \\
+	\hline	
+	JST PH Steckverbinder 2-polig & 2 & 1x2 Polig, Raster 2\,mm, Vertikal & \includegraphics[width=3cm]{Applications/LoRa/BOM/PCBElements/jstPH2mm} & \href{https://www.reichelt.de/de/de/shop/produkt/jst\_-\_stiftleiste\_gerade\_1x2-polig\_-\_ph-185049?PROVID=2788\&gad\_source=1\&gad\_campaignid=19009429580\&gbraid=0AAAAADwnxtatK8TqWV4VyUGfyDv\_jDsQn\&gclid=EAIaIQobChMIsZHp44mljQMVA6iDBx1ffS81EAQYASABEgLxhPD\_BwE}{Reichelt.de} & 0,13 \euro\\		
+	\hline
+	JST PH Buchsengehäuse 2-polig & 2 & 1x2\,Polig, Raster 2mm & \includegraphics[width=3cm]{Applications/LoRa/BOM/PCBElements/jstPH2mmConnector} & 
+	\href{https://www.reichelt.de/de/de/shop/produkt/jst\_-\_buchsengehaeuse\_1x2-polig\_-\_ph-185041}{Reichelt.de} & 0,05 \euro \\
+	\hline
+	JST XH Steckverbinder 4-polig& 2 & 1x4\,Polig, Raster 2,50\,mm, Vertikal & \includegraphics[width=3cm]{Applications/LoRa/BOM/PCBElements/jstXH4Pol} & \href{https://www.reichelt.de/de/de/shop/produkt/jst\_-\_stiftleiste\_gerade\_1x4-polig\_-\_xh-185075}{Reichelt.de} & 0,22 \euro \\
+	\hline
+	JST XH Buchsengehäuse 4-polig & 2 & 1x4\,Polig, Raster 2,50\,mm & \includegraphics[width=3cm]{Applications/LoRa/BOM/PCBElements/jstXH4PolConnector} & \href{https://www.reichelt.de/de/de/shop/produkt/jst\_-\_buchsengehaeuse\_1x4-polig\_-\_xh-185087}{Reichelt.de}& 0,11 \euro \\
+	\hline
+	Leiterplattenklemme WAGO 2601 & 1 & mit Hebel, 1,5\,mm$^{2}$, Raster 3,5\,mm, 2-polig & \includegraphics[width=3cm]{Applications/LoRa/BOM/PCBElements/TerminalWAGO1280} & \href{https://www.reichelt.de/de/de/shop/produkt/leiterplattenklemme\_mit\_hebel\_1\_5\_mm\_rm\_3\_5\_mm\_2-polig-372626}{Reichelt.de} & 0,95 \euro \\
+	\hline
+	Sicherungshalter mit Abdeckkappe & 1  & 5x20, Raster 22,6\,mm, max 250V, 6,3\,A & \includegraphics[width=3cm]{Applications/LoRa/BOM/PCBElements/FuseHolder} & \href{https://www.reichelt.de/de/de/shop/produkt/sicherungshalter\_5x20mm\_print\_mit\_abdeckkappe-279476?PROVID=2788\&gad\_source=1\&gad_campaignid=21154720511\&gbraid=0AAAAADwnxtaebsRYNG\_YA-ZrceIjialmB\&gclid=EAIaIQobChMInoukwKynjQMVpJCDBx0RCQLjEAQYECABEgLHMvD\_BwE#closemodal}{Reichelt.de}& 0,32 \euro \\
+	\hline
+	Feinsicherung & 1 & 5x20\,mm, träge, 250mA & \includegraphics[width=3cm]{Applications/LoRa/BOM/PCBElements/Fuse} & \href{https://www.reichelt.de/de/de/shop/produkt/feinsicherung\_5x20mm\_traege\_250\_ma-241919}{Reichelt.de}& 1,10 \euro\\
+	\hline
+	Kondensator & 1 & radial, 10 \mu F, 50\,V, Raster 2.0\,mm & \includegraphics[width=3cm]{Applications/LoRa/BOM/PCBElements/Capacitor} & \href{https://www.reichelt.de/de/de/shop/produkt/elko_radial\_10\_f\_50v\_rm2\_105\_c\_5000h\_20\_-376151}{Reichelt.de}& 0,30 \euro \\
+	\hline
+	Kondensator & 1 & radial, 100 \mu F, 10\,V, Raster 2.0\,mm & \includegraphics[width=3cm]{Applications/LoRa/BOM/PCBElements/Capacitor} & \href{https://www.reichelt.de/de/de/shop/produkt/elko\_radial\_100\_f\_10v\_rm2\_105\_c\_5000h\_20\_-228679}{Reichelt.de}& 0,30 \euro \\
+	\hline
+	JST XH Steckverbinder 2-polig& 1 & 1x2\,Polig, Raster 2,50\,mm, Vertikal & \includegraphics[width=3cm]{Applications/LoRa/BOM/PCBElements/jstXH2Pol} & \href{https://www.reichelt.de/de/de/shop/produkt/jst\_-\_stiftleiste\_gerade\_1x2-polig\_-\_xh-185073}{Reichelt.de} & 0,06 \euro \\
+	\hline
+	JST XH Buchsengehäuse 2-polig& 1 & 1x2\,Polig, Raster 2,50\,mm, Vertikal & \includegraphics[width=3cm]{Applications/LoRa/BOM/PCBElements/jstXH2PolConnector} & \href{https://www.reichelt.de/de/de/shop/produkt/jst\_-\_buchsengehaeuse\_1x2-polig\_-\_xh-185085}{Reichelt.de} & 0,06 \euro \\
+	\hline
+	JST XH Steckverbinder 3-polig& 2 & 1x3\,Polig, Raster 2,50\,mm, Vertikal & \includegraphics[width=3cm]{Applications/LoRa/BOM/PCBElements/jstXH3Pol} & \href{https://www.reichelt.de/de/de/shop/produkt/jst\_-\_stiftleiste\_gerade\_1x3-polig\_-\_xh-185074}{Reichelt.de} & 0,20 \euro \\
+	\hline
+	JST XH Buchsengehäuse 3-polig & 2 & 1x3\,Polig, Raster 2,50\,mm&\includegraphics[width=3cm]{Applications/LoRa/BOM/PCBElements/jstXH3PolConnector} & \href{https://www.reichelt.de/de/de/shop/produkt/jst\_-\_buchsengehaeuse\_1x3-polig\_-\_xh-185086}{Reichelt.de}& 0,09 \euro\\
+	\hline
+	Buchsenleiste & 2 & Raster 2,54\,mm, 1x14 gerade & \includegraphics[width=3cm]{Applications/LoRa/BOM/PCBElements/StackingHeader} & \href{https://www.reichelt.de/de/de/shop/produkt/buchsenleiste\_2\_54mm\_1x14\_gerade-266677?PROVID=2788&gad\_source=1\&gad\_campaignid=21154722893\&gbraid=0AAAAADwnxta6tNLFtzVSM507Cj-dUp9CI&gclid=EAIaIQobChMI2ZK4-KaljQMVLIpoCR2KiTkBEAQYBiABEgLrQ\_D\_BwE}{Reichelt.de}& 0,95 \euro \\	
+	\hline
+	Platine & 1 & \textbf{Gerber Files im Verzeichniss PCBProject zu finden} & \includegraphics[width=3cm]{Applications/LoRa/PCB/PCBforMKRWAN1310} & Bestelle bei: \href{https://jlcpcb.com}{jlcpcb.com} & 1,5 \euro{}, ca. 7\euro{} für 5 Stk.\\
+	\hline
+	Li-Ion Akku & 1 & 1800 mAh, 3,7 V & \includegraphics[width=3cm]{Applications/LoRa/BOM/battery} & \href{https://www.reichelt.de/de/de/shop/produkt/li-ion_akku_soldered_333284_1800_mah_3_7_v-373548}{Reichelt.de}& 9,15\euro \\
+	\hline
+	Echtzeituhr & 1 & DS1302 RTC & \includegraphics[width=3cm]{Applications/LoRa/BOM/RTC} & \href{https://botland.de/rtc-module/14303-echtzeituhr-ds1302-rtc-5903351241830.html}{Reichelt.de}& 0,90\euro \\
+	\hline
+\end{longtable}
+
+\newpage
+\section{Gehäuse\label{order:enclosureElements}}
+\begin{longtable}{|p{2cm}|p{1cm}|p{2.5cm}|p{3.2cm}|p{2cm}|p{1cm}|}
+	\caption{Materialliste für das Gehäuse} \\
+	\hline
+	Name & Menge & Parameter & Bild & Link & Preis \\
+	\hline
+	\endfirsthead
+	% Definicja nagłówka dla kolejnych stron tabeli:
+	\hline
+	Name & Menge & Parameter & Bild & Link & Preis \\
+	\hline
+	\endhead
+	
+	\hline
+	
+	\hline
+	Industriegehäuse & 1 & 160 x 80 x 55 mm, IP65 &  \includegraphics[width=3cm]{Applications/LoRa/BOM/Enclosure/enclosure} & \href{https://www.reichelt.de/de/de/shop/produkt/industriegehaeuse\_160\_x\_80\_x\_55\_mm\_ip66\_lichtgrau-324381?PROVID=2788\&gad\_source=1\&gad\_campaignid=21154720511\&gbraid=0AAAAADwnxtYieeAzGFBFIqKgqyskixnoZ\&gclid=CjwKCAjw3f\_BBhAPEiwAaA3K5H3Ur1ED3sH5FFOnmNg\_ZtsKsTG1nL9LyKFXIkIry4PYm-c0ukxMGBoC7sEQAvD\_BwE}{Reichelt.de} & 9,20\euro{} \\
+	\hline
+	Leuchtkappe & 1 & Transparent Passend für LED 5 mm & \includegraphics[width=2cm]{Applications/LoRa/BOM/Enclosure/ledCap} & \href{https://botland.de/fassungen-fur-leds/18765-led-5mm-halter-nylon-lang-transparent-10st-5904422302948.html}{Botland.de} & 1,50 \euro{} für 10 Stk.\\
+	\hline
+	RGB-LED & 1 & RGB-LED, 5 mm, bedrahtet, 4-Pin, rt/gn/bl & \includegraphics[width=3cm]{Applications/LoRa/BOM/Enclosure/ledRGB} & \href{https://www.reichelt.de/de/de/shop/produkt/rgb-led\_5\_mm\_bedrahtet\_4-pin\_rt\_gn\_bl\_8000\_mcd\_25\_-156358?PROVID=2788\&gad\_source=1\&gad\_campaignid=19009429580\&gbraid=0AAAAADwnxtaq0kx0T7NQS21E\_\_qHZYnok\&gclid=Cj0KCQjwuvrBBhDcARIsAKRrkjefPh5mXGCA3WnYvH1bsjQ2xhJYEtUrnXq0l\_wUkzwH92GLltz1MMgaAjRpEALw\_wcB}{Reichelt.de} & 0,35 \euro \\
+	\hline
+	Antennenadapterkabel & 1 & U.FL -SMA & \includegraphics[width=3cm]{Applications/LoRa/BOM/AntennaConnector} & \href{https://www.reichelt.de/de/de/shop/produkt/wlan\_kabel\_sma\_einbaubuchse\_mhf\_u\_fl-179772}{Reichelt.dr}& 5,10\euro\\
+	\hline
+	Wippschalter & 1 & EIN - AUS & \includegraphics[width=3cm]{Applications/LoRa/BOM/Enclosure/wippschalter} & \href{https://www.reichelt.de/de/de/shop/produkt/wippschalter\_1x\_aus\_schwarz\_i-o-154423?PROVID=2788\&gad\_source=1\&gad\_campaignid=21154722893\&gbraid=0AAAAADwnxtZvPnvuA8alIocNT3bL4l0WG\&gclid=Cj0KCQjwuvrBBhDcARIsAKRrkjceaDka5JsCxL9IzOPqVdtZmt4Bqw\_lS6kFcCtzjhfncKDJ9oa4ScYaAoh8EALw\_wcB}{Reichelt.de} & 2,30 \euro{} \\
+	\hline
+	Flachsteckerhülse & 4 & vollisoliert, 1,5 - 2,5 mm & \includegraphics[width=3cm]{Applications/LoRa/BOM/Enclosure/flatCableConnector} & \href{https://www.reichelt.de/de/de/shop/produkt/flachsteckerhuelse-vollisoliert\_breite\_6\_35mm\_blau-231369}{Reichelt.de} & 0,14 \euro{} \\
+	\hline
+	Jumper-Wires & 1  & Grove Universal-Kabel, 4-Pin, 20cm (5er-Pack) &  \includegraphics[width=3cm]{Applications/LoRa/BOM/jumperWire} & \href{https://www.reichelt.de/de/de/shop/produkt/arduino\_-\_grove\_universal-kabel\_4-pin\_20cm\_5er-pack\_-191148}{Reichelt.de} & 3,60 \euro{} per 5 Stk. \\
+	\hline
+	Antenne & 1 & LoRa 868 MHz Antenne SMA 3 dBi omnidirektional, Kippgelenk &  \includegraphics[width=2cm]{Applications/LoRa/BOM/delockAntenna} & \href{https://www.reichelt.de/de/de/shop/produkt/lora_868_mhz_antenne_sma_3_dbi_omnidirektional_kippgelenk-236860}{Reichelt.de} & 13,50\euro \\
+	\hline
+	Netzkabel & 1 & 3x 1,5 mm, 2,0 m, Belastungsgrenze 16 A & \includegraphics[width=3cm]{Applications/LoRa/BOM/PowerSupplyCable} & \href{https://www.reichelt.de/de/de/shop/produkt/netzkabel\_schutzkontaktstecker\_2\_m\_schw\_offenes\_ende-141822?PROVID=2788&gad\_source=1\&gad\_campaignid=21154720511\&gbraid=0AAAAADwnxtaq\_TlDR0SdASjJLcMwN-Y9F\&gclid=Cj0KCQjwgIXCBhDBARIsAELC9ZjhYLxl6RTDNCCIMN9quySrlwfTAceYC8yxdeiMDNWkU5m0xGQ8sdsaAkWCEALw\_wcB#closemodal}{Reichelt.de} & 8,20 \euro{} \\
+	\hline
+\end{longtable}
+
+
+
+\newpage
+\section{Nachbestellung der fehlenden Teilen}
+\begin{longtable}{|p{2cm}|p{1cm}|p{2.5cm}|p{3.2cm}|p{2cm}|p{1cm}|}
+	\caption{Materialliste der fehlenden Teile} \\
+	\hline
+	Name & Menge & Parameter & Bild & Link & Preis \\
+	\hline
+	\endfirsthead
+	
+	\hline
+	Name & Menge & Parameter & Bild & Link & Preis \\
+	\hline
+	\endhead
+	
+	\hline
+	Analoger AC-Sensor & 1 & bis zu 10 A mit Ausgangsspannung bis 1V & \includegraphics[width=2cm]{Applications/LoRa/BOM/AcDcSensor} & \href{https://botland.de/schwerkraft-stromsensoren/19898-schwerkraft-analoger-ac-sensor-bis-zu-10-a-dfrobot-sen0288-6959420915675.html}{Botland.de} & 22,90\euro  \\
+	\hline
+	Widerstand 330 $\Omega$ & 15 &  330~$\Omega$, SMD, DIN 1206 & \includegraphics[width=3cm]{Applications/LoRa/BOM/PCBElements/resistor}  & \href{https://www.reichelt.com/de/en/shop/product/smd\_chip\_resistor\_1206\_330\_ohm\_250\_mw\_1\_-238114}{Reichelt.de} & 0,18\euro \\
+	\hline
+	Widerstand 10 k$\Omega$ & 15 &  10 k$\Omega$, SMD, DIN 1206 & \includegraphics[width=3cm]{Applications/LoRa/BOM/PCBElements/resistor} & \href{https://www.reichelt.com/de/en/shop/product/smd\_chip\_resistor\_1206\_10\_ohm\_250\_mw\_1\_-238103}{Reichelt.de}& 0,13 \euro\\
+	\hline
+	Widerstand 100\,k$\Omega$ & 10 &  100k$\Omega$, SMD, DIN 1206 & \includegraphics[width=3cm]{Applications/LoRa/BOM/PCBElements/resistor}  & \href{https://www.reichelt.com/de/en/shop/product/smd\_chip\_resistor\_1206\_100\_ohm\_250\_mw\_1\_-238101}{Reichelt.de} & 0,09\euro \\
+	\hline	
+	Buchsenleiste & 5 & Raster 2,54\,mm, 1x14 gerade & \includegraphics[width=3cm]{Applications/LoRa/BOM/PCBElements/StackingHeader} & \href{https://www.reichelt.de/de/de/shop/produkt/buchsenleiste\_2\_54mm\_1x14\_gerade-266677?PROVID=2788&gad\_source=1\&gad\_campaignid=21154722893\&gbraid=0AAAAADwnxta6tNLFtzVSM507Cj-dUp9CI&gclid=EAIaIQobChMI2ZK4-KaljQMVLIpoCR2KiTkBEAQYBiABEgLrQ\_D\_BwE}{Reichelt.de}& 0,95 \euro \\	
+	\hline
+\end{longtable}
+
+%
+%\newpage
+%In this section it is included additional information, relevant for the project development among other technical, financial and theoretical explanations related to the Digitization of Meter's Digits, with an ESP32-CAM.
+%
+%
+%\bigskip
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%List of materials required for the project:
+%
+%\begin{itemize}
+%    \item \textbf{ESP32-CAM AI-Thinker} 
+%    
+%    \begin{itemize}
+%        \item Description: ESP32-CAM is a low-cost ESP32-based development board with onboard camera (OV2640), small in size. It is an ideal solution for \ac{iot} application, prototypes constructions and \ac{diy} projects. The board integrates WiFi, traditional Bluetooth and low power BLE , with 2 high-performance 32-bit LX6 CPUs.
+%        \item Link Datasheet: \url{https://media.digikey.com/pdf/Data%20Sheets/DFRobot%20PDFs/DFR0602_Web.pdf}
+%        \item Cost: Approximately 10 Euro.
+%    \end{itemize}
+%    
+%    \begin{figure}  
+%        \begin{center}
+%            \includegraphics[width=12cm, height=6cm]{ESP32/ListMaterialESP32CAM}
+%            \caption{ESP32-CAM.} 
+%            \label{fig:ESP32-CAM.}
+%            \footnotesize \textbf{Reference:} \cite{Elektor:2022}
+%        \end{center}
+%    \end{figure}	
+%    
+%    \item\textbf{OV2640 Camera} 
+%    
+%    \begin{itemize}
+%        \item Description: OV2640 Camera is a 2 Megapixel OV2640 camera module with an f3. 6mm lens. It contains a 24pin FPC interface. A wide-angle lens and 1632 x 1232 high resolution make it a perfect camera for Grove AI HAT for Edge Computing and other Sipeed serial board.
+%        \item Link Datasheet: \url{https://www.uctronics.com/download/cam_module/OV2640DS.pdf}
+%        \item Cost: Approximately 5 Euro.
+%    \end{itemize}
+%    \begin{figure}  
+%        
+%        \begin{center}
+%            \includegraphics[width=12cm, height=6cm]{ESP32/OV2640}
+%            \caption{OV2640 Camera.} 
+%            \label{fig:OV2640 Camera.}
+%            \footnotesize \textbf{Reference:} \cite{ArduCam:2022}
+%        \end{center}
+%    \end{figure}	
+%    
+%    \item \textbf{ESP32-CAM-MB USB Programmer} 
+%    
+%    \begin{itemize}
+%        \item Description: The ESP32-CAM AI-Thinker MB programmer is a shield that can be attached to the ESP32-CAM board GPIOs. The programmer comes with the CH340C USB to serial chip; this allows serial communication to the ESP32-CAM using the USB port on the shield. Additionally, the shield also comes with a RESET and a BOOT (IO0) buttons. This may be useful to easily reset the ESP32-CAM or put it into flashing mode.
+%        \item Link Datasheet: N/A
+%        \item Cost: Approximately 2 Euro.
+%    \end{itemize}
+%    
+%    \begin{figure}  
+%        \begin{center}
+%            \includegraphics[width=12cm, height=6cm]{ESP32/ListMaterialESP32MB}
+%            \caption{ESP32-CAM-MB USB Programmer.} 
+%            \label{fig:ESP32-CAM-MB USB Programmer.}
+%        \end{center}
+%    \end{figure}	
+%    
+%    \item \textbf{Secure Digital (SD) Card \(16 GB\)} 
+%    
+%    \begin{itemize}
+%        \item Description: A memory Secure Digital card is an electronic data storage device used for storing digital information, typically using flash memory. These are commonly used in digital portable electronic devices. They allow adding memory to such devices using a card in a socket instead of a protruding USB flash drives.
+%        \item Link Datasheet: \url{https://www.intenso.de/en/products/memory-cards/microsd-card-class-10}
+%        \item Cost: Approximately 5 Euro.
+%    \end{itemize}
+%    \begin{figure}  [H]
+%        \begin{center}
+%            \includegraphics[width=12cm, height=6cm]{ESP32/ListMaterialSDCard}
+%            \caption{Secure Digital Card.} 
+%            \label{fig:Secure Digital Card.}
+%        \end{center}
+%    \end{figure}	
+%    
+%    \item \textbf{ESP32-CAM Case} 
+%    
+%    \begin{itemize}
+%        \item Description: A case to store the ESP32-CAM module to make it easy for the user transportation, install, and handle.
+%    \end{itemize}
+%    
+%    \begin{figure}  
+%        \begin{center}
+%            \includegraphics[width=12cm, height=8cm]{ESP32/CamCase}
+%            \caption{ESP32-CAM Case.} 
+%            \label{fig:ESP32-CAM Case.}
+%            \footnotesize \textbf{Reference:} Designed by Author
+%        \end{center}
+%    \end{figure}	
+%    
+%    \item \textbf{USB cable - USB A / micro USB B}
+%    
+%    \begin{itemize}
+%        \item Description: USB 2.0 cable with A Male to Micro B connectors is a High-Speed Transmission device that supports up to 480 Mbps. It is mostly used for charging Android phones and tablets or connecting \ac{pc} peripherals such as hard drives, printers, and more. In this specific case, to enable the communication between \ac{pc} and ESP32-CAM.
+%        \item Link Datasheet: \url{https://www.tme.eu/Document/700e9581ffc48a630c6d37ae87e788bc/esb22.pdf}
+%        \item Cost: Approximately 3 Euro.
+%    \end{itemize}
+%    \begin{figure}  
+%        \begin{center}
+%            \includegraphics[width=12cm, height=6cm]{ESP32/ListMaterialUSB}
+%            \caption{USB cable - USB A / micro USB B.} 
+%            \label{fig:USB cable - USB A / micro USB B.}
+%        \end{center}
+%    \end{figure}	
+%\end{itemize}
+%\ac{sw} List of materials required for the project:
+%\begin{itemize}
+%    \item \textbf{Python v3.10.}
+%    
+%    \begin{itemize}
+%        \item Description: Python is a computer programming language often used to build websites and software, automate tasks, and conduct data analysis. Python is a general-purpose language, meaning it can be used to create a variety of different programs and isn't specialized for any specific problems.
+%        \item Link Release Notes: \url{https://docs.python.org/3/whatsnew/3.10.html}
+%        \item Cost: FREE - Open source.
+%    \end{itemize}
+%    
+%    \begin{figure}  
+%        \begin{center}
+%            \includegraphics[width=12cm, height=6cm]{ESP32/ListMaterialPython}
+%            \caption{Python 3.10.} 
+%            \label{fig:Python 3.10.}
+%        \end{center}
+%    \end{figure}			
+%    
+%    \item \textbf{Visual Studio Code v1.73.1.} 
+%    
+%    \begin{itemize}
+%        \item Description: \ac{vscode}, is a source-code editor made by Microsoft with the Electron Framework, for Windows, Linux and macOS. Features include support for debugging, syntax highlighting, intelligent code completion, snippets, code refactoring, and embedded Git.
+%        \item Link Release Notes: \url{https://code.visualstudio.com/updates/v1_73}
+%        \item Cost: FREE - Open source.
+%    \end{itemize}
+%    \begin{figure}  [H]
+%        \begin{center}
+%            \includegraphics[width=12cm, height=6cm]{ESP32/ListMaterialvscode}
+%            \caption{Visual Studio Code v1.73.1.} 
+%            \label{fig:Visual Studio Code v1.73.1.}
+%        \end{center}
+%    \end{figure}			
+%    
+%    \item \textbf{ESP-IDF \ac{vscode} Plug-In v1.5.1.} 
+%    
+%    \begin{itemize}
+%        \item Description: ESP-IDF is Espressif's official \ac{iot} Development Framework for the ESP32, ESP32-S, ESP32-C and ESP32-H series of SoCs. It provides a self-sufficient SDK for any generic application development on these platforms, using programming languages such as C and C++.
+%        \item Link Release Notes: \url{https://github.com/espressif/vscode-esp-idf-extension/releases/tag/v1.5.1}
+%        \item Cost: FREE - Open source.
+%    \end{itemize}
+%    \begin{figure}  
+%        \begin{center}
+%            \includegraphics[width=12cm, height=6cm]{ESP32/ListMaterialIDF}
+%            \caption{ESP-IDF Plug-In v1.5.1.} 
+%            \label{fig:ESP-IDF Plug-In v1.5.1.}
+%        \end{center}
+%    \end{figure}
+%\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section{Software Bill Of Materials (SBOM)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+

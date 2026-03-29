@@ -1,0 +1,118 @@
+%%%
+%
+% $Autor: Wings $
+% $Datum: 2021-05-14 $
+% $Pfad: ArduinoIDE2 $
+% $Dateiname: 
+% $Version: 4620 $
+%
+% !TeX spellcheck = de_DE/GB
+% !TeX program = pdflatex
+% !BIB program = biber/bibtex
+% !TeX encoding = utf8
+%
+%%%
+
+
+\chapter{Arduino IDE 2.3.x}\label{ArduinoIDE2}
+
+
+
+Dieses Kapitel bietet eine umfassende Untersuchung der Arduino-IDE und behandelt ihre Merkmale, Schnittstellenoptionen und Funktionen. Es enthält eine detaillierte Erläuterung des Zwecks und der Benutzerfreundlichkeit jeder Komponente, eine schrittweise Installationsanleitung und Anweisungen zur Initialisierung und Konfiguration der Umgebung. Mit diesem grundlegenden Überblick wird der Leser in die Lage versetzt, die IDE effektiv für die Programmierung und Fehlerbehebung von Arduino-kompatibler Hardware zu nutzen.
+
+
+
+
+\section{Beschreibung der Arduino IDE}\label{ArduinoIDE}
+
+Die Arduino IDE ist eine offizielle Open-Source-Software zum Bearbeiten, Kompilieren und Hochladen von Code auf Arduino-Module. Sie ist plattformübergreifend und kompatibel mit Betriebssystemen wie Windows, Linux und macOS. Die IDE basiert auf der Java-Plattform und unterstützt verschiedene Arduino-Module sowie die Programmierung in C und C++.
+
+Die Mikrocontroller auf den Arduino-Boards sind so programmiert, dass sie die in Form von Code bereitgestellten Informationen verarbeiten. Programme, die in der IDE geschrieben werden, werden als Sketches bezeichnet. Diese Skizzen erzeugen eine Hex-Datei, die dann an den Mikrocontroller übertragen und hochgeladen wird.
+
+Die IDE-Umgebung besteht aus zwei Hauptkomponenten: dem Editor und dem Compiler. Der Editor wird zum Schreiben von Code verwendet, während der Compiler den Code kompiliert und in das Arduino-Modul hochlädt.\cite{Fezari:2018} In der Version 2.3.3 der Arduino-IDE spielt die Menüleiste, die sich am oberen Rand der Benutzeroberfläche befindet, eine entscheidende Rolle, da sie Zugriff auf wichtige Befehle wie Hochladen, Überprüfen/Kompilieren und Speichern bietet. Darüber hinaus enthält sie das Dateimenü zum Öffnen neuer oder vorhandener Dateien und den Abschnitt Beispiele, der vorgefertigte Skizzen für verschiedene Anwendungen wie Blink und Fade bietet.
+
+
+
+
+
+\bigskip
+
+Die 6 Schaltflächen am oberen Rand des Bildschirms sind wie folgt:
+
+
+
+
+
+
+
+\begin{center}
+
+    \includegraphics[width=\textwidth]{Arduino/ArdiunoIDE2/menuboard}
+
+    \captionof{figure}{Menu Button}\label{fig::Menu Button}		
+\end{center}
+
+
+\bigskip
+
+
+%\newcommand{\icon}{\hbox{\includegraphics[viewport=800 0 720 35, clip=true,height=12pt]{Arduino/ArdiunoIDE2/MenuButton}}}
+\newcommand{\icon}{\raisebox{-1mm}{\tikz \node(n){\includegraphics[viewport=800 0 720 35, clip=true,height=12pt]{Arduino/ArdiunoIDE2/MenuButton}};}}
+
+\begin{itemize}
+    \item[\hbox{\includegraphics[viewport=6 0 34 30, clip=true,height=12pt]{Arduino/ArdiunoIDE2/MenuButton}}]	Das Häkchen im Symbol wird verwendet, um den geschriebenen Code zu überprüfen. Nachdem der Code eingegeben wurde, wird durch die Auswahl dieses Symbols auf Fehler geprüft und bestätigt, dass der Code richtig strukturiert ist. Dieser Schritt stellt sicher, dass der Code für die Verwendung mit der Hardware bereit ist.
+ \item[\hbox{\includegraphics[viewport=34 0 63 30, clip=true,height=12pt]{Arduino/ArdiunoIDE2/MenuButton}}]	Das Symbol \menu{Upload} in der Arduino IDE kompiliert Ihren Code und lädt ihn auf das angeschlossene Board hoch, so dass er lauffähig ist.
+ \item[\hbox{\includegraphics[viewport=60 0 88 30, clip=true,height=12pt]{Arduino/ArdiunoIDE2/MenuButton}}]	Das Symbol \menu{Start Debugging}
+ Symbol in der Arduino IDE startet eine Debugging-Sitzung, die es Ihnen ermöglicht, Ihren Code zu analysieren, indem Sie Haltepunkte setzen, durch die Ausführung schreiten und Variablen auf kompatiblen Boards untersuchen.
+ \item[\parbox{0mm}{\includegraphics[viewport=730 0 702 30, clip=true,height=12pt]{Arduino/ArdiunoIDE2/MenuButton}}] Das Icon \menu{Serial Plotter} in der Arduino IDE öffnet ein Tool, das die vom Board über die serielle Verbindung gesendeten Echtzeitdaten visualisiert und zur einfacheren Analyse als Graphen anzeigt.
+\item[\icon] Das Symbol \menu{Serial Monitor} in der Arduino IDE öffnet ein Terminal zum Anzeigen und Senden von textbasierten Daten über die serielle Verbindung und ermöglicht die Kommunikation mit dem angeschlossenen Board in Echtzeit.
+
+   
+\end{itemize}
+
+
+
+
+\Mynote{hier noch einmal die letzten Grafiken in der Auflistung nach links verschieben}
+
+
+
+
+
+\section{Installation der Arduino IDE}
+
+\subsection{Download der Arduino IDE}
+
+
+
+Der Arduino Nano 33 BLE Sense nutzt zur Programmierung die Arduino Software \textbf{Integrated Development Environment (IDE)}, die am weitesten verbreitete IDE für alle Arduino-Boards und kann sowohl online als auch offline ausgeführt werden. Diese Open-Source-IDE für Arduino vereinfacht das Schreiben von Code und das Hochladen auf das Board. Verschiedene Versionen der Software sind für jedes Betriebssystem (OS) verfügbar, einschließlich macOS, Linux und Windows. Die Arduino-Community bietet auch eine Online-Plattform für das Programmieren und Speichern von Skizzen in der Cloud. Dieser Online-Arduino-Editor ist die neueste Version der IDE und enthält alle Bibliotheken und Unterstützung für neue Arduino-Boards.
+Um auf diese Softwarepakete zuzugreifen, besuchen Sie die folgende Website: \HREF{https://www.arduino.cc/en/software}{Arduino-Software}, um auf dem Laufenden zu bleiben, da unter dem genannten Link täglich Updates verfügbar sind.
+
+
+
+Der Editor kann problemlos direkt von der Arduino-Software-Seite heruntergeladen werden. Die Download-Optionen sind in Abbildung ~\ref{Download} zu sehen.
+
+
+
+\begin{center}
+        \includegraphics[width=\linewidth]{Arduino/ArdiunoIDE2/DownloadInstallation2.2.3.png}
+        \captionof{figure}{Arduino IDE 2.3.3 Download}\label{Download}\label{fig:DownloadInstallation2.2.3.}
+\end{center}
+
+
+
+\subsection{Zusammenfassung der Optionen}
+
+
+
+Nachfolgend finden Sie eine Zusammenfassung ~\ref{fig:Summary} der verfügbaren Download-Optionen für die Arduino IDE, die auf verschiedene Betriebssysteme und individuelle Bedürfnisse zugeschnitten sind. Wählen Sie die passende Version für Ihr Gerät, um Kompatibilität und Zugang zu den neuesten Funktionen zu gewährleisten.
+
+
+\begin{center}\centering
+	\includegraphics[width=12cm]{Arduino/ArdiunoIDE2/SummaryOfOptions.png}
+	\captionof{figure}{Zusammenfassung der Download-Optionen}\label{fig:Summary}		
+\end{center}
+
+
+
+

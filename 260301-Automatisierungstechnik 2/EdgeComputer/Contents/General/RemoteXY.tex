@@ -1,0 +1,784 @@
+%%%%%%
+%
+% $Autor: Wings $
+% $Datum: 2019-03-05 08:03:15Z $
+% $Pfad: RemoteXY$
+% $Version: 4250 $
+% !TeX spellcheck = en_GB/de_DE
+% !TeX encoding = utf8
+% !TeX root =  
+% !TeX TXS-program:bibliography = txs:///biber
+%
+%%%%%%
+
+\chapter{RemoteXY}\label{RemoteXY}
+
+%\section{Kurze Beschreibung}
+%\section{Funktionalitäten}
+%\section{SW-Package}
+%\subsection{Kurzbeschreibung}
+%\subsection{Installation App}
+
+%- RemoteXY: Arduino Control im Google PlayStore suchen
+%- Installieren:
+%
+%![Installation RemoteXY](/ESP32/Images/ESP32/RemoteXY/InstallationRemoteXY.jpg)
+%
+%- Beim Öffnen der App wird nach der Zustimmung zu den Datenschutzrichtlinien gefragt:
+%
+%![RemoteXY Zustimmung Berechtigungen](/ESP32/Images/ESP32/RemoteXY/RemoteXYZustimmungBerechtigungen.jpg)
+%
+%- Den Datenschutzrichtlinien muss zugestimmt werden. Andererseits lässt sich die App nicht öffnen
+%- Verschiedene Berechtigungen wie die Freigabe von Bluetooth werden bei der jeweiligen Verwendung abgefragt
+%- Mit der Zustimmung (Agree Button) erfolgt eine Weiterleitung zum Home Screen 
+%
+%![RemoteXY Home Screen](/ESP32/Images/ESP32/RemoteXY/RemoteXYHomeScreen.jpg)
+%
+%Hier sind folgende Optionen möglich:
+%- Über das + in der oberen rechten Ecke können neue Geräte zur Verwendung mit der App verbunden werden:
+%
+%![RemoteXY Add Device](/ESP32/Images/ESP32/RemoteXY/RemoteXYAddDevice.jpg)
+%
+%Außerdem in der oberen rechten Ecke zu finden ist ein QR-Code Leser  
+%
+%Über die drei Linien in der oberen linken Ecke können ebenfalls neue Geräte verbunden werden. Außerdem hier zu finden sind:
+%- Die Lizens zur PRO Version (kostenpflichtig: 1,09€/per Monat [jeder Zeit über die GooglePlay APP kündbar]  oder einmaliger Kauf 21€)
+%
+%![RemoteXYLicense](/ESP32/Images/ESP32/RemoteXY/RemoteXYLicense.jpg)
+%
+%- Eine Anleitung "For developers" zur Verwendung der App mit Links zu verschiedenen Tutorials und Beispielen auf der Website von RemoteXY
+%- Einstellungen
+%- Entwickler Informationen zur App
+%
+%![RemoteXY Optionen](/ESP32/Images/ESP32/RemoteXY/RemoteXYOptionen.jpg)
+%
+%\begin{center}
+%	\includegraphics[width=0.7\linewidth]{Arduino/ArdiunoIDE2/OpenTheDownloadFolder.png}
+%	\captionof{figure}{Open the Downloadf folder}
+%\end{center}
+%
+%\subsection{Installation}
+%Herunterladen der Bibliothek über GitHub:
+%https://github.com/RemoteXY/RemoteXY-Arduino-library
+%
+%Die Bibliothek stellt die Funktionalität von RemoteXY zur Verwendung in Arduino IDE-Skizzen bereit.
+%
+%Installation der Bibliothek in Arduino IDE:
+%
+%Methoden:
+%1. Bibliotheksmanager:
+%- Öffnen der IDE und Klicken auf das Sketch -Menü
+%- Bibliothek einbinden > Bibliotheken verwalten
+%- Suche mit dem Schlüsselwort RemoteXY
+%- RemoteXY Installieren.
+%
+%2. ZIP-Datei ohne Entpacken
+%- öffnen von: https://remotexy.com/en/library/ 
+%- Laden der ZIP-Datei der (neusten Version) über den Link aus der Tabelle unten auf der Website (siehe Abbildung)
+%- NICHT Entpacken der heruntergeladenen Bibliothek 
+%- SONDERN: Öffnen der Arduino IDE und navigieren zu:
+%- Sketch > Include Library 
+%- Wählen der Option Add .ZIP Library in der Dropdown-Liste
+%- Navigieren zum Speicherort der .zip-Datei und Öffnen 
+%
+%3. ZIP-Datei mit Entpacken
+%- Laden der selben ZIP-Datei 
+%- In das Bibliotheksverzeichnis des Skizzenbuchordners entpacken
+%- Den Speicherort des Skizzenbuchordners ist zu finden unter:
+%Datei > Einstellungen > Skizzenbuchspeicherort
+%
+%![Bibliothek Zip-Datei Download](/ESP32/Images/ESP32/RemoteXY/RemoteXYBibliothekDownload.png)
+%\subsection{Beschreibung der Funktionen/Methoden}
+%\subsection{Simple Example}
+%\section{Kleine Anwendung}
+%
+%
+%
+%Ursprung zur Idee
+%- Überwiegende Mehrheit der Projekte kommuniziert über serielle Schnittstellen oder winzige Displays
+%- Sensoren an schwer zugänglichen Stellen platzieren
+%- Datenauslese über Displays nahezu unmöglich
+%- Auswertung über App schön aber nicht trivial zu schreiben
+%
+%- Mikrocontroller-Anwendungen arbeiten alle auf die gleiche Weise:
+%-> Smartphone  -- Kommandos--> Mikrocontroller
+%-> Mikrocontroller --aktueller Zustand --> Smartphone
+%-> Smartphone: Visuelle Aufbereitung und Kontrollelemente zur Steuerung
+%
+%## Daten 
+%https://remotexy.com/
+%- Low-Code Plattform
+%
+%Gerüst:
+%1. Grafischer UI-Editor: läuft im Browser, dient Erstellung Smartphone Anwendung
+%2. Software-Bibliothek: Kompatibel mit verschiedenen Mikrocontrollern: Arduino Nano, Kommunikation: Bluetooth
+%3. Smartphone-App: Plattform erstellt Quellcode für Mikrocontroller, wird zsm. mit Bibliothek übersetzt
+%
+%Funktionen:
+%- Features auf Mikrocontroller Board
+%- Firmware muss UI-Elemente befüllen und auf Nutzereingaben reagrieren
+%
+%
+%
+%# Remote XY  
+%Entwickler: Evgenii Shemanuev  
+%Kontakt: E-Mailinfo@remotexy.com
+%
+%## RemoteXY Editor 
+%Unter: https://remotexy.com ist der RemoteXY Editor zu finden. Mit dem Editor lässt sich die Benutzeroberfläche designen, die über die RemoteXY App aufgerufen und gesteuert werden kann. 
+%
+%
+%## Arduino Projekt 
+%
+%Unterstützte Boards:  
+%- Arduino UNO, MEGA, Leonardo,Pro Mini, Nano, MICRO, kompatible AVR- Boards;
+%-ESP8266-Karten;
+%- **ESP32-Boards**;
+%-STM32F1-Karten;
+%-nRF51822-Karten
+%
+%Unterstützte Kommunikationsmodule:
+%- Bluetooth HC-05, HC-06 oder kompatibel;
+%- Bluetooth BLE HM-10 oder kompatibel;
+%- ESP8266 als Modem;
+%- Ethernet W5100, W5500;
+%
+%Unterstützte IDE:
+%- Arduino-IDE;
+%- FLProg-IDE;
+%
+%## Installation Arduino IDE
+%
+%Arduino IDE 2  
+%Neuste Version: Arduino IDE 2.3.3  
+%Herausgeber: Arduino SA  
+%
+%Kompatibel mit:
+%
+%- Windows: Win 10 (64-bit) or newer
+%- macOS: 10.15: “Catalina” or newer, 64-bit
+%- Linux: 64-bit
+%
+%Benötigter Speicher: 499.1 MB  
+%
+%- Download und Installationslinks für Windows, macOS und Linux sind zu  
+%finden unter:  
+%https://support.arduino.cc/hc/en-us/articles/360019833020-Download-and-install-Arduino-IDE
+%- Außerdem auf der Website zu finden sind weitere Installationsmethoden wie die Installation über eine ZIP-Datei und Hilfestellungen zur Installation 
+%- Je nach System auf den ersten Link gehen :Download the latest release
+%
+%![Install ArduinoIDE](/ESP32/Images/ESP32/ArduinoIDE/Installation/InstallArduinoIDE.jpg)
+%
+%- Meist oben in der rechten Ecke des Browsers ist der Stand des Downloads nachvollziehbar
+%
+%![Download Arduino Installer](/ESP32/Images/ESP32/ArduinoIDE/Installation/DownloadArduinoInstaller.png)
+%
+%- Doppelklick auf den abgeschlossenen Download
+%- Andernfalls unter den Download Dateien des Rechners nachsehen und hier mit Doppelklick die soeben gedownloadete Arduino IDE Datei öffnen
+%- Es erscheint ein Lizenz Abkommen zur Installation der Arduino IDE
+%
+%![Lizensabkommen ArduinoIDE](/ESP32/Images/ESP32/ArduinoIDE/Installation/LizensabkommenArduinoIDE.jpg)
+%
+%- Dieses Abkommen muss angenommen werden, um die IDE installieren zu können
+%- Als nächstes kann eine Entscheidung für die Installation auf einen oder alle Benutzer des Geräts getroffen werden
+%- Im nächsten Fenster wird das Zielverzeichnis und damit der Speicherort der Installation festgelegt
+%
+%![Zielverzeichnis ArduinoIDE](/ESP32/Images/ESP32/ArduinoIDE/Installation/ZielverzeichnisArduinoIDE.jpg)
+%
+%- Hier einen für den Nutzer passenden Speicherort wählen
+%- Mit dem Klick auf "Weiter" startet die Installation
+%- Sobald die Installationsprozesse Abgeschlossen sind kann die Installation mit einem Klick auf "Fertigstellen" beendet werden
+%
+%![Abgeschlossene Installation ArduinoIDE](/ESP32/Images/ESP32/ArduinoIDE/Installation/AbgeschlosseneInstallationArduinoIDE.jpg)
+%
+%- Windows hat hier eine Sicherheitsabfrage, ob der Zugriff von öffentlichenn und private Netzwerken auf die App gestattet werden soll
+%- Hier mit "Zulassen" bestätigen
+%
+%
+%
+%## RemoteXY Bibliothek 
+%
+%
+%
+%## Eigene Anwendung 
+%# Smartphone- App  
+%Mit der "RemoteXY: Arduino Control" App lassen sich die grafischen Benutzeroberflächen zur mobilen Steuerung der Controller- Boards erstellen.
+%
+%Version:  
+%4.15.06 (Aktualisiert am 10.10.2024)
+%
+%Erforderliche Android-Version:  
+%4.0 oder höher
+%
+%Downloadgröße:  
+%5MB 
+%
+%App Berechtigungen:  
+%Standort:  
+%Ungefährer Standort (netzwerkbasiert)
+%Genauer Standort (GPS- und netzwerkbasiert)
+%
+%WLAN-Verbindungsinformationen:  
+%WLAN-Verbindungen abrufen
+%
+%Fotos/Medien/Dateien:  
+%USB-Speicherinhalte lesen
+%
+%Speicher:  
+%USB-Speicherinhalte lesen
+%
+%Kamera:  
+%Bilder und Videos aufnehmen
+%
+%Sonstiges:  
+%Netzwerkverbindungen abrufen
+%mit Bluetooth-Geräten koppeln
+%Auf Bluetooth-Einstellungen zugreifen
+%Netzwerkkonnektivität ändern
+%WLAN-Verbindungen herstellen und trennen
+%Zugriff auf alle Netzwerke
+%
+%Datensicherung:  
+%Erfasste Daten:  
+%E-Mail-Adresse - optionale Personalisierung   
+%RemoteXY Account:  
+%Erstellung über Email  
+%Profil Name  
+%Profil Bild  
+%Location :  
+%Wird für Android und iOS Geräte zum Suchen und Verbinden von 	Bluetooth- und WLAN Kommunikationskanälen verwendet. Die Daten 	werden laut Entwickler nicht gesammelt oder gespeichert.
+%Google Account Name:  
+%Sammeln der Google Account Email Adresse bei Eingabe eines Aktionscodes.
+%Nutzungs- und Protokollinformationen:  
+%servicebezogene, diagnostische und Leistungsinformationen. Informationen über 	Aktivität, Protokolldateien sowie Diagnose-, Absturz-, Website- und	Leistungsprotokolle und -berichte. 
+%Kundensupport:  
+%Optionale Bereitstellung von Informationen zur Kontaktaufnahme im Kundensupport, beispielsweise E-Mail 
+%Transaktionsinformationen:  
+%Optionales bezahlen für Dienste, Informationen und Bestätigungen, wie etwa Zahlungsbelege, auch von App-Stores oder anderen Dritten, die Ihre Zahlung verarbeiten.
+%Cookies:  
+%Betreiben und Bereitstellen von Diensten, Auswahl von 	Einstellungen wie Spracheinstellungen, zum Speichern und Anpassen
+%
+%
+%Sicherheitsmaßnahmen:  
+%Daten werden bei der Übertragung verschlüsselt
+%Daten können nicht gelöscht werden
+%Der Entwickler bietet keine Möglichkeit, das Löschen deiner Daten zu beantragen
+%
+%RemoteXY is committed to ensuring that your privacy is protected. Should we ask you to provide certain information by which you can be identified 	when using this service, then you can be assured that it will only be used in accordance with this privacy statement.
+%
+%RemoteXY may change this policy from time to time by updating this page. You should check this page from time to time to ensure that you are 	happy with any changes. This policy is effective from 1st May 2017. 
+%
+%
+%
+%
+%## Konfiguration 
+%# Test  
+
+
+
+
+\section{Allgemeines – Was ist RemoteXY?}
+
+RemoteXY ist eine grafische Benutzeroberfläche zur Fernsteuerung und Überwachung von Mikrocontroller-basierten Systemen wie Arduino, ESP32 oder STM32. Das Tool ermöglicht die einfache Erstellung von mobilen Bedienoberflächen (Apps) zur Interaktion mit eingebetteten Systemen, ohne dass tiefergehende Kenntnisse in App-Entwicklung erforderlich sind. Die Steuerung erfolgt über Bluetooth, WLAN oder \ac{usb}, wobei grafische Elemente wie Taster, Schieberegler oder Anzeigen per Drag-and-Drop zusammengestellt werden können. \cite{EVCodeLabs:2025c}
+
+\section{Anwendungsbereiche}
+
+RemoteXY wird in einer Vielzahl von technischen und industriellen Bereichen eingesetzt, insbesondere dort, wo Mikrocontroller-basierte Systeme einfach und drahtlos bedient werden sollen.
+RemoteXY findet Anwendung in verschiedenen technischen Einsatzgebieten. Typische Einsatzbereiche sind unter anderem die Fernsteuerung von Robotik- oder Automatisierungsprojekten, wie beispielsweise mobilen Robotern oder drahtlosen Sensornetzwerken. Darüber hinaus wird RemoteXY häufig zur Entwicklung von Konfigurations- und Diagnose-Interfaces für eingebettete Systeme eingesetzt. Ein weiterer wesentlicher Anwendungsfall ist die Prototypenentwicklung, bei der eine schnelle Visualisierung und intuitive Benutzerinteraktion im Vordergrund stehen.\cite{EVCodeLabs:2025c} \cite{EVCodeLabs:2025b}
+
+\section{Bausteine \ac{gui}}
+
+In RemoteXY sind die verfügbaren GUI-Bausteine (grafischen Bedienkomponenten) in verschiedene Kategorien unterteilt, die jeweils eine bestimmte Funktion erfüllen. Die wichtigsten Gruppen sind Control, Sensor, Indication und Decoration. \cite{EVCodeLabs:2025d}
+
+\subsection{Controls - Steuerungselemente}
+Diese Komponenten (Abb. \ref{gui-Kontrollbausteine}) dienen der direkten Eingabe von Benutzerbefehlen, die an das Mikrocontroller-System übertragen werden. Sie ermöglichen eine aktive Steuerung von Aktoren oder Programmabläufen. \cite{EVCodeLabs:2025e}
+
+\begin{itemize}
+	\item \textbf{Beispiele:} Button, Toggle-Switch, Joystick, Slider
+	\item \textbf{Anwendung:} Einschalten eines Motors, Verändern eines Sollwerts, Navigieren eines Roboters
+\end{itemize}
+
+\begin{center} 
+
+	\includegraphics  [width=4cm]{RemoteXY/Controls}
+	\captionof{figure}{\ac{gui}-Kontrollbausteine \cite{EVCodeLabs:2025d}}	\label{gui-Kontrollbausteine}
+\end{center}
+
+\subsection{Sensor - Sensoranzeigen}
+Diese Elemente (Abb. \ref{gui-Sensorbausteine}) stellen Rohdaten von Sensoren oder analoge Werte auf der Benutzeroberfläche dar. Sie dienen in erster Linie der Visualisierung von Eingangsdaten, die vom Mikrocontroller gelesen werden. \cite{EVCodeLabs:2025d}
+
+\begin{itemize}
+	\item \textbf{Beispiele:} Analoganzeige (Level Bar), Graph, Temperaturanzeige
+	\item \textbf{Anwendung:} Anzeige von Spannung, Temperatur, Feuchtigkeit oder Geschwindigkeit
+\end{itemize}
+
+\begin{center} 
+	\includegraphics  [width=4cm]{RemoteXY/Sensors}
+	\captionof{figure}{\ac{gui}-Sensorbausteine \cite{EVCodeLabs:2025d}}
+	\label{gui-Sensorbausteine}
+\end{center}
+
+\subsection{Indication -Statusanzeigen}
+Diese Bausteine (Abb. \ref{gui-Indicationbausteine}) dienen zur Darstellung von Statusinformationen oder binären Zuständen des Systems. Sie bieten eine einfache Möglichkeit, den aktuellen Zustand einer Funktion visuell darzustellen. \cite{EVCodeLabs:2025f}
+
+\begin{itemize}
+	\item \textbf{Beispiele:} LED-Indikator, Textanzeige, Icon-Anzeige
+	\item \textbf{Anwendung:} Anzeige ob ein Relais aktiv ist, Fehlermeldungstexte, Signalstatus
+\end{itemize}
+
+\begin{center} 
+	\includegraphics  [width=4cm]{RemoteXY/Indications}
+	\captionof{figure}{\ac{gui}-Indicationbausteine \cite{EVCodeLabs:2025d}}\label{gui-Indicationbausteine}
+\end{center}
+
+\subsection{Decoration - Dekorationselemente}
+Diese Gruppe (Abb. \ref{gui-Decorationbausteine}) beinhaltet rein grafische und layoutbezogene Elemente, die keine direkte Funktionalität zur Datenverarbeitung haben, aber die Bedienoberfläche strukturieren und gestalten. \cite{EVCodeLabs:2025f}
+
+\begin{itemize}
+	\item \textbf{Beispiele:} Trennlinien, Hintergrundfarben, Textfelder, Rahmen
+	\item \textbf{Anwendung:} Gruppierung von Steuerelementen, Einfügen von Beschriftungen, optische Gliederung
+\end{itemize}
+
+\begin{center} 
+	\includegraphics  [width=4cm]{RemoteXY/Decoration}
+	\captionof{figure}{\ac{gui}-Decorationbausteine \cite{EVCodeLabs:2025d}}\label{gui-Decorationbausteine}
+\end{center}
+
+
+\section{Technische Daten und unterstützte Komponenten}
+
+RemoteXY unterstützt eine Vielzahl technischer Komponenten und Schnittstellen, wodurch es flexibel in unterschiedlichen Mikrocontroller-Umgebungen eingesetzt werden kann. Die Plattform ist kompatibel mit verbreiteten Mikrocontroller-Boards wie dem Arduino UNO, Mega, Nano, sowie mit ESP8266, ESP32 und STM32. Als Kommunikationsschnittstellen stehen Bluetooth (beispielsweise HC-05/06 und BLE), WLAN (z.B. über ESP-Module) sowie \ac{usb} zur Verfügung. Je nach Projektanforderung kann entweder eine Direktverbindung oder eine Remote-Verbindung über das Internet hergestellt werden. RemoteXY ermöglicht zudem die Einbindung verschiedenster Steuerelemente wie Taster, Schieberegler, Anzeigen, \ac{led}s oder Graphen. Die Programmierung erfolgt in C/C++, wobei RemoteXY automatisch generierten Code für die Arduino IDE zur Verfügung stellt.
+
+\section{Anwendung}
+Die Nutzung von RemoteXY setzt zwei Hauptkomponenten voraus:
+\begin{enumerate}
+	\item \textbf{Online-Interface-Designer:} erreichbar unter \url{https://remotexy.com}
+	\item \textbf{Mobile App:} RemoteXY-App für Android oder iOS über den jeweiligen App Store
+\end{enumerate}
+Nach Gestaltung der Benutzeroberfläche im Online-Editor wird der passende Arduino-Code automatisch generiert und kann direkt in die Arduino IDE kopiert und auf den Mikrocontroller hochgeladen werden.
+
+
+\textbf{Hinweis: Um den vollen Umfang der RemoteXY-App zu nutzen, wird eine \glqq PRO license \grqq{} benötigt. Hierzu stehen zwei Zahlungsmethoden zur Verfügung: 0,99 € / Monat oder einmalig 22,99€. Ohne diese Lizenz, kann die App dauerhaft nur mit fünf Grafikelementen genutzt werden. Werden ohne die Lizenz mehr als diese genutzt, ist die Anwendung pro Start nur für 20 Sekunden nutzbar.\cite{EVCodeLabs:2025g}}
+
+\section{Generelle Arbeitsweise}
+RemoteXY generiert eine Kommunikationsstruktur zwischen der grafischen Oberfläche auf dem mobilen Endgerät und dem Mikrocontroller. Die \ac{gui}-Elemente werden durch RemoteXY im Code als Variablen abgebildet und können im Sketch wie normale Programmparameter verwendet werden. Die Datenübertragung erfolgt dabei über eine ausgewählte physikalische Verbindung (z.B. Bluetooth), wodurch Steuerungsbefehle und Sensordaten in Echtzeit übertragen werden.
+
+\section{Funktionen}
+
+RemoteXY bietet eine breite Palette an Funktionen:
+
+\begin{itemize}
+	\item Visuelle Gestaltung der App per Drag-and-Drop
+	\item Unterstützung von Live-Kommunikation (bidirektional)
+	\item Automatische Codegenerierung für Mikrocontroller
+	\item Integration von Parametern, Bedingungen und Echtzeitauswertung
+	\item Export-/Importfunktion von Projekten für kollaboratives Arbeiten
+\end{itemize}
+
+\section{RemoteXY und Arduino}
+
+Die Interaktion zwischen RemoteXY und einem Arduino-Mikrocontroller basiert auf einem Client-Server-Modell, bei dem der Mikrocontroller als Host fungiert und die RemoteXY-Applikation auf einem mobilen Endgerät als Client. Die Kommunikation erfolgt über eine serielle Schnittstelle, wobei gängige Übertragungsarten Bluetooth (z.B. HC-05/HC-06, \ac{ble}), \ac{wifi} (z.B. ESP8266/ESP32) oder \ac{usb} genutzt werden können.
+Die grafische Benutzeroberfläche (\ac{gui}) wird mithilfe des RemoteXY-Webinterfaces erstellt und konfiguriert. Ausgehend von dieser Konfiguration wird automatisch generierter Quellcode in C/C++ bereitgestellt, welcher in der Arduino-IDE in ein entsprechendes Steuerungsprogramm integriert wird. Dieser Code übernimmt die Kommunikation zwischen dem Mikrocontroller und der App sowie die Verarbeitung der Benutzereingaben und die Rückmeldung von Systemzuständen.
+Durch die direkte Anbindung und Echtzeitübertragung von Daten ermöglicht RemoteXY die Entwicklung und Implementierung mobiler Steuer- und Visualisierungslösungen ohne tiefgehende Kenntnisse in der App-Entwicklung. Das System eignet sich daher insbesondere für den Einsatz in Prototypen, eingebetteten Systemen sowie in der Lehr- und Demonstrationsumgebung.
+
+\section{Bibliotheken}
+\subsection{Verwendung der RemoteXY Bibliothek}
+\label{RemoteXYBibliothek}
+
+Die \textbf{RemoteXY-Bibliothek} ist eine Bibliothek, die speziell entwickelt wurde, um die Kommunikation zwischen Mikrocontrollern (wie Arduino) und mobilen Geräten über Bluetooth oder \ac{wifi} zu erleichtern. Sie ermöglicht es, eine grafische Benutzeroberfläche (\ac{gui}) zu erstellen, die über eine App auf einem mobilen Gerät (Android) gesteuert wird. Diese Bibliothek wird benötigt, weil sie eine einfache und benutzerfreundliche Möglichkeit bietet, drahtlose Steuerungen und Visualisierungen zu erstellen.
+
+\subsection{Warum wird die RemoteXY-Bibliothek benötigt?}
+
+\textbf{Erstellung der grafischen Benutzeroberfläche (\ac{gui})}:
+
+Die RemoteXY-Bibliothek ermöglicht es, eine benutzerdefinierte GUI zu erstellen, die auf einem mobilen Gerät (Android) angezeigt wird. Über diese \ac{gui} können verschiedene Eingabekomponenten wie Schieberegler, Tasten, Joysticks und andere Steuerelemente integriert werden. Ohne diese Bibliothek müsste eine kompliziertere und zeitaufwändigere Lösung für die Erstellung einer benutzerdefinierten \ac{gui} und die Kommunikation zwischen Mikrocontroller und App entwickelt werden.\vspace{0.3cm}
+
+\textbf{Einfache Kommunikation über Bluetooth}:
+
+RemoteXY übernimmt die gesamte Kommunikation zwischen dem Mikrocontroller und der mobilen App. Dies umfasst die Verbindungseinrichtung, den Datenaustausch und die Verwaltung von Verbindungsstatus. Die Bibliothek sorgt dafür, dass alle Daten über Bluetooth zwischen den Geräten effizient übertragen werden, ohne dass sich um komplexe Kommunikationsprotokolle gekümmert werden muss.\vspace{0.3cm}
+
+\textbf{Vereinfachung der Code-Entwicklung}:
+
+Die RemoteXY-Bibliothek abstrahiert viele der niedrigeren Ebenen der Kommunikation, was den Entwicklungsaufwand reduziert. Anstatt sich mit der Bluetooth-Protokollstack-Implementierung oder der Verwaltung der seriellen Kommunikation selbst auseinanderzusetzen, bietet RemoteXY eine einfache \ac{api}, mit der schnell Funktionen und Steuerelemente definiert werden können, die auf einer App angezeigt und vom Mikrocontroller verarbeitet werden.\vspace{0.3cm}
+
+\textbf{Kompatibilität mit Mobilgeräten}:
+
+RemoteXY ermöglicht es, Mobilgeräte als Steuerelemente für Projekte zu nutzen. Ohne diese Bibliothek müssten alternative Lösungen entwickelt werden, die möglicherweise auf Web-Servern oder komplexen Bluetooth-Bibliotheken basieren, was den Entwicklungsaufwand und die Komplexität erhöhen würde. RemoteXY stellt sicher, dass die App einfach mit dem Mikrocontroller verbunden wird, indem sie die spezifischen Details der Verbindung und des Datenformats verwaltet.\vspace{0.3cm}
+
+\textbf{Echtzeit-Interaktion}:
+
+Die Bibliothek sorgt dafür, dass die Interaktionen in Echtzeit geschehen, d. h. Eingaben auf der mobilen App werden sofort an den Mikrocontroller weitergegeben, der dann darauf reagieren kann. Dies ist besonders wichtig für Anwendungen, bei denen schnelle Reaktionen erforderlich sind.\cite{EVCodeLabs:2025b,EVCodeLabs:2025h,EVCodeLabs:2025i}
+
+
+\subsection{Installation der RemoteXY-Bibliothek}
+
+\subsection{Ziel}
+Diese Anleitung beschreibt die Installation der \textbf{RemoteXY-Bibliothek} in der Arduino IDE (Version 1.x oder 2.x) auf formalisierte Weise. \cite{EVCodeLabs:2025h}
+
+\subsection{Schritte zur Installation über den Bibliotheksverwalter}
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+	\item \textbf{Arduino IDE öffnen}
+
+	Starte die Arduino IDE. Stelle sicher, dass eine stabile Internetverbindung besteht.
+
+	\item \textbf{Bibliotheksverwalter öffnen (Abb. \ref{fig:Auswahl des Bibliotheksmanagers})}
+	Navigiere zu: \menu{Sketch > Bibliothek einbinden > Bibliothek verwalten...}
+
+	Alternativ über: \menu{Werkzeuge > Bibliotheken verwalten…}
+
+	\begin{center} 
+		\includegraphics  [width=13cm]{RemoteXY/BibChoice}
+		\captionof{figure}{Auswahl des Bibliotheksmanagers}
+		\label{fig:Auswahl des Bibliotheksmanagers}
+	\end{center}
+
+
+	\item \textbf{Nach RemoteXY suchen (Abb. \ref{fig:Suche und Installation der Bibliothek})}
+
+	Gib im Suchfeld oben rechts \texttt{RemoteXY} ein. Die Bibliothek \texttt{RemoteXY Library} sollte erscheinen.
+
+	\item \textbf{Installation durchführen (Abb. \ref{fig:Suche und Installation der Bibliothek})}
+
+	Klicke auf den Button \texttt{Installieren} neben der Bibliothek. Nach Abschluss erscheint ein grüner Haken.
+
+	\begin{center} 
+
+		\includegraphics  [width=8cm]{RemoteXY/BibChoice2}
+		\captionof{figure}{Suche und Installation der Bibliothek}
+		\label{fig:Suche und Installation der Bibliothek}
+	\end{center}
+
+	\item \textbf{Installation überprüfen (Abb. \ref{Ifig:Installation überprüfen})}
+
+	Im seriellen Monitor überprüfen, ob die Installation abgeschlossen wurde.
+\end{enumerate}
+
+\begin{center} 
+	\includegraphics  [width=13cm]{RemoteXY/Messages}
+	\captionof{figure}{Installation überprüfen}
+	\label{Ifig:Installation überprüfen}
+\end{center}
+
+\subsection{Nach erfolgreicher Installation}
+\begin{itemize}
+	\item Die Bibliothek kann nun direkt in Sketchen verwendet werden.
+	\item Beispielprojekte sind verfügbar unter: \menu{Datei > Beispiele > RemoteXY}
+\end{itemize}
+\cite{EVCodeLabs:2025h}
+
+\subsection{RemoteXY-Bibliothek: Zentrale Funktionen}
+
+
+
+Die RemoteXY-Bibliothek stellt die Verbindung zwischen einem Mikrocontroller (z.\,B.\ Arduino) und der RemoteXY-App her. Im Folgenden werden die zentralen Funktionen und Strukturen aufgeführt. \cite{EVCodeLabs:2025j}
+
+\begin{itemize}
+	\item \textbf{\PYTHON{RemoteXY\_Init();}}
+
+	Initialisiert die RemoteXY-Schnittstelle entsprechend der Konfiguration (z.\,B.\ Bluetooth, \ac{wifi}). Muss einmalig im \texttt{\PYTHON{setup()}} aufgerufen werden.
+
+	\item \textbf{\PYTHON{RemoteXY\_Handler();}}
+
+	Diese Funktion muss zyklisch in der \PYTHON{loop()}-Funktion aufgerufen werden. Sie verarbeitet eingehende Steuerbefehle und aktualisiert die zugehörigen Variablen.
+
+	\item \textbf{\PYTHON{RemoteXY\_delay(200);}}
+
+	Alternative zu \PYTHON{delay()}. Diese Funktion pausiert das Programm, ohne die Verarbeitung der RemoteXY-Verbindung zu blockieren.
+
+	\item \textbf{\PYTHON{uint8\_t RemoteXY\_CONF[] = { ... };}}
+
+	Dieses Array wird automatisch vom RemoteXY-Editor generiert und enthält die \ac{gui}-Struktur in binärer Form.
+
+\end{itemize}
+
+
+\section{Further Readings}
+
+
+Blynk ist ein einfacher und leistungsstarker No-Code-Anwendungs-Builder, mit dem du vernetzte elektronische Geräte in beliebigem Umfang – von deinen persönlichen Projekten bis hin zu Millionen von Produkten für deine Kunden – entwerfen, bereitstellen und verwalten kannst. \cite{Blynk:2025}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Remote XY}\label{RemoteXY}
+
+\section{Installation App}
+
+\subsection {Installation der RemoteXY-App auf Android-Geräten}
+
+Um den Rundenzähler mit einem Smartphone oder Tablet zu steuern, wird die kostenpflichtige RemoteXY-App benötigt. Die App stellt die grafische Benutzeroberfläche bereit, über die der Rundenzähler gesteuert und überwacht werden kann. In diesem Abschnitt wird die Installation der App auf einem Android-Gerät Schritt für Schritt erklärt. 
+
+
+\subsubsection{Voraussetzungen:}
+
+\begin{itemize}
+	\item Ein Android-Smartphone oder -Tablet mit Internetverbindung
+	\item Zugriff auf den Google Play Store
+	\item Ausreichend Speicherplatz für die App-Installation
+\end{itemize}
+
+\textbf{Schritt 1: Öffnen des Google Play Stores}
+Öffne auf deinem Android-Gerät den Google Play Store. Dies ist der offizielle App-Marktplatz von Google, auf dem Apps sicher heruntergeladen und installiert werden können. 
+
+\begin{center}
+	\includegraphics[width=3.0cm]{RemoteXY/InstallationAndroid}
+	
+	\captionof{figure}{Playstore}
+	\label{fig:Playstore}
+\end{center}
+
+\textbf{Schritt 2: Suche nach der App \glqq RemoteXY\grqq}
+
+Tippe oben in die Suchleiste des Play Stores. Gib dort den Namen der App ein: RemoteXY 
+
+
+\begin{center}
+	\includegraphics[width=7.5cm]{RemoteXY/InstallationAndroid02}
+	\captionof{figure}{Suchleiste Playstore}
+	\label{fig:Suchleiste_Playstore}
+\end{center}
+
+\textbf{Schritt 3: App auswählen und herunterladen}
+
+Nachdem du \glqq RemoteXY\grqq{} eingegeben hast, erscheint die App in der Ergebnisliste. Sie ist in der Regel leicht an ihrem orangenen Logo zu erkennen. Tippe auf den Eintrag, um die App-Detailseite zu öffnen. Tippe nun auf \glqq Installieren\grqq, um die App herunterzuladen und auf deinem Gerät zu installieren.
+
+
+\begin{center}
+	\includegraphics[width=8cm]{RemoteXY/InstallationAndroid04}
+	\captionof{figure}{RemoteXY im Playstore}
+	\label{fig:RemoteXY_Playstore}
+\end{center}
+
+\textbf{Schritt 4: App starten}
+
+Sobald die Installation abgeschlossen ist, kannst du die App direkt aus dem Play Store starten oder sie später über dein App-Menü aufrufen. Beim ersten Start kann es sein, dass du der App bestimmte Berechtigungen erteilen musst,  z. B. Bluetooth-Zugriff.
+
+\subsection {Installation der RemoteXY-App auf iOS-Geräten}
+
+Auch auf einem iPhone oder iPad kann die kostenpflichtige RemoteXY-App installiert werden, um die grafische Benutzeroberfläche für den Rundenzähler zu nutzen. Die App steht kostenlos im Apple App Store zur Verfügung. In diesem Abschnitt wird die Installation der App auf einem IOS-Gerät Schritt für Schritt erklärt.
+
+\textbf{Voraussetzungen:}
+
+\begin{itemize}
+	\item Ein iPhone oder iPad mit iOS
+	\item Eine aktive Internetverbindung (WLAN oder Mobilfunk)
+	\item Zugriff auf den Apple App Store  
+	\item Ausreichend Speicherplatz für die App-Installation
+\end{itemize}
+
+\textbf{Schritt 1: Öffnen des Apple App Stores }
+
+Tippe auf deinem Gerät auf das Symbol für den App Store – dies ist der offizielle Marktplatz von Apple für Anwendungen.
+
+\begin{center}
+	\includegraphics[width=3.0cm]{RemoteXY/InstallationIOS}
+	\captionof{figure}{Playstore}
+	\label{fig:Appstore}
+\end{center}
+
+\textbf{Schritt 2: Suche nach der App \glqq RemoteXY\grqq }
+
+Tippe unten im App Store auf das Suchsymbol (Lupe). In der Suchleiste oben gibst du dann den Namen der App ein:
+
+\begin{center}
+	\includegraphics[width=8.5cm]{RemoteXY/InstallationIOS03}
+	
+	\captionof{figure}{Suchleiste Playstore}
+	\label{fig:Suchleiste_Appstore}
+\end{center}
+
+\textbf{Schritt 3: App auswählen und herunterladen}
+
+Nachdem du \glqq RemoteXY\grqq{} eingegeben hast, erscheint die App in der Ergebnisliste. Sie ist in der Regel leicht an ihrem orangenen Logo zu erkennen. Tippe auf den Eintrag, um die App-Detailseite zu öffnen. Tippe nun auf „Laden“, um die App herunterzuladen und auf deinem Gerät zu installieren.
+
+
+\begin{center}
+	\includegraphics[width=7.5cm]{RemoteXY/InstallationIOS04}
+	\captionof{figure}{RemoteXY im Appstore}
+	\label{fig:RemoteXY_Appstore}
+\end{center}
+
+\textbf{Schritt 4: App starten}
+
+Nach der Installation kannst du die App entweder direkt aus dem App Store heraus oder über deinen Home-Bildschirm starten. Beim ersten Start werden möglicherweise Berechtigungen abgefragt – zum Beispiel für Bluetooth oder Netzwerkzugriffe.
+
+\begin{center}
+	\includegraphics[width=5.5cm]{RemoteXY/BluetoothIOS}
+	\captionof{figure}{Berechtigung beim Erststart}
+	\label{fig:Berechtigung_iOS}
+\end{center}
+
+\section{Bluetooth-Verbindung herstellen}
+
+Zur Verbindung des Endgeräts mit dem System wird zunächst Bluetooth auf dem Endgerät aktiviert. Anschließend wird die RemoteXY-App geöffnet und in der oberen rechten Ecke das Plus-Symbol ausgewählt. Dadurch werden die Optionen zur Verbindungsherstellung angezeigt \ref{fig:AddNewDevice}, wobei in diesem Anwendungsfall Bluetooth 2.0 gewählt wird \ref{fig:BluetoothAuswahl}.
+
+\begin{center}
+	\includegraphics[width=5.5cm]{RemoteXY/AddNewDevice}
+	\captionof{figure}{Neues Gerät Verbinden}
+	\label{fig:AddNewDevice}
+\end{center}
+
+\begin{center}
+	\includegraphics[width=5.5cm]{RemoteXY/BluetoothAuswahl}
+	\captionof{figure}{Bluetooth-Auswahl}
+	\label{fig:BluetoothAuswahl}
+\end{center}
+
+Daraufhin erscheint eine Liste verfügbarer Bluetooth-Geräte in der Umgebung. Aus dieser wird das Gerät HC05 ausgewählt. Die Verbindung wird durch Eingabe des Passworts 1234 freigegeben. Im Anschluss wird der Ladebildschirm zur Übertragung der App-GUI geöffnet \ref{fig:Ladebildschirm}, die auf dem Arduino Nano 33 BLE Sense Lite gespeichert ist.
+
+\begin{center}[H]
+	\centering
+	\includegraphics[width=5.5cm]{RemoteXY/RundenzaehlerLadebildschirm}
+	\captionof{figure}{Verbindungs-Ladebildschirm}
+	\label{fig:Ladebildschirm}
+\end{center}
+
+Nach erfolgreicher Übertragung erscheint die Benutzeroberfläche. Bei künftigen Verbindungen kann die Verbindung direkt durch das Starten der RemoteXY-App und das Auswählen der gespeicherten Rundenzähler-App hergestellt werden \ref{fig:Direktauswahl} – eine erneute Geräteauswahl ist nicht erforderlich, sofern Bluetooth auf dem Endgerät aktiviert ist.
+
+\begin{center}
+	\includegraphics[width=5.5cm]{RemoteXY/RundenzaehlerDirektauswahl}
+	\captionof{figure}{Direktauswahl Rundenzähler}
+	\label{fig:Direktauswahl}
+\end{center}
+
+\section{Fazit und Ausblick}
+\label{sec:fazit}
+
+Die Implementierung des Runden-Zeitmesssystems zeigt eine funktionsfähige und robuste Softwarelösung auf Basis der Arduino-IDE, die alle grundlegenden Anforderungen erfüllt. Eine kleine Einschränkung bietet die RemoteXY-App durch ein kostenpflichtiges Abonnement. Die Kalibrierung der Ultraschall-Abstandssensoren mit einem Schwellenwert von 15\,cm ($\pm$2\,cm) sowie die Debounce-Zeit von 500\,ms gewährleisten eine zuverlässige Fahrzeugerkennung. Die strukturierte, modulare Programmierung ermöglicht eine einfache Erweiterung des Systems. 
+
+\subsection{Offene Punkte und Optimierungspotenzial}
+
+\begin{itemize}
+	\item \textbf{Fehleranzeige der gelben LED} 
+	
+	Die inaktive gelbe LED bei Zeitüberschreitung (vgl. Tabelle~\ref{tab:FehlerKorrekturen}) deutet auf eine unvollständige Zustandsabfrage in der \PYTHON{raceLoop()}-Funktion hin. 
+	
+	\textit{Lösungsansatz}: Überprüfung der Bedingungslogik  sowie Hardware-Check des zugehörigen Pins.
+	
+	\item \textbf{Test unter realen Bedingungen} 
+	
+	Bisherige Tests erfolgten unter Laborbedingungen. Eine Validierung an einer laufenden Modellrennstrecke mit variierenden Geschwindigkeiten (0,5--2\,m/s) steht noch aus. 
+	
+	\textit{Empfehlung}: Dynamische Anpassung der Debounce-Zeit basierend auf gemessener Geschwindigkeit in \PYTHON{loop()}.
+	
+	\item \textbf{Erweiterungsmöglichkeiten} 
+	
+	\begin{itemize}
+		\item Echtzeit-Datenanalyse: Übertragung der Rundenzeiten an eine Cloud-Datenbank
+		\item Automatische Kalibrierung: Selbstoptimierende Schwellenwerte in \PYTHON{setup()}
+		\item Erweiterung der RemoteXY-Oberfläche für Teamrennen
+	\end{itemize}
+\end{itemize}
+
+\subsection*{Abschließende Bewertung}
+Das System ist einsatzbereit, jedoch bieten die genannten Punkte Ansätze für zukünftige Verbesserungen. Insbesondere die Behebung der LED-Problematik und die praxisnahe Erprobung sind vor einem finalen Release notwendig. Die modulare Architektur in \FILE{RundenZaehlerCodeDoxy.ino} erleichtert dabei weitere Anpassungen.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+	\section{Entwicklungsumgebung Remote XY}
+
+\subsection{Beschreibung und Version}
+RemoteXY ist eine Plattform zur Erstellung grafischer Benutzeroberflächen (GUI) für die Fernsteuerung mikrocontrollerbasierter Geräte über Smartphones oder Tablets. Mit einem benutzerfreundlichen Editor können individuelle Oberflächen gestaltet werden, die automatisch den Quellcode für den Mikrocontroller generieren. Die mobile RemoteXY-App ermöglicht die Verbindung zum Gerät und zeigt die GUI an.
+\cite{RemoteXY:Start}
+
+\vspace{1\baselineskip}
+
+RemoteXY unterstützt verschiedene Kommunikationsmethoden wie Bluetooth, WLAN, Ethernet und USB, wobei keine Internetverbindung erforderlich ist, außer bei der Nutzung des Cloud-Servers für den weltweiten Zugriff. Alle Daten werden direkt im Gerätespeicher und der mobilen App gespeichert, ohne auf externe Server zugreifen zu müssen. Die Plattform ermöglicht auch die Integration zusätzlicher Kommunikationsmethoden und unterstützt eine Vielzahl von Mikrocontrollern wie Arduino, ESP8266 und ESP32 sowie gängige Entwicklungsumgebungen wie Arduino IDE.
+\cite{RemoteXY:Start}
+\cite{RemoteXY:GooglePlayStore}
+
+\vspace{1\baselineskip}
+
+Die aktuelle Version für das Android Betriebssystem ist die 4.15.15 und wurde am 28.April 2025 aktualisiert und für den PlayStore für Android Geräte zur Verfügung gestellt. Für das IOS-Betriebssystem ist die aktuelle Version die 1.12.6 und wurde am 03.Mai 2025 zuletzt aktualisiert und für IPhone und IPads mit IOS 12.0 und neuer bereitgestellt.
+\cite{RemoteXY:GooglePlayStore}
+\cite{RemoteXY:AppStore}
+
+\subsection{Installation}
+\textbf{Installation Betriebssystem Android}
+Um RemoteXY auf einem Android-Smartphone oder -Tablet zu installieren, öffnet man den Google Play Store und sucht nach „RemoteXY“. Die App ist kostenlos und kann direkt heruntergeladen und installiert werden. Nach der Installation steht sie wie gewohnt im App-Menü zur Verfügung. Wichtig ist, dass das Gerät mindestens Android 4.0 oder neuer verwendet, da ältere Versionen nicht vollständig unterstützt werden
+\cite{RemoteXY:GooglePlayStore}
+
+\vspace{1\baselineskip}
+
+\textbf{Installation Betriebssystem IOS}
+Um RemoteXY auf einem iPhone oder iPad zu installieren, öffnet man den App Store und sucht nach „RemoteXY“. Die App ist kostenlos und kann direkt heruntergeladen und installiert werden. Nach der Installation steht sie wie gewohnt auf dem Homescreen zur Verfügung. Wichtig ist, dass das Gerät mindestens iOS 12 oder neuer verwendet, da frühere Versionen nicht unterstützt werden.
+\cite{RemoteXY:AppStore}
+
+\subsection{Konfiguration}
+Die Konfiguration legt fest, wie die RemoteXY-App mit dem Mikrocontroller kommuniziert. Dabei werden grundlegende Einstellungen getroffen, zum Beispiel welches Board und welches Verbindungsmodul verwendet wird. Diese Angaben sind wichtig, damit der automatisch erzeugte Code genau zur verwendeten Hardware passt und später alles miteinander funktioniert.
+\cite{RemoteXY:Install}
+
+\vspace{1\baselineskip}
+
+\textbf{Schritt 1.} Erstellen der grafischen Benutzeroberfläche
+Mit RemoteXY kann der Nutzer eine eigene grafische Benutzeroberfläche gestalten, die später direkt in der RemoteXY-App verwendet wird. Dafür steht der webbasierte RemoteXY-Editor zur Verfügung. In der linken Spalte des Editors befinden sich verschiedene Bedienelemente, die per Drag-and-Drop auf das Handy-Symbol in der Mitte gezogen werden können. Auf der rechten Seite lassen sich für jedes Element individuelle Einstellungen vornehmen, zum Beispiel die Belegung eines Pins oder die Beschriftung.
+\cite{RemoteXY:Install}
+
+\vspace{1\baselineskip}
+
+\textbf{Schritt 2.} Projekt Konfigurieren
+Um das Projekt den richtigen Board und Verbindungsmethode zuzuweisen, wird in der Registerkarte „Konfiguration“ in der rechten Symbolleiste der Editor-Webversion die Verbindungsart, die Platine, das Modul und die IDE ausgewählt.
+Weiter wird in der Registerkarte „Modulschnittstelle“ die Einstellwerte Verbindungsschnittstelle, RX-Pin, TX-Pin und die Geschwindigkeit (Baudrate) festgelegt. Dabei ist für das HC-05 Modul eine Baudrate von 9600 Baud vorgeschrieben.
+\cite{RemoteXY:Install}
+
+\vspace{1\baselineskip}
+
+\textbf{Schritt 3.} Quellcode für die Arduino IDE herunterladen
+Um den Quellcode für die grafische Benutzeroberfläche zu verwenden, wird zunächst auf „Quellcode abrufen“ geklickt. Anschließend kann der Sketch für die Arduino IDE als ZIP-Archiv heruntergeladen und entpackt werden. Die darin enthaltene Datei project.ino wird in der Arduino IDE geöffnet. Damit der Code kompiliert werden kann, muss zuvor die RemoteXY-Bibliothek installiert werden. Nach Auswahl des passenden Boards in der IDE sollte der Sketch ohne Fehler kompiliert werden.
+\cite{RemoteXY:Install}
+
+\vspace{1\baselineskip}
+
+\textbf{Schritt 4.} HC-05 mit dem Arduino Nano 33 BLE Sense Lite verbinden
+Das HC-05 Modul wird wie folgt mit dem Arduino Nano 33 BLE Sense Lite verbunden:
+\cite{RemoteXY:Install}
+\begin{itemize}
+    \item HC-05 TX Pin wird mit dem Arduino Nano Pin 2 (Software RX) verbunden
+    
+    \item 	HC-05 RX Pin wird mit dem Arduino Nano Pin 3 (Software TX) verbunden
+    
+    \item 		HC-05 \ac{vcc} Pin wird mit dem Arduino Nano 5V Pin verbunden
+    
+    \item 		HC-05 GND Pin wird mit dem Arduino Nano GND verbunden
+\end{itemize}
+
+\vspace{1\baselineskip}
+
+\textbf{Schritt 5.} Hochladen des Sketches auf den Arduino Nano 33 BLE Sense Lite:
+\cite{RemoteXY:Install}
+\begin{itemize}
+    \item Schließen Sie den Arduino Nano über ein USB-Kabel an Ihren Computer an.
+    
+    \item Wählen Sie in der Arduino IDE den entsprechenden COM-Port aus.
+    
+    \item Klicken Sie auf den Upload-Button, um den Sketch auf den Arduino Nano zu übertragen.
+\end{itemize}
+
+\vspace{1\baselineskip}
+
+\textbf{Schritt 6.} Verbindung mit der mobilen App herstellen:
+\cite{RemoteXY:Install}
+
+\begin{itemize}
+    \item Starten Sie die App und tippen Sie auf das + (Plus)-Symbol in der oberen Navigationsleiste.
+    
+    \item Wählen Sie im erscheinenden Fenster Bluetooth connection aus.
+    
+    \item Falls Bluetooth auf Ihrem Gerät deaktiviert ist, aktivieren Sie es.
+    
+    \item Tippen Sie auf den Aktualisieren-Button in der oberen Navigationsleiste, um nach verfügbaren Geräten zu suchen.
+    
+    \item Das HC-05-Modul sollte in der Liste mit Namen wie „HC-05“, „HC-06“ oder „INVOR“ erscheinen. Tippen Sie darauf.
+    
+    \item Es erscheint ein Fenster zur Eingabe des Pairing-Passworts. Standardmäßig ist dies 1234 oder 0000. Geben Sie das Passwort ein.
+    
+    \item Nach erfolgreicher Verbindung wird die zuvor erstellte grafische Benutzeroberfläche angezeigt.
+\end{itemize}	
+
+\subsection{Erste Schritte; Beschreibung der Benutzerschnittstelle}
+RemoteXY ist eine Plattform, die es ermöglicht, benutzerdefinierte mobile Anwendungen für die Steuerung und Überwachung von Mikrocontroller-Projekten zu erstellen. Die Benutzeroberfläche kann dabei individuell angepasst werden, um Schaltflächen, Schieberegler, Anzeigen und andere Steuerelemente bereitzustellen. Die Kommunikation zwischen der mobilen Anwendung und dem Mikrocontroller erfolgt über verschiedene Schnittstellen wie Bluetooth, Wi-Fi oder USB.
+\cite{RemoteXY:Start}

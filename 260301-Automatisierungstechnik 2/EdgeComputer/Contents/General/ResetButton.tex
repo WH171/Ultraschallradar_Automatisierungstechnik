@@ -1,0 +1,122 @@
+
+
+\chapter{Reset Button on the Arduino Nano 33 BLE Sense}
+
+
+The reset button on the Arduino Nano 33 BLE Sense plays a crucial role in managing the board's operation. It allows for restarting the board, entering Bootloader Mode, and addressing issues related to the program or functionality. The following section outlines its functions, appropriate use cases, and technical specifications.
+
+
+
+\begin{center}    
+	\begin{tikzpicture}
+		%\node at (0,0) (Board) {\includegraphics{Arduino/Nano33BLE/Nano33BLESense}};
+		
+		\ArduinoNanoTikz;
+		
+		\fill[gray, opacity=0.7] (-11.2,-0.2) rectangle (0.1,4.7);
+		
+		\coordinate (A) at (-8.2,1.6);
+		\coordinate (B) at (-7.4,2.9); 
+		
+		
+		\coordinate (C) at (-7.2,3.9);
+		\coordinate (D) at (-6.7,4.5);  
+		
+		\def\cliparea{(C) rectangle (D); (A) rectangle (B); }  
+		
+		\begin{scope}
+			\clip (A) rectangle (B);
+			
+			\ArduinoNanoTikz
+			
+			%\node at (0,0) (Board) {\includegraphics{Arduino/Nano33BLE/Nano33BLESense}};
+			
+		\end{scope}
+		
+		%        \fill[ArduinoColor] (C) rectangle (D);
+		%         \fill[gray!30] ({-8.16-0.195},4.145) rectangle ++(0.39, 0.39); 
+		%        \draw[fill=gray!30,gray!30] (-8.145,4.143) circle(0.195); 
+		%        \draw[fill=gray!60,gray!60] (-8.145,4.143) circle(0.165); 
+		%        \fill[white,white](-8.145,{4.143+0.39}) circle (0.1275);
+		
+		\draw[yellow,line width=2pt] (A)  rectangle (B);
+%		\draw[yellow,line width=2pt] (C)  rectangle (D);
+		
+%\input{../../Contents/General/ResetButton}		\node (P25) at (-6.95, 4.9) {Pin 11};
+	\end{tikzpicture}    
+	
+	
+	
+	\captionof{figure}{Arduino Nano 33 BLE Sense's Reset Button}  
+\end{center}
+
+
+\section{Purpose and Functionality}
+
+The reset button on the Arduino Nano 33 BLE Sense is positioned on the top side of the board, close to the USB connector. This small tactile push button communicates with the nRF52840 microcontroller, performing specific actions depending on the timing and sequence of the presses.
+
+\subsection{Functions of the Reset Button}
+
+\begin{itemize}
+\item System Reset: A single press of the reset button triggers a system reset. This action momentarily interrupts the power to the microcontroller, restarting the board and reinitializing the uploaded program. 
+
+
+\item Bootloader Mode: The reset button also allows entry into Bootloader Mode, which is essential for uploading new sketches or recovering the board when it becomes unresponsive due to a faulty program.
+
+	\begin{itemize}
+		
+	\item  Activation: To activate Bootloader Mode, press the reset button twice in quick succession (within approximately 1 second). The double-press sequence triggers the bootloader, which prepares the board to receive new firmware or sketches via the USB interface.
+
+	\item Indication: When Bootloader Mode is active, the built-in LED blinks quickly, indicating that the board is ready for a firmware upload.
+
+	\item Purpose: Bootloader Mode is particularly helpful for uploading sketches when the Arduino IDE cannot recognize the board and for recovering from unresponsive or faulty programs that disrupt normal functionality.
+	
+	\end{itemize}
+
+\item 
+
+\end{itemize}
+
+
+
+
+
+
+\section{Timing and Sequence} 
+
+The reset button’s behavior depends on the timing and sequence of presses:
+
+\begin{itemize}
+	\item Single Press: Executes a system reset, restarting the microcontroller and the loaded sketch.
+	
+	\item Double Press: Activates Bootloader Mode, readying the board for new firmware uploads.
+	
+	\begin{itemize}
+		\item The timing of the double-press must be precise (quickly within 1 second); otherwise, the board will perform only a standard reset.
+	\end{itemize}
+	
+\end{itemize}
+
+
+
+
+
+\section{Use Cases}
+
+The reset button provides critical functionality in several scenarios:
+
+
+\begin{enumerate}
+	\item Restarting the Board: During development, a single press allows developers to restart the board and observe the program from its initial state.
+	
+	\item  Uploading Sketches: When the Arduino IDE fails to detect the board or cannot upload a sketch, entering Bootloader Mode manually resolves the issue.
+	
+	\item Recovering from Errors: If a faulty sketch causes the board to freeze or become unresponsive, Bootloader Mode enables users to bypass the issue and upload a new program.
+	
+\end{enumerate}
+
+
+
+\section{Conclusion}
+
+The reset button on the Arduino Nano 33 BLE Sense is a vital feature for developers, providing tools to restart the board, enter Bootloader Mode, and recover from programming errors. Its dual functionality—system reset and Bootloader Mode activation—ensures flexibility and reliability during development and debugging. The requirement for a precise double-press to activate Bootloader Mode enhances user control, making it a robust tool for managing the board.

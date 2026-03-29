@@ -1,0 +1,302 @@
+%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% $Autor: Wings $
+% $Datum: 2019-07-09 09:26:07Z $
+% $Pfad: Vorlesungen/WS_19_20/Projekte/KandaNeuralnetwork/latex - Ausarbeitung/Kapitel/Hardware.tex $
+% $Version: 4440 $
+%
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%todo Beispiel YOLO mit Datei erstellen
+
+
+\chapter{Google Colaboratory}
+
+\section{Introduction}
+
+Google Colaboratory, or ``Colab'' for short, is a product from Google Research and  is a free Jupyter notebook environment running completely in the cloud. Colab allows anybody to write and execute arbitrary python code through the browser, but it is typically well suited to machine learning and data analysis. The good thing is it requires no set up and provides free access to computing resources like GPU and TPU \cite{GoogleColab:2021}. The Chrome browser is a specific requirement primarily for Google Colab which is going to rely on working well with Chrome. 
+Google Colab is an online integrated developer environment to design, train, and test our machine learning models. There is a nice introduction on \href{https://www.youtube.com/watch?v=inN8seMm7UI}{youtube.com} made by Jake Van der Plas. \Cite{VanderPlas:2019} The enxt step is the practical use of Google Colab. Google offers a notebook \href{}{\FILE{Introductory Colab}}. In it they provide a handful of quick tips and hands on exercises to get you started using the Colab environment.
+
+
+
+\section{Tips for using Colab}
+
+
+Here, there are a couple of tips and tricks for using Colab:
+
+\begin{enumerate}
+    \item Each Colab instance will stay alive as long as the user interacts with it once every 90 minutes.
+    \item Each instance will only last for a maximum of 12 hours so it is important to download as soon as possible all of the files which are needed to avoid losing them. That's not so easy if long notebooks are used.
+    \item The user can access the files in the the screen by clicking the folder icon as shown in figure \ref{ColabScreenShot}. 
+    
+    \begin{figure}
+        \GRAPHICSC{1.0}{1.0}{GoogleColab/Colab1}
+        \caption[Screenshot of the Colab UI]{This image is a screenshot of the Colab UI showing one portion of the interface.  In this portion, there is a folder icon highlighted in yellow, which can be used to get to the files.}\label{ColabScreenShot}
+    \end{figure}  
+    
+    
+    
+    
+    \item By default all user's files are saved under \FILE{/content} and by default the user starts only seeing that folder. 
+    \item While the code cells in Colab default to python, any bash command can be executed by prepending the command with \PYTHON{!}. For example, the user can unzip a file with \SHELL{!unzip file.zip -d destination\_folder}.
+    \item To download a file from Colab  the user has simply to click the three dots next to the file's name and then select \SHELL{download}.
+    \item To upload a file to Colab the user has  simply to click the icon with the piece of paper with a folded corner and an arrow on it below the word \SHELL{Files}.
+    \item To make permanent changes to a Colab one needs to select \SHELL{file$\rightarrow$Save} a copy in \SHELL{Drive} which will make a copy of the Colab in the user's drive with your changes saved.
+    \item Activating a GPU instance drastically speeds up Neural Network training. This can be done through \SHELL{runtime$\rightarrow$Change runtime type} and then selecting \SHELL{GPU under Hardware accelerator}, see figure \ref{ColabGPU}.
+    
+    \begin{figure}
+        \GRAPHICSC{1.0}{1.0}{GoogleColab/Colab2}
+        \caption{Selecting GPU under Hardware accelerator}\label{ColabGPU}
+    \end{figure}  
+    
+\end{enumerate}
+
+
+
+\section{Advantages of Colab} 
+
+\begin{itemize}  
+	\item \textbf{Pre installed libraries}: It provides pre-installed machine learning libraries including PyTorch, Keras, TensorFlow
+	\item \textbf{Saved on the Cloud} : If we use a Jupyter notebook, then everything is saved on a local device. However, when we use Google Colab, we can sasve it on the cloud and can access from any device by just signing in Google Drive account.
+	\item \textbf{Collaboration} : It helps in providing access to multiple developers working on the project to edit the code or code together and also share the completed code with the developers
+	\item \textbf{Free GPU and TPU use} : 
+	This is probably the best feature as Google Research lets us use their dedicated GPUs and TPUs for our personal machine learning projects. Therefore, our computers don’t have to undergo the complex computations while training the model because it is done on the cloud
+	
+\end{itemize}
+
+
+
+
+\section{Selection of the Model: YOLO V4} 
+
+\ac{yolo} is a state of art Object Detector which can perform object detection in real-time with a good accuracy.They belong to the family of single stage detection also referred to as one shot detection.
+
+\ac{yolo} V4 also based on the Darknet and has obtained an \ac{ap} value of 43.5 percent on the dataset \ac{coco} along with a real-time speed of 65 \ac{fps} on the Tesla V100, beating the fastest and most accurate detectors in terms of both speed and accuracy.
+
+When compared with \ac{yolo} V3, the \ac{ap} and\ac{fps} have increased by 10 percent and 12 percent, respectively.
+
+\textbf{Note: }Further information about the model \ac{yolo} V4 such as the detailed architecture, the different layers and the hyper parameters can be found in the file \FILE{YOLOV4.tex}in the  folder ``Software''.
+
+\section{Training the model}
+
+The below are the steps to train the model with Google Colab.
+\begin{itemize}
+	\item Create yolov4 and training folders in the google drive
+	\item Mount drive, link the folder, and navigate to the yolov4 folder
+	\item Clone the Darknet git repository \cite{Bochkovskiy:2020}
+	\item Create \& upload the files we need for training ( i.e. \FILE{obj.zip} , \FILE{yolov4- custom.cfg}, \FILE{obj.data}, \FILE{obj.names} and \FILE{process.py} ) to the drive
+	\item Make changes in the Makefile to enable OPENCV and \ac{gpu}
+	\item Run make command to build darknet
+	Copy the files \FILE{obj.zip}, \FILE{yolov4-custom.cfG} \FILE{obj.data} , \FILE{obj.names} from the yolov4 folder to the darknet directory
+	\item Run the process.py python script to create the \FILE{train.txt} \& \FILE{test.txt} files
+	\item Download the pre-trained YOLOv4 weights
+	\item Train the detector
+	\item Check performance
+\end{itemize}
+
+\subsection{Architecture of YOLO V4} 
+This section gives a brief overview of the \ac{yolo} V4 model: 
+The \ac{yolo} V4 \cite{Bochkovskiy:2020} consists of:
+\begin{itemize}
+	\item Backbone : CSP Darknet53.
+
+	Backbone is a deep neural network composed mainly of convolution layers.The main objective of the backbone is to extract the essential features. \ac{yolo} V4 applies the \ac{csp} to Darknet 53 which uses 53 convolution layers.
+	
+	\item Neck: \ac{spp} and \ac{pan}
+	
+	The neck is always added between the backbone and head which can detect objects at different scales and spatial resolutions. \ac{spp} applies maximum pooling whereas \ac{pan} is applied to attract features in a heirarchial structure.
+	
+	\item Head: \ac{yolo} V3
+	
+	The head of an object detector is responsible for classification and localization.
+\end{itemize}
+
+\begin{figure}[H]
+	\centering
+	\GRAPHICS{1.0}{1.0}{GoogleColab/oneshotdetect.png}
+	\caption{Architecture of a single shot detector \cite{Bochkovskiy:2020}}
+\end{figure}
+
+\subsection{Enabling GPU in Google Colab}
+
+In the Colab Notebook, the \ac{gpu} can be enabled by clicking on Runtime and changing the Runtime type, hardware accelerator to GPU. Using the GPU will enable the YOLO V4 to make much faster predictions than the \ac{cpu}. 
+
+\subsection{Building Darknet}
+
+Darknet is an open source neural network framework written in C and \ac{cuda}. \cite{Bochkovskiy:2020} It is fast, easy to install, and supports CPU and GPU computation.mThe repository can be cloned from the github using the below command.
+
+\SHELL{!git clone https://github.com/AlexeyAB/darknet}
+
+The next step is to navigate to the folder of the darknet and make necessary changes to enable the GPU and OpenCV.
+
+\begin{figure}[H]
+	\centering
+	\GRAPHICS{0.8}{0.8}{GoogleColab/makefile.png}
+	\caption{Setting GPU and OpenCV to 1 in Makefile}
+\end{figure}
+
+The CUDA version can be verified using the below command
+
+\SHELL{!/usr/local/cuda/bin/nvcc --version}
+\begin{figure}[H]
+	\centering
+	\GRAPHICS{0.8}{0.8}{GoogleColab/cudaversion.png}
+	\caption{Verification of CUDA version}
+\end{figure}
+
+The next step is to exectute \SHELL{!make}.
+This command builds darknet so that you can then use the darknet executable file to run or train object detectors.
+The successful compilation of the above command can be verified by checking the "darknet" file with no extensions in the darknet folder  which will be created by this command. 
+
+\begin{figure}[H]
+	\centering
+	\GRAPHICS{0.8}{0.8}{GoogleColab/makeverify.png}
+	\caption{darknet file with no extensions created after successful execution of make command}
+\end{figure}
+
+\subsection{Define Helper Functions}
+These three functions are helper functions that will allow us to show the image in your Colab Notebook after running our detections, as well as upload and download images to and from our Cloud \ac{vm}.
+
+\begin{code}[H]
+	\lstinputlisting[language=Python, firstnumber=1]{../../Code/JetsonNano/helperfunctions.py}
+	\caption{Useful Functions to show images, upload or download the images from Cloud VM} \label{TensorFlow:Complete}
+\end{code}
+
+\subsection{Moving the Datasets to Cloud VM}
+
+In order to create a custom YOLOv4 detector we will need the following:
+\begin{itemize}
+	\item Labeled Custom Dataset
+	\item Custom file \FILE{.cfg} 
+	\item \FILE{obj.data} and  files \FILE{obj.names}
+	\item \FILE{train.txt} file and \FILE{test.txt} files
+\end{itemize}
+The contents of these files are further explained below.
+
+Firstly two ZIP folders are created for training \FILE{obj.zip} and validation datasets \FILE{test.zip}. 
+
+For training - Count of images
+
+For validation - 
+These should be uploaded to drive which can be later moved to the Cloud VM and unzipped in the directory ``data''.
+
+\begin{figure}[H]
+	\centering
+	\GRAPHICS{0.8}{0.8}{GoogleColab/objandtest.png}
+	\caption{Obj and Test folders containing training and validation datasets respectively}
+\end{figure}
+
+This can be done with the below commands: 
+
+To copy over both datasets into the root directory of the Colab VM:
+
+\SHELL{!cp /mydrive/yolov4/obj.zip ../}
+
+\SHELL{!cp /mydrive/yolov4/test.zip ../}
+
+To unzip the datasets and their contents so that they are now in /darknet/data/ folder
+
+\SHELL{!unzip ../obj.zip -d data/}
+
+\SHELL{!unzip ../test.zip -d data/}
+
+\subsection{Configuring Files for Training}
+
+This step involves properly configuring your custom \FILE{.cfg}, \FILE{obj.data}, \FILE{obj.names}, \FILE{train.txt} and \FILE{test.txt} files.
+
+It is important to configure all these files with extreme caution as typos or small errors can cause major problems with the custom training.
+
+Cfg file: Firstly the \FILE{yolov4.cfg} is copied to the Google drive and modified. 
+
+The following modifications are made: 
+
+\begin{itemize}
+	\item batch = 64 and subdivisions = 16
+	\item max{\_}batches = 6000, steps = 4800, 5400 as the number of classes= 2. Usually this is decided by max{\_}batches = (\# of classes) * 2000 but the value should not be less than 6000. So I have chosen to use 6000. The Steps are decided by calculating (80 percent of max{\_}batches), (90 percent of max{\_}batches)
+	\item The number of filters should be modified as filters = (\# of classes + 5) * 3. As the number of classes=2, I have set this value as 21. 
+	\item The number of classes should be set in each \ac{yolo} Layer. There are 3 Yolo Layers in the \FILE{.cfg} file. Also the number of filters should be set in each Convolution layer just above every yolo layer.
+	\item learning{\_}rate=0.001
+	\item width=416 (of the image)
+	\item height=416 
+\end{itemize}
+
+\FILE{obj.names} and \FILE{obj.data} files: 
+These files should be created with the following contents. 
+The \FILE{obj.names} file should have the classes in the order specified in the original \FILE{label.txt} file.
+
+\begin{figure}[H]
+	\centering
+	\GRAPHICS{0.6}{0.6}{GoogleColab/obj1.png}
+	\caption{Contents of the obj.names file}
+\end{figure}
+
+A backup folder should be created in our drive so as to save the weights. This will be 
+The obj.data file has the paths to the backup, the number of classes, the paths to the \FILE{train.txt} and \FILE{test.txt} etc., 
+The generation of \FILE{train.txt} and \FILE{test.txt} is further discussed below. 
+\begin{figure}[H]
+	\centering
+	\GRAPHICS{0.8}{0.8}{GoogleColab/objdata.png}
+	\caption{Contents of the obj.data file}
+\end{figure}
+
+The files obj.data and obj.names should be uploaded to the cloud VM from our drive. 
+\SHELL{!cp /mydrive/yolov4/obj.names ./data} 
+
+\SHELL{	!cp /mydrive/yolov4/obj.data ./data}
+
+
+Generating \FILE{train.txt} and \FILE{test.txt} : 
+
+The last configuration files needed before we can begin to train our custom detector are the \FILE{train.txt} and \FILE{test.txt} files which hold the relative paths to all our training images and valdidation images.The scripts to generate these files are shown below.\cite{TheAIGuy:2021}
+
+\begin{code}[H]
+	\lstinputlisting[language=Python, firstnumber=1]{../../Code/JetsonNano/GenerateTrain.py}
+	\caption{Script to generate train.txt file with paths to the training images}\label{TensorFlow:Complete}
+\end{code}
+
+\begin{code}[H]
+	\lstinputlisting[language=Python, firstnumber=1]{../../Code/JetsonNano/GenerateTest.py}
+	\caption{Script to generate test.txt file with paths to the testing images}\label{TensorFlow:Complete}
+\end{code}
+
+These scripts can be executed by the commands:
+
+\SHELL{!python generate\_train.py}
+
+\SHELL{!python generate\_test.py}
+
+\subsection{Downloading pretrained weights for the convolution layers}
+This step downloads the weights for the convolutional layers of the YOLO V4 network. By using these weights it helps our custom object detector to be way more accurate and not have to train as long.
+
+The command to download these weights \cite{Bochkovskiy:2020}
+
+\SHELL{!wget https://github.com/AlexeyAB/darknet/releases/download/darknet\_yolo\_v3\_optimal/yolov4.conv.137}
+
+\subsection{Training the custom object detector}
+To train the model, we should execute the below command.
+\SHELL{!./darknet detector train data/obj.data cfg/yolov4-obj.cfg yolov4.conv.137 -dont\_show -map}
+\begin{figure}[H]
+	\centering
+	\GRAPHICS{0.8}{0.8}{GoogleColab/training.png}
+	\caption{Training the model in Google Colab}
+\end{figure}
+
+\subsection{Challenges}
+
+\begin{itemize}
+	\item Runtime restrictions : The Google Colab stops after 2000 iterations.We need to set up the google Colab VM after every interruption to train the model again.
+	\item Error occured that the \ac{gpu} cannot be used any further.
+	\item Lot of time taken for 2000 iterations approx 6 hours.
+\end{itemize}
+\begin{figure}[H]
+	\centering
+	\GRAPHICS{0.8}{0.8}{GoogleColab/failed.png}
+	\caption{Training Failed after 2000 iterations due to Run-time limitations of Google Colab}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\GRAPHICS{0.8}{0.8}{GoogleColab/fail.png}
+	\caption{Unable to access the GPU} 
+\end{figure}

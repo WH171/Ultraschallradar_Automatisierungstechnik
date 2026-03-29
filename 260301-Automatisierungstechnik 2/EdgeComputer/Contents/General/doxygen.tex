@@ -1,0 +1,705 @@
+%%%
+%
+% $Autor: Wings $
+% $Date: 2024-10-31 11:15:45Z $
+% $File: doxygen.tex $
+% $Version: 1 $
+%
+%%%
+
+% Quelle: https://cypax.net/tutorials/doxygen/index.php#kommentieren
+% \URL{https://www.woolseyworkshop.com/2020/06/25/documenting-python-programs-with-doxygen/}
+
+\chapter{Comments with doxygen}
+
+Source code must always be documented. This includes a flowchart as well as the documentation of individual functions. The idea and structure of the software is documented in the developer documentation. The documentation of details such as constants and functions is best done in the software itself. There are various tools for this, e.g. Sphinx and Doxygen. \cite{VanHeesch:2024,Beningo:2017,Sphinx:2024,Ousterhout:2018} 
+
+This chapter describes the use of Doxygen. Doxygen can visualise relationships between classes and their instances (inheritance hierarchy) and dependencies between methods, which is particularly useful for object-oriented projects.
+
+
+doxygen is a cross-platform which is be used for Linux x86-64 since kernel 3.2.0 and gcc in version 4.6.3,  Windows x86-64 since Windows XP, Mac OS X x86-64 since verson 10.5, and Oracle Solaris under the general public license. doxygen is tool which generates software documentation intended for programmers  from comments of source code. It supports multiple programming languages as C++, C, C\#, Objective-C, Java, Python, IDL, VHDL, Fortran, PHP, \ldots and generates output in different output formats, HTML, CHM, RTF, PDF, LaTeX, XML, man page. It takes account the syntax and the structure of the language. Using doxygen, it is easy to keep up to date the documentation because of writing within code and systematizing the behavior of developers for they document their code.
+
+The grah visualization software Graphviz is integreted in doxygen. Graphviz is a set of open-source tools.
+Graphviz  creates graphs defined through the scripts DOT language which is a graph description language in text format. The figure~\ref{GraphvizExampleOutput} presents an example output of Graphviz.
+	
+
+\begin{center}	
+	\includegraphics[width=\textwidth]{doxygen/ExampleGraph.png}
+	\captionof{figure}{Exmaple output of Graphviz}\label{GraphvizExampleOutput}
+\end{center}	
+	
+
+
+\section{Installation}
+
+To use all the possibilities of doxygen, two programmes must be installed:
+
+\begin{itemize}
+    \item doxygen
+    \item Graphviz
+\end{itemize}
+
+
+
+
+
+
+\subsection{doxygen}
+
+Firstly, the installation file must be downloaded from the website. To do this, click the green button \menu{download}  on the website \URL{https://doxygen.nl/}, see image~\ref{doxygen:website}.
+
+\begin{center}
+  \includegraphics[width=\textwidth]{doxygen/website}
+  \captionof{figure}{Start image from the website \URL{https://doxygen.nl/}}\label{doxygen:website}
+\end{center} 
+
+The donwload area appears, see image~\ref{doxygen:WebsiteDownload}. In this area, now the version can be selected that matches the operating system of the target system.
+
+
+\begin{center}
+    \includegraphics[width=\textwidth]{doxygen/WebsiteDownload}
+    \captionof{figure}{Download area from the website \URL{https://doxygen.nl/}}\label{doxygen:WebsiteDownload}
+\end{center} 
+
+The appropriate manual \cite{VanHeesch:2024b} should also be downloaded. The system installer file  \FILE{doxygen-1.12.0-setup.exe} is available for Windows. 
+
+After downloading the file, it must be called up. Before the installation begins, several queries are made. Firstly, the installation routine asks whether a complete installation, see image~\ref{doxygen:InstallComplete}, should be carried out. Beginners should agree to this.
+
+\begin{center}
+    \includegraphics[width=0.8\textwidth]{doxygen/DoxyGenInstall1}
+    \captionof{figure}{Query after the complete installation during the installation process of doxygen}\label{doxygen:InstallComplete}
+\end{center} 
+
+
+
+In the next step, the installation process can be started by clicking the \menu{Install} button, see figure~\ref{doxygen:Install}
+
+\begin{center}
+    \includegraphics[width=0.8\textwidth]{doxygen/DoxyGenInstall2}
+    \captionof{figure}{Query after the complete installation during the installation process of doxygen}\label{doxygen:Install}
+\end{center} 
+
+
+
+\subsection{Graphviz}
+
+   
+Firstly, the installation file must be downloaded from the website. To do this, click the  button \menu{download}  on the website \URL{https://www.graphviz.org/}, see image~\ref{graphviz:website}.
+    
+    \begin{center}
+        \includegraphics[width=\textwidth]{doxygen/GraphvizWebsite}
+        \captionof{figure}{Start image from the website \URL{https://www.graphviz.org/}}\label{graphviz:website}
+    \end{center} 
+    
+The donwload area appears, see image~\ref{graphviz:WebsiteDownload}. In this area, the version can now selected that matches the operating system of the target system.
+    
+    
+    \begin{center}
+        \includegraphics[width=\textwidth]{doxygen/GraphvizWebsiteDownload}
+        \captionof{figure}{Download area from the website \URL{https://www.graphviz.org/download/}}\label{graphviz:WebsiteDownload}
+    \end{center} 
+    
+
+
+The system installer file  \FILE{graphviz-12.2.1 (64-bit) EXE installer} is available for Windows. 
+    
+ After downloading the file, it must be called up. Before the installation begins, several queries are made. First, the system asks whether the path to Graphviz should be added to the system variable \SHELL{PATH}. As a beginner, add the path to all users,  see figure~\ref{graphviz:GraphvizInstall1}.
+    
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{doxygen/GraphvizInstall1}
+        \captionof{figure}{Query  for adding the Graphviz path to the system variable \SHELL{PATH}}\label{graphviz:GraphvizInstall1}
+    \end{center} 
+    
+    
+    
+The next step asks for the path for the tool Graphviz tool, see figure~\ref{graphviz:GraphvizInstall2}.
+    
+\begin{center}
+    \includegraphics[width=0.8\textwidth]{doxygen/GraphvizInstall2}
+    \captionof{figure}{Query  for the path to Graphviz}\label{graphviz:GraphvizInstall2}
+\end{center} 
+    
+Finally, the folder for the start menu must be set. You can select doxygen here, see figure~\ref{graphviz:GraphvizInstall3}. After clicking the button \menu{Install}, the installation process starts.
+    
+\begin{center}
+    \includegraphics[width=0.8\textwidth]{doxygen/GraphvizInstall3}
+    \captionof{figure}{Query  for the start menu of Graphviz}\label{graphviz:GraphvizInstall2}
+\end{center} 
+
+    
+    
+    
+%    
+%    
+%	\begin{itemize} \item {Graphviz}
+%		\begin{itemize}
+%			\item www.graphviz.org in the section ``Download''
+%			
+%			\begin{itemize}
+%				\item msi file for Windows
+%				\item rpm or deb file for Linux or 
+%				
+%				\SHELL{sudo apt-get install graphviz}
+%				\item pkg file for Mac
+%				\item link to http://www.opencsw.org/packages for Oracle Solaris 
+%			\end{itemize}
+%			\item dot file is in 
+%			
+%			\SHELL{Graphviz\{NumberOfVersion\}\textbackslash bin}
+%		\end{itemize}
+%	\end{itemize}
+%
+
+
+
+\section{Configuration of Graphviz and doxygen with doxywizard}
+
+
+\subsection{Graphviz}
+
+Graphviz is configured by configuring doxygen with doxywizard.
+
+
+\subsection{DoxyWizard}
+
+DoxyWizard is a frontend for using doxygen. DoxyWizard configures and saves options of generation of Doxygen. It allows to run easily the extraction the documentation from the source and  is available on different platforms.
+
+\bigskip
+
+Das Werkzeug DoxyWizard har 3 tab-Reiter: 
+
+\begin{itemize}
+  \item ``Wizard''
+  \item ``Expert''
+  \item ``Run''
+\end{itemize}
+
+In the following, only the tab ``Wizard'' and then the tab ``Expert/Build'' and ``Expert/Dotare considered. After this, the tab ``Run'' is described.  The tab ``Expert'' contains more settings which can be selected at a later stage.
+
+\subsubsection{DoxyWizard tab ``Wizard'' - Project}
+
+The following settings can be made in the tab window ``Wizard/Project'', see figure~\ref{DoxyWizard:Project}:
+
+\begin{itemize}
+	\item Directory of doxygen in which the programme \FILE{doxygen.exe} is located.
+	\item Name of the project
+	\item Short description of the project
+	\item Version number of the project
+	\item Logo of the project
+	\item Directory of the sources and, if applicable, its subfolders
+	\item Output directory
+\end{itemize}
+
+ When specifying the path, instead of the  Windows-typical backslashes ``\textbackslash'' the normal slashes ``/'' have to be used.
+
+
+\begin{center}
+	\includegraphics[width=0.8\textwidth]{doxygen/DoxyWizardProject}
+	\captionof{figure}{DoxyWizard tab ``Wizard'' - Project}\label{DoxyWizard:Project}
+\end{center} 
+  
+
+\subsubsection{DoxyWizard tab ``Wizard'' - Mode}
+
+  
+The following settings can be made in the tab window ``Wizard/Mode'', see figure~\ref{DoxyWizard:Mode}:
+
+\begin{itemize}
+  \item All entities, which recommended, or documented entities only
+  \item Optimization for the language
+    \begin{itemize}
+    	\item The best choice for Arduino C is C++
+    	\item The best choice for Python is C++, too.
+    \end{itemize}
+\end{itemize}
+
+
+\begin{center}
+	\includegraphics[width=0.8\textwidth]{doxygen/DoxyWizardMode}
+	\captionof{figure}{DoxyWizard tab ``Wizard'' - Mode}\label{DoxyWizard:Mode}
+\end{center} 
+
+\subsubsection{DoxyWizard tab ``Wizard'' - Output}
+
+
+In the tab window ``Wizard/Output'', see figure~\ref{DoxyWizard:Diagrams}, the graphic support can be configured. Because of Graphviz' installation, the support by ``Use dot tool from Graphvizpackage'' can be used.
+
+
+\begin{center}
+	\includegraphics[width=0.8\textwidth]{doxygen/DoxyWizardDiagrams}
+	\captionof{figure}{DoxyWizard tab ``Wizard'' - Diagrams}\label{DoxyWizard:Diagrams}
+\end{center} 
+
+\subsubsection{DoxyWizard tab ``Wizard'' - Diagrams}
+
+
+In the tab window ``Wizard/Diagrams'', see figure~\ref{DoxyWizard:Diagrams}, diffent output formats can be chosen. For Beginner, the format plain HTML is a good choice. LaTex or other formats can be configured later.
+
+
+\begin{center}
+	\includegraphics[width=0.8\textwidth]{doxygen/DoxyWizardOutput}
+	\captionof{figure}{DoxyWizard tab ``Wizard'' - Output}\label{DoxyWizard:Output}
+\end{center} 
+
+\subsubsection{DoxyWizard tab ``Wizard'' - Expert - Build }
+
+
+In the tab window ``Wizard/Expert/Build'', see figure~\ref{DoxyWizard:ExpertBuild}, can select what is to be included in the documentation. The items ``Extract\_All'' and ``Extract\_Private'' should also be selected.
+
+ 
+\begin{center}
+	\includegraphics[width=0.8\textwidth]{doxygen/DoxyWizardExpertBuild}
+	\captionof{figure}{DoxyWizard tab ``Wizard'' - Expert - Build}\label{DoxyWizard:ExpertBuild}
+\end{center} 
+
+
+\subsubsection{DoxyWizard tab ``Wizard'' - Expert - Dot}
+
+
+In the tab window ``Wizard/Expert/Diagrams'', see figure~\ref{DoxyWizard:ExpertDot}, the option CLASS\_DIAGRAMMS must be selected and the path for the tool specified. When specifying the path to Dot, instead of the  Windows-typical backslashes ``\textbackslash'' the normal slashes ``/'' have to used.
+
+
+\begin{center}
+	\includegraphics[width=0.8\textwidth]{doxygen/DoxyWizardExpertDot}
+	\captionof{figure}{DoxyWizard tab ``Wizard'' - Expert - Dot}\label{DoxyWizard:ExpertDot}
+\end{center} 
+
+
+\subsubsection{DoxyWizard tab ``Wizard'' - Run}
+
+
+In the tab window ``Wizard/Run'', see figure~\ref{DoxyWizard:Run}, the complete configuration can be shown and the doxygen can be started. The output of doxygen is shown in the window.
+
+
+
+
+
+\begin{center}
+	\includegraphics[width=0.8\textwidth]{doxygen/DoxyWizardRun}
+	\captionof{figure}{DoxyWizard tab ``Wizard'' - Run}\label{DoxyWizard:Run}
+\end{center} 
+
+
+
+\subsection{Saving the Configuration}
+
+The configuration of DoxyWizard can be saved in a file. To do this, call the menu\menu{File > Save as \ldots}. The file name can be freely selected. A specific extension is not required. A good choice would be the project name with the extension \FILE{.doxyfile}.
+
+
+
+
+
+
+
+
+\section{Run of doxygen}
+
+To generate the doxygen documentation, there are two  possibilities:
+
+\begin{itemize}
+	\item DoxyWizard
+	\item Command shell
+\end{itemize}
+
+
+\subsection{Run of doxygen using DoxyWizard}
+
+
+In the tab window ``Wizard/Run'', see figure~\ref{DoxyWizard:Run}, the complete configuration can be shown and the doxygen can be started. The output of doxygen is shown in the window.
+
+
+\subsection{Run of doxygen using a Command Shell}
+
+
+This doxyfile can be used to generate the documentation by calling the shell command
+
+\medskip
+
+\SHELL{doxygen -g <config\_file>}
+
+\medskip
+
+If the project name is ``Nano33BLESense'' and the doxyfile has the name ``Nano33BLESense.doxyfile'', then the command 
+
+\medskip
+
+\SHELL{doxygen -g Nano33BLESense.doxyfile}
+
+\medskip
+
+generates the documentation. The structure of the doxyfile is an ASCII file with a lot of keywords. One keyword is \textbf{INPUT}. Every file, which contains some documentation, can be added. 
+
+
+\begin{verbatim}
+INPUT   = mainpage.dox \
+          Arduino.dox \
+          Test \
+          Test/TestLED.ino \
+          Test/TestLEDBuiltinApplication.ino \
+          Test/TestLEDPowerBrightness.ino \
+          Test/TestLEDPowerBattery.ino \
+          Test/TestLEDPower.ino \
+          Test/TestLEDBuiltin.ino \
+          SensorLPS22HB \
+          LEDs/LED.h \
+          LEDs/LED.cpp \
+          LEDs/PowerLED.h \
+          LEDs/PowerLED.cpp \
+          LEDs/BuiltinLED.h \
+          LEDs/BuiltinLED.cpp \
+          LEDs/SignsOfLife.h \
+          LEDs/SignsOfLife.cpp 
+\end{verbatim}
+
+\bigskip
+
+It is also possible to define a logo for the project. Here, the keyword ``PROJECT\_LOGO'' is used for this.
+
+\begin{verbatim}
+	PROJECT_LOGO           = LogoDoxyGen.jpg
+\end{verbatim}
+
+
+
+\subsubsection{Filetype \FILE{.ino}}
+
+
+Für die Programmierung von Arduino-Mikrokontroller werden ino-Dateien verwendet. Die Syntax ist C++. Aufgrund der Extension müssen folgende Einstellungen gemacht werden:
+
+
+
+
+\begin{verbatim}
+OPTIMIZE_OUTPUT_JAVA   = NO
+EXTENSION_MAPPING      = ino=C++
+FILE_PATTERNS          = *.c \
+                         *.cc \
+                         *.cxx \
+                         *.cxxm \
+                         *.cpp \
+                         *.cppm \
+                         *.ino \
+                         *.ixx \
+                         ...
+\end{verbatim}	
+
+	
+
+\section{Syntax and Keywords}
+
+Generally, only minor changes need to be made to the documentation. There are various options; if a variant is chosen, the convention must be implemented consistently.
+
+
+\bigskip
+
+The following options exist for the C++ programming language:
+
+\medskip
+
+		{\small
+			
+			\SHELL{/**}
+			
+			\SHELL{*  comments}
+			
+			\SHELL{*/}
+			
+			\SHELL{}
+			
+			\SHELL{/*!}
+			
+			\SHELL{* some comments}
+			
+			\SHELL{*/}
+			
+			\SHELL{}
+			
+			\SHELL{//!}
+			
+			\SHELL{//! some other comments}
+			
+			
+			\SHELL{//!}
+			
+			\SHELL{}          
+			
+			\SHELL{///}
+			
+			\SHELL{/// yet other comments}
+			
+			\SHELL{///}
+			
+		}          
+
+\bigskip
+
+The following options are available for the Python programming language:
+
+\medskip
+
+
+		
+		{\footnotesize    
+			
+			\SHELL{\#\# @{}package pyexample}
+			
+			\SHELL{\#  Documentation for this module.}
+			
+			\SHELL{\#}
+			
+			\SHELL{\#  More details.}
+			
+			\SHELL{}
+			
+			\SHELL{\#\# Documentation for a function.}
+			
+			\SHELL{\#}
+			
+			\SHELL{\#  More details.}
+			
+			\SHELL{}
+			
+			\SHELL{"{}"{}"{}! Documentation for a class.}
+			
+			\SHELL{}
+			
+			\SHELL{More details.}
+			
+			\SHELL{ "{}"{}"{}}
+			
+		}          
+
+
+\bigskip
+
+
+doxygen evaluates predefined keywords. The syntax for this is as follows:
+
+
+\begin{verbatim}
+/**
+* @KEYWORD DESCRIPTION
+*/
+\end{verbatim}
+
+The order of the tags has no importance. 	doxygen creates documentation even if the code is not completely commented. It indicates warning during compilation:
+
+\medskip
+
+
+\SHELL{warning: The following parameters of <name class>}
+
+
+\SHELL{are not documented: parameter 'dv'}
+
+
+\medskip
+
+
+Some keywords are described in the following sections.
+
+
+
+
+
+\subsection{Keywords for Files}
+
+
+
+\begin{verbatim}
+/**  @file TestLEDPower.ino
+*
+*  @date 10.12.2024
+*
+*  @brief Simple program for testing the power LED
+*	
+*
+*  Turns the power LED on for one second, then off for one second, repeatedly.
+*
+*  The LED is switched on for 1 second and switched off 
+*  for 1 second so that the LED flashes accordingly.
+*
+*  On the Arduino Nano 33 BLE Sense, it is attached to digital pin 25
+*
+*/
+\end{verbatim}
+
+
+\subsection{Keywords for Functions}
+
+
+
+\begin{verbatim}
+/**  
+*  @fn Name 
+*
+*  @brief the setup function runs once when reset or power the board is pressed
+*
+*  standard function of Arduino sketches
+*  
+*  Initialization of the pin LED_BUILTIN as output
+*
+*  @param ---
+*
+*  @return void
+*/  
+\end{verbatim}
+
+
+
+\subsection{Keywords for Definitions}
+
+\begin{verbatim}
+#define SET_ON  true  /*< Define flag for switching on  */
+#define SET_OFF false /*< Define flag for switching off */
+\end{verbatim}
+
+
+\section{Use of Documentation}
+
+If doxygen generates HTML documentation, there is a file \FILE{index.html}. Calling up the file \FILE{index.html} displays the documentation in a browser.
+
+
+
+
+\section{Add Ons}
+
+
+\subsection{Mainpage}
+
+
+Basically, these steps are already sufficient for documentation. However, there is not much on the start page apart from the title and version number. A customised start page can be inserted here. The keyword here is \PYTHON{@mainpage} and is followed by a description of the project.
+
+
+In the HTML documentation, the start page corresponds to the file \FILE{index.html}.
+
+
+\begin{lstlisting}
+/**
+* @mainpage Example 
+*
+* Description of the project <br>
+*
+* With the keyword <img>an image can be included. 
+* <img src="../images/application_screenshot.jpg" alt="Screenshot">
+*
+* @author Elmar Wings
+*/
+
+/**
+* @file example.ino
+*
+* @brief A short description of the file - what does it contain, what is it for, ...
+*
+**/
+
+/**
+* @class MyExampleClass
+*
+* @brief A brief description of the class
+*
+* A more detailed description of the class
+*/
+class MyExampleClass
+{
+	/**
+	* @brief A brief description of the method
+	*
+	* A more detailed functional description
+	*/
+	public static void main(String[] args)
+	{
+		System.out.println("Hello World!");
+	}
+}
+\end{lstlisting}
+
+
+
+
+
+
+
+\subsection{Use of simple HTML Commands}
+
+Es ist möglich, HTML Kommandos einzufügen. So ergeben sich beispielsweise folgende Möglichkeiten:
+
+\begin{itemize}
+  \item The command \PYTHON{<br>} forces a new line paragraph.
+  \item The command \PYTHON{<b>}  introduces boldface and ends with the command \PYTHON{</b>}.
+  \item The command \PYTHON{<i>} introduces italics and ends with command \PYTHON{</i>}.
+\end{itemize}
+
+
+\subsection{Inserting Enumerations}
+
+Enumerations can be integrated with the command \PYTHON{<ul>}. The complete syntax is:
+
+\begin{lstlisting}
+<ul>
+    <li>First</li>
+    <li>Second</li>
+    <li>Third</li>
+</ul>
+\end{lstlisting}
+
+\bigskip
+
+This then leads to an output of the following type:
+
+\begin{itemize}
+	\item First
+	\item Second
+	\item Third
+\end{itemize}
+
+\subsection{Inserting Images}
+
+The <img> keyword \PYTHON{<img>} can be used to integrate images. For the start page in particular, it makes sense to include a screenshot of the application, which can be done with:
+
+\begin{lstlisting}[language=html]
+	<img src="../images/application/screenshot.jpg" alt="Screenshot">
+\end{lstlisting}
+
+
+The path \FILE{../images/} indicates to Doxygen that the image file is located in the project directory in the subfolder \FILE{images}.
+
+
+\subsection{Inserting HTML pages}
+
+It is possible to include complete HTML pages using the command \PYTHON{@page}. The following code is an example.
+
+
+
+
+\begin{verbatim}
+/** @page Arduino Nano 33 BLE Sense
+
+<p>
+<ul>
+  <li>Date created: 28.8.2024</li>
+  <li>Path: Code/Arduino/Blink.ino</li>
+  <li>Version: 2.0</li>
+  <li>Author: </li>
+  <li> Reviewed by: </li>
+  <li>Review Date: </li>
+</ul>  
+</p>
+
+<h2>Description</h2>
+
+<p>
+The Arduino Nano 33 BLE Sense is a compact, low-power microcontroller board that combines the features of the Arduino Nano with the capabilities of a BLE (Bluetooth Low Energy) module and a range of sensors. It is designed for IoT (Internet of Things) and wearable device applications. The board features a 32-bit ARM Cortex-M4 microcontroller, 2.4 GHz BLE module, and a range of sensors including a 6-axis accelerometer, 3-axis gyroscope, magnetometer, and temperature sensor. The board also includes a microphone and a capacitive touch sensor. The Arduino Nano 33 BLE Sense is compatible with the Arduino IDE and can be programmed using C/C++ or other languages. It has a USB-C connector for power and data transfer and a microSD card slot for data storage. The board is compact and lightweight, making it suitable for wearable devices and other small form factor applications. The Arduino Nano 33 BLE Sense is also compatible with a range of Arduino shields and modules, allowing users to easily add additional functionality to their projects. The board is powered by a rechargeable lithium-ion battery and has a low power consumption, making it suitable for battery-powered applications. The Arduino Nano 33 BLE Sense is a versatile and powerful board that can be used for a wide range of IoT and wearable device applications.
+
+</p>
+
+<h2>History</h2>
+
+<p>
+The Arduino Nano 33 BLE Sense was first announced by Arduino in 2020 as a new member of the Arduino Nano family. The board was designed to provide a compact and low-power solution for IoT and wearable device applications. The Arduino Nano 33 BLE Sense was developed in collaboration with the Arduino community and was released as an open-source hardware platform. The board was designed to be compatible with the Arduino IDE and a range of Arduino shields and modules. The Arduino Nano 33 BLE Sense was released in 2020 and has since become a popular choice for IoT and wearable device projects.
+
+</p>
+*/
+\end{verbatim}
+
+	

@@ -1,0 +1,114 @@
+%%%
+%
+% $Autor: Wings $
+% $Datum: 2021-05-14 $
+% $Pfad: ArduinoIDE2 $
+% $Dateiname: 
+% $Version: 4620 $
+%
+% !TeX spellcheck = de_DE/GB
+% !TeX program = pdflatex
+% !BIB program = biber/bibtex
+% !TeX encoding = utf8
+%
+%%%
+
+
+\chapter{Arduino IDE 2.3.x}\label{ArduinoIDE2}
+
+
+
+This chapter provides a comprehensive examination of the Arduino IDE, covering its features, interface options, and functionality. It includes a detailed explanation of each component’s purpose and usability, a step-by-step installation guide, and instructions for initializing and configuring the environment. This foundational overview equips readers to effectively use the IDE for programming and troubleshooting Arduino-compatible hardware.
+
+
+\section{Arduino IDE Description}\label{ArduinoIDE}
+
+The Arduino IDE is an open-source official software designed for editing, compiling, and uploading code to Arduino modules. It is cross-platform and compatible with operating systems such as Windows, Linux, and macOS. Built on the Java platform, the IDE supports various Arduino modules and programming in C and C++.
+
+The microcontrollers on Arduino boards are programmed to process information provided in the form of code. Programs written in the IDE are referred to as sketches. These sketches generate a Hex file, which is then transferred and uploaded to the microcontroller.
+
+The IDE environment consists of two primary components: the editor and the compiler. The editor is used to write code, while the compiler compiles and uploads the code to the Arduino module.\cite{Fezari:2018} In version 2.3.3 of the Arduino IDE, the menu bar, located at the top of the interface, plays a crucial role by providing access to important commands such as Upload, Verify/Compile, and Save. Additionally, it includes the File menu for opening new or existing files and the Examples section, which offers prewritten sketches for various applications like Blink and Fade.
+
+
+
+
+
+\bigskip
+
+The 6 buttons are present on top of the screen are as follows:
+
+
+
+
+
+
+
+\begin{center}
+
+    \includegraphics[width=\textwidth]{Arduino/ArdiunoIDE2/menuboard}
+
+    \captionof{figure} {Menu Button}\label{fig::Menu Button}		
+\end{center}
+
+
+\bigskip
+
+
+%\newcommand{\icon}{\hbox{\includegraphics[viewport=800 0 720 35, clip=true,height=12pt]{Arduino/ArdiunoIDE2/MenuButton}}}
+\newcommand{\icon}{\raisebox{-1mm}{\tikz \node(n){\includegraphics[viewport=800 0 720 35, clip=true,height=12pt]{Arduino/ArdiunoIDE2/MenuButton}};}}
+
+\begin{itemize}
+    \item[\hbox{\includegraphics[viewport=6 0 34 30, clip=true,height=12pt]{Arduino/ArdiunoIDE2/MenuButton}}]	The icon check mark is used to \menu{Verify } the written code. After the code is entered, selecting this icon checks for any errors and confirms that the code is properly structured. This step ensures the code is ready for use with the hardware.
+    \item[\hbox{\includegraphics[viewport=34 0 63 30, clip=true,height=12pt]{Arduino/ArdiunoIDE2/MenuButton}}]	The icon \menu{Upload} in the Arduino IDE compiles your code and uploads it to the connected board, making it ready to run.
+    \item[\hbox{\includegraphics[viewport=60 0 88 30, clip=true,height=12pt]{Arduino/ArdiunoIDE2/MenuButton}}]	The icon \menu{Start Debugging}
+     icon in the Arduino IDE initiates a debugging session, enabling you to analyze your code by setting breakpoints, stepping through execution, and inspecting variables on compatible boards.
+    \item[\parbox{0mm}{\includegraphics[viewport=730 0 702 30, clip=true,height=12pt]{Arduino/ArdiunoIDE2/MenuButton}}] The icon \menu{Serial Plotter} in the Arduino IDE opens a tool that visualizes real-time data sent from the board over the serial connection, displaying it as graphs for easier analysis.
+    \item[\icon]	The icon \menu{Serial Monitor} in the Arduino IDE opens a terminal to view and send text-based data over the serial connection, enabling communication with the connected board in real time.
+   
+\end{itemize}
+
+
+
+
+\Mynote{hier noch einmal die letzten Grafiken in der Auflistung nach links verschieben}
+
+
+
+
+
+\section{Installation of the Arduino IDE}
+
+\subsection{Download of the Arduino IDE}
+
+
+
+
+The Arduino Nano 33 BLE Sense utilizes the Arduino Software \textbf{Integrated Development Environment (IDE)} for programming, which is the most widely used IDE for all Arduino boards and can be run both online and offline. This open-source Arduino IDE simplifies the process of writing code and uploading it to the board. Various versions of the software are available for each operating system (OS), including macOS, Linux, and Windows. The Arduino community also offers an online platform for coding and saving sketches in the cloud. This online Arduino editor is the latest version of the IDE, featuring all libraries and support for new Arduino boards.
+To access these software packages, visit the following Website: \HREF{https://www.arduino.cc/en/software}{Arduino-Software}, to stay up to date, as there are daily updates available on the mentioned link.
+
+
+
+The editor can be downloaded directly from the Arduino Software page with ease. The download options can be seen in Figure ~\ref{Download}.
+
+\begin{center}
+        \includegraphics[width=\linewidth]{Arduino/ArdiunoIDE2/DownloadInstallation2.2.3.png}
+        \captionof{figure}{Arduino IDE 2.3.3 Download}\label{Download}\label{fig:DownloadInstallation2.2.3.}
+\end{center}
+
+
+
+\subsection{Summary of Options}
+
+
+
+Below is a summary ~\ref{fig:Summary}  of the available download options for the Arduino IDE, tailored to different operating systems and individual needs. Choose the appropriate version for the device to ensure compatibility and access to the latest features.
+
+
+\begin{center}\centering
+	\includegraphics[width=12cm]{Arduino/ArdiunoIDE2/SummaryOfOptions.png}
+	\captionof{figure}{Summary of Download Options}\label{fig:Summary}		
+\end{center}
+
+
+
+

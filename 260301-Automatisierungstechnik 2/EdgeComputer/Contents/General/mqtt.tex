@@ -1,0 +1,160 @@
+%%%
+%
+% $Autor: Wings $
+% $Date: 2024-10-31 11:15:45Z $
+% $File: mqtt.tex $
+% $Version: 1 $
+%
+%%%
+
+
+\chapter{How To Use Basic MQTT on Arduino}
+
+\section{Install Needed Libraries}
+
+
+By default, the Arduino IDE comes with the Ethernet library  needed, but the  library MQTT needs to be installed. Navigate to \menu{Sketch > Include Library > Manager Libraries}, and search for ``MQTT'' in the search field. The library that we will use is called ``PubSubClient'' which is a library for use with MQTT. The library is somewhat close to the bottom of the list, so carefully look through the list for it!
+
+\bigskip
+
+\begin{center}
+\includegraphics[width=\textwidth]{MQTT/LibraryManager}
+  \captionof{figure}{Library Manager: MQTT}
+\end{center}
+
+\bigskip
+
+Create a new file, call it whatever you want (such as \FILE{MyFirstMQTT}) and then include the following libraries at the top of your program. SPI is needed for the Ethernet shield, the \FILE{Ethernet.h} is the Ethernet library that gets passed to the library \FILE{PubSubClient.h}. This handles the MQTT protocol and messaging.
+
+\bigskip
+
+\begin{Arduino}
+#include <SPI.h>
+#include <Ethernet.h>
+#include <PubSubClient.h>
+\end{Arduino}
+
+\section{Initialization}
+
+The first step into using MQTT is to define a number of variables, including the IP address, MAC, server, and some objects. The first line in our program is a function prototype of the function that will handle incoming messages, but this will be looked at more in depth later. The next few lines create our MAC address - which must be unique - and the IP address of our Ethernet. It should be noted that this IP address will be ignored if our router can assign one for us. If it can't, it will fall back and use this IP address.
+
+The next line defines the MQTT broker that we will connect to. A broker in the world of MQTT is simply a server, but unlike a server, brokers can send messages to clients at any time and they are not designed to store data, only relay it. The last two lines define an Ethernet object that is used to control the Ethernet shield and an MQTT client that takes the Ethernet object. Because the MQTT client takes the Ethernet object, it makes coding incredibly simple as we do not have to handle the Ethernet shield at all!
+
+\begin{Arduino}
+// Function prototypes
+void subscribeReceive(char* topic, byte* payload, unsigned int length);
+	
+// Set your MAC address and IP address here
+byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
+IPAddress ip(192, 168, 1, 160);
+	
+// Make sure to leave out the http and slashes!
+const char* server = "test.mosquitto.org";
+	
+// Ethernet and MQTT related objects
+EthernetClient ethClient;
+PubSubClient mqttClient(ethClient);
+\end{Arduino}
+
+\section{Setup}
+
+
+In our setup function, we need to start by enabling the serial port so we can see the status of our Arduino and begin an Ethernet connection. The method \PYTHON{.begin()} takes two arguments: the MAC address and the IP address (which we simply pass). It's at this point that we also include a small delay to allow the Ethernet Shield to do its thing!
+
+The next step is to set the MQTT broker that we will be communicating on. The .connect() function takes several arguments including usernames and passwords, but since we are using a public testing MQTT broker, we only need to define a user ID. For now, our user ID will be “myClientID”. This function will return a Boolean value depending on the success of the connection to the broker. If the connection was successful, then it returns true. Otherwise, it returns false. If the connection is true then we create an event handler that will call the function \PYTHON{subscribeReceive} upon receiving a message.
+
+\bigskip
+
+\begin{Arduino}
+void setup()
+{
+	// Useful for debugging purposes
+	Serial.begin(9600);
+		
+	// Start the ethernet connection
+	Ethernet.begin(mac, ip);              
+		
+	// Ethernet takes some time to boot!
+	delay(3000);                          
+		
+	// Set the MQTT server to the server stated above ^
+	mqttClient.setServer(server, 1883);   
+		
+	// Attempt to connect to the server with the ID "myClientID"
+	if (mqttClient.connect("myClientID")) 
+	{
+		Serial.println("Connection has been established, well done");
+			
+		// Establish the subscribe event
+		mqttClient.setCallback(subscribeReceive);
+	} 
+	else 
+	{
+		Serial.println("Looks like the server connection failed...");
+	}
+}
+\end{Arduino}
+
+\section{Main Loop}
+
+In our main loop, the first method is \PYTHON{.loop()}. In essence, it handles keep-alive signals, as well as handling incoming messages. The next line in the loop gets our Arduino to subscribe to a topic, ``MakerIOTopic''. In MQTT, a topic can be thought of as a string variable stored on the broker that can hold some data and users can publish to a topic, subscribe to a topic, or do both! For example, if a user publishes the value ``door is open'' to the topic ``door state'' then any device subscribed to the topic ``door state'' will receive the message ``door it open''. If any device in the world publishes a message to ``MakerIOTopic'' then our program will call the function ``subscribeReceive''.
+
+The next section of code attempts to publish a message to the topic ``MakerIOTopic''. In this case, we send the message ``Hello World'' to the ``MakerIOTopic'' topic so that any devices subscribed to that topic will receive this message. The last line is a simple delay that prevents us from abusing the server with a million messages!
+
+\bigskip
+
+\begin{Arduino}
+void loop()
+{
+	// This is needed at the top of the loop!
+	mqttClient.loop();
+		
+	// Ensure that we are subscribed to the topic "MakerIOTopic"
+	mqttClient.subscribe("MakerIOTopic");
+		
+	// Attempt to publish a value to the topic "MakerIOTopic"
+	if(mqttClient.publish("MakerIOTopic", "Hello World"))
+	{
+		Serial.println("Publish message success");
+	}
+	else
+	{
+		Serial.println("Could not send message :(");
+	}
+		
+	// Dont overload the server!
+	delay(4000);
+}
+\end{Arduino}
+
+\section{Subscribe Handle}
+
+The last function in our program is subscribeReceive, which is called whenever a message arrives from the MQTT broker. Three variables are passed to it: the topic name (in the form of a char array), the message itself (in the form of a byte array), and the length of those bytes. Both the topic and payload are printed and the output window shows the result below.
+
+\bigskip
+
+\begin{Arduino}
+void subscribeReceive(char* topic, byte* payload, unsigned int length)
+{
+	// Print the topic
+	Serial.print("Topic: ");
+	Serial.println(topic);
+		
+	// Print the message
+	Serial.print("Message: ");
+	for(int i = 0; i < length; i ++)
+	{
+		Serial.print(char(payload[i]));
+	}
+		
+	// Print a newline
+	Serial.println("");
+}
+\end{Arduino}
+
+\bigskip
+
+\begin{center}
+  \includegraphics[width=\textwidth]{MQTT/connection}
+  \captionof{figure}{MQTT connection}
+\end{center}

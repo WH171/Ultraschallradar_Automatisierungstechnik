@@ -1,0 +1,267 @@
+%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% $Autor: Akshay Joseph $
+% $Datum: 2025-03-31 $
+% $Pfad: GitHub/ML24-EX01-KeywordSpotting/Nano33BLESense/Contents/General/Database.tex $
+% $Version: 1 $
+%
+%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Database ``Mini Speech Commands''}
+
+
+\section{Overview}
+
+
+
+The foundation of any supervised learning system lies in the quality and organization of the dataset. In this project, the data mining pipeline is designed to automate the retrieval and structuring of the mini Speech Commands dataset. This process ensures the system is initialized with verified, reproducible data prior to model training and inference.
+
+
+
+\bigskip
+
+
+
+\section{Dataset Initialization}
+
+
+
+The first stage involves specifying the target directory where the dataset should reside. Using \texttt{pathlib}, a cross-platform path abstraction is defined:
+
+
+
+\begin{lstlisting}[language=Python, caption={Dataset path definition}]
+    
+    DATASET_PATH = 'data/mini_speech_commands'
+    
+    data_dir = pathlib.Path(DATASET_PATH)
+    
+\end{lstlisting}
+
+
+
+\bigskip
+
+
+
+A check is then performed to determine whether the dataset is already available. If not, the dataset is downloaded from a remote TensorFlow server and extracted locally using the utility function \texttt{tf.keras.utils.get\_file}:
+
+
+
+\begin{lstlisting}[language=Python, caption={Dataset download and caching}]
+    
+    if not data_dir.exists():
+    
+    tf.keras.utils.get_file(
+    
+    'mini_speech_commands.zip',
+    
+    origin="http://storage.googleapis.com/download.tensorflow.org/data/mini_speech_commands.zip",
+    
+    extract=True,
+    
+    cache_dir='.', cache_subdir='data')
+    
+\end{lstlisting}
+
+
+
+\bigskip
+
+
+
+This ensures that the dataset download occurs only once and is automatically cached for future use.
+
+
+
+\bigskip
+
+
+
+\section{Command Label Extraction}
+
+
+
+Once the dataset is available locally, the script lists all the subdirectories present within the dataset directory. These directories correspond to individual voice commands:
+
+
+
+\begin{lstlisting}[language=Python, caption={Extract command labels}]
+    
+    commands = np.array(tf.io.gfile.listdir(str(data_dir)))
+    
+\end{lstlisting}
+
+
+
+\bigskip
+
+
+
+Since some system-generated files (like \texttt{.DS\_Store} or \texttt{README.md}) may also reside in the folder, they are explicitly excluded:
+
+
+
+\begin{lstlisting}[language=Python, caption={Remove invalid command files}]
+    
+    commands = commands[(commands != 'README.md') & (commands != '.DS_Store')]
+    
+    print('Commands:', commands)
+    
+\end{lstlisting}
+
+
+
+\bigskip
+
+
+
+The resulting \texttt{commands} array now holds clean, verified label names which can later be used to supervise the training process.
+
+
+
+\bigskip
+
+
+
+\section{Dataset Loading and Splitting}
+
+
+
+The data mining phase is extended to load the audio files into TensorFlow datasets using a helper function \texttt{load\_audio\_dataset}, which abstracts the logic of batching and splitting:
+
+
+
+\begin{lstlisting}[language=Python, caption={Function to load and split dataset}]
+    
+    def load_audio_dataset(directory, batch_size, validation_split, seed, output_sequence_length, subset):
+    
+    return tf.keras.utils.audio_dataset_from_directory(
+    
+    directory=directory,
+    
+    batch_size=batch_size,
+    
+    validation_split=validation_split,
+    
+    seed=seed,
+    
+    output_sequence_length=output_sequence_length,
+    
+    subset=subset
+    
+    )
+    
+\end{lstlisting}
+
+
+
+\bigskip
+
+
+
+The following call loads both training and validation datasets:
+
+
+{
+    \captionof{code}{Load training and validation data}
+
+  \begin{Python}
+train_ds, val_ds = load_audio_dataset(
+                             directory=data_dir,
+                             batch_size=64,
+                            validation_split=0.2,
+                            seed=0,
+                            output_sequence_length=16000,
+                            subset='both'
+                         )
+  \end{Python}
+}
+
+
+\bigskip
+
+
+
+The dataset class names are stored in:
+
+\medskip
+
+{
+  \captionof{code}{Extract label names}
+  \begin{Python}
+    label_names = np.array(train_ds.class_names)
+    print("Label names:", label_names)
+  \end{Python}
+}
+
+
+\bigskip
+
+
+
+\section{Flowchart Representation}
+
+
+
+To clearly depict the sequence of operations involved in the data mining process, the following flowchart outlines the logic from dataset check to command label extraction:
+
+
+
+\begin{figure}[h!]
+    
+    \centering
+    
+    \begin{tikzpicture}[node distance=1.5cm, every node/.style={font=\small}, align=center]
+        
+        
+        
+        \tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=gray!10]
+        
+        \tikzstyle{process} = [rectangle, minimum width=4cm, minimum height=1cm, text centered, draw=black, fill=blue!10]
+        
+        \tikzstyle{decision} = [diamond, aspect=2, minimum height=1.2cm, text centered, draw=black, fill=orange!15]
+        
+        \tikzstyle{arrow} = [thick,->,>=stealth]
+        
+        
+        
+        \node (start) [startstop] {Start};
+        
+        \node (check) [decision, below of=start] {Dataset exists locally?};
+        
+        \node (download) [process, right=4cm of check] {Download and extract\\ dataset using \texttt{get\_file}};
+        
+        \node (listdirs) [process, below of=check, yshift=-2.5cm] {List command directories};
+        
+        \node (clean) [process, below of=listdirs] {Remove non-command files\\ (\texttt{README.md}, \texttt{.DS\_Store})};
+        
+        \node (save) [process, below of=clean] {Save command names as label array};
+        
+        \node (end) [startstop, below of=save] {End};
+        
+        
+        
+        \draw [arrow] (start) -- (check);
+        
+        \draw [arrow] (check.east) -- (download.west) node[midway, above] {No};
+        
+        \draw [arrow] (download.south) |- (listdirs.east);
+        
+        \draw [arrow] (check) -- node[left] {Yes} (listdirs);
+        
+        \draw [arrow] (listdirs) -- (clean);
+        
+        \draw [arrow] (clean) -- (save);
+        
+        \draw [arrow] (save) -- (end);
+        
+        
+        
+    \end{tikzpicture}
+    
+    \caption{Data mining pipeline flowchart}
+    
+    \label{fig:dataMiningFlowchart}
+    
+\end{figure}
+

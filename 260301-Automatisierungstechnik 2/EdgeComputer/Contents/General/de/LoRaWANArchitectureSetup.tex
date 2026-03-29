@@ -1,0 +1,2325 @@
+%%%%%%%%%%%%
+%
+% $Autor: Wings $
+% $Datum: 2019-03-05 08:03:15Z $
+% $Pfad: TemplateSensor $
+% $Version: 4250 $
+% !TeX spellcheck = en_GB/de_DE
+% !TeX encoding = utf8
+% !TeX root = filename 
+% !TeX TXS-program:bibliography = txs:///biber
+%
+%%%%%%%%%%%%
+
+% Structure
+\chapter{Aufbau privater LoRaWAN-Infrastruktur}
+
+	Dieses Kapitel beschreibt den vollständigen Prozess zum Aufbau einer privaten \ac{lorawan}-Infrastruktur auf Basis der Open-Source-Plattform ChirpStack. Es erläutert die Installation des Servers auf einem Raspberry Pi, einschlie{\ss}lich der Vorbereitung des Betriebssystems, der Einrichtung von SSH und der Installation aller benötigten Tools wie Docker und Git. Anschlie{\ss}end wird gezeigt, wie die ChirpStack-Docker-Umgebung heruntergeladen und gestartet wird, sodass Network-, Application- und Join-Server in Containern bereitstehen.
+	
+\section{ChirpStack LoRaWAN Server \label{LNS:ChirpstackGeneral}}
+	ChirpStack ist eine Open-Source-Software für den Betrieb eines \ac{lorawan}-Servers, die auf einem eigenen Host installiert und betrieben werden kann. Die Software ist vollständig kostenlos und kann frei heruntergeladen werden. ChirpStack verwaltet die gesamte Infrastruktur, einschlie{\ss}lich Endgeräten und Gateways.
+	
+	Mit der Einführung von Version~4 wurden die Komponenten \emph{Network Server} und \emph{Application Server} in einem einzigen Modul zusammengeführt, wodurch die Komplexität der Systemarchitektur reduziert wurde. Dennoch ermöglicht ChirpStack weiterhin die Anbindung externer Application Server über definierte Schnittstellen (siehe~\ref{chirpstack:nsApiKeys}) \cite{ChirpStack:2022d}, \cite{Garcia:2025b}.
+	
+	\vspace{0.5cm}
+
+	\textbf{Wichtig:} In diesem Kapitel wird der Begriff \textbf{Server} als Sammelbezeichnung für die drei Module \ac{lns}, \ac{as} und \ac{js} verwendet, sofern nicht ausdrücklich auf eines der Module einzeln Bezug genommen wird.
+	
+	\vspace{0.5cm}
+	
+	LoRaWAN kann auch als privates Netzwerk betrieben werden, indem ein eigener LoRaWAN-Server auf einer lokalen oder gehosteten Maschine installiert wird. Dadurch erhält man die volle Kontrolle über die Serverkonfiguration, die Verwaltung der angeschlossenen Gateways sowie die Integration der Endgeräte \cite{ChirpStack:2022b} \cite{Montagny:2022}.
+
+	In diesem Kapitel wird beschrieben, wie ein ChirpStack-Server eingerichtet wird, wie ein Gateway angebunden werden kann und wie anschlie{\ss}end Endgeräte in das Netzwerk integriert werden.
+
+	Für diesen Prozess benötigen wir folgende Komponenten:
+	\begin{itemize}
+		\item eine Host-Maschine mit Internetzugang,
+		\item ein LoRaWAN-Gateway,
+		\item Zugriff auf den Router,
+		\item ein Endgerät.
+	\end{itemize}
+	
+	In der folgenden Einleitung wird der Anschlussprozess anhand der nachstehenden Hardware erläutert:
+	\begin{itemize}
+		\item \textbf{Server Host-Maschine:} Raspberry Pi 4 Model B, 8 GB RAM mit Speicherkarte
+		\item \textbf{LoRa-Gateway:} MikroTik RBwAPR-2nD\&R11e-LR8 (wAP LR8 kit),
+		\item \textbf{Endgerät:} Arduino MKR WAN 1310 mit Beispielcode.
+	\end{itemize}
+	
+	\vspace{0.3cm}
+	
+\section{Installation des ChirpStack-Servers}
+	
+	\textcite{ChirpStack:2022b} beschreibt zewi mögliche Installationsvarianten für ChirpStack:
+	\begin{itemize}
+		\item mittels Docker,
+		\item direkt auf Debian/Ubuntu,
+	\end{itemize}
+	
+	In diesem Beispiel wird die Installation mittels Docker auf dem Raspberry Pi durchgeführt. Es muss sichergestellt sein, dass sich die Host-Maschine und das Gateway im selben lokalen Netzwerk befinden müssen.
+	
+\subsection{Installation des Raspberry Pi OS}	
+	Für die Installation von Raspberry Pi OS werden ein Rechner mit Internetzugang sowie der installierte \textit{Raspberry Pi Imager} benötigt. Der Imager dient sowohl zum Herunterladen als auch zum Schreiben des Betriebssystems auf die microSD-Karte. In diesem Beispiel wird der Raspberry Pi Imager in der Version~\texttt{v2.0.0} verwendet.
+	
+
+		
+	Im Folgenden wird beschrieben, wie mithilfe des offiziellen Raspberry Pi Imagers das Betriebssystem für den Raspberry Pi installiert und konfiguriert wird. Die Schritte orientieren sich an den Benutzeroberflächen des Imagers und werden durch entsprechende Abbildungen unterstützt.
+	
+	\begin{enumerate}
+	
+	\item \textbf{Auswahl des Geräts}\\
+	Nach dem Start des Raspberry Pi Imagers wird zunächst das verwendete Raspberry-Pi-Modell ausgewählt.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\tikzset{
+				textDef/.style={font=\sffamily\small,},
+				lineScaled/.style={line width={2pt}},
+				arrowStyle/.style={lineScaled, >=stealth, red},
+				boxStyle/.style={line width={1pt}, red},
+			}
+			\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+				\includegraphics[width=0.9\linewidth]{LoRaAndLoRaWAN/ChirpstackInstallation/PiChooseDevice}};
+			\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+				\draw[arrowStyle, <-] (0.345,0.52) -- ++(-0.1,-0.1);
+				\draw[boxStyle] (0.35, 0.525) rectangle ++(0.57, 0.12);
+			\end{scope}
+		\end{tikzpicture}
+		\caption{Auswahl des Raspberry-Pi-Modells}
+	\end{figure}
+	
+	\item \textbf{Auswahl der OS-Version}\\
+	Anschlie{\ss}end wird das gewünschte Betriebssystem aus der Liste verfügbarer Versionen ausgewählt.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\tikzset{
+				textDef/.style={font=\sffamily\small,},
+				lineScaled/.style={line width={2pt}},
+				arrowStyle/.style={lineScaled, >=stealth, red},
+				boxStyle/.style={line width={1pt}, red},
+			}
+			\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+				\includegraphics[width=0.9\linewidth]{LoRaAndLoRaWAN/ChirpstackInstallation/PiChooseOS}};
+			\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+				\draw[arrowStyle, <-] (0.345,0.52) -- ++(-0.1,-0.1);
+				\draw[boxStyle] (0.35, 0.525) rectangle ++(0.57, 0.2);
+			\end{scope}
+		\end{tikzpicture}
+		\caption{Auswahl der OS-Version}
+	\end{figure}
+	
+	\item \textbf{Speicherkarte auswählen}\\
+	Die microSD-Karte wird in das Kartenlesegerät von dem Rechner eingesetzt. Sobald sie im Raspberry Pi Imager erscheint, wird sie ausgewählt.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\tikzset{
+				textDef/.style={font=\sffamily\small,},
+				lineScaled/.style={line width={2pt}},
+				arrowStyle/.style={lineScaled, >=stealth, red},
+				boxStyle/.style={line width={1pt}, red},
+			}
+			\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+				\includegraphics[width=0.9\linewidth]{LoRaAndLoRaWAN/ChirpstackInstallation/PiChooseDisc}};
+			\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+				\draw[arrowStyle, <-] (0.345,0.465) -- ++(-0.1,-0.1);
+				\draw[boxStyle] (0.35, 0.47) rectangle ++(0.57, 0.13);
+			\end{scope}
+		\end{tikzpicture}
+		\caption{Auswahl des Ziel-Datenträgers}
+	\end{figure}
+	
+	\item \textbf{Hostname vergeben \label{rasppi:hostname}}\\
+	Nun wird der Hostname festgelegt, unter dem das Gerät später im Netzwerk erreichbar sein soll.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\tikzset{
+				textDef/.style={font=\sffamily\small,},
+				lineScaled/.style={line width={2pt}},
+				arrowStyle/.style={lineScaled, >=stealth, red},
+				boxStyle/.style={line width={1pt}, red},
+			}
+			\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+				\includegraphics[width=0.9\linewidth]{LoRaAndLoRaWAN/ChirpstackInstallation/PiHostName}};
+			\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+				\draw[arrowStyle, <-] (0.345,0.465) -- ++(-0.1,-0.1);
+			\end{scope}
+		\end{tikzpicture}
+		\caption{Vergabe des Hostnamens}
+	\end{figure}
+	
+	\item \textbf{Lokalisierung einstellen}\\
+	Anschlie{\ss}end werden Region, Zeitzone und Tastaturlayout konfiguriert.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\tikzset{
+				textDef/.style={font=\sffamily\small,},
+				lineScaled/.style={line width={2pt}},
+				arrowStyle/.style={lineScaled, >=stealth, red},
+				boxStyle/.style={line width={1pt}, red},
+			}
+			\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+				\includegraphics[width=0.9\linewidth]{LoRaAndLoRaWAN/ChirpstackInstallation/PiLocalisation}};
+			\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+				\draw[arrowStyle, <-] (0.345,0.56) -- ++(-0.1, 0);
+				\draw[arrowStyle, <-] (0.345,0.44) -- ++(-0.1, 0);
+				\draw[arrowStyle, <-] (0.345,0.315) -- ++(-0.1, 0);
+			\end{scope}
+		\end{tikzpicture}
+		\caption{Konfiguration der Lokalisierungseinstellungen}
+	\end{figure}
+	
+	\item \textbf{Benutzerkonto anlegen}\\
+	Nun wird ein Benutzerkonto erstellt. In diesem Beispiel lautet der Benutzername \textbf{admin} und das Passwort 
+	\textbf{admin1234}.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\tikzset{
+				textDef/.style={font=\sffamily\small,},
+				lineScaled/.style={line width={2pt}},
+				arrowStyle/.style={lineScaled, >=stealth, red},
+				boxStyle/.style={line width={1pt}, red},
+			}
+			\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+				\includegraphics[width=0.9\linewidth]{LoRaAndLoRaWAN/ChirpstackInstallation/PiCreateUser}};
+			\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+				\draw[arrowStyle, <-] (0.345,0.61) -- ++(-0.1, 0);
+				\draw[arrowStyle, <-] (0.345,0.485) -- ++(-0.1, 0);
+				\draw[arrowStyle, <-] (0.345,0.37) -- ++(-0.1, 0);
+			\end{scope}
+		\end{tikzpicture}
+		\caption{Erstellung des Benutzerkontos}
+	\end{figure}
+	
+	\item \textbf{WLAN-Konfiguration (optional)}\\
+	Da der Raspberry Pi in dieser Anwendung über eine LAN-Verbindung betrieben wird, wird dieser Schritt übersprungen.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\tikzset{
+				textDef/.style={font=\sffamily\small,},
+				lineScaled/.style={line width={2pt}},
+				arrowStyle/.style={lineScaled, >=stealth, red},
+				boxStyle/.style={line width={1pt}, red},
+			}
+			\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+				\includegraphics[width=0.9\linewidth]{LoRaAndLoRaWAN/ChirpstackInstallation/PiChooseWiFi}};
+			\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+				\draw[arrowStyle, <-] (0.345,0.64) -- ++(-0.1, 0);
+				\draw[arrowStyle, <-] (0.345,0.515) -- ++(-0.1, 0);
+				\draw[arrowStyle, <-] (0.345,0.40) -- ++(-0.1, 0);
+			\end{scope}
+		\end{tikzpicture}
+		\caption{Optionale WLAN-Konfiguration}
+	\end{figure}
+	
+	\item \textbf{SSH aktivieren}\\
+	Zur späteren Remote-Verwaltung wird SSH aktiviert. Es stehen zwei Authentifizierungsmethoden zur Verfügung:
+	\begin{itemize}
+		\item \textbf{Passwort-Authentifizierung} – Der Zugriff erfolgt über die Eingabe von Benutzername und Passwort. Diese Methode ist einfach einzurichten, bietet jedoch ein geringeres Sicherheitsniveau.
+		\item \textbf{Public-Key-Authentifizierung} – Die Anmeldung erfolgt mittels eines kryptographischen Schlüsselpaares, bei dem der private Schlüssel auf dem Client verbleibt und der öffentliche Schlüssel auf dem Raspberry Pi hinterlegt wird. Diese Methode ist deutlich sicherer und wird insbesondere für produktive Systeme empfohlen.
+	\end{itemize}
+	
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\tikzset{
+				textDef/.style={font=\sffamily\small,},
+				lineScaled/.style={line width={2pt}},
+				arrowStyle/.style={lineScaled, >=stealth, red},
+				boxStyle/.style={line width={1pt}, red},
+			}
+			\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+				\includegraphics[width=0.9\linewidth]{LoRaAndLoRaWAN/ChirpstackInstallation/PiConfigureSSH}};
+			\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+				\draw[arrowStyle, <-] (0.905,0.565) -- ++(0, -0.1);
+				\draw[arrowStyle, <-] (0.365,0.42) -- ++(-0.1, 0);
+			\end{scope}
+		\end{tikzpicture}
+		\caption{SSH-Konfiguration im Raspberry Pi Imager}
+	\end{figure}
+	
+	\item \textbf{Zusammenfassung der Konfiguration}\\
+	Abschlie{\ss}end wird eine Übersicht aller gewählten Einstellungen angezeigt. Mit einem Klick auf \textit{Write} wird das Image heruntergeladen und auf die Speicherkarte geschrieben.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\tikzset{
+				textDef/.style={font=\sffamily\small,},
+				lineScaled/.style={line width={2pt}},
+				arrowStyle/.style={lineScaled, >=stealth, red},
+				boxStyle/.style={line width={1pt}, red},
+			}
+			\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+				\includegraphics[width=0.9\linewidth]{LoRaAndLoRaWAN/ChirpstackInstallation/PiConfigSummary}};
+		\end{tikzpicture}
+		\caption{Zusammenfassung der Konfiguration}
+	\end{figure}
+	
+	\item \textbf{Einbau der Speicherkarte in den Raspberry Pi}\\
+	Nach dem erfolgreichen Schreiben des Images kann die microSD-Karte aus dem Rechner entnommen und in den Raspberry Pi eingesetzt werden. Anschlie{\ss}end ist das Gerät bereit für den ersten Start.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\tikzset{
+				textDef/.style={font=\sffamily\small,},
+				lineScaled/.style={line width={2pt}},
+				arrowStyle/.style={lineScaled, >=stealth, red},
+				boxStyle/.style={line width={1pt}, red},
+			}
+			\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+				\includegraphics[width=0.9\linewidth]{LoRaAndLoRaWAN/ChirpstackInstallation/PIInstallationSucces}};
+			\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+				\draw[arrowStyle, <-] (0.87, 0.10) -- ++(0, 0.10);
+			\end{scope}
+		\end{tikzpicture}
+		\caption{Erfolgreich abgeschlossenes Schreiben des Images}
+	\end{figure}
+	
+	\item Raspberry An LAN und Strom anschlie{\ss}en\\
+	Der Raspberry kann nun an LAN Kaben und strom angeschlossen werden. 
+	
+	%tikz
+	\end{enumerate}
+
+\subsection{Konfiguration des Raspberry Pi}
+
+Die folgende Konfiguration kann entweder direkt auf dem Raspberry Pi oder über einen anderen Rechner durchgeführt werden.
+
+\begin{itemize}
+	\item \textbf{Konfiguration direkt auf dem Raspberry Pi} - Der Raspberry Pi wird hierfür per LAN-Kabel mit dem Netzwerk verbunden und zusätzlich an einen Bildschirm angeschlossen. Ebenfalls werden eine Tastatur und eine Maus benötigt. Die gesamte Konfiguration wird direkt auf dem Gerät durchgeführt. Soll diese Option verwendet werden, kann direkt zum Abschnitt \nameref{pi:Config} weitergesprungen werden.
+	
+	\item \textbf{Konfiguration über SSH} - Diese Methode ermöglicht einen Remote-Zugriff auf den Raspberry Pi, ohne dass ein Bildschirm oder weitere Eingabegeräte angeschlossen werden müssen. Die Terminalausgabe des Raspberry Pi erscheint dabei direkt in der Terminalanwendung des verbundenen Rechners. Um eine SSH-Verbindung herzustellen, sind zunächst die Schritte aus dem Abschnitt \nameref{rasppi:sshConfig} zu befolgen. Anschlie{\ss}end kann mit der eigentlichen Konfiguration fortgefahren werden (siehe~ Unterabschnitt \nameref{pi:Config}).
+	
+	
+	\end{itemize}
+	
+	\subsubsection{Verbindungsaufbau über SSH \label{rasppi:sshConfig}}
+	
+	Um eine SSH-Verbindung herstellen zu können, wird ein SSH-Client benötigt. 
+	Auf macOS-Systemen ist dieser bereits im integrierten Terminal enthalten, sodass die Verbindung direkt über den Befehl  
+	\PYTHON{ssh <username>@<hostname>.local} (im Beispiel \PYTHON{admin@ChirpStackServer.local})  
+	oder über  
+	\PYTHON{ssh <username>@<hostIP>}  
+	hergestellt werden kann.
+	
+	
+	Sollte die Verbindung über \PYTHON{<hostname>.local} nicht funktionieren, muss die IP-Adresse des Raspberry Pi ermittelt werden, beispielsweise über die DHCP-Client-Liste des Routers oder mithilfe eines Tools wie \textit{LanScan}.  
+	Der Hostname entspricht dem Namen, der dem Raspberry Pi während der Image-Erstellung zugewiesen wurde (siehe~\autoref{rasppi:hostname}).
+	
+	Unter Windows ist zusätzlich ein externer SSH-Client wie \textit{PuTTY} erforderlich.
+	
+
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\tikzset{
+				textDef/.style={font=\sffamily\small,},
+				lineScaled/.style={line width={2pt}},
+				arrowStyle/.style={lineScaled, >=stealth, red},
+				boxStyle/.style={line width={1pt}, red},
+			}
+			\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+				\includegraphics[width=0.9\linewidth]{LoRaAndLoRaWAN/ChirpstackInstallation/DHCPClientTable}};
+			\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+				\draw[boxStyle] (0.245, 0.085) rectangle ++(0.46, 0.04);
+				\draw[arrowStyle, <-] (0.685, 0.10) -- ++(0.06, -0.04) node[textDef, right] {IP-Adresse};
+			\end{scope}
+		\end{tikzpicture}
+		\caption{IP-Adresse in der DHCP-Tabelle des Routers}
+	\end{figure}
+	
+	\vspace{0.3cm}
+	
+	Die nachfolgenden Schritte zum Aufbau der SSH-Verbindung beziehen sich auf die Verwendung eines Apple macOS-Geräts.
+	\begin{enumerate}
+		\item \textbf{SSH-Verbindung über die IP-Adresse herstellen}
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small,},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+					boxStyle/.style={line width={1pt}, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+					\includegraphics[width=0.9\linewidth]{LoRaAndLoRaWAN/ChirpstackInstallation/piSSHIP}};
+				\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+					\draw[boxStyle] (0.02, 0.85) rectangle ++(0.46, 0.04);
+				\end{scope}
+			\end{tikzpicture}
+			\caption{SSH-Verbindung über die IP-Adresse}
+		\end{figure}
+		
+		oder
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small,},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+					boxStyle/.style={line width={1pt}, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+					\includegraphics[width=0.9\linewidth]{LoRaAndLoRaWAN/ChirpstackInstallation/piSSHHostName}};
+				\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+					\draw[boxStyle] (0.02, 0.85) rectangle ++(0.46, 0.04);
+				\end{scope}
+			\end{tikzpicture}
+			\caption{SSH-Verbindung über den Hostnamen}
+		\end{figure}
+		
+		\item \textbf{Bestätigung der neuen SSH-Verbindung}\\
+		Beim ersten Verbindungsaufbau erscheint eine Sicherheitswarnung, die mit \textbf{yes} bestätigt werden muss.
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small,},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+					boxStyle/.style={line width={1pt}, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+					\includegraphics[width=0.9\linewidth]{LoRaAndLoRaWAN/ChirpstackInstallation/PiSSHWarning}};
+				\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+					\draw[boxStyle] (0.02, 0.70) rectangle ++(0.92, 0.15);
+				\end{scope}
+			\end{tikzpicture}
+			\caption{Bestätigung des SSH-Schlüssels beim ersten Verbindungsaufbau}
+		\end{figure}
+		
+		\item \textbf{Passwort eingeben}\\
+		In diesem Beispiel lautet das Passwort des Benutzers \textbf{admin1234}.
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small,},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+					boxStyle/.style={line width={1pt}, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+					\includegraphics[width=0.9\linewidth]{LoRaAndLoRaWAN/ChirpstackInstallation/PiSSHPassword}};
+			\end{tikzpicture}
+			\caption{Eingabe des Benutzerpassworts}
+		\end{figure}
+		
+		\item \textbf{Erfolgreicher Verbindungsaufbau}\\
+		Nach der Eingabe des Passworts wird die SSH-Verbindung zum Raspberry Pi hergestellt.
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small,},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+					boxStyle/.style={line width={1pt}, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+					\includegraphics[width=0.9\linewidth]{LoRaAndLoRaWAN/ChirpstackInstallation/PiPasswordSuccesfull}};
+					
+					\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+						\draw[boxStyle] (0.3, 0.9) rectangle ++(0.65, 0.08);
+					\end{scope}
+			\end{tikzpicture}
+			\caption{Erfolgreiche SSH-Verbindung}
+		\end{figure}
+		
+	\end{enumerate}
+	
+	 
+	 \subsubsection{Herunterladen der benötigten Tools \label{pi:Config}}
+	 \begin{enumerate}
+	 	
+	 	\item \textbf{Update der Paketlisten}\\
+	 	Nach der Installation eines neuen Raspberry Pi OS sollten die Paketlisten aktualisiert und bestehende Pakete auf den neuesten Stand gebracht werden. Dazu wird im Terminal der folgende Befehl ausgeführt:  
+	 	\PYTHON{sudo apt update \&\& sudo apt upgrade -y}
+	 	
+	 	\begin{figure}[H]
+	 		\centering
+	 		\begin{tikzpicture}
+	 			\tikzset{
+	 				textDef/.style={font=\sffamily\small,},
+	 				lineScaled/.style={line width={2pt}},
+	 				arrowStyle/.style={lineScaled, >=stealth, red},
+	 				boxStyle/.style={line width={1pt}, red},
+	 			}
+	 			\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+	 				\includegraphics[width=0.9\linewidth]{LoRaAndLoRaWAN/ChirpstackInstallation/PiPacketUpdate}};
+	 		\end{tikzpicture}
+	 		\caption{Aktualisierung der Paketlisten}
+	 	\end{figure}
+	 	
+	 	\item \textbf{Docker-Installation}\\
+	 	Für die spätere Installation des Servers wird Docker benötigt, da ChirpStack vollständig in Containern ausgeführt wird. Die offizielle Docker-Webseite stellt ein Installationsskript bereit, das in zwei Schritten ausgeführt wird \cite{Docker:2025}.
+	 	
+	 	\begin{enumerate}
+	 		
+	 		\item \textbf{Download der Docker-Repository-Konfiguration}
+	 		
+	 		\begin{lstlisting}[
+	 			language=bash,
+	 			basicstyle=\ttfamily\small,
+	 			keywordstyle=\color{blue},
+	 			stringstyle=\color{red},
+	 			commentstyle=\color{green!50!black},
+	 			frame=single,
+	 			numbers=left,
+	 			numberstyle=\tiny\color{gray},
+	 			backgroundcolor=\color{black!5}
+	 			]
+# Add Docker's official GPG key:
+sudo apt update
+sudo apt install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+sudo tee /etc/apt/sources.list.d/docker.sources <<EOF
+Types: deb
+URIs: https://download.docker.com/linux/debian
+Suites: $(. /etc/os-release && echo "$VERSION_CODENAME")
+Components: stable
+Signed-By: /etc/apt/keyrings/docker.asc
+EOF
+
+sudo apt update
+	 		\end{lstlisting}
+	 		
+	 		\begin{figure}[H]
+	 			\centering
+	 			\begin{tikzpicture}
+	 				\tikzset{
+	 					textDef/.style={font=\sffamily\small,},
+	 					lineScaled/.style={line width={2pt}},
+	 					arrowStyle/.style={lineScaled, >=stealth, red},
+	 					boxStyle/.style={line width={1pt}, red},
+	 				}
+	 				\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+	 					\includegraphics[width=0.9\linewidth]{LoRaAndLoRaWAN/ChirpstackInstallation/PiDockerDownload}};
+	 			\end{tikzpicture}
+	 			\caption{Herunterladen der Docker-Konfiguration}
+	 		\end{figure}
+	 		
+	 		\item \textbf{Installation von Docker}
+	 		
+	 		\begin{lstlisting}[
+	 			language=bash,
+	 			basicstyle=\ttfamily\small,
+	 			keywordstyle=\color{blue},
+	 			stringstyle=\color{red},
+	 			commentstyle=\color{green!50!black},
+	 			frame=single,
+	 			numbers=left,
+	 			numberstyle=\tiny\color{gray},
+	 			backgroundcolor=\color{black!5}
+	 			]
+sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+	 		\end{lstlisting}
+	 		
+	 		\begin{figure}[H]
+	 			\centering
+	 			\begin{tikzpicture}
+	 				\tikzset{
+	 					textDef/.style={font=\sffamily\small,},
+	 					lineScaled/.style={line width={2pt}},
+	 					arrowStyle/.style={lineScaled, >=stealth, red},
+	 					boxStyle/.style={line width={1pt}, red},
+	 				}
+	 				\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+	 					\includegraphics[width=0.9\linewidth]{LoRaAndLoRaWAN/ChirpstackInstallation/PiDockerInstall}};
+	 			\end{tikzpicture}
+	 			\caption{Installation von Docker}
+	 		\end{figure}
+	 		
+	 		\item \textbf{Testen der Docker-Installation}\\
+	 		Um zu überprüfen, ob Docker korrekt installiert und funktionsfähig ist, wird ein Testcontainer gestartet:
+	 		
+	 		\begin{lstlisting}[
+	 			language=bash,
+	 			basicstyle=\ttfamily\small,
+	 			keywordstyle=\color{blue},
+	 			stringstyle=\color{red},
+	 			commentstyle=\color{green!50!black},
+	 			frame=single,
+	 			numbers=left,
+	 			numberstyle=\tiny\color{gray},
+	 			backgroundcolor=\color{black!5}
+	 			]
+sudo docker run hello-world
+	 		\end{lstlisting}
+	 		
+	 		\begin{figure}[H]
+	 			\centering
+	 			\begin{tikzpicture}
+	 				\tikzset{
+	 					textDef/.style={font=\sffamily\small,},
+	 					lineScaled/.style={line width={2pt}},
+	 					arrowStyle/.style={lineScaled, >=stealth, red},
+	 					boxStyle/.style={line width={1pt}, red},
+	 				}
+	 				\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+	 					\includegraphics[width=0.9\linewidth]{LoRaAndLoRaWAN/ChirpstackInstallation/PiDockerTest}};
+	 			\end{tikzpicture}
+	 			\caption{Erfolgreicher Docker-Funktionstest}
+	 		\end{figure}
+	 		
+	 	\end{enumerate}
+	 	
+	 \item \textbf{Git-Installation}\\
+	 Bevor der ChirpStack-Server heruntergeladen werden kann, muss sichergestellt werden, dass \textbf{Git} auf dem System installiert ist. Dies erfolgt über den folgenden Befehl (\cite{RaspberryPiFoundation:2025}):
+	 
+	 \begin{lstlisting}[
+	 	language=bash,
+	 	basicstyle=\ttfamily\small,
+	 	keywordstyle=\color{blue},
+	 	stringstyle=\color{red},
+	 	commentstyle=\color{green!50!black},
+	 	frame=single,
+	 	numbers=left,
+	 	numberstyle=\tiny\color{gray},
+	 	backgroundcolor=\color{black!5}
+	 	]
+sudo apt install git
+	 \end{lstlisting}
+	 
+	 Nach der Installation kann überprüft werden, ob Git korrekt installiert wurde, indem beispielsweise die Versionsnummer abgefragt wird (\PYTHON{git --version}).
+	 
+	 \begin{figure}[H]
+	 	\centering
+	 	\begin{tikzpicture}
+	 		\tikzset{
+	 			textDef/.style={font=\sffamily\small,},
+	 			lineScaled/.style={line width={2pt}},
+	 			arrowStyle/.style={lineScaled, >=stealth, red},
+	 			boxStyle/.style={line width={1pt}, red},
+	 		}
+	 		\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+	 			\includegraphics[width=0.9\linewidth]{LoRaAndLoRaWAN/ChirpstackInstallation/PiGit}};
+	 	\end{tikzpicture}
+	 	\caption{Installation von Git auf dem Raspberry Pi}
+	 \end{figure}
+	 	
+	 	
+	 \end{enumerate}
+	
+	
+	
+	%====================================================
+	
+
+	
+\subsection{Herunterladen der ChirpStack Docker-Compose-Dateien}
+
+Die benötigten Dateien können über das GitHub-Repository \citetitle{ChirpstackGIT:2018} des ChirpStack-Projekts abgerufen werden (\url{https://github.com/chirpstack/chirpstack-docker}) \cite{ChirpstackGIT:2018}. 
+Die in diesem Beispiel verwendete Version basiert auf dem Commit \textbf{3836abf}. 
+Die Dateien können beliebig auf der Host-Maschine abgelegt werden, müssen jedoch für die folgenden Schritte eindeutig auffindbar sein.
+
+	\begin{enumerate}
+		\item \textbf{GitHub-Repository-Link kopieren}
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					testGraph/.style={font=\sffamily\small,},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+					boxStyle/.style={line width={1pt}, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+					\includegraphics[width=0.9\linewidth]{LoRaAndLoRaWAN/ChirpstackInstallation/ChirpstackGit}};
+				
+				\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+					\draw[arrowStyle, ->] (0.275,0.42) -- ++(0.15,-0.1);
+					\draw[boxStyle] (0.43, 0.27) rectangle ++(0.255, 0.06);
+				\end{scope}
+			\end{tikzpicture}
+			\caption{Kopieren des Repository-Links}
+		\end{figure}
+		
+		\item \textbf{Repository auf die Host-Maschine klonen}\\
+		In diesem Schritt wird das gewünschte Git-Repository auf die Host-Maschine heruntergeladen. Im Beispiel wird das Repository in das Hauptverzeichnis des Raspberry Pi (\PYTHON{\~}) geklont. Der allgemeine Befehl zum Klonen lautet: \PYTHON{git clone <URL> <NAME>} wobei \PYTHON{<NAME>} ein optionales Argument darstellt, mit dem ein eigener Zielordner für das geklonte Repository festgelegt werden kann. Wird kein Name angegeben, verwendet Git automatisch den Standardordnernamen des jeweiligen Projekts.
+		
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small,},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+					boxStyle/.style={line width={1pt}, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+					\includegraphics[width=0.9\linewidth]{LoRaAndLoRaWAN/ChirpstackInstallation/CloneTerminal}};
+				
+				\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+					\draw[arrowStyle, <-] (0.4,0.83) -- ++(0,-0.1);
+				\end{scope}
+			\end{tikzpicture}
+			\caption{Klonen des Repositorys in ein gewünschtes Verzeichnis}
+		\end{figure}
+	\end{enumerate}
+
+	Mit dem Befehl \PYTHON{ls} kann der Inhalt des aktuellen Home-Verzeichnisses angezeigt werden.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\tikzset{
+				textDef/.style={font=\sffamily\small,},
+				lineScaled/.style={line width={2pt}},
+				arrowStyle/.style={lineScaled, >=stealth, red},
+				boxStyle/.style={line width={1pt}, red},
+			}
+			\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+				\includegraphics[width=0.9\linewidth]{LoRaAndLoRaWAN/ChirpstackInstallation/TerminalView}};
+			
+			\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+				\draw[arrowStyle, <-] (0.1,0.535) -- ++(0,-0.1);
+			\end{scope}
+		\end{tikzpicture}
+		\caption{Inhalt des Home-Verzeichnisses}
+	\end{figure}
+
+		
+		
+\subsection{Starten der Container}
+		
+		\begin{enumerate}			
+				\item \textbf{In das richtige Verzeichnis wechseln}\\
+				Um die Container starten zu können, muss zunächst in das zuvor geklonte Verzeichnis gewechselt werden. Dies erfolgt mit dem Befehl \PYTHON{cd <PFAD>}.
+				
+				\begin{figure}[H]
+					\centering
+					\begin{tikzpicture}
+						\tikzset{
+							textDef/.style={font=\sffamily\small,},
+							lineScaled/.style={line width={2pt}},
+							arrowStyle/.style={lineScaled, >=stealth, red},
+							boxStyle/.style={line width={1pt}, red},
+						}
+						\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+							\includegraphics[width=0.9\linewidth]{LoRaAndLoRaWAN/ChirpstackInstallation/ChangeDir}};
+						
+						\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+							\draw[arrowStyle, <-] (0.44,0.515) -- ++(0.1, 0);
+						\end{scope}
+					\end{tikzpicture}
+					\caption{Wechsel in das geklonte Repository-Verzeichnis}
+				\end{figure}
+			
+			
+			\item \textbf{Starten der Docker-Container}
+			
+			Sobald das Terminal im richtigen Ordner geöffnet ist, können die benötigten Container mit dem Befehl \PYTHON{sudo docker compose up -d} gestartet werden.
+			
+			\begin{figure}[H]
+				\centering
+				\begin{tikzpicture}
+					\tikzset{
+						textDef/.style={font=\sffamily\small,},
+						lineScaled/.style={line width={2pt}},
+						arrowStyle/.style={lineScaled, >=stealth, red},
+						boxStyle/.style={line width={1pt}, red},
+					}
+					\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+						\includegraphics[width=0.7\linewidth]{LoRaAndLoRaWAN/ChirpstackInstallation/DockerCompose}};
+				\end{tikzpicture}
+				\caption{Starten der Container mit \PYTHON{docker compose up}}
+			\end{figure}
+		\end{enumerate}
+		
+		Nachdem dieser Vorgang abgeschlossen ist, sind der Server sowie alle Module (\ac{lns}, \ac{as}, \ac{js}) erfolgreich gestartet.
+		
+			
+\subsection{Aufrufen der Weboberfläche des Servers}
+		
+		\begin{enumerate}
+			\item \textbf{Aufrufen der Weboberfläche}
+			
+			Die ChirpStack-Weboberfläche kann im Browser über \PYTHON{<HOST-IP>:8080/} aufgerufen werden. 
+			In unserem Beispiel besitzt der Raspberry Pi die IP-Adresse \PYTHON{192.168.0.110}, sodass die Oberfläche unter \PYTHON{192.168.0.110:8080/} erreichbar ist. Soll die Weboberfläche direkt auf dem Raspberry Pi geöffnet werden, kann sie über  
+			\url{http://localhost:8080/} aufgerufen werden.
+			
+			
+			\item \textbf{Eingabe der Zugangsdaten}\\
+			Nach dem Öffnen der Weboberfläche erscheint die Login-Seite des ChirpStack-Servers. 
+			Hier werden die zuvor festgelegten Zugangsdaten eingegeben, um Zugriff auf das Administrationsdashboard zu erhalten.
+			
+			
+			Benutzername und Passwort lauten jeweils: \textbf{admin}.
+			
+			\begin{figure}[H]
+				\centering
+				\begin{tikzpicture}
+					\tikzset{
+						textDef/.style={font=\sffamily\small,},
+						lineScaled/.style={line width={2pt}},
+						arrowStyle/.style={lineScaled, >=stealth, red},
+						boxStyle/.style={line width={1pt}, red},
+					}
+					\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+						\includegraphics[width=0.7\linewidth]{LoRaAndLoRaWAN/ChirpstackInstallation/ChirpstackLogin}};
+					
+					\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+						\draw[arrowStyle, <-] (0.52, 0.93) -- ++(0, -0.1);
+						\draw[arrowStyle, <-] (0.52, 0.4525) -- ++(0.1,0.0);
+						\draw[arrowStyle, <-] (0.52, 0.365) -- ++(0.1,0.0);
+					\end{scope}
+				\end{tikzpicture}
+				\caption{Eingabe der Zugangsdaten}
+			\end{figure}
+			
+			\item \textbf{Zugriff auf die Startseite}
+			
+			Nach dem Login erscheint die Übersichtsseite der ChirpStack-Weboberfläche.
+			
+			\begin{figure}[H]
+				\centering
+				\begin{tikzpicture}
+					\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+						\includegraphics[width=0.7\linewidth]{LoRaAndLoRaWAN/ChirpstackInstallation/ChirpstackView}};
+				\end{tikzpicture}
+				\caption{ChirpStack-Ansicht nach erfolgreichem Login}
+			\end{figure}
+			
+			\item \textbf{Änderung des Passworts}\\
+			Nach dem ersten Login sollte aus Sicherheitsgründen das Standardpasswort des Administratorkontos geändert werden. Dies kann direkt über die Einstellungen der Weboberfläche vorgenommen werden.
+			
+			
+			\begin{figure}[H]
+				\centering
+				\begin{tikzpicture}
+					\tikzset{
+						textDef/.style={font=\sffamily\small,},
+						lineScaled/.style={line width={2pt}},
+						arrowStyle/.style={lineScaled, >=stealth, red},
+						boxStyle/.style={line width={1pt}, red},
+					}
+					\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+						\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/ChirpstackInstallation/ChangePassword}};
+					
+					\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+						\draw[arrowStyle, <-] (0.81, 0.835) -- ++(-0.1,0.0);
+					\end{scope}
+				\end{tikzpicture}
+				\caption{Öffnen des Reiters Passwort ändern}
+			\end{figure}
+			
+			Anschlie{\ss}end wird das neue Passwort eingegeben und mit \textbf{Submit} bestätigt.
+			\begin{figure}[H]
+				\centering
+				\begin{tikzpicture}
+					\tikzset{
+						textDef/.style={font=\sffamily\small,},
+						lineScaled/.style={line width={2pt}},
+						arrowStyle/.style={lineScaled, >=stealth, red},
+						boxStyle/.style={line width={1pt}, red},
+					}
+					\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+						\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/ChirpstackInstallation/ChangePasswordInput}};
+					
+					\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+						\draw[arrowStyle, <-] (0.31, 0.57) -- ++(-0.1,0.0);
+						\draw[arrowStyle, <-] (0.31, 0.455) -- ++(-0.1,0.0);
+						\draw[arrowStyle, <-] (0.37, 0.37) -- ++(0.1, -0.05);
+					\end{scope}
+				\end{tikzpicture}
+				\caption{Eingabe der neuen Zugangsdaten}
+			\end{figure}
+		\end{enumerate}
+		
+\section{ChirpStack - Dashboardbeschreibung}
+	Die folgende Beschreibung der ChirpStack-Funktionen basiert auf der offiziellen Dokumentation \citetitle{ChirpStack:2022b} \cite{ChirpStack:2022b}.
+
+	
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+					\includegraphics[width=\linewidth]{LoRaAndLoRaWAN/ChirpstackDescription/ChirpstackDashboard}};
+				
+			\end{tikzpicture}
+			\caption{Übersicht des globalen ChirpStack-Dashboards}
+		\end{figure}
+
+\subsection{Network Server}
+\subsubsection{Dashboard}
+	Das Dashboard auf Ebene des \textit{Network Servers} zeigt globale Statistiken über die gesamte ChirpStack-Installation. Hier werden unter anderem die Anzahl aktiver Endgeräte, registrierter Gateways sowie aktuelle Verkehrsdaten dargestellt. Verfügt ein Gateway über GPS-Koordinaten, wird zusätzlich eine Karte mit der geografischen Position der Gateways angezeigt. Dieser Überblick ermöglicht eine schnelle Beurteilung des Gesamtzustands des Systems.
+
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+					\includegraphics[width=\linewidth]{LoRaAndLoRaWAN/ChirpstackDescription/Dashboard}};
+				
+			\end{tikzpicture}
+			\caption{Dashboard des Network Servers mit aktiven Gateways und Endgeräten}
+		\end{figure}
+		
+\subsubsection{Tenants}
+	Ein \textit{Tenant} stellt eine logisch getrennte Einheit innerhalb der ChirpStack-Installation dar. Jeder Tenant besitzt eigene Endgeräte, Gateways, Anwendungen, Integrationen und Benutzerkonten. Dadurch können mehrere Projekte oder Organisationen parallel innerhalb derselben Installation betrieben werden, ohne dass Konfigurationen oder Daten kollidieren. Diese Trennung ist insbesondere für Multi-Projekt- oder Multi-Kunden-Umgebungen relevant.
+
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+					\includegraphics[width=\linewidth]{LoRaAndLoRaWAN/ChirpstackDescription/Tenants}};
+				
+			\end{tikzpicture}
+			\caption{Übersicht aller in der Installation angelegten Tenants}
+		\end{figure}
+	
+\subsubsection{Users}
+	In diesem Menüpunkt werden die globalen Benutzer des Systems verwaltet. Administratoren können neue Benutzer anlegen, bestehenden Konten Berechtigungen zuweisen und globale Rollen definieren. Benutzer, die auf dieser Ebene angelegt werden, können optional einzelnen Tenants zugeordnet werden und erhalten damit Zugriff auf deren Ressourcen.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+				\includegraphics[width=\linewidth]{LoRaAndLoRaWAN/ChirpstackDescription/Users}};
+			
+		\end{tikzpicture}
+		\caption{Verwaltung globaler Benutzerkonten im Network Server}
+	\end{figure}
+	
+\subsubsection{API Keys \label{chirpstack:nsApiKeys}}
+	Hier können globale API-Schlüssel erzeugt und verwaltet werden. Diese Tokens ermöglichen automatisierten Diensten oder externen Anwendungen den Zugriff auf die REST- und gRPC-Schnittstellen des ChirpStack Network Servers. API-Schlüssel auf dieser Ebene besitzen systemweite Gültigkeit und sollten daher nur von Administratoren erstellt und genutzt werden.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+				\includegraphics[width=\linewidth]{LoRaAndLoRaWAN/ChirpstackDescription/APIKeys}};
+			
+		\end{tikzpicture}
+		\caption{Globale API-Schlüssel für den systemweiten Zugriff}
+	\end{figure}
+	
+\subsubsection{Device Profile Templates}
+	\textit{Device Profile Templates} können von ChirpStack-Administratoren erstellt und von Benutzerinnen und Benutzern zur schnellen Erstellung neuer Device Profiles verwendet werden. Die Templates lassen sich über die Weboberfläche, die API oder über die Kommandozeile anlegen. Bei der Verwendung eines Templates werden dessen Werte in ein neues \hyperref[chirpstack:deviceProfile]{Device Profile} kopiert. Änderungen oder das Löschen eines Templates haben daher keinen Einfluss auf bereits erstellte Device Profiles.
+
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}
+		\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+			\includegraphics[width=\linewidth]{LoRaAndLoRaWAN/ChirpstackDescription/DeviceProfileTemplates}};
+		
+	\end{tikzpicture}
+	\caption{Übersicht der verfügbaren Device-Profile-Templates}
+\end{figure}
+
+\subsubsection{Regions}
+	Der Bereich \textit{Regions} definiert die LoRaWAN-Regionen, die der Network Server unterstützt. Dazu gehören Frequenzbänder, Datenraten, Kanalkonfigurationen und weitere regionale Parameter. Diese Einstellungen bestimmen, wie Gateways und Endgeräte innerhalb der jeweiligen Region kommunizieren.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+				\includegraphics[width=\linewidth]{LoRaAndLoRaWAN/ChirpstackDescription/Regions}};
+			
+		\end{tikzpicture}
+		\caption{Übersicht der unterstützten LoRaWAN-Regionen}
+	\end{figure}
+	
+\subsection{Tenant}
+\subsubsection{Dashboard}
+	Das Tenant-Dashboard zeigt eine Übersicht über alle Ressourcen, die zu diesem spezifischen Tenant gehören. Dazu zählen aktive Endgeräte, registrierte Gateways, Anwendungen sowie empfangene und gesendete Nachrichten. Im Gegensatz zum globalen Dashboard werden hier ausschlie{\ss}lich Daten des ausgewählten Tenants angezeigt.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+				\includegraphics[width=\linewidth]{LoRaAndLoRaWAN/ChirpstackDescription/TenantDashboard}};
+			
+		\end{tikzpicture}
+		\caption{Dashboard eines Tenants mit allen zugehörigen Ressourcen}
+	\end{figure}
+	
+\subsubsection{Users}
+	In dieser Ansicht werden Benutzer verwaltet, die ausschlie{\ss}lich Zugriff auf den aktuellen Tenant besitzen. Hier können Rollen zugewiesen und Benutzerberechtigungen eingeschränkt werden, sodass nur relevante Ressourcen sichtbar und bearbeitbar sind. Dies ermöglicht eine klare Trennung der Verantwortlichkeiten zwischen verschiedenen Projekten.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+				\includegraphics[width=\linewidth]{LoRaAndLoRaWAN/ChirpstackDescription/TenantUsers}};
+			
+		\end{tikzpicture}
+		\caption{Benutzerverwaltung innerhalb des ausgewählten Tenants}
+	\end{figure}
+
+\subsubsection{API Keys}
+	Diese API-Schlüssel gelten nur innerhalb des jeweiligen Tenants und können beispielsweise für Integrationen, Automatisierungen oder externe Anwendungen erstellt werden. Im Gegensatz zu \hyperref[chirpstack:nsApiKeys]{systemweiten Schlüsseln} besitzen Tenant-API-Keys ausschlie{\ss}lich lokale Zugriffsrechte und stellen somit eine sicherere Option für projektspezifische Dienste dar.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+				\includegraphics[width=\linewidth]{LoRaAndLoRaWAN/ChirpstackDescription/TenantAPIKeys}};
+			
+		\end{tikzpicture}
+		\caption{API-Schlüssel des Tenants zur projektspezifischen Nutzung}
+	\end{figure}
+	
+\subsubsection{Device Profiles \label{chirpstack:deviceProfile}}
+	Unter \textit{Device Profiles} werden die Geräteeigenschaften definiert, die für Endgeräte dieses Tenants gelten. Dazu gehören LoRaWAN-Version, Aktivierungsmethode (OTAA/ABP), unterstützte Datenraten, Class-Typ (A/B/C) sowie eventuelle Payload-Konfigurationen. Gerätekonfigurationsprofile stellen sicher, dass Endgeräte korrekt vom Network Server verarbeitet werden.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+				\includegraphics[width=\linewidth]{LoRaAndLoRaWAN/ChirpstackDescription/TenantDeviceProfiles}};
+			
+		\end{tikzpicture}
+		\caption{Geräteprofile des Tenants zur Definition der Endgeräteparameter}
+	\end{figure}
+	
+	
+\subsubsection{Gateways}
+	Ein Tenant kann seine eigenen Gateways verwalten, sofern Gateway-Unterstützung für diesen Tenant aktiviert wurde. Die Zugehörigkeit eines Gateways zu einem Tenant bedeutet jedoch nicht, dass dessen Nutzung auf diesen Tenant beschränkt ist. Jedes Endgerät im gesamten Netzwerk kann über jedes verfügbare Gateway kommunizieren. 
+	
+	Der Tenant ist lediglich für die Verwaltung der Gateway-Details zuständig, beispielsweise Name, Standort und grundlegende Konfiguration, und erhält Zugriff auf die zugehörigen Statistiken und Statusinformationen.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+				\includegraphics[width=\linewidth]{LoRaAndLoRaWAN/ChirpstackDescription/TenantGateways}};
+			
+		\end{tikzpicture}
+		\caption{Übersicht der dem Tenant zugeordneten Gateways}
+	\end{figure}
+	
+\subsubsection{Gateway Mesh}
+	Das \textit{Gateway Mesh} zeigt eine Übersicht der Gateways, die für Mesh-Funktionen konfiguriert sind. In dieser Ansicht werden die Mesh-fähigen Gateways eines Tenants aufgelistet, zusammen mit ihren Grundinformationen und dem jeweiligen Betriebsmodus (z.\,B.\ Border oder Relay). Diese Übersicht dient der schnellen Kontrolle, welche Gateways am Mesh-Netz teilnehmen.
+
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+				\includegraphics[width=\linewidth]{LoRaAndLoRaWAN/ChirpstackDescription/TenantGatewayMesh}};
+			
+		\end{tikzpicture}
+		\caption{Visualisierung der Gateway-Verbindungen innerhalb des Tenants}
+	\end{figure}
+	
+\subsubsection{Applications}
+	Unter \textit{Applications} werden Endgeräte verwaltet, die demselben Zweck oder derselben Anwendungsklasse zugeordnet sind. Für jede Applikation können spezifische Einstellungen definiert und Integrationen konfiguriert werden, beispielsweise die Weiterleitung empfangener Daten an externe Systeme über MQTT, HTTP oder andere Schnittstellen.
+	
+
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+				\includegraphics[width=\linewidth]{LoRaAndLoRaWAN/ChirpstackDescription/TenantGatewayMesh}};
+			
+		\end{tikzpicture}
+		\caption{Anwendungen des Tenants zur Verarbeitung eingehender Endgeräte-Daten}
+	\end{figure}
+	
+\section{Gateway hinzufügen}
+
+	\textbf{Voraussetzungen:}
+	\begin{itemize}
+		\item laufender ChirpStack-Server,
+		\item angemeldeter Benutzer,
+		\item bekannte \PYTHON{Gateway EUI}.
+	\end{itemize}
+	
+	\textbf{Hinweis:} Die folgende Anleitung gilt für ein Gateway, das sich im selben lokalen Netzwerk (LAN) wie der ChirpStack-Server befindet.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\gatewayConnectionToServer
+		\end{tikzpicture}
+		\caption{LAN-Infrastruktur: Verbindung zwischen Gateway und ChirpStack-Server}
+	\end{figure}
+	
+\subsection{Umschalten auf den richtigen Tenant}
+	Bevor ein neues Gateway hinzugefügt werden kann, muss im ChirpStack-Webinterface der gewünschte Tenant ausgewählt werden. 
+	Alle Gateways werden immer einem bestimmten Tenant zugeordnet.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\tikzset{
+				textDef/.style={font=\sffamily\small,},
+				lineScaled/.style={line width={2pt}},
+				arrowStyle/.style={lineScaled, >=stealth, red},
+				boxStyle/.style={line width={1pt}, red},
+			}
+			\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+				\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/ChirpstackAddGateway/ChooseTenant}};
+			
+			\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+				\draw[boxStyle] (0.011, 0.86) rectangle ++(0.18, 0.04);
+				\draw[arrowStyle, <-] (0.15, 0.86) -- ++(0.05,-0.1);
+			\end{scope}
+		\end{tikzpicture}
+		\caption{Auswahl der richtigen tenants}
+	\end{figure}
+	
+\subsection{Gateway hinzufügen}
+
+\begin{enumerate}
+	\item \textbf{Öffnen des Fensters \textit{Add Gateway}}
+	
+	Um ein neues Gateway im ChirpStack-System zu registrieren, muss zuerst das Fenster 
+	\textit{Add Gateway} geöffnet werden.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\tikzset{
+				textDef/.style={font=\sffamily\small,},
+				lineScaled/.style={line width={2pt}},
+				arrowStyle/.style={lineScaled, >=stealth, red},
+				boxStyle/.style={line width={1pt}, red},
+			}
+			\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+				\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/ChirpstackAddGateway/OpenAddGateway}};
+			
+			\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+				\draw[arrowStyle, <-] (0.78, 0.825) -- ++(-0.1, -0.05) node[textDef, below, left] {2};
+				\draw[arrowStyle, <-] (0.15, 0.145) -- ++(0.1, 0) node[textDef, right] {1};
+			\end{scope}
+		\end{tikzpicture}
+		\caption{Öffnen des Menüs \textit{Add Gateway}}
+	\end{figure}
+	
+	\item \textbf{Vergabe eines Namens für das Gateway}
+	
+	Im nächsten Schritt wird ein eindeutiger Name für das Gateway eingetragen.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\tikzset{
+				textDef/.style={font=\sffamily\small,},
+				lineScaled/.style={line width={2pt}},
+				arrowStyle/.style={lineScaled, >=stealth, red},
+				boxStyle/.style={line width={1pt}, red},
+			}
+			\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+				\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/ChirpstackAddGateway/GatewayName}};
+			
+			\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+				\draw[boxStyle] (0.245, 0.55) rectangle ++(0.12, 0.045);
+				\draw[arrowStyle, <-] (0.37, 0.5725) -- ++(0.1, 0) node[textDef, right] {Gateway-Name};
+			\end{scope}
+		\end{tikzpicture}
+		\caption{Eintragen eines Namens für das Gateway}
+	\end{figure}
+	
+	\item \textbf{Eintragen der \PYTHON{Gateway EUI}}
+	
+	Die \PYTHON{Gateway EUI} ist die eindeutige Hardwarekennung des Gateways und muss exakt eingetragen werden.  
+	Diese EUI ist auf dem Gerät selbst oder in dessen Webinterface zu finden.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\tikzset{
+				textDef/.style={font=\sffamily\small,},
+				lineScaled/.style={line width={2pt}},
+				arrowStyle/.style={lineScaled, >=stealth, red},
+				boxStyle/.style={line width={1pt}, red},
+			}
+			\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+				\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/ChirpstackAddGateway/GatewayEUI}};
+			
+			\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+				\draw[boxStyle] (0.245, 0.295) rectangle ++(0.12, 0.045);
+				\draw[arrowStyle, <-] (0.37, 0.315) -- ++(0.1, -0.055) node[textDef, right] {Gateway EUI};
+			\end{scope}
+		\end{tikzpicture}
+		\caption{Eintragen der \PYTHON{Gateway EUI}}
+	\end{figure}
+	
+	\item \textbf{Speichern der Einstellungen}
+	
+	Die Konfiguration wird durch Klicken auf \textbf{Submit} gespeichert.  
+	Anschlie{\ss}end sollte das Gateway einmal neu gestartet werden, damit die Einstellungen übernommen werden.
+	
+	\item \textbf{Überprüfung der Verbindung}
+	
+	Ist die Registrierung erfolgreich abgeschlossen und das Gateway korrekt konfiguriert, 
+	erscheint es in der Übersicht unter \textit{Gateways} mit dem Status \textbf{Online}.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\tikzset{
+				textDef/.style={font=\sffamily\small,},
+				lineScaled/.style={line width={2pt}},
+				arrowStyle/.style={lineScaled, >=stealth, red},
+				boxStyle/.style={line width={1pt}, red},
+			}
+			\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+				\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/ChirpstackAddGateway/GatewayConnectedSuccesfully}};
+			
+			\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+				\draw[boxStyle] (0.245, 0.6175) rectangle ++(0.08, 0.04);
+			\end{scope}
+		\end{tikzpicture}
+		\caption{Erfolgreich verbundenes Gateway in der ChirpStack-Oberfläche}
+	\end{figure}
+	
+\end{enumerate}
+
+\section{Anschluss des Arduino MKR WAN 1310 an den LoRaWAN-Server}
+
+\subsubsection{Voraussetzungen}
+Für die Registrierung und den Betrieb eines Arduino MKR WAN 1310 in einem LoRaWAN-Netzwerk müssen die folgenden Bedingungen erfüllt sein:
+\begin{itemize}
+	\item Zugriff auf einen funktionsfähigen ChirpStack-LoRaWAN-Server.
+	\item Mindestens ein konfiguriertes und verbundenes Gateway.
+	\item Das Arduino-Board befindet sich in Reichweite des Gateways.
+\end{itemize}
+
+\subsection{Erstellung eines neuen Device Profiles \label{chirpstack:devProfile}}
+	Für jeden Gerätetyp wird ein eigenes \textit{Device Profile} benötigt. Dieses Profil definiert die LoRaWAN-Funktionalität des Endgeräts, einschlie{\ss}lich MAC-Version, Regionalparametern und Frame-Counter-Konfiguration. Die Erstellung erfolgt wie folgt:
+	
+	\begin{enumerate}
+		\item Zuerst muss der gewünschte Tennant ausgewählt werden. Anschlie{\ss}end im Menü die Kategorie \textit{Device Profiles} öffnen und über die Schaltfläche \textit{Add Profile} ein neues Profil anlegen.
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small,},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+					boxStyle/.style={line width={1pt}, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+					\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/AddNewLoRaWANEndNode/ProfileAddNewDevice}};
+				
+				\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+					\draw[boxStyle] (0.012, 0.855) rectangle ++(0.18, 0.04);
+					\draw[arrowStyle, <-] (0.15, 0.85) -- ++(0.02,-0.1) node[textDef, right, below] {1};
+					
+					\draw[arrowStyle, <-] (0.16, 0.205) -- ++(0.1, 0) node[textDef, right] {2};
+					\draw[arrowStyle, <-] (0.87, 0.825) -- ++(-0.1, 0) node[textDef, left] {3};
+				\end{scope}
+			\end{tikzpicture}
+			\caption{Auswahl des Tenants und Anlegen eines neuen Device Profiles}
+		\end{figure}
+		
+		\item Anschlie{\ss}end wird ein Profilname vergeben, und die übrigen Parameter für das Arduino-Gerät werden wie folgt konfiguriert:
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small,},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+					boxStyle/.style={line width={1pt}, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+					\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/AddNewLoRaWANEndNode/ProfileFillData}};
+				
+				\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+					\draw[boxStyle] (0.245, 0.78) rectangle ++(0.18, 0.04);
+					\draw[arrowStyle, <-] (0.43, 0.8) -- ++(0.1, 0) node[textDef, right] {Name des Profils};
+					
+					\draw[boxStyle] (0.245, 0.46) rectangle ++(0.18, 0.04);
+					\draw[boxStyle] (0.245, 0.365) rectangle ++(0.18, 0.04);
+					\draw[boxStyle] (0.245, 0.27) rectangle ++(0.18, 0.04);
+					\draw[boxStyle] (0.615, 0.46) rectangle ++(0.12, 0.04);
+					\draw[boxStyle] (0.615, 0.365) rectangle ++(0.1, 0.04);
+					\draw[boxStyle] (0.245, 0.07) rectangle ++(0.06, 0.04);
+				\end{scope}
+			\end{tikzpicture}
+			\caption{Konfiguration der Geräteeigenschaften für das Device Profile}
+		\end{figure}
+		
+		\item Abschlie{\ss}end die Parameter bestätigen:
+		
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\tikzset{
+				textDef/.style={font=\sffamily\small,},
+				lineScaled/.style={line width={2pt}},
+				arrowStyle/.style={lineScaled, >=stealth, red},
+				boxStyle/.style={line width={1pt}, red},
+			}
+			\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+				\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/AddNewLoRaWANEndNode/ProfileFillData}};
+			
+			\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+				\draw[arrowStyle, <-] (0.3, 0.03) -- ++(0.1, 0);
+			\end{scope}
+		\end{tikzpicture}
+		\caption{Speichern des angelegten Device Profiles}
+	\end{figure}
+		
+		Nach dem Speichern erscheint das neu erstellte Profil in der Übersicht der verfügbaren Profile:
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small,},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+					boxStyle/.style={line width={1pt}, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+					\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/AddNewLoRaWANEndNode/ProfileListOfProfiles}};
+				
+				\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+					\draw[boxStyle] (0.23, 0.475) rectangle ++(0.7, 0.04);
+				\end{scope}
+			\end{tikzpicture}
+			\caption{Übersicht der verfügbaren Device Profiles}
+		\end{figure}
+		
+	\end{enumerate}
+
+\section{Erstellung einer neuen Applikation}
+
+	\begin{enumerate}
+		\item Zuerst muss der gewünschte Tenant ausgewählt werden. Anschlie{\ss}end wird im Menü die Kategorie \textit{Applications} geöffnet und über die Schaltfläche \textit{Add application} eine neue Applikation angelegt.
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small,},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+					boxStyle/.style={line width={1pt}, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+					\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/AddNewLoRaWANEndNode/ApplicationNewApplication}};
+				
+				\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+					\draw[boxStyle] (0.012, 0.855) rectangle ++(0.18, 0.04);
+					\draw[arrowStyle, <-] (0.15, 0.85) -- ++(0.02,-0.1) node[textDef, right, below] {1};
+					
+					\draw[arrowStyle, <-] (0.16, 0.035) -- ++(0.1, 0) node[textDef, right] {2};
+					\draw[arrowStyle, <-] (0.89, 0.825) -- ++(-0.1, 0) node[textDef, left] {3};
+				\end{scope}
+			\end{tikzpicture}
+			\caption{Auswahl des Tenants und Anlegen einer neuen Applikation}
+		\end{figure}
+		
+		\item Anschlie{\ss}end wird ein Name für die Applikation vergeben.
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small,},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+					boxStyle/.style={line width={1pt}, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+					\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/AddNewLoRaWANEndNode/ApplicationSetName}};
+				
+				\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+					\draw[boxStyle] (0.245, 0.58) rectangle ++(0.18, 0.04);
+				\end{scope}
+			\end{tikzpicture}
+			\caption{Vergabe des Applikationsnamens}
+		\end{figure}
+		
+		\item Die neue Applikation wird über die Schaltfläche \textbf{Submit} gespeichert.
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small,},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+					boxStyle/.style={line width={1pt}, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+					\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/AddNewLoRaWANEndNode/ApplicationSetName}};
+				
+				\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+					\draw[arrowStyle, <-] (0.3, 0.3955) -- ++(0.1, 0);
+				\end{scope}
+			\end{tikzpicture}
+			\caption{Speichern der neuen Applikation}
+		\end{figure}
+		
+		Nach dem Speichern erscheint die folgende Ansicht der neu erstellten Applikation:
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small,},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+					boxStyle/.style={line width={1pt}, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+					\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/AddNewLoRaWANEndNode/ApplicationView}};
+			\end{tikzpicture}
+			\caption{Ansicht der neu erstellten Applikation}
+		\end{figure}
+		
+	\end{enumerate}
+	
+\section{Anschluss des Arduino MKR WAN 1310 an die Applikation}
+
+\subsection{Herunterladen der benötigten Bibliothek}
+
+	\begin{enumerate}
+		\item Zunächst wird der \textit{Library Manager} in der Arduino IDE geöffnet.
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small,},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+					boxStyle/.style={line width={1pt}, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+					\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/ConnectArduinoToChirpstack/ArduinoIDELibManager}};
+				
+				\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+					\draw[arrowStyle, <-] (0.038, 0.695) -- ++(0.1, 0);
+				\end{scope}
+			\end{tikzpicture}
+			\caption{Öffnen des Library Managers in der Arduino IDE}
+		\end{figure}
+		
+		\item Installation der Bibliothek \PYTHON{MKRWAN}.\\[0.3em]
+		Im Suchfeld wird der Name der Bibliothek \PYTHON{MKRWAN} eingegeben. Anschlie{\ss}end wird die neueste verfügbare Version installiert.  
+		In diesem Beispiel wird die Version \textbf{1.1.2} verwendet.
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small,},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+					boxStyle/.style={line width={1pt}, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+					\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/ConnectArduinoToChirpstack/ArduinoIDEDownloadMKRWANLib}};
+				
+				\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+					\draw[arrowStyle, <-] (0.2, 0.4825) -- ++(0.1, 0);
+					\draw[boxStyle] (0.05, 0.805) rectangle ++(0.10, 0.04);
+					\draw[arrowStyle, <-] (0.08, 0.465) -- ++(0.05, -0.1);
+				\end{scope}
+			\end{tikzpicture}
+			\caption{Installation der MKRWAN-Bibliothek in der Arduino IDE}
+		\end{figure}
+		
+	\end{enumerate}
+
+\subsection{Update des Arduino-Boards}
+
+	Die Bibliothek \PYTHON{MKRWAN} stellt einen Code zur Verfügung, mit dem die Firmware des Arduino MKR WAN 1310 aktualisiert werden kann.  
+	Für das Update wird der Sketch \FILE{MKRWANFWUpdate\_Standalone} aus der Bibliothek \PYTHON{MKRWAN} verwendet.
+	
+	\begin{enumerate}
+		\item Öffnen des Sketches \FILE{MKRWANFWUpdate\_Standalone}.
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small,},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+					boxStyle/.style={line width={1pt}, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+					\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/ConnectArduinoToChirpstack/ArduinoUpdate}};
+				
+				\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+					\draw[arrowStyle, <-] (0.9, 0.025) -- ++(0.05, 0.1);
+				\end{scope}
+			\end{tikzpicture}
+			\caption{Öffnen des Firmware-Update-Sketches}
+		\end{figure}
+		
+		\item Auswahl des richtigen Boards im Menü.
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small,},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+					boxStyle/.style={line width={1pt}, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+					\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/ConnectArduinoToChirpstack/ChooseTheBoard}};
+				
+				\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+					\draw[arrowStyle, <-] (0.44, 0.825) -- ++(0.1, 0);
+				\end{scope}
+			\end{tikzpicture}
+			\caption{Auswahl des Arduino MKR WAN 1310 im Board-Menü}
+		\end{figure}
+		
+		\item Hochladen des Update-Sketches auf das Arduino-Board.
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small,},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+					boxStyle/.style={line width={1pt}, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+					\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/ConnectArduinoToChirpstack/UploadUpdate}};
+				
+				\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+					\draw[arrowStyle, <-] (0.08, 0.9) -- ++(0.1, -0.1);
+				\end{scope}
+			\end{tikzpicture}
+			\caption{Hochladen der Firmware-Update-Routine}
+		\end{figure}
+		
+		Der Fortschritt des Updates kann im \textit{Serial Monitor} verfolgt werden.
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small, pos=1.3},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+					boxStyle/.style={line width={1pt}, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+					\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/ConnectArduinoToChirpstack/UpdateProgress}};
+				
+				\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+					\draw[arrowStyle, <-] (0.965, 0.91) -- ++(-0.05, -0.1) node[textDef] {\textbf{1}};
+					\draw[arrowStyle, <-] (0.2, 0.585) -- ++(0.05, 0.09)node[textDef] {\textbf{2}};
+				\end{scope}
+			\end{tikzpicture}
+			\caption{Anzeige des Firmware-Update-Fortschritts im Serial Monitor}
+		\end{figure}
+		
+		Nach erfolgreichem Abschluss des Updates kann die Registrierung des Arduino im LoRaWAN-Server fortgesetzt werden.
+		
+	\end{enumerate}
+
+\subsection{Registrierung am LoRaWAN-Server}
+
+	Die Registrierung des Endgeräts erfolgt parallel auf dem Arduino sowie im LoRaWAN-Netzwerkserver.  
+	Hierfür wird das Sketch \FILE{FirstConfiguration} aus der Arduino-Bibliothek \PYTHON{MKRWAN} verwendet.
+	
+	\begin{enumerate}
+		
+		% 1. Dashboard
+		\item Öffnen des Dashboards der zuvor angelegten Applikation.
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small, pos=1.3},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0)
+				{\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/ConnectArduinoToChirpstack/ApplicationsList}};
+				\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+					\draw[arrowStyle, <-] (0.2, 0.045) -- ++(0.1, 0) node[textDef] {\textbf{1}};
+					\draw[arrowStyle, <-] (0.42, 0.5275) -- ++(0.1, 0) node[textDef] {\textbf{2}};
+				\end{scope}
+			\end{tikzpicture}
+			\caption{Auswahl der Applikation im Dashboard}
+		\end{figure}
+		
+		% 2. Add Device
+		\item Auswahl der Schaltfläche \textit{Add Device}, um ein neues Endgerät anzulegen.
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small,},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0)
+				{\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/ConnectArduinoToChirpstack/AddDevice}};
+				\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+					\draw[arrowStyle, <-] (0.78, 0.62) -- ++(-0.1, -0.05);
+				\end{scope}
+			\end{tikzpicture}
+			\caption{Hinzufügen eines neuen Endgeräts}
+		\end{figure}
+		
+		% 3. Eintragen der Daten
+		\item Eintragen der wichtigsten Gerätedaten: \textbf{Name}, \PYTHON{DevEUI}, \PYTHON{JoinEUI} sowie Auswahl des passenden \textbf{Device Profiles}.
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small, pos=1.3},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0)
+				{\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/ConnectArduinoToChirpstack/AddDeviceFillData}};
+				\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+					\draw[arrowStyle, <-] (0.38, 0.6) -- ++(0.1, 0) node[textDef] {\textbf{1}};
+					\draw[arrowStyle, <-] (0.4, 0.3575) -- ++(0.1, 0.05) node[textDef] {\textbf{2}};
+					\draw[arrowStyle, <-] (0.75, 0.3575) -- ++(0.1, 0.05) node[textDef] {\textbf{3}};
+					\draw[arrowStyle, <-] (0.4, 0.125) -- ++(0.1, 0) node[textDef] {\textbf{4}};
+				\end{scope}
+			\end{tikzpicture}
+			\caption{Eintragen der Gerätedaten}
+		\end{figure}
+		
+		% Sub-list for parameters
+		\begin{enumerate}[label=\textbf{(\arabic*)}]
+			\item \textbf{Name} — eindeutige Bezeichnung des Endgeräts.
+			\item \textbf{\acs{deveui}} — wird im nächsten Schritt auf dem Arduino ausgelesen.
+			\item \textbf{\acs{joineui}} — da kein externer Join Server verwendet wird, muss  
+			\PYTHON{00 00 00 00 00 00 00 00} eingetragen werden, damit der \acs{lns} selbst als Join Server fungiert.
+			\item \textbf{Device Profile} — Auswahl des zuvor konfigurierten Profils (siehe~\autoref{chirpstack:devProfile}).
+		\end{enumerate}
+		
+		% 4. DevEUI ermitteln
+		\item Ermittlung des \PYTHON{DevEUI} mithilfe des Sketches \FILE{FirstConfiguration}.  
+		Der Sketch wird geöffnet und auf das Board übertragen.
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small,},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0)
+				{\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/ConnectArduinoToChirpstack/FirstConfigurationSketch}};
+				\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+					\draw[arrowStyle, <-] (0.865, 0.096) -- ++(0.05, 0.1);
+				\end{scope}
+			\end{tikzpicture}
+			\caption{Öffnen des \FILE{FirstConfiguration}-Sketches}
+		\end{figure}
+		
+		Beim Upload ist sicherzustellen, dass das korrekte Board ausgewählt wurde.
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small,},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0)
+				{\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/ConnectArduinoToChirpstack/FirstConfigUpload}};
+				\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+					\draw[arrowStyle, <-] (0.08, 0.87) -- ++(0.1, -0.1);
+				\end{scope}
+			\end{tikzpicture}
+			\caption{Upload des Sketches auf das Board}
+		\end{figure}
+		
+		Der ausgegebene \PYTHON{DevEUI} wird anschlie{\ss}end im Serial Monitor angezeigt.
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small, pos=1.3},
+					textDevEui/.style={font=\sffamily\small, pos=1.7},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0)
+				{\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/ConnectArduinoToChirpstack/ArduinoIDEDevEui}};
+				\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+					\draw[arrowStyle, <-] (0.962, 0.9) -- ++(-0.05, -0.1) node[textDef] {\textbf{1}};
+					\draw[arrowStyle, <-] (0.23, 0.55) -- ++(0.05, 0.09) node[textDef] {\textbf{2}};
+					\draw[arrowStyle, <-] (0.40, 0.26) -- ++(0.1, -0.02) node[textDevEui] {\acs{deveui}};
+				\end{scope}
+			\end{tikzpicture}
+			\caption{Auslesen des \PYTHON{DevEUI} im Serial Monitor}
+		\end{figure}
+		
+		Der \PYTHON{DevEUI} wird in ChirpStack eingetragen und über \textbf{Submit} gespeichert.  
+		Der Sketch bleibt geöffnet, da die Konfiguration in der Arduino IDE fortgesetzt wird.
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small, pos=1.3},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+					boxStyle/.style={line width={1pt}, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0)
+				{\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/ConnectArduinoToChirpstack/ChirpstackInputDevEUI}};
+				\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+					\draw[arrowStyle, <-] (0.4, 0.3575) -- ++(0.1, 0.05) node[textDef] {\textbf{1}};
+					\draw[boxStyle] (0.26, 0.34) rectangle ++(0.12, 0.04);
+					\draw[arrowStyle, <-] (0.325, 0.08) -- ++(0.1, 0) node[textDef] {\textbf{2}};
+				\end{scope}
+			\end{tikzpicture}
+			\caption{Eintragen des \acs{deveui} im ChirpStack}
+		\end{figure}
+		
+		% 5. OTAA Auswahl
+		\item Auswahl der \acs{otaa}-Authentifizierung.  
+		Im Serial Monitor wird hierzu die Option \PYTHON{1} gewählt und mit Enter bestätigt.
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small,},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+					boxStyle/.style={line width={1pt}, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0)
+				{\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/ConnectArduinoToChirpstack/ArduinoIDEOTAA}};
+				\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+					\draw[arrowStyle, <-] (0.15, 0.515) -- ++(0.1, 0);
+					\draw[boxStyle] (0.06, 0.495) rectangle ++(0.08, 0.04);
+				\end{scope}
+			\end{tikzpicture}
+			\caption{Auswahl des \ac{otaa}-Verfahrens}
+		\end{figure}
+		
+		% 6. JoinEUI eingeben
+		\item Eingabe der \PYTHON{JoinEUI}.  
+		Obwohl der Monitor von ,,APP EUI'' spricht, handelt es sich um die \PYTHON{JoinEUI}.  
+		Es wird derselbe Wert wie im ChirpStack eingetragen: \PYTHON{00 00 00 00 00 00 00 00}.
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small,},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+					boxStyle/.style={line width={1pt}, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0)
+				{\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/ConnectArduinoToChirpstack/ArduinoIDEAPPEUI}};
+				\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+					\draw[arrowStyle, <-] (0.25, 0.5175) -- ++(0.1, 0);
+					\draw[boxStyle] (0.06, 0.4975) rectangle ++(0.18, 0.04);
+				\end{scope}
+			\end{tikzpicture}
+			\caption{Eingabe der \PYTHON{JoinEUI} in der Arduino IDE}
+		\end{figure}
+		
+		% 7. AppKey Eingabe
+		\item Eingabe des \PYTHON{AppKey}. Dieser Schlüssel muss im ChirpStack generiert werden.
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small,},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0)
+				{\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/ConnectArduinoToChirpstack/ArduinoIDEAPPKEY}};
+				\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+					\draw[arrowStyle, <-] (0.24, 0.215) -- ++(0.1, 0);
+				\end{scope}
+			\end{tikzpicture}
+			\caption{Anfrage nach \acs{appkey}}
+		\end{figure}
+		
+		Dazu wird im Device-Dashboard der Reiter \textit{OTAA Keys} geöffnet, und über das Pfeil-Symbol ein neuer Schlüssel generiert.
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small, pos=1.3}, 
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0)
+				{\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/ConnectArduinoToChirpstack/ApplicationsList}};
+				\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+					\draw[arrowStyle, <-] (0.2, 0.045) -- ++(0.1, 0) node[textDef] {\textbf{1}};
+					\draw[arrowStyle, <-] (0.42, 0.5275) -- ++(0.1, 0) node[textDef] {\textbf{2}};
+				\end{scope}
+			\end{tikzpicture}
+			\caption{Auswahl der Applikation im Dashboard}
+		\end{figure}
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small,},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+					boxStyle/.style={line width={1pt}, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0)
+				{\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/ConnectArduinoToChirpstack/ChirpstackDevDashboard}};
+				
+				\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+					\draw[arrowStyle, <-] (0.50, 0.695) -- ++(0.1, -0.05);
+				\end{scope}
+			\end{tikzpicture}
+			\caption{Geräteübersicht im Device-Dashboard}
+		\end{figure}
+		
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small,},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0)
+				{\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/ConnectArduinoToChirpstack/ChirpstackOTAAKeys}};
+				\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+					\draw[arrowStyle, <-] (0.9, 0.58) -- ++(-0.05, -0.1);
+				\end{scope}
+			\end{tikzpicture}
+			\caption{Erzeugen eines neuen \acs{appkey}}
+		\end{figure}
+		
+		Der neue Schlüssel wird kopiert, im ChirpStack gespeichert und anschlie{\ss}end in die Arduino IDE eingefügt.
+		\begin{figure}[H] 
+			\centering 
+			\begin{tikzpicture} 
+				\tikzset{ 
+					textDef/.style={font=\sffamily\small, pos=1.3}, 
+					lineScaled/.style={line width={2pt}}, 
+					arrowStyle/.style={lineScaled, >=stealth, red}, 
+					boxStyle/.style={line width={1pt}, red}, 
+					} 
+					
+					\node[anchor=south west, inner sep=0] (image) at (0,0) {\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/ConnectArduinoToChirpstack/CopyAppKey}};
+					
+					\begin{scope}[x={(image.south east)}, y={(image.north west)}] 
+						\draw[arrowStyle, <-] (0.95, 0.605) -- ++(-0.05, 0.1) node[textDef] {\textbf{1}}; 
+						\draw[arrowStyle, <-] (0.875, 0.545) -- ++(-0.1, 0) node[textDef] {\textbf{2}}; 
+					\end{scope} 
+				\end{tikzpicture} 
+				\caption{Kopieren des Schlüssels} 
+			\end{figure}
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small,},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+					boxStyle/.style={line width={1pt}, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0)
+				{\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/ConnectArduinoToChirpstack/ArduinoIDEPasteAppKey}};
+				\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+					\draw[boxStyle] (0.06, 0.495) rectangle ++(0.32, 0.04);
+					\draw[arrowStyle, <-] (0.39, 0.515) -- ++(0.1, 0);
+				\end{scope}
+			\end{tikzpicture}
+			\caption{Einfügen des \PYTHON{AppKey} in die Arduino IDE}
+		\end{figure}
+		
+		% 8. Registration
+		\item Abschlie{\ss}end erfolgt die Registrierung beim \acs{lns}.  
+		Eine erfolgreiche Anmeldung wird im Serial Monitor bestätigt.
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small,},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0)
+				{\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/ConnectArduinoToChirpstack/SetupSuccesfull}};
+				\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+					\draw[arrowStyle, <-] (0.28, 0.18) -- ++(0.1, 0);
+				\end{scope}
+			\end{tikzpicture}
+			\caption{Bestätigung der erfolgreichen Registrierung}
+		\end{figure}
+		
+		% 9. Chirpstack Kontrolle
+		\item Die erfolgreiche Registrierung kann auch im Device-Dashboard des ChirpStack überprüft werden.
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small,},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+					boxStyle/.style={line width={1pt}, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0)
+				{\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/ConnectArduinoToChirpstack/ChirpstackDevCheck}};
+				\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+					\draw[boxStyle] (0.275, 0.58) rectangle ++(0.18, 0.04);
+				\end{scope}
+			\end{tikzpicture}
+			\caption{Überprüfung des Gerätestatus im ChirpStack}
+		\end{figure}
+		
+	\end{enumerate}
+	
+\section{Testen der Verbindung und versendeter Pakete \label{chirpstack:testConnection}}
+	
+	Sobald das Arduino erfolgreich am LoRaWAN-Server registriert wurde, kann die Kommunikation getestet werden.  
+	Hierfür wird das Sketch \FILE{LoRaSendAndReceive} aus der Bibliothek \PYTHON{MKRWAN} verwendet.
+	
+	\subsection{Einspielen des Codes}
+	
+	\begin{enumerate}
+		
+		% --- Schritt 1: LoRaSendAndReceive öffnen --------------------------------
+		\item Öffnen des Sketches \FILE{LoRaSendAndReceive}.
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small, pos=1.3},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0)
+				{\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/LoRaWANTest/OpenLoRaSendAndReceive}};
+				\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+					\draw[arrowStyle, <-] (0.87, 0.055) -- ++(0.05, 0.1);
+				\end{scope}
+			\end{tikzpicture}
+			\caption{Öffnen des Sketches \FILE{LoRaSendAndReceive}}
+		\end{figure}
+		
+		
+		% --- Schritt 2: arduino_secrets.h ausfüllen -------------------------------
+		\item Ausfüllen der Datei \FILE{arduino\_secrets.h}.  
+		Hier müssen \PYTHON{JoinEUI} und \PYTHON{AppKey} eingetragen werden.  
+		Der Wert der \PYTHON{AppKey} kann im ChirpStack-Webinterface abgerufen werden:
+		
+		% ApplicationsList
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small, pos=1.3},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0)
+				{\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/ConnectArduinoToChirpstack/ApplicationsList}};
+				\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+					\draw[arrowStyle, <-] (0.2, 0.045) -- ++(0.1, 0) node[textDef] {\textbf{1}};
+					\draw[arrowStyle, <-] (0.42, 0.5275) -- ++(0.1, 0) node[textDef] {\textbf{2}};
+				\end{scope}
+			\end{tikzpicture}
+			\caption{Auswahl der Applikation im Dashboard}
+		\end{figure}
+		
+		% Device Dashboard
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small,},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0)
+				{\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/ConnectArduinoToChirpstack/ChirpstackDevDashboard}};
+				\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+					\draw[arrowStyle, <-] (0.50, 0.695) -- ++(0.1, -0.05);
+				\end{scope}
+			\end{tikzpicture}
+			\caption{Geräteübersicht im Device-Dashboard}
+		\end{figure}
+		
+		% Copy Key
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small, pos=1.3},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0)
+				{\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/ConnectArduinoToChirpstack/CopyAppKey}};
+				\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+					\draw[arrowStyle, <-] (0.95, 0.605) -- ++(-0.05, 0.1) node[textDef] {\textbf{1}};
+					\draw[arrowStyle, <-] (0.875, 0.545) -- ++(-0.1, 0) node[textDef] {\textbf{2}};
+				\end{scope}
+			\end{tikzpicture}
+			\caption{Kopieren des \acs{appkey}}
+		\end{figure}
+		
+		Die \PYTHON{JoinEUI} ist in dieser Anwendung \PYTHON{00 00 00 00 00 00 00 00}
+		
+		% secrets.h screenshot
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small,},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0)
+				{\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/LoRaWANTest/ArduinoSecrets}};
+				\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+					\draw[arrowStyle, <-] (0.367, 0.74) -- ++(0.05, 0.1);
+				\end{scope}
+			\end{tikzpicture}
+			\caption{Anpassen der Datei \FILE{arduino\_secrets.h}}
+		\end{figure}
+		
+		
+		% --- Schritt 3: Upload ----------------------------------------------------
+		\item Upload des Sketches auf das Arduino-Board.
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small,},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0)
+				{\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/LoRaWANTest/CodeUpload}};
+				\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+					\draw[arrowStyle, <-] (0.078, 0.915) -- ++(0.1, -0.1);
+				\end{scope}
+			\end{tikzpicture}
+			\caption{Upload des Testcodes}
+		\end{figure}
+		
+		
+		% --- Schritt 4: Serial Monitor --------------------------------------------
+		\item Öffnen des Serial Monitors nach dem Upload.
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small, pos=1.3},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0)
+				{\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/LoRaWANTest/SerialView}};
+				\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+					\draw[arrowStyle, <-] (0.961, 0.91) -- ++(-0.05, -0.08) node[textDef] {\textbf{1}};
+					\draw[arrowStyle, <-] (0.24, 0.53) -- ++(0.05, 0.08) node[textDef] {\textbf{2}};
+				\end{scope}
+			\end{tikzpicture}
+			\caption{Startansicht des Serial Monitors}
+		\end{figure}
+		
+		
+		% --- Eingabe Nachricht ----------------------------------------------------
+		\item Eingeben einer Testnachricht in das Eingabefeld des Serial Monitors.
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small,},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+					boxStyle/.style={line width={1pt}, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0)
+				{\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/LoRaWANTest/InputMessage}};
+				\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+					\draw[boxStyle] (0.06, 0.36) rectangle ++(0.2, 0.05);
+					\draw[arrowStyle, <-] (0.27, 0.385) -- ++(0.1, 0);
+				\end{scope}
+			\end{tikzpicture}
+			\caption{Eingabe einer Testnachricht}
+		\end{figure}
+		
+		
+		% --- Gesendete Nachricht ---------------------------------------------------
+		\item Versenden der Nachricht und Anzeige der übertragenen Daten.
+		
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}
+				\tikzset{
+					textDef/.style={font=\sffamily\small,},
+					lineScaled/.style={line width={2pt}},
+					arrowStyle/.style={lineScaled, >=stealth, red},
+				}
+				\node[anchor=south west, inner sep=0] (image) at (0,0)
+				{\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/LoRaWANTest/SendMessage}};
+			\end{tikzpicture}
+			\caption{Erfolgreich versendete Nachricht}
+		\end{figure}
+		
+		\item Ansicht der nachricht in Chirpstack
+			Die Nachricht die an den Server angekommen ist kann unter \textit{Events} angeschaut werden
+			\begin{figure}[H]
+				\centering
+				\begin{tikzpicture}
+					\tikzset{
+						textDef/.style={font=\sffamily\small, pos=1.3},
+						lineScaled/.style={line width={2pt}},
+						arrowStyle/.style={lineScaled, >=stealth, red},
+					}
+					\node[anchor=south west, inner sep=0] (image) at (0,0)
+					{\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/ConnectArduinoToChirpstack/ApplicationsList}};
+					\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+						\draw[arrowStyle, <-] (0.2, 0.045) -- ++(0.1, 0) node[textDef] {\textbf{1}};
+						\draw[arrowStyle, <-] (0.42, 0.5275) -- ++(0.1, 0) node[textDef] {\textbf{2}};
+					\end{scope}
+				\end{tikzpicture}
+				\caption{Auswahl der Applikation im Dashboard}
+			\end{figure}
+			
+			% Device Dashboard
+			\begin{figure}[H]
+				\centering
+				\begin{tikzpicture}
+					\tikzset{
+						textDef/.style={font=\sffamily\small,},
+						lineScaled/.style={line width={2pt}},
+						arrowStyle/.style={lineScaled, >=stealth, red},
+					}
+					\node[anchor=south west, inner sep=0] (image) at (0,0)
+					{\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/ConnectArduinoToChirpstack/ChirpstackDevDashboard}};
+					\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+						\draw[arrowStyle, <-] (0.655, 0.695) -- ++(-0.1, -0.05);
+					\end{scope}
+				\end{tikzpicture}
+				\caption{Geräteübersicht im Device-Dashboard}
+			\end{figure}
+			
+			\begin{figure}[H]
+				\centering
+				\begin{tikzpicture}
+					\tikzset{
+						textDef/.style={font=\sffamily\small,},
+						lineScaled/.style={line width={2pt}},
+						arrowStyle/.style={lineScaled, >=stealth, red},
+						boxStyle/.style={line width={1pt}, red},
+					}
+					\node[anchor=south west, inner sep=0] (image) at (0,0)
+					{\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/LoRaWANTest/ChirpstackEvents}};
+					\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+						\draw[boxStyle] (0.27, 0.52) rectangle ++(0.6, 0.06);
+					\end{scope}
+				\end{tikzpicture}
+				\caption{Upload des Testcodes}
+			\end{figure}
+	
+			\begin{figure}[H]
+				\centering
+				\begin{tikzpicture}
+					\tikzset{
+						textDef/.style={font=\sffamily\small,},
+						lineScaled/.style={line width={2pt}},
+						arrowStyle/.style={lineScaled, >=stealth, red},
+						boxStyle/.style={line width={1pt}, red},
+					}
+					\node[anchor=south west, inner sep=0] (image) at (0,0)
+					{\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/LoRaWANTest/Payload}};
+					\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+						\draw[arrowStyle, <-] (0.505, 0.445) -- ++(0.1, 0) node[textDef, right] {Payload};
+					\end{scope}
+				\end{tikzpicture}
+				\caption{Ansicht des Payloads}
+			\end{figure}
+			Allerdings ist der Payload noch in Base64 kodiert. Um den Dekodierten Payload ermittel zu können ist es nötig einen Codec zu nutzen (siehe~\autoref{chirpstack:payloadCodec})
+	\end{enumerate}
+	
+\section{Payload Decoder \label{chirpstack:payloadCodec}}
+	
+	Um den vom Endgerät übertragenen Payload korrekt interpretieren zu können, wird im \acs{as} ein JavaScript-Codec benötigt.  
+	Der folgende Decoder wandelt die vom LoRaWAN-Server bereitgestellten Byte-Daten in einen lesbaren String um.
+	
+\begin{lstlisting}[
+	language=Java,
+	basicstyle=\ttfamily\small,
+	keywordstyle=\color{blue},
+	stringstyle=\color{red},
+	commentstyle=\color{green!50!black},
+	frame=single,
+	numbers=left,
+	numberstyle=\tiny\color{gray},
+	backgroundcolor=\color{black!5}
+	]
+function decodeUplink(input) {
+	var bytes = input.bytes;
+	var result = "";
+	
+	for (var i = 0; i < bytes.length; i++) {
+		var c = bytes[i];
+		if (c >= 32 && c <= 126) {
+			result += String.fromCharCode(c);
+		} else {
+			result += "\\x" + c.toString(16).padStart(2, '0');
+		}
+	}
+	
+	return {
+		data: {
+			payload: result
+		},
+		warnings: [],
+		errors: []
+	};
+}
+\end{lstlisting}
+	
+	Dieser Decoder wird im Menü \textit{Device Profiles} unter dem entsprechenden Profil \FILE{Test\_MKRWAN1310} im Abschnitt \textit{Codec} als \textit{JavaScript Functions} hinterlegt.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\tikzset{
+				textDef/.style={font=\sffamily\small, pos=1.3},
+				lineScaled/.style={line width={2pt}},
+				arrowStyle/.style={lineScaled, >=stealth, red},
+			}
+			\node[anchor=south west, inner sep=0] (image) at (0,0)
+			{\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/LoRaWANTest/DevProfiles}};
+			\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+				\draw[arrowStyle, <-] (0.2, 0.195) -- ++(0.1, 0) node[textDef] {\textbf{1}};
+				\draw[arrowStyle, <-] (0.355, 0.5) -- ++(0.1, -0.05) node[textDef] {\textbf{2}};
+			\end{scope}
+		\end{tikzpicture}
+		\caption{Auswahl des Device Profiles}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\tikzset{
+				textDef/.style={font=\sffamily\small, pos=1.3},
+				lineScaled/.style={line width={2pt}},
+				arrowStyle/.style={lineScaled, >=stealth, red},
+			}
+			\node[anchor=south west, inner sep=0] (image) at (0,0)
+			{\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/LoRaWANTest/CodecWindow}};
+			\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+				\draw[arrowStyle, <-] (0.59, 0.675) -- ++(0.1, 0.05) node[textDef] {\textbf{1}};
+				\draw[arrowStyle, <-] (0.38, 0.4) -- ++(0.1, 0) node[textDef] {\textbf{2}};
+			\end{scope}
+		\end{tikzpicture}
+		\caption{Codec-Konfiguration im Device Profile}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\tikzset{
+				textDef/.style={font=\sffamily\small, pos=1.3},
+				lineScaled/.style={line width={2pt}},
+				arrowStyle/.style={lineScaled, >=stealth, red},
+				boxStyle/.style={line width={1pt}, red},
+			}
+			\node[anchor=south west, inner sep=0] (image) at (0,0)
+			{\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/LoRaWANTest/InsertCodec}};
+			\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+				\draw[boxStyle] (0.06, 0.4) rectangle ++(0.5, 0.45);
+				\draw[arrowStyle, <-] (0.095, 0.025) -- ++(0.1, 0);
+			\end{scope}
+		\end{tikzpicture}
+		\caption{Einfügen des JavaScript-Codecs}
+	\end{figure}
+	
+	Nachdem der Decoder gespeichert wurde, kann die vom Endgerät gesendete Payload korrekt dekodiert und unmittelbar im Dashboard angezeigt werden. Das folgende Beispiel zeigt eine erfolgreich übertragene Nachricht, die mithilfe des Beispielcodes aus Abschnitt~\ref{chirpstack:testConnection} versendet wurde.
+	
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\tikzset{
+				textDef/.style={font=\sffamily\small,},
+				lineScaled/.style={line width={2pt}},
+				arrowStyle/.style={lineScaled, >=stealth, red},
+			}
+			\node[anchor=south west, inner sep=0] (image) at (0,0)
+			{\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/LoRaWANTest/SendMessage}};
+		\end{tikzpicture}
+		\caption{Erfolgreich versendete Nachricht}
+	\end{figure}
+	
+	Die dekodierte Payload erscheint anschlie{\ss}end im Dashboard des Geräts:
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\tikzset{
+				textDef/.style={font=\sffamily\small, pos=1.1},
+				lineScaled/.style={line width={2pt}},
+				arrowStyle/.style={lineScaled, >=stealth, red},
+				boxStyle/.style={line width={1pt}, red},
+			}
+			\node[anchor=south west, inner sep=0] (image) at (0,0)
+			{\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/LoRaWANTest/DecodedPayload}};
+			\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+				\draw[arrowStyle, <-] (0.275, 0.3975) -- ++(0.1, 0) node[textDef, right] {Dekodierte Payload};
+			\end{scope}
+		\end{tikzpicture}
+		\caption{Dekodierte Payload}
+	\end{figure}
+
+

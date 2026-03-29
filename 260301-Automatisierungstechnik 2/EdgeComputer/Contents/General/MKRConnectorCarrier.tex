@@ -1,0 +1,84 @@
+%%%%%%%%%%%%
+%
+% $Autor: Wings $
+% $Datum: 2019-03-05 08:03:15Z $
+% $Pfad: TemplateSensor $
+% $Version: 4250 $
+% !TeX spellcheck = en_GB/de_DE
+% !TeX encoding = utf8
+% !TeX root = filename 
+% !TeX TXS-program:bibliography = txs:///biber
+%
+%%%%%%%%%%%%
+
+% Structure
+\chapter{MKR-Erweiterungsplatine}
+
+Dieses Kapitel beschreibt die MKR-Erweiterungsplatine als Schnittstelle zur einfachen Anbindung von Sensoren, Aktoren und Grove-Modulen an ein Arduino-MKR-Board. Es behandelt deren grundlegenden Aufbau, die integrierte Spannungsversorgung über den Buck-Wandler sowie die verfügbaren Ein- und Ausgänge. Zudem werden die wichtigsten technischen Spezifikationen und die Nutzung im praktischen Einsatz erläutert.
+
+
+\section{General}
+	Die MKR-Erweiterungsplatine wurde entwickelt, um die Nutzung von Arduino MKR-Boards zu vereinfachen. Sie bietet standardisierte Anschlüsse für Grove-Sensoren sowie andere Module und erleichtert so den Aufbau von IoT-, Automatisierungs- oder Steuerungsprojekten. Dank der vorkonfigurierten Schnittstellen entfällt aufwendiges Verdrahten, sodass sich Prototypen schneller umsetzen lassen.
+	
+	Ein wesentliches Merkmal der Erweiterungsplatine ist ein Buck-Wandler, der mit einer externen Spannung von 7–16V über den VIN-Anschluss der Schraubklemme versorgt werden kann. Dieser Wandler liefert die 5V- und 3,3V-Spannungen, die ebenfalls an den Schraubklemmen verfügbar sind. Allerdingswerden sowohl alle digitale Ein- und Ausgänge, als auch Analoge Eingänge mit 5V versorgt.
+
+	\begin{center}
+		%todo tikz picture with strip red - red - black - brown 1\%
+		% or red - red - black - gold 5\%
+		\includegraphics[width=0.8\textwidth]{MKRWAN1310/MKRConnectorCarrier}
+		\captionof{figure}{MKR Connector Carrier}
+	\end{center}
+
+%\section{Specific Sensor}
+
+\section{Specification}
+
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|l|l|}
+			\hline
+			\textbf{Eigenschaft} & \textbf{Wert} \\
+			\hline
+			Eingangsspannung & 7 V - 16 V \\
+			\hline
+			Analoge Eingänge & 7 \\
+			\hline
+			Digitale I/Os & 7 \\
+			\hline
+			Schnittstellen & UART, I2C \\
+			\hline
+			Stromverbrauch & 5 mA \\
+			\hline
+			Gewicht & 25 g \\
+			\hline
+			Produktcode & ASX00007 \\
+			\hline
+		\end{tabular}
+		\caption{Technische Spezifikationen des MKR Connector Carrier}
+	\end{table}
+	
+\section{Bibliothek}
+	Das Shield erfordert keine zusätzlichen Bibliotheken. Es funktioniert Plug \& Play, d. h., das Arduino muss in das Shield gesteckt werden.
+
+%\subsection{Description}
+\section{Installation}
+	Der Arduino soll in das Shield gesteckt werden. Auf dem Shield befinden sich bei den Anschlüssen Beschreibungen, welcher Anschluss mit welchem Arduino-Pin verbunden ist. Die entsprechenden Sensoren sollen folglich an den gewünschten Steckdosen angeschlossen werden. Die jeweiligen Pins sollen dann im Programm initialisiert und definiert werden.
+
+\subsection{Functions}
+
+%\subsection{Example - Manual}
+%\subsection{Example}
+%\subsection{Example - Code}
+%\subsection{Example - Files}
+
+
+
+%\section{Calibration}
+%\section{Simple Code}
+%\section{Simple Application}
+%\section{Tests}
+%\subsection{Simple Function Test}
+%\subsection{Test all Functions}
+%\section{Simple Application}
+%\section{Further Readings}
+

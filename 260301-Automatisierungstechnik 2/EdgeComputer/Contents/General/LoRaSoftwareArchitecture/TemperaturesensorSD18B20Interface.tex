@@ -1,0 +1,67 @@
+%%%%%%%%%%%%
+%
+% $Autor: Wings $
+% $Datum: 2019-03-05 08:03:15Z $
+% $Pfad: TemplateSensor $
+% $Version: 4250 $
+% !TeX spellcheck = en_GB/de_DE
+% !TeX encoding = utf8
+% !TeX root = filename 
+% !TeX TXS-program:bibliography = txs:///biber
+%
+%%%%%%%%%%%%
+\chapter{Beispielimplementierung: Temperatursensor DS28B20}
+	
+Die Implementierung der Klasse \PYTHON{CDS18B20Sensor} folgt der Struktur des Interfaces \PYTHON{ISensor} und definiert die drei Pflichtmethoden:
+	
+\begin{itemize}
+  \item \PYTHON{init()}:
+  
+		Initialisiert den 1-Wire-Bus und überprüft, ob genau ein DS18B20-Sensor mit dem angegebenen Pin verbunden ist.  
+		Wenn kein Sensor gefunden wird oder mehrere Geräte auf der gleichen Leitung erkannt werden, wird die Initialisierung abgebrochen und ein entsprechender Fehlercode zurückgegeben.  
+		
+		\textbf{Rückgabewerte:}
+		
+		\begin{itemize}
+			\item \PYTHON{SensorError::SUCCESS} – genau ein Sensor wurde erkannt und erfolgreich initialisiert. 
+			\item \PYTHON{SensorError::NOT\_INITIALIZED} – kein Sensor auf dem Bus gefunden. 
+			\item \PYTHON{SensorError::READ\_ERROR} – mehrere Sensoren auf derselben Leitung erkannt (ungültige Konfiguration). 
+		\end{itemize}
+		
+    \item \PYTHON{update()}:
+    
+		Führt eine neue Temperaturmessung durch.  
+		Hierzu wird eine Konvertierung über die Bibliothek \PYTHON{DallasTemperature} ausgelöst und das Ergebnis ausgelesen. Die Methode prüft, ob der Sensor initialisiert wurde und ob der gelesene Wert plausibel ist.  
+		Werte au{\ss}erhalb des gültigen Bereichs (\(-55\,^\circ C\) bis \(125\,^\circ C\)) oder ein \PYTHON{DEVICE\_DISCONNECTED\_C}-Signal werden als Fehler interpretiert.  
+		
+		\textbf{Rückgabewerte:}
+		
+		\begin{itemize}
+			\item \PYTHON{SensorError::SUCCESS} – Temperatur erfolgreich gemessen und gespeichert. 
+			\item \PYTHON{SensorError::NOT\_INITIALIZED} – der Sensor wurde vor dem Messvorgang nicht initialisiert. 
+			\item \PYTHON{SensorError::READ\_ERROR} – ungültiger Messwert (NaN oder au{\ss}erhalb des gültigen Bereichs). 
+			\item \PYTHON{SensorError::SENSOR\_DISCONNECTED} – der Sensor ist physisch getrennt oder liefert kein Signal. 
+		\end{itemize}
+		
+		\item \PYTHON{getValue()}:
+		
+		Gibt den zuletzt gespeicherten Temperaturwert über eine Referenzvariable zurück, ohne eine neue Messung durchzuführen.  Diese Methode dient ausschlie{\ss}lich dem Abruf des letzten gültigen Messwerts.  
+		
+		\textbf{Rückgabewerte:}
+		\begin{itemize}
+			\item \PYTHON{SensorError::SUCCESS} – ein gültiger Messwert ist verfügbar und wurde erfolgreich übergeben. 
+			\item \PYTHON{SensorError::NOT\_INITIALIZED} – der Sensor wurde noch nicht initialisiert, daher steht kein Messwert zur Verfügung. 
+		\end{itemize}
+	\end{itemize}
+	
+{
+  \captionof{code}{Klasse \PYTHON{CDS18B20Sensor}: Implementierung des Interfaces \PYTHON{ISensor} für Temperaturmessung}
+  \ArduinoExternal{}{../../Code/MKRWAN1310/SoftwareArchitecture/CDS18B20Sensor.h}
+}
+	
+{
+
+  \captionof{code}{Implementierung der Methoden des Temperatursensors \PYTHON{CDS18B20Sensor}}
+  \ArduinoExternal{}{../../Code/MKRWAN1310/SoftwareArchitecture/CDS18B20Sensor.cpp}
+}
+	

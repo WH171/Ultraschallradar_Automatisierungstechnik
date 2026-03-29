@@ -1,0 +1,310 @@
+
+% Gute Einleitung: E:\GitLab\MachineLearning\MLEdgeComputer\Bilder\Arduino\IntroductiontoArduinoIDE-for--researchegate-fezari.pdf
+
+\chapter{Arduino IDE}
+
+\section{Einleitung}
+
+Zur Programmierung der Ardiono-Boards stellt die Firma Arduino eine Entwicklungsumgebung, die Arduino IDE, zur Verfügung. Die Arduino IDE\index{Arduino IDE} ist eine offizielle Open-Source-Software für Arduino, die zum Bearbeiten, Hochladen und Kompilieren von Codes in das Arduino-Modul verwendet wird. Es handelt sich um eine plattformübergreifende Software, die für Betriebssysteme wie Windows, Linux und macOS verfügbar ist. Sie läuft auf der Java-Plattform und unterstützt eine Reihe von Arduino-Modulen. Sie unterstützt die Sprachen C und C++. Der Programm-Code wird in der Arduino IDE erstellt, dann wird eine Hex-Datei erzeugt und  auf das angeschlossene Arduino-Boards geladen. Das Programm wird als Sketch\index{Sketch} bezeichnet. 
+\cite{Arduino:2022},  \cite{ArduinoIDE:2022} 
+
+In diesem Kapitel wird beschrieben, wie die Arduino IDE installiert und verwendet wird. Dabei erfolgt eine Beschreibung der wichtigsten Funktionen und ein Beispiel wird vorgestellt.
+
+
+
+\section{Installation}
+
+Die aktuelle Version der Entwicklungsumgebung Arduino IDE findet sich auf der Website der Firma Arduino. \cite{ArduinoIDE:2022} Die Entwicklungsumgebung steht für verschiedene Betriebssysteme zur Verfügung. Im Folgenden wird die Installation für das Betriebssstem Windows 10 beschrieben. Die Installationsdatei heißt \FILE{arduino-1.8.19-windows.exe}. 
+
+Nach dem Download der Datei wird die Datei gestartet. Nach dem Start können die Komponenten im Dialog \ref{ArduinoIDESetup} ausgewählt werden. Durch Betätigung der Schaltfläche \glqq Next\grqq{} öffnet sich der Dialog \ref{ArduinoIDEFolder}. Nun kann der Installationspfad gewählt werden. Hier wurde der Pfad  \SHELL{C:/Program Files (x86)/Arduino} eingestellt.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{Arduino/arduinoinst1}
+    \caption{Arduino-Setup Installationsoptionen}\label{ArduinoIDESetup}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{Arduino/ardinst2}
+    \caption{Arduino-Einrichtung: Installationsordner}\label{ArduinoIDEFolder}
+\end{figure}
+
+Damit ist die Installation abgeschlossen.
+
+
+\section{Start der Entwicklungsumgebung}
+
+Die Entwicklungsumgebung Arduino IDE kann nun gestartet werden. Es erscheint ein leerer Standard-Sketch\index{Sketch!Standard} auf dem Bildschirm, wie in \ref{ArduinoIDESketch} abgebildet.
+
+%\begin{figure}
+%    \centering
+%    \includegraphics[width=0.7 \textwidth]{Arduino/arduinoidefrst}
+%    \caption{Erster Arduino Sketch}\label{ArduinoIDESketch}
+%\end{figure}
+%\Mynote{Neues Bild, ohne Portenta}
+
+  \begin{figure}
+    \centering
+      \begin{tikzpicture}
+        \node (G) at (0,0) {\TRANS{\includegraphics[width=0.7 \textwidth]{Arduino/arduinoidefrist}}{\includegraphics[width=0.7 \textwidth]{Arduino/arduinoidefristEn}}};
+        
+        \draw[red,line width=2pt] (-4.6,-2) -- (-4.6,2) -- (4.6,2) -- (4.6,-2) -- cycle;
+    \end{tikzpicture}
+    \caption{Erster Sketch\index{Sketch!Erster} für einen Arduino}
+    \label{ArduinoIDESketch}
+\end{figure}
+
+
+
+
+\section{Beschreibung der Arduino IDE}
+
+Die Entwicklungsumgebung besteht aus zwei Teilen: einem Editor und einem Compiler. Der Editor wird verwendet, um den erforderlichen Code zu schreiben, während der Compiler zum Kompilieren und Laden des Codes in das Arduino-Board verwendet wird. \cite{Fezari:2018}
+
+\bigskip
+
+
+Die Menüleiste, siehe Abbildung \ref{ArduinoIDEMenu}, enthält Optionen wie \glqq Datei\grqq, in der es viele Optionen gibt, einschließlich Erstellen einer neuen Datei \glqq Neu\grqq{} oder Öffnen einer bestehenden Datei \glqq Öffnen\ldots\grqq{}, \glqq Beispiele\grqq{}, in der wir Sketches für verschiedene Anwendungen wie \glqq Blink\grqq{} oder \glqq Fade\grqq{} finden können.  Am unteren Rand des Bildschirms befindet sich eine Fehlerkonsole zur Anzeige von Fehlern. \ref{ArduinoIDEOptions}
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        \node (G) at (0,0) {\TRANS{\includegraphics[width=0.7 \textwidth]{Arduino/arduinoidefrist}}{\includegraphics[width=0.7 \textwidth]{Arduino/arduinoidefristEn}}};
+        \draw[red,line width=2pt] (-4.6,2.6) -- (-4.6,3.2) -- (-0.5,3.2) -- (-0.5,2.6) -- cycle;
+    \end{tikzpicture}
+    \caption{Menüleiste}
+    \label{ArduinoIDEMenu}
+\end{figure}
+
+
+\begin{figure}[H]
+	\centering
+    
+    \TRANS{\includegraphics[width=0.9\textwidth]{Arduino/ArduinoIDEExamples}}
+	{\includegraphics[width=0.9\textwidth]{Arduino/examplesketch}}
+	\caption{Optionen der Menüleiste}\label{ArduinoIDEOptions}
+\end{figure}
+
+
+
+Oben auf dem Bildschirm befinden sich die folgenden 6 Tasten, siehe \ref{ArduinoIDEButtons}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{Arduino/ArduinoIcons}
+	\caption{Schaltflächen im Menü}\label{ArduinoIDEButtons}
+\end{figure}
+
+\begin{itemize}
+  \item Das Häkchen dient dazu, Ihren Code zu überprüfen. Sobald die Schaltfläche betätigt wird, wird der Code überprüft und etwaige Fehler gemeldet.
+  \item Der Pfeil lädt Ihren Code zur Ausführung auf das Arduino-Board.
+  \item Das gepunktete Papier erstellt eine neue Datei.
+  \item Der Pfeil nach oben wird verwendet, um ein bestehendes Arduino-Projekt zu öffnen.
+  \item Der Abwärtspfeil wird zum Speichern der aktuellen Datei verwendet.
+  \item Die Schaltfläche ganz rechts ist ein serieller Monitor, der für das Senden von Daten vom Arduino an den PC zu Debugging-Zwecken nützlich ist.
+\end{itemize}
+
+\section{Wahl des Arduino-Boards}\label{ArduinoIDEChooseBord}
+
+Der Compiler erstellt aus einem Sketch ein Programm, dass auf dem Arduino-Board lauffähig ist. Dabei unterstützt die Entwicklungsumgebung sehr  verschiedene Arduino-Boards. Damit ein korrektes Programm erstellt wird, muss dies ausgewählt sein. Dazu wird in der Menüleiste \glqq Werkzeuge\grqq{} ausgewählt. Im Unterpunkt \glqq Board <Name>\grqq{} kann dann die gewünschte Hardware, wie in Abbildung \ref{ArduinoIDEBoard} gezeigt ist, gewählt werden.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Arduino/ArduinoIDEBoard}
+    \caption{Auswahl eines Arduino-Boards}\label{ArduinoIDEBoard}
+\end{figure}
+
+In der Dialog  stehen schon Boards zur Auswahl. Falls jedoch das gewünschte nicht aufgeführt ist, kann dies über den Boardverwalter, siehe Abbildung \ref{}, installiert werden. Wenn der Boardverwalter angewählt wurde, öffnet sich der Dialog \ref{ArduinoIDEBoardAdmin}. Zum Beispiel die Arduino-Boards Arduino Portenta \index{Arduino Portenta} und Arduino Nicla Vision\index{Arduino Nicla Vision} müssen über diesen Dialog installiert werden.
+
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        \node (G) at (0,0) {\TRANS{\includegraphics[width=0.7 \textwidth]{Arduino/ArduinoIDEBoard}}{\includegraphics[width=0.7 \textwidth]{Arduino/ArduinoIDEBoard}}};
+        \draw[red,line width=2pt] (-1.1,0.8) -- (-1.1,1.1) -- (0,1.1) -- (0,0.8) -- cycle;
+    \end{tikzpicture}
+    \caption{Aufruf des Boardverwalters}
+    \label{ArduinoIDEBoardAdmin1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Arduino/ArduinoIDEBoardAdmin}
+    \caption{Wahl eines Arduino-Boards im Boardverwalter}\label{ArduinoIDEBoardAdmin}
+\end{figure}
+
+
+\section{Wahl der seriellen Schnittstelle}\label{ArduinoIDEChooseCom}
+
+Ein Arduino-Board kommuniziert mit einem PC über eine serielle Schnittstelle. Diese muss konfiguriert werden. Im Device Manager von Windows  kann die vom Arduino-Board belegte serielle Schnittstelle oder der USB-Port ermittelt werden. Die Konfiguration erfolgt dann im Unterpunkt \glqq Port\grqq{} des Menüpunkts \glqq Werkzeuge\grqq{}. Der Aufruf ist in der Abbildung \ref{ArduinoIDECom} dargestellt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Arduino/ArduinoIDECom}
+    \caption{Wahl der serielle Schnittstelle}\label{ArduinoIDECom}
+\end{figure}
+
+
+Die gewählte Konfiguration des Boards und der seriellen Schnittstelle wird in der Arduino IDE untenr links angezeigt. In der Abbildung \ref ist dies das Arduino Board Nicla Vision an der Schnittstelle \glqq COM3\grqq{}.
+
+
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        \node (G) at (0,0) {\TRANS{\includegraphics[width=0.7 \textwidth]{Arduino/ArduinoIDEBoardCom}}{\includegraphics[width=0.7 \textwidth]{Arduino/ArduinoIDEBoardCom}}};
+        \draw[red,line width=2pt] (3.5,-3.3) -- (3.5,-3.6) -- (1.95,-3.6) -- (1.95,-3.3) -- cycle;
+
+        \draw[red,line width=2pt] (4.3,-3.3) -- (4.3,-3.6) -- (3.75,-3.6) -- (3.75,-3.3) -- cycle;
+
+    \end{tikzpicture}
+    \caption{Anzeige des gewählten Arduino-Boards und der seriellen Schnittstelle}
+    \label{ArduinoIDEBoardPort}
+\end{figure}
+
+
+Die Konfiguration kann in der Arduino IDE überprüft werden. 
+
+ 
+\Mynote{Dies ist zu prüfen, sobald ein Board angeschlossen ist: Nach der korrekten Auswahl des Boards und der seriellen Schnittstelle klicken Sie auf die Schaltfläche Verifizieren und dann Hochladen, die in der oberen linken Ecke des Bereichs mit den sechs Schaltflächen erscheint.}
+
+
+
+
+\section{Laden eines Programms}
+
+
+Nach der Konfiguration der Entwicklungsumgebung kann nun das erste Programm auf das angeschlossene   Arduino-Board geladne werden. Der Sketch der im Editor geschrieben wurde, sollte zunächst gespeichert werden. Die Endung eines Sketches ist \FILE{.ino}\index{Sketch!ino}. Sobald die Schaltfläche \glqq Hochladen\grqq{} werden neuere Arduino-Boards automatisch zurückgesetzt. Ältere Arduino-Boards müssen gegebenenfalls durch die Betätigung des Tasters \glqq Reset\grqq{} manuell zurückgesetzt werden. Das Hochladen kann über die LEDs TX iund RX verfolgt werden, da diese während des Vorgangs blinken. 
+
+
+\section{Verwendung des seriellen Monitors} 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Arduino/ArduinoIDESerialMonitor}
+    \caption{Start des seriellen Monitors}\label{ArduinoIDESerialMonitor}
+\end{figure}
+
+Die Entwicklungsumgebung stellt einen Monitor zur Beobachtung der Aktivitäten an der seriellen Schnittstelle zur Verfügung. Der Aufruf erfolgt im Unterpunkt \glqq Serielle Monitor\grqq{} des Menüpunkts \glqq Werkzeuge\grqq{}. Dies wird  in der Abbildung \ref{ArduinoIDESerialMonitor}  gezeigt.
+
+
+
+
+\Mynote{Beiuspiel fehlt: Example of test serial monitor on program test2.cc}
+
+
+
+
+\section{Bootloader: Aktualisierung der Firmware}\label{chap:Bootloader}
+\index{Bootloader}\index{Firmware}\index{Firmware!Aktualisierung}
+
+Damit ein Programm permanent auf dem Arduino-Board verbleibt, muss ein Bootloader installiert sein. Das sogenannte Brennen \index{Bootloader} \index{Sketch!Brennen} stellt die Arduino IDE im Unterpunkt \FILE{Bootloader} des Menüpunkts \glqq Werkzeuge\grqq{}, siehe Abbildung \ref{ArduinoIDEBootloader}, zur Verfügung.
+
+
+
+Jedes neue Arduino-Board ist mit einem Bootloader ausgestattet. Die Verwendung von MicroPython erfordert jedoch das erneute Brennen.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Arduino/ArduinoIDEBootloader}
+    \caption{Brennen des Bootloaders}\label{ArduinoIDEBootloader}
+\end{figure}
+
+
+
+%todo Die Bilder sind von Portenta H7 - Hier muss Nicla Vision verwendet werden
+
+
+Die Arduino-Boards Arduino Portenta H7-Board mit dem Vision Shield und Arduino Nicla Vision gehören zu den Boards, die MicroPython unterstützen. Zur Aktualisierung der Bootloader-Version muss ein Sketch geladen und gestartet. Für das Arduino Portenta H7-Board muss der Sketch \glqq PortentaH7\_updateBootloader\grqq{} verwendet werden, der in den Beispielen der Arduino-IDE zu finden ist, siehe Abbildung \ref{BootloaderUpdate}. \cite{Romero:2020a} 
+
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.99\textwidth]{Arduino/updatebootloader}
+    \caption{Aktualisierung des Bootloaders}
+    \label{BootloaderUpdate}
+\end{figure}
+
+Der Sketch, der in Abbildung \ref{BootloaderSketch} dargestellt ist muss dann ausgeführt werden; hier muss darauf geachtet, dass der richtige serielle Anschluss ausgewählt wird.
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.99\textwidth]{Arduino/uploadBootloadersketch}
+    \caption{Sketch zur Aktualisierung des Bootloaders}
+    \label{BootloaderSketch}
+\end{figure}
+
+Nachdem der Upload abgeschlossen ist, muss der serielle Monitor geöffnet. Es öffnet sich ein Dialogfeld, wie in Abbildung \ref{BootloaderProcess} gezeigt, mit der Aufforderung, die Bootloader-Version zu aktualisieren. Wenn der Dialog mit  \glqq y\grqq{} geschlossen wird, ist die Bootloader-Version aktualisiert. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.99\textwidth]{Arduino/updatingootloader}
+    \caption{Dialog zur Aktualisierung des Bootloaders}
+    \label{BootloaderProcess}
+\end{figure}
+
+
+\section{Struktur eines Sketches}
+
+Nach Abschluss der Konfiguration der Entwicklungsumgebung kann man mit der Programmierung eines Sketches gestartet werden. Alle Sketche folgen dem gleichen Ablauf. Zunächst wird eine Initialisierung durchgeführt und anschließend eine weitere Funktion in einer Endlosschleife abgearbeitet.
+Daraus folgt, wie auch schon in der Abbildung \ref{ArduinoIDESketch}  ersichtlich ist, dass der grundlegende Arduino-Sketch\index{Arduino!Aufbau} aus zwei Teilen besteht. Der erste Teil ist eine Funktion \PYTHON{void setup()}, die void zurückgibt, und wir machen die Initialisierung wie die Ausgabe-LED-Farbe oder die Angabe des Kerns. Der zweite Teil ist die Funktion \PYTHON{void loop()}, in der wir Funktionen definieren, die während der Schleife ausgeführt werden sollen. Diese Codes werden zwischen Klammern \{ \} platziert und jede Funktion hat einen Rückgabetyp, hier ist es der Rückgabetyp void. Im Folgenden wird dies detailliert erläutert.
+
+\bigskip
+
+Vor der Funktion \PYTHON{setup()} werden Deklarationen von Variablen und Instanzen von Klassen angelegt. 
+
+Die Variablen im Deklarationsbereich sind global. Notwendig sind globale Variablen nicht, aber um eine bessere Dokumentation zu gewährleisten, ist die oft sinnvoll. Zum Beispiel die Festlegung von Ausgängen von LEDs können hier vorgenommen werden, so dass sofort ersichtlich ist, welche Ausgänge belegt sind. Ebenso können hier den Variablen Werte zur Initialisierung zu gewiesen werden.
+
+Um eine Klasse nutzen zu können, muss eine Instanz angelegt werden. Im Deklarationsbereich werden den Instanzen Namen zugewiesen.
+
+
+
+
+Setup()
+Jeder Sketch besitzt die Funktion \PYTHON{Setup()}, die beim Start des Arduino-Boards genau einmal aufgerufen wird. Dementsprechend wird hier der Anfangszustand festgelegt. Folgende Punkte können definiert werden:
+
+\begin{enumerate}
+  \item Pin-Funktionalität mit Hilfe der pinMode-Funktion \PYTHON{pinMode}
+  \item Anfangszustand der Pins
+  \item Initialisierung von Klassen
+  \item Initialisierung der Variablen
+  \item Kodierung der Logik 
+\end{enumerate}
+
+ Nach Beendigung der Funktion \PYTHON{Setup()} wird die Funktkion \PYTHON{Loop()} aufgerufen. Der Name drückt schon aus, dass diese Funktion in einer Endlosschleife immer wieder aufgerufen wird. Sie enthält die Logik der Nutzung des Arduino-Boards.
+ 
+
+.
+\section{Serieller Plotter}
+
+Zur Analyse von Daten in Echtzeit steht der serieller Plotter zur Verfügung. Alle Daten, die das Arduino-Board über die serielle Schnittstelle sendet, können dort angezeigt werden. Unter anderem können Diagramme erstellt, negative Werte dargestellt und eine Wellenformanalyse durchführt werden.
+
+
+
+
+\section{Installation einer Biblitothek}\label{ArduinoIDELibInstall} \url{https://docs.arduino.cc/learn/starting-guide/software-libraries}
+\Mynote{Installation einer Biblitothek}
+
+
+\Mynote{Beispiel}
+\section{Weiterführende Links}
+
+Nach der Installation der Arduino IDE, ihrer Konfiguration und dem Start des ersten Programms können nun weitere Schritte folgen. Hierzu sind im Folgenden Links angegeben. Folgt man diesen Links, so erhält man weitere Beispiele, Schulungen und eine Sprachreferenz.
+
+
+\begin{itemize}
+	\item \HREF{https://docs.arduino.cc/built-in-examples/}{Built-in Examples}
+	
+	Eingebaute Beispiele sind Sketches, die in der Arduino IDE enthalten sind und alle grundlegenden Arduino-Befehle demonstrieren.
+	
+	\item \HREF{https://docs.arduino.cc/learn/}{Learn}
+	
+	Entdecken Sie interessante Artikel, Prinzipien und Techniken im Zusammenhang mit dem Arduino-Ökosystem.
+	
+	\item \HREF{https://www.arduino.cc/reference/en/}{Language References}
+	
+	Die Arduino-Programmiersprache kann in drei Hauptteile unterteilt werden: Funktionen, Daten (Variablen und Konstanten) und Struktur.
+\end{itemize}

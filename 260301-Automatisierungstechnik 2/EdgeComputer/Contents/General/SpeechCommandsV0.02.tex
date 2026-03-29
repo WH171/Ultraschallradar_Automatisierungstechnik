@@ -1,0 +1,124 @@
+%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% $Autor: Wings $
+% $Datum: 2025-03-31 $
+% $Pfad: SpeechCommandsV0.02.tex $
+% $Version: 1 $
+%
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Database ``Speech Commands V0.02''}
+
+\section{Origin}
+
+The Speech Commands dataset was developed by Pete Warden of Google Brain with the intent of providing a standardized resource for training and evaluating keyword spotting models, particularly for applications on embedded and resource-constrained devices.
+
+\bigskip
+
+The dataset was created to simulate realistic usage environments by capturing utterances from volunteers using everyday recording hardware such as laptop and smartphone microphones. Recordings were gathered through a web-based application that facilitated wide-scale, remote data collection, thereby improving the accessibility and scalability of the dataset acquisition process \cite{Warden:2020}.
+
+\section{Features}
+
+Each data instance in the dataset comprises a single spoken word, captured in isolation with a duration of approximately one second. The dataset includes recordings of 35 unique words, such as digits ("zero" to "nine"), control commands ("yes", "no", "up", "down", etc.), and distractor words ("bed", "tree", "cat", etc.), which serve to improve the robustness of models by helping distinguish target from non-target speech.
+
+\bigskip
+
+Additionally, to enable models to detect the absence of speech, a series of background noise recordings were added. These clips were either recorded in natural noisy environments or synthetically generated using coloured noise profiles like white and pink noise \cite{Warden:2020}.
+
+\bigskip
+
+All audio files were preprocessed and stored in WAV format with a 16-bit linear PCM encoding and a sample rate of 16 kHz. The dataset also includes carefully curated validation and testing lists to standardize model evaluation, ensuring that performance comparisons across architectures are reproducible and meaningful.
+
+\section{Data Types}
+
+The primary type of data is audio, encoded as uncompressed WAV files containing single-word utterances. Each file is associated with a pseudo-anonymized speaker ID, derived through hashing, to avoid capturing personal information while still enabling speaker-dependent analysis.
+
+\bigskip
+
+Additionally, long background noise clips provide training material for silence detection, and text files \FILE{validation\_list.txt} and \FILE{testing\_list.txt} explicitly define the evaluation protocol \cite{Warden:2020}. No additional structured metadata such as age, gender, or location is included.
+
+\section{Quality}
+
+To ensure high data quality despite using commodity recording hardware, the dataset underwent multiple preprocessing stages. First, any recordings that were too short or too quiet—typically identified via compressed file size or audio amplitude thresholds—were automatically discarded. For example, clips smaller than 5 kB were considered suspect and removed.
+
+\bigskip
+
+Next, a custom tool was employed to extract the loudest one-second segment from each recording to better align the spoken word temporally within the audio clip. This was essential because users varied in their response timing to the visual word prompt \cite{Warden:2020}.
+
+\bigskip
+
+Subsequent manual validation was performed through crowdsourcing, where workers were asked to transcribe the spoken word from each clip. If the transcribed label mismatched the intended word, the clip was removed from the dataset. These multi-layered quality assurance steps helped create a dataset that is well-suited for robust training of real-world keyword spotting systems.
+
+\section{Quantity}
+
+The released dataset contains approximately 105,829 validated audio recordings distributed across 35 word classes. Each class has between 1,500 and 4,000 examples, with core command words having higher representation to reflect their importance in downstream tasks.
+
+\bigskip
+
+The dataset also includes contributions from 2,618 unique speakers, enabling development of speaker-independent models \cite{Warden:2020}. On disk, the uncompressed dataset occupies roughly 3.8 GB, while the compressed version is around 2.7 GB.
+
+\section{Fairness and Bias}
+
+Efforts were made to reduce demographic bias by encouraging contributions from speakers with a wide variety of English accents. However, the dataset is limited to English, which inherently restricts linguistic diversity.
+
+\bigskip
+
+No personal demographic attributes such as age, gender, or ethnicity were recorded, both for ethical and privacy reasons. This approach avoids privacy risks but makes it difficult to evaluate or mitigate demographic biases post hoc.
+
+\bigskip
+
+Furthermore, the absence of data from non-English speakers or multilingual populations limits the generalizability of models trained on this dataset to global contexts \cite{Warden:2020}.
+
+\bigskip
+
+The recording environment was uncontrolled by design, allowing for variability in background noise and recording quality. While this adds realism, it may also introduce distributional bias related to the types of environments and devices used by volunteers. Nonetheless, the dataset remains one of the most practically valuable and widely used benchmarks for developing low-footprint keyword spotting models.
+
+
+\section{Subset}
+
+The Speech Commands dataset, released by Google Brain, serves as a single, consolidated resource for training and evaluating keyword spotting systems. Its unified structure facilitates streamlined data preprocessing and model evaluation.
+
+\bigskip
+
+All recordings are stored in a flat directory structure, with subfolders corresponding to the target word labels. This organization supports straightforward parsing and batching during model training. Two accompanying text files, \FILE{validation\_list.txt} and \FILE{testing\_list.txt}, explicitly designate audio samples for model validation and final testing, thereby standardizing the evaluation pipeline and helping avoid data leakage between training and test phases \cite{Warden:2020}.
+
+\section{Properties}
+
+Each audio file in the dataset is stored in uncompressed WAV format, encoded with 16-bit linear PCM samples at a 16 kHz sampling rate. Utterances are designed to be approximately one second in duration. The recordings are mono-channel, and the speech is captured through general-purpose microphones integrated into consumer-grade laptops and mobile phones.
+
+\bigskip
+
+This choice introduces realistic acoustic conditions, including background noise, reverberation, and variations in microphone quality. The dataset consists of 105,829 validated audio clips across 35 unique word classes, with each word having several hundred to a few thousand instances.
+
+\bigskip
+
+In addition to the spoken commands, the dataset includes background noise clips stored in a dedicated folder \FILE{\_background\_noise\_}, which are useful for training models to differentiate between speech and non-speech segments \cite{Warden:2020}.
+
+\section{Outliers}
+
+Given the crowdsourced nature of the dataset, certain recordings exhibit extreme deviations in volume, signal quality, or timing. For instance, some clips are significantly shorter than one second or contain very low amplitude, indicating near-silence or recording failure.
+
+\bigskip
+
+To identify such outliers, automated filtering mechanisms were implemented. These included discarding files below 5 kB in size—an effective heuristic for detecting silent or corrupted audio when using OGG compression. Additionally, any audio with an average amplitude below a threshold of 0.004 (in normalized floating-point scale) was excluded, as such clips were typically unintelligible \cite{Warden:2020}.
+
+\section{Anomalies}
+
+Besides amplitude-based outliers, several types of anomalies were present in the raw recordings, such as incomplete pronunciations, misread words, or background conversations. These were particularly problematic as they could lead to incorrect model learning.
+
+\bigskip
+
+To mitigate this, a crowdsourcing process was employed where human reviewers were tasked with transcribing each clip. If the transcription did not match the expected word label, the clip was removed from the final dataset. This manual verification step ensured that label noise was minimized and that only valid utterances were retained for training \cite{Warden:2020}.
+
+\section{Augmentation}
+
+To enhance model robustness and simulate a more diverse range of acoustic conditions, the dataset is often supplemented with data augmentation techniques during training. Although the original dataset release did not include augmented data, it was designed with augmentation in mind.
+
+\bigskip
+
+Common practices include adding various types of background noise from the provided clips, applying random time shifts, and modifying pitch or speed. Additionally, tools such as Extract Loudest Section were developed to standardize the temporal alignment of utterances by centering the most energetic segment of the audio within the one-second window \cite{Warden:2020}.
+
+\bigskip
+
+These augmentation techniques are especially valuable for training keyword spotting models to operate reliably in noisy and variable environments, which is critical for embedded systems such as smart speakers or mobile devices.
+

@@ -1,0 +1,377 @@
+%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% $Autor: Akshay Joseph $
+% $Datum: 2025-04-02 $
+% $Pfad: GitHub/ML24-EX01-KeywordSpotting/Nano33BLESense/Contents/General/TensorFlowLiteMirco.tex $
+% $Version: 1 $
+%
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%
+
+% !TeX spellcheck = GB
+
+% !TeX program = pdflatex
+
+% !TeX encoding = utf8
+
+%
+
+%%%
+
+
+
+
+
+\chapter{Library  \FILE{LiteRT Mirco}}
+
+\index{LiteRTMicro}
+
+\section{Description}
+
+
+
+LiteRT Micro executes TensorFlow Lite models that have been converted into FlatBuffer format (\texttt{.tflite}). These models are compiled into the firmware image and executed entirely within a statically allocated memory buffer known as the tensor arena. The design avoids all dynamic memory allocation, making it deterministic and safe for use in systems with limited runtime support.
+
+
+
+\section{Key Design Characteristics}
+
+
+
+\begin{itemize}
+
+	\item \textbf{No Dynamic Memory Allocation:} All required memory is statically allocated during initialization. This improves predictability and avoids heap fragmentation.
+
+	
+
+	\item \textbf{Header-Based Model Storage:} Models are embedded in firmware as byte arrays. This eliminates dependency on file I/O or external memory.
+
+	
+
+	\item \textbf{Operator Subset:} Only the operators required by the model are linked into the binary, reducing code size. Additional custom or fused operators can be added if needed.
+
+\end{itemize}
+
+
+
+\subsection*{Interpreter Flow}
+
+
+
+\begin{itemize}
+
+	\item Model is loaded into read-only memory.
+
+	\item Tensor arena is initialized with a pre-defined buffer.
+
+	\item Interpreter allocates tensors and invokes inference.
+
+	\item Results are made available via output tensor access.
+
+\end{itemize}
+
+
+
+\section{Supported Use Cases}
+
+
+
+LiteRT Micro is typically deployed in applications with strict size, latency, and power constraints. Examples include:
+
+
+
+\begin{itemize}
+
+	\item Wake-word detection (e.g., ``Hey Google'' on ARM Cortex-M4)
+
+	\item Activity recognition using IMU data in wearable devices
+
+	\item Environment monitoring on battery-powered sensors
+
+	\item Predictive maintenance via vibration or current signals
+
+	\item Simple computer vision on grayscale camera inputs (low resolution)
+
+\end{itemize}
+
+
+
+\section{Platform Support}
+
+
+
+LiteRT Micro can be compiled for:
+
+
+
+\begin{itemize}
+
+	\item ARM Cortex-M series (e.g., M0+, M3, M4, M7, M33)
+
+	\item RISC-V microcontrollers
+
+	\item ESP32 and Xtensa-based MCUs
+
+	\item Arduino-compatible platforms (e.g., Nano 33 BLE Sense)
+
+	\item RTOS and bare-metal environments (e.g., FreeRTOS, Zephyr)
+
+\end{itemize}
+
+
+
+\section{Model Constraints and Deployment Workflow}
+
+
+
+To deploy a model:
+
+
+
+\begin{itemize}
+
+	\item Train and export a model using TensorFlow or Keras.
+
+	\item Convert to \texttt{.tflite} using TensorFlow Lite Converter.
+
+	\item Apply quantization (typically to \texttt{INT8}).
+
+	\item Convert \texttt{.tflite} to a C array (e.g., using \texttt{xxd -i}).
+
+	\item Compile it with the embedded project, linking with LiteRT Micro.
+
+\end{itemize}
+
+
+
+Models suitable for LiteRT Micro are typically $\leq$250 KB in size and use fixed-point arithmetic to reduce computation and memory requirements \cite{Google:2025a}.
+
+
+
+\section{Installation}
+
+
+
+LiteRT Micro is not installed via a package manager. Instead, it is integrated directly into the build system of the embedded application. The runtime is part of the TensorFlow repository under \texttt{tensorflow/lite/micro}, and it is typically used in one of the following environments:
+
+
+
+\subsection{Manual Integration (Generic Microcontrollers)}
+
+
+
+Clone the TensorFlow repository:
+
+
+
+\begin{lstlisting}[language=bash, caption={Cloning TensorFlow repository}]
+
+	git clone https://github.com/tensorflow/tensorflow.git
+
+\end{lstlisting}
+
+
+
+Navigate to the microcontroller runtime:
+
+
+
+\begin{lstlisting}[language=bash, caption={Navigating to LiteRT Micro directory}]
+
+	cd tensorflow/tensorflow/lite/micro
+
+\end{lstlisting}
+
+
+
+Copy the relevant source files into your embedded firmware project. Alternatively, use a build system like CMake or makefiles to link the necessary components.
+
+
+
+\subsection{Arduino Platforms (e.g., Nano 33 BLE Sense)}
+
+
+
+\begin{itemize}
+
+	\item Open the Arduino IDE.
+
+	\item Install the \texttt{Arduino\_TensorFlowLite} library:
+
+	\begin{itemize}
+
+		\item Go to \texttt{Sketch} $\rightarrow$ \texttt{Include Library} $\rightarrow$ \texttt{Manage Libraries...}
+
+		\item Search for \texttt{TensorFlow Lite} and install \texttt{Arduino\_TensorFlowLite}.
+
+	\end{itemize}
+
+	\item This provides prebuilt examples and links the LiteRT Micro runtime automatically.
+
+\end{itemize}
+
+
+
+\subsection{PlatformIO / Other Embedded SDKs}
+
+
+
+\begin{itemize}
+
+	\item Manually add the \texttt{tensorflow/lite/micro} directory into your \texttt{lib/} or \texttt{components/} folder.
+
+	\item Ensure the include paths reference all necessary subdirectories (e.g., \texttt{micro/kernels}, \texttt{micro/memory\_planner}, etc.).
+
+	\item A working C++ compiler (e.g., \texttt{arm-none-eabi-g++}) and toolchain for the target MCU are required.
+
+\end{itemize}
+
+
+
+\section{Example with Code}
+
+
+
+Below is a minimal example showing how to use LiteRT Micro in C++ on a microcontroller. This includes model loading, interpreter setup, and inference.
+
+
+
+\subsection{Include Necessary Headers}
+
+
+
+\begin{lstlisting}[language=C++, caption={Including LiteRT Micro headers}]
+
+	#include "tensorflow/lite/micro/all_ops_resolver.h"
+
+	#include "tensorflow/lite/micro/micro_interpreter.h"
+
+	#include "tensorflow/lite/schema/schema_generated.h"
+
+	#include "tensorflow/lite/version.h"
+
+\end{lstlisting}
+
+
+
+\subsection{Load Model and Allocate Memory}
+
+
+
+Assume the model is stored as a byte array \texttt{g\_model\_data[]}, typically generated using \texttt{xxd -i} from a \texttt{.tflite} file.
+
+
+
+\begin{lstlisting}[language=C++, caption={Loading the model and setting up interpreter}]
+
+	constexpr int kTensorArenaSize = 10 * 1024;
+
+	uint8_t tensor_arena[kTensorArenaSize];
+
+	
+
+	const tflite::Model* model = tflite::GetModel(g_model_data);
+
+	tflite::AllOpsResolver resolver;
+
+	
+
+	tflite::MicroInterpreter interpreter(model, resolver, tensor_arena, kTensorArenaSize);
+
+	interpreter.AllocateTensors();
+
+\end{lstlisting}
+
+
+
+\subsection{Set Input and Run Inference}
+
+
+
+\begin{lstlisting}[language=C++, caption={Performing inference and accessing results}]
+
+	TfLiteTensor* input = interpreter.input(0);
+
+	// Fill input->data.f or input->data.int8 depending on model type
+
+	input->data.f[0] = 0.25f;  // example value
+
+	
+
+	if (interpreter.Invoke() != kTfLiteOk) {
+
+		// Handle inference failure
+
+	}
+
+	
+
+	TfLiteTensor* output = interpreter.output(0);
+
+	float result = output->data.f[0];  // example for float model
+
+\end{lstlisting}
+
+
+
+\subsection{Notes}
+
+
+
+\begin{itemize}
+
+	\item For quantized models (INT8), use \texttt{input->data.int8} and cast appropriately.
+
+	\item Ensure that the tensor arena size is tuned for your model’s memory needs.
+
+	\item The call to \texttt{AllocateTensors()} initializes memory layout and must be called before inference.
+
+\end{itemize}
+
+
+
+\cite{Google:2025}
+
+
+
+
+
+
+
+\section{Further Reading}
+
+
+
+\nocite{Google:2025a}
+
+\nocite{Warden:2020}
+
+
+
+	% Überschrift ein Level unter `refsection=chapter`, also \section*:
+
+   \printbibliography[heading=subbibliography, segment=\therefsegment]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

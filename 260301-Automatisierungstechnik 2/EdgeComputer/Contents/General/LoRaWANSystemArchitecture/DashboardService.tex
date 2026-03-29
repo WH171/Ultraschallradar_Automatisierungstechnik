@@ -1,0 +1,269 @@
+%%%%%%%%%%%%
+%
+% $Autor: Wings $
+% $Datum: 2019-03-05 08:03:15Z $
+% $Pfad: TemplateSensor $
+% $Version: 4250 $
+% !TeX spellcheck = en_GB/de_DE
+% !TeX encoding = utf8
+% !TeX root = filename 
+% !TeX TXS-program:bibliography = txs:///biber
+%
+%%%%%%%%%%%%
+
+\chapter{Dashboard und serverseitige Visualisierung mit Node-RED}
+\label{Dashboard:NodeRED}
+
+	Zur Visualisierung, Verwaltung und Analyse der von den Endgeräten übertragenen Sensordaten wurde ein webbasiertes Dashboard auf Basis von Node-RED realisiert. Das Dashboard bildet die zentrale Benutzerschnittstelle des Systems und ermöglicht sowohl die Überwachung des Gerätezustands als auch die strukturierte Darstellung der übertragenen Messwerte.
+	
+	Die Umsetzung basiert auf einer containerisierten Node-RED-Instanz, die mittels Docker betrieben wird. Dadurch wird eine reproduzierbare Installation sowie ein konsistenter Betrieb unabhängig von der zugrunde liegenden Hardwareplattform gewährleistet.
+
+\section{Installation und Zugriff}
+
+	Die Node-RED-Instanz wird über Docker Compose gestartet. Die vollständige Konfiguration ist in der Datei \FILE{docker-compose.yml} hinterlegt. Der Start erfolgt über den folgenden Befehl:
+	
+	\begin{verbatim}
+		docker compose up -d
+	\end{verbatim}
+	
+	Nach dem erfolgreichen Start ist die Node-RED-Oberfläche über einen Webbrowser erreichbar. Standardmä{\ss}ig steht sie unter folgender Adresse zur Verfügung:
+	
+	\begin{verbatim}
+		http://<server-ip>:1880
+	\end{verbatim}
+	
+	Der direkte Zugriff auf das Dashboard erfolgt über:
+	
+	\begin{verbatim}
+		http://<server-ip>:1880/dashboard/page1
+	\end{verbatim}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/DashboardService/NoderedOverview}
+		\caption{Übersicht der Node-RED-Oberfläche}
+	\end{figure}
+	
+	Über diese Oberfläche können sowohl die Datenverarbeitungs-Flows als auch das Dashboard selbst eingesehen und angepasst werden.
+
+\section{Automatische Geräteerkennung}
+
+	Endgeräte registrieren sich automatisch im Dashboard, sobald ein erster gültiger Uplink empfangen wird. Die Identifikation erfolgt anhand der eindeutigen \PYTHON{DevEUI}. Neue Geräte werden ohne manuelle Konfiguration in einer internen Geräteübersicht angelegt.
+	
+	Für jedes erkannte Gerät werden unter anderem folgende Informationen gespeichert:
+	\begin{itemize}
+		\item Gerätekennung (\PYTHON{DevEUI})
+		\item Zeitstempel des letzten empfangenen Uplinks
+		\item Zugeordnete Sensortypen
+		\item Aktueller Gerätestatus und Fehlerzustand
+	\end{itemize}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/DashboardService/DevicesOverview}
+		\caption{Automatisch erkannte Endgeräte im Dashboard}
+	\end{figure}
+
+\section{Geräteverwaltung}
+	
+	Das Dashboard stellt eine zentrale Übersicht aller bekannten Endgeräte bereit. Nicht mehr benötigte oder fehlerhafte Geräte können direkt über die Benutzeroberfläche entfernt werden. Hierzu steht für jedes Gerät eine Schaltfläche \textit{Remove Device} zur Verfügung.
+	
+	Nach dem Entfernen wird das Gerät aus der internen Registry gelöscht und im Dashboard nicht mehr angezeigt. Meldet sich das Gerät zu einem späteren Zeitpunkt erneut, wird es automatisch wieder registriert.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/DashboardService/DevicesOverview}
+		\caption{Entfernen eines Geräts aus dem Dashboard}
+	\end{figure}
+
+\section{Darstellung der Sensordaten}
+
+	Die vom Endgerät übertragenen Messwerte werden im Dashboard dynamisch visualisiert. Die Darstellung erfolgt abhängig vom jeweiligen Sensortyp sowie dem zugehörigen Sensorprofil und den definierten Metadaten.
+	Die Abbildung zeigt die Detailansicht eines einzelnen Endgeräts im Dashboard. Diese Ansicht fasst alle relevanten Informationen eines Geräts zusammen und ermöglicht sowohl die Überwachung der Sensordaten als auch die Beurteilung des aktuellen Gerätezustands.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\tikzset{
+				textDef/.style={font=\sffamily\small, pos=1.3},
+				lineScaled/.style={line width={2pt}},
+				arrowStyle/.style={lineScaled, >=stealth, red},
+				boxStyle/.style={line width={0.7pt}, red},
+			}
+			\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+				\includegraphics[width=0.6\linewidth]{LoRaAndLoRaWAN/DashboardService/DeviceView}};
+			
+			\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+				\draw[boxStyle] (0.03, 0.045) rectangle ++(0.95, 0.41);
+				\draw[arrowStyle, <-] (0.03, 0.25) -- ++(-0.1, 0) node[textDef] {\textbf{1}};
+				\draw[boxStyle] (0.03, 0.475) rectangle ++(0.93, 0.14);
+				\draw[arrowStyle, <-] (0.03, 0.54) -- ++(-0.1, 0) node[textDef] {\textbf{2}};
+				\draw[boxStyle] (0.03, 0.64) rectangle ++(0.65, 0.08);
+				\draw[arrowStyle, <-] (0.03, 0.68) -- ++(-0.1, 0) node[textDef] {\textbf{3}};
+				\draw[boxStyle] (0.03, 0.79) rectangle ++(0.57, 0.1);
+				\draw[arrowStyle, <-] (0.03, 0.835) -- ++(-0.1, 0) node[textDef] {\textbf{4}};
+				\draw[arrowStyle, <-] (0.96, 0.84) -- ++(0.1, 0) node[textDef] {\textbf{5}};
+			\end{scope}
+		\end{tikzpicture}
+		\caption{Detailansicht eines Endgeräts im Dashboard}
+	\end{figure}
+	
+	Die nummerierten Bereiche der Abbildung haben folgende Bedeutung:
+	
+	\begin{enumerate}
+		\item Anzeige aller Messwerte der dem Endgerät zugeordneten Sensoren. Die Darstellung erfolgt abhängig vom jeweiligen Sensortyp und den definierten Metadaten.
+		\item Statusbereich des Endgeräts. Hier werden unter anderem die Art der Spannungsversorgung, der aktuelle Akkuladestand sowie ein Indikator für einen Neustart seit dem letzten Uplink angezeigt.
+		\item Übertragungsbezogene Informationen, einschlie{\ss}lich der letzten Übertragungszeit sowie ausgewählter Kommunikationsparameter.
+		\item Gerätename, unter dem das Endgerät beim \acs{lorawan}-Netzwerkserver registriert ist, sowie die eindeutige Gerätekennung (\PYTHON{DevEUI}).
+		\item Schaltfläche zum Entfernen des Geräts aus dem Dashboard. Nach dem Entfernen wird das Gerät aus der internen Registry gelöscht.
+	\end{enumerate}
+	
+	Die Zuordnung zwischen Messwert und Anzeige erfolgt ausschlie{\ss}lich über die im Payload übertragene Profilnummer und die zugehörigen Metadaten. Dadurch bleibt das Dashboard vollständig generisch und unabhängig von konkreten Sensorklassen.
+
+\section{Pflege von Sensorprofilen und Metadaten}
+\label{Dashboard:ProfilesAndMetadata}
+
+	Damit neue Sensortypen oder Änderungen an bestehenden Sensoren korrekt interpretiert und dargestellt werden können, müssen Sensorprofile und Metadaten auf Serverseite konsistent gepflegt werden. Firmware und Dashboard bilden hierbei einen gemeinsamen binären und semantischen Vertrag.
+	
+	Änderungen an folgenden Komponenten erfordern eine Anpassung im Dashboard:
+	\begin{itemize}
+		\item Sensorprofile (Profilnummer, Bytelänge, Skalierungsfaktor, Vorzeichenbehandlung),
+		\item Fehlerdefinitionen und Fehlercodes.
+	\end{itemize}
+
+\subsection{Sensorprofile}
+
+	Sensorprofile beschreiben die binäre Struktur der vom Endgerät übertragenen Messwerte und bilden die Grundlage für die serverseitige Dekodierung des Payloads. Jedes Sensorprofil ist eindeutig über eine \PYTHON{profileNr} identifiziert, die im Payload übertragen wird und sowohl in der Firmware als auch im Dashboard identisch definiert sein muss.
+	
+	Die in Node-RED hinterlegten Sensorprofile müssen exakt den in der Firmware verwendeten Profilen entsprechen. Abweichungen in Bytelänge, Skalierungsfaktor oder Vorzeichenbehandlung führen unmittelbar zu fehlerhaften Dekodierungen der Messwerte.
+	
+	Ein Sensorprofil besteht aus folgenden Parametern:
+	\begin{itemize}
+		\item \PYTHON{profileNr} - eindeutige Profilnummer, wie sie im Payload übertragen wird,
+		\item \PYTHON{byteSize} - Anzahl der Bytes, aus denen der Integerwert gelesen wird,
+		\item \PYTHON{scale} - Skalierungsfaktor zur Rückführung des Integerwertes in einen physikalischen Messwert,
+		\item \PYTHON{signedValue} - Angabe, ob der Integerwert als vorzeichenbehaftet oder vorzeichenlos interpretiert wird,
+		\item \PYTHON{type} - logischer Sensortyp zur Zuordnung der Metadaten.
+	\end{itemize}
+	
+	Die serverseitige Dekodierung erfolgt, indem der Integerwert anhand der definierten Bytelänge und Vorzeichenbehandlung aus dem Payload gelesen und anschlie{\ss}end durch Division mit dem Skalierungsfaktor in einen Flie{\ss}kommawert umgerechnet wird.
+	
+	\medskip
+	Ein Beispiel für eine Sensorprofil-Definition in Node-RED ist in Listing~\ref{lst:SensorProfilesNodeRed} dargestellt.
+
+\begin{figure}[H]
+	\captionof{code}{Beispielhafte Definition von Sensorprofilen in Node-RED}
+	\label{lst:SensorProfilesNodeRed}
+	\begin{verbatim}
+		{
+			"1": {
+				"type": "CURRENT_SENSOR",
+				"profileNr": 1,
+				"byteSize": 4,
+				"scale": 1000,
+				"signedValue": true
+			},
+			"2": {
+				"type": "TEMPERATURE_SENSOR",
+				"profileNr": 2,
+				"byteSize": 2,
+				"scale": 100,
+				"signedValue": true
+			},
+			"3": {
+				"type": "LIGHT_SENSOR",
+				"profileNr": 3,
+				"byteSize": 1,
+				"scale": 1,
+				"signedValue": false
+			}
+		}
+	\end{verbatim}
+\end{figure}
+
+	Beim Hinzufügen eines neuen Sensortyps muss ein neues Sensorprofil ergänzt werden.
+
+\subsection{Sensormetadaten}
+
+	Während Sensorprofile die technische Dekodierung der Messwerte festlegen, definieren Sensormetadaten die semantische Darstellung der Messwerte im Dashboard. Sensormetadaten sind für jeden verwendeten \PYTHON{SensorType} zu definieren und werden nach der Dekodierung angewendet.
+	
+	Die Metadaten beeinflussen ausschlie{\ss}lich die Visualisierung und haben keinen Einfluss auf die Payload-Kodierung oder die Firmware.
+	
+	Ein Metadateneintrag besteht aus:
+	\begin{itemize}
+		\item \PYTHON{label} - Anzeigename des Sensors,
+		\item \PYTHON{unit} - physikalische Einheit,
+		\item \PYTHON{widget} - Definition der Darstellungsform und ihrer Parameter.
+	\end{itemize}
+	
+	Ein Beispiel für die Definition der Sensormetadaten ist in Listing~\ref{lst:SensorMetadataNodeRed} dargestellt.
+
+\begin{figure}[H]
+	\captionof{code}{Beispielhafte Definition von Sensormetadaten in Node-RED}
+	\label{lst:SensorMetadataNodeRed}
+	\begin{verbatim}
+		{
+			"CURRENT_SENSOR": {
+				"label": "Current",
+				"unit": "A",
+				"widget": {
+					"type": "gauge",
+					"min": 0,
+					"max": 10,
+					"decimals": 3
+				}
+			},
+			"TEMPERATURE_SENSOR": {
+				"label": "Temperature",
+				"unit": "°C",
+				"widget": {
+					"type": "bar",
+					"min": -20,
+					"max": 80,
+					"decimals": 2
+				}
+			},
+			"LIGHT_SENSOR": {
+				"label": "Light",
+				"unit": "",
+				"widget": {
+					"type": "gauge",
+					"min": 0,
+					"max": 255,
+					"decimals": 0
+				}
+			}
+		}
+	\end{verbatim}
+\end{figure}
+
+	Für jeden in den Sensorprofilen verwendeten \PYTHON{SensorType} muss ein entsprechender Metadateneintrag existieren. Fehlt ein Metadateneintrag, kann der Messwert zwar dekodiert, jedoch nicht korrekt dargestellt werden.
+
+\subsection{Erweiterung um neue Sensoren}
+
+	Beim Hinzufügen eines neuen Sensors sind auf Serverseite stets beide Konfigurationsbereiche zu erweitern:
+	\begin{enumerate}
+		\item Ergänzung eines neuen Sensorprofils mit identischer Profilnummer und Kodierungsparametern wie in der Firmware,
+		\item Ergänzung der Sensormetadaten für den zugehörigen \PYTHON{SensorType}.
+	\end{enumerate}
+	
+	Zusätzlich gilt: Wird in den Metadaten ein neuer Widget-Typ verwendet, muss dieser auch im Dashboard-Template implementiert sein. Andernfalls kann der Messwert nicht visualisiert werden.
+	
+	Durch diese klare Trennung zwischen binärer Dekodierung (Sensorprofile) und Darstellung (Sensormetadaten) bleibt das Dashboard vollständig generisch und erweiterbar, ohne Anpassungen an der grundlegenden Verarbeitungslogik vornehmen zu müssen.
+
+
+\subsection{Erweiterung um neue Widget-Typen}
+
+	Wird ein neuer Widget-Typ eingeführt, muss dieser sowohl in den Metadaten referenziert als auch im Dashboard-Template implementiert werden. Ohne eine entsprechende Template-Erweiterung kann der neue Widget-Typ nicht korrekt gerendert werden.
+
+\section{Fehlerdarstellung und Statusüberwachung}
+
+	Neben den Sensordaten werden auch Gerätestatus und Fehlercodes visualisiert. Die vom Endgerät übertragenen Fehlercodes werden serverseitig interpretiert und in verständliche Statusmeldungen übersetzt.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/DashboardService/SensorError}
+		\caption{Beispielhafte Darstellung eines Gerätefehlers}
+	\end{figure}
+	
+	Die Kombination aus Statusanzeigen und Messwertvisualisierung ermöglicht eine schnelle Diagnose des Systemzustands ohne direkten Zugriff auf das Endgerät.

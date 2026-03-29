@@ -1,0 +1,41 @@
+%%%%%%%%%%%%
+%
+% $Autor: Wings $
+% $Datum: 2019-03-05 08:03:15Z $
+% $Pfad: TemplateSensor $
+% $Version: 4250 $
+% !TeX spellcheck = en_GB/de_DE
+% !TeX encoding = utf8
+% !TeX root = filename 
+% !TeX TXS-program:bibliography = txs:///biber
+%
+%%%%%%%%%%%%
+
+% Structure
+\chapter{Konfiguration PlatformIO für Arduino MKR WAN 1310}
+Um die Kommunikation mit dem Arduino MKR1310 herstellen zu können, muss die Datei \FILE{platformio.ini} die korrekten Konfigurationseinstellungen enthalten. Diese lassen sich bereits bei der Erstellung eines neuen Projekts vorkonfigurieren, indem das passende Entwicklungsboard ausgewählt wird.
+
+\vspace{0.5cm}
+Um dies sicherzustellen, sind die folgenden Schritte auszuführen:
+
+\begin{enumerate}
+	\item Neues Projekt erstellen:
+	\begin{center}
+		\includegraphics[width=0.7\linewidth]{PlatformIO/PIONewProject}
+		\captionof{figure}{Neues Projekt erstellen.}
+		\label{fig:PIONewProject}
+	\end{center}
+	\item Den Projektnamen, den Boardtyp und den Speicherort angeben.
+	\begin{center}
+		\includegraphics[width=0.7\linewidth]{PlatformIO/PIOProjectDet}
+		\captionof{figure}{Den Namen, den Boardtyp und den Speicherort angeben.}
+		\label{fig:PIOProjectDetails}
+	\end{center}
+	
+	Als „Board“ ist „Arduino MKR WAN 1310“ auszuwählen, da dieses aktuell verwendet wird. Die Datei \PYTHON{platformio.ini} wird anschlie{\ss}end automatisch für dieses Board vorkonfiguriert.
+	
+	
+	Hier kann auch der Speicherort festgelegt werden. Standardmä{\ss}ig werden alle Projekte unter \texttt{/Users/../Documents/PlatformIO/Projects} gespeichert.
+	
+\end{enumerate}
+Somit ist die Konfiguration abgeschlossen. Weitere Parameter zur Konfiguration und zu den Bibliotheken können zu einem späteren Zeitpunkt in der Datei \PYTHON{platformio.ini} angepasst werden.

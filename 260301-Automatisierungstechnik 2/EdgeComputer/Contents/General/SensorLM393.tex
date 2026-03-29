@@ -1,0 +1,209 @@
+%%%%%%%%%%%%
+%
+% $Autor: Wings $
+% $Datum: 2019-03-05 08:03:15Z $
+% $Pfad: TemplateSensor $
+% $Version: 4250 $
+% !TeX spellcheck = en_GB/de_DE
+% !TeX encoding = utf8
+% !TeX root = filename 
+% !TeX TXS-program:bibliography = txs:///biber
+%
+%%%%%%%%%%%%
+
+% Structure
+\chapter{Geschwindigkeitssensor LM393}
+
+
+\section{Allgemeine Beschreibung des Sensors}
+
+Der LM393 ist ein einfacher und kostengünstiger Geschwindigkeitssensor, der nach dem Prinzip der optischen Lichtschranke funktioniert. Er besteht aus einem LM393-Komparator, einem Infrarot-Sender-Empfänger-Paar und einem digitalen Ausgang. Der Sensor kann in Kombination mit einer auf einer rotierenden Welle angebrachten Lochscheibe verwendet werden. \cite{LM393.1} \cite{Parthier}
+
+\section{Spezifische Beschreibung des Sensors}
+
+Der LM393 Geschwindigkeitssensor besteht aus folgenden Komponenten:
+
+\begin{itemize}
+	\item Infrarot-LED (Sender)
+	\item Fototransistor (Empfänger)
+	\item Lichtschranken-Nut
+	\item LM393 Komparator
+	\item Status-LED
+	\item PCB mit Pins
+	\item Lochscheibe
+\end{itemize}
+
+Wie diese Komponenten die Funktion des Sensors ermöglichen, wird im Folgenden erklärt.
+
+\subsection{Funktionsweise der Lichtschranke}
+
+Die Infrarot-LED und der Fototransistor bilden eine optoelektronische Lichtschranke und sind sich gegenüber auf dem Sensor-PCB angebracht. Die beiden Komponenten sind durch die Lichtschranken-Nut getrennt, welche 5 mm breit ist. In dieser Nut rotiert die Lochscheibe, welche auf der Motorwelle montiert ist und mit 20 Löchern ausgestattet ist. Die Infrarot-LED dient als Sender der Lichtschranke und emittiert kontinuierlich Licht im infraroten Bereich (~ 940 nm) in Richtung des Empfängers. Der Fototransistor ist der Empfänger. Dieser Fototransistor besteht aus einem Halbleitermaterial. Trifft das Infrarotlicht des Senders, durch ein Loch der Lochscheibe auf den Empfänger, so werden dort Elektronen-Loch-Paare erzeugt. Dadurch steigt der Stromfluss durch den Fototransistor. Wird das Infrarotlicht durch die Lochscheibe blockiert sinkt der Strom im Fototransistor. 
+
+Die hier verwendete Lochscheibe weist 20 Löcher auf, somit werden pro Umdrehung 20 Signale erzeugt. Da der Sensor aber auf Signaländerungen reagiert werden pro Loch zwei Impulse erzeugt, es werden also 40 Impulse pro Umdrehung gezählt. \cite{Parthier}
+
+\subsection{Signalverarbeitung mit dem LM393 Komparator}
+
+Der LM393 ist ein Komparator, der zwei Analoge Spannungen vergleicht. Eingang A wird mit einer Referenzspannung beschaltet. Eingang B ist mit dem Fototransistor verbunden. Wenn Infrarotlicht auf dem Empfänger auftrifft (durch Loch der Lochscheibe) ändert sich die Spannung am Eingang B. Wenn die Spannung im Fototransistor durch den Lichteinfall höher wird als die Referenzspannung, dann schaltet der Komparator den digitalen Ausgang D0 auf LOW. Wenn der Lichteinfall blockiert ist und somit die Spannung im Fototransistor niedriger ist als die Referenzspannung, dann schaltet der Komparator den digitalen Ausgang D0 auf HIGH. Der LM393 Komparator wird also dazu genutzt kleine Änderungen im Analogsignal zu verstärken und in ein klares digitales Rechtecksignal umzuwandeln.
+
+Am digitalen Ausgang D0 liegt das durch den LM393 erzeugte Signal an. Dieses kann direkt mit einem Mikrocontroller, in diesem Fall einem Arduino Nano 33 BLE Sense verbunden und ausgewertet werden. \cite{Parthier}
+
+\subsection{Anschluss des Sensors mit dem Arduino Nano 33 BLE Sense}
+
+In Tabelle \autoref{tab:AnschlussLM393} ist gezeigt wie der Sensor korrekt an den Arduino Nano 33 BLE Sense angeschlossen wird:
+
+\begin{table}[htpb]
+	\centering
+	\begin{tabular}{|l|c|}
+		\hline
+		\textbf{Arduino} & \textbf{LM393} \\
+		\hline
+		5V & VCC \\
+		GND & GND \\
+		Pin 2 & D0 \\
+		\hline
+	\end{tabular}
+	\caption{Anschluss Speedsensor LM393 an Arduino Nano 33 BLE Sense \cite{LM393.3}}
+	\label{tab:AnschlussLM393}
+\end{table}
+
+
+\section{Spezifikationen}
+
+\begin{table}[htpb]
+	\centering
+	\begin{tabular}{|l|c|}
+		\hline
+		\textbf{Spezifikation} & \textbf{Wert} \\
+		\hline
+		Modell & Speedsensor LM393 mit Lochscheibe \\
+		Versorgungsspannung & 3,3 V - 5 V DC \\
+		Signalausgabe & Digital \\
+		Nutbreite (Lichtschranke) & 5 mm \\
+		PCB-Abmessungen & 32 mm x 14 mm \\
+		Lochscheiben-Durchmesser & 25,5 mm (20 Löcher) \\
+		Besonderheiten & LED-Anzeige, Montageloch \\
+		\hline
+	\end{tabular}
+	\caption{Spezifikationen des Speedsensor LM393 \cite{LM393.2}}
+	\label{tab:SpezifikationLM393}
+\end{table}
+
+\section{Bibliothek}
+
+Für die Verwendung des Sensors mit dem Arduino Nano 33 BLE Sense wird die TimerOne-Bibliothek benötigt. Die TimerOne-Bibliothek wird verwendet, um die Zeitmessung zu ermöglichen, um aus den erzeugten Impulsen des Sensors die Drehzahl zu berechnen.
+
+\subsection{Installation}
+
+Im Folgenden wird erklärt, wie die TimerOne Bibliothek installiert wird.
+
+\begin{enumerate}
+	\item Öffnen der Arduino IDE
+	\item Klick auf Sketch, Bibliothek einbinden, Bibliotheken verwalten (Abbildung \autoref{fig:BibTimerOne})
+	\item In der Suchleiste TimerOne eingeben
+	\item Klick auf Installieren (Version aus Abbildung \autoref{fig:InstTimerOne} entnehmen)
+\end{enumerate}
+
+\begin{figure}[htpb]
+	\centering
+	\includegraphics[width=1\textwidth]{LM393/TimerOne1.jpg}
+	\caption{Aufrufen der Bibliotheken in der Arduino IDE}
+	\label{fig:BibTimerOne}
+\end{figure}
+
+\begin{figure}[htpb]
+	\centering
+	\includegraphics[width=0.5\textwidth]{LM393/TimerOne2.jpg}
+	\caption{Installation der TimerOne Bibliothek}
+	\label{fig:InstTimerOne}
+\end{figure}
+
+\subsection{Code-Beispiel}
+
+Im Folgenden ist ein Code-Beispiel gegeben, in dem die verwendeten Funktionen erklärt werden. Für weitere Funktionen der Bibliothek kann man über Datei, Beispiele, TimerOne auf verschiedene Beispiel-Codes zugreifen (Abbildung \autoref{fig:ExamplesTimerOne1}).
+
+\begin{figure}[htpb]
+	\centering
+	\includegraphics[width=1\textwidth]{LM393/TimerOne3.jpg}
+	\caption{Aufrufen der Beispiele für die TimerOne Bibliothek}
+	\label{fig:ExamplesTimerOne1}
+\end{figure}
+
+\section{Kalibrierung}
+
+Für den LM393 Geschwindigkeitssensor mit Lochscheibe ist keine spezielle Kalibrierung notwendig. Optional kann aber eine empirische Kalibrierung durchgeführt werden, indem man die Umdrehungen mit einem bekannten Drehzahlmesser vergleicht. Bei der Positionierung des Sensors muss darauf geachtet werde, dass die Lichtschranke präzise auf die Mitte der Lochscheibe ausgerichtet ist. Die Lochscheibe muss plan und fest an der Motorachse montiert werden. Außerdem muss die Variable „wheel“ im Code an die Anzahl der Löcher in der Lochscheibe angepasst werden. Da der Sensor auf Flankenwechsel reagiert, muss die Variable auf die doppelte Anzahl der Löcher gesetzt werden. Die Lochscheibe, welche für den Demonstrator verwendet wird, hat 20 Löcher, somit muss „wheel“ auf 40 gesetzt werden, wie in Abbildung xx unter Abschnitt xx zu sehen. 
+
+\section{Einfaches Beispiel mit Code}
+
+Das Beispiel geht davon aus, dass die Lochscheibe auf einer sich rotierenden Welle befestigt ist. Mit dem folgenden Code wird die Drehzahl der Welle alle 5 Sekunden im seriellen Monitor ausgegeben. 
+
+\begin{lstlisting}
+	// import library
+	#include "TimerOne.h"
+	#define pin 2
+	// required variables
+	int interval, wheel, counter;
+	unsigned long previousMicros, usInterval, calc;
+	
+	void setup() {
+	counter = 0; // set counter to 0
+	interval = 5; // 5-second interval
+	wheel = 20; // holes in encoder disk
+	
+	// scale interval to one minute
+	calc = 60 / interval;
+	// convert interval time to microseconds
+	usInterval = interval * 1000000;
+	// number of holes in encoder disk *2 equals number of signal changes
+	wheel = wheel *2;
+	
+	// set analog pin as input
+	pinMode(pin, INPUT);
+	// initialize timer with interval
+	Timer1.initialize(usInterval);
+	attachInterrupt(digitalPinToInterrupt(pin), count, CHANGE);
+	// executes 'count' when signal at pin 2 changes
+	
+	// executes 'output' after each interval
+	Timer1.attachInterrupt(output);
+	Serial.begin(9600);
+	}
+	
+	// count the encoder disk
+	void count() {
+	if (micros() - previousMicros >=700){
+	counter++;
+	previousMicros = micros();}
+	}
+	
+	// output to serial monitor
+	
+	void output() {
+	Timer1.detachInterrupt(); // stop timer
+	Serial.print("Drehzahl pro Minute: ");
+	int speed = ((counter)*calc) / wheel;
+	// calculate revolutions per minute
+	
+	Serial.println(speed);
+	counter = 0;
+	// reset counter
+	Timer1.attachInterrupt(output);
+	// restart timer
+	}
+	
+	void loop() {
+	// no loop needed
+	}
+\end{lstlisting}
+\cite{LM393.3}
+\section{Tests}
+
+Um sicherzugehen, dass der Sensor zuverlässig funktioniert, wird empfohlen folgende Tests anhand des einfachen Beispiels mit Code durchzuführen:
+
+\begin{itemize}
+	\item Lichtschrankenprüfung: Drehe die Lochscheibe manuell und beobachte ob die Status-LED bei jedem Loch kurz aufblinkt.
+	\item Signaltest: Starte den Beispielcode und überprüfe ob im eingestellten Zeitintervall Drehzahlen im seriellen Monitor ausgegeben werden.
+	\item Stabilitätstest: Führe längere Messungen durch um sicherzustellen, dass der Sensor stabile Werte liefert.
+	\item Reaktion auf Lichtverhältnisse: Teste den Sensor bei verschiedenen Lichtverhältnissen um externe Störungen der Lichtschranke zu erkennen.
+\end{itemize}
+
+

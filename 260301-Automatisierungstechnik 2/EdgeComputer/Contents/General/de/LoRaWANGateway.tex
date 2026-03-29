@@ -1,0 +1,220 @@
+%%%%%%%%%%%%
+%
+% $Autor: Wings $
+% $Datum: 2019-03-05 08:03:15Z $
+% $Pfad: TemplateSensor $
+% $Version: 4250 $
+% !TeX spellcheck = en_GB/de_DE
+% !TeX encoding = utf8
+% !TeX root = filename 
+% !TeX TXS-program:bibliography = txs:///biber
+%
+%%%%%%%%%%%%
+
+
+\chapter{LoRaWAN Gateway \label{gateway:info}}
+	Dieses Kapitel erläutert die Rolle des Gateways innerhalb der \acs{lorawan}-Architektur und beschreibt seine Funktion. Es erklärt die technische Position des Gateways. Anschlie{\ss}end wird die Hardwarearchitektur \ac{lorawan}-Gateways anhand des Semtech-Corecell-Referenzdesigns detailliert dargestellt, einschlie{\ss}lich RF-Frontend, Transceivern, Concentrator-Chip und Host-System. Weitere Abschnitte behandeln die Uplink- und Downlink-Verarbeitung, Duty-Cycle-Einschränkungen sowie Optimierungsmechanismen wie Multicast und FUOTA. Abschlie{\ss}end werden die wichtigsten Kommunikationsprotokolle zwischen Gateway und Network Server sowie unterschiedliche Gateway-Typen und deren Einsatzbereiche beschrieben.
+	
+\section{Einordnung in die LoRaWAN-Architektur}
+	Das Gateway übernimmt innerhalb der LoRaWAN-Architektur eine zentrale Vermittlungsrolle zwischen den Endgeräten und dem LoRaWAN Network Server (LNS). Ein LoRaWAN-Gateway fungiert als reiner Paket-Forwarder. Es führt keinerlei Interpretationen der übertragenen Nutzdaten durch, sondern leitet empfangene Frames unverändert an den LNS weiter. Ebenso übermittelt es Downlink-Nachrichten, die vom LNS generiert wurden, transparent an das Ziel-Endgerät \cite{LoRaAlliance:2020c}. Mehrere Gateways können parallel arbeiten, wodurch eine robuste und skalierbare Netzabdeckung entsteht \cite{Semtech:2024}.
+
+% tikz zeichnung
+\subsection{Position zwischen PHY und LNS}
+	Das Gateway befindet sich funktional zwischen der LoRa\-/LoRaWAN-PHY-Schicht und der serverseitigen Netzlogik. Es empfängt die auf der Funkschnittstelle modulierten Pakete, demoduliert diese und kapselt sie anschlie{\ss}end üblicherweise in ein IP-basiertes Forwarding-Protokoll (z.\,B. UDP, MQTT oder einen proprietären Transportmechanismus). Die Weiterleitung zur Netzwerkinfrastruktur erfolgt über Ethernet, WLAN oder Mobilfunk. Auf diese Weise bildet das Gateway die einzige Verbindung zwischen dem lokalen Funkraum und dem Backend des LNS \cite{LoRaAlliance:2020c} \cite{Montagny:2022} \cite{Semtech:2024}.
+
+% tikz schema
+\subsection{End-to-End-Sicherheitsaspekte}
+	Da Gateways innerhalb der LoRaWAN-Sicherheit kein vertrauenswürdiger Bestandteil sind, erfolgt die Verschlüsselung der Nutzdaten End-to-End zwischen Endgerät und Network/Application Server. Gateways besitzen weder Zugriff auf die Root Keys noch auf Session Keys und können die übertragenen Inhalte daher nicht entschlüsseln oder manipulieren  \cite{LoRaAlliance:2020b}. 
+
+
+\section{Hardwarearchitektur eines LoRaWAN-Gateways}
+	\textcite{Semtech:2024b} präsentiert mit dem \citetitle{Semtech:2024b} eine vollständig implementierte Referenzarchitektur, die als Grundlage für die Entwicklung professioneller LoRaWAN-Gateways eingesetzt werden kann. Das Design umfasst einen funktionsfähigen Gateway-Aufbau, der beispielsweise über einen Raspberry Pi angesteuert werden kann, und kann von Herstellern direkt in eigene Produktlinien integriert oder als Ausgangspunkt für eigene Entwicklungen verwendet werden. Die Referenzlösung besteht aus einem mehrkanalfähigen SX1302-Baseband-Prozessor, zwei SX1250-RF-Front-End-Transceivern, einem STM32-Mikrocontroller, einem zusätzlichen SX1261-Transceiver, einem 27\,dBm-Front-End-Modul sowie den erforderlichen Filtern und Spannungsversorgungen, um ein leistungsfähiges 8-Kanal-LoRa-Gateway zu realisieren.
+
+	\begin{center}		
+		\includegraphics[width=0.7\linewidth]{LoRaAndLoRaWAN/Gateway/CoreCellReferenceDesign}
+		\captionof{figure}{LoRa Corecell Reference Design V3 Blockdiagramm (EU868/US915/AS923) \cite{Semtech:2024b}}
+	\end{center}
+
+\subsection{RF-Frontend}
+	Das RF-Frontend umfasst jene analogen Hochfrequenzkomponenten, die für die Signalerfassung und -konditionierung notwendig sind. Dazu gehören Antennen, Bandpassfilter, Matching-Netzwerke, Schutzschaltungen sowie gegebenenfalls LNAs (Low Noise Amplifiers), die das empfangene Signal für die nachfolgenden aktiven RF-Komponenten aufbereiten. Das Corecell-Design ergänzt diese analogen Elemente um die aktiven RF-Bausteine, welche die grundlegenden HF-Eigenschaften des Gateways bestimmen. Zu den von Semtech ausgewiesenen Leistungsparametern zählen:
+
+\begin{itemize}
+	\item Halbduplexbetrieb, d.\,h. gleichzeitiges Senden und Empfangen ist nicht möglich,
+	\item gleichzeitiger Empfang von acht LoRa-Kanälen mit mehreren Datenraten (SF5–SF12, 125\,kHz) sowie zwei Monodatenraten (LoRa 250/500\,kHz und FSK 50\,kbps),
+	\item maximale Sendeleistung: +27\,dBm (EU868),
+	\item typische Empfangsempfindlichkeit:
+	\begin{itemize}
+		\item –140\,dBm bei SF12, BW 125\,kHz,
+		\item –125\,dBm bei SF7, BW 125\,kHz,
+		\item –110\,dBm bei FSK, 50\,kbps.
+	\end{itemize}
+\end{itemize}
+
+\subsection{Transceiver und zusätzliche HF-Bausteine}
+	Im Corecell-Design übernehmen zwei SX1250-Transceiver die aktive Hochfrequenzverarbeitung. Sie sind dafür zuständig, die vom analogen RF-Frontend vorbereiteten Funksignale zu empfangen und in eine Form zu überführen, die vom digitalen Baseband-Prozessor (Concentrator) weiterverarbeitet werden kann \cite{Semtech:2019}. Darüber hinaus stellen die Transceiver auch den Sendezweig des Gateways bereit und ermöglichen damit die Übertragung von Downlink-Nachrichten. Durch die Verwendung zweier SX1250 lassen sich unterschiedliche Frequenzbereiche realisieren.
+
+	Ergänzt wird dieser Aufbau durch einen weiteren HF-Baustein, den SX1261. Dieser wird nicht für die eigentliche LoRa-Datenübertragung genutzt, sondern dient als Listen-Before-Talk-Einheit (LBT), die vor jeder Übertragung prüft, ob der Kanal frei ist \cite{Semtech:2024b}. 
+
+\subsection{Concentrator (SX1302)}
+	Der SX1302 bildet das digitale Zentrum des Corecell-Designs. Als mehrkanalfähiger Baseband-Prozessor wertet er die von den Transceivern bereitgestellten Funksignale aus und ermöglicht die gleichzeitige Verarbeitung mehrerer LoRa-Kanäle und Spreading Factors \cite{Semtech:2019b}. Zu seinen wesentlichen Aufgaben gehören:
+\begin{itemize}
+	\item parallele Auswertung mehrerer Funkkanäle,
+	\item Erkennung und Dekodierung von LoRa-Signalen,
+	\item Vorbereitung der empfangenen Daten für die Weiterleitung an den Host-Prozessor,
+	\item zeitgenaue Steuerung der Downlink-Übertragungen des Gateways.
+\end{itemize}
+
+
+\subsection{Mikrocontroller und Host-System}
+	Im Corecell-Design ist ein STM32-Mikrocontroller integriert, dessen Rolle abhängig vom verwendeten Betriebsmodus ist. Wird das Gateway über USB angebunden, fungiert der STM32 als notwendige Übersetzungseinheit zwischen dem Host-System und dem SX1302. Er wandelt die vom Host kommenden USB-Datenströme in SPI-Kommandos für den Concentrator um und überträgt dessen Antworten wieder zurück in USB-Pakete. 
+
+	Wird das Corecell-Modul hingegen im mPCIe- oder SPI-Direktmodus betrieben, kommuniziert der Host-Prozessor unmittelbar mit dem SX1302, sodass der STM32 in diesem Fall keine aktive Rolle in der Datenübertragung spielt.
+
+	Das eigentliche Gateway-Management erfolgt auf dem Host-Prozessor, beispielsweise einem Raspberry~Pi, auf dem Software wie der LoRa Packet Forwarder wird. Das Host-System übermittelt die vom Concentrator bereitgestellten Datenrahmen an den LoRaWAN Network Server und übernimmt Aufgaben wie Konfiguration, Netzwerkkommunikation und Firmware-Verwaltung \cite{Semtech:2024b}.
+
+
+
+
+\section{Uplink-Verarbeitung}
+
+\subsection{Gleichzeitiger Multi-SF-Empfang}
+	Ein LoRa-Empfangskanal kann mehrere Spreading Factors (SF) gleichzeitig verarbeiten. Dieser sogenannte Multi-SF-Betrieb basiert darauf, dass LoRa-Signale mit unterschiedlichen SF quasi-orthogonal zueinander sind und dadurch parallel detektiert und demoduliert werden können. Ein Gateway kann somit beispielsweise auf einem einzigen Frequenzkanal zeitgleich SF7-, SF9- und SF12-Frames erkennen und verarbeiten. Der Concentrator nutzt hierfür mehrere parallele Demodulationspfade, die unabhängig voneinander auf verschiedene Symbolraten reagieren. Dies ermöglicht auch bei einkanaligen Gateway-Designs eine gleichzeitige Kommunikation verschiedener Endgeräte auf demselben Kanal \cite{Semtech:2024b}.
+
+\subsection{Multi-Channel-Demodulation}
+	In Mehrkanal-Gateways wird dieser Mechanismus auf mehrere Frequenzkanäle erweitert. Ein typisches Gateway im EU868-Band unterstützt acht parallele Empfangskanäle, die jeweils eigenständig Signale verschiedener Spreading Factors empfangen können. Alle Kanäle teilen sich jedoch die begrenzte Anzahl an Demodulationspfaden des Concentrators. Daher können mehrere Kanäle nur dann gleichzeitig verarbeitet werden, wenn noch freie Demodulatoren verfügbar sind. Wird die maximale Anzahl belegter Pfade überschritten, werden neu erkannte Frames verworfen. Multi-Channel-Demodulation ist somit möglich, jedoch durch die Hardwarekapazität des Concentrators limitiert \cite{Sorensen:2019} \cite{Semtech:2024b} \cite{Semtech:2024}.
+
+\subsection{CRC-Überprüfung}
+	Nach der Demodulation erfolgt eine Überprüfung der Datenintegrität mittels CRC (Cyclic Redundancy Check). Der CRC erlaubt die Erkennung von Übertragungsfehlern, die während der Funkübertragung auftreten können. Nur gültige Datenrahmen werden zur weiteren Verarbeitung zugelassen; fehlerhafte Pakete werden verworfen \cite{Semtech:2024}.
+
+\subsection{Erzeugung der Metadaten}
+	Für jeden empfangenen Uplink erzeugt das Gateway zusätzliche Metadaten, die für die Netzverwaltung erforderlich sind. Dazu gehören unter anderem:
+	\begin{itemize}
+		\item Empfangszeitpunkt,
+		\item verwendeter Kanal und Datenrate,
+		\item Signalstärke (RSSI),
+		\item Signal-Rausch-Verhältnis (SNR).
+	\end{itemize}
+	Diese Informationen ermöglichen dem Network Server, mehrere Gateway-Empfänge desselben Frames zu korrelieren und Optimierungsentscheidungen wie ADR (Adaptive Data Rate) zu treffen \cite{LoRaAlliance:2020c} \cite{Semtech:2024}.
+
+\subsection{Weiterleitung an den Network Server \label{gateway:backhaul}}
+	Abschlie{\ss}end werden die dekodierten Uplink-Daten zusammen mit den erzeugten Metadaten an den LoRaWAN Network Server übermittelt. Je nach Softwarearchitektur des Gateways erfolgt dies über Protokolle wie UDP, TCP, MQTT oder WebSocket. Der Network Server übernimmt anschlie{\ss}end die Entschlüsselung, Validierung und Weiterverarbeitung der Daten, bevor sie der Anwendungsebene zur Verfügung gestellt werden \cite{Semtech:2024}.
+
+
+\section{Downlink-Verarbeitung}
+
+	Downlink-Nachrichten werden ausschlie{\ss}lich vom \ac{lns} veranlasst. Das Gateway fungiert dabei als reine Funkbrücke, die vorbereitete und vollständig verschlüsselte Downlink-Frames an die Endgeräte überträgt. Für Class-C-Endgeräte können Downlinks jederzeit gesendet werden, da diese ihre Empfangsfenster permanent geöffnet halten. Bei Class-A- und Class-B-Geräten muss das Gateway die Downlink-Nachrichten hingegen in einem kleinen internen Puffer zwischenspeichern, um sie exakt im vorgegebenen Empfangsfenster (RX1 oder RX2) des Endgeräts auszusenden. Die zeitkritische Übertragung erfolgt dabei auf Grundlage der vom LNS vorgegebenen Sendeparameter und Zeitmarken  \cite{LoRaAlliance:2020b}.
+
+\subsection{Duty-Cycle-Beschränkungen des Gateways}
+	Im europäischen 868-MHz-Band unterliegen sowohl Endgeräte als auch Gateways strikten Duty-Cycle-Beschränkungen, die die maximal zulässige Sendezeit pro Unterband regeln. Je nach verwendetem Frequenzbereich darf ein Gateway typischerweise nur zwischen 0{,}1\,\% und 1\,\% seiner Zeit aktiv senden \cite{ETSI:2018b}. Dies hat wesentliche Auswirkungen auf die Downlink-Kapazität:
+\begin{itemize}
+	\item Obwohl für Uplink- und Downlink-Übertragungen die gleichen Duty-Cycle-Vorgaben gelten, wirkt sich der Duty-Cycle beim Downlink deutlich stärker aus, da alle Endgeräte das gemeinsame Sendezeitbudget eines Gateways teilen müssen.
+	\item Das Gateway muss Überschreitungen des Duty-Cycles verhindern und geplante Downlinks gegebenenfalls verwerfen.
+	\item Der Network Server kann Duty-Cycle-Limits bei der Auswahl eines geeigneten Gateways für eine Downlink-Übertragung berücksichtigen.
+\end{itemize}
+
+	Um die Nutzung der \ac{toa} zu reduzieren und den Downlink-Traffic effizienter zu gestalten, kommen Mechanismen wie Multicast und \ac{fuota} zum Einsatz.
+
+\subsubsection{Multicast}
+	Multicast ermöglicht es, identische Downlink-Nachrichten gleichzeitig an eine Gruppe von Endgeräten zu übertragen. Da nur ein einzelner Downlink ausgesendet werden muss, reduziert sich die Airtime im Vergleich zu separaten Unicast-Übertragungen erheblich. Dies ist insbesondere bei Anwendungen wie synchronen Schaltbefehlen oder Konfigurationsupdates vorteilhaft \cite{USMB:2022}.
+
+\subsubsection{\acl{fuota} (\acs{fuota})}
+	\ac{fuota} ermöglicht das Aktualisieren mehrerer im Feld befindlicher Endgeräte, indem eine neue Firmware in kleinere Fragmente unterteilt und anschlie{\ss}end über Downlink-Pakete an die jeweiligen Geräte übertragen wird. Nach vollständigem Empfang aller Fragmente setzt das Endgerät die Firmware wieder zusammen und führt das Update durch \cite{USMB:2022}.
+
+
+
+\section{Kommunikationsprotokolle zwischen Gateway und LNS}
+
+	Für die Anbindung eines LoRaWAN-Gateways an einen \ac{lns} existieren mehrere etablierte Protokolle. ChirpStack unterstützt alle gängigen Verfahren, empfiehlt jedoch insbesondere zwei Architekturen, die sich durch Robustheit und eine klare Trennung von Hardware- und Netzwerkfunktionen auszeichnen:
+
+	\begin{enumerate}
+		\item ChirpStack Concentratord mit MQTT Forwarder bzw.\ ChirpStack Gateway Bridge
+		\item Semtech Packet Forwarder (UDP) oder LoRa Basics\textsuperscript{\texttrademark} Station
+	\end{enumerate}
+
+\subsection{LoRa UDP Packet Forwarder}
+
+	Der Semtech UDP Packet Forwarder ist das klassische, historisch älteste und am weitesten verbreitete Verfahren zur Anbindung eines \acs{lorawan}-Gateways an den Network Server. Er basiert auf dem \textit{User Datagram Protocol} (UDP) und überträgt die empfangenen \acs{lora}-PHY-Pakete in einem binären, Semtech-spezifischen Nachrichtenformat direkt an den \acs{lns}, typischerweise über den UDP-Port~1700.
+
+	Der Gateway demoduliert dabei lediglich das physikalische \acs{lora}-Signal und verpackt die resultierenden PHYPayloads zusammen mit Metadaten wie RSSI, SNR, Frequenz und Zeitstempeln in das UDP-Protokollformat. Eine Interpretation der \acs{lorawan}-Protokollschicht, wie etwa die \acs{mic}-Überprüfung oder das Entschlüsseln des \PYTHON{FRMPayload}, erfolgt ausschlie{\ss}lich im \acs{lns}.
+
+	Downlink-Nachrichten werden analog übertragen: Der \acs{lns} sendet ein binäres Semtech-UDP-Paket an die UDP-Schnittstelle des Gateways, wo es in ein \acs{lora}-Signal moduliert und ausgesendet wird. Aufgrund der verbindungslosen Natur von UDP werden keine Garantien hinsichtlich Paketverlust, Reihenfolge oder Zustellbestätigung geboten. Dennoch bleibt dieses Verfahren aufgrund seiner Einfachheit und breiten Unterstützung in vielen kommerziellen Gateways weit verbreitet \cite{Montagny:2022}, \cite{Semtech:2014}.
+
+
+\subsection{LoRa Basics\textsuperscript{\texttrademark} Station}
+
+	\acs{lora} Basics\textsuperscript{\texttrademark} Station ist eine von Semtech entwickelte Gateway-Software, die seit 2019 eine moderne, sichere und cloudfreundliche Alternative zum klassischen UDP Packet Forwarder darstellt. Basics\textsuperscript{\texttrademark} Station implementiert alle Aufgaben der physikalischen Gateway-Ebene, einschlie{\ss}lich des Empfangens und Demodulierens von LoRa-Signalen sowie der Weiterleitung der resultierenden PHYPayloads und Metadaten an den \acs{lns}.
+
+	Ein wesentliches Merkmal ist die Verwendung zweier spezialisierter Backend-Protokolle:
+
+	\begin{itemize}
+		\item Das \textbf{LNS Protocol} stellt den primären Datenkanal dar und ermöglicht eine bidirektionale, latenzarme Kommunikation über gesicherte WebSocket-Verbindungen (WSS). Es umfasst Mechanismen zur zentralen Konfigurationsverwaltung, Lastverteilung sowie eine flexible Bereitstellung von Status- und Telemetriedaten.
+		
+		\item Das \textbf{CUPS Protocol} (Configuration and Update Server) ermöglicht die sichere Verteilung von Zugangsdaten, Konfigurationen und signierten Firmware-Updates über authentifizierte HTTPS-Transaktionen.
+	\end{itemize}
+
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\basicsStationSchema
+		\end{tikzpicture}
+		\caption{Systemübersicht von LoRa Basics\textsuperscript{\texttrademark} Station}
+	\end{figure}
+	
+
+	Basics\textsuperscript{\texttrademark} Station unterstützt mehrere gängige Referenzdesigns für LoRa-Radiohardware (SX1301-, SX1302- und Corecell-Plattformen) und bietet umfangreiche Remote-Monitoring- sowie Konfigurationsmöglichkeiten. Besonders vorteilhaft ist der Firewall-freundliche Ansatz, bei dem ausschlie{\ss}lich ausgehende Verbindungen benötigt werden. 
+
+	Alle demodulierten Daten sowie Steuerinformationen werden im JSON-Format über WebSockets an den \acs{lns} übertragen, was eine sichere und standardisierte Kommunikation ermöglicht \cite{Semtech:2022}, \cite{ChirpStack:2022b}.
+
+\subsection{ChirpStack Concentratord + MQTT Forwarder}
+	Dies ist eine von ChirpStack entwickelte Lösung zur klaren Trennung von Hardware- und Netzwerkfunktionen auf dem Gateway \cite{ChirpStack:2022b}.
+
+
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\chirpstackConcentratord
+		\end{tikzpicture}
+		\caption{Systemübersicht von ChirpStack Concentratord mit MQTT Forwarder}
+	\end{figure}
+	
+\subsubsection{ChirpStack Concentratord}
+	Der \textbf{ChirpStack Concentratord} stellt die hardwarenahe Schicht dar und kommuniziert direkt mit dem LoRa-Concentrator-Chip (z.\,B.\ SX1301, SX1302 oder SX1303). Er übernimmt die physikalische Demodulation der LoRa-Signale, erfasst Metadaten wie RSSI und SNR und verwaltet das Kanal- sowie Zeitplanungsmanagement für Uplink- und Downlink-Pakete. Damit ersetzt er den klassischen Semtech Packet Forwarder vollständig \cite{chirpstack:2019}.
+
+\subsubsection{MQTT Forwarder / ChirpStack Gateway Bridge}
+	Die zweite Komponente, der \textbf{MQTT Forwarder} bzw.\ die \textbf{ChirpStack Gateway Bridge}, fungiert als Protokollübersetzer zwischen dem Concentratord und dem \ac{lns}. Die Kommunikation erfolgt über gRPC bzw.\ ZeroMQ, wobei der Forwarder die empfangenen Daten in ein einheitliches, JSON-basiertes MQTT-Format konvertiert und an den MQTT-Broker des \acs{lns} überträgt. Downlink-Nachrichten werden entsprechend in umgekehrter Richtung an den Concentratord zurückgegeben \cite{chirpstack:2022e}.
+
+\subsubsection{Unterstützte Packet-Forwarder}
+	Neben dem Concentratord kann der \textbf{MQTT Forwarder} auch Daten eines klassischen \textbf{Semtech UDP Packet Forwarders} entgegennehmen und in dasselbe MQTT-Format übersetzen. Dadurch wird ein einheitliches API für den LNS bereitgestellt, unabhängig davon, welcher Forwarder auf dem Gateway ausgeführt wird \cite{chirpstack:2022e}.
+
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\chirpstackUDPAndMQTT
+		\end{tikzpicture}
+		\caption{Systemübersicht von Semtech Packet Forwarder mit MQTT Forwarder}
+	\end{figure}
+\subsubsection{Einschränkungen}
+	Diese Lösung kann jedoch nicht auf allen Gateways eingesetzt werden. Einige Hersteller, wie etwa MikroTik, liefern ein geschlossenes Betriebssystem (OpenWRT-Varianten) aus, welches die Installation zusätzlicher Software wie dem MQTT Forwarder oder der Gateway Bridge nicht unterstützt. 
+
+	Eine weitere Einschränkung besteht darin, dass der MQTT-Broker vom Gateway aus erreichbar sein muss – entweder über eine öffentlich zugängliche Adresse oder über ein privates VPN.
+
+
+\section{Gateway-Typen}
+\subsection{Indoor- und Outdoor-Gateways}
+	Indoor-Gateways sind kompakte Geräte, die für den Einsatz in geschlossenen Räumen vorgesehen sind. Sie zeichnen sich durch eine einfache Installation, begrenzte Reichweite und einen geringeren Witterungsschutz aus. Diese Gateways werden meist in Büros, Werkstätten oder Laborumgebungen genutzt, in denen eine stabile Temperatur und geringe Feuchtigkeit herrschen. Outdoor-Gateways hingegen verfügen über ein robustes, wetterfestes Gehäuse sowie erweiterte Empfangs- und Sendeeigenschaften. Sie sind für den Einsatz in industriellen oder gro{\ss}flächigen Au{\ss}enbereichen ausgelegt und bieten aufgrund höher positionierter Antennen und besserer Funkcharakteristiken grö{\ss}ere Reichweiten.
+
+\subsection{Multi-Channel-Gateways}
+	Multi-Channel-Gateways bilden die technische Grundlage für LoRaWAN-Netze. Sie verfügen über mehrere parallele Empfangskanäle und ermöglichen damit den gleichzeitigen Empfang zahlreicher LoRa-Pakete auf unterschiedlichen Frequenzen und Spreading Factors. Dadurch bleiben sie auch bei hoher Netzlast zuverlässig und können die LoRaWAN-Spezifikation vollständig unterstützen \cite{Sorensen:2019}.
+
+	Ein solches Gateway ist das \textit{MikroTik RBwAPR-2nD\&R11e-LR8 (wAP~LR8~kit)}, das einen vollwertigen 8-Kanal-LoRaWAN-Concentrator integriert und damit als standardkonformes Multi-Channel-Gateway eingesetzt werden kann.
+
+	\begin{center}
+		\includegraphics[width=0.7\linewidth]{LoRaAndLoRaWAN/Gateway/MikrotikGateway}
+		\captionof{figure}{MikroTik wAP LR8 Kit \cite{mikrotik:2020}}
+	\end{center}
+
+	
+\subsection{Single-Channel-Geräte und Limitierungen}
+	Single-Channel-Geräte können nur auf einer einzelnen Frequenz und mit einem Spreading Factor gleichzeitig arbeiten. Diese Geräte werden nicht als vollwertige LoRaWAN-Gateways eingestuft, da sie nicht dem LoRaWAN-Standard entsprechen \cite{LoRaAlliance:2022}. Aufgrund ihrer architektonischen Limitierungen kommt es bei Anwendungen mit mehreren Endgeräten schnell zu Kollisionen und Paketverlusten. Single-Channel-Gateways eignen sich deshalb nur für experimentelle Zwecke, Proof-of-Concepts oder stark vereinfachte Szenarien, jedoch nicht für produktive LoRaWAN-Infrastrukturen.
+
+

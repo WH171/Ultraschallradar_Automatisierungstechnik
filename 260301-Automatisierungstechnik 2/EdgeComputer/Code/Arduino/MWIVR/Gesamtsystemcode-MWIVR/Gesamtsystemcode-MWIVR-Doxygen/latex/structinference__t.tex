@@ -1,0 +1,61 @@
+\doxysection{inference\+\_\+t Struct Reference}
+\hypertarget{structinference__t}{}\label{structinference__t}\index{inference\_t@{inference\_t}}
+
+
+Structure to hold audio inference-\/related buffers and state.  
+
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+int16\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structinference__t_aabbf7a6b967d4f8f9793ca97b941a412}{buffer}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structinference__t_ac94dbfa9290c1d804665516be839e09b}{buf\+\_\+ready}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structinference__t_a87a0f47173528b5f24089d973b6c2082}{buf\+\_\+count}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structinference__t_af5732f35ea442cbd0d5f191698fdad56}{n\+\_\+samples}}
+\item 
+bool \mbox{\hyperlink{structinference__t_a2c0d7f842cd6fa8b8ea3ebab3b6d6162}{is\+\_\+initialized}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Structure to hold audio inference-\/related buffers and state. 
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structinference__t_a87a0f47173528b5f24089d973b6c2082}\index{inference\_t@{inference\_t}!buf\_count@{buf\_count}}
+\index{buf\_count@{buf\_count}!inference\_t@{inference\_t}}
+\doxysubsubsection{\texorpdfstring{buf\_count}{buf\_count}}
+{\footnotesize\ttfamily \label{structinference__t_a87a0f47173528b5f24089d973b6c2082} 
+uint32\+\_\+t buf\+\_\+count}
+
+Current number of samples in the buffer. \Hypertarget{structinference__t_ac94dbfa9290c1d804665516be839e09b}\index{inference\_t@{inference\_t}!buf\_ready@{buf\_ready}}
+\index{buf\_ready@{buf\_ready}!inference\_t@{inference\_t}}
+\doxysubsubsection{\texorpdfstring{buf\_ready}{buf\_ready}}
+{\footnotesize\ttfamily \label{structinference__t_ac94dbfa9290c1d804665516be839e09b} 
+uint8\+\_\+t buf\+\_\+ready}
+
+Flag indicating if the buffer is ready for inference (1 = ready, 0 = not ready). \Hypertarget{structinference__t_aabbf7a6b967d4f8f9793ca97b941a412}\index{inference\_t@{inference\_t}!buffer@{buffer}}
+\index{buffer@{buffer}!inference\_t@{inference\_t}}
+\doxysubsubsection{\texorpdfstring{buffer}{buffer}}
+{\footnotesize\ttfamily \label{structinference__t_aabbf7a6b967d4f8f9793ca97b941a412} 
+int16\+\_\+t\texorpdfstring{$\ast$}{*} buffer}
+
+Pointer to the audio sample buffer. \Hypertarget{structinference__t_a2c0d7f842cd6fa8b8ea3ebab3b6d6162}\index{inference\_t@{inference\_t}!is\_initialized@{is\_initialized}}
+\index{is\_initialized@{is\_initialized}!inference\_t@{inference\_t}}
+\doxysubsubsection{\texorpdfstring{is\_initialized}{is\_initialized}}
+{\footnotesize\ttfamily \label{structinference__t_a2c0d7f842cd6fa8b8ea3ebab3b6d6162} 
+bool is\+\_\+initialized}
+
+Flag indicating if the inference buffer has been initialized. \Hypertarget{structinference__t_af5732f35ea442cbd0d5f191698fdad56}\index{inference\_t@{inference\_t}!n\_samples@{n\_samples}}
+\index{n\_samples@{n\_samples}!inference\_t@{inference\_t}}
+\doxysubsubsection{\texorpdfstring{n\_samples}{n\_samples}}
+{\footnotesize\ttfamily \label{structinference__t_af5732f35ea442cbd0d5f191698fdad56} 
+uint32\+\_\+t n\+\_\+samples}
+
+Total number of samples required for inference. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/arneb/\+One\+Drive/\+Dokumente/\+Desktop/doxygen/Gesamtsystemcode-\/\+MWIVR.\+ino.\+cpp\end{DoxyCompactItemize}

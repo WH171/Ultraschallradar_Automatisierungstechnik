@@ -1,0 +1,139 @@
+\section{Calibration}
+\subsection{Introduction}
+
+Calibrating an IMU (Inertial Measurement Unit) involves determining the bias, drift, and noise values of the sensors within the IMU. This is achieved by measuring the IMU's output in various positions and orientations, then employing algorithms to calculate the bias, drift, and noise values. This process is crucial to ensure the accuracy of the IMU's measurements. \cite{sugunsegu_imu_calibration:2024}
+
+
+\subsection{Standard Operating Procedure}
+
+The standard operation procedure for calibrating LSM9DS1 IMU involves the following steps \cite{sugunsegu_imu_calibration:2024} :
+\begin{itemize}
+	\item Scope and Measurand(s) of Calibrations
+	\item Description of the Item to be Calibrated
+	\item Measurement Parameters, Quantities, and Ranges to be Determined
+	\item Environmental Conditions and Stabilization Periods
+	\item Procedure Include:
+	\item Handling, transporting, storing and preparation of items
+	\item Checks to be made before the work is started
+	\item Step by step process
+	\item Handling, transporting, storing and preparation of items
+	\item Checks to be made before the work is started
+	\item Step by step process
+\end{itemize}
+
+
+The signal can be cleaned by different filters using different libraries such as Kalman.
+
+
+\subsection{Reset part}
+
+Resetting is particularly important for programming purposes or in the event of an external bug. There are 4 main types of programming: 
+
+\begin{itemize}
+	\item Soft reset: This method involves using code to trigger a microcontroller reset. For example, in Arduino, this can be done using the reset() function or by executing asm volatile (“jmp 0”). \cite{instructables_reset_arduino:2024}
+	\item Hard reset : This method generally involves using an external component, such as a pushbutton or switch, to trigger a hard reset of the microcontroller. This can be achieved by connecting the pushbutton between the RESET pin and ground (GND). \cite{arduino_reset:2024}
+	\item Auto Reset: On some Arduino boards, a reset is automatically triggered when a new USB connection is detected. This usually occurs when a new program is downloaded from the Arduino IDE. \cite{stackoverflow_reset_arduino:2025}
+	\item Watchdog reset: Some microcontrollers have a built-in “watchdog timer”, which can be used to trigger a reset if the microcontroller remains stuck or unwanted behavior is detected. \cite{youtube_watchdog_reset:2025}
+	
+\end{itemize}
+
+\section{Simple Application of code}
+
+\subsection{Initalization example}
+
+In this section, we can see simple code test for sensor LSM9DS1 motion detection as shown in the listing ~\ref{IMU.ino}.
+
+
+{
+	\ArduinoExternalO{../../Code/Arduino/IMU/lsm9ds1.ino}
+	
+	\captionof{code}{Simple test for sensor LSM9DS1 motion detection}\label{IMU.ino}
+}	
+
+
+\subsection{Application example -- gyroscope application}
+
+In this section, we can see simple code test for gyroscope application as shown in the listing ~\ref{gyrorotattion.ino}.
+
+{
+	\ArduinoExternalO{../../Code/Arduino/IMU/gyrorotation.ino}
+	
+	\captionof{code}{Simple test for gyroscope application}\label{gyrorotattion.ino}
+}
+
+\section{Tests}
+\subsection{Simple Test Function}
+Tests are essential to see the first bases of a code, and to have an answer when you do a part of the code. 
+
+If there's a part of the code where you're stuck in a loop, or something else, testing provides a clear answer to this kind of eventuality. 
+
+When we apply the test, we'll do it with 3 LEDs and test the accelerometer's data acquisition. 
+
+\subsection{Acquisition Test}
+
+In this section, we can see simple test for motion acquisition sensor LSM9DS1 acquisition as shown in the listing ~\ref{TestLSM9DS1.ino}.
+
+{
+	\ArduinoExternalO{../../Code/Arduino/IMU/TestLSM9DS1.ino}
+	
+	\captionof{code}{Simple test for motion acquisition sensor LSM9DS1 acquisition}\label{TestLSM9DS1.ino}
+	
+}
+
+
+\section{Error}
+\subsection{Type of Error}
+
+\begin{enumerate}
+	
+	\item Bias error : Biases are constant values added to IMU sensor measurements. They can result from various factors, such as inaccuracies in electronic components or variations in the characteristics of the materials used in IMU construction. Biases can be different for each measurement axis (linear acceleration on the x, y and z axes, as well as angular velocity around these axes), and their presence can lead to systematic errors in IMU data. \cite{hexagon_imu:2025}
+	
+	\item Random walk: Random walk is a noise-type error that manifests itself as random fluctuations in IMU measurements. These fluctuations can be caused by external factors such as vibration or temperature variations. Random deviation can make it difficult to separate the useful signal from the noise in IMU data, particularly when used over long periods of time. \cite{vectornav_random_walk:2025}
+	
+	\item Gyroscopic drift: Gyroscopic drift occurs when IMU gyroscopes gradually accumulate orientation errors over time. These errors can be caused by  a temperature variations, mechanical vibrations or imperfections in the manufacture of gyroscopic components. Gyroscopic drift can lead to significant errors in IMU orientation estimation, particularly when used over long periods of time without recalibration. \cite{electronics_gyro_drift:2025}
+	
+	\item Gravity compensation error: When the IMU measures linear acceleration, it must compensate for the gravitational component to obtain accurate measurements. Incorrect gravity compensation can result in orientation errors, particularly when the IMU is used in environments where the direction of gravity varies, such as on board moving vehicles. These errors can lead to inaccuracies in IMU orientation estimates. \cite{advanced_nav_gravity:2025}
+	
+	\item Sensor synchronization error: If the IMU's sensors are not correctly synchronized, measurement errors may occur. For example, delays or time differences between acceleration and rotation measurements may occur if the sensors are not properly synchronized. These errors can affect the accuracy of IMU orientation and position estimates. \cite{advanced_nav_gravity:2025}
+	
+	\item Calibration error: Incorrect calibration of IMU sensors can lead to measurement errors. Calibration is the critical process of adjusting sensor parameters to correct systematic errors such as bias and incorrect measurement scales. Inadequate calibration can compromise the accuracy of IMU measurements and lead to incorrect estimates of position, orientation and velocity. \cite{researchgate_calibration:2025}
+	
+\end{enumerate}
+
+These errors can be mitigated using filtering techniques such as Kalman filters, sensor fusion filters or advanced calibration methods. These methods make it possible to optimally combine information from the IMU's various sensors to obtain more accurate estimates of the position, orientation and velocity of the object to which the IMU is attached. \cite{pmc_kalman_filter:2025}
+
+
+\subsection{Library \FILE{Kalman.h}}
+
+The \FILE{Kalman.h} library brings together functions essential to the implementation of the Kalman filter, guaranteeing precise filtering and accurate predictions. Each function within this library is designed to handle specific aspects of the filtering process. The library \FILE{Kalman.h}  is an essential tool for signal processing and estimation tasks, enabling reliable and efficient filtering in a variety of applications.  \cite{arduino_kalman:2024}
+
+
+
+\subsubsection{Function}
+
+\begin{itemize}
+	\item \PYTHON{KalmanFilter.init()}: This function is used to initialize the Kalman filter with necessary parameters, such as the initial state covariance matrix and the process noise covariance matrix, as well as the measurement noise covariance matrix.
+	
+	\item \PYTHON{KalmanFilter.predict()}: This function is used to predict the future state of the system using the Kalman filter prediction equations. It is typically called at each iteration of the filter, even when new measurements are not available.
+	
+	\item \PYTHON{KalmanFilter.iupdate()}: This function is used to update the state estimate based on the new available measurement. It utilizes the Kalman filter update equations to combine the predicted estimate with the new measurement.
+	
+	\item \PYTHON{KalmanFilter.setMeasurementNoise()}: This function allows setting the measurement noise covariance, which represents the uncertainty associated with the measurements provided by sensors.
+	
+	\item \PYTHON{KalmanFilter.setProcessNoise()}: This function allows setting the process noise covariance, which represents the uncertainty associated with the dynamics of the system.
+	
+	\item \PYTHON{KalmanFilter.setEstimateError()}: This function allows setting the initial state covariance, which represents the initial uncertainty of the state estimate.
+	
+	\item \PYTHON{KalmanFilter.getEstimation()}: This function allows retrieving the current estimate of the system state after the update.
+	
+\end{itemize}
+
+\subsubsection{Kalman filter example}
+
+
+{
+	\ArduinoExternalO{../../Code/Arduino/IMU/KalmanFilter.ino}
+	
+	\captionof{code}{Simple example with Kalman Filter.}\label{KalmanFilter.ino}
+	
+}

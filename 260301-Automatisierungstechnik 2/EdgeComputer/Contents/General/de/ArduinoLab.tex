@@ -1,0 +1,117 @@
+%%%
+%
+% $IR-25-01-ToF $
+% $Datum: 10.6.25 $
+% $Pfad: ArduinoLab $
+% $Dateiname: ArduinoLab.Tex
+% $Version: 4621 $
+%
+% !TeX spellcheck = de_DE/GB
+% !TeX program = pdflatex
+% !BIB program = biber/bibtex
+% !TeX encoding = utf8
+%
+%%%
+
+
+\chapter{Arduino Lab for MicroPython} \label{ArduinoLab}
+
+\section{Einführung}
+
+Arduino Lab for MicroPython ist ein Editor für MicroPython-Programme. Arduino Lab for MicroPython unterstützt die Verbindung mit einem Board, das Hochladen von Programmen, den Dateitransfer und eine interaktive REPL-Shell.
+
+\section{Installation}
+
+\begin{enumerate}
+	\item\textbf{Stellen Sie den Ein/Aus-Schalter des Alvik Roboters auf „Aus“.} 
+	\item\textbf{Verbinden Sie den ESP32 auf dem Alvik über ein USB-C-Kabel mit dem Computer.} 
+	\item\textbf{Laden Sie das Arduino Lab for MicroPython von der offiziellen Arduino Website herunter.} 
+	\item\textbf{Greifen Sie über „File Manager“ auf den Ordnerinhalt zu oder wechselt zu einem neuen Ordner.Wie in der Abbildung\ref{Filemanager} dargestellt.} 	
+	\begin{figure}[ht]  
+		\begin{center}
+			\includegraphics[width=12cm]{Arduino/Alvik/Filemanager}
+			\caption{Arduino lab for MicroPython File manager} 
+			\label{Filemanager}                                                                                                                                                                                                                                                                                                          
+		\end{center}
+	\end{figure}
+	\item\textbf{Klicken Sie auf die Schaltfläche „Connect“ und wählen Sie den richtigen COM-Anschluss.Wie in der Abbildung\ref{Arduinolabconnect} dargestellt.} 
+	\begin{figure}[ht]  
+		\begin{center}
+			\includegraphics[width=12cm]{Arduino/Alvik/Arduinolabconnect}
+			\caption{Arduino lab for MicroPython Connect} 
+			\label{Arduinolabconnect}                                                                                                                                                                                                                                                                                                          
+		\end{center}
+	\end{figure}
+	\item\textbf{Klicken Sie auf die Schaltflächen „Editor und REPL“. Der obere wei\ss e Teil ist der Editor zum Schreiben von Skripten und der untere schwarze Teil ist das Terminal.Wie in der Abbildung\ref{EditorandREPL} dargestellt.} 
+	\begin{figure}[ht]  
+		\begin{center}
+			\includegraphics[width=12cm]{Arduino/Alvik/EditorAndREPL}
+			\caption{Editor und REPL} 
+			\label{EditorandREPL}                                                                                                                                                                                                                                                                                                          
+		\end{center}
+	\end{figure}
+	\item\textbf{Klicken Sie auf die Schaltfläche Run, um das Standard-Beispielskript auszuführen. Nachdem das Skript ausgeführt wurde, wird``Hallo, MicroPython!'' auf dem Terminal ausgegeben.Wie in der Abbildung\ref{Run} dargestellt.} 
+	\begin{figure}[ht]  
+		\begin{center}
+			\includegraphics[width=12cm]{Arduino/Alvik/Run}
+			\caption{Arduino lab for MicroPython Run} 
+			\label{Run}                                                                                                                                                                                                                                                                                                          
+		\end{center}
+	\end{figure}
+	\item\textbf{Öffnen Sie den „File Manager“ eine neue Datei. Benennen und öffnen Sie die neue Datei.} 
+	\item\textbf{Schieben Sie den Ein/Aus-Schalter des Alvik in die Position Ein.} 
+	
+\end{enumerate}
+
+
+\section{Erste Schritte}
+Der Alvik kann zunächst programmiert werden, indem Sie die Text ein- und ausgegeben werden.Das Programm~\ref{Eingabetext} ist in der Abbildung dargestellt.
+\begin{figure}[ht]
+	\begin{center}
+		\includegraphics[width=12cm]{Arduino/Alvik/Input}
+		\caption{Eingabe und Ausgabe von Text Programm} 
+		\label{Eingabetext}                                                                                                                                                                                                                                                                                                          
+	\end{center}
+\end{figure}
+
+\begin{enumerate}
+	\item \textbf{Eingabe und Ausgabe von Text}
+	\begin{itemize}
+		\item \textbf{Toolbox verwenden:}Importieren von sleep aus dem Zeitmodul und Verwendung der Funktion \PYTHON{sleep()}, um das Programm einige Sekunden warten zu lassen, bevor es mit der nächsten Programmzeile fortfährt.
+		\item \textbf{Eingabe- und Ausgabezeichen:}Die Funktion \PYTHON{input()} wird zur Eingabe von Informationen in das Terminal verwendet. Alle vom Benutzer eingegebenen Informationen werden in der Variablen student\_name gespeichert. Hier wartet das Programm auf die Eingabe und fährt erst dann fort, wenn die Eingabe eingegangen ist. Verwenden \PYTHON{print()}, um Text auf dem Terminal auszugeben.
+		\item \textbf{Verkettung:}Verwenden den + Symbol, um die Zeichenkette mit der Variable student\_name zu kombinieren.
+		\item \textbf{Einstellung der Interaktionsgeschwindigkeit:}Verwenden von \PYTHON{sleep()}, um die Interaktion zu verlangsamen, was zu einem natürlicheren Dialogfluss führt.
+		
+	\end{itemize}
+\end{enumerate}	
+
+\section{Datei im Arduino Alvik speichern}
+
+Der Arduino Alvik ermöglicht das Ausführen integrierter Programme, indem Dateien vom Computer über Arduino Lab für MicroPython in den Arduino Alvik importiert werden.
+\begin{itemize}
+	\item Öffnen Sie die Arduino Lab for MicroPython-Datei über die Schaltfläche „File Manager“. Wie in der Abbildung\ref{alab} gezeigt, werden im linken Fenster die in Arduino Alvik integrierten Dateien und im rechten Fenster die auf dem Computer gespeicherten Dateien angezeigt.
+	\begin{figure}[ht]
+		\begin{center}
+			\includegraphics[width=12cm]{Arduino/Alvik/alab}
+			\caption{Arduino Lab for MicroPython Dateispeicherort} 
+			\label{alab}                                                                                                                                                                                                                                                                                                          
+		\end{center}
+	\end{figure}
+	\item Wählen Sie ein Programm aus und klicken Sie auf die Schaltfläche ``Hochladen'' (\textless)\ref{hochladen}, um das Programm von dem Computer auf das Arduino Alvik hochzuladen.
+	\begin{figure}[ht]
+		\begin{center}
+			\includegraphics[width=12cm]{Arduino/Alvik/Upload}
+			\caption{Schaltfläche ``Hochladen''} 
+			\label{hochladen}                                                                                                                                                                                                                                                                                                          
+		\end{center}
+	\end{figure}
+	\item Öffnen Sie die in Arduino Alvik integrierte Datei main.py \ref{main}, löschen Sie den darin enthaltenen Code, geben Sie dem Programm \PYTHON{import xxx} ein (wobei xxx der Name der zu importierenden Datei ist) und speichern anschlie\ss end.
+	\begin{Python} [caption={Code für main.py},label={main}]
+		import xxx #(wobei xxx der Name der zu importierenden Datei ist)
+	\end{Python}
+	\item Trennen das Arduino Alvik vom Computer und schalten es ein. Das Arduino Alvik führt automatisch die zuvor eingerichteten eingebauten Programme aus.
+	\item Beenden das Programm durch Ausschalten des Schalters am Arduino Alvik.
+\end{itemize}
+
+
+

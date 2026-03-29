@@ -1,0 +1,1060 @@
+%%%%%%%%%%%%%%%
+%
+% $Autor: Wings $
+% $Datum: 2020-01-29 07:55:27Z $
+% $Pfad: General/BlueTooth.tex
+% $Version: 1785 $
+%
+%
+%%%%%%%%%%%%%%%
+
+%todo https://rootsaid.com/arduino-ble-example/
+
+
+\chapter{BlueTooth}
+
+\begin{itemize}
+  \item \url{https://www.instructables.com/Arduino-NANO-33-Made-Easy-BLE-Sense-and-IoT/}
+  \item \url{https://www.hackster.io/sridhar-rajagopal/control-arduino-nano-ble-with-bluetooth-python-331e33}
+  \item \url{https://docs.arduino.cc/tutorials/nano-33-ble-sense/ble-device-to-device}
+  \item \url{https://projecthub.arduino.cc/8bitkick/sensor-data-streaming-with-arduino-a6b9f9}
+  \item \url{https://www.okdo.com/getting-started/get-started-with-arduino-nano-33-sense/}
+  \item \url{https://rootsaid.com/arduino-ble-example/}
+  \item \URL{https://learn.sparkfun.com/tutorials/bluetooth-basics}
+  \item \URL{https://ladvien.com/arduino-nano-33-bluetooth-low-energy-setup/}
+\end{itemize}
+
+
+\begin{center}
+    \includegraphics[width=\textwidth]{Bluetooth/BleBulletinBoardModel}
+    \captionof{figure}{BLE Devices -- Peripheral and Central Devices}    
+\end{center}
+
+
+\section{Quick Start}
+
+This tutorial shows you how to use the free \href{https://www.forward.com.au/pfod/pfodDesigner/index.html}{pfodDesignerV3} V3.0.3774+ Android app to create a general purpose Bluetooth Low Energy (BLE) and WiFi connection for Arduino NANO 33 boards without doing any programming. There are three (3) Arduino NANO 33 boards, the NANO 33 BLE and NANO 33 BLE Sense, which connect by BLE only and the NANO 33 IoT which can connect via BLE or WiFi.
+    
+Connecting using pfodApp is the most flexible way to connect via BLE (or WiFi). See
+
+Using pfodApp to connect to the NANO 33 BLE (Step 4) and
+
+Using pfodApp to connect to the NANO 33 IoT via BLE (Step 7) and
+
+Using pfodApp to connect to the NANO 33 IoT via WiFi (Step 9) below.
+    
+owever simple sketches are also provided to send user defined command words via Telnet, for WiFi, or via the free \href{https://play.google.com/store/apps/details?id=com.nordicsemi.nrfUARTv2&hl=en&pli=1}{Nordic nRF UART 2.0} for BLE. See
+
+Using the Nordic nRF UART 2.0 app to connect to NANO 33 BLE (Step 5) and
+
+Using the Nordic nRF UART 2.0 app to connect to the NANO 33 IoT via BLE (Step 8) and
+
+Using a Telnet terminal program to connect to the NANO 33 IoT via WiFi (Step 10) below
+    
+This tutorial is also available on-line at \href{https://www.forward.com.au/pfod/BLE/Nano33/index.html}{Arduino NANO 33 Made Easy}.
+
+
+\section{Supplies}
+
+Arduino NANO 33 -- either BLE or Sense or IoT
+
+optionally \href{https://www.forward.com.au/pfod/pfodDesigner/index.html}{pfodDesignerV3} and \href{https://www.forward.com.au/pfod/index.html}{pfodApp}
+
+\section{Step 1: Introduction}
+
+ There are a number of problems with BLE. See this page for \href{https://www.forward.com.au/pfod/BLE/BLEProblems/index.html}{BLE problems and solutions} and there are some \href{https://www.forward.com.au/pfod/BLE/index.html#TroubleShooting}{BLE trouble shooting tips}. The learning curve is steep and the specification has hundreds of specialise connect services each of which requires its own mobile application to connect to. This tutorial shows you how to generate Arduino code for a general purpose Nordic UART BLE connection over which you can send and receive a stream of commands and data to a general purpose BLE UART mobile application. The free \href{https://www.forward.com.au/pfod/pfodDesigner/index.html}{pfodDesignerV3} Android application is used to generate the Arduino code. The output is designed to connect to the paid \href{https://www.forward.com.au/pfod/index.html}{pfodApp} Android application which can display menus, send command, log data and show charts. No Android programming is required. The Arduino code has complete control over what is displayed by pfodApp.
+    
+For the NANO 33 IoT you can also connect via WiFi. Again the pfodDesignerV3 generates all the Arduino code and by default is designed to connect to pfodApp with optional 128bit security.
+    
+However you do not need to use pfodApp, you can connect to the generated code using the free Nordic \href{https://play.google.com/store/apps/details?id=com.nordicsemi.nrfUARTv2&hl=en}{nRF UART 2.0} or a Telnet programs (for the WiFi connection). Sketches are included which provide command words to control the boards.
+    
+The free pfodDesigner V3.0.3774+ will generate Arduino code for a wide range of boards and connection types including Serial connections, Bluetooth Low Energy (BLE), WiFi, SMS, Radio/LoRa, Bluetooth Classic and Ethernet. For examples Arduino code for of a wide range of BLE boards see \href{https://www.forward.com.au/pfod/BLE/index.html}{Bluetooth Low Energy (BLE) made simple} with pfodApp. Here we will be using a BLE connection for NANO 33 BLE, Sense and IoT and a WiFi connection for the IoT.
+    
+Each of the NANO 33 boards has extra sensor components that differ between the three (3) boards. The pfodDesignerV3 generates code to read/write the digital outputs and perform analogReads and analogWrites. In the examples below we will turn the board LED on and off and read the voltage at A0 and log and plot it. Once that sketch is running you can add each board's specialised sensor libraries and sent their data in place of the analogRead(A0).
+    
+pfodDesigner generates simple menus and charts, however you can also program custom graphical interfaces in your Arduino sketch. Above is an example of slider control adjusting a guage. All the code for this control is in your Arduino sketch. No Android programming necessary. See \href{https://www.forward.com.au/pfod/pfodControls/index.html}{Custom Arduino Controls} for more examples.
+    
+\section{How pfodApp is optimised for short BLE style messages}
+
+Bluetooth Low Energy (BLE) or Bluetooth V4 is a completely different version of Bluetooth. BLE has been optimised for very low power consumption. pfodApp is a general purpose Android app whose screens, menus, buttons, sliders and plots are completely defined by the device you connect to.
+    
+BLE only sends 20 bytes in each message. Fortunately the pfod Specification was designed around very small messages. Almost all of pfod's command are less then 20 bytes. The usual exception is the initial main menu message which specifies what text, menus, buttons, etc. pfodApp should display to the user, but the size of this message is completely controlled by you and you can use sub-menus to reduce the size of the main menu.
+    
+The \href{https://www.forward.com.au/pfod/pfodSpecification.pdf}{pfod specification} also has a number of features to reduce the message size. While the BLE device must respond to every command the pfodApp sends, the response can be as simple as {} (an empty response). If you need to update the menu the user is viewing in response to a command or due to a re-request, you need only send back the changes in the existing menu, rather then resending the entire menu. These features keep the almost all messages to less than 20 bytes. pfodApp caches menus across re-connections so that the whole menu only needs to be sent once. Thereafter short menu updates can be sent.
+
+
+\section{Step 2: Creating the Custom Android Menus and Generating the Code}
+\begin{center}
+    \includegraphics[width=\textwidth]{Bluetooth/AndroidMenu}
+    \captionof{figure}{Step 2: Creating the Custom Android Menus and Generating the Code}    
+\end{center}
+
+Before looking at each of these BLE modules, pfodDesignerV3 will first be used to create a custom menu to turn a Led on and off and plot the voltage read at A0. pfodDesignerV3 can then generate code tailored to the particular hardware you select.
+
+You can skip over this step and come back to it later if you like. The section on each module, below, includes the completed code sketch for this example menu generated for that module and also includes sketches that do not need pfodApp
+
+The free pfodDesignerV3 is used to create the menu and show you an accurate preview of how the menu will look on your mobile. The pfodDesignerV3 allows you to create menus and sub-menus with buttons and sliders optionally connected to I/O pins and generate the sketch code for you (see the pfodDesigner example tutorials) but the pfodDesignerV3 does not cover all the features pfodApp supports. See the pfodSpecification.pdf for a complete list including data logging and plotting, multi- and single- selections screens, sliders, text input, etc.
+
+Create the Custom menu to turn the Arduino LED on and off and Plot A0
+Start a new menu and select as a target Bluetooth Low Energy (BLE) and then select NANO 33 BLE (and Sense). pfodDesignerV3.0.3770+ has support for NANO 33 boards.
+
+Then follow the tutorial Design a Custom menu to turn the Arduino Led on and off for step by step instructions for creating a LED on/off menu using pfodDesignerV3.
+
+If you don't like the colours of font sizes or the text, you can easily edit them in pfodDesignerV3 to whatever you want and see a WYSIWYG (What You See Is What You Get) display of the designed menu.
+
+Now we will add a Chart button to display the A0 reading. The steps to does this in pfodDesignerV3 are shown in Adding a Chart and Logging Data The AtoD range is 0 to 1023 for 0 to 3.3V
+
+Generating the code from pfodDesignerV3 gives the this sketch \FILE{Nano33BLE\_Led\_A0.ino}
+
+% Hier weiter: https://www.instructables.com/Arduino-NANO-33-Made-Easy-BLE-Sense-and-IoT/
+
+\section{BLE Mobile App ``Nordic Semiconductors nRF Connect''}
+
+\begin{itemize}
+  \item On your mobile, install the App ``Nordic Semiconductors nRF Connect''. There are Android and IOS versions.
+  \item In the Arduino IDE open Serial Monitor by clicking on the magnifying glass icon on the top right.
+\end{itemize}
+
+The Nano will start sending BLE advertising packets and wait for a Central (Mobile Phone) to connect.
+
+\begin{center}
+  \includegraphics[width=\textwidth]{BlueTooth/BlueToothApp01}
+  \captionof{figure}of{center}{App nRF  is searching the Arduino Nano BLE Sense}
+\end{center}
+
+\medskip
+
+
+
+In the App nRF on your mobile select \textbf{Scan} and you should see \textbf{Nano33BLE} as a device you can connect to.
+
+Attention: BLE Peripherals can only connect to one device at a time -- if the Nano33BLE is already connected it could be to another device nearby.
+
+\begin{center}
+  \includegraphics[scale=0.3]{BlueTooth/BlueToothApp02}
+  \captionof{figure}of{center}{App nRF  is searching the Arduino Nano BLE Sense}
+\end{center}
+
+\medskip
+
+Connect to the Nano and select the Unknown Service.
+
+\begin{center}
+  \includegraphics[scale=0.3]{BlueTooth/BlueToothApp03}
+  \captionof{figure}of{center}{App nRF  is getting data the Arduino Nano BLE Sense}
+\end{center}
+
+\medskip
+
+Touch the \textbf{down arrow} next to the characteristic \textbf{Digital}  and it will read the message ``Hello World!'' being broadcast by the Nano33BLE.
+
+
+\section{Arduino BLE Example -- Explained Step by Step}
+
+
+\subsection{Arduino BLE Example Code Explained}
+
+In this tutorial series, I will give you a basic idea you need to know about Bluetooth Low Energy and I will show you how you can make Arduino BLE Chipset to send and receive data wirelessly from mobile phones and other Arduino boards. Let's Get Started.
+
+
+Arduino Nano 33 BLE Sense, Nano with BLE connectivity focussing on IOT, which is packed with a wide variety of sensors such as 9 axis Inertial Measurement Unit, pressure, light, and even gestures sensors and a microphone.
+
+ It is powered by Nina B306 module that supports BLE as well as Bluetooth 5 connection. The inbuilt Bluetooth module consumes very low power and can be easily accessed using Arduino libraries. This makes it easier to program and enable wireless connectivity to any of your projects in no time. You won’t have to use external Bluetooth modules to add Bluetooth capability to your project. Save space and power.
+ 
+\subsection{Arduino BLE – Bluetooth Low Energy Introduction}
+
+BLE is a version of Bluetooth which is optimized for very low power consuming situations with very low data rate. We can even operate these devices using a coin cell for weeks or even months.
+ 
+ Arduino have a wonderful \href{https://www.arduino.cc/reference/en/libraries/arduinoble/}{introduction to BLE} \Mynote{cite} but here in this post, I will give you a brief introduction for you to get started with BLE communication.
+ 
+ Basically, there are two types of devices when we consider a BLE communication block.
+ 
+\begin{itemize}
+  \item The Peripheral Device
+  \item The Central Device
+\end{itemize}
+
+Peripheral Device is like a Notice board, from where we can read data from various notices or pin new notices to the board. It posts data for all devices that needs this information.
+
+\begin{center}
+  \includegraphics[width=\textwidth]{Bluetooth/BleBulletinBoardModel}
+  \captionof{figure}{BLE Devices -- Peripheral and Central Devices}    
+\end{center}
+
+
+Central Devices are like people who are reading notices from the notice board. Multiple users can read and get data from the notice board at the same time. Similarly multiple central devices can read data from the peripheral device at the same time. 
+
+The information that is given by the Peripheral devices are structured as Services. And These services are further divided into characteristics. Think of Services as different notices in the notice board and services as different paragraphs in each notice board.
+
+If Accelerometer is a service, then their values X, Y and Z can be three characteristics.
+
+Now let's take a look at a simple Arduino BLE example. 
+
+\subsection{Arduino BLE Example 1 -- Battery Level Indicator}
+
+In this example, I will explain how you can read the level of a battery connected to pin A0 of an Arduino using a smartphone via BLE. This is the code here. This is pretty much the same as that of the example code for Battery Monitor with minor changes. I will explain it for you.
+
+First you have to install the library ArduinoBLE from the library manager.
+
+Just go to \FILE{Sketch -> Include Library -> Manage Library} and Search for \PYTHON{ArduinoBLE} and simply install it.
+
+\subsection{Arduino BLE Tutorial Battery Level Indicator Code}
+
+\begin{code}
+\begin{Arduino}
+#include <ArduinoBLE.h>
+BLEService batteryService("1101");
+BLEUnsignedCharCharacteristic batteryLevelChar("2101", BLERead | BLENotify);
+
+void setup() {
+    Serial.begin(9600);
+    while (!Serial);
+    
+    pinMode(LED_BUILTIN, OUTPUT);
+    if (!BLE.begin()) 
+    {
+        Serial.println("starting BLE failed!");
+        while (1);
+    }
+    
+    BLE.setLocalName("BatteryMonitor");
+    BLE.setAdvertisedService(batteryService);
+    batteryService.addCharacteristic(batteryLevelChar);
+    BLE.addService(batteryService);
+    
+    BLE.advertise();
+    Serial.println("Bluetooth device active, waiting for connections...");
+}
+
+void loop() 
+{
+    BLEDevice central = BLE.central();
+    
+    if (central) 
+    {
+        Serial.print("Connected to central: ");
+        Serial.println(central.address());
+        digitalWrite(LED_BUILTIN, HIGH);
+        
+        while (central.connected()) {
+            
+            int battery = analogRead(A0);
+            int batteryLevel = map(battery, 0, 1023, 0, 100);
+            Serial.print("Battery Level % is now: ");
+            Serial.println(batteryLevel);
+            batteryLevelChar.writeValue(batteryLevel);
+            delay(200);
+            
+        }
+    }
+    digitalWrite(LED_BUILTIN, LOW);
+    Serial.print("Disconnected from central: ");
+    Serial.println(central.address());
+}
+\end{Arduino}
+\captionof{figure}{Arduino BLE Tutorial Battery Level Indicator Code}
+
+\end{code}
+
+
+\subsection{Arduino Bluetooth Battery Level Indicator Code Explained}
+
+\begin{lstlisting}
+#include <ArduinoBLE.h>
+BLEService batteryService("1101");
+BLEUnsignedCharCharacteristic batteryLevelChar("2101", BLERead | BLENotify);
+\end{lstlisting}
+
+The first line of the code is to include the file \FILE{ArduinoBLE.h}. Then we will declare the Battery Service as well the battery level characteristics here. Here we will be giving two permissions  -- \PYTHON{BLERead} and \PYTHON{BLENotify}. 
+
+\PYTHON{BLERead} will allow central devices (Mobile Phone) to read data from the Peripheral device (Arduino).  And BLENotify allows remote clients to get notifications if this characteristic changes. 
+
+Now we will jump on to the Setup function.
+
+\begin{lstlisting}
+Serial.begin(9600);
+while (!Serial);
+pinMode(LED_BUILTIN, OUTPUT);
+if (!BLE.begin()) {
+    Serial.println("starting BLE failed!");
+    while (1);
+}
+\end{lstlisting}
+
+Here it will initialize the Serial Communication and BLE and wait for serial monitor to open. 
+
+Set a local name for the BLE device. This name will appear in advertising packets and can be used by remote devices to identify this BLE device.
+
+\begin{lstlisting}
+BLE.setLocalName("BatteryMonitor");
+BLE.setAdvertisedService(batteryService);
+batteryService.addCharacteristic(batteryLevelChar);
+BLE.addService(batteryService);
+\end{lstlisting}
+
+Here we will add and set the value for the Service UUID and the Characteristic.
+
+\begin{lstlisting}
+BLE.advertise();
+Serial.println("Bluetooth device active, waiting for connections...");
+\end{lstlisting}
+
+And here, we will Start advertising BLE.  It will start continuously transmitting BLE advertising packets and will be visible to remote BLE central devices until it receives a new connection.
+
+\begin{lstlisting}
+BLEDevice central = BLE.central();
+if (central) {
+    Serial.print("Connected to central: ");
+    Serial.println(central.address());
+    digitalWrite(LED_BUILTIN, HIGH);
+\end{lstlisting}
+
+And here, the loop function. Once everything is setup and have started advertising, the device will wait for any central device. Once it is connected, it will display the MAC address of the device and it will turn on the builtin LED.
+    
+\begin{lstlisting}
+    while (central.connected()) {
+        int battery = analogRead(A0);
+        int batteryLevel = map(battery, 0, 1023, 0, 100);
+        Serial.print("Battery Level % is now: ");
+        Serial.println(batteryLevel);
+        batteryLevelChar.writeValue(batteryLevel);
+        delay(200);
+    }
+\end{lstlisting}
+
+Now, it will start to read analog voltage from A0, which will be a value in between 0 and 1023 and will map it with in the 0 to 100 range. It will print out the battery level in the serial monitor and the value will be written for the batteryLevelchar charecteristics and waits for 200 ms. After that the whole loop will be executed again as long as the central device is connected to this peripheral device.
+    
+\begin{lstlisting}
+    digitalWrite(LED_BUILTIN, LOW);
+    Serial.print("Disconnected from central: ");
+    Serial.println(central.address());
+    Once it is disconnected, a message will be shown on the central device and LED will be turned off. 
+\end{lstlisting}
+
+\subsection{Installing the App for Android}
+
+In your Android smartphone, install the app ``nRF Connect''. Open it and start the scanner. You will see the device ``Battery Monitor'' in the device list. Now tap on connect and a new tab will be opened. 
+
+\begin{center}
+  \includegraphics[width=\textwidth]{Bluetooth/BatteryApp}
+  \captionof{figure}{Battery app ``nRF Connect''}    
+\end{center}
+
+
+Go to that and you will see the services and characteristics of the device.Tap on Battery service and you will the battery levels being read from the Arduino.
+
+%\begin{center}
+%  \includegraphics[width=\textwidth]{Bluetooth/BatteryAppAttention}
+%  \captionof{figure}{Arduino BLE with ``nRF Connect''}    
+%\end{center}
+
+
+\subsection{Example 2 -- Arduino BLE Accelerometer Tutorial}
+
+I showed you a very easy example to show you jpw you can send simple data via Bluetooth. If you are new to this, try this example first. It will help to give you a better understanding of the BLE.
+
+\subsubsection{Step 1 -- Installing Libraries}
+
+For this example, we will need two libraries 
+
+\begin{itemize}
+  \item \FILE{ArduinoBLE} -- To Send Data via Bluetooth
+  \item \FILE{LSM9DS1} -- To Read data from inbuilt Accelerometer
+\end{itemize}
+
+Both these libraries are available in library manager. Simply search for that using the name and click on install.
+
+\subsubsection{Step 2 -- Test Accelerometer Code (Optional)}
+
+Now we will try running the accelerometer code to make sure that these data are being read properly. For that, use the below code.
+
+
+\begin{lstlisting}
+#include <Arduino_LSM9DS1.h>
+
+void setup() {
+    Serial.begin(9600);
+    while (!Serial);
+    Serial.println("Started");
+    
+    if (!IMU.begin()) {
+        Serial.println("Failed to initialize IMU!");
+        while (1);
+    }
+    
+    Serial.print("Accelerometer sample rate = ");
+    Serial.print(IMU.accelerationSampleRate());
+    Serial.println(" Hz");
+    Serial.println();
+    Serial.println("Acceleration in G's");
+    Serial.println("XtYtZ");
+}
+
+void loop() {
+    float x, y, z;
+    
+    if (IMU.accelerationAvailable()) {
+        IMU.readAcceleration(x, y, z);
+        
+        Serial.print(x);
+        Serial.print('t');
+        Serial.print(y);
+        Serial.print('t');
+        Serial.println(z);
+    }
+}
+\end{lstlisting}
+
+Once uploaded, start the serial monitor. You will see the data being populated. Try tilting the board in all direction and you will see the value changes accordingly.
+
+\subsubsection{Step 3 -- Upload the Code}
+
+Now its time to upload the complete code. Copy the code below and paste it in the IDE.
+
+\begin{lstlisting}
+#include <ArduinoBLE.h>
+#include <Arduino_LSM9DS1.h>
+
+int accelX=1;
+int accelY=1;
+float x, y, z;
+
+BLEService customService("1101");
+BLEUnsignedIntCharacteristic customXChar("2101", BLERead | BLENotify);
+BLEUnsignedIntCharacteristic customYChar("2102", BLERead | BLENotify);
+
+void setup() {
+    IMU.begin();
+    Serial.begin(9600); 
+    while (!Serial);
+    
+    pinMode(LED_BUILTIN, OUTPUT);
+    
+    if (!BLE.begin()) {
+        Serial.println("BLE failed to Initiate");
+        delay(500);
+        while (1);
+    }
+    
+    BLE.setLocalName("Arduino Accelerometer");
+    BLE.setAdvertisedService(customService);
+    customService.addCharacteristic(customXChar);
+    customService.addCharacteristic(customYChar);
+    BLE.addService(customService);
+    customXChar.writeValue(accelX);
+    customYChar.writeValue(accelY);
+    
+    BLE.advertise();
+    
+    Serial.println("Bluetooth device is now active, waiting for connections...");
+}
+
+
+void loop() {
+    
+    BLEDevice central = BLE.central();
+    if (central) {
+        Serial.print("Connected to central: ");
+        Serial.println(central.address());
+        digitalWrite(LED_BUILTIN, HIGH);
+        while (central.connected()) {
+            delay(200);
+            read_Accel();
+            
+            customXChar.writeValue(accelX);
+            customYChar.writeValue(accelY);
+            
+            Serial.print("At Main Function");
+            Serial.println("");
+            Serial.print(accelX);
+            Serial.print(" - ");
+            Serial.println(accelY);
+            Serial.println("");
+            Serial.println("");
+        }
+    }
+    digitalWrite(LED_BUILTIN, LOW);
+    Serial.print("Disconnected from central: ");
+    Serial.println(central.address());
+}
+
+void read_Accel() {
+    
+    if (IMU.accelerationAvailable()) {
+        IMU.readAcceleration(x, y, z);
+        accelX = (1+x)*100;
+        accelY = (1+y)*100;
+        
+    }
+}
+\end{lstlisting}
+
+Select the right port and board. Click on upload.
+
+\subsubsection{Step 4 -- Testing Arduino BLE Accelerometer}
+
+In your Android smartphone, install the app ``nRF Connect''. Open it and start the scanner. You will see the device “Arduino Accelerometer” in the device list. Now tap on connect and a new tab will be opened.
+
+\begin{center}
+    \centering
+    \includegraphics[width=0.6\textwidth]{Bluetooth/BatteryAppAcc}
+    \captionof{figure}{nRF Connect Screen}    
+\end{center}
+
+\begin{center}
+    \centering
+    \includegraphics[width=0.6\textwidth]{Bluetooth/BatteryAppAcc2}
+    \captionof{figure}{Accelerometer Values Read from Arduino Using BLE}    
+\end{center}
+
+Go to that and you will see the services and characteristics of the device.
+
+Tap on Unknown Service and you will see the accelerometer values being read from the Arduino.
+
+In the next post, I will show you how you can send inbuilt sensor values such as accelerometer, gyroscope, color sensor and gesture sensor from the Arduino to your phone as well as another Arduino via BLE.
+
+
+
+
+
+
+
+
+
+\section{Arduino Library \PYTHON{BLEAK}}
+
+Low Energy (BLE) protocol. BLE allows you to exchange data between devices wirelessly and efficiently. You can use the bleak library in Python to interact with \HREF{https://www.hackster.io/sridhar-rajagopal/control-arduino-nano-ble-with-bluetooth-python-331e33}{BLE devices}.
+
+To get started, you need to install the bleak library using pip:
+
+\medskip
+
+\SHELL{pip install bleak}
+
+
+\medskip
+
+Then, you need to write a Python program that can scan for BLE devices, connect to the Arduino Nano 33 BLE 33 Sense, and read or write data to its characteristics. Characteristics are the attributes that define the data and behavior of a BLE device. \HREF{https://docs.arduino.cc/tutorials/nano-33-ble-sense/cheat-sheet/}{For example, the Arduino Nano 33 BLE 33 Sense has a characteristic for each color of its RGB LED}.
+
+You can find an example of a Python program that can control the RGB LED of the Arduino Nano 33 BLE 33 Sense using bleak here3. You can also find the corresponding Arduino sketch that sets up the BLE service and characteristics for the Nano 33 BLE 33 Sense here4.
+
+
+\section{Test}
+
+
+\section{Test with Bluetooth Module Connection}
+
+The same procedure we need to follow for making the successful bleutooth coonection, the one we follow for on-board sensors. Below figure \ref{fig:testsoftware-fur-bluetooth} shows the ArduinoBLE library in the example section of Arduino IDE.
+
+\begin{center}
+    \includegraphics[width=0.7\linewidth]{Nano33BLESense/TestsoftwareBluetooth}
+    \captionof{figure}of{center}{Bluetooth Connection}
+    \label{fig:testsoftware-fur-bluetooth}
+\end{center}
+
+Bluetooth wireless technology allows us to share the data, the voice, the music, the video, and a lot of information between paired devices, It is built into many products, from mobile phones, cars to medical devices and computers. It has lower power consumption. It is easily upgradeable. It has range better than Infrared communication. Bluetooth is used for voice and data transfer, we can communicate by recieving and sending the data with other bluetooth connected devices. It is also possible to output a value on the phone side or also on the laptop by making the proper pairing. 
+
+
+
+
+
+\section{BLEStack}
+
+
+\begin{center}
+    \begin{tikzpicture}
+        % First Rectangle
+        \draw[black, fill=LightBlue!50, rounded corners] (1,0) rectangle (12,2);
+        \node[black, align=center] at (6.5,1) {%
+            Application \\
+            Profiles and Services
+        };
+        
+        % 2nd Rectangle
+        \draw[black!90, fill=LightBlue, rounded corners] (0,-1.5) rectangle (14,-15.5);
+        
+        
+        
+        % First Inner Rectangle
+        \draw[black!90, fill=LightBlue, rounded corners] (0.5,-2.5) rectangle (13.5,-10);
+        \node[black, align=center] at (13,-3) {%
+            Host
+        };
+        
+        % First Row
+        % First Inner Rectangle
+        \draw[black!90, fill=LightBlue!50, rounded corners] (2.5,-3) rectangle (5.5,-5);
+        \node[black, align=center] at (4,-4) {%
+            Generic Attribute \\
+            Profile (GATT)
+        };
+        
+        % Second Inner Rectangle
+        \draw[black!90, fill=LightBlue!50, rounded corners] (6,-3) rectangle (12,-5);
+        \draw[black!90, fill=LightBlue!50, rounded corners] (9.5,-3) rectangle (12,-9.5);
+        \draw[LightBlue!50, fill=LightBlue!50 ] (9.4,-3.01) rectangle (9.6,-4.99);
+        \node[black, align=center] at (9,-4) {%
+            Generic Access Profile \\
+            (GAP)
+        };
+        
+        % Second Row
+        % Third Inner Rectangle
+        \draw[black!90, fill=LightBlue!50, rounded corners] (2.5,-5.5) rectangle (5.5,-7.5);
+        \node[black, align=center] at (4,-6.5) {%
+            Attribute Protocol \\
+            (ATT)
+        };
+        
+        % Fourth Inner Rectangle
+        \draw[black!90, fill=LightBlue!50, rounded corners] (6,-5.5) rectangle (9,-7.5);
+        \node[black, align=center] at (7.5,-6.5) {%
+            Security Manager \\
+            (SM)
+        };
+        
+        % Third Row
+        % Fifth Inner Rectangle
+        \draw[black!90, fill=LightBlue!50, rounded corners] (1,-8) rectangle (9,-9.5);
+        \node[black, align=center] at (5,-8.75) {%
+            Logical Link COntrol and Application Layer \\
+            Protocol (L2CAP)
+        };
+        
+        
+        
+        % Second Inner Rectangle
+        \draw[black!90, fill=LightBlue, rounded corners] (0.5,-10.5) rectangle (13.5,-15);
+        \node[black, align=center] at (12.5,-11) {%
+            Controller
+        };
+        
+        %2.0 First Inner Rectangle
+        \draw[black!90, fill=LightBlue!50, rounded corners] (0.8,-11) rectangle (11.5,-12.5);
+        \node[black, align=center] at (6,-11.75) {%
+            Link Layer (LL)
+        };
+        %2.0 First Inner Rectangle
+        \draw[black!90, fill=LightBlue!50, rounded corners] (0.8,-13) rectangle (11.5,-14.5);
+        \node[black, align=center] at (6,-13.75) {%
+            Physical Layer (PHY)
+        };
+        
+        % Add arrow
+        % \draw [<->, >=Stealth, black!10] (1.75,0) -- (1.75,-8);
+        \draw [line width=4pt, black!20, <->, >=Stealth, fill=black!10] (1.75,0) -- (1.75,-8);
+        \draw [line width=4pt, black!20, <->, >=Stealth, fill=black!10] (4,0) -- (4,-3);
+        \draw [line width=4pt, black!20, <->, >=Stealth, fill=black!10] (9,0) -- (9,-3);
+        
+        
+    \end{tikzpicture}
+    
+\end{center}
+
+
+\section{Control Arduino Nano BLE with Bluetooth \& Python}
+
+\URL{https://www.hackster.io/sridhar-rajagopal/control-arduino-nano-ble-with-bluetooth-python-331e33}
+
+
+Demonstrated with the on-board RGB LED.
+
+\section{Peripheral Device aka Arduino Nano}
+
+
+The Generic Attribute Profile (or GATT) defines how Bluetooth LE devices can transfer data back and forth, using the Attribute Protocol (or ATT) which organizes the data hierarchically into Service and Characteristics.
+
+For our purpose, we define a top level service, as well as 3 characteristics, corresponding to each of the 3 colors of our RGB LED:
+
+
+\begin{lstlisting}
+BLEService nanoService("13012F00-F8C3-4F4A-A8F4-15CD926DA146"); 
+BLEByteCharacteristic redLEDCharacteristic("13012F01-F8C3-4F4A-A8F4-15CD926DA146", BLERead | BLEWrite);
+BLEByteCharacteristic greenLEDCharacteristic("13012F02-F8C3-4F4A-A8F4-15CD926DA146", BLERead | BLEWrite);
+BLEByteCharacteristic blueLEDCharacteristic("13012F03-F8C3-4F4A-A8F4-15CD926DA146", BLERead | BLEWrite);
+\end{lstlisting}
+
+The UUIDs used above have been randomly generated. They must match between the peripheral device (the Nano) and the central device (the Python program).
+
+In our setup function, apart from setting up the pinMode for the RGB LEDs, we also setup our BLE service. Here, we set the local name for our BLE peripheral - central devices will see this when trying to connect to advertising services.
+
+We add the service and characteristics we defined above, set their initial values, and start advertising. Here, at this point, central devices that are listening will see our advertising packets and know that we are ready to accept connections.
+
+
+\begin{lstlisting}
+// set advertised local name and service UUID:
+BLE.setLocalName("Arduino Nano 33 BLE Sense");
+BLE.setAdvertisedService(nanoService);
+// add the characteristic to the service
+nanoService.addCharacteristic(redLEDCharacteristic);
+nanoService.addCharacteristic(greenLEDCharacteristic);
+nanoService.addCharacteristic(blueLEDCharacteristic);
+// add service
+BLE.addService(nanoService);
+// set the initial value for the characeristic:
+redLEDCharacteristic.writeValue(0);
+greenLEDCharacteristic.writeValue(0);
+blueLEDCharacteristic.writeValue(0);
+// start advertising
+BLE.advertise();
+\end{lstlisting}
+
+In our main loop(), we wait for a central device to connect. We then wait to see if any of the characteristics are written to, and the value of that characteristic. In our example, a non-zero value written to the redLEDCharacteristic, for example, will cause us to turn on the RED LED. When we encounter a zero value, we turn off the LED.
+
+\begin{lstlisting}
+void loop() {
+	BLEDevice central = BLE.central();
+	if (central) {
+		...
+		while (central.connected()) {
+			if (redLEDCharacteristic.written()) {
+				if (redLEDCharacteristic.value()) {  // any non-zero value
+					Serial.println("RED LED on");
+					digitalWrite(RED_PIN, LOW); // LOW will turn the LED on
+				} else { // a zero value
+					Serial.println(F("RED LED off"));
+					digitalWrite(RED_PIN, HIGH); // HIGH will turn the LED off
+				}
+			} 
+			.... do similar stuff for GREEN and BLUE
+		}
+		// when the central disconnects, print it out:
+		Serial.print(F("Disconnected from central: "));
+		Serial.println(central.address());
+	}
+}
+\end{lstlisting}
+
+Here we have to note that the RGB LEDs on the Arduino Nano 33 BLE Sense follow a reverse logic, so setting the pin LOW turns ON the LED and setting it HIGH turns it OFF.
+
+The onboard RGB LED also does not support PWM, so the states of the LEDs can either be ON or OFF, giving us 7 different colors:
+
+\begin{lstlisting}
+R   | G   | B
+OFF | OFF | OFF    - OFF
+ON  | OFF | OFF    - RED
+OFF | ON  | OFF    - GREEN
+OFF | OFF | ON     - BLUE
+ON  | ON  | OFF    - ORANGE
+ON  | OFF | ON     - PURPLE
+OFF | ON  | ON     - CYAN
+ON  | ON  | ON     - WHITE
+\end{lstlisting}
+
+The Central device can also read the characteristic's value. This is automatically handled by the BLE library and we don't need to do anything more. We initialize the value appropriately on startup, and maintain the value, so it can be read anytime.
+
+Let's dive into the code - Central Device aka Python
+On the Python side, we utilize the Python bleak library for BLE support - of course, the machine we are running it on needs to have Bluetooth support as well!
+
+We also use the asyncio asynchronous framework for our program. Our main loop here is the run() function. It goes into discover mode and checks the local names of the Bluetooth devices that are advertising, and connects to the device with the local name of "Arduino Nano 33 BLE Sense" (the local name we chose).
+
+It then reads the RED, GREEN and BLUE Characteristics to know the initial states of the LEDs, and then goes into the setColor() loop:
+
+\begin{lstlisting}
+async def run():
+global RED, GREEN, BLUE
+print('ProtoStax Arduino Nano BLE LED Peripheral Central Service')
+print('Looking for Arduino Nano 33 BLE Sense Peripheral Device...')
+found = False
+devices = await discover()
+for d in devices: 
+if 'Arduino Nano 33 BLE Sense'in d.name:
+print('Found Arduino Nano 33 BLE Sense Peripheral')
+found = True
+async with BleakClient(d.address) as client:
+print(f'Connected to {d.address}')
+val = await client.read_gatt_char(RED_LED_UUID)
+if (val == on_value):
+print ('RED ON')
+RED = True
+else:
+print ('RED OFF')
+RED = False
+... do similar stuff for GREEN and BLUE
+while True:
+await setColor(client)
+if not found:
+print('Could not find Arduino Nano 33 BLE Sense Peripheral')
+\end{lstlisting}
+
+
+In setColor(), it prompts for user input, and checks the user input to see if the string has any 'r', 'g' or 'b' values in it. It then toggles the color and writes the appropriate value to the characteristic, and waits for further user input again. This continues until the user hits Control-C to stop the program.
+
+\begin{lstlisting}
+async def setColor(client):
+global RED, GREEN, BLUE
+val = input('Enter rgb to toggle red, green and blue LEDs :')
+print(val)
+if ('r' in val):
+RED = not RED
+await client.write_gatt_char(RED_LED_UUID, getValue(RED))
+\end{lstlisting}
+
+
+... do similar stuff for GREEN and BLUE
+
+\subsection{Taking the Project Further}
+
+The Arduino Nano has a whole bunch of sensors onboard. You can extend the project by adding characteristics for the other sensors - for example, reading the temperature, humidity and pressure values (there is no need to write these values, so the characteristics can be defined read-only). You'll also need to modify the program to handle the read command - polling the sensor and writing the data with the current value of the sensor.
+
+On the central device (Python Program), you can choose the store the data along with the timestamp of when it was read, to a database or comma-separated file. This way, your central device can act like a data logger, and you can even utilize the data to perform actions, or send the data to a cloud service like AWS to process and run analytics on. Having the central device on Python allows you to utilize the numerous packages and libraries and capabilities of Python.
+
+Happy Coding! If you have any questions, feel free to ask them in the comments below! We'll also be happy to hear how you have taken the project further and what wonderful creations you have made!
+
+
+\chapter{Bluetooth}
+\label{chap:bluetooth}
+
+\section{Geschichte von Bluetooth}
+
+Bluetooth ist ein Standard für die drahtlose Kommunikation über kurze Distanzen und wurde Ende der 1990er Jahre ins Leben gerufen. Der Ursprung liegt im Jahr 1998, als mehrere große Technologieunternehmen, darunter Ericsson, IBM, Intel, Nokia und Toshiba, die Bluetooth Special Interest Group gründeten. Ziel dieser Gruppe war es, eine universelle, plattformunabhängige Funktechnologie zu entwickeln, die kostengünstig, stromsparend und lizenzfrei nutzbar ist. Die Kommunikation sollte im unlizenzierten 2.4-GHz-Band für Industrie, Wissenachaft und Medizin erfolgen, welches auch für andere Technologien wie \ac{usb} oder Mikrowellenherde genutzt wird \cite{BluetoothSIG.2004}.
+
+Der Name „Bluetooth“ hat seinen Ursprung im Spitznamen des dänischen Königs Harald Blåtand, der im 10. Jahrhundert für die Vereinigung der skandinavischen Völker bekannt war. Diese Symbolik übertrug man auf die Technik: Auch Bluetooth sollte Geräte verschiedenster Hersteller miteinander verbinden. Das heute bekannte Logo setzt sich aus den nordischen Runen der Initialen H und B zusammen und wurde beibehalten, da der ursprünglich als Platzhalter gedachte Name sich etablierte und zur Markenidentität beitrug \cite{Haartsen:1998}.
+
+Die Verbreitung von Bluetooth wurde durch die Entscheidung der  Bluetooth Special Interest Group begünstigt, das geistige Eigentum, das in der Spezifikation enthalten ist, den Mitgliedern lizenzfrei zur Verfügung zu stellen. Bereits im Jahr 1999 wurde die erste Bluetooth-Spezifikation (Version 1.0A) veröffentlicht, welche mehr als 1600 Seiten umfasste. Noch im gleichen Jahr wurden erste Chipsätze und Produkte vorgestellt. Innerhalb weniger Jahre wuchs die Zahl der Mitglieder auf über 3000 Unternehmen an, was zu einer rasanten Verbreitung führte \cite{BluetoothSIG.2004}.
+
+\medskip
+
+Die visuelle Gestaltung des Bluetooth-Logos ist in \autoref{fig:bluetoothlogo} dargestellt.
+
+\begin{center}
+	\includegraphics[width=0.75\textwidth]{Bluetooth/BluetoothLogo}
+	\captionof{figure}[Bluetooth-Logo mit Runen der Initialen Harald Blåtands]{Bluetooth-Logo mit Runen der Initialen Harald Blåtands  nach \cite{Alza:2025}}
+	\label{fig:bluetoothlogo}
+\end{center}
+
+\section{Bluetooth Low Energy (BLE)}
+\label{sec:ble}
+
+Mit dem zunehmenden Bedarf an energieeffizienter Kommunikation in mobilen und vernetzten Systemen entstand Bluetooth Low Energy (BLE) als Ergänzung zur klassischen Bluetooth-Technologie. BLE wurde im Jahr 2010 mit der Spezifikation Bluetooth 4.0 von der Bluetooth Special Interest Group (SIG) offiziell eingeführt \cite{BluetoothSIG.2004, BluetoothSpecialInterestGroup.2024}.
+
+Im Gegensatz zu klassischem Bluetooth (BR/EDR), das für kontinuierliche Datenübertragung mit vergleichsweise hoher Datenrate und entsprechendem Energiebedarf konzipiert wurde, verfolgt BLE einen ereignisbasierten Ansatz. Dabei werden kurze Datenpakete nur bei Bedarf übertragen, während das Gerät sich dazwischen im Schlafmodus befindet. Dies ermöglicht den Betrieb von Sensoren oder Wearables über Monate hinweg mit einer kleinen Knopfzellenbatterie \cite{Tosi.2017, Arduino.2025b}.
+
+BLE findet heute breite Anwendung in verschiedenen Bereichen: tragbare Geräte wie Fitness-Tracker und Smartwatches nutzen BLE zur Kommunikation mit Smartphones, ohne deren Akkulaufzeit stark zu beeinträchtigen. Im Smart-Home-Sektor verbinden sich batteriebetriebene Sensoren effizient mit zentralen Steuerungseinheiten. Auch in medizinischen Geräten zur drahtlosen Übertragung von Vitaldaten sowie in der Industrieautomatisierung für das Condition Monitoring wird BLE eingesetzt. Ein weiteres Anwendungsfeld sind sogenannte Beacons – kleine Funksender, die regelmäßig Signale aussenden und zur Positionsbestimmung in Innenräumen verwendet werden \cite{BluetoothSpecialInterestGroup.2025, Kumar.2023}.
+
+
+\section{Gegenüberstellung Bluetooth Classic und BLE}
+
+Trotz gemeinsamer Ursprünge unterscheiden sich klassisches Bluetooth und BLE in mehreren technischen Aspekten. Bluetooth Classic arbeitet verbindungsorientiert mit konstant aktivem Kommunikationskanal, was eine höhere Datenrate, jedoch auch einen deutlich höheren Energieverbrauch bedeutet. BLE hingegen nutzt kurze Verbindungsintervalle mit geringem Datenvolumen, wodurch eine sehr energieeffiziente Kommunikation ermöglicht wird \cite{Arduino.2025b, Kumar.2023}.
+
+In Bezug auf die Reichweite nutzen beide Technologien das 2{,}4-GHz-ISM-Band, wobei BLE durch neuere Erweiterungen wie Bluetooth 5 auch für größere Distanzen optimiert wurde. Während klassisches Bluetooth üblicherweise sieben gleichzeitige Verbindungen erlaubt, ist BLE flexibler und erlaubt je nach Implementierung die Anbindung von deutlich mehr Geräten gleichzeitig \cite{BluetoothSpecialInterestGroup.2024, Kumar.2023}.
+
+\medskip
+Eine strukturierte Gegenüberstellung der beiden Technologien ist in \autoref{tab:bt_vs_ble} zu finden.
+
+
+
+\begin{table}[H]
+	\centering
+	\captionof{figure}{Vergleich von Bluetooth und \ac{ble}}
+	\label{tab:bt_vs_ble}
+	\begin{tabular}{|p{3cm}|p{4.5cm}|p{4.5cm}|}
+		\hline
+		\textbf{Eigenschaft} & \textbf{Bluetooth Classic} & \textbf{Bluetooth Low Energy (BLE)} \\ \hline
+		Standardisiert seit & 1999 (Version 1.0) & 2010 (Version 4.0) \\ \hline
+		Energieverbrauch & Hoch & Sehr gering \\ \hline
+		Datenrate & Bis zu 3 Mbit/s & Bis zu 2 Mbit/s \\ \hline
+		Verbindungstyp & Dauerhafte Verbindung & Ereignisgesteuert (kurze Intervalle) \\ \hline
+		Audioübertragung & Ja (Advanced Audio Distribution Profile) & Nein (nur mit LE Audio ab Version 5.2) \\ \hline
+		Typische Anwendungen & Audio, Dateiübertragung, Maus, Tastatur & Sensoren, Wearables, \ac{iot}-Geräte \\ \hline
+		Reichweite & 10 bis 100 m & 10 bis 400 m \\ \hline
+		Stromversorgung & Akkus, regelmäßiges Laden notwendig & Knopfzelle, langlebig \\ \hline
+	\end{tabular}
+\end{table}
+
+
+
+\chapter{Bluetooth} \label{Bluetooth}
+
+
+\section{Einleitung}
+Bluetooth ist ein weltweit zulassungsfreies Funksystem zur drahtlosen Datenübertragung über kurze Distanzen, das 1994 von Ericsson entwickelt wurde. Die Kommunikation erfolgt im Frequenzbereich von 2,402,\text{--},2,480,\text{GHz}. Durch das Frequenzsprungverfahren werden Störungen durch andere Geräte wie WLAN-Router oder Mikrowellen vermieden. \cite{Baun2022}
+
+
+\section{Anwendungsbeispiele}
+Durch Bluetooth k\"onnen Kabelverbindungen ersetzt werden.
+
+\textbf{Konkrete Beispiele:}
+\begin{itemize}
+	\item{Verbindung Smartphones mit Audioger\"aten}
+	\item{Austausch von Dateien zwischen Smartphones z.B. Bilder}
+	\item{Verbindung von Eingabeger\"aten z.B. Tastaturen}
+	\item{Verbindung von Sensoren (Smart-Home)}
+\end{itemize}
+\cite{Sauter2023} \cite{Baun2022}
+
+\section{Funktionsweise Bluetooth}
+Bluetooth arbeitet im Frequenzbereich von 2,402\,\text{--}\,2,480\,\text{GHz} und nutzt ein Frequenzsprungverfahren, bei dem bis zu 1600 mal pro Sekunde zwischen 79 Kanälen gewechselt wird, um St\"orungen zu minimieren. Ger\"ate bilden sogenannte Piconetze, bestehend aus einem Master und bis zu sieben aktiven Slaves, wobei der Master die Kommunikation zeitlich koordiniert (Zeitmultiplex). Mehrere Piconetze k\"onnen sich zu einem Scatternet zusammenschließen.
+\cite{Baun2022}
+
+
+
+\subsection{Bluetooth Ger\"ate verbinden}
+
+Bevor zwei Bluetooth-Geräte miteinander kommunizieren können, müssen sie sich im sogenannten Pairing-Vorgang „kennenlernen“. Dieser Prozess stellt sicher, dass beide Geräte authentifiziert sind und eine sichere Verbindung aufgebaut wird. Bis einschließlich Bluetooth 2.0 war der Pairing-Prozess relativ aufwendig, da die Benutzer eine PIN auf beiden Geräten eingeben mussten. Diese PIN diente als gemeinsamer Schlüssel für die Verschlüsselung und Authentifizierung der Verbindung, um zu verhindern, dass Dritte die Kommunikation abhören oder einen Man-in-the-Middle-Angriff durchführen. Das Pairing musste jedoch nur einmalig durchgeführt werden, um die Geräte dauerhaft zu verbinden.
+\cite{Baun2022}
+
+Mit der Einführung von Bluetooth 2.1 wurde der Pairing-Prozess durch das Secure Simple Pairing (SSP) vereinfacht und gleichzeitig sicherer gestaltet. Anstelle einer PIN wird der Diffie-Hellman-Algorithmus zur Schlüsselverteilung genutzt, wodurch die manuelle Eingabe einer PIN entfällt. Wenn beide Geräte über ein Display verfügen, müssen die Benutzer einen gemeinsamen Code bestätigen, um die Verbindung zu autorisieren. Fehlt bei einem der Geräte ein Display, entfällt diese Bestätigung. In diesem Fall besteht jedoch weiterhin das Risiko eines Man-in-the-Middle-Angriffs, da keine Bestätigung durch den Benutzer erfolgt.
+\cite{Baun2022}
+
+Der Pairing-Prozess ermöglicht es den Geräten, dauerhaft miteinander zu kommunizieren, ohne dass der Sicherheitsprozess bei jeder Verbindung erneut durchlaufen werden muss. 
+\cite{Baun2022}
+
+\section{Einleitung BLE}
+\ac{ble} ist ein stromsparendes Funkprotokoll, das mit Bluetooth 4.0 eingeführt wurde und speziell für Geräte mit geringem Energieverbrauch wie Sensoren, Wearables oder IoT-Anwendungen entwickelt wurde. Im Gegensatz zu ''Bluetooth Classic'', das auf dauerhafte Verbindungen bei höherem Energiebedarf ausgelegt ist (z.\,B. für Audioübertragungen), ist BLE für kurze, effiziente Datenübertragungen optimiert, z.\,B. mit einer Stromversorgung durch Knopfzellen. 
+\cite{Arduino2025a}
+
+
+
+\cite{Arduino2024b}
+\section{Funktionsweise BLE}
+Im folgenden wird das Grundprinzip kurz erl\"autert. BLE folgt einem Client-Server-Modell (auch Zentral-Peripherie-Modell genannt):
+\cite{Arduino2025a}
+\begin{itemize}
+	\item {Peripheral (Server): z.\,B. ein Sensor oder Arduino mit Daten stellt Informationen zur Verf\"ugung.}
+	\item {Central (Client): z.\,B. ein Smartphone oder PC liest oder schreibt Daten beim Peripheral.}
+\end{itemize}
+
+Vereinfacht kann die Funktionsweise mit einem Schwarzen Brett verglichen werden. Die ''Peripherals'' zu Deutsch Peripheriegeräte bieten Daten an und sind in der Analogie eine Pinnwand. Die ''Central Devices'' bzw. Zentralenger\"ate werden in der Analogie als Menschen betrachtet. Sie k\"onnen die angebotenen Daten empfangen und auswerten. Dabei kann eine Pinnwand/Peripheriegeräte von mehreren Menschen/Zentralenger\"ate gleichzeitig gelesen werden.
+\cite{Arduino2025a}
+
+Dies wird durch die Abbildung \ref{BLModel} veranschaulicht.
+
+\begin{figure}
+	\includegraphics[width=\textwidth]{Bluetooth/BleBulletinBoardModel}
+	\caption{BLE Devices -- Peripheral and Central Devices \cite{Arduino2025c}} \label{BLModel}
+\end{figure}
+
+\section{Verwendete BLE Hardware}
+Auf den Nano33BLESense befindet sich für die Bluetooth-Kommunikation ein NINA-B306 Module Bluetooth Low Energy 5.0 Module. Im Datenblatt ist es mit U1 auf der Platine gekennzeichnet \cite{Arduino2025c}. Zur Vereinfachung wird dieses im Folgendem als BLE-Modul bezeichnet.
+
+Das  BLE-Modul stammt aus der NINA-B30-Serie des Schweizer Herstellers u-blox AG.
+Es enthält einen ARM Cortex M4 Prozessor mit Gleitkommaeinheit und bietet 1 MB Flash und 256 kB RAM.
+\cite{Ublox:2023}
+
+
+Das BLE-Modul unterstützt Bluetooth Low Energy 5 und ist als Open-CPU-Variante ausgelegt, was bedeutet, dass eigene Anwendungen direkt auf dem Modul laufen können.
+
+Das BLE-Modul verfügt über eine integrierte \ac{pcb}-Antenne und ist für den energiesparenden Betrieb optimiert, unter anderem durch einen eingebauten stromsparenden Taktgeber.
+\cite{Ublox:2023}
+
+
+Die BLE-Module werden ab Werk mit einer eindeutigen 48-Bit-Bluetooth-Adresse programmiert. Sollte der Speicher eines BLE-Moduls beschädigt oder gelöscht werden, kann die Adresse über den Data-Matrix-Code auf dem Modulgehäuse wiederhergestellt werden.
+Ein weiterer interessanter Punkt sind die Übertragungsraten \ref{tab:BLE-Modul1}. Als Reichweite des BLE-Moduls sind 1400~m im Datenblatt angegeben. Diese hohe Reichweite wird im Anwendungsfall mit dem Smartphone vermutlich nicht erreicht werden. 
+\cite{Ublox:2023}
+
+
+
+Das BLE-Modul hat viele weitere Features, die sich für andere Projekte eignen. Im Projekt des Schlüsselkastens wird jedoch die Standardeinstellung usw. verwendet. Für andere Projekte empfiehlt sich jedoch ein Blick in das Datenblatt. 
+\cite{Ublox:2023}
+
+\begin{table}
+	\centering
+	\caption{Technische Daten des Moduls NINA-B3x6 nach \cite{Ublox:2023}}
+	\label{tab:BLE-Modul1}
+	\begin{tabular}{|l|p{8cm}|}
+		\hline
+		\textbf{Eigenschaft} & \textbf{NINA-B3x6} \\ \hline
+		Bluetooth-Version & 5.0 \\ \hline
+		Frequenzband & 2{,}4 GHz, 40 Kanäle \\ \hline
+		Typische Ausgangsleistung (conducted) & +8 dBm \\ \hline
+		Strahlungsleistung (EIRP) & +10 dBm \\ \hline
+		Empfindlichkeit (conducted) & -94 dBm \\ \hline
+		Empfindlichkeit im Long-Range-Modus & -100 dBm \\ \hline
+		Unterstützte Funkmodi & Bluetooth Low Energy, IEEE 802.15.4, proprietäre 2{,}4-GHz-Modi \\ \hline
+		BLE-Datenraten & 1 Mbps, 2 Mbps, 500 kbps, 125 kbps \\ \hline
+		Modulgröße & 10{,}0 × 15{,}0 mm \\ \hline
+	\end{tabular}
+	
+	
+	
+\end{table}
+
+
+
+
+\section{ArduinoBLE-Bibliothek}
+
+Die \PYTHON{ArduinoBLE} Bibliothek kann \"ahnlich wie im Kapitel des Sensors  \ref{Libraryinstall} beschrieben, links über den "Library Manager", installiert werden. Herausgeber der Bibliothek ist Arduino. 
+Die Bibliothek verf\"ugt \"uber viele Funktionen. Im Folgenden werden die verwendeten Funktionen erl\"autert, die im Beispiel |\ref{lst:CodeBLEVerbinden} verwendet werden. Weitere Funktionen sind unter \cite{Arduino2025a} zu finden.
+
+\section*{Verwendete Funktionen der ArduinoBLE-Library}
+
+Im Folgenden Sketch werden zentrale Funktionen der \textbf{ArduinoBLE}-Bibliothek verwendet, um den Arduino Nano 33 BLE Sense als BLE-Peripheriegerät zu betreiben.
+
+\textbf{Globale BLE-Funktionen}
+\begin{itemize}
+	\item \PYTHON{BLE.begin()}: Initialisiert die BLE-Hardware.
+	\item \PYTHON{BLE.setLocalName("Nano33BLE")}: Setzt den sichtbaren Gerätenamen.
+	\item \PYTHON{BLE.setAdvertisedServiceUuid(SERVICE\_UUID)}: Gibt an, welcher Service beim Advertising übermittelt wird.
+	\item \PYTHON{BLE.addService(customService)}: Fügt den erstellten Service zur Konfiguration hinzu.
+	\item \PYTHON{BLE.advertise()}: Startet das Advertising für BLE.
+	\item \PYTHON{BLE.central()}: Gibt ein \PYTHON{BLEDevice}-Objekt zurück, wenn ein Zentralgerät verbunden ist.
+\end{itemize}
+
+\textbf{BLEService}
+\begin{itemize}
+	\item \PYTHON{BLEService customService(SERVICE\_UUID)}: Erstellt einen benutzerdefinierten Service mit der angegebenen UUID.
+	\item \PYTHON{customService.addCharacteristic(customChar)}: Fügt dem Service eine Charakteristik hinzu.
+\end{itemize}
+
+\textbf{BLECharacteristic}
+\begin{itemize}
+	\item \PYTHON{BLECharacteristic customChar(...)}: Erstellt eine Charakteristik mit Lese- und Notify-Rechten.
+	\item \PYTHON{customChar.writeValue("Hello!")}: Setzt den initialen Wert der Charakteristik.
+\end{itemize}
+
+\textbf{BLEDevice}
+\begin{itemize}
+	\item \PYTHON{central.connected()}: Prüft, ob das Zentralgerät noch verbunden ist.
+	\item \PYTHON{central.address()}: Gibt die MAC-Adresse des verbundenen Geräts aus.
+\end{itemize}
+
+\textbf{Verwendete Konstanten}
+\begin{itemize}
+	\item \PYTHON{BLERead}: Erlaubt das Auslesen der Charakteristik durch zentrale Geräte.
+	\item \PYTHON{BLENotify}: Ermöglicht das Senden von Benachrichtigungen bei Wertänderung.
+\end{itemize}
+
+vgl. \cite{Arduino2025a}
+
+
+
+
+
+
+\section{Weiterführende Literatur}
+
+Wer tiefer in die Arbeit mit dem Arduino Nano 33 BLE Sense eintauchen möchte, findet online eine Vielzahl hilfreicher Tutorials, Anleitungen und Projekte. Die folgende Auswahl bietet einen guten Einstieg sowie weiterführende Informationen zu Bluetooth Low Energy (BLE), Sensoranbindung und IoT-Anwendungen:
+
+\begin{itemize}
+	\item \href{https://www.instructables.com/Arduino-NANO-33-Made-Easy-BLE-Sense-and-IoT/}{Arduino NANO 33 Made Easy – BLE Sense and IoT}  
+	\newline Ein umfassender Einstieg in BLE-Programmierung und IoT mit vielen Praxisbeispielen und Erklärungen auf Instructables.
+	
+	\item \href{https://docs.arduino.cc/tutorials/nano-33-ble-sense/ble-device-to-device}{Arduino Device-to-Device Kommunikation}  
+	\newline Offizielle Arduino-Dokumentation zur Kommunikation zwischen zwei BLE-Geräten – kompakt und anschaulich erklärt.
+	
+	\item \href{https://projecthub.arduino.cc/8bitkick/sensor-data-streaming-with-arduino-a6b9f9}{Sensor Data Streaming with Arduino}  
+	\newline Anleitung zur kontinuierlichen Übertragung von Sensordaten über BLE – ideal für Echtzeitanwendungen.
+	
+	\item \href{https://www.okdo.com/getting-started/get-started-with-arduino-nano-33-sense/}{Getting Started mit dem Nano 33 Sense}  
+	\newline Einsteigerfreundliche Einführung in Hardware und Software – ideal für erste Schritte.
+	
+	\item \href{https://rootsaid.com/arduino-ble-example/}{Arduino BLE Example}  
+	\newline Zeigt anhand eines einfachen Beispiels, wie eine BLE-Verbindung hergestellt und genutzt wird.
+	
+	\item \href{https://learn.sparkfun.com/tutorials/bluetooth-basics}{Bluetooth Basics – SparkFun}  
+	\newline Grundlagenwissen zu Bluetooth-Technologie, verständlich erklärt – nützlich für das Verständnis von BLE.
+	
+	\item \href{https://ladvien.com/arduino-nano-33-bluetooth-low-energy-setup/}{BLE-Setup für Arduino Nano 33}  
+	\newline Schritt-für-Schritt-Tutorial zur Inbetriebnahme und Konfiguration der BLE-Funktionalität.
+	
+	\item \href{https://www.hackster.io/sridhar-rajagopal/control-arduino-nano-ble-with-bluetooth-python-331e33}{BLE-Steuerung mit Python}  
+	\newline Zeigt, wie der Arduino Nano 33 BLE mit Python angesteuert werden kann – ideal für PC-Integration.
+	
+	\item \href{https://docs.arduino.cc/tutorials/nano-33-ble-sense/cheat-sheet}{Arduino Nano 33 BLE Sense – Cheat Sheet}  
+	\newline Eine offizielle Übersicht der wichtigsten Funktionen und Befehle – perfekt als Schnellreferenz.
+\end{itemize}
+
+
+

@@ -1,0 +1,196 @@
+%%%%%%%%%%%%
+%
+% $Autor: Wings $
+% $Datum: 2019-03-05 08:03:15Z $
+% $Pfad: TemplateSensor $
+% $Version: 4250 $
+% !TeX spellcheck = en_GB/de_DE
+% !TeX encoding = utf8
+% !TeX root = filename 
+% !TeX TXS-program:bibliography = txs:///biber
+%
+%%%%%%%%%%%%
+
+% Structure
+\chapter{Architektur des Endgeräts}
+	Dieses Kapitel beschreibt die Architektur des Endgeräts und umfasst sowohl den hardwareseitigen Aufbau als auch die Struktur der darauf aufbauenden Firmware. 
+
+
+\section{Hardware des Endgeräts}
+	Die Steuer- und Verarbeitungslogik des Endgeräts wird durch ein Arduino-basiertes Mikrocontroller-System realisiert. Der Mikrocontroller ist auf einer eigens entwickelten Leiterplatte integriert, die als zentrales Basismodul des Endgeräts dient. Diese Platine stellt verschiedene standardisierte Schnittstellen und Anschlussmöglichkeiten bereit, um eine einfache Anbindung zusätzlicher Sensor- und Funktionsmodule zu ermöglichen (siehe~\autoref{pcb:General}).
+
+	Die äu{\ss}ere Gestaltung des Endgeräts sowie die Anordnung der wesentlichen Bedienelemente und Anschlüsse sind in der Frontansicht in \autoref{fig:deviceFront} und \autoref{fig:deviceSide} dargestellt. Der interne Aufbau des Endgeräts sowie die Positionierung der elektronischen Komponenten auf der Leiterplatte sind in \autoref{fig:deviceInternal} dargestellt.
+
+	\begin{center}
+		\begin{tikzpicture}
+			\mainModule
+		\end{tikzpicture}
+		\captionof{figure}{Frontansicht des Hauptmoduls}
+		\label{fig:deviceFront}
+	\end{center}
+	
+	\begin{center}
+		\begin{tikzpicture}
+			\mainModuleSideView
+		\end{tikzpicture}
+		\captionof{figure}{Seitenansicht des Hauptmoduls}
+		\label{fig:deviceSide}
+	\end{center}
+	
+	\begin{center}
+		\begin{tikzpicture}
+			\mainModuleInternal
+		\end{tikzpicture}
+		\captionof{figure}{Interner Aufbau des Endgeräts}
+		\label{fig:deviceInternal}
+	\end{center}
+	
+
+\section{Firmware des Endgeräts}
+\subsection{Aufbau der Software}
+	Die Firmware des Endgeräts ist ebenfalls modular strukturiert und besteht aus mehreren logisch getrennten Softwaremodulen. Die Koordination dieser Module erfolgt durch das Hauptprogramm, welches den zentralen Programmfluss steuert und die notwendigen Funktionsaufrufe an die jeweiligen Module delegiert.
+	
+	Das Hauptprogramm ist für die Initialisierung der Softwarekomponenten, die zyklische Ausführung der Systemlogik sowie das Sammeln und Zusammenführen der von den einzelnen Modulen bereitgestellten Daten verantwortlich. Jedes Modul übernimmt dabei eine klar definierte Aufgabe und ist ausschlie{\ss}lich für seinen jeweiligen Funktionsbereich zuständig. 
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\mkrWanSWInternArch
+		\end{tikzpicture}
+		\caption{Bausteine der Softwaremodule des Endgeräts}
+	\end{figure}
+
+
+
+\section{Ablauf der Messung und Übertragung}
+	Die Übertragung des Payloads erfolgt stets im Anschluss an eine zuvor durchgeführte Messung. Der gesamte Prozess wird sequenziell abgearbeitet und folgt einem definierten Ablauf (siehe~\autoref{endnode:prozessFlow}).
+	
+	Nach dem erstmaligen Einschalten des Endgeräts wird zunächst die entsprechende Konfiguration geladen. Anschlie{\ss}end werden die Messungen aller konfigurierten und angeschlossenen Sensoren durchgeführt. Die erfassten Messwerte werden gesammelt, in den Payload kodiert und anschlie{\ss}end über \ac{lorawan} übertragen.
+	
+	Nach einer erfolgreichen Übertragung wechselt das Endgerät in den Schlafmodus, um den Energieverbrauch zu minimieren. Tritt während der Messung oder der Übertragung ein Fehler auf, wird der Prozess an der Stelle erneut aufgenommen, an der er unterbrochen wurde. Schlägt ein Übertragungsversuch dreimal in Folge fehl, wartet das System zunächst für eine Dauer von 15 Minuten. Danach erfolgt ein Neustart des Endgeräts, inklusive erneuter Initialisierung, dem Laden der Konfiguration sowie der Durchführung der Messungen.
+	
+	Dieser Ablauf wird zyklisch wiederholt und bildet den grundlegenden Betriebsmodus des Endgeräts.
+
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.95\textwidth]{LoRaAndLoRaWAN/Flowcharts/SensorsAPI/SensorsAPIEndnodeProcess.pdf}
+		\caption{Ablaufdiagramm des Mess-, Übertragungs- und Fehlerbehandlungsprozesses des Endgeräts}
+		\label{endnode:prozessFlow}
+	\end{figure}
+
+	
+
+	
+%\subsection{Auswahl der Sensoren}
+%
+%	Die Auswahl der Sensoren erfolgt durch Einträge des jeweiligen Sensortyps einschlie{\ss}lich des Anschluss-Pins und optionaler Zusatzparameter in der Sensorkonfigurationsliste des Endgeräts.
+%	
+%	Die Datei \FILE{ListOfDevices.h} enthält die Endgeräte zusammen mit ihren \PYTHON{\acs{appkey}}, \PYTHON{\acs{joineui}}, \PYTHON{\acs{deveui}}, dem Gerätenamen sowie der Liste der verwendeten Sensoren. Die Zuordnung eines Konfigurationseintrags zum tatsächlichen Gerät erfolgt über die \PYTHON{\acs{deveui}}, sodass jedem Endgerät eindeutig seine Sensorschnittstellen zugewiesen werden können.
+%	
+%	Der folgende Codeschnipsel zeigt eine entsprechende Liste von Endgeräten:
+%	
+%	{
+%		\captionof{code}{Konfigurationsdatei für Geräte und Sensorslots}
+%		\ArduinoExternal{}{../../../MKRWAN1310/Code/MKRWAN1310/SoftwareArchitecture/ListOfDevices.h}
+%	}
+%
+%\subsubsection{Beispiel: Hinzufügen eines Sensors}
+%	
+%	Angenommen, die Sensorkonfiguration des Endgeräts mit der \PYTHON{\acs{deveui}}~\PYTHON{A8610A34321C6B09} soll um einen Temperatursensor erweitert werden. In diesem Fall muss ein neuer Eintrag mit dem entsprechenden Sensortyp hinzugefügt werden.
+%	
+%	\begin{figure}[H]
+%		\centering
+%		\includegraphics[width=0.8\textwidth]{SoftwareArchitecture/ListOfDevices}
+%		\caption{Erweiterung der Sensorkonfiguration eines Endgeräts}
+%	\end{figure}
+%	
+%	\begin{figure}[H]
+%		\centering
+%		\begin{tikzpicture}
+%			\tikzset{
+%				textDef/.style={font=\sffamily\small, pos=1.3},
+%				lineScaled/.style={line width={2pt}},
+%				arrowStyle/.style={lineScaled, >=stealth, red},
+%				boxStyle/.style={line width={1pt}, red},
+%			}
+%			\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+%				\includegraphics[width=0.8\linewidth]{SoftwareArchitecture/ListOfDevTempSensor}};
+%			
+%			\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+%				\draw[arrowStyle, <-] (0.85, 0.28) -- ++(0.08, 0);
+%			\end{scope}
+%		\end{tikzpicture}
+%		\caption{Hervorhebung des neu hinzugefügten Eintrags in der Gerätekonfiguration}
+%	\end{figure}
+%
+%\Mynote{New Sensor Array Anpassen}
+%	
+%	
+%\section{Hinzufügen neuer Sensortypen zur Firmware}
+%	\begin{figure}[H]
+%		\centering
+%		\includegraphics[width=0.8\textwidth]{Flowcharts/SensorsAPI/SensorsAPIAddNewSensor.pdf}
+%		\caption{Ablaufdiagramm des Anschlusses eines neuen Sensors an Endgerät}
+%	\end{figure}
+%
+%
+%
+%\begin{figure}
+%	\centering
+%	\includegraphics[width=0.9\textwidth]{Flowcharts/SensorsAPI/ConnectNewSensor}
+%	\caption{Ablaufdiagramm zum Anschlie{\ss}en eines neuen Sensors}
+%\end{figure}
+%
+%
+%\section{Sensorenerstellungsmechanismus}
+%	Jedes Endgerät kann über mehrere Sensoren verfügen. Diese Sensoren besitzen eigene Datentypen sowie gerätespezifische Logik zur Erfassung der Messwerte. Um die Integration neuer Sensoren zu vereinfachen, wurde eine modulare Schnittstelle entwickelt. Sie besteht aus einem klar definierten Interface, das von allen Sensorklassen implementiert werden muss, sowie aus einer Menge von Sensorprofilen, welche die jeweiligen Konfigurationsparameter bereitstellen.
+%	Das Hinzufügen eines neuen Sensors erfordert folgende Schritte:
+%	\begin{itemize}
+%		\item Eintrag in der \PYTHON{SensorTypes}-Enum
+%		\item Erstellung eines zugehörigen Sensorprofils (Festlegung des Rückgabetyps und der Messdatenstruktur)
+%		\item Implementierung der konkreten Sensorklasse (Geschäftslogik)
+%		\item Registrierung in der Sensor-Factory
+%		\item Falls notwendig: Anpassung des entsprechenden Geräteeintrags in der \PYTHON{DeviceList}
+%	\end{itemize}
+%
+%
+%\subsection{SensorTypes}
+%Die Enumeration \PYTHON{SensorTypes} bildet die zentrale Referenz aller unterstützten Sensortypen. Jeder neue Sensor muss dort eingetragen werden, damit das System ihn identifizieren und korrekt instanziieren kann. Die Enum dient somit als Grundlage für die automatische Sensorerstellung und die Zuordnung der passenden Logik.
+%{
+%	\captionof{code}{Konfigurationsdatei \PYTHON{SensorTypes.h}}
+%	\ArduinoExternal{}{../../../MKRWAN1310software/src/Sensors/enums/SensorTypes.h}
+%}
+%Um einen neuen Sensor hinzuzufügen, muss ein entsprechender Enum-Eintrag ergänzt werden.
+%
+%
+%
+%
+%\subsection{ISensor Interface}
+%
+%	Das Interface \PYTHON{ISensor} definiert die Funktionen, die von jeder Sensorklasse implementiert werden müssen. Dadurch wird eine einheitliche Interaktion mit verschiedenen Sensortypen sichergestellt, unabhängig von deren individueller Implementierung. Die Kernfunktionen sind:
+%
+%	\begin{itemize}
+%		\item \PYTHON{init()} – führt die Initialisierung durch (z.\,B. Pin-Setup, Start der Kommunikation, Kalibrierung)
+%		\item \PYTHON{update()} – erfasst neue Messwerte oder aktualisiert interne Zustände
+%		\item \PYTHON{getValue()} – gibt den zuletzt ermittelten Messwert zurück
+%	\end{itemize}
+%
+%	Für jeden neuen Eintrag in \PYTHON{SensorTypes} muss eine entsprechende Klasse implementiert werden, die dieses Interface erfüllt.
+%
+%	{
+%		\captionof{code}{Interface \FILE{ISensor.h}}
+%		\ArduinoExternal{}{../../../MKRWAN1310software/src/Sensors/ISensor.h}
+%	}
+%
+%\subsection{Registrierung des neuen Sensors in der Sensor-Factory}
+%
+%	Damit ein neuer Sensor zur Laufzeit erzeugt werden kann, muss die Sensor-Factory um diesen Sensortyp erweitert werden. Die Factory dient als zentrale Instanz, welche alle verfügbaren Sensoren sowie deren Parameter kennt, einschlie{\ss}lich der zugehörigen Pins, des Rückgabetyps, der benötigten Bytegrö{\ss}e und möglicher zusätzlicher Konfigurationswerte. 
+%	Auf dieser Grundlage erzeugt die Factory jene Sensorinstanzen, die in \FILE{ListOfDevices.h} für das jeweilige Endgerät definiert sind. Dies stellt sicher, dass:
+%	
+%	\begin{itemize}
+%		\item alle Sensoren konsistent initialisiert werden,
+%		\item der Rückgabewert eindeutig bekannt ist,
+%		\item das Endgerät automatisch die korrekt konfigurierten Sensorobjekte erhält.
+%	\end{itemize}
+%\Mynote{Zeige die Factory}

@@ -1,0 +1,151 @@
+%%%
+%
+% $Autor: Gruppe 02 $
+% $Datum: 2025-06 $
+% $Projekt: Rundenzaehler fuer die Carrera-Bahn
+% $Kurzbeschreibung: Anleitung für den Schnelleinstieg in die Arduino IDE
+% $Dateiname: SchnelleinstiegIDE.tex
+% $Abhängigkeiten: RundenzaehlerDoku.tex
+%
+%%%
+
+\chapter{Arduino Nano 33 BLE Sense Lite - Schnelleinstieg}
+\label{Arduino_Nano_33_BLE_Sense_Lite_-_Schnelleinstieg}
+
+\section{Einleitung}
+
+Die Mikrocontroller-Programmierung beginnt traditionell mit einem einfachen Beispiel: Ein Programm soll eine LED zum Blinken bringen – das „Hello World“ der Embedded-Welt. In dieser Dokumentation wird die Einrichtung und erste Verwendung des Mikrocontrollers \textbf{Arduino Nano 33 BLE Sense Lite} exemplarisch gezeigt. Dieser Mikrocontroller basiert auf einem ARM Cortex-M4 Prozessor mit Bluetooth Low Energy (BLE) Funktionalität und verschiedenen integrierten Sensoren.\\
+
+Im Mittelpunkt steht die Verbindung zwischen der Entwicklungsumgebung Arduino IDE und dem Mikrocontroller. Ziel ist es, den Arduino korrekt mit dem Computer zu verbinden, das notwendige Boardpaket zu installieren und ein erstes Testprogramm erfolgreich hochzuladen.\\
+
+Als Einstieg wird das vorinstallierte Beispielprogramm \PYTHON{blink.ino} verwendet, das die integrierte orangefarbene LED im Sekundentakt blinken lässt. Damit kann überprüft werden, ob die grundlegende Verbindung zwischen Computer, IDE und Mikrocontroller funktioniert. Nach erfolgreicher Durchführung dieses Tests ist das System bereit für die weitere Entwicklung eigener Programme und Projekte mit dem Arduino Nano 33 BLE Sense Lite.
+
+
+\section{Installation der Arduino IDE}
+Für die Arbeit mit dem Arduino Nano 33 BLE Sense Lite ist die Arduino IDE erforderlich. Die vollständige Installation der Entwicklungsumgebung wird im Kapitel \ref{chap:Arduino_IDE_Installation} erläutert. Nach erfolgreicher Einrichtung kann direkt mit der Konfiguration des Boards fortgefahren werden.
+
+\section{Boardpaket installieren}
+Um den Arduino Nano 33 BLE Sense Lite mit der Arduino IDE nutzen zu können, muss zunächst das passende Boardpaket installiert werden. Dieses enthält die notwendigen Treiber und Einstellungen zur Programmierung des Boards.
+
+\begin{enumerate}
+	\item Öffnen Sie die Arduino IDE.
+	\item Navigieren Sie zum Menü \menu{Werkzeuge} und wählen Sie den \menu{Boardverwalter}.
+	\item Geben Sie im Suchfeld \PYTHON{Mbed OS} ein.
+	\item Wählen Sie den Eintrag \menu{Arduino Mbed OS Nano Boards} aus der Ergebnisliste aus.
+	\item Klicken Sie auf \menu{Installieren}, um das Boardpaket zu laden.
+\end{enumerate}
+
+\begin{center} 
+	\includegraphics[width=0.7\linewidth]{Arduino/ArdiunoIDE2/de/BibBoard.png} 
+	\captionof{figure}{Arduino Mbed OS Nano Boards Bibliothek}\label{Pakteinstallation} 
+\end{center} 
+
+Nach der erfolgreichen Installation ist das Arduino Nano 33 BLE Sense Lite in der Boardauswahl verfügbar und kann programmiert werden. Das Paket unterstützt neben dem Arduino Nano 33 BLE Sense Lite auch weitere Modelle der Arduino-Nano-Familie.
+
+\section{Anschluss des Boards}
+Nachdem das passende Boardpaket installiert wurde, kann der Arduino Nano 33 BLE Sense Lite mit dem Computer verbunden und konfiguriert werden.
+
+\begin{enumerate}
+	\item Verbinden Sie das Board mittels eines USB-A-zu-USB-Micro-Kabels mit Ihrem Computer. Achten Sie darauf, dass das Kabel Datenleitungen unterstützt und nicht nur für das Laden geeignet ist.
+	\item Starten Sie die Arduino IDE. Im Editorfenster wird eine neue, leere Sketch-Datei mit den Funktionen \PYTHON{void setup()} und \PYTHON{void loop()} angezeigt.
+	\item Öffnen Sie das Menü \menu{Werkzeuge} und wählen Sie unter \menu{Board} das \textbf{Arduino Nano 33 BLE Sense Lite} aus.
+\end{enumerate}
+
+\begin{center} 
+	\includegraphics[width=0.7\linewidth]{Arduino/ArdiunoIDE2/de/Board.png} 
+	\captionof{figure}{Auswahl des Mikrocontrollers}\label{Board Auswahl} 
+\end{center} 
+
+Damit ist die IDE für die Programmierung des Boards vorbereitet und die Verbindung zum Gerät hergestellt.
+
+\section{Board und Port auswählen}
+Nach dem Anschluss des Arduino Nano 33 BLE Sense Lite an den Computer muss in der Arduino IDE der korrekte serielle Port ausgewählt werden, um die Kommunikation zu ermöglichen.
+
+\begin{enumerate}
+	\item Drücken Sie den weißen Reset-Knopf auf dem Board, um es in den Bootloader-Modus zu versetzen.
+	\item Kontrollieren Sie, ob die orange integrierte LED auf dem Board leuchtet, was den Bootloader-Modus signalisiert.
+	\item In der Arduino IDE öffnen Sie das Menü \menu{Werkzeuge} > \menu{Port} und wählen den neu erschienenen COM-Port \menu{COM4 > Arduino Nano 33 BLE Sense Lite}.
+	\item Falls mehrere Ports angezeigt werden, ziehen Sie das Board kurz ab und stecken es wieder ein, um den korrekten Port zu identifizieren.
+\end{enumerate}
+
+\begin{center} 
+	\includegraphics[width=0.7\linewidth]{Arduino/ArdiunoIDE2/de/Port.png} 
+	\captionof{figure}{Auswahl des USB-Ports}\label{Port Auswahl} 
+\end{center} 
+
+\section{Upload und Verifikation}
+Nachdem das Board und der Port korrekt ausgewählt wurden, kann das Programm auf den Arduino Nano 33 BLE Sense Lite hochgeladen werden.
+
+\begin{enumerate}
+	\item Es empfiehlt sich zunächst, den Sketch mit dem Button \menu{Verifizieren} (Häkchen-Symbol) zu überprüfen. So werden mögliche Fehler und Warnungen vor dem Upload angezeigt.
+	\item Nach erfolgreicher Verifikation klicken Sie auf den Button \menu{Upload} (Pfeilsymbol), um den Sketch zu kompilieren und auf das Board zu übertragen.
+	\item Während des Uploads blinken die \texttt{RX}- und \texttt{TX}-LEDs auf dem Board.
+	\item Nach abgeschlossenem Upload zeigt die IDE die Meldung \texttt{Hochladen abgeschlossen} an, und der Sketch läuft sofort auf dem Board.
+	\item Kontrollieren Sie im unteren rechten Bereich der IDE, ob das Board und der Port korrekt angezeigt werden, um sicherzugehen, dass die Verbindung weiterhin besteht.
+\end{enumerate}
+
+\section{Sketch: Blink-Beispiel}
+Um sicherzustellen, dass die Verbindung zwischen Arduino Nano 33 BLE Sense Lite und der Arduino IDE korrekt funktioniert, empfiehlt sich ein einfacher Funktionstest mit dem Blink-Beispiel.
+
+\subsection{Beispielsketch \texttt{blink.ino} laden und ausführen}
+
+Das Arduino IDE stellt eine Reihe vorgefertigter Beispielsketche bereit, mit denen die Grundfunktionalität des Boards geprüft werden kann. Für den Test öffnen Sie das Beispiel \texttt{blink.ino}:
+
+\begin{enumerate}
+	\item Starten Sie die Arduino IDE und öffnen Sie das Menü \menu{Datei} > \menu{Beispiele} > \menu{01.Basics} > \menu{Blink}.
+	\item Der Sketch öffnet sich im Editorfenster.
+	\item Klicken Sie auf den \menu{Upload}-Button (Pfeilsymbol), um den Sketch auf das Board zu übertragen.
+	\item Nach erfolgreichem Upload beginnt die integrierte LED auf dem Board (meist Pin 13) mit einer Frequenz von etwa 2 Hz zu blinken.
+\end{enumerate}
+
+\subsection{Kurze Beschreibung des Blink-Sketches}
+
+Der Blink-Sketch ist das klassische Einstiegsprogramm für Arduino-Boards. Er schaltet die eingebaute LED im Sekundentakt ein und aus. Dabei demonstriert der Sketch die grundlegende Struktur eines Arduino-Programms mit den Funktionen \PYTHON{setup()} und \PYTHON{loop()}. In \PYTHON{setup()} wird die LED als Ausgang definiert, und in \PYTHON{loop()} wird die LED ein- und ausgeschaltet, jeweils gefolgt von einer kurzen Pause. Dieses einfache Programm bestätigt, dass das Board korrekt programmiert werden kann und die Hardware funktioniert.
+
+\begin{center} 
+	\includegraphics[width=0.7\linewidth]{Arduino/ArdiunoIDE2/de/BeispielCodeBlink.png} 
+	\captionof{figure}{Reitermenü Beipiele - Blinksketch}\label{Reiter Blinksketch} 
+\end{center} 
+
+\begin{center} 
+	\includegraphics[width=0.7\linewidth]{Arduino/ArdiunoIDE2/de/BeispielCodeBlinkIDE.png} 
+	\captionof{figure}{Blink-Sketch in der Arduino IDE}\label{Blink Code} 
+\end{center} 
+
+
+\section{Fehlerquellen und Lösungen}
+\label{Fehlerquellen_und_Loesungen}
+In diesem Kapitel werden häufig auftretende Probleme beim Arbeiten mit dem Arduino Nano 33 BLE Sense Lite beschrieben. Zudem werden mögliche Ursachen und entsprechende Lösungsansätze aufgezeigt, um die Fehlersuche zu erleichtern.
+
+\subsubsection{Board wird nicht erkannt}
+
+\begin{itemize}
+	\item \textbf{Ursache:} Das verwendete USB-Kabel überträgt nur Strom, aber keine Daten.
+	\item \textbf{Lösung:} Verwenden Sie ein vollwertiges USB-Datenkabel. Testen Sie ggf. mehrere Kabel.
+\end{itemize}
+
+\subsubsection{Kein serieller Port auswählbar}
+
+\begin{itemize}
+	\item \textbf{Ursache:} Fehlende oder falsche USB-Treiber.
+	\item \textbf{Lösung:} Installieren Sie die passenden Treiber für Ihren Rechner. Unter Windows häufig CH340 oder FTDI, unter macOS ggf. Sicherheitseinstellungen prüfen.
+\end{itemize}
+
+\subsubsection{Upload schlägt fehl}
+
+\begin{itemize}
+	\item \textbf{Ursache:} Serielle Verbindung blockiert, z.B. durch geöffneten seriellen Monitor oder andere Programme.
+	\item \textbf{Lösung:} Seriellen Monitor schließen, ggf. Arduino zurücksetzen oder IDE neu starten.
+\end{itemize}
+
+\subsubsection{LED blinkt nicht}
+
+\begin{itemize}
+	\item \textbf{Ursache:} Fehler im Sketch, falscher Pin oder LED falsch angeschlossen.
+	\item \textbf{Lösung:} Sketch überprüfen und erneut hochladen. Pinbelegung prüfen. Bei externer LED: Polung und Vorwiderstand (\SI{330}{\ohm} bis \SI{1}{\kilo\ohm}) sicherstellen.
+\end{itemize}
+
+\vspace{1em}
+
+Mit diesen Hinweisen können die meisten typischen Fehler schnell erkannt und behoben werden. Falls weiterhin Probleme bestehen, empfiehlt es sich, die Arduino-Community oder offizielle Foren zu konsultieren.
+

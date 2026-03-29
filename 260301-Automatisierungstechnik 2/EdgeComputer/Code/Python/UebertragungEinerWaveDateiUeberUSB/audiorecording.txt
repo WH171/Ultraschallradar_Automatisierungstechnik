@@ -1,0 +1,70 @@
+##!
+# @file audiorecording.py
+# @brief Audio recording from Arduino serial input with gain amplification.
+#
+# This script reads raw audio data from a specified serial port,
+# amplifies the samples by a given gain, and saves the result
+# as a WAV file.
+#
+# Configuration parameters include the serial port, baud rate,
+# recording duration, output filename, gain, sample rate, sample width,
+# and number of channels.
+##
+
+import serial
+import wave
+import time
+import struct
+
+##! @brief Serial port of the Arduino
+PORT = 'COM6'
+##! @brief Baud rate for serial communication
+BAUDRATE = 250000
+##! @brief Duration of recording in seconds
+DURATION = 5
+##! @brief Output WAV file name
+FILENAME = 'aufnahme_30dB.wav'
+
+##! @brief Gain factor to amplify the audio samples (+30 dB)
+GAIN = 31.62
+##! @brief Sample rate in Hz
+SAMPLE_RATE = 16000
+##! @brief Sample width in bytes
+SAMPLE_WIDTH = 2
+##! @brief Number of audio channels (mono)
+CHANNELS = 1
+
+ser = serial.Serial(PORT, BAUDRATE)
+time.sleep(2)
+
+raw_bytes = bytearray()
+print("Recording started...")
+
+start_time = time.time()
+while time.time() - start_time < DURATION:
+    if ser.in_waiting > 0:
+        raw_bytes += ser.read(ser.in_waiting)
+
+print("Recording finished.")
+ser.close()
+
+# Unpack raw bytes to signed 16-bit samples
+samples = struct.unpack('<' + 'h' * (len(raw_bytes) // 2), raw_bytes)
+
+amplified = []
+for s in samples:
+    # Amplify sample and clip to 16-bit signed integer range
+    amplified_sample = int(s * GAIN)
+    amplified_sample = max(-32768, min(32767, amplified_sample))
+    amplified.append(amplified_sample)
+
+# Pack amplified samples back to bytes
+amplified_bytes = struct.pack('<' + 'h' * len(amplified), *amplified)
+
+with wave.open(FILENAME, 'wb') as wf:
+    wf.setnchannels(CHANNELS)
+    wf.setsampwidth(SAMPLE_WIDTH)
+    wf.setframerate(SAMPLE_RATE)
+    wf.writeframes(amplified_bytes)
+
+print(f"WAV file saved: {FILENAME}")

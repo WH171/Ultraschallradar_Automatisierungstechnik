@@ -1,0 +1,277 @@
+%%%
+%
+% $Autor: Wings $
+% $Datum: 2021-05-14 $
+% $Pfad: GitLab/MLEdgeComputer $
+% $Dateiname: AdapterBoard
+% $Version: 4620 $
+%
+% !TeX spellcheck = de_DE/GB
+% !TeX program = pdflatex
+% !BIB program = biber/bibtex
+% !TeX encoding = utf8
+%
+%%%
+
+
+
+\chapter{Setup for the Arduino Nano 33 BLE Sense}
+
+\section{Introduction}
+
+In this chapter, the process of connecting the Arduino Nano 33 BLE Sense to a computer or laptop and configuring essential settings to get started is explored. The steps for installing the necessary tools and ensuring the board is correctly set up in the Arduino IDE are detailed. Finally, a simple example sketch is demonstrated to verify that the board is working as expected and ready for further development.
+
+There are set of examples which are build in Arduino (IDE) for the testing purpose, for checking all the configuration and setting up the board we can open one of the basic example \FILE{blnik.ino} first.
+
+% as shown in the figure.~\ref{fig:LED-ExampleTest}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Configuration for the Arduino Nano 33 BLE Sense}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+To program the \textbf{Arduino Nano 33 BLE Sense} in an offline environment, follow these steps:
+
+\begin{enumerate}
+	\subsection{Installation of the driver}
+	\item \textbf{Installation of the driver:} Begin by installing the latest version of the Arduino IDE on your computer. Refer to Section \ref{sec:Installation of the Arduino IDE} for more details.
+	\item \textbf{Installation of the packages:} Once the IDE installation is complete, open the \menu{Arduino IDE} and navigate to the menu  \menu{Tools}, located in the upper-left corner.
+	\item In the menu \menu{Tools}, select the \menu{Board Manager}.
+	\item In the window \menu{Board Manager}, use the search bar to locate the \textbf{Arduino Nano 33 BLE Sense} by typing its name as shown in Figure \ref{fig:ArduinoMbedOSNanoBoardsInstallation}		.
+	\item From the search results, select \menu{Arduino Mbed OS Nano Boards} and click \menu{Install} to install the required package.
+\end{enumerate}
+
+The Mbed OS Nano Board package includes support for several Arduino Nano family boards, including the Arduino Nano 33 BLE Sense. After completing the installation, connect the Arduino Nano 33 BLE Sense to your computer using a USB-A to USB-Micro to begin programming.
+
+\begin{center}
+	\begin{tikzpicture}
+		\node (G) at (0,0) {\includegraphics[width=8cm]{Arduino/ArdiunoIDE2/boardmanager1.png}};
+		
+		\draw[red,domain=0:360,line width=1.4pt] plot ({-2.6+1*cos(\x)},{0.7
+			+0.5*sin(\x)});
+		
+	
+		
+		
+	\end{tikzpicture}
+				\captionof{figure}{Arduino Mbed OS Nano Boards Installation}\label{fig:ArduinoMbedOSNanoBoardsInstallation}
+\end{center}	
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Connection and Configuration of the Arduino Board to the Computer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+To run either a built-in example or a custom program on the Arduino Nano 33 BLE Sense, follow these initial steps:
+
+\begin{enumerate}
+	
+	\item Connect the Arduino board to the computer using a USB-A-USB-micro-cable.
+	\item Open the Arduino IDE on the computer. A blank environment page will appear, showing the default \PYTHON{void setup()} and \PYTHON
+	{void loop()} functions.
+	\item Navigate to the menu \menu{Tools}, select \menu{Board}, and choose the connected board, which is the \textbf{Arduino Nano 33 BLE Sense}, as shown in Figure~\ref{fig:SelecttheConnectedboard-hereArduinoNano33BLESense}.
+	
+\end{enumerate}
+
+This setup prepares the Arduino IDE to recognize and communicate with the Arduino Nano 33 BLE Sense.
+
+
+
+\begin{figure}[H]\centering
+	\includegraphics[width=8cm]{Arduino/ArdiunoIDE2/SelectTheConnectedBoardArduinoNano33BLESense}
+	\caption{Select the Connected board - here Arduino Nano 33 BLE Sense}
+	\label{fig:SelecttheConnectedboard-hereArduinoNano33BLESense}		
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Select the Appropriate Port}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+After selecting the Arduino Nano 33 BLE Sense board, the next step is to verify the connected port. To do this, the Arduino board must be set into Bootloader mode by pressing the white reset button on the board, as shown in Figure ~\ref{fig:ArduinoNano33BLESenseResetButton}.
+
+\begin{center}
+	\begin{tikzpicture}
+		\node (G) at (0,0) {\includegraphics[width=8cm]{Arduino/ArdiunoIDE2/resetbutton.png}};
+		
+		\draw[green,domain=0:360,line width=1.4pt] plot ({-1.5+0.4*cos(\x)},{-1.6
+			+0.4*sin(\x)});
+	\end{tikzpicture}
+		\captionof{figure}{Arduino Nano 33 BLE Sense Reset Button}\label{fig:ArduinoNano33BLESenseResetButton}		
+\end{center}
+
+
+By pressing the white reset button, the Arduino board will enter Bootloader mode. It is important to verify that the orange Builtin-LED is illuminated, as shown in Figure ~\ref{fig:ArduinoNano33BLESenseResetButton}			
+
+
+
+\begin{center}
+	\begin{tikzpicture}
+		\node (G) at (0,0) {\includegraphics[width=8cm]{Arduino/ArdiunoIDE2/resetbutton.png}};
+		
+		\draw[green,domain=0:360,line width=1.4pt] plot ({-2.8+0.4*cos(\x)},{-0.8
+			+0.4*sin(\x)});
+			
+		\draw[orange,domain=0:360,line width=1.4pt] plot ({-2.8+0.4*cos(\x)},{-2.6
+	+0.4*sin(\x)});
+			
+			
+			
+	\end{tikzpicture}
+		\captionof{figure}{green and orange Builtin-LED}\label{fig:ArduinoNano33BLESenseResetButton}	
+\end{center}	
+
+
+
+ 
+ 
+
+After successfully completing the previously mentioned steps, the next task is to select the connected port before uploading the program. To do this, navigate to the menu \menu{Tools}, select \menu{Port}, and ensure that the available port for uploading the program is properly selected, as shown in Figure ~\ref{fig:SelectAvailablePortforUploadingArduinoSketch}	
+
+
+
+\begin{figure}[H]\centering
+	\includegraphics[width=8cm]{Arduino/ArdiunoIDE2/SelectAvailablePortForUploadingArduinoSketch}
+	\caption{Select Available Port for Uploading Arduino Sketch}
+	\label{fig:SelectAvailablePortforUploadingArduinoSketch}		
+\end{figure}
+
+
+
+
+\subsection{Upload and Verify a Sketch}\label{uploadcode}
+
+After ensuring that the appropriate port is selected, the next step is to upload the Arduino program. \textbf{Before} uploading the program, it is considered best practice to verify it first. This process will indicate whether any errors or warnings exist in the program. Once the program is successfully verified, it can be safely uploaded by clicking the button \menu{Upload} located below the file section, as shown in Figure ~\ref{fig:Upload the Program in Arduino board}
+
+
+
+
+After selecting the board and port, confirm that the Arduino Nano 33 BLE Sense is properly connected to the Arduino IDE. This can be verified by checking the message in the bottom right corner of the IDE window, which should display the connected board and port.
+
+
+
+
+
+\begin{figure}[H]\centering
+	\includegraphics[width=8cm]{Arduino/ArdiunoIDE2/UploadTheProgramInArduinoBoard}
+	\caption{Upload the Program in Arduino board}
+	\label{fig:Upload the Program in Arduino board}		
+\end{figure}
+
+
+
+
+After uploading, the code will be compiled, and any issues in the program will be displayed in the bottom black window. Once the code is successfully uploaded and compiled on the Arduino board, it is necessary to reselect the port, as done previously. Navigate to the \menu{Tools menu}, select \menu{Port}, and ensure the correct port is selected, as shown in Figure ~\ref{fig:SettingthePort}, in order to view the output in the Serial Monitor.
+
+
+
+\begin{figure}[H]\centering
+	\includegraphics[width=8cm]{Arduino/ArdiunoIDE2/SettingThePort}
+	\caption{Setting the Port}
+	\label{fig:SettingthePort}		
+\end{figure} 
+
+
+
+
+
+\section{Test the Configuration}
+
+In this subsection, we will test whether the board is properly connected to the Arduino IDE by running an Example Blink Sketch. This simple test will make an onboard LED light up, verifying both the connection and basic functionality of the Arduino Nano 33 BLE Sense. By the end of this section, you will have confirmed that the hardware and software are working together seamlessly.
+
+
+\subsection{Testing the Steps by an Example Sketch \FILE{blink.ino}}
+
+
+The Arduino IDE contains a set of built-in examples for testing purposes. To verify the configuration and set up the board, the basic example \FILE{blink.ino} can be opened first. After uploading the example \FILE{blink.ino} the Builtin LED blinks with 2 Hz. 
+
+
+To begin, open the Arduino IDE on the computer and follow the steps below:
+
+\begin{enumerate}
+
+
+
+\item \textbf{Open the Examples:} Once it's open, click on the \menu{File} menu and hover over \menu{Examples} in the dropdown menu. 
+
+\item \textbf{Selecting the Example Sketch:} A list of example categories will appear. Under the Built-in Examples, go to \menu{01.Basics} and click on \menu{Blink} as shown in ~\ref{fig:LED-ExampleTest}.
+
+\item \textbf{Blink Example Sketch:} After following steps 1 and 2, the  Example Sketch \FILE{blink.ino} will open in a new window within the IDE as seen in Figure ~\ref{fig:LED-Built_Code}.
+
+\item \textbf{Upload Example Sketch \FILE{blink.ino}:} Click the \menu{Upload} button (right arrow icon) in the Arduino IDE toolbar to compile and upload the example sketch to the Arduino Nano 33 BLE Sense board. Once the upload is complete, the orange built-in LED starts blinking. 
+
+
+
+\end{enumerate}
+
+
+\begin{center}
+	\includegraphics[width=8cm]{Arduino/ArdiunoIDE2/BlinkExampleIDE2.3.3.png}
+	\captionof{figure}{LED Example Sketch}\label{fig:LED-ExampleTest}		
+\end{center} 
+
+
+
+\begin{center}
+	\includegraphics[width=8cm]{Arduino/ArdiunoIDE2/LedBlinkCode.png}
+	\captionof{figure}{LED-Built Example}\label{fig:LED-Built_Code}		
+\end{center} 
+
+
+
+With the successful blinking of the built-in orange LED, it is confirmed that the Arduino Nano 33 BLE Sense is properly connected to the Arduino IDE and its basic functionality has been verified. The board is now ready for further development and projects.
+
+
+
+
+
+
+%
+\subsection{Description of Basic Sketch for Printing 'Hello'}
+
+To test the development environment and the basic functionality of the hardware, a simple example sketch that controls only one LED is suitable. This sketch provides the Arduino \ac{ide}. Under the path \FILE{File/Examples/01.Basics}, small example sketches can be selected. Here, the example \FILE{Fade} is used. In this case, the built-in LED, which is an RGB LED, is utilized. 
+
+
+\begin{lstlisting}
+	int brightness = 0;  // how bright the LED is
+	int fadeAmount = 5;  // how many points to fade the LED by
+	
+	// the setup routine runs once when you press reset:
+	void setup() {
+		// declare LED_BUILTIN to be an output:
+		pinMode(LED_BUILTIN, OUTPUT);
+	}
+	
+	// the loop routine runs over and over again forever:
+	void loop() {
+		// set the brightness of LED_BUILTIN:
+		analogWrite(LED_BUILTIN, brightness);
+		
+		// change the brightness for next time through 
+		//the loop:
+		brightness = brightness + fadeAmount;
+		
+		// reverse the direction of the fading at the ends 
+		//of the fade:
+		if (brightness <= 0 || brightness >= 255) {
+			fadeAmount = -fadeAmount;
+		}
+		// wait for 30 milliseconds to see the dimming 
+		//effect
+		delay(30);
+	}
+\end{lstlisting}
+
+
+As a result, the brightness of the built-in LED should gradually fade in and out.
+
+%
+

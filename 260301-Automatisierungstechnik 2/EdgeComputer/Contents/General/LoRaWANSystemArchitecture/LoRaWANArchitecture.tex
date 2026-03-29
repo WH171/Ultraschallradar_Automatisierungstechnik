@@ -1,0 +1,74 @@
+%%%%%%%%%%%%
+%
+% $Autor: Wings $
+% $Datum: 2019-03-05 08:03:15Z $
+% $Pfad: TemplateSensor $
+% $Version: 4250 $
+% !TeX spellcheck = en_GB/de_DE
+% !TeX encoding = utf8
+% !TeX root = filename 
+% !TeX TXS-program:bibliography = txs:///biber
+%
+%%%%%%%%%%%%
+
+\chapter{LoRaWAN-Architektur und Datenfluss}
+	Dieses Kapitel beschreibt den grundlegenden Aufbau der verwendeten \acs{lorawan}-Architektur sowie den Datenfluss eines Uplinks vom Endgerät über das Gateway bis zum Netzwerkserver.
+
+\section{LoRaWAN-Architektur}
+	Die \acs{lorawan}-Architektur besteht aus drei zentralen Komponenten: den Endgeräten, den Gateways sowie dem \acl{lns} (siehe~\autoref{fig:lorawanArchitectureGeneral}). Diese Komponenten sind funktional klar voneinander getrennt und übernehmen jeweils spezifische Aufgaben innerhalb des Gesamtsystems.
+
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\tikzset{
+				node distance=0.5cm and 0.4cm,
+				textDef/.style={font=\sffamily\small,},
+				lineDef/.style={line width={2pt}},
+				arrowStyle/.style={line width=2pt, >=stealth, red},
+			}
+			\sensorEndNode{1}{0}{-7}{0.2}{E1}
+			\gatewayNode{1}{0}{-3}{1.45}{G1}
+			\serverNode{0.6}{0}{0}{0}{S1}
+			
+			\draw[arrowStyle, <->] (E1.east) -- (G1.west) node[textDef, midway, above] {\shortstack{LoRa\\Modulation}};
+			\draw[arrowStyle, <->] (G1.east) -- (S1.west) node[textDef, midway, above] {\shortstack{\acs{wan}\\Backhaul}};
+			
+			\node[textDef, below= of E1.south] {Endgerät};
+			\node[textDef, below= of G1.south] {Gateway};
+			\node[textDef, below= of S1.south] {\shortstack{LoRaWAN\\Server}};
+			
+		\end{tikzpicture}
+		\captionof{figure}{Kommunikationspfad eines Uplinks im LoRaWAN}
+		\label{fig:lorawanArchitectureGeneral}
+	\end{figure}
+	
+	Die Kommunikation zwischen Endgerät und Gateway erfolgt drahtlos unter Verwendung der LoRa-Modulation im Sub-GHz-Frequenzbereich (siehe~\autoref{lora:general}). Zwischen Gateway und \acs{lns} findet die Datenübertragung über eine IP-basierte \acs{wan}-Verbindung statt, beispielsweise über Ethernet oder Mobilfunk (siehe~\autoref{gateway:backhaul}). Das Gateway fungiert dabei ausschlie{\ss}lich als Weiterleitungsinstanz und führt keine inhaltliche Verarbeitung der Nutzdaten durch.
+
+\subsection{Ablauf eines Uplinks}
+	Nach der Erfassung der Sensordaten erzeugt das Endgerät einen \ac{lorawan}-Uplink-Frame, welcher verschlüsselt und über die LoRa-Funkschnittstelle ausgesendet wird. Ein oder mehrere Gateways können diesen Frame empfangen und leiten ihn unverändert an den zuständigen \acs{lns} weiter (siehe~\autoref{gateway:info}).
+	
+	Das Ablaufdiagramm in Abbildung~\ref{LoRaWAN:Architecture:uplink} zeigt den vollständigen Weg eines Uplinks vom Endgerät bis zum \acs{lns}. Dabei werden die vom Sensor erfassten Benutzerdaten im Feld \PYTHON{FRMPayload} des \ac{lorawan}-Frames übertragen (siehe~\autoref{lorawan:frmpayload}).
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\textwidth]{LoRaAndLoRaWAN/Flowcharts/SensorsAPI/SensorsAPIUplinkProcess}
+		\caption{Ablaufdiagramm eines Uplinks vom Endgerät bis zum \ac{lns}}
+		\label{LoRaWAN:Architecture:uplink}
+	\end{figure}
+	
+
+
+\subsection{Ablauf der Bearbeitung eines Uplinks auf dem ChirpStack Network Server}
+	Der ChirpStack Network Server ist für die vollständige Verarbeitung aller eingehenden \ac{lorawan}-Frames verantwortlich. Dazu zählen unter anderem die Authentifizierung des Endgeräts, die Entschlüsselung der Nutzdaten, die Verwaltung der Frame Counter sowie die Duplikaterkennung (siehe~\autoref{LoRaWAN:Architecture:LNS}).
+	
+	Abbildung~\ref{LoRaWAN:Architecture:LNS} stellt den Ablauf der Verarbeitung eines Uplinks mit Applikationsdaten auf dem ChirpStack Network Server dar.
+
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\textwidth]{LoRaAndLoRaWAN/Flowcharts/SensorsAPI/SensorsAPIUplinkProcessOnServer.pdf}
+		\caption{Ablaufdiagramm der Verarbeitung eines Uplinks im \ac{lns}}
+		\label{LoRaWAN:Architecture:LNS}
+	\end{figure}
+	
+	Nach erfolgreicher Verarbeitung werden die entschlüsselten Nutzdaten an die Anwendung des Benutzers weitergeleitet, wo sie beispielsweise gespeichert, visualisiert oder weiterverarbeitet werden können (siehe~\autoref{server:appserver}).

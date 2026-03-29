@@ -1,0 +1,316 @@
+%%%%%%%%%%%%
+%
+% $Autor: Wings $
+% $Datum: 2019-03-05 08:03:15Z $
+% $Pfad: TemplateSensor $
+% $Version: 4250 $
+% !TeX spellcheck = en_GB/de_DE
+% !TeX encoding = utf8
+% !TeX root = filename 
+% !TeX TXS-program:bibliography = txs:///biber
+%
+%%%%%%%%%%%%
+
+% Structure
+\chapter{Mechanismus zur Integration der Sensoren}
+
+
+\section{Auswahl und Konfiguration des Endgerätes}
+	Die verwendeten Sensoren können flexibel an das Endgerät angebunden werden. Abbildung~\ref{SensorConfig:ChooseSensor} zeigt den Entscheidungsablauf, anhand dessen bestimmt wird, ob ein Sensor direkt eingebunden werden kann oder ob zuvor die Erstellung eines neuen Sensorprofils erforderlich ist.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\textwidth]{LoRaAndLoRaWAN/Flowcharts/SensorsAPI/SensorsAPIConfigUsedSensors.pdf}
+		\caption{Ablaufdiagramm zur Auswahl und Konfiguration der verwendeten Sensoren am Endgerät}
+		\label{SensorConfig:ChooseSensor}
+	\end{figure}
+	
+	
+	Grundsätzlich ergeben sich zwei mögliche Vorgehensweisen. Ist für einen Sensor bereits ein passendes Sensorprofil vorhanden (siehe~\autoref{SA:SensorProfile}), kann der Sensor direkt unter Verwendung dieses Profils angebunden werden. Andernfalls muss zunächst ein entsprechendes Sensorprofil erstellt werden.
+	
+	
+	\begin{enumerate}
+		\item \textbf{Erstellung eines neuen Sensorprofils:} Ist für einen Sensor noch kein passendes Sensorprofil vorhanden, muss zunächst das Verfahren zur Erstellung eines neuen Sensorprofils durchgeführt werden (siehe~\autoref{SensorConfig:NewSensorTyp}). Nach erfolgreicher Definition kann der Sensor in der Konfigurationsdatei \PYTHON{ListOfDevices.h} eingetragen und anschlie{\ss}end wie gewohnt verwendet werden (siehe~\autoref{SensorConfig:ChooseSensors}).
+		
+		\item \textbf{Verwendung eines bestehenden Sensorprofils:} Ist für den gewünschten Sensor bereits ein Sensorprofil vorhanden, kann der Sensor direkt an das Endgerät angeschlossen werden. Anschlie{\ss}end wird der Sensor über einen entsprechenden Eintrag in der Konfigurationsdatei \PYTHON{ListOfDevices.h} aktiviert und in den Messablauf eingebunden (siehe~\autoref{SensorConfig:ChooseSensors}).
+	\end{enumerate}
+
+
+
+\section{Erstellung eines neuen Sensorprofils am Beispiel eines Lichtsensors}
+\label{SensorConfig:NewSensorType}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{LoRaAndLoRaWAN/Flowcharts/SensorsAPI/SensorsAPIAddNewSensor.pdf}
+	\caption{Ablaufdiagramm zur Integration eines neuen Sensortyps in die Firmware}
+\end{figure}
+
+In diesem Abschnitt wird exemplarisch beschrieben, wie ein neuer Sensortyp in die Firmware integriert wird. Als Beispiel dient ein fiktiver Lichtsensor, der ausschlie{\ss}lich der Veranschaulichung des Vorgehens dient.
+
+Die Firmware trennt strikt zwischen der Erfassung von Sensordaten, der logischen Typisierung von Sensoren und der Definition der Payload-Kodierung. Für die Integration eines neuen Sensors ist daher ausschlie{\ss}lich festzulegen, wie der erfasste Messwert im Payload dargestellt wird. Änderungen an der generischen Payload-Erzeugung sind hierfür nicht erforderlich.
+
+Die Kodierung eines Sensors wird durch ein Sensorprofil beschrieben. Dieses definiert den binären Vertrag zwischen Endgerät und Server und legt fest, wie ein Messwert als Ganzzahl im Payload übertragen wird. Ein Sensorprofil (siehe~\autoref{SA:SensorProfile}) besteht aus den folgenden Parametern:
+
+\begin{itemize}
+	\item \textbf{Logischer Sensortyp} - eindeutige Identifikation des Sensors innerhalb der Firmware, z.\,B. \PYTHON{LIGHT\_SENSOR}.
+	\item \textbf{Bytelänge} - Anzahl der Bytes, die für die Übertragung des Messwertes im Payload reserviert werden. Dieser Parameter bestimmt direkt die Grö{\ss}e des Payloads.
+	\item \textbf{Vorzeichenbehandlung} - Festlegung, ob der Messwert als vorzeichenbehafteter oder vorzeichenloser Integer interpretiert wird.
+	\item \textbf{Skalierungsfaktor} - Multiplikationsfaktor zur Umwandlung des intern als Flie{\ss}kommazahl vorliegenden Messwertes in eine ganzzahlige Darstellung.
+\end{itemize}
+
+Die sensorspezifische Erfassungslogik liefert Messwerte unabhängig von der späteren Payload-Kodierung als Flie{\ss}kommazahlen. Bei der Erstellung des Payloads wird der Messwert mit dem im Sensorprofil definierten Skalierungsfaktor multipliziert, in einen Integer konvertiert und anschlie{\ss}end mit der festgelegten Bytelänge byteweise in den Payload geschrieben. Eine Übertragung von Flie{\ss}kommazahlen findet nicht statt.
+
+Die Integration eines neuen Sensors erfolgt anschlie{\ss}end in den folgenden Schritten:
+
+\begin{enumerate}
+	\item Ergänzung der Enumeration \PYTHON{SensorType} um den neuen Sensortyp.
+	\item Definition eines neuen Sensorprofils in \PYTHON{SensorProfiles} mit festgelegter Profilnummer, Bytelänge, Skalierungsfaktor und Vorzeichenbehandlung.
+	\item Implementierung der sensorspezifischen Erfassungslogik in einer konkreten Sensorklasse.
+	\item Registrierung und Initialisierung der Sensorinstanz im Sensorsystem, z.\,B. in \FILE{SensorInstances.cpp}.
+\end{enumerate}
+
+
+\subsection{Eintrag in der \PYTHON{SensorTypes}-Enum}
+	Die Enumeration \PYTHON{SensorTypes} bildet die zentrale Referenz aller unterstützten Sensortypen. Jeder neue Sensor muss dort eingetragen werden, damit das System ihn identifizieren und korrekt instanziieren kann. Die Enum dient somit als Grundlage für die automatische Sensorerstellung und die Zuordnung der passenden Logik.
+	
+	\medskip
+	
+	Für den neuen Sensor wird an dieser Stelle ein zusätzlicher Eintrag mit dem eindeutigen Sensortyp \PYTHON{LIGHT\_SENSOR} ergänzt (siehe~\autoref{fig:sensorNewType})
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}
+		\tikzset{
+			textDef/.style={font=\sffamily\small, pos=1.3},
+			lineScaled/.style={line width={2pt}},
+			arrowStyle/.style={lineScaled, >=stealth, red},
+			boxStyle/.style={line width={1pt}, red},
+		}
+		\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+			\includegraphics[width=0.7\linewidth]{LoRaAndLoRaWAN/SoftwareArchitecture/AddNewSensor}};
+		
+		\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+			\draw[arrowStyle, <-] (0.53, 0.38) -- ++(0.1, 0);
+			\draw[boxStyle] (0.24, 0.355) rectangle ++(0.28, 0.05);
+		\end{scope}
+	\end{tikzpicture}
+	\caption{Eintrag des neuen Sensortyps in der \PYTHON{SensorTypes}-Enum}
+	\label{fig:sensorNewType}
+\end{figure}
+
+	 
+\subsection{Erstellung eines Sensorprofils}
+
+	Sensorprofile definieren, welche Sensortypen von der Firmware unterstützt werden und wie die zugehörigen Messwerte im Payload kodiert sind. Ein Sensorprofil beschreibt somit nicht die sensorspezifische Erfassungslogik, sondern ausschlie{\ss}lich die binäre Darstellung eines Messwertes im Payload.
+	
+	Ein Sensorprofil besteht aus den Parametern \PYTHON{SensorType}, \PYTHON{profileNr}, \PYTHON{byteSize}, \PYTHON{scale} und \PYTHON{signedValue}. Diese Parameter legen fest, welchem logischen Sensortyp ein Messwert zugeordnet ist, wie viele Bytes für dessen Übertragung reserviert werden, mit welcher Auflösung der Wert dargestellt wird und ob der Messwert vorzeichenbehaftet interpretiert wird.
+	
+	Jedes Sensorprofil referenziert genau einen Eintrag aus der Enumeration \PYTHON{SensorType} und bildet damit die Grundlage für die eindeutige Identifikation und Kodierung des jeweiligen Sensors innerhalb des Payloads (siehe~\autoref{SA:SensorProfile}). Die eigentliche Sensorlogik bleibt dabei vollständig von der Payload-Kodierung entkoppelt.
+	
+	Abbildung~\autoref{fig:lightSensorProfile} zeigt beispielhaft die Ergänzung eines neuen Sensorprofils für den Sensortyp \PYTHON{LIGHT\_SENSOR}. Das Profil definiert die erforderlichen Kodierungsparameter und ermöglicht damit die Einbindung des Sensors in die generische Payload-Erzeugung.
+
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\tikzset{
+				lineScaled/.style={line width={2pt}},
+				arrowStyle/.style={lineScaled, >=stealth, red},
+				boxStyle/.style={line width={1pt}, red},
+			}
+			\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+				\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/SoftwareArchitecture/AddNewProfile}};
+			
+			\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+				\draw[arrowStyle, <-] (0.59, 0.11) -- ++(0.03, -0.1);
+				\draw[boxStyle] (0.15, 0.11) rectangle ++(0.82, 0.067);
+			\end{scope}
+		\end{tikzpicture}
+		\caption{Ergänzung eines neuen Sensorprofils}
+		\label{fig:lightSensorProfile}
+	\end{figure}
+
+	Bei der Erstellung eines neuen Profils muss sichergestellt werden, dass jedes Profil eine eindeutige Profilnummer besitzt.
+
+\subsection{Implementierung der konkreten Sensorklasse}
+	Das Interface \PYTHON{ISensor} definiert die Funktionen, die von jeder Sensorklasse implementiert werden müssen (siehe~\autoref{code:ISensorInterface}). Dadurch wird eine einheitliche Interaktion mit verschiedenen Sensortypen sichergestellt, unabhängig von deren individueller Implementierung. Die Kernfunktionen sind:
+	
+	\begin{itemize}
+		\item \PYTHON{init()} - führt die Initialisierung durch (z.\,B. Pin-Setup, Start der Kommunikation, Kalibrierung)
+		\item \PYTHON{update()} - erfasst neue Messwerte oder aktualisiert interne Zustände
+		\item \PYTHON{getValue()} - gibt den zuletzt ermittelten Messwert zurück
+	\end{itemize}
+	
+	{
+		\captionof{code}{Definition des zentralen Sensor-Interfaces (\PYTHON{ISensor}) \label{code:ISensorInterface}}
+		\ArduinoExternal{}{../../Code/MKRWAN1310/SoftwareArchitecture/ISensor.h}
+	}
+	
+	Für jeden neuen Eintrag in \PYTHON{SensorTypes} muss eine entsprechende Klasse implementiert werden, die dieses Interface erfüllt. Die Implementierung des Sensors erfolgt in einer eigenen Header- und Source-Datei (siehe~\autoref{code:SensorHeaderFile} und \autoref{code:SensorSourceFile}). 
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\tikzset{
+				lineScaled/.style={line width={2pt}},
+				arrowStyle/.style={lineScaled, >=stealth, red},
+				boxStyle/.style={line width={1pt}, red},
+			}
+			\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+				\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/SoftwareArchitecture/LightSensorHeaderFile}};
+			
+			\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+				\draw[arrowStyle, <-] (0.3, 0.405) -- ++(0.1, 0);
+				\draw[arrowStyle, <-] (0.53, 0.905) -- ++(0.03, -0.1);
+				%\draw[boxStyle] (0.15, 0.15) rectangle ++(0.82, 0.065);
+			\end{scope}
+		\end{tikzpicture}
+		\caption{Header-Datei des neuen Sensors \FILE{CLightSensor.h}}
+		\label{code:SensorHeaderFile}
+	\end{figure}
+	
+	\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}
+		\tikzset{
+			lineScaled/.style={line width={2pt}},
+			arrowStyle/.style={lineScaled, >=stealth, red},
+			boxStyle/.style={line width={1pt}, red},
+		}
+		\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+			\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/SoftwareArchitecture/LightSensorSourceCode}};
+		
+		\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+			\draw[arrowStyle, <-] (0.3, 0.37) -- ++(0.1, 0);
+			\draw[arrowStyle, <-] (0.7, 0.9) -- ++(0.03, -0.1);
+			%\draw[boxStyle] (0.15, 0.15) rectangle ++(0.82, 0.065);
+		\end{scope}
+	\end{tikzpicture}
+	\caption{Minimaler Beispiel-Sourcecode \FILE{CLightSensor.cpp}}
+	\label{code:SensorSourceFile}
+	\end{figure}
+
+\subsection{Instanziierung und Registrierung der Sensoren}
+	
+	Die Verwaltung der Sensoren in der Firmware basiert auf einem slotbasierten Konzept. Ziel dieses Ansatzes ist es, eine feste und überschaubare Anzahl möglicher Sensorpositionen zu definieren, ohne zur Laufzeit Sensorobjekte dynamisch erzeugen oder zerstören zu müssen.
+
+\paragraph{Sensorinstanzen}
+
+	Die konkreten Sensorobjekte werden in der Datei \FILE{SensorInstances.cpp} statisch instanziiert. Jede dieser Instanzen repräsentiert einen physisch anschlie{\ss}baren Sensor mit fest definierter Hardwarekonfiguration, beispielsweise Pinbelegung, Kalibrierungsparametern und Abtastraten.
+	
+	Nicht alle definierten Sensorinstanzen müssen auf einem konkreten Endgerät tatsächlich verwendet werden. Die statische Instanziierung stellt lediglich sicher, dass für jede potenziell unterstützte Sensorposition ein Objekt verfügbar ist, ohne dynamische Speicherverwaltung oder Laufzeitallokation zu benötigen.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\tikzset{
+				lineScaled/.style={line width={2pt}},
+				arrowStyle/.style={lineScaled, >=stealth, red},
+				boxStyle/.style={line width={1pt}, red},
+			}
+			\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+				\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/SoftwareArchitecture/LightSensorInstance}};
+			
+			\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+				\draw[arrowStyle, <-] (0.59, 0.088) -- ++(0.03, -0.1);
+				\draw[boxStyle] (0.1, 0.088) rectangle ++(0.82, 0.06);
+			\end{scope}
+		\end{tikzpicture}
+		\caption{Statische Instanziierung einer neuen Lichtsensor-Instanz}
+	\end{figure}
+
+\paragraph{Sensor-Slots als logische Abstraktion}
+
+	Zur logischen Adressierung der Sensoren werden sogenannte \PYTHON{SensorSlot}s verwendet. Ein Sensor-Slot beschreibt eine feste, logisch definierte Position innerhalb des Systems, beispielsweise \PYTHON{CURRENT\_1}, \PYTHON{CURRENT\_2} oder \PYTHON{TEMP\_1}. Die Menge der verfügbaren Slots ist endlich und zur Compile-Zeit bekannt.
+	
+	Die Verwendung von Sensor-Slots ermöglicht es, Sensoren unabhängig von ihrer konkreten Implementierung oder physischen Anbindung anzusprechen. Gleichzeitig wird durch die feste Anzahl an Slots sichergestellt, dass keine dynamische Erzeugung von Sensorobjekten erforderlich ist.
+	
+	\begin{center}
+		\begin{tikzpicture}
+			\tikzset{
+				lineScaled/.style={line width={2pt}},
+				arrowStyle/.style={lineScaled, >=stealth, red},
+				boxStyle/.style={line width={1pt}, red},
+			}
+			\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+				\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/SoftwareArchitecture/SensorSlots}};
+			
+			\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+				\draw[arrowStyle, <-] (0.59, 0.21) -- ++(0.03, -0.1);
+				\draw[boxStyle] (0.15, 0.21) rectangle ++(0.82, 0.06);
+			\end{scope}
+		\end{tikzpicture}
+		\captionof{figure}{Definition logischer Sensor-Slots}
+	\end{center}
+
+\paragraph{Sensor-Registry}
+
+	Die Zuordnung zwischen logischen Sensor-Slots und den tatsächlich vorhandenen Sensorinstanzen erfolgt über die Sensor-Registry, die in der Datei \FILE{SensorsRegistry.cpp} implementiert ist. Die Registry stellt eine Abbildung von \PYTHON{SensorSlot}-Werten auf die statisch instanziierten Sensorobjekte bereit und gibt Zeiger auf diese Objekte zurück.
+	
+	Welche Sensor-Slots auf einem konkreten Endgerät tatsächlich belegt sind, wird in der Gerätekonfigurationsdatei \FILE{ListOfDevices.h} festgelegt. Dort wird definiert, welche Slots aktiv sind und somit in den Betriebsablauf des Geräts einbezogen werden. Nicht belegte Slots bleiben ungenutzt, ohne dass hierfür zusätzliche Logik oder Speicherverwaltung erforderlich ist.
+	
+	\begin{center}
+		\begin{tikzpicture}
+			\tikzset{
+				lineScaled/.style={line width={2pt}},
+				arrowStyle/.style={lineScaled, >=stealth, red},
+				boxStyle/.style={line width={1pt}, red},
+			}
+			\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+				\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/SoftwareArchitecture/LightSensorRegistry}};
+			
+			\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+				\draw[arrowStyle, <-] (0.59, 0.088) -- ++(0.03, -0.1);
+				\draw[boxStyle] (0.2, 0.34) rectangle ++(0.6, 0.12);
+			\end{scope}
+		\end{tikzpicture}
+		\captionof{figure}{Zuordnung eines Sensor-Slots zu einer Sensorinstanz in der Sensor-Registry}
+	\end{center}
+
+	
+	\paragraph{Architektonische Einordnung}
+	
+	Durch die Kombination aus statischer Sensorinstanziierung, einer endlichen Menge an Sensor-Slots und einer zentralen Registry entsteht eine deterministische und ressourcenschonende Architektur. Diese vermeidet dynamische Speicherallokation, vereinfacht die Initialisierung der Sensoren und ermöglicht gleichzeitig eine flexible Gerätekonfiguration über \FILE{ListOfDevices.h}. Die Payload-Kodierung der Messwerte bleibt davon vollständig entkoppelt und wird ausschlie{\ss}lich über den \PYTHON{SensorType} und das zugehörige Sensorprofil bestimmt.
+
+
+\section{Auswahl der Sensoren für ein Endgerät}\label{SensorConfig:ChooseSensors}
+	
+	Die Auswahl der für ein Endgerät verwendeten Sensoren erfolgt über die Konfigurationsdatei \FILE{ListOfDevices.h}. In dieser Datei werden alle Sensoren definiert, die auf dem jeweiligen Endgerät instanziiert und zur Laufzeit verwendet werden sollen (siehe~\autoref{code:EndDeviceConfigFile}).
+
+		{
+		\captionof{code}{Konfigurationsdatei \FILE{ListOfDevices.h}}
+		\label{code:EndDeviceConfigFile}
+		\ArduinoExternal{}{../../Code/MKRWAN1310/SoftwareArchitecture/ListOfDevices.h}
+	}
+	\begin{center}
+		\includegraphics[width=0.8\textwidth]{LoRaAndLoRaWAN/Flowcharts/SensorsAPI/SensorsAPIConfigUsedSensors.pdf}
+		\captionof{figure}{Ablaufdiagramm zur Auswahl und Konfiguration der verwendeten Sensoren eines Endgeräts}
+	\end{center}
+
+
+\subsection{Anpassung des entsprechenden Geräteeintrags in der \PYTHON{DeviceList}}
+
+	Im Folgenden wird gezeigt, wie der neue Sensortyp \PYTHON{LIGHT\_SENSOR} einem Endgerät hinzugefügt wird.  
+	Angenommen, der Sensor soll dem Endgerät mit der \PYTHON{\acs{deveui}} \PYTHON{A8610A34321C6B09} zugewiesen werden. Der relevante Auszug aus der Konfiguration wird auf der \autoref{fig:addNewDevToList} dargestellt.
+
+	\begin{center}
+		\begin{tikzpicture}
+			\tikzset{
+				lineScaled/.style={line width={2pt}},
+				arrowStyle/.style={lineScaled, >=stealth, red},
+				boxStyle/.style={line width={1pt}, red},
+			}
+			\node[anchor=south west, inner sep=0] (image) at (0,0) {%
+				\includegraphics[width=0.8\linewidth]{LoRaAndLoRaWAN/SoftwareArchitecture/AddNewSensorToConfig}};
+			
+			\begin{scope}[x={(image.south east)}, y={(image.north west)}]
+				\draw[arrowStyle, <-] (0.4, 0.92) -- ++(0.03, -0.1);
+				\draw[boxStyle] (0.2, 0.53) rectangle ++(0.21, 0.05);
+				\draw[boxStyle] (0.24, 0.295) rectangle ++(0.24, 0.05);
+			\end{scope}
+		\end{tikzpicture}
+		\captionof{figure}{Eintrag des neuen Sensors in \FILE{ListOfDevices.h}}
+		\label{fig:addNewDevToList}
+	\end{center}
+	
+	Nach der Änderung muss die aktualisierte Firmware auf das entsprechende Endgerät übertragen werden, damit der neue Sensor bei der Initialisierung berücksichtigt wird.

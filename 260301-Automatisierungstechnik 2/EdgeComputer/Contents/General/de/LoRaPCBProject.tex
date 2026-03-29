@@ -1,0 +1,260 @@
+%%%%%%%%%%%%
+%
+% $Autor: Wings $
+% $Datum: 2019-03-05 08:03:15Z $
+% $Pfad: TemplateSensor $
+% $Version: 4250 $
+% !TeX spellcheck = en_GB/de_DE
+% !TeX encoding = utf8
+% !TeX root = filename 
+% !TeX TXS-program:bibliography = txs:///biber
+%
+%%%%%%%%%%%%
+
+% Structure
+\chapter{Platine \label{pcb:General}}
+
+Dieses Kapitel beschreibt den Aufbau und die Funktion der für das Projekt entwickelten Platine. Zudem werden die verwendeten Bauelemente, deren Pinbelegung sowie die unterstützten Schnittstellen detailliert erläutert.
+
+
+
+\section{Allgemeines}
+Um die Kompatibilität des Geräts sowie dessen Robustheit zu gewährleisten, wird eine Platine gefertigt, die es ermöglicht, die Bauelemente festzulöten. Dadurch kann ein Kabelsalat vermieden werden. Außerdem wird die Sicherheit erhöht, da die Kabel nicht abgesteckt werden können.
+
+Die für dieses Projekt entwickelte Platine bildet eine standardisierte Grundlage für die weitere Entwicklung. Sie wurde so entworfen, dass sie die Integration der Sensoren mit dem Mikrocontroller erleichtert und die Anzahl einzelner Bauteile im Gehäuse reduziert.
+
+Diese Platine dient als Basis für die Weiterentwicklung des Projekts. Sie bietet die Möglichkeit, einen Wandler zu montieren, und verfügt über Anschlüsse für eine RGB-LED, einen analogen Sensoren, einen One-Line-Sensor sowie eine Stromzange.
+
+\section{Aufbau der Platine}
+	\begin{center}
+		\begin{tikzpicture}
+			\lorapcbLayout
+		\end{tikzpicture}
+		\captionof{figure}{Ansicht der Platine}
+	\end{center}
+
+
+\section{Beschreibung und Pinbelegung der Bauelemente}
+\subsection{Akkuanschluss und Spannungsteiler zur Ermittlung der Akkukapazität}
+
+	Um diese Schaltung zu aktivieren, müssen die Widerstände R6, R7 sowie Steckverbinder J5, J6 eingesetzt werden. Der Akku soll an den Stecker \textit{,,Batt.Input''} angeschlossen werden; der Anschluss \textit{,,Ard.Connect'}' ist mit dem Akkuanschluss des Arduino-Boards zu verbinden.  
+
+	Die zu messende Spannung aus dem Spannungsteiler wird zum analogen Pin A3 geliefert. 
+	
+	\subsubsection{Bauteile für die Platine}
+	\begin{itemize}
+		\item R6 - Ein Widerstand 39\,k$\Omega$ des Typs SMD, Bauform DIN 1206
+		\item R7 - Ein Widerstand 100\,k$\Omega$ des Typs SMD, Bauform DIN 1206
+		\item J5, J6 - Ein JST-Steckverbinder, 1x2-polig, Raster 2\,mm
+	\end{itemize}
+	
+	\subsubsection{Zusätzlich benötigte Elemente}
+	Falls diese Schaltung verwendet wird, wird ein zusätzlicher Jumperwire benötigt, mit dem der Stecker \textit{„ArduinoConnect“} mit dem Akkuanschluss des Arduino verbunden wird.\\
+	\textbf{Bauteile}:
+	\begin{itemize}
+		\item 2x JST PH Büchsengehäuse, 1x2 Polig, Raster 2\,mm
+		\item ca. 10 cm Kabel 2 \times 0,5 mm$^{2}$
+	\end{itemize}
+	
+	\begin{center}
+		\begin{tikzpicture}
+			\batteryToArduinoCable
+		\end{tikzpicture}
+		\captionof{figure}{Kabel}
+	\end{center}
+	
+	\subsubsection{Pinbelegung}
+	
+	\begin{center}
+		\begin{tikzpicture}
+			\node[anchor=south west] (img) at (0,0) {\includegraphics[width=0.4\textwidth]{PCB/batteryPinout}};
+			
+			\draw[red, ->, ultra thick,  >=angle 60] (0, -0.4) node[below] {\small\shortstack{Akkuanschluss:\\positiver Pol}} -- (0.95, 1.35);	
+			
+			\draw[red, ->, ultra thick,  >=angle 60] (0.7, 3) node[above] {\small\shortstack{Akkuanschluss:\\negativer Pol}} -- (1.5,1.85);	
+			
+			\draw[red, ->, ultra thick,  >=angle 60] (4.95, -0.4) node[below] {\small\shortstack{Akkuanschluss:\\negativer Pol}} -- (4.1, 1.35);	
+			
+			\draw[red, ->, ultra thick,  >=angle 60] (4.3, 3) node[above] {\small\shortstack{Akkuanschluss:\\positiver Pol}} -- (3.4, 1.85);	
+			
+		\end{tikzpicture}
+		\captionof{figure}{Pinbelegung der Akkuanschlüsse}
+	\end{center}
+	
+	
+\subsection{Spannungsteiler zur Erkrnnung des Netzstromes}
+
+	Die Widerstände R8, R9 müssen eingesetzt werden. Die zu messende Spannung aus dem Spannungsteiler wird zum analogen Pin A4 geliefert.
+
+
+	\subsubsection{Bauteile für die Platine}
+		\begin{itemize}
+			\item R8 - ein Widerstand 62k~$\Omega$ des Typs THT, Bauform DIN 0204
+			\item R9 - ein Widerstand 100k~$\Omega$ des Typs THT, Bauform DIN 0204
+		\end{itemize}
+					
+\subsection{LED}
+	\subsubsection{Bauteile für die Platine}
+	\begin{itemize}
+		\item R1, R2, R3 - jeweils ein Widerstand 330~$\Omega$ des Typs SMD, Bauform DIN 1206
+		\item J1 -  Ein JST XH-Steckverbinder, 1x4-polig, Raster 2,5\,mm
+	\end{itemize}
+	
+	\subsubsection{Zusätzlich benötigte Elemente}
+	Um die LED anschließen zu können, werden folgende Bauteile benötigt:
+	\begin{itemize}
+		\item JST XH Büchsengehäuse, 1x4 Polig, Raster 2,50\,mm
+		\item ca. 10\,cm Kabel 4x0,25mm$^{2}$
+	\end{itemize}
+\Mynote{Zeichnung für den Kabel}
+
+	\subsubsection{Pinbelegung}
+		\begin{center}
+			\begin{tikzpicture}
+				\node[anchor=south west] (img) at (0,0) {\includegraphics[width=0.3\textwidth]{PCB/LEDPinout}};
+				
+				\draw[red, ->, ultra thick,  >=angle 60] (3.15, -0.3) node[below] {\small Blaue Farbe} -- (3.15,1.1);
+				
+				\draw[red, ->, ultra thick,  >=angle 60] (3.2, 2.8) node[above] {\small  Grüne Farbe} -- (2.45,1.7);	
+				
+				\draw[red, ->, ultra thick,  >=angle 60] (0.95, 2.8) node[above] {\small Rote Farbe} -- (1.75,1.7);	
+				
+				\draw[red, ->, ultra thick,  >=angle 60] (1.1, -0.3) node[below] {\small GND} -- (1.10,1.1);	
+			\end{tikzpicture}
+			\captionof{figure}{Pinbelegung des LED}
+		\end{center}
+	
+\subsection{RTC Eingang}
+	\subsubsection{Bauteile für die Platine}
+	\begin{itemize}
+		\item J1 -  Ein JST XH-Steckverbinder, 1x4-polig, Raster 2,5\,mm
+	\end{itemize}
+	
+	\subsubsection{Zusätzlich benötigte Elemente}
+	Um die RTC anschließen zu können, werden folgende Bauteile benötigt:
+	\begin{itemize}
+		\item JST XH Büchsengehäuse, 1x4 Polig, Raster 2,50\,mm
+		\item ca. 10\,cm Kabel 4x0,25mm$^{2}$
+	\end{itemize}
+	
+\Mynote{Zeichnung für den Kabel}
+		
+	\subsubsection{Pinbelegung}
+	\begin{center}
+		\begin{tikzpicture}
+			\node[anchor=south west] (img) at (0,0) {\includegraphics[width=0.3\textwidth]{PCB/RTCPinout }};
+			\draw[red, ->, ultra thick,  >=angle 60] (3.1, -0.5) node[below] {\small SDA} -- (3.1,0.85);
+			\draw[red, ->, ultra thick,  >=angle 60] (3.2, 2.3) node[above] {\small SCL} -- (2.45,1.25);	
+			\draw[red, ->, ultra thick,  >=angle 60] (0.95, 2.3) node[above] {\small +3,3V} -- (1.65,1.25);	
+			\draw[red, ->, ultra thick,  >=angle 60] (1.1, -0.5) node[below] {\small GND} -- (1.1,0.85);	
+		\end{tikzpicture}
+		\captionof{figure}{Pinbelegung des RTC}
+	\end{center}
+	
+	
+\subsection{Eingang für Netzstrom}
+	\subsubsection{Bauteile für die Platine}
+	\begin{itemize}
+		\item Leiterplattenklemme WAGO 2601-1102 mit Hebel, 1,5\,mm$^{2}$, Raster 3,5\,mm, 2-polig
+		\item Sicherungshalter mit Abdeckkappe MTA passend für: 5 x 20 mm
+		\item Feinsicherung 5x20\,mm 250mA
+	\end{itemize}
+	
+	\subsubsection{Pinbelegung}
+	\begin{center}
+		\begin{tikzpicture}
+			\node[anchor=south west] (img) at (0,0) {\includegraphics[width=0.3\textwidth, angle=90]{PCB/230VPinout}};
+			\draw[red, ->, ultra thick,  >=angle 60] (3.5, 0) node[below] {\small Neutralleiter (N)} -- (1.85,1.7);
+			\draw[red, ->, ultra thick,  >=angle 60] (-0.5, 0) node[below] {\small Außenleiter (L)} -- (1,1.7);	
+		\end{tikzpicture}
+		\captionof{figure}{Pinbelegung des Netzstromanschlusses}
+	\end{center}
+	
+\subsection{Schaltung und Eingang für den Stromsensor}
+	\subsubsection{Bauteile für die Platine}
+	\begin{itemize}
+		\item R4, R5 - jeweils ein Widerstand 10k~$\Omega$ des Typs SMD, Bauform DIN 1206
+		\item C1 - Ein Kondensator 10\,\mu F, Raster 2,0\,mm, Durchmesser 5,0\,mm
+		\item J2 -  Ein JST XH-Steckverbinder, 1x2 Polig, Raster 2,50\,mm
+	\end{itemize}
+	
+	\subsubsection{Zusätzlich benötigte Elemente}
+	Für den Anschluss des Sensors an die Platine benötigen Sie folgende Bauteile:
+	\begin{itemize}
+		\item J2 - JST XH Büchsengehäuse, 1x2 Polig, Raster 2,50\,mm
+	\end{itemize}
+	
+	\subsubsection{Pinbelegung}
+	\begin{center}
+		\begin{tikzpicture}
+			\node[anchor=south west] (img) at (0,0) {\includegraphics[width=0.3\textwidth]{PCB/CTPinout}};
+			\draw[red, ->, ultra thick,  >=angle 60] (0.5, -0.1) node[below] {\small positiver Pol} -- (1.55,1.3);	
+			\draw[red, ->, ultra thick,  >=angle 60] (4, -0.1) node[below] {\small negativer Pol} -- (2.6,1.3);	
+		\end{tikzpicture}
+		\captionof{figure}{Pinbelegung des Stromsensoranschlusses}
+	\end{center}
+	
+\subsection{Eingang für analogen Sensoren}
+	\subsubsection{Bauteile für die Platine}
+	\begin{itemize}
+		\item J3 -  Ein JST XH-Steckverbinder, 1x3 Polig, Raster 2,50\,mm
+		\item R10 - ein Widerstand 10\,k$\Omega$ des Typs THT, Bauform DIN 0204 - \textbf{pull-down Widerstand}
+	\end{itemize}
+	
+	\subsubsection{Zusätzlich benötigte Elemente}
+	Für den Anschluss des Sensors an die Platine benötigen Sie folgende Bauteile:
+	\begin{itemize}
+		\item JST XH Büchsengehäuse, 1x3 Polig, Raster 2,50\,mm
+	\end{itemize}
+	
+	\begin{center}
+		\begin{tikzpicture}
+			\node[anchor=south west] (img) at (0,0) {\includegraphics[width=0.3\textwidth]{PCB/analogSensorPinout}};
+			\draw[red, ->, ultra thick,  >=angle 60] (0.5, -0.1) node[below] {\small GND} -- (1.2,1.3);
+			\draw[red, ->, ultra thick,  >=angle 60] (2.1, -0.1) node[below] {\small +3,3V} -- (2.1,1.3);	
+			\draw[red, ->, ultra thick,  >=angle 60] (4, -0.1) node[below] {\small Signal} -- (3.1,1.3);	
+		\end{tikzpicture}
+		\captionof{figure}{Pinbelegung des analogen Anschlusses}
+	\end{center}
+
+\subsection{Eingang für One Line Sensor}
+	\subsubsection{Bauteile für die Platine}
+	\begin{itemize}
+		\item J8 -  Ein JST XH-Steckverbinder, 1x3 Polig, Raster 2,50\,mm
+		\item R11 - ein Widerstand 4,7\,k$\Omega$ des Typs THT, Bauform DIN 0204 - \textbf{pull-up Widerstand}
+	\end{itemize}
+	
+	\subsubsection{Zusätzlich benötigte Elemente}
+	Für den Anschluss des Sensors an die Platine benötigen Sie folgende Bauteile:
+	\begin{itemize}
+		\item JST XH Büchsengehäuse, 1x3 Polig, Raster 2,50\,mm
+	\end{itemize}
+	
+	\begin{center}
+		\begin{tikzpicture}
+			\node[anchor=south west] (img) at (0,0) {\includegraphics[width=0.3\textwidth]{PCB/OneLineSensorPinout}};
+			\draw[red, ->, ultra thick,  >=angle 60] (0.5, -0.1) node[below] {\small GND} -- (1.2,1.3);
+			\draw[red, ->, ultra thick,  >=angle 60] (2.1, -0.1) node[below] {\small +3,3V} -- (2.1,1.3);	
+			\draw[red, ->, ultra thick,  >=angle 60] (4, -0.1) node[below] {\small Signal} -- (3.1,1.3);	
+		\end{tikzpicture}
+		\captionof{figure}{Pinbelegung des One-Line-Sensor-Anschlusses}
+	\end{center}
+	
+	
+\subsection{AC/DC-Wandler}
+	\subsubsection{Bauteile für die Platine}
+	\begin{itemize}
+		\item AC/DC-Wandler, 85 - 264 V AC, 5 V DC 3 A, 15 W
+		\item C2 - Ein Kondensator 100\,\mu F, Raster 2,0\,mm, Durchmesser 5,0\,mm
+	\end{itemize}
+	
+\subsection{Arduino MKR WAN 1310}
+	Damit der Arduino nicht fest verlötet werden muss, verwenden wir eine Buchsenleiste. Diese wird fest auf der Platine verlötet, und der Arduino kann später eingesteckt werden.
+	\subsubsection{Bauteile für die Platine}
+	\begin{itemize}
+	\item Arduino MKR 1310
+	\item Buchsenleiste 2,54\,mm, 1x14 gerade	
+	\end{itemize}
+
+
+

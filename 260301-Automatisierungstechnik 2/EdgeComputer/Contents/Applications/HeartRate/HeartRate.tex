@@ -1,0 +1,183 @@
+%%%
+%
+% $Autor: Wings $
+% $Datum: 2021-05-14 $
+% $Pfad: GitLab/MLEdgeComputer $
+% $Dateiname: AppHeartRateSensor
+% $Version: 4620 $
+%
+% !TeX spellcheck = de_DE/GB
+% !TeX program = pdflatex
+% !BIB program = biber/bibtex
+% !TeX encoding = utf8
+%
+%%%
+
+
+\chapter{Application of Heart Rate Monitor with OLED Display}
+
+\section{Overview}
+
+The portable Heart Rate Monitor is designed for real-time heart rate tracking and data storage. The device consists of the following components:
+
+\begin{itemize}
+    \item GRV Heart Rate 3 Sensor
+    \item Arduino Nano 33 BLE Sense
+    \item 1.30" IIC OLED Display
+    \item Micro SD Card Reader Module
+    \item Two Wago 221 Clamps
+    \item Power switch
+    \item 9V battery
+\end{itemize}
+
+\Mynote{material list?}
+
+\section{Functionality}
+
+This monitor, which can be conveniently attached to items such as a belt using a clamp, provides users with real-time feedback and logging capabilities. Key features include:
+\begin{itemize}
+    \item \textbf{Real-time Heart Rate Display:} The current heart rate is displayed on the OLED screen.
+    \item \textbf{Graphical Heart Rate Tracking:} Heart rate trends are represented graphically on the OLED, showing data over time.
+    \item \textbf{Data Logging:} Heart rate values are saved to the micro SD card for future reference and analysis.
+\end{itemize}
+
+\Mynote{Screen shots? Photos?}
+
+
+\section{Manual}
+
+\subsection{Setup of the Device}
+
+The circuit Heart Rate Monitor is illustrated in the circuit diagram, see Figure \ref{fig:CircuitDiagram}. The entire assembly is housed within an enclosure, with only the ear clip accessible externally. The OLED display is mounted on the enclosure lid for easy readability.
+
+    \begin{center}
+        \includegraphics[width=14cm]{HeartRate/GRVCircuit}
+        \captionof{figure}{Circuit Diagramm of Application}
+        \label{fig:CircuitDiagram}
+    \end{center}
+
+
+\subsection{Programming the Device}
+
+To program the Arduino, connect it to a computer and upload the \texttt{ApplicationHeartRate} code, which can be found at:
+
+{
+	
+  \captionof{code}{Appliction Heart Rate Sensor}	
+  
+  \ArduinoExternal{}{../../Code/Arduino/HeartRate/HeartRateApp/HeartRateApp.ino}
+
+}
+
+\subsection{Using the Heart Rate Monitor}
+
+To take a heart rate measurement:
+
+\begin{enumerate}
+    \item Attach the ear clip to your index finger or ear.
+    \item The OLED display will automatically begin showing real-time heart rate data.
+\end{enumerate}
+
+
+\subsection{Mobile Operation}
+
+The Heart Rate Monitor can be used portably. Switch it on to begin the heart rate monitoring.
+
+\section{Code Explanation}
+
+In the following code section the display is initialized using the U8g2 library for a 128x64 pixel OLED display with an I2C interface. The sensor inputs and the SD card reader are connected to the following pins: \PYTHON{heartRatePin} (A0), \PYTHON{batteryPin} (A1), and \PYTHON{chipSelect} (Pin 10 for the SD card).
+
+\Mynote{check the pins! refer to?}
+
+For heart rate calculation, variables are used to track heart rate values, timing for each heartbeat, and a threshold for peak detection. The code includes an error detection routine that is triggered if no pulse is detected within a five-second interval (\PYTHON{errorTimeout}).
+
+The OLED display alternates every ten seconds (\PYTHON{switchInterval}) between displaying the current heart rate and a graphical representation of recent data. Graph data is stored in an array (\PYTHON{graphData}) and continuously updated.
+
+Additionally, flags are used to manage the SD card status and initial setup states to ensure smooth operation of the program. This includes both the display of sensor data and its storage on the SD card.
+
+
+{
+	
+	\captionof{code}{Appliction Heart Rate Sensor - Initialization}	
+	
+	\ArduinoExternal{firstline=1,lastline=59}{../../Code/Arduino/HeartRate/HeartRateApp/HeartRateApp.ino}
+	
+}
+
+%\lstinputlisting[firstline=1,lastline=59]{../../Code/Arduino/HeartRate/ApplicationHeartRate.ino}
+
+In the next code section, the initial setup for the heart rate monitor is conducted. The function \PYTHON{setup()}  configures the serial communication, input pins, display, and SD card. Specifically, \PYTHON{Serial.begin(9600)} initializes the serial monitor, while \PYTHON{pinMode()} sets up the heart rate sensor and battery pins as input.
+
+The OLED display is initialized through the command \PYTHON{u8g2.begin()}, preparing it for data visualization. Subsequently, the SD card is initialized, with a message confirming successful initialization or failure displayed in the serial monitor. If the SD card setup is unsuccessful, the program outputs an error message and stops further SD card-related processes.
+\Mynote{sd-card is an own topic}
+
+An initial message, ``Measurement starting, please wait'', is then displayed on the OLED. This message provides user feedback, centered on the display with coordinates calculated to ensure proper alignment. Finally, \PYTHON{startTime = millis()} captures the initial time, marking the beginning of the measurement period.
+
+{
+	
+	\captionof{code}{Appliction Heart Rate Sensor - Setup}	
+	
+	\ArduinoExternal{firstline=61,lastline=94}{../../Code/Arduino/HeartRate/HeartRateApp/HeartRateApp.ino}
+	
+}
+
+
+In the next code section, the main measurement and display loop for the heart rate monitor is implemented. Initially, a 5-second delay is applied to ensure that measurements do not start immediately. If the SD card is full, the loop halts further execution, preventing additional data logging.
+
+The loop reads heart rate and battery values through the analog inputs. The battery voltage is calculated from the raw sensor data and displayed in the serial monitor. The heartbeat detection is based on threshold crossing. A peak in the heart rate signal indicates a heartbeat if it exceeds the threshold value, marking the time interval between beats.
+
+When a peak is detected, the heart rate is calculated in beats per minute (BPM) by dividing 60,000 milliseconds by the time interval since the last peak. An average heart rate is then computed from the last ten readings, adjusted by the \PYTHON{calibrationFactor}, and displayed if it differs from the previous reading.
+
+The OLED display updates based on the current heart rate or displays a graph of recent heart rate data. The battery level is shown alongside the heart rate. The graph data is updated using \PYTHON{updateGraph()} and saved to the SD card via \PYTHON{saveToSD()}.
+
+If no heartbeat is detected within a specified timeout period (\PYTHON{errorTimeout}), an error message appears on the display, and the graph is suppressed. The display toggles every 10 seconds between the heart rate and graph view, providing comprehensive feedback on the user’s heart rate status.
+
+{
+	
+	\captionof{code}{Appliction Heart Rate Sensor - Loop}	
+	
+	\ArduinoExternal{firstline=96,lastline=197}{../../Code/Arduino/HeartRate/HeartRateApp/HeartRateApp.ino}
+	
+}
+
+
+In the next code section, additional functionalities are implemented to display battery level, update the heart rate graph, and save data to the SD card. The function \PYTHON{drawBattery()}  visualizes the battery level on the OLED as segmented bars by mapping the voltage value to a range between 0 and 4 segments. The battery icon frame and bars are drawn at specified positions on the display.
+
+The function \PYTHON{updateGraph()}  is responsible for refreshing the heart rate data used in real-time graph display. It shifts all previous data points left by one position and inserts the current heart rate at the end of the array \PYTHON{graphData}. This structure supports continuous real-time visualization of the heart rate trend.
+
+The function \PYTHON{drawGraph()}  renders the heart rate graph on the OLED display. It first sets up the graph axes, labeled ``Time (s)'' and ``BPM'', and then draws a line connecting each consecutive heart rate value. The y-coordinates of each point are calculated based on a range from 40 to 140 BPM, allowing the display to scale appropriately with typical heart rate values.
+
+Finally, the function \PYTHON{saveToSD()}  writes the current heart rate to an SD card in a text file named \FILE{datalog.txt}. If the file opens successfully, the heart rate value is recorded, providing a timestamped record of heart rate data. Should the SD card be full or unavailable, an error message is displayed on the OLED, and a flag is set to prevent further write attempts.
+
+{
+	
+	\captionof{code}{Appliction Heart Rate Sensor - Functions}	
+	
+	\ArduinoExternal{firstline=199,lastline=261}{../../Code/Arduino/HeartRate/HeartRateApp/HeartRateApp.ino}
+	
+}
+
+
+\section{Application Test}
+
+The Heart Rate Monitor measures the pulse with high accuracy, allowing the \PYTHON{calibrationFactor} to remain at 1. Additionally, the heart rate display on the OLED screen is very clear, making it intriguing to observe changes in pulse, such as those induced by rapid breathing. These pulse changes are effectively displayed by the graphical function.
+
+\section{Improvement Suggestions}
+
+Another enhancement could involve transmitting the heart rate data via Bluetooth to a smartphone. This would allow for easier data analysis and could facilitate tracking long-term trends with regular measurements, which would be medically beneficial.
+
+\textcolor{red}{
+\begin{itemize}
+    \item Data structure
+    \item Flow chart
+    \item modules: SD card, sensor, display, serial monitor
+    \item Message handler
+    \item errror handler
+    \item no magic numbers/text
+    \item doxygen
+    \item How to get the SD card?
+    \item How can I access the SD card?
+    \item List of Materials
+\end{itemize}
+}
+

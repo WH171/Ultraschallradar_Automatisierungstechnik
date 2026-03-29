@@ -1,0 +1,85 @@
+%%%%%%
+%$Autor: Wings $
+%$Projekt:$
+%$Dateiname: ArduinoIDE2Win.tex$
+%$Beschreibung: Erläuterung der Arduino IDE und Einstieg in Arduino$
+%%%%%%
+
+
+\subsection{Installation der Arduino IDE für Windows}
+
+
+
+Der Download wird für die gewünschte Software ausgewählt Abbildung \ref{fig:dowloadarduino}, in diesem Fall \glqq Arduino IDE 2.3.2 für Windows10 and newer, 64 bits\grqq. Nach Öffnen der Download Datei öffnet sich wie Abbildung \ref{fig:Lizenzabkommen} ein Fenster zur Abfrage des Lizenzabkommens.
+
+\begin{center}
+	\includegraphics[width=\textwidth,keepaspectratio]{Arduino/ArdiunoIDE2/Win/DowloadArduinoIDE}
+	\captionof{figure}{Downloadfenster Arduino IDE}
+	\label{fig:dowloadarduino}
+\end{center}
+
+\begin{center}
+	\includegraphics[width=1\textwidth]{Arduino/ArdiunoIDE2/Win/LizensabkommenIDE}
+	\captionof{figure}{Lizenzabkommen}
+	\label{fig:Lizenzabkommen}
+\end{center}
+
+Die \ref{fig:Installationsabkommen}	zeigt das darauf folgende Fenster zur Abfrage auf welchen Konto auf dem PC das Programm installiert werden soll.
+
+\begin{center} 
+	\includegraphics[width=1\textwidth]{Arduino/ArdiunoIDE2/Win/Installationsoption.PNG}
+	\captionof{figure}{Installationsoption}
+	\label{fig:Installationsabkommen}	
+\end{center}
+
+
+Die Installation "Für alle Benutzer dieses Computers" benötigt der Installer die Administrator rechte, nach der Genehmigung muss erneut das Lizenzabkommen bestätigt werden Abbildung \ref{fig:Lizenzabkommen}. Darauf folgt Abbildung \ref{fig:Verzeichnisauswahl}, die Auswahl des Zielverzeichnisses auf dem PC.
+
+\begin{center}
+	\includegraphics[width=1\textwidth]{Arduino/ArdiunoIDE2/Win/ZielverzeichnisIDE.PNG}
+	\captionof{figure}{Zielverzeichnisauswahl}
+	\label{fig:Verzeichnisauswahl}
+\end{center}
+
+Nach der Installation wird diese durch Fertigstellen beendet. Nun kann die Arduino IDE geöffnet werden.
+
+\section{Verknüpfen des Boards mit der IDE}
+
+Zur Verbindung des Arduino Boards mit der Arduino IDE muss in dieser zuerst das richtige Board ausgewählt werden Abbildung \ref{fig:Boardauswahl}. Dazu wird in der Menüleiste unter dem Punkt \menu{Tools} der Unterpunkt  \menu{Board} ausgewählt. Unter den  Boards \glqq Arduino AVR\grqq{} und hier der \glqq Arduino Nano\grqq{} ausgewählt.
+
+\begin{center}
+	\includegraphics[width=1\textwidth]{Arduino/ArdiunoIDE2/Win/BoardAuswahl.PNG}
+	\captionof{figure}{Boardauswahl}
+	\label{fig:Boardauswahl}
+\end{center}
+
+Nach der Bordauswahl wird nun wieder in der Menüleiste unter dem Punkt \menu{Tools} der Unterpunkt \menu{Ports} ausgewählt Abbildung \ref{fig:Portauswahl}. Hierunter befinden sich die Anschlüsse des PC. Hier kann es sein, dass hier bereits erkennbar ist, an welchem Port der Arduino angeschlossen ist. Ist dies nicht der Fall, trennt man den Arduino vom PC, der nun nicht mehr angezeigte Port ist der richte. Der Arduino kann nun wieder angeschlossen werden und der Port ausgewählt werden.
+
+\begin{center}
+	\includegraphics[width=1\textwidth]{Arduino/ArdiunoIDE2/Win/PortAuswahl.PNG}
+	\captionof{figure}{Portauswahl}
+	\label{fig:Portauswahl}
+\end{center}
+
+\subsection{Beispielcode \glqq  Blinkende LED\grqq}
+
+Der Aufbau und die Funktion der Programmierung in der Arduino IDE wird anhand des Beispiels Blinkenden LED gezeigt und erklärt Abbildung \ref{CodeIDE}. Die LED ist auf dem Arduino Board fest installiert, somit benötigt das Beispiel keine Externe Hardware.
+
+\captionof{code}{Blink Programm \label{CodeIDE}}
+\ArduinoExternal{}{../../Code/Nano33BLESense/Blink/Blink.ino}
+
+In den Zeilen 32 bis 34 steht die \PYTHON{Setup Funktion}, diese setz in Zeile 33 über \PYTHON{pinMode} den Ausgang auf die integrierte LED über \PYTHON{LED BUILTIN} und setz diesen als Output.
+
+Das Blinken wird in Zeile 41 bis 46 über die \PYTHON{loop} Funktion realisiert.
+In Zeile 42 wird über \PYTHON{digitaWrite} wird die LED auf \PYTHON{HIGH} gesetzt und ist damit an.
+Zeile 43 sorgt mit der Funktion \PYTHON{delay(1000)} für eine Pause von einer Sekunde, in der der Zustand der LED gleich bleibt.
+In Zeile 44 wird nun wieder über \PYTHON{digitalwrite} der zustand der LED auf \PYTHON{LOW} gesetzt und die LED ist aus.
+Zeile 45 ist nun wieder eine Pause von einer Sekunde. Dannach wird die \PYTHON{loop} Funktion endlos wiederholt. 
+
+
+
+
+
+
+
+

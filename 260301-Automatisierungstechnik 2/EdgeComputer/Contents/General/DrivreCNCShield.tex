@@ -1,0 +1,146 @@
+%%%%%%%%%%%%
+%
+% $Autor: Wings $
+% $Datum: 2019-03-05 08:03:15Z $
+% $Pfad: DrivreCNCShield $
+% $Version: 4250 $
+% !TeX spellcheck = en_GB/de_DE
+% !TeX encoding = utf8
+% !TeX root = filename 
+% !TeX TXS-program:bibliography = txs:///biber
+%
+%%%%%%%%%%%%
+
+
+%source: https://osoyoo.com/2017/04/07/arduino-nano-cnc-shield-v4-0a4988/
+
+%source: https://www.makerguides.com/a4988-stepper-motor-driver-arduino-tutorial/
+%source: https://www.makerguides.com/drv8825-stepper-motor-driver-arduino-tutorial/
+%source: https://www.makerguides.com/l298n-stepper-motor-arduino-tutorial/
+
+%source: https://www.makerguides.com/hc-sr501-arduino-tutorial/
+
+%source: https://www.makerguides.com/arduino-motor-shield-stepper-motor-tutorial/
+
+% source: https://www.makerguides.com/a4988-stepper-motor-driver-arduino-tutorial/
+
+
+% Structure
+\chapter{Keyes CNC Shield V4.0 for A4988 - User Manual}
+
+\section{Overview}
+
+CNC Shield V4.0 can be used as a drive expansion board for engraving machines and need to be used with Arduino NANO. There're 3 slots in the board for stepper motor drive modules, can drive 3 stepper motors, and each step stepper motor only need two IO port, that is to say, 6 IO ports can quite well to manage three stepper motor, it’s very convenient to use.
+
+CNC Shield V4.0 has some GPIO of Arduino NANO, it's convenient for connect other modules, like limit switch. Also, CNC Shield V4.0 also has I\textsuperscript{2}C interface, you can connect LCD screen which has the I\textsuperscript{2}C interface.
+
+The input voltage of CNC Shield V4.0 is DC 7.5V-12V, do not higher than 12V.
+
+
+\begin{center}
+	\includegraphics[width=0.6\textwidth]{Drive/KeyesCNC/KeyesCNC05}
+	
+	\captionof{figure}{Keyes CNC shield with an Arduino Nano}
+\end{center}
+
+
+\section{Hardware installation}
+
+We use A4988 as the motor driver, A4988 support 1 segment, 1/2 segment, 1/4 segment, 1/8 segment, 1/16 segment. Each segment is set by the MS0, MS1, MS2 pin header in the CNC Shield V4.0, cover the jumper cap to the pin header represents high level, do not cover the jumper cap represents low level.
+
+Each segment is specified set as shown in the following table:
+
+\begin{center}
+  \begin{tabular}{cccc}
+    MS1   & MS2	 & MS3  & Microstep Resolution \\ \hline
+    Low   & Low  & Low  & Full step \\
+    High  & Low  & Low  & Half step \\
+    Low   & High & Low  & Quarter step \\
+    High  & High & Low  & Eighth step  \\
+    High  & High & High & nSixteenth \\\
+  \end{tabular}
+\end{center}
+
+
+In order to improve the precision of engraving, use 1/16 segment, it needs 3 jumper caps to cover MS0, MS1, MS2. As shown in picture~\ref{KeyesCNCJumper}.
+
+\begin{center}
+	\includegraphics[width=0.6\textwidth]{Drive/KeyesCNC/KeyesCNCJumper}
+	
+	\captionof{figure}{Keyes CNC shield: Jumpersetting for Microstepping}\label{KeyesCNCJumper}
+\end{center}
+
+After finished the above steps, you need to plug A4988 and Arduino NANO into CNC Shield V4.0, please ensure it’s the correct direction of A4988 and Arduino NANO, or it may burn your devices. You can reference for the following picture~\ref{KeyesCNCDrives}.
+
+\begin{center}
+	\includegraphics[width=0.6\textwidth]{Drive/KeyesCNC/KeyesCNCDrives}
+	
+	\captionof{figure}{Keyes CNC shield with stepper drives}\label{KeyesCNCDrives}
+\end{center}
+
+The installation of other equipment (such as limit switch, laser head) should be installed according to the actual situation.
+
+\section{Software installation}
+
+
+\subsection{Install the grblmain library file and burn program}
+
+Download and unzip \HREF{../../Images/Drive/KeyesCNC/grblmain.zip}{grblmain.zip}, and then replace \FILE{config.h} in grblmain folder, the new \HREF{../../Images/Drive/KeyesCNC/config.h}{config.h}: \URL{https://osoyoo.com/wp-content/uploads/2017/04/config.h}
+
+Place the grblmain folder to libraries in Arduino IDE installation directory.
+
+Open Arduino IDE, choose \menu{File > Examples > grblmain > GRBLtoArduino}, you’ll open a grbl sample program, select the port and board type, burn this grbl sample program to Arduino NANO.
+
+\subsection{Install Grbl Controller}
+
+Download and install Grbl Controller, open it, interface as shown in picture~\ref{KeyesCNCGrbl}.
+
+\begin{center}
+	\includegraphics[width=0.9\textwidth]{Drive/KeyesCNC/KeyesCNCGrbl}
+	
+	\captionof{figure}{Keyes CNC shield with stepper drives}\label{KeyesCNCGrbl}
+\end{center}
+
+
+
+Use the USB cable to connect your PC and Arduino NANO, select the port and select the baud rate as 9600. Click “Open”, if it connected, \menu{Open} will be \menu{Close > Reset}, the background is red. Click \menu{Choose File} to choose the graphy you want to engrave, after selected click \menu{Begin} to engrave.
+
+\section{Specifications}
+
+\begin{center}
+\begin{tabular}{lc}
+  Length (mm) &  72 \\
+  Width (mm)  & 58.7 \\
+  Height (mm) & 15\\
+  Brand       & Keyes \\
+  Main Colour & Red \\
+  Country of Manufacture & China \\
+  MPN                    & CCAA100066 \\
+  Minimum Operating Temperature & -40$^\circ$C \\
+  Maximum Operating Temperature &  85$^\circ$C \\
+  Hardware Compatibility        & Arduino NANO \\
+  Pin Pitch                     & 2.54mm \\
+  Pin Arrangements              & Abort/Hold/Resume \\
+                                & Emergency stop\\
+                                & 3 Axis end stops \\
+                                & I\textsuperscript{2}C \\
+                                & UART \\
+                                & Jumper based step setting \\
+                                & Reset switch\\
+  Input DC Voltage              & 12V External motor power \\
+  Noted Onboard Components      & Step setting jumpers \\
+                                & Reset switch \\
+                                & A4988 Socket \\
+  Noted Software Base/Features  & 3 Axis CNC control \\
+                                & Spindle control \\
+                                & Coolant control \\
+  Connector Type                & 5.5mm DC Jack (2.1mm pin) \\
+                                & 3 $\times$  4988 Sockets \\
+\end{tabular}
+  \captionof{table}{Keyes CNC shield's specifications}                                
+\end{center}  
+
+\section{Help}
+
+
+\URL{https://wiki.keyestudio.com/Ks0096_keyestudio_CNC_Kit_/_CNC_Shield_V4.0_+_Nano_3.0+3pcs_a4988_Driver_/_GRBL_Compatible}

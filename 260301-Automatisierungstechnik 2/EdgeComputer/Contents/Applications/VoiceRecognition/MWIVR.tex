@@ -1,0 +1,1533 @@
+%%%
+%
+% $Autor: Wings $
+% $Date: 2025-05 $
+% $File: MWIVR.tex $
+% $Version: 1 $
+%
+% Project: 
+%
+%%%
+
+
+\chapter{Einleitung MWIVR} \label{sec:Einleitung-Anwendung}
+
+In diesem Abschnitt wird die technische Umsetzung der MWIVR-Applikation vorgestellt, welche Spracherkennung zur Steuerung einer einfachen Mikrocontroller-basierten Hardware nutzt. Ziel der Applikation ist es, über Sprachbefehle zwei LEDs anzusteuern, die verschiedene Leucht- oder Blinksignale ausgeben können. Die gesamte Elektronik ist dabei kompakt in einem Mikrofongehäuse untergebracht, sodass die Lösung portabel und einfach zu bedienen ist.
+
+\bigskip
+
+Herzstück des Systems bildet der Arduino Nano BLE Sense light, der über ein Grove Shield mit den angeschlossenen LEDs sowie einem OLED-Display verbunden ist. Die Spannungsversorgung der LEDs erfolgt über die Grove-Shields, welche an die 3,3V Abgänge am Arduino angeschlossen werden. Dadurch lässt sich die Spannung an den LEDs flexibel einstellen. Das OLED-Display dient als Rückkanal zum Nutzer und zeigt verschiedene Statusmeldungen an – beispielsweise einen Begrüßungstext beim Einschalten, eine Bestätigung bei erfolgreicher Spracherkennung („Okay“) sowie Fehlermeldungen („Fehler, bitte wiederholen!“) bei nicht erkannten oder falsch interpretierten Eingaben.
+
+\bigskip
+
+Die Spannungsversorgung des Systems erfolgt über eine 9V-Blockbatterie. Ein einfacher Ein-/Ausschalter unterbricht dabei die Versorgungsspannung, wodurch das Mikrofonmodul und der Mikrocontroller ein- bzw. ausgeschaltet werden können. Als Mikrofon wird das auf dem Arduino integrierte MP34DT05 verwendet, das für die Sprachaufnahme zuständig ist.
+
+\bigskip
+
+Zur Realisierung der Spracherkennung wird ein auf Machine Learning basierendes Modell verwendet, das über die Plattform Edge Impulse trainiert wurde. Die KI analysiert dabei die aufgenommenen Sprachbefehle mithilfe von Spektrogrammen und vergleicht diese mit zuvor hinterlegten Beispielaufnahmen. Die Modellintegration erfolgt über TensorFlow Lite und die Bibliothek EdgeML, wodurch das trainierte Modell ausreichend komprimiert und an die begrenzten Speicher- und Rechenressourcen des Arduino angepasst wird.
+
+\bigskip
+
+Die Kombination aus kompakter Hardware, einfacher Benutzerführung über LEDs und Display sowie effizient eingebundener Spracherkennung ermöglicht eine leichtgewichtige, energieeffiziente Applikation für sprachgesteuerte Steuerungsaufgaben im Embedded-Bereich.
+
+\chapter{Schaltplan des Systems} \label{sec:Schaltplan des Systems}
+
+Die Stromversorgung der Schaltung \ref{fig:MWIVR-Schaltplan} erfolgt über eine externe 9V-Gleichspannungsquelle, die über einen Wippschalter („An/Aus“) an das System angebunden ist. Die Versorgungsspannung wird zunächst dem „Tiny Machine Learning Shield“ von Arduino zugeführt, welches als zentrale Schnittstelle für die Komponenten dient. Der Arduino ist über die auf dem Shield vorgesehene Schnittstelle verbunden. Der im Arduino integrierte Spannungswandler regelt nun die 9V Eingangsspannung auf die für den Arduino Nano BLE 33 Sense Lite notwendige Betriebsspannung von 3,3V herunter.
+
+\bigskip
+
+Die Verbindung zwischen den Peripheriegeräten und dem Mikrocontroller erfolgt über standardisierte Grove-Steckverbindungen, die eine einfache und sichere elektrische Verbindung gewährleisten. Zwei dieser Grove-Ports sind mit LED-Modulen (Grove LED 1 und Grove LED 2) verbunden, welche jeweils eine rote (LED rot) und eine grüne (LED grün) LED ansteuern. Die Steuerung erfolgt über die analogen Pins D11 und D12 des Mikrocontrollers, wobei die LED-Module ihre Betriebsspannung ebenfalls über die 3,3V-Leitung vom Tiny ML Shield erhalten. Die Masseanschlüsse sind alle gemeinsam mit dem GND-Pin des Mikrocontrollers verbunden.
+
+\bigskip
+
+Ein weiteres Peripheriegerät ist ein OLED-Display, das über eine $I^2C$-Schnittstelle angeschlossen ist. Auch hier erfolgt die Verbindung über einen Grove-Port am Tiny ML Shield. Die Datenleitung (SDA) ist mit Pin A4 und die Clock-Leitung (SCL) mit Pin A5 des Arduino Nano BLE 33 Sense Lite über das Tiny ML Shield verbunden. Durch diese Konfiguration kann der Mikrocontroller über das $I^2C$-Protokoll Informationen an das Display senden und dort visualisieren.
+
+\bigskip
+
+Zusammenfassend handelt es sich bei dieser Schaltung um ein modulares System mit zentraler Spannungsversorgung über das Tiny ML Shield, das als Schnittstelle zwischen der Energiequelle, dem Mikrocontroller und den Peripheriegeräten dient. Die Verwendung von Grove-Steckverbindungen ermöglicht eine saubere und standardisierte Verbindung aller Komponenten, wodurch sich die Schaltung besonders für den prototypischen Aufbau und das Experimentieren im Bereich Embedded Systems und TinyML eignet.
+
+\begin{center}
+		\begin{circuitikz}
+    \tikzstyle{every node}=[font=\LARGE]
+    \draw [ fill={rgb,255:red,52; green,77; blue,130} , line width=1.5pt , rounded corners = 15.6] (21.75,14) rectangle (44.5,4);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (22.75,13.25) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (25.25,13.25) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (24,13.25) circle (0.25cm);
+    \draw [ fill={rgb,255:red,230; green,230; blue,230} , line width=1.5pt , rounded corners = 15.6] (26.25,-23) rectangle (30,-29.25);
+    \draw [ line width=1.5pt , rounded corners = 9.6] (20.75,-20.25) rectangle (23.25,-22.75);
+    \draw [ fill={rgb,255:red,205; green,224; blue,254} , line width=1.5pt , rounded corners = 15.6] (13.5,-3.75) rectangle (18.25,-8.5);
+    \draw [ fill={rgb,255:red,15; green,230; blue,0} , line width=1.1pt ] (15.75,-10.75) circle (0.75cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (26.5,13.25) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (27.75,13.25) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (29,13.25) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (30.25,13.25) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (31.5,13.25) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (32.75,13.25) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (34,13.25) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (35.25,13.25) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (36.5,13.25) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (37.75,13.25) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (39,13.25) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (40.25,13.25) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (22.75,4.75) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (25.25,4.75) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (24,4.75) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (26.5,4.75) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (27.75,4.75) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (29,4.75) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (30.25,4.75) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (31.5,4.75) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (32.75,4.75) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (34,4.75) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (35.25,4.75) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (36.5,4.75) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (37.75,4.75) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (39,4.75) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (40.25,4.75) circle (0.25cm);
+    \node [font=\large] at (29,-24.5) {};
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} , line width=1pt ] (27,-22.5) rectangle (27.75,-23);
+    \draw [ fill={rgb,255:red,5; green,5; blue,5} , line width=1pt ] (28.5,-22.5) rectangle (29.25,-23);
+    \node [font=\LARGE, color={rgb,255:red,255; green,0; blue,0}] at (27.25,-23.75) {\textbf{+}};
+    \node [font=\LARGE] at (29,-23.75) {\textbf{-}};
+    \draw [ fill={rgb,255:red,205; green,224; blue,254} , line width=1.5pt , rounded corners = 15.6] (48.25,-16.5) rectangle (56.75,-22.25);
+    \draw [ fill={rgb,255:red,227; green,227; blue,227} , line width=1.5pt ] (50.5,-17) rectangle (54.75,-19);
+    \node [font=\Large, rotate around={-90:(0,0)}] at (51.5,-19.75) {VCC};
+    \node [font=\Large, rotate around={-90:(0,0)}] at (52.25,-19.75) {GND};
+    \node [font=\Large, rotate around={-90:(0,0)}] at (53,-19.75) {SDA};
+    \node [font=\Large, rotate around={-90:(0,0)}] at (53.75,-19.75) {SCL};
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (15.25,-8) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (16.25,-8) circle (0.25cm);
+    \node [font=\LARGE, color={rgb,255:red,255; green,0; blue,0}] at (15.25,-7.5) {\textbf{+}};
+    \node [font=\LARGE] at (16.25,-7.5) {\textbf{-}};
+    \draw [ color={rgb,255:red,255; green,0; blue,0}, line width=1pt, short] (15.25,-8.25) -- (15.25,-10.25);
+    \draw [line width=1pt, short] (16.25,-8.25) -- (16.25,-10.25);
+    \draw [ fill={rgb,255:red,222; green,222; blue,222} , line width=1pt ] (22,-21.5) circle (0.75cm);
+    \node [font=\LARGE] at (28,-26.25) {9V DC};
+    \node [font=\LARGE] at (22,-19.75) {An/Aus};
+    \node [font=\LARGE] at (52.75,-18) {OLED};
+    \node [font=\LARGE, rotate around={-90:(0,0)}] at (12.75,-6.25) {Grove LED Shield 1};
+    \node [font=\LARGE] at (15.75,-12.25) {LED grün};		
+    \draw [ fill={rgb,255:red,52; green,77; blue,130} , line width=1.5pt , rounded corners = 18.0] (20.75,-3.75) rectangle (45.75,-17.75);
+    \draw [ fill={rgb,255:red,222; green,222; blue,222} , line width=1pt , rounded corners = 6.0] (21.75,-6.25) rectangle (24.75,-9.25);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (24.25,-6.75) circle (0.25cm);
+    \draw [ fill={rgb,255:red,3; green,3; blue,3} ] (24.25,-8.75) circle (0.25cm);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (22.25,-6.75) circle (0.25cm);
+    \draw [ fill={rgb,255:red,6; green,5; blue,5} ] (22.25,-8.75) circle (0.25cm);
+    \draw [ fill={rgb,255:red,84; green,84; blue,84} ] (23.25,-7.75) circle (0.75cm);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (23,-7.5) rectangle (23.5,-8);
+    \draw [ fill={rgb,255:red,110; green,201; blue,128} , rounded corners = 5.4] (21.75,-13.75) rectangle (23.75,-16.5);
+    \draw [ fill={rgb,255:red,230; green,230; blue,230} ] (22.75,-14.5) circle (0.5cm);
+    \draw [ fill={rgb,255:red,230; green,230; blue,230} ] (22.75,-15.75) circle (0.5cm);
+    \draw [ fill={rgb,255:red,84; green,84; blue,84} ] (26.25,-5) rectangle (27.25,-16.75);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (26.5,-6) rectangle (27,-6.5);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (26.5,-6.75) rectangle (27,-7.25);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (26.5,-7.5) rectangle (27,-8);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (26.5,-8.25) rectangle (27,-8.75);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (26.5,-9) rectangle (27,-9.5);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (26.5,-9.75) rectangle (27,-10.25);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (26.5,-10.5) rectangle (27,-11);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (26.5,-11.25) rectangle (27,-11.75);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (26.5,-12) rectangle (27,-12.5);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (26.5,-12.75) rectangle (27,-13.25);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (26.5,-13.5) rectangle (27,-14);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (26.5,-14.25) rectangle (27,-14.75);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (26.5,-15) rectangle (27,-15.5);
+    \draw [ fill={rgb,255:red,84; green,84; blue,84} ] (30.5,-5) rectangle (31.5,-16.75);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (30.75,-6) rectangle (31.25,-6.5);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (30.75,-6.75) rectangle (31.25,-7.25);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (30.75,-7.5) rectangle (31.25,-8);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (30.75,-8.25) rectangle (31.25,-8.75);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (30.75,-9) rectangle (31.25,-9.5);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (30.75,-9.75) rectangle (31.25,-10.25);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (30.75,-10.5) rectangle (31.25,-11);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (30.75,-11.25) rectangle (31.25,-11.75);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (30.75,-12) rectangle (31.25,-12.5);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (30.75,-12.75) rectangle (31.25,-13.25);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (30.75,-13.5) rectangle (31.25,-14);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (30.75,-14.25) rectangle (31.25,-14.75);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (30.75,-15) rectangle (31.25,-15.5);
+    \draw [ fill={rgb,255:red,84; green,84; blue,84} ] (34.5,-8) rectangle (36.25,-13.25);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (34.75,-8.25) rectangle (35,-8.5);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (35.75,-8.25) rectangle (36,-8.5);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (34.75,-8.75) rectangle (35,-9);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (35.75,-8.75) rectangle (36,-9);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (34.75,-9.25) rectangle (35,-9.5);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (35.75,-9.25) rectangle (36,-9.5);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (34.75,-9.75) rectangle (35,-10);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (35.75,-9.75) rectangle (36,-10);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (34.75,-10.25) rectangle (35,-10.5);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (35.75,-10.25) rectangle (36,-10.5);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (34.75,-10.75) rectangle (35,-11);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (35.75,-10.75) rectangle (36,-11);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (34.75,-11.25) rectangle (35,-11.5);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (35.75,-11.25) rectangle (36,-11.5);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (34.75,-11.75) rectangle (35,-12);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (35.75,-11.75) rectangle (36,-12);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (34.75,-12.25) rectangle (35,-12.5);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (35.75,-12.25) rectangle (36,-12.5);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (34.75,-12.75) rectangle (35,-13);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (35.75,-12.75) rectangle (36,-13);
+    \draw [ fill={rgb,255:red,248; green,247; blue,242} , line width=1pt , rounded corners = 6.0] (32.5,-4.5) rectangle (35.75,-6);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (33,-5.25) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (33.75,-5.25) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (34.5,-5.25) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (35.25,-5.25) circle (0.25cm);
+    \draw [ fill={rgb,255:red,248; green,247; blue,242} , line width=1pt , rounded corners = 6.0] (36.75,-4.5) rectangle (40,-6);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (37.25,-5.25) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (38,-5.25) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (38.75,-5.25) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (39.5,-5.25) circle (0.25cm);
+    \draw [ fill={rgb,255:red,248; green,247; blue,242} , line width=1pt , rounded corners = 6.0] (41,-4.5) rectangle (44.25,-6);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (41.5,-5.25) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (42.25,-5.25) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (43,-5.25) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (43.75,-5.25) circle (0.25cm);
+    \draw [ fill={rgb,255:red,248; green,247; blue,242} , line width=1pt , rounded corners = 6.0] (32.5,-15.75) rectangle (35.75,-17.25);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (33,-16.5) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (33.75,-16.5) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (34.5,-16.5) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (35.25,-16.5) circle (0.25cm);
+    \draw [ fill={rgb,255:red,248; green,247; blue,242} , line width=1pt , rounded corners = 6.0] (36.75,-15.75) rectangle (40,-17.25);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (37.25,-16.5) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (38,-16.5) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (38.75,-16.5) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (39.5,-16.5) circle (0.25cm);
+    \draw [ fill={rgb,255:red,248; green,247; blue,242} , line width=1pt , rounded corners = 6.0] (41,-15.75) rectangle (44.25,-17.25);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (41.5,-16.5) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (42.25,-16.5) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (43,-16.5) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (43.75,-16.5) circle (0.25cm);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (22.75,-15.75) -- (24.25,-15.75);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (22.75,-14.5) -- (24.25,-14.5);
+    \node [font=\LARGE, color={rgb,255:red,255; green,255; blue,255}] at (24.5,-14.25) {};
+    \node [font=\LARGE, color={rgb,255:red,255; green,255; blue,255}] at (25,-15.75) {VIN};
+    \draw [ color={rgb,255:red,255; green,255; blue,255} , fill={rgb,255:red,252; green,252; blue,252}, line width=1pt ] (24.25,-14) rectangle (25.75,-14.75);
+    \node [font=\LARGE] at (25,-14.5) {GND};
+    \draw [ color={rgb,255:red,255; green,255; blue,255} ] (28,-4) rectangle (29.75,-6.5);
+    \node [font=\LARGE, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (28.75,-5.25) {USB};
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, short] (28,-4.5) -- (26.25,-4.5);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, short] (26.25,-4.5) -- (26.25,-5);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, short] (29.75,-4.5) -- (31.5,-4.5);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, short] (31.5,-4.5) -- (31.5,-5);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, short] (26.25,-16.75) -- (26.25,-17);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, short] (26.25,-17) -- (31.5,-17);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, short] (31.5,-17) -- (31.5,-16.75);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (33,-16.25) -- (33,-15.25);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (33.75,-16.25) -- (33.75,-15.25);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (34.5,-16.25) -- (34.5,-15.25);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (35.25,-16.25) -- (35.25,-15.25);
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (33,-14.5) {SCL};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (33.75,-14.5) {SDA};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (34.5,-14.5) {3V3};
+    \node [font=\LARGE, color={rgb,255:red,255; green,255; blue,255}] at (37,-14.25) {};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (34.75,-14.25) {};
+    \draw [ color={rgb,255:red,255; green,255; blue,255} , fill={rgb,255:red,252; green,252; blue,252}, line width=1pt , rotate around={-90:(35.25, -14.375)}] (34.5,-14) rectangle (36,-14.75);
+    \node [font=\Large, rotate around={-90:(0,0)}] at (35.25,-14.5) {GND};
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (37.25,-16.25) -- (37.25,-15.25);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (38,-16.25) -- (38,-15.25);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (38.75,-16.25) -- (38.75,-15.25);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (39.5,-16.25) -- (39.5,-15.25);
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (37.25,-14.5) {SCL};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (38,-14.5) {SDA};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (38.75,-14.5) {3V3};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (39,-14.25) {};
+    \draw [ color={rgb,255:red,255; green,255; blue,255} , fill={rgb,255:red,252; green,252; blue,252}, line width=1pt , rotate around={-90:(39.5, -14.375)}] (38.75,-14) rectangle (40.25,-14.75);
+    \node [font=\Large, rotate around={-90:(0,0)}] at (39.5,-14.5) {GND};
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (41.5,-16.25) -- (41.5,-15.25);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (42.25,-16.25) -- (42.25,-15.25);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (43,-16.25) -- (43,-15.25);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (43.75,-16.25) -- (43.75,-15.25);
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (41.5,-14.5) {SCL};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (42.25,-14.5) {SDA};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (43,-14.5) {3V3};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (43.25,-14.25) {};
+    \draw [ color={rgb,255:red,255; green,255; blue,255} , fill={rgb,255:red,252; green,252; blue,252}, line width=1pt , rotate around={-90:(43.75, -14.375)}] (43,-14) rectangle (44.5,-14.75);
+    \node [font=\Large, rotate around={-90:(0,0)}] at (43.75,-14.5) {GND};
+    \draw [ color={rgb,255:red,255; green,255; blue,255} , fill={rgb,255:red,252; green,252; blue,252}, line width=1pt , rotate around={-90:(33, -7.375)}] (32.25,-7) rectangle (33.75,-7.75);
+    \node [font=\Large, rotate around={-90:(0,0)}] at (33,-7.5) {GND};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (33.75,-7.25) {3V3};
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (33,-5.5) -- (33,-6.5);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (33.75,-5.5) -- (33.75,-6.5);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (35.25,-5.5) -- (35.25,-6.5);
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (35.25,-7.25) {D12};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (38,-7.25) {3V3};
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (37.25,-5.5) -- (37.25,-6.5);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (38,-5.5) -- (38,-6.5);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (39.5,-5.5) -- (39.5,-6.5);
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (39.5,-7.25) {D11};
+    \draw [ color={rgb,255:red,255; green,255; blue,255} , fill={rgb,255:red,252; green,252; blue,252}, line width=1pt , rotate around={-90:(37.25, -7.375)}] (36.5,-7) rectangle (38,-7.75);
+    \node [font=\Large, rotate around={-90:(0,0)}] at (37.25,-7.5) {GND};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (42.25,-7.25) {3V3};
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (41.5,-5.5) -- (41.5,-6.5);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (42.25,-5.5) -- (42.25,-6.5);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (43.75,-5.5) -- (43.75,-6.5);
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (43.75,-7.25) {A6};
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (43,-5.5) -- (43,-6.5);
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (43,-7.25) {A7};
+    \draw [ color={rgb,255:red,255; green,255; blue,255} , fill={rgb,255:red,252; green,252; blue,252}, line width=1pt , rotate around={-90:(41.5, -7.375)}] (40.75,-7) rectangle (42.25,-7.75);
+    \node [font=\Large, rotate around={-90:(0,0)}] at (41.5,-7.5) {GND};
+    \draw [ color={rgb,255:red,255; green,255; blue,255} , fill={rgb,255:red,252; green,252; blue,252}, line width=1pt ] (45,-6.5) rectangle (45.5,-12.5);
+    \node [font=\large, rotate around={-90:(0,0)}] at (45.25,-9.5) {TINY MACHINE LEARNING};
+    \draw [ color={rgb,255:red,255; green,255; blue,255} , line width=1pt ] (45,-12.5) rectangle (45.5,-14.5);
+    \node [font=\large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (45.25,-13.5) {SHIELD};
+    \node [font=\huge, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (44.25,-10.5) {GOC 2048};
+    \node [font=\large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (21.5,-11.5) {ARDUINO.CC};
+    \draw [ color={rgb,255:red,140; green,140; blue,145} , fill={rgb,255:red,140; green,140; blue,145}, line width=2pt ] (38.5,11) rectangle (42.5,7);
+    \draw [ color={rgb,255:red,180; green,185; blue,185} , fill={rgb,255:red,180; green,185; blue,185}, line width=1pt ] (38.75,10.75) rectangle (42.25,7.25);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (40.25,5) -- (40.25,5.5);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (39,5) -- (39,5.5);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (37.75,5) -- (37.75,5.5);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (36.5,5) -- (36.5,5.5);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (35.25,5) -- (35.25,5.5);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (34,5) -- (34,5.5);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (32.75,5) -- (32.75,5.5);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (31.5,5) -- (31.5,5.5);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (30.25,5) -- (30.25,5.5);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (29,5) -- (29,5.5);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (27.75,5) -- (27.75,5.5);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (26.5,5) -- (26.5,5.5);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (25.25,5) -- (25.25,5.5);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (24,5) -- (24,5.5);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (22.75,5) -- (22.75,5.5);
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (40.25,6) {VIN};
+    \draw [ color={rgb,255:red,255; green,255; blue,255} , fill={rgb,255:red,250; green,250; blue,250}, line width=1pt ] (38.75,6.75) rectangle (39.5,5.25);
+    \node [font=\Large, rotate around={-90:(0,0)}] at (39,6) {GND};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (37.75,6.25) {RESET};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (36.5,6) {+5V};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (35.25,6) {A7};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (34,6) {A6};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (32.75,6) {A5};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (31.5,6) {A4};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (30.25,6) {A3};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (29,6) {A2};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (27.75,6) {A1};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (26.5,6) {A0};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (22.75,6) {VIN};
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (40.25,13) -- (40.25,12.5);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (39,13) -- (39,12.5);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (37.75,13) -- (37.75,12.5);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (36.5,13) -- (36.5,12.5);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (35.25,13) -- (35.25,12.5);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (34,13) -- (34,12.5);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (32.75,13) -- (32.75,12.5);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (31.5,13) -- (31.5,12.5);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (30.25,13) -- (30.25,12.5);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (29,13) -- (29,12.5);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (27.75,13) -- (27.75,12.5);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (26.5,13) -- (26.5,12.5);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (25.25,13) -- (25.25,12.5);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (24,13) -- (24,12.5);
+    \draw [ color={rgb,255:red,255; green,255; blue,255}, line width=1pt, short] (22.75,13) -- (22.75,12.5);
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (40.25,12) {TX};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (39,12) {RX};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (37.75,11.5) {RESET};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}] at (33.5,10.25) {};
+    \draw [ color={rgb,255:red,255; green,255; blue,255} , fill={rgb,255:red,250; green,250; blue,250}, line width=1pt ] (36.25,12.5) rectangle (37,11);
+    \node [font=\Large, rotate around={-90:(0,0)}] at (36.5,11.75) {GND};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (35.25,12) {D2};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (34,12) {D3};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (32.75,12) {D4};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (31.5,12) {D5};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (30.25,12) {D6};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (29,12) {D7};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (27.75,12) {D8};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (26.5,12) {D9};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (24,11.75) {D11};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (22.75,11.75) {D12};
+    \draw [ color={rgb,255:red,71; green,103; blue,81} , fill={rgb,255:red,90; green,143; blue,112}, line width=2pt ] (42.5,11) rectangle (44.25,7);
+    \draw [ color={rgb,255:red,90; green,143; blue,112} , fill={rgb,255:red,90; green,143; blue,112}, line width=1pt ] (42.75,7.75) rectangle (42.75,10.5);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} , line width=1pt ] (34.25,10.75) rectangle (36,9.5);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} , line width=1pt ] (27.75,8.75) rectangle (29,6.75);
+    \draw [ color={rgb,255:red,155; green,160; blue,160} , fill={rgb,255:red,155; green,160; blue,160}, line width=1pt ] (20.25,11) rectangle (23.25,7);
+    \draw [ color={rgb,255:red,140; green,140; blue,145} , fill={rgb,255:red,140; green,140; blue,145}, line width=1pt ] (20.75,11) rectangle (21,7);
+    \draw [ color={rgb,255:red,140; green,140; blue,145} , fill={rgb,255:red,140; green,140; blue,145}, line width=1pt ] (21.5,11) rectangle (21.75,7);
+    \draw [ color={rgb,255:red,140; green,140; blue,145} , fill={rgb,255:red,140; green,140; blue,145}, line width=1pt ] (22.25,11) rectangle (22.5,7);
+    \draw [ color={rgb,255:red,140; green,140; blue,145} , fill={rgb,255:red,140; green,140; blue,145}, line width=1pt ] (23,11) rectangle (23.25,7);
+    \draw [ color={rgb,255:red,155; green,160; blue,160} , fill={rgb,255:red,155; green,160; blue,160}, line width=1pt ] (21.75,12) rectangle (22.5,11.5);
+    \draw [ color={rgb,255:red,155; green,160; blue,160} , fill={rgb,255:red,155; green,160; blue,160}, line width=1pt ] (21.75,6.5) rectangle (22.5,6);
+    \draw [ color={rgb,255:red,235; green,165; blue,0} , fill={rgb,255:red,235; green,165; blue,0}, line width=1pt ] (22,6.25) circle (0.25cm);
+    \draw [ color={rgb,255:red,25; green,160; blue,130} , fill={rgb,255:red,25; green,160; blue,130}, line width=1pt ] (22,11.75) circle (0.25cm);
+    \draw [ color={rgb,255:red,5; green,5; blue,5} , fill={rgb,255:red,8; green,8; blue,8}, line width=1pt ] (28,11.25) rectangle (27.25,10.5);
+    \draw [ color={rgb,255:red,5; green,5; blue,5} , fill={rgb,255:red,8; green,8; blue,8}, line width=1pt ] (25.5,11.25) rectangle (24,10.5);
+    \draw [ color={rgb,255:red,5; green,5; blue,5} , fill={rgb,255:red,8; green,8; blue,8}, line width=1pt ] (24,10) rectangle (25.25,9.25);
+    \draw [ color={rgb,255:red,5; green,5; blue,5} , fill={rgb,255:red,8; green,8; blue,8}, line width=1pt ] (24.25,8.5) rectangle (25,7.75);
+    \draw [ color={rgb,255:red,5; green,5; blue,5} , fill={rgb,255:red,8; green,8; blue,8}, line width=1pt ] (24,7.25) rectangle (25.75,6.25);
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (25.25,6.25) {AREF};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (24,6.25) {+3V3};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}, rotate around={-90:(0,0)}] at (25.25,11.75) {D10};
+    \draw [ color={rgb,255:red,5; green,5; blue,5} , fill={rgb,255:red,8; green,8; blue,8}, line width=1pt ] (29.5,8.25) rectangle (30,7.75);
+    \draw [ color={rgb,255:red,195; green,195; blue,195} , fill={rgb,255:red,195; green,195; blue,195}, line width=1pt ] (23.25,10.25) rectangle (23.5,10);
+    \draw [ color={rgb,255:red,195; green,195; blue,195} , fill={rgb,255:red,195; green,195; blue,195}, line width=1pt ] (23.25,9.75) rectangle (23.5,9.5);
+    \draw [ color={rgb,255:red,195; green,195; blue,195} , fill={rgb,255:red,195; green,195; blue,195}, line width=1pt ] (23.25,9.25) rectangle (23.5,9);
+    \draw [ color={rgb,255:red,195; green,195; blue,195} , fill={rgb,255:red,195; green,195; blue,195}, line width=1pt ] (23.25,8.75) rectangle (23.5,8.5);
+    \draw [ color={rgb,255:red,195; green,195; blue,195} , fill={rgb,255:red,195; green,195; blue,195}, line width=1pt ] (23.25,8.25) rectangle (23.5,8);
+    \draw [ color={rgb,255:red,195; green,195; blue,195} , fill={rgb,255:red,195; green,195; blue,195}, line width=1pt ] (24.25,11) rectangle (23.75,10.75);
+    \draw [ color={rgb,255:red,195; green,195; blue,195} , fill={rgb,255:red,195; green,195; blue,195}, line width=1pt ] (25.25,11) rectangle (25.75,10.75);
+    \draw [ color={rgb,255:red,195; green,195; blue,195} , fill={rgb,255:red,195; green,195; blue,195}, line width=1pt ] (25,9.75) rectangle (24.75,10.25);
+    \draw [ color={rgb,255:red,195; green,195; blue,195} , fill={rgb,255:red,195; green,195; blue,195}, line width=1pt ] (25,9) rectangle (24.75,9.5);
+    \draw [ color={rgb,255:red,195; green,195; blue,195} , fill={rgb,255:red,195; green,195; blue,195}, line width=1pt ] (24.5,9.75) rectangle (24.25,10.25);
+    \draw [ color={rgb,255:red,195; green,195; blue,195} , fill={rgb,255:red,195; green,195; blue,195}, line width=1pt ] (24.5,9) rectangle (24.25,9.5);
+    \draw [ color={rgb,255:red,195; green,195; blue,195} , fill={rgb,255:red,195; green,195; blue,195}, line width=0.2pt ] (24.25,8.5) rectangle (24,7.75);
+    \draw [ color={rgb,255:red,195; green,195; blue,195} , fill={rgb,255:red,195; green,195; blue,195}, line width=0.2pt ] (25,8.5) rectangle (25.25,7.75);
+    \draw [ color={rgb,255:red,195; green,195; blue,195} , fill={rgb,255:red,195; green,195; blue,195}, line width=0.2pt ] (27.25,11.25) rectangle (27,10.5);
+    \draw [ color={rgb,255:red,195; green,195; blue,195} , fill={rgb,255:red,195; green,195; blue,195}, line width=0.2pt ] (28,11.25) rectangle (28.25,10.5);
+    \draw [ color={rgb,255:red,195; green,195; blue,195} , fill={rgb,255:red,195; green,195; blue,195}, line width=0.2pt ] (29.5,8.25) rectangle (30,8.5);
+    \draw [ color={rgb,255:red,195; green,195; blue,195} , fill={rgb,255:red,195; green,195; blue,195}, line width=0.2pt ] (29.5,7.75) rectangle (30,7.5);
+    \draw [ color={rgb,255:red,195; green,195; blue,195} , fill={rgb,255:red,195; green,195; blue,195}, line width=0.2pt ] (25.75,9.75) rectangle (27.25,7.75);
+    \draw [ color={rgb,255:red,255; green,255; blue,255} , fill={rgb,255:red,252; green,252; blue,252}, line width=0.2pt ] (26.5,8.75) circle (0.5cm);
+    \draw [ color={rgb,255:red,140; green,140; blue,145} , fill={rgb,255:red,140; green,140; blue,145}, line width=0.2pt ] (26,7.75) rectangle (27,7.5);
+    \draw [ color={rgb,255:red,140; green,140; blue,145} , fill={rgb,255:red,140; green,140; blue,145}, line width=0.2pt ] (26,9.75) rectangle (27,10);
+    \draw [ fill={rgb,255:red,248; green,247; blue,242} , line width=1pt , rounded corners = 6.0] (14.25,-4) rectangle (17.5,-5.5);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (14.75,-4.75) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (15.5,-4.75) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (16.25,-4.75) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (17,-4.75) circle (0.25cm);
+    \draw [ color={rgb,255:red,3; green,3; blue,3}, line width=1pt, short] (14.75,-5) -- (14.75,-5.75);
+    \draw [ color={rgb,255:red,3; green,3; blue,3}, line width=1pt, short] (16.25,-5) -- (16.25,-5.75);
+    \draw [ color={rgb,255:red,3; green,3; blue,3}, line width=1pt, short] (17,-5) -- (17,-5.75);
+    \node [font=\Large, color={rgb,255:red,3; green,3; blue,3}, rotate around={-90:(0,0)}] at (14.75,-6.5) {Signal};
+    \node [font=\Large, color={rgb,255:red,3; green,3; blue,3}, rotate around={-90:(0,0)}] at (16.25,-6.5) {VCC};
+    \node [font=\Large, color={rgb,255:red,3; green,3; blue,3}, rotate around={-90:(0,0)}] at (17,-6.5) {GND};
+    \draw [ fill={rgb,255:red,205; green,224; blue,254} , line width=1.5pt , rounded corners = 15.6] (47.75,-3.75) rectangle (52.5,-8.5);
+    \draw [ fill={rgb,255:red,255; green,0; blue,0} , line width=1.1pt ] (50,-10.75) circle (0.75cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (49.5,-8) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (50.5,-8) circle (0.25cm);
+    \node [font=\LARGE, color={rgb,255:red,255; green,0; blue,0}] at (49.5,-7.5) {\textbf{+}};
+    \node [font=\LARGE] at (50.5,-7.5) {\textbf{-}};
+    \draw [ color={rgb,255:red,255; green,0; blue,0}, line width=1pt, short] (49.5,-8.25) -- (49.5,-10.25);
+    \draw [line width=1pt, short] (50.5,-8.25) -- (50.5,-10.25);
+    \node [font=\LARGE, rotate around={-90:(0,0)}] at (53.25,-6.25) {Grove LED Shield 2};
+    \node [font=\LARGE] at (50,-12.25) {LED rot};
+    \draw [ fill={rgb,255:red,248; green,247; blue,242} , line width=1pt , rounded corners = 6.0] (48.5,-4) rectangle (51.75,-5.5);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (49,-4.75) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (49.75,-4.75) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (50.5,-4.75) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (51.25,-4.75) circle (0.25cm);
+    \draw [ color={rgb,255:red,3; green,3; blue,3}, line width=1pt, short] (49,-5) -- (49,-5.75);
+    \draw [ color={rgb,255:red,3; green,3; blue,3}, line width=1pt, short] (50.5,-5) -- (50.5,-5.75);
+    \draw [ color={rgb,255:red,3; green,3; blue,3}, line width=1pt, short] (51.25,-5) -- (51.25,-5.75);
+    \node [font=\Large, color={rgb,255:red,3; green,3; blue,3}, rotate around={-90:(0,0)}] at (49,-6.5) {Signal};
+    \node [font=\Large, color={rgb,255:red,3; green,3; blue,3}, rotate around={-90:(0,0)}] at (50.5,-6.5) {VCC};
+    \node [font=\Large, color={rgb,255:red,3; green,3; blue,3}, rotate around={-90:(0,0)}] at (51.25,-6.5) {GND};
+    \draw [ fill={rgb,255:red,248; green,247; blue,242} , line width=1pt , rounded corners = 6.0] (51,-20.5) rectangle (54.25,-22);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (51.5,-21.5) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (52.25,-21.5) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (53,-21.5) circle (0.25cm);
+    \draw [ fill={rgb,255:red,128; green,128; blue,128} ] (53.75,-21.5) circle (0.25cm);
+    \draw [ color={rgb,255:red,3; green,3; blue,3}, line width=1pt, short] (51.5,-21.25) -- (51.5,-20.25);
+    \draw [ color={rgb,255:red,3; green,3; blue,3}, line width=1pt, short] (52.25,-21.25) -- (52.25,-20.25);
+    \draw [ color={rgb,255:red,3; green,3; blue,3}, line width=1pt, short] (53,-21.25) -- (53,-20.25);
+    \draw [ color={rgb,255:red,3; green,3; blue,3}, line width=1pt, short] (53.75,-21.25) -- (53.75,-20.25);
+    \draw [ color={rgb,255:red,255; green,0; blue,0}, line width=2pt, short] (51.5,-21.5) -- (51.5,-22.75);
+    \draw [ color={rgb,255:red,255; green,0; blue,0}, line width=2pt, short] (51.5,-22.75) -- (43,-22.75);
+    \draw [ color={rgb,255:red,255; green,0; blue,0}, line width=2pt, short] (43,-16.5) -- (43,-22.75);
+    \draw [ color={rgb,255:red,5; green,5; blue,5}, line width=2pt, short] (52.25,-21.5) -- (52.25,-23.5);
+    \draw [ color={rgb,255:red,5; green,5; blue,5}, line width=2pt, short] (52.25,-23.5) -- (43.75,-23.5);
+    \draw [ color={rgb,255:red,5; green,5; blue,5}, line width=2pt, short] (43.75,-23.5) -- (43.75,-16.5);
+    \draw [ color={rgb,255:red,255; green,123; blue,0}, line width=2pt, short] (53,-21.5) -- (53,-24.25);
+    \draw [ color={rgb,255:red,255; green,123; blue,0}, line width=2pt, short] (53,-24.25) -- (42.25,-24.25);
+    \draw [ color={rgb,255:red,255; green,123; blue,0}, line width=2pt, short] (42.25,-24.25) -- (42.25,-16.5);
+    \draw [ color={rgb,255:red,45; green,168; blue,0}, line width=2pt, short] (53.75,-21.5) -- (53.75,-25);
+    \draw [ color={rgb,255:red,45; green,168; blue,0}, line width=2pt, short] (53.75,-25) -- (41.5,-25);
+    \draw [ color={rgb,255:red,45; green,168; blue,0}, line width=2pt, short] (41.5,-25) -- (41.5,-16.5);
+    \draw [ color={rgb,255:red,255; green,0; blue,0}, line width=2pt, short] (50.5,-4.75) -- (50.5,-2);
+    \draw [ color={rgb,255:red,255; green,0; blue,0}, line width=2pt, short] (50.5,-2) -- (38,-2);
+    \draw [ color={rgb,255:red,255; green,0; blue,0}, line width=2pt, short] (38,-2) -- (38,-5.25);
+    \draw [ color={rgb,255:red,255; green,0; blue,0}, line width=2pt, short] (16.25,-4.75) -- (16.25,-2);
+    \draw [ color={rgb,255:red,255; green,0; blue,0}, line width=2pt, short] (16.25,-2) -- (33.75,-2);
+    \draw [ color={rgb,255:red,255; green,0; blue,0}, line width=2pt, short] (33.75,-2) -- (33.75,-5.25);
+    \draw [line width=2pt, short] (51.25,-4.75) -- (51.25,-1.25);
+    \draw [line width=2pt, short] (51.25,-1.25) -- (37.25,-1.25);
+    \draw [line width=2pt, short] (37.25,-1.25) -- (37.25,-5.25);
+    \draw [line width=2pt, short] (17,-4.75) -- (17,-2.75);
+    \draw [line width=2pt, short] (17,-2.75) -- (33,-2.75);
+    \draw [line width=2pt, short] (33,-2.75) -- (33,-5.25);
+    \draw [ color={rgb,255:red,255; green,123; blue,0}, line width=2pt, short] (14.75,-4.75) -- (14.75,-1.25);
+    \draw [ color={rgb,255:red,255; green,123; blue,0}, line width=2pt, short] (14.75,-1.25) -- (35.25,-1.25);
+    \draw [ color={rgb,255:red,255; green,123; blue,0}, line width=2pt, short] (35.25,-1.25) -- (35.25,-5.25);
+    \draw [ color={rgb,255:red,255; green,123; blue,0}, line width=2pt, short] (49,-4.75) -- (49,-2.75);
+    \draw [ color={rgb,255:red,255; green,123; blue,0}, line width=2pt, short] (49,-2.75) -- (39.5,-2.75);
+    \draw [ color={rgb,255:red,255; green,123; blue,0}, line width=2pt, short] (39.5,-2.75) -- (39.5,-5.25);
+    \draw [ color={rgb,255:red,255; green,0; blue,0}, line width=2pt, short] (27.25,-22.5) -- (27.25,-21.5);
+    \draw [ color={rgb,255:red,255; green,0; blue,0}, line width=2pt, short] (27.25,-21.5) -- (23.5,-21.5);
+    \draw [ color={rgb,255:red,255; green,0; blue,0} , fill={rgb,255:red,140; green,140; blue,145}, line width=2pt ] (23.25,-21.5) circle (0.25cm);
+    \draw [ color={rgb,255:red,255; green,0; blue,0} , fill={rgb,255:red,140; green,140; blue,145}, line width=2pt ] (20.75,-21.5) circle (0.25cm);
+    \draw [ color={rgb,255:red,255; green,0; blue,0}, line width=2pt, short] (20.5,-21.5) -- (19.25,-21.5);
+    \draw [ color={rgb,255:red,255; green,0; blue,0}, line width=2pt, short] (19.25,-21.5) -- (19.25,-15.75);
+    \draw [ color={rgb,255:red,255; green,0; blue,0}, line width=2pt, short] (19.25,-15.75) -- (22.5,-15.75);
+    \draw [line width=2pt, short] (28.75,-22.5) -- (28.75,-18.75);
+    \draw [line width=2pt, short] (28.75,-18.75) -- (20,-18.75);
+    \draw [line width=2pt, short] (20,-18.75) -- (20,-14.5);
+    \draw [line width=2pt, short] (20,-14.5) -- (22.5,-14.5);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (26.5,-15.75) rectangle (27,-16.25);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (30.75,-15.75) rectangle (31.25,-16.25);
+    \node [font=\LARGE] at (27.25,-6.75) {};
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (26.5,-5.25) rectangle (27,-5.75);
+    \draw [ fill={rgb,255:red,0; green,0; blue,0} ] (30.75,-5.25) rectangle (31.25,-5.75);
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}] at (27.5,-5.5) {P1};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}] at (27.5,-6.25) {P2};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}] at (27.5,-7) {P3};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}] at (27.5,-7.75) {P4};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}] at (27.5,-8.5) {P5};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}] at (27.5,-9.25) {P6};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}] at (27.5,-10) {P7};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}] at (27.5,-10.75) {P8};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}] at (27.5,-11.5) {P9};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}] at (27.5,-12.25) {P10};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}] at (27.5,-13) {P11};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}] at (27.5,-13.75) {P12};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}] at (27.5,-14.5) {P13};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}] at (27.5,-15.25) {P14};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}] at (27.5,-16) {P15};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}] at (30,-5.5) {P16};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}] at (30,-6.25) {P17};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}] at (30,-7) {P18};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}] at (30,-7.75) {P19};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}] at (30,-8.5) {P20};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}] at (30,-9.25) {P21};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}] at (30,-10) {P22};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}] at (30,-10.75) {P23};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}] at (30,-11.5) {P24};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}] at (30,-12.25) {P25};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}] at (30,-13) {P26};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}] at (30,-13.75) {P27};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}] at (30,-14.5) {P28};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}] at (30,-15.25) {P29};
+    \node [font=\Large, color={rgb,255:red,255; green,255; blue,255}] at (30,-16) {P30};
+    \draw [line width=2pt, short] (40.25,4.5) -- (40.25,3);
+    \draw [line width=2pt, short] (39,4.5) -- (39,3);
+    \draw [line width=2pt, short] (37.75,4.5) -- (37.75,3);
+    \draw [line width=2pt, short] (36.5,4.5) -- (36.5,3);
+    \draw [line width=2pt, short] (35.25,4.5) -- (35.25,3);
+    \draw [line width=2pt, short] (34,4.5) -- (34,3);
+    \draw [line width=2pt, short] (32.75,4.5) -- (32.75,3);
+    \draw [line width=2pt, short] (31.5,4.5) -- (31.5,3);
+    \draw [line width=2pt, short] (30.25,4.5) -- (30.25,3);
+    \draw [line width=2pt, short] (29,4.5) -- (29,3);
+    \draw [line width=2pt, short] (27.75,4.5) -- (27.75,3);
+    \draw [line width=2pt, short] (26.5,4.5) -- (26.5,3);
+    \draw [line width=2pt, short] (25.25,4.5) -- (25.25,3);
+    \draw [line width=2pt, short] (24,4.5) -- (24,3);
+    \draw [line width=2pt, short] (22.75,4.5) -- (22.75,3);
+    \draw [line width=2pt, short] (40.25,13.5) -- (40.25,15);
+    \draw [line width=2pt, short] (39,13.5) -- (39,15);
+    \draw [line width=2pt, short] (37.75,13.5) -- (37.75,15);
+    \draw [line width=2pt, short] (36.5,13.5) -- (36.5,15);
+    \draw [line width=2pt, short] (35.25,13.5) -- (35.25,15);
+    \draw [line width=2pt, short] (34,13.5) -- (34,15);
+    \draw [line width=2pt, short] (32.75,13.5) -- (32.75,15);
+    \draw [line width=2pt, short] (31.5,13.5) -- (31.5,15);
+    \draw [line width=2pt, short] (30.25,13.5) -- (30.25,15);
+    \draw [line width=2pt, short] (29,13.5) -- (29,15);
+    \draw [line width=2pt, short] (27.75,13.5) -- (27.75,15);
+    \draw [line width=2pt, short] (26.5,13.5) -- (26.5,15);
+    \draw [line width=2pt, short] (25.25,13.5) -- (25.25,15);
+    \draw [line width=2pt, short] (24,13.5) -- (24,15);
+    \draw [line width=2pt, short] (22.75,13.5) -- (22.75,15);
+    \draw [ fill={rgb,255:red,140; green,140; blue,145} , line width=0.8pt ] (22.75,15.25) circle (0.25cm);
+    \node [font=\Large] at (24.5,15.25) {};
+    \draw [ fill={rgb,255:red,140; green,140; blue,145} , line width=0.8pt ] (24,15.25) circle (0.25cm);
+    \draw [ fill={rgb,255:red,140; green,140; blue,145} , line width=0.8pt ] (25.25,15.25) circle (0.25cm);
+    \draw [ fill={rgb,255:red,140; green,140; blue,145} , line width=0.8pt ] (26.5,15.25) circle (0.25cm);
+    \draw [ fill={rgb,255:red,140; green,140; blue,145} , line width=0.8pt ] (27.75,15.25) circle (0.25cm);
+    \draw [ fill={rgb,255:red,140; green,140; blue,145} , line width=0.8pt ] (29,15.25) circle (0.25cm);
+    \draw [ fill={rgb,255:red,140; green,140; blue,145} , line width=0.8pt ] (30.25,15.25) circle (0.25cm);
+    \draw [ fill={rgb,255:red,140; green,140; blue,145} , line width=0.8pt ] (31.5,15.25) circle (0.25cm);
+    \draw [ fill={rgb,255:red,140; green,140; blue,145} , line width=0.8pt ] (32.75,15.25) circle (0.25cm);
+    \draw [ fill={rgb,255:red,140; green,140; blue,145} , line width=0.8pt ] (34,15.25) circle (0.25cm);
+    \draw [ fill={rgb,255:red,140; green,140; blue,145} , line width=0.8pt ] (35.25,15.25) circle (0.25cm);
+    \draw [ fill={rgb,255:red,140; green,140; blue,145} , line width=0.8pt ] (36.5,15.25) circle (0.25cm);
+    \draw [ fill={rgb,255:red,140; green,140; blue,145} , line width=0.8pt ] (37.75,15.25) circle (0.25cm);
+    \draw [ fill={rgb,255:red,140; green,140; blue,145} , line width=0.8pt ] (39,15.25) circle (0.25cm);
+    \draw [ fill={rgb,255:red,140; green,140; blue,145} , line width=0.8pt ] (40.25,15.25) circle (0.25cm);
+    \draw [ fill={rgb,255:red,140; green,140; blue,145} , line width=0.8pt ] (22.75,2.75) circle (0.25cm);
+    \draw [ fill={rgb,255:red,140; green,140; blue,145} , line width=0.8pt ] (24,2.75) circle (0.25cm);
+    \draw [ fill={rgb,255:red,140; green,140; blue,145} , line width=0.8pt ] (25.25,2.75) circle (0.25cm);
+    \draw [ fill={rgb,255:red,140; green,140; blue,145} , line width=0.8pt ] (26.5,2.75) circle (0.25cm);
+    \draw [ fill={rgb,255:red,140; green,140; blue,145} , line width=0.8pt ] (27.75,2.75) circle (0.25cm);
+    \draw [ fill={rgb,255:red,140; green,140; blue,145} , line width=0.8pt ] (29,2.75) circle (0.25cm);
+    \draw [ fill={rgb,255:red,140; green,140; blue,145} , line width=0.8pt ] (30.25,2.75) circle (0.25cm);
+    \draw [ fill={rgb,255:red,140; green,140; blue,145} , line width=0.8pt ] (31.5,2.75) circle (0.25cm);
+    \draw [ fill={rgb,255:red,140; green,140; blue,145} , line width=0.8pt ] (32.75,2.75) circle (0.25cm);
+    \draw [ fill={rgb,255:red,140; green,140; blue,145} , line width=0.8pt ] (34,2.75) circle (0.25cm);
+    \draw [ fill={rgb,255:red,140; green,140; blue,145} , line width=0.8pt ] (35.25,2.75) circle (0.25cm);
+    \draw [ fill={rgb,255:red,140; green,140; blue,145} , line width=0.8pt ] (36.5,2.75) circle (0.25cm);
+    \draw [ fill={rgb,255:red,140; green,140; blue,145} , line width=0.8pt ] (37.75,2.75) circle (0.25cm);
+    \draw [ fill={rgb,255:red,140; green,140; blue,145} , line width=0.8pt ] (39,2.75) circle (0.25cm);
+    \draw [ fill={rgb,255:red,140; green,140; blue,145} , line width=0.8pt ] (40.25,2.75) circle (0.25cm);
+    \node [font=\Large, rotate around={-90:(0,0)}] at (22.75,2) {P1};
+    \node [font=\Large, rotate around={-90:(0,0)}] at (24,2) {P2};
+    \node [font=\Large, rotate around={-90:(0,0)}] at (25.25,2) {P3};
+    \node [font=\Large, rotate around={-90:(0,0)}] at (26.5,2) {P4};
+    \node [font=\Large, rotate around={-90:(0,0)}] at (27.75,2) {P5};
+    \node [font=\Large, rotate around={-90:(0,0)}] at (29,2) {P6};
+    \node [font=\Large, rotate around={-90:(0,0)}] at (30.25,2) {P7};
+    \node [font=\Large, rotate around={-90:(0,0)}] at (31.5,2) {P8};
+    \node [font=\Large, rotate around={-90:(0,0)}] at (32.75,2) {P9};
+    \node [font=\Large, rotate around={-90:(0,0)}] at (34,2) {P10};
+    \node [font=\Large, rotate around={-90:(0,0)}] at (35.25,2) {P11};
+    \node [font=\Large, rotate around={-90:(0,0)}] at (36.5,2) {P12};
+    \node [font=\Large, rotate around={-90:(0,0)}] at (37.75,2) {P13};
+    \node [font=\Large, rotate around={-90:(0,0)}] at (39,2) {P14};
+    \node [font=\Large, rotate around={-90:(0,0)}] at (40.25,2) {P15};
+    \node [font=\Large, rotate around={-90:(0,0)}] at (22.75,16.25) {P16};
+    \node [font=\Large, rotate around={-90:(0,0)}] at (24,16.25) {P17};
+    \node [font=\Large, rotate around={-90:(0,0)}] at (25.25,16.25) {P18};
+    \node [font=\Large, rotate around={-90:(0,0)}] at (26.5,16.25) {P19};
+    \node [font=\Large, rotate around={-90:(0,0)}] at (27.75,16.25) {P20};
+    \node [font=\Large, rotate around={-90:(0,0)}] at (29,16.25) {P21};
+    \node [font=\Large, rotate around={-90:(0,0)}] at (30.25,16.25) {P22};
+    \node [font=\Large, rotate around={-90:(0,0)}] at (31.5,16.25) {P23};
+    \node [font=\Large, rotate around={-90:(0,0)}] at (32.75,16.25) {P24};
+    \node [font=\Large, rotate around={-90:(0,0)}] at (34,16.25) {P25};
+    \node [font=\Large, rotate around={-90:(0,0)}] at (35.25,16.25) {P26};
+    \node [font=\Large, rotate around={-90:(0,0)}] at (36.5,16.25) {P27};
+    \node [font=\Large, rotate around={-90:(0,0)}] at (37.75,16.25) {P28};
+    \node [font=\Large, rotate around={-90:(0,0)}] at (39,16.25) {P29};
+    \node [font=\Large, rotate around={-90:(0,0)}] at (40.25,16.25) {P30};
+    \node [font=\LARGE, rotate around={-90:(0,0)}] at (45.5,9) {Arduino Nano 33 BLE Sense lite};
+    
+    \node [font=\LARGE] at (15.75,-13) {(Construct SMQS082)};
+    \node [font=\LARGE] at (50,-13) {(Construct SMQS080)};
+    \node [font=\Large, rotate around={-90:(0,0)}] at (57.25,-19.5) {Grove OLED Display};
+    \draw  (13.75,-7.75) rectangle (14.75,-8.25);
+    \draw [short] (13.75,-8) -- (13.5,-8);
+    \draw [short] (14.75,-8) -- (15,-8);
+    \draw [->, >=Stealth] (14,-8.5) -- (14.5,-7.5);
+    \draw  (48,-7.75) rectangle (49,-8.25);
+    \draw [short] (48,-8) -- (47.75,-8);
+    \draw [short] (49,-8) -- (49.25,-8);
+    \draw [->, >=Stealth] (48.25,-8.5) -- (48.75,-7.5);
+\end{circuitikz}
+    \captionof{figure}{MWIVR-Schaltplan}
+    \label{fig:MWIVR-Schaltplan}
+\end{center}
+
+\chapter{Design / Aufbau} \label{sec:Design / Aufbau}
+
+\section{Konstruktion}
+
+Das Gehäuse des MWIVR besteht aus schwarzem PLA (3D-Druck), das eine matte Oberfläche aufweist und schlicht wirkt. Beim Design wurden auf reduzierte Formen geachtet, um sowohl funktional als auch modern zu wirken. 
+Das aufgebaute Gesamtsystem hat Abmaße von 150 x 155 x 265 mm bei einem Gewicht von 432g.
+
+\bigskip
+
+Auf der Unterseite des Standfußes des MWIVR befindet sich ein Batteriefach, das über einen verschraubten Deckel zugänglich ist. Die Batterie wird dort mittels eines Batterieclips angeschlossen.
+Auf der Oberseite des Standfußes ist ein schwarzer Wippschalter verbaut, über den das MWIVR ein- und ausgeschaltet werden kann. Der Schalter ist per Snap-In-Montage in den Standfuß eingesetzt.
+Oberhalb des Standfußes ist ein Display integriert, das formschlüssig in das Gehäusedesign eingelassen ist. Das Display ist dem Nutzer zugeneigt, sodass eine bessere Lesbarkeit gewährleistet werden kann. Es ist über die zentrale Platine im Inneren des Mikrofons mit Gewindehülsen und Schrauben befestigt.
+
+\bigskip
+
+Über dem Display befinden sich horizontal ausgerichtete Schallöffnungen, die eine bessere Schallübertragung zum internen Mikrofon des Arduino ermöglichen. Diese Öffnungen verlaufen vom Standfuß bis in den Deckel, der mittels einer Drehverriegelung mit dem Standfuß verbunden ist. Auf der Oberseite des Deckels befindet sich die Aufschrift „MWIVR“ sowie eine rote und eine grüne LED.
+Im Inneren des MWIVR sind der Arduino Nano 33 BLE Sense, die Grove-LED-Platine und sämtliche notwendige Verdrahtung untergebracht. Für die Kabelführung sind spezielle Kabelkanäle vorgesehen, die zu den Komponenten wie Display, Wippschalter und Batterie führen.
+
+\bigskip
+
+Aus konstruktiven Gründen werden die LEDs der Grove-LED-Platine nicht direkt genutzt. Stattdessen sind externe LEDs über Leitungen mit der Platine verbunden, wodurch sie flexibel im Gehäuse positioniert werden können.
+Durch die Verwendung von Schraubverbindungen und Snap-In-Elementen ist das MWIVR leicht zu warten. Einzelne Komponenten können bei Bedarf ohne Spezialwerkzeug ersetzt werden.
+
+Für die Halterung des Displays, der LEDs und dem TinyML Shield wurde auf eingelassene Gewindehülsen (Messing, M2) gesetzt, die im 3D-Druckteil versenkt eingebettet sind. Diese ermöglichen eine stabile und wiederlösbare Verbindung.
+
+
+\section{Fertigung}
+
+\subsection{Fertigungshinweise zum 3D-Druck:}
+\begin{itemize}
+    \item \textbf{Drucker:} Bambu Lab P1S mit 0,4-mm-Düse und einer Textured PEI PLate
+    \item \textbf{Profil:} Feinschicht-Druck mit 0,12-mm-Schichthöhe (Profil: 0.12mm Fine @BBL X1C)
+    \item \textbf{Stützstrukturen:} Aktiviert mit Baumstützen (auto) bei 20°-Schwellenwinkel
+    \item \textbf{Füllung:} 15\%-Fülldichte mit adaptiv kubischem Füllmuster
+    \item \textbf{Wandstärke:} 2 Wandlinien für stabile Außenhülle
+    \item \textbf{Obere/untere Schichten:} 5 Schalenschichten (0,6 mm Dicke)
+    \item \textbf{Druckhaftung:} Schürzenschlaufen mit Standard-Randtyp
+    \item \textbf{Spezialmodi:} Traditionelle Druckreihenfolge (keine Spiralvase)
+\end{itemize}
+\ref{fig:3D-uebersicht} \ref{fig:3D-qualitaet} \ref{fig:3D-staerke} \ref{fig:3D-stuetzen} \ref{fig:3D-sonstige}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{MWIVR/3D-Druck-Uebersicht}
+    \caption{Übersicht über beide Druckplatten im Bambulab Slicer}
+    \label{fig:3D-uebersicht}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{MWIVR/3D-Druck-qualitaet}
+    \caption{Qualitätseinstellungen für beide Druckplatten im Bambulab Slicer}
+    \label{fig:3D-qualitaet}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{MWIVR/3D-Druck-staerke}
+    \caption{Stärkeneinstellung für beide Druckplatten im Bambulab Slicer}
+    \label{fig:3D-staerke}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{MWIVR/3D-Druck-stuetzen}
+    \caption{Stützeneinstellung für beide Druckplatten im Bambulab Slicer}
+    \label{fig:3D-stuetzen}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{MWIVR/3D-Druck-sonstige}
+    \caption{Sonstige Einstellungen für beide Druckplatten im Bambulab Slicer}
+    \label{fig:3D-sonstige}
+\end{figure}
+
+
+
+\subsection{Verwendetes Material:}
+\begin{itemize}
+    \item \textbf{Filamenttyp:} PLA (Polylactid), matt, schwarz
+    \item \textbf{Durchmesser:} 1,75 mm
+\end{itemize}
+
+
+
+\subsection{Empfohlene Druckparameter:}
+\begin{itemize}
+    \item \textbf{Extrudertemperatur:} 200–210 °C (je nach Hersteller)
+    \item \textbf{Druckbetttemperatur:} 55–60 °C
+    \item \textbf{Kühlung:} 100 \% Bauteillüfter, außer bei ersten Schichten
+\end{itemize}
+
+
+
+\subsection{Hinweise zur Verarbeitung:}
+\begin{itemize}
+    \item \textbf{Nahtausrichtung:} Nahtposition auf Rückseite oder nicht sichtbare Unterseite legen
+    \item \textbf{Einpressgewindeeinsätze:} Gewindeeinsätze vor dem Einsetzen auf ca. 190–210 °C erhitzen und mit Lötspitze einbetten
+    \item \textbf{Nachbearbeitung:} Bei Bedarf können Supportreste mit einer kleinen Flachzange oder Skalpell entfernt werden
+    \item \textbf{Stützentfernung}: Baumstützen lassen sich leicht abziehen, Rückstände mit Nadelzangen entfernen
+    \item \textbf{Passgenauigkeit}: +0,1-mm-Toleranzen für Snap-In-Elemente einplanen
+    \item \textbf{Reinigung}: Düsenreinigung vor Druck durchführen für konsistente Extrusion
+    \item \textbf{Druckplatte}: für glattere Oberflächen gegebenenfalls eine glatte Druckplatte verwenden
+\end{itemize}
+
+Die Druckzeit für das gesamte Gehäuse beträgt ca. 13h 43m (8h1m für den Standfuß und 5h42 für die restlichen Teile) bei einem Materialverbrauch von 336,96 g PLA \ref{fig:3D-stats}. Nach dem abgeschlossenem Druck des Standfußes muss die Druckplatte einmal entnommen, das gedruckte Teil entfernt und die Druckplatte gereinigt werden, bevor die restlichen Gehäuseteile gedruckt werden. Die Nahtposition wurde für optimale Optik auf die Rückseite des Drucks gelegt.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{MWIVR/3D-stats}
+    \caption{Druck Statisik für beide Druckplatten im Bambulab Slicer}
+    \label{fig:3D-stats}
+\end{figure}
+
+\chapter{Hardware Schnittstellen} \label{sec:Hardware Schnittstellen}
+
+\section{USB}
+
+Die USB-Schnittstelle dient zur Programmierung und seriellen Kommunikation mit einem Computer. \cite{ArduinoSerial:2025}
+
+\begin{itemize}
+    \item Typ: Micro-USB-Anschluss
+    
+    \item Funktion:
+    \begin{itemize}
+        \item Überträgt Programme (Sketches) an den Mikrocontroller
+        
+        \item Unterstützt serielle Kommunikation via virtueller COM-Port
+    \end{itemize}
+    
+    \item Intern verwendet: Nativ integrierter USB-Funktionalität des nRF52840
+    
+    \item Software-Zugriff: Über \PYTHON{Serial.begin()}, \PYTHON{Serial.print()}, \PYTHON{Serial.read()} etc.
+\end{itemize}
+
+
+\section{I$^2$C}
+
+I2C (Inter-Integrated Circuit) ist ein serielles Busprotokoll für die Kommunikation mit mehreren Geräten über nur zwei Leitungen. \cite{ArduinoWire:2025}
+
+\begin{itemize}
+    \item Pins: SDA (A4 / D18), SCL (A5 / D19)
+    
+    \item Eigenschaften:
+    \begin{itemize}
+        \item Zwei Leitungen: Daten (SDA) und Takt (SCL)
+        
+        \item Master-Slave-Prinzip, bis zu 127 Geräte
+    \end{itemize}
+    
+    \item Bibliothek: \texttt{Wire.h}
+    
+    \item Typische Anwendungen: OLED-Displays, Temperatursensoren, RTCs
+    
+\end{itemize}
+
+
+
+\section{Digital(GPIO)}
+
+GPIO-Pins (General Purpose Input/Output) sind flexibel als digitale Eingänge oder Ausgänge nutzbar. \cite{ArduinoDigitalPins:2025} \cite{Arduino:2025NanoBLE}
+
+\begin{itemize}
+    \item Anzahl: 14 digitale I/O-Pins (einige mit Zusatzfunktionen)
+    
+    \item Modi:
+    \begin{itemize}
+        \item INPUT: liest digitale Zustände
+        
+        \item OUTPUT: schaltet Aktoren
+        
+        \item PWM: z.B. für dimmbare LEDs
+        
+    \end{itemize}
+    
+    \item Spannungslevel: 3.3 V (nicht 5 V-tolerant!)
+    
+    \item Beispiel:
+    \begin{itemize}
+        \item \PYTHON{pinMode(3, OUTPUT)};
+        
+        \item \PYTHON{digitalWrite(3, HIGH)};
+    \end{itemize}
+    
+\end{itemize}
+
+\chapter{Eigenschaften} \label{sec:Eigenschaften}
+
+\section{Allgemein}
+
+\begin{itemize}
+    \item Typ: Digitales MEMS-Mikrofon
+    
+    \item Richtcharakteristik: Omnidirektional
+    
+    \item Ausgangssignal: PDM (1-Bit-Stream)
+\end{itemize}
+
+\section{Mechanisch}
+
+\begin{itemize}
+    \item Aufbau: mit Standfuß und eingelassenem Display
+    
+    \item Farbe: schwarz
+    
+    \item Material: PLA
+    
+    \item Modell: MWIVR
+    
+    \item Maße: EINFÜGEN
+\end{itemize}
+
+\section{Elektrisch}
+
+\begin{itemize}
+    \item Spannungsversorgung: 9 V DC
+    
+    \item Frequenzbereich: 100 Hz bis 10 kHz 
+    
+    \item Empfindlichkeit: -26 dBFS ± 3 dB (bei 94 dB SPL)  
+    
+    \item Signal-Rausch-Abstand: 64 dB (A-gewichtet) 
+    
+    \item Max. Schalldruck (AOP): 122,5 dB SPL
+\end{itemize}
+
+\section{Funktionen} 
+
+\begin{itemize}
+    \item Omnidirektionale Schallaufnahme 
+    
+    \item L/R-Kanalauswahl für Stereo-Anwendungen 
+    
+    \item Umweltzertifizierungen: RoHS, ECOPACK®, „Green“
+\end{itemize}
+
+\section{Anschlüsse}
+\begin{itemize}
+    \item Typ: USB-A
+\end{itemize}
+
+
+\chapter{Software} \label{sec:Software}
+
+\section{Beschreibung der Spracherkennung} \label{sec:Beschreibung der Spracherkennung}
+
+Im vorliegenden Projekt wird eine offlinefähige Spracherkennung auf einem Arduino Nano 33 BLE Sense entwickelt, die vier vordefinierte Sprachbefehle erkennt: „grün“, „rot“, „beide“ und „blinken“. Die Erkennung erfolgt lokal auf dem Mikrocontroller und funktioniert somit unabhängig von Cloud-Diensten oder einer Internetverbindung \cite{Arduino:2025NanoBLE}.\\
+Zur Umsetzung wird die Entwicklungsplattform Edge Impulse verwendet. Sie ermöglicht es, KI-Modelle speziell für eingebettete Systeme zu trainieren und als direkt ausführbare Bibliothek für Plattformen wie Arduino zu exportieren \cite{EdgeImpulseAudioClassification:2025}, \cite{EdgeImpulseVoiceResponse:2025}. Die Spracherkennung basiert auf zuvor aufgenommenen Sprachsamples, die beim Erfassen in Edge Impulse mit dem gewünschten Label versehen werden. Zusätzlich wird eine eigene „noise“-Klasse definiert, welche Umgebungsgeräusche (z.B. Rauschen, Atemgeräusche oder Hintergrundaktivität) enthält, um das Modell gegenüber Störungen robuster zu machen \cite{EdgeImpulseAudioClassification:2025}.\\
+Das Modell wird anschließend als quantisierte Arduino-Bibliothek exportiert, integriert und verwendet. Während der Laufzeit analysiert der Mikrocontroller in festgelegten Intervallen Audiodaten aus dem Mikrofon. Dabei werden jeweils 2 Sekunden lange Audioschnipsel (entsprechend der „Window size“) mittels MFCC-Featureextraktion verarbeitet und klassifiziert. Wenn die errechnete Wahrscheinlichkeit eines Befehls über 85 \% liegt, wird die zugehörige Funktion (z.B. das Einschalten einer LED) ausgelöst. Während die Aktion ausgeführt wird, ist die Spracherkennung deaktiviert, um Fehldetektionen oder Mehrfachauslösungen zu vermeiden.\\
+Insgesamt wird damit eine robuste, lokal lauffähige Spracherkennung realisiert, die für einfache Steuerungsaufgaben mit hoher Genauigkeit geeignet ist.\\
+
+
+\section{Beschreibung der Bibliotheken}
+
+\subsection{Edge Impulse Inferencing Library und Modellbereitstellung}
+
+Die Spracherkennung wird mithilfe eines auf Edge Impulse trainierten Machine-Learning-Modells realisiert. Edge Impulse stellt eine cloudbasierte Entwicklungsumgebung zur Verfügung, mit der sich ML-Modelle für ressourcenbeschränkte Mikrocontroller wie den Arduino Nano 33 BLE Sense effizient erstellen und ausführen lassen \cite{EdgeImpulseDocs:2025}. Die Plattform ist darauf spezialisiert, komplette ML-Pipelines für Embedded-Anwendungen bereitzustellen – beginnend bei der Datenerfassung bis hin zur Codegenerierung für die Zielhardware \cite{EdgeImpulseDocs:2025}\cite{EdgeImpulseLearningBlocksAudio:2025} \cite{EdgeImpulseAudioMFCC:2025}.\\
+Das erzeugte Modell wird von Edge Impulse als Arduino-kompatible C++-Bibliothek exportiert. Diese sogenannte Inferencing Library enthält alle notwendigen Komponenten, um die Klassifikation auf dem Mikrocontroller vollständig offline durchzuführen. Dazu gehören die Modellgewichte, vordefinierte Datenstrukturen, der gesamte DSP-Code (z.B. MFCC für Sprache) sowie eine zentrale Schnittstelle (run\_classifier()), über die das Modell im Arduino-Sketch angesteuert wird \cite{EdgeImpulseLearningBlocksAudio:2025} \cite{EdgeImpulseAudioMFCC:2025}\cite{EdgeImpulse:2025Deployment}.\\
+
+\subsubsection{Funktionsweise von Edge Impulse}
+
+Der Entwicklungsprozess in Edge Impulse ist modular aufgebaut und umfasst im Wesentlichen folgende Schritte:
+
+\begin{enumerate}
+    \item \textbf{Datenerfassung (Data Acquisition)}\\
+    
+    Über die Benutzeroberfläche \ref{fig:EdgeImpulse-DataAcquisition} oder direkt angeschlossene Geräte werden Audiodaten aufgenommen und jeweils einem festgelegten Label zugewiesen. Die Daten lassen sich sowohl live aufnehmen als auch aus vorhandenen Dateien (z.B. .wav) importieren \cite{EdgeImpulseDocs:2025}.\\
+    
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=1\textwidth]{MWIVR/EdgeImpulse-DataAcquisition}
+        \caption{EdgeImpulse - Data Acquisition}
+        \label{fig:EdgeImpulse-DataAcquisition}
+    \end{figure}
+    
+    \item \textbf{Signalverarbeitung (Impulse Design)}\\
+    
+    In diesem Schritt wird definiert, wie die Rohdaten vorverarbeitet werden. Für Sprachprojekte wird typischerweise ein MFCC-Block (Mel-Frequency Cepstral Coefficients) verwendet \ref{fig:EdgeImpulse-ImpulseDesign}, der aus dem Zeitsignal relevante Frequenzmerkmale extrahiert \cite{EdgeImpulseLearningBlocksAudio:2025} \cite{EdgeImpulseAudioMFCC:2025}\cite{Rabiner:1993}. Diese Merkmale dienen als Eingabe für das spätere Modell.\\
+    
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=1\textwidth]{MWIVR/EdgeImpulse-ImpulseDesign}
+        \caption{EdgeImpulse - Impulse Design}
+        \label{fig:EdgeImpulse-ImpulseDesign}
+    \end{figure}
+    
+    \item \textbf{Modelltraining (Classifier)}\\
+    
+    Das Herzstück der Plattform ist der Trainingsprozess \ref{fig:EdgeImpulse-Classifier}, der intern auf TensorFlow basiert \cite{TensorFlow:2025KerasGuide}. TensorFlow ist ein Open-Source-Framework zur Erstellung und Ausführung neuronaler Netzwerke. In Edge Impulse wird es genutzt, um kleine, für Mikrocontroller optimierte Modelle zu trainieren – z.B. ein vollständig verbundenes neuronales Netz (Fully Connected Neural Network) oder einfache CNNs (Convolutional Neural Networks) \cite{TensorFlow:2025KerasGuide}\cite{TensorFlow:2025LiteMicrocontrollers}.\\
+    Dabei wird das Netzwerk auf Basis der extrahierten Merkmale trainiert, um zwischen den vordefinierten Klassen (Sprachbefehlen) zu unterscheiden. Die Trainingsqualität lässt sich über Kennwerte wie Accuracy, Loss und die Confusion Matrix nachvollziehen \cite{EdgeImpulseLearningBlocksAudio:2025} \cite{EdgeImpulseAudioMFCC:2025}.
+    
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=1\textwidth]{MWIVR/EdgeImpulse-Classifier}
+        \caption{EdgeImpulse - Classifier}
+        \label{fig:EdgeImpulse-Classifier}
+    \end{figure}
+    
+    \item \textbf{Export (Deployment)}\\
+    
+    Für den Einsatz auf dem Arduino Nano 33 BLE Sense wird das Modell über die Option „Arduino Library“ exportiert. Die resultierende ZIP-Datei enthält alle benötigten Dateien:
+    
+    \begin{itemize}
+        \item die quantisierten Modellgewichte (int8)
+        
+        \item den Signalverarbeitungs-Code (z.B. MFCC in C++)
+        
+        \item vordefinierte Datenstrukturen und Typen (signal\_t, ei\_impulse\_result\_t)
+        
+        \item eine zentrale Klassifikationsfunktion run\_classifier(...) \cite{EdgeImpulse:2025Deployment}
+    \end{itemize}
+    
+    Das Deployment erfolgt plattformunabhängig, wodurch sich das Modell in C/C++-basierte Umgebungen einbetten lässt – ganz ohne auf TensorFlow-Runtime oder Python zurückgreifen zu müssen \cite{EdgeImpulse:2025Deployment}\cite{TensorFlow:2025KerasGuide}. \ref{fig:EdgeImpulse-Deployment}
+    
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=1\textwidth]{MWIVR/EdgeImpulse-Deployment}
+        \caption{EdgeImpulse - Deployment}
+        \label{fig:EdgeImpulse-Deployment}
+    \end{figure}
+    
+\end{enumerate}
+
+
+\subsubsection{TensorFlow in Edge Impulse}
+
+TensorFlow wird innerhalb von Edge Impulse ausschließlich während des Trainingsprozesses im Backend verwendet \cite{TensorFlow:2025KerasGuide}. Es dient dazu, aus den Feature-Vektoren ein trainiertes Modell zu erzeugen, das später auf dem Mikrocontroller eingesetzt werden kann. Dabei greift die Plattform auf die Keras-API von TensorFlow zurück, um Netze zu definieren, Hyperparameter zu optimieren und das Modell anschließend in ein kompaktes Format (TFLite) zu konvertieren \cite{TensorFlow:2025KerasGuide}.\\
+
+Nach dem Training wird das Modell in ein TensorFlow Lite for Microcontrollers (TFLM) kompatibles Format umgewandelt \cite{TensorFlow:2025LiteMicrocontrollers}. Dieses erlaubt es, die Gewichtsmatrizen und Aktivierungsfunktionen in eine feste Byteform (meist int8) zu überführen. Im Gegensatz zur TensorFlow-Runtime ist das resultierende Modell vollständig in C-Code eingebettet und benötigt keinerlei Interpreter – ideal für Speicherbereiche <256 KB RAM \cite{TensorFlow:2025LiteMicrocontrollers}.\\
+
+\subsubsection{Struktur der Edge Impulse-Bibliothek (Arduino)}
+
+Nach dem Import in die Arduino IDE steht die komplette Bibliothek über eine zentrale Header-Datei zur Verfügung (z.B. my\_model\_inferencing.h). Die wichtigsten Elemente sind:
+
+\begin{itemize}
+    \item Modellmetadaten (model\_metadata.h) – Informationen über Klassen, Fenstergröße, Samplingrate
+    
+    \item Signalstruktur (signal\_t) – Übergabeformat für Audiodaten
+    
+    \item Ergebnisstruktur (ei\_impulse\_result\_t) – Ergebnisrückgabe mit Klassenscores
+    
+    \item Inferenzfunktion: \texttt{EI\_IMPULSE\_ERROR \PYTHON{run\_classifier(signal\_t *signal, ei\_impulse\_result\_t *result, bool debug)};}
+\end{itemize}
+
+
+
+\subsection{PDM.h}
+
+\subsubsection{Beschreibung} \label{sec.PDM.h_2}
+
+Die Bibliothek PDM.h ermöglicht die Nutzung des digitalen MEMS-Mikrofons auf dem Arduino Nano 33 BLE Sense. Das Mikrofon liefert Audiosignale im Pulse-Density-Modulation-Format (PDM), welches von der Bibliothek mithilfe interner Filter in PCM-Audiodaten umgewandelt wird. Dieser Umwandlungsprozess erlaubt es, die digitalen Daten in klassischen Audioverarbeitungsroutinen weiterzuverwenden, etwa zur Merkmalextraktion oder Klassifikation. Die Bibliothek bietet eine einfache Schnittstelle zur Mikrofonsteuerung.\\
+\bigskip
+Die Bibliothek wir im Kapitel des verwendeten Mikrofons näher beschrieben: \ref{sec:PDM.h}
+
+
+\subsection{Wire.h}
+
+\subsubsection{Beschreibung}
+
+Die Bibliothek Wire.h ermöglicht die serielle Kommunikation zwischen einem Mikrocontroller und externen Peripheriegeräten über das I2C-Protokoll (Inter-Integrated Circuit). Dieses Protokoll basiert auf zwei bidirektionalen Leitungen – einer Datenleitung (SDA) und einer Taktleitung (SCL) – wodurch eine einfache Verbindung mehrerer Geräte an einem gemeinsamen Bus ermöglicht wird. Wire.h übernimmt hierbei das Adressieren von Geräten, die Initiierung und Beendigung von Datenübertragungen sowie das Schreiben und Lesen von Datenpaketen \cite{Arduino:2024Wire}\cite{Adafruit:2024GFXLibrary}.\\
+Die Bibliothek wurde von Arduino speziell für AVR- und ARM-Boards angepasst und wird bei der Entwicklung von Anwendungen mit Sensoren, Displays oder Aktoren häufig eingesetzt. Sie kapselt die Hardware-spezifischen I2C-Kommandos hinter einer leicht verständlichen API. Der Mikrocontroller fungiert dabei in der Regel als Master, kann aber über die Bibliothek auch im Slave-Modus betrieben werden \cite{Arduino:2024Wire}\cite{Adafruit:2024GFXLibrary}.\\
+\bigskip
+Die Funktionsweise und Einsatzmöglichkeiten sind detailliert auf der Arduino-Referenzseite sowie im Sourcecode der Arduino Core-Bibliothek dokumentiert \cite{Arduino:2024Wire}\cite{Adafruit:2024GFXLibrary}.
+
+\subsubsection{Bibliotheksversion:}
+
+Die Bibliothek ist Bestandteil des Arduino Cores und benötigt keine gesonderte Installation \cite{Arduino:2024Wire}\cite{Adafruit:2024GFXLibrary}.
+
+\subsubsection{Installation}
+
+Bereits integriert im Arduino Core – keine zusätzliche Installation erforderlich.
+
+\subsubsection{Funktionen}
+
+Die Bibliothek stellt grundlegende Methoden zur Verfügung, um I2C-Daten zu senden und zu empfangen \cite{Arduino:2024Wire}.
+
+\begin{itemize}
+    \item \PYTHON{Wire.begin()} – Startet I2C im Master-Modus
+    
+    \item \PYTHON{Wire.beginTransmission(address)} – Startet Kommunikation
+    
+    \item \PYTHON{Wire.write(data)} – Sendet Daten
+    
+    \item \PYTHON{Wire.endTransmission()} – Beendet Kommunikation
+    
+    \item \PYTHON{Wire.requestFrom(address, quantity)} – Liest Daten
+    
+    \item \PYTHON{Wire.read()} – Gibt empfangene Bytes zurück
+\end{itemize}
+
+\subsubsection{Beispielcode mit Beschreibung}
+
+Der folgende Code \ref{lst:Wire.h-Example} initialisiert den I2C-Bus und sendet ein einzelnes Byte an ein I2C-Gerät mit der Adresse 0x3C. Diese Adresse entspricht häufig OLED-Displays. Der Code ist nützlich für einfache Initialisierungstests von I2C-Geräten und demonstriert den typischen Ablauf einer I2C-Übertragung (vgl. \cite{Arduino:2024Wire}).
+
+{
+    \captionof{code}{Beispiel Wire.h}\label{lst:Wire.h-Example}
+    \ArduinoExternal{}{../../Code/Arduino/MWIVR/Wire.h-Example/Wire.h-Example.ino}
+}
+
+\subsection{Adafruit\_GFX}
+
+\subsubsection{Beschreibung}
+
+Die Adafruit\_GFX-Bibliothek ist eine universelle C++-Grafikbibliothek, die grundlegende Zeichenfunktionen wie das Zeichnen von Pixeln, Linien, Kreisen, Rechtecken und das Schreiben von Text auf grafischen Displays bereitstellt. Sie dient als zentrale Abstraktionsschicht, die es ermöglicht, auf einer Vielzahl von Displays mit unterschiedlichen Controllern einen einheitlichen Satz an Grafikfunktionen zu verwenden. Die eigentliche Hardwarekommunikation (z.B. via I2C oder SPI) wird durch spezifische Treiberbibliotheken übernommen, wie etwa Adafruit\_SSD1306 für OLED-Displays. Adafruit\_GFX verwaltet intern einen Grafikpuffer, in dem alle Zeichenoperationen vorbereitet werden, bevor dieser anschließend auf das Display übertragen wird. Die Bibliothek ist damit besonders leistungsfähig für Embedded-Anwendungen mit text- und grafikbasierten Benutzeroberflächen.\\
+\bigskip
+Die Bibliothek wir im Kapitel des verwendeten OLED-Displays näher beschrieben:\ref{sec:Adafruit_GFX.h}
+
+
+\subsection{Adafruit\_SSD1306}
+
+\subsubsection{Beschreibung}
+
+Die Adafruit\_SSD1306-Bibliothek ist eine spezifische Display-Treiberbibliothek für OLED-Displays, die auf dem SSD1306-Controller basieren. Sie unterstützt sowohl die Kommunikation über I2C als auch SPI und abstrahiert die Low-Level-Kommandos, die zum Ansteuern des Controllers notwendig sind. Intern basiert sie auf der Adafruit\_GFX-Bibliothek, die grundlegende Zeichenfunktionen wie Linien, Kreise, Rechtecke und Textausgabe bereitstellt. Die Adafruit\_SSD1306-Bibliothek kümmert sich insbesondere um die Initialisierung des Displays, die Verwaltung eines internen Bildpuffers (Framebuffer) und das periodische Aktualisieren des Displays über die Methode \PYTHON{display()}. Dieses Verfahren minimiert Bildschirmflackern und erlaubt effiziente Darstellung auch auf leistungsschwachen Mikrocontrollern.\\
+\bigskip
+Die Bibliothek wir im Kapitel des verwendeten OLED-Displays näher beschrieben:\ref{sec:Adafruit_SSD1306.h}
+
+
+\section{Funktionsweise der Spracherkennung}
+
+Dieses Kapitel beschreibt die technische Funktionsweise der Spracherkennung, wie sie im Projekt umgesetzt wurde. Dabei wird erläutert, wie Sprachdaten verarbeitet, analysiert und mithilfe eines trainierten Modells klassifiziert werden. Der Fokus liegt auf den einzelnen Verarbeitungsschritten – von der Audiosignalaufnahme über die Feature-Extraktion bis hin zur Inferenz auf dem Mikrocontroller.
+
+\subsection{Audiosignalaufnahme}
+
+Die Erfassung der Audiodaten erfolgt über das digitale MEMS-Mikrofon des Arduino Nano 33 BLE Sense. Dieses Mikrofon liefert Audiosignale im Pulse-Density-Modulation-Format (PDM), welches durch die Bibliothek PDM.h verarbeitet wird. Die Bibliothek wandelt die Signale in PCM-Daten (Pulse-Code Modulation) um und stellt sie in einem Ringpuffer zur Verfügung. Ein konfigurierbarer Interrupt sorgt dafür, dass Audiodaten bei Verfügbarkeit sofort gelesen und verarbeitet werden können \cite{Arduino:2024PDM}\cite{Arduino:2025NanoBLE}.\\
+\bigskip
+Die Abtastrate beträgt 16 kHz, was bedeutet, dass 16.000 Samples pro Sekunde aufgenommen werden. Diese Auflösung ist ausreichend, um Sprachbefehle im Bereich von ca. 0–8 kHz zu erfassen, was den typischen Frequenzbereich der menschlichen Stimme abdeckt. Über die PDM.onReceive()-Funktion wird ein Callback definiert, der automatisch ausgelöst wird, sobald neue Daten im Puffer bereitstehen. Damit kann eine kontinuierliche und latenzarme Verarbeitung der Audiodaten gewährleistet werden \cite{Arduino:2024PDM}.\\
+\bigskip
+Zur Steuerung der Mikrofoneinstellungen und zur Puffermanagement wird neben der PDM-Bibliothek ein eigener Datenpuffer verwendet, in den die Daten aus dem Sample-Buffer des Mikrofons überführt werden. Die Daten werden blockweise gesammelt, bis eine ausreichende Anzahl von Samples für die Feature-Extraktion vorliegt \cite{Arduino:2025NanoBLE}.\\
+
+\subsection{Feature-Extraktion} \label{sec:Feature-Extraktion}
+
+Die Vorverarbeitung der Audiodaten über die Kombination aus der PDM-Bibliothek und der anschließenden Analyse durch das KI-Modell.\\
+\bigskip
+Zur besseren Auswertung der Sprachdaten werden aus dem Rohsignal charakteristische Merkmale extrahiert. In diesem Projekt kommen sogenannte Mel-Frequency Cepstral Coefficients (MFCC) zum Einsatz – ein bewährtes Verfahren zur kompakten Repräsentation von Sprachinformation \cite{Jurafsky:2023}.\\
+\bigskip
+Das Signal wird dafür zunächst in zeitlich begrenzte Ausschnitte (Fenster) zerlegt. Für jeden Ausschnitt wird per Fast Fourier Transform (FFT) das Frequenzspektrum ermittelt. Dieses Spektrum wird durch ein Filterbank-Modell gewichtet, um die relevanten Frequenzbereiche stärker zu betonen – eine Praxis, die sich für die Klassifikation in audiobasierten Modellen als vorteilhaft erwiesen hat \cite{Jurafsky:2023}. Anschließend erfolgt eine logarithmische Skalierung der Energiewerte, bevor mittels Discrete Cosine Transform (DCT) die eigentlichen MFCC-Koeffizienten gebildet werden \cite{EdgeImpulse:2025ImpulseDesign}.\\
+\bigskip
+Die gesamte Extraktion wird durch Edge Impulse automatisiert und lässt sich dort über das Impulse-Design anpassen. Fenstergröße, Schrittweite und Anzahl der MFCCs werden hier grafisch konfiguriert und bilden die Eingabe für das spätere Klassifikationsmodell.  \cite{EdgeImpulse:2025ImpulseDesign}.
+
+\subsection{Inferenz und Klassifikation} \label{sec:Klassifikation}
+
+Nach Abschluss der Merkmalsextraktion erfolgt die Klassifikation der Audiosequenz mithilfe eines vortrainierten neuronalen Netzes. Dieses Modell wurde zuvor mit Edge Impulse auf Basis von Beispielaufnahmen trainiert. Der Klassifikator ist typischerweise ein kleines, mehrschichtiges neuronales Netz, das mithilfe von TensorFlow (in der Microcontroller-Variante) umgesetzt wird \cite{TensorFlow:2025LiteMicrocontrollers}.\\
+\bigskip
+Während der Laufzeit wird der extrahierte Merkmalsvektor – also die MFCC-Koeffizienten einer neuen Audiosequenz – dem Modell übergeben. TensorFlow Lite for Microcontrollers (TFLM) führt daraufhin eine Inferenz durch: Das Netz berechnet für jede vordefinierte Klasse eine Wahrscheinlichkeit, mit der das aktuelle Signal dieser Klasse zugeordnet werden kann. Im Projekt betrifft das z.B. die Klassen "grün", "rot", "beide", "blinken" sowie "Hintergrundgeräusch" \cite{EdgeImpulse:2025Deployment}.\\
+\bigskip
+Das Ergebnis der Inferenz besteht aus einem Wahrscheinlichkeitsvektor. Der Eintrag mit dem höchsten Wert wird als Vorhersageklasse interpretiert, sofern dieser Wert einen bestimmten Schwellwert überschreitet (z.B. 0,70). Der konkrete Wert wurde im Projektverlauf durch praktisches Ausprobieren verschiedener Konfigurationen in Edge Impulse festgelegt, um eine möglichst zuverlässige Erkennung zu gewährleisten. Eine detaillierte wissenschaftliche Evaluation fand dabei nicht statt \cite{EdgeImpulse:2025Deployment}.\\
+\bigskip
+Die Inferenz läuft vollständig auf dem Mikrocontroller ab – ohne dass eine Verbindung zu einem externen Server notwendig wäre. Dies ist möglich, da Edge Impulse das trainierte Modell in eine optimierte C++-Bibliothek umwandelt, die direkt auf dem Gerät eingebettet werden kann. Die Laufzeit auf dem Arduino Nano 33 BLE Sense beträgt typischerweise wenige Millisekunden pro Klassifikation \cite{TensorFlow:2025LiteMicrocontrollers} \cite{EdgeImpulse:2025Deployment}.
+
+
+
+\section{Beschreibung des verwendeten Algorithmus}
+
+In diesem Kapitel wird der maschinelle Lernalgorithmus beschrieben, der im Projekt für die Spracherkennung eingesetzt wurde. Es handelt sich dabei um ein kompaktes neuronales Netz, das speziell für ressourcenschwache Mikrocontroller optimiert wurde \cite{EdgeImpulse:2025LearningBlocks}. Ziel ist es, die prinzipielle Funktionsweise, den Aufbau und die Trainingsstrategie des Modells nachvollziehbar darzustellen.
+
+\subsection{Aufbau des neuronalen Netzes} \label{sec:Aufbau des neuronalen Netzes}
+
+Das im Projekt verwendete neuronale Netz basiert auf einem sogenannten Fully Connected Network (FCN), das aus mehreren dichten Schichten besteht. Die Struktur wurde so gewählt, dass sie mit den Einschränkungen eines Mikrocontrollers wie dem Arduino Nano 33 BLE Sense kompatibel ist und gleichzeitig eine ausreichende Klassifikationsgenauigkeit bietet \cite{EdgeImpulse:2025LearningBlocks}.
+Das Netz setzt sich typischerweise wie folgt zusammen:
+
+\begin{itemize}
+    \item \textbf{Eingabeschicht:} Diese Schicht nimmt die extrahierten MFCC-Merkmale als Vektor entgegen. Die Dimension dieses Vektors entspricht der Anzahl der extrahierten Merkmale pro Zeitfenster multipliziert mit der Anzahl der analysierten Zeitfenster \cite{TensorFlowKerasTraining:2025}.
+    
+    \item \textbf{Versteckte Schichten:} Es folgen ein bis zwei vollständig verbundene (dense) Schichten mit jeweils 20–40 Neuronen und einer Aktivierungsfunktion wie ReLU (Rectified Linear Unit). Diese Schichten lernen gewichtete Kombinationen der Eingabemerkmale \cite{TensorFlowKerasTraining:2025}.
+    
+    \item \textbf{Ausgabeschicht:} Die letzte Schicht besteht aus so vielen Neuronen wie es Zielklassen gibt (z.B. vier Schlüsselwörter plus Hintergrund). Sie verwendet die Softmax-Funktion zur Ausgabe eines Wahrscheinlichkeitsvektors über die Klassen \cite{TensorFlowKerasTraining:2025}.
+\end{itemize}
+
+Diese einfache, lineare Architektur hat sich in der Embedded-KI für Sprachklassifikation als leistungsfähig und ressourcenschonend erwiesen \cite{EdgeImpulse:2025LearningBlocks}.
+
+\subsection{Trainingsstrategie}
+
+Das Modell wurde mithilfe der Online-Plattform Edge Impulse trainiert. Die Trainingsdaten bestanden aus Audiodateien, die über das Mikrofon des Arduino Nano 33 BLE Sense aufgenommen oder als WAV-Dateien hochgeladen wurden. Diese Daten wurden anschließend automatisch in MFCC-Features umgewandelt.\\
+\bigskip
+Im Trainingsprozess wurde das Netz mit Hilfe von überwachten Lernverfahren optimiert. Dabei kam ein einfacher Gradient-Descent-Algorithmus mit Backpropagation zum Einsatz, wie er auch in TensorFlow Lite für Microcontrollers unterstützt wird \cite{TensorFlow:2025LiteMicrocontrollers}. Die Trainingsparameter wie Lernrate, Anzahl der Epochen und Batch-Größe wurden im Edge Impulse Studio konfiguriert.\\
+\bigskip
+Zur Vermeidung von Overfitting wurde ein Teil der Daten für die Validierung reserviert. Die Trainingsdaten enthielten sowohl echte Sprachbefehle als auch Hintergrundgeräusche, um die Robustheit des Modells gegenüber Umgebungseinflüssen zu erhöhen. Nach Abschluss des Trainingsprozesses wurde das Modell mithilfe von Edge Impulse in eine C++-Bibliothek kompiliert, die direkt auf dem Mikrocontroller ausgeführt werden kann \cite{EdgeImpulseClassification:2025} \cite{EdgeImpulseDeployment:2025}.
+
+\subsection{Modellkonvertierung und Einsatz auf dem Mikrocontroller} \label{sec:Modellkonvertierung und Einsatz auf dem Mikrocontroller}
+
+Nach dem erfolgreichen Training wird das neuronale Netz von Edge Impulse automatisch in C++-Code umgewandelt. Dieser Code enthält alle notwendigen Strukturen, Gewichtsmatrizen und Funktionen, die für die Ausführung auf Embedded-Systemen erforderlich sind. Die resultierenden Dateien – insbesondere tflite-model und model-parameters – können über die Arduino IDE oder die CLI in ein Arduino-Projekt integriert werden \cite{EdgeImpulseDeployment:2025}.\\
+\bigskip
+TensorFlow Lite for Microcontrollers (TFLM) sorgt dafür, dass die Modellinferenz ohne externes Betriebssystem oder dynamische Speicherverwaltung auf dem Arduino Nano 33 BLE Sense durchgeführt werden kann. Die Bibliothek wurde speziell für kleine Systeme mit wenigen Kilobyte RAM konzipiert und verwendet statisch zugewiesene Speicherbereiche, um Speicherfragmentierung zu vermeiden \cite{TensorFlow:2025LiteMicrocontrollers}.\\
+\bigskip
+Einmal eingebunden, kann das Modell direkt im Arduino-Sketch über eine API angesprochen werden, etwa run\_classifier(). Dieser Funktionsaufruf liefert eine strukturierte Ausgabe mit den erkannten Wahrscheinlichkeiten für jede Klasse. Die Vorverarbeitung (z.B. MFCC-Berechnung) ist im Modellcode enthalten und wird bei jedem Klassifikationsdurchlauf automatisch mit ausgeführt \cite{TensorFlow:2025LiteMicrocontrollers}.
+
+
+\section{Verwendung und Auswertung} \label{sec:Verwendung und Auswertung}
+
+In diesem Kapitel wird beschrieben, wie die vom KI-Modell klassifizierten Sprachbefehle in konkrete Systemaktionen umgesetzt werden. Dazu zählen unter anderem das Ansteuern von LEDs, die Ausgabe auf dem OLED-Display sowie die zeitgesteuerte Ausführung einzelner Funktionen. Ziel ist es, die Integration der Inferenzausgabe in das Anwendungsskript des Mikrocontrollers transparent und nachvollziehbar darzustellen.
+
+\subsection{LED-Steuerung}
+
+Die LEDs werden je nach erkanntem Sprachbefehl geschaltet \ref{sec:Klassifikation}. Die grüne LED ist an Pin D11, die rote LED an Pin D12 angeschlossen. Für die Steuerung kommt die Bibliothek LED.h zum Einsatz, die Grove-kompatible LED-Module einfach ansprechbar macht.\\
+\bigskip
+Das Verhalten ist wie folgt definiert:
+
+\begin{itemize}
+    \item "grün": Die grüne LED leuchtet für 10 Sekunden.
+    
+    \item "rot": Die rote LED leuchtet für 10 Sekunden.
+    
+    \item "beide": Beide LEDs leuchten für 10 Sekunden.
+    
+    \item "blinken": Die LEDs blinken abwechselnd im 1-Sekunden-Takt für 10 Sekunden.
+\end{itemize}
+
+Damit die LEDs nach der gewünschten Zeit wieder ausgehen, wird mit \PYTHON{millis()} die Zeit gemessen, seit ein Befehl ausgeführt wurde. So lassen sich die LEDs automatisch ausschalten, ohne dass der restliche Code angehalten wird (kein \PYTHON{delay()}).
+
+\subsection{OLED-Display-Ausgabe}
+
+Zusätzlich zur LED-Ansteuerung wird auf einem 0.96-Zoll OLED-Display mit SSD1308-Controller ausgegeben, welcher Befehl erkannt wurde und wie lange er aktiv bleibt. Die Anzeige erfolgt mit Hilfe der Bibliothek Adafruit\_SSD1306.h, die über die Adafruit-GFX-Bibliothek einfache Text- und Zahlenfunktionen über die $I^2C$-Schnittstelle bietet \cite{Adafruit_SSD1306}.\\
+
+\bigskip
+
+Nach jeder erfolgreichen Spracherkennung wird auf dem Display Folgendes angezeigt:
+
+\begin{itemize}
+    \item "grün": Befehl: grün Restlaufzeit: 10s
+    
+    \item "rot": Befehl: rot Restlaufzeit: 10s
+    
+    \item "beide": Befehl: beide Restlaufzeit: 10s
+    
+    \item "blinken": Befehl: blinken Restlaufzeit: 10s
+\end{itemize}
+
+Die Displayausgabe orientiert sich an der jeweils erkannten Klasse und zeigt textbasiert den aktuellen Befehl sowie die verbleibende Restlaufzeit der Aktion an. Dabei wird die Darstellung bei jeder neuen Ausgabe vollständig aktualisiert, um Rückmeldung zum Status zu geben. Die Positionierung erfolgt mithilfe von \PYTHON{setCursor()} und die Textanzeige mit \PYTHON{print()} aus der Adafruit-GFX-Bibliothek.
+
+
+\section{Gesamtsystemcode des Arduinos} \label{sec:Gesamtsystemcode}
+
+In diesem Kapitel wird der vollständige Systemcode beschrieben, der auf dem MWIVR über die Arduino IDE ausgeführt wird. Der Quelltext ist mit Doxygen-Kommentaren versehen und bildet die zentrale Grundlage für das sprachgesteuerte Verhalten des Gesamtsystems.
+
+{
+    \captionof{code}{Gesamtsystemcode MWIVR}\label{lst:Gesamtsystemcode-MWIVR}
+    \ArduinoExternal{}{../../Code/Arduino/MWIVR/Gesamtsystemcode-MWIVR/Gesamtsystemcode-MWIVR.ino}
+}
+
+
+
+\chapter{Installation Edge Impulse} \label{sec:Installation}
+
+\section{Einrichtung eines Edge Impulse Kontos}
+
+Zunächst wird ein Konto bei Edge Impulse erstellt. Dies erfolgt durch die Registrierung auf der offiziellen Website von Edge Impulse \HREF{https://www.edgeimpulse.com}{Edge Impulse}. Nach dem Login wird ein neues Projekt angelegt, dessen Name frei wählbar ist und das später für das Training des Machine-Learning-Modells verwendet wird.
+
+\section{Installation erforderlicher Software}
+
+Zur Vorbereitung der Entwicklungsumgebung müssen zwei Programme auf dem Computer installiert werden: die Edge Impulse CLI und die Arduino CLI. Nachfolgend werden die Installationsschritte für beide Komponenten detailliert beschrieben.
+
+\subsection{Edge Impulse CLI installieren}
+
+\begin{enumerate}
+    \item \textbf{Node.js installieren}\\
+    \bigskip
+    Voraussetzung für die Edge Impulse CLI ist eine aktuelle Version von Node.js (empfohlen: Version 20, Achtung! Version 22.15 zum Zeitpunkt 11.05.2025 nicht funktionstüchtig!). Diese kann von der offiziellen Website  \cite{NodeJS:2025} heruntergeladen werden \ref{fig:Downloadbereich-nodejs.org}.
+    
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=1\textwidth]{MWIVR/Downloadbereich-nodejs.org}
+        \caption{Downloadbereich \texttt{nodejs.org}}
+        \label{fig:Downloadbereich-nodejs.org}
+    \end{figure}
+    
+    \item  \textbf{Installation der Edge Impulse CLI }\\
+    \bigskip
+    Nach erfolgreicher Installation von Node.js wird die CLI über ein Terminal oder eine Eingabeaufforderung mit dem Befehl \texttt{npm install -g edge-impulse-cli} wie in \ref{fig:Eingabeaufforderunginstall-gedge-impulse-cli} installiert:
+    
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=1\textwidth]{MWIVR/Eingabeaufforderunginstall-gedge-impulse-cli}
+        \caption{Eingabeaufforderung \texttt{install -g edge- impulse-cli}}
+        \label{fig:Eingabeaufforderunginstall-gedge-impulse-cli}
+    \end{figure}
+    
+    \item \textbf{Funktionstest} \\
+    \bigskip
+    Die erfolgreiche Installation kann durch den Befehl \texttt{edge-impulse-daemon} geprüft werden \ref{fig:Funktionstest-edge-impulse-daemon}. Das Tool sollte starten und gegebenenfalls nach Anmeldedaten fragen.
+    
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=1\textwidth]{MWIVR/Funktionstest-edge-impulse-daemon}
+        \caption{Funktionstest \texttt{edge-impulse-daemon}}
+        \label{fig:Funktionstest-edge-impulse-daemon}
+    \end{figure}
+\end{enumerate}
+
+\subsection{Arduino CLI installieren}
+
+Hinweis für Windows-Nutzer: Für die reibungslose Ausführung der Flash-Skripte unter Windows wird empfohlen, zusätzlich Visual Studio mit der Komponente "Desktop-Entwicklung mit C++" wie in \ref{fig:Installation-Visual-Studio-Desktop-development-with-C++} zu installieren. Diese enthält die erforderlichen Build-Tools wie make und clang, die von den Skripten verwendet werden können. Die Installationsdateien sind auf der offiziellen Microsoft Visual Studio Website \cite{MicrosoftBuildTools:2025} verfügbar.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{MWIVR/Installation-Visual-Studio-Desktop-development-with-C++}
+    \caption{Installation Visual Studio Desktop development with C++}
+    \label{fig:Installation-Visual-Studio-Desktop-development-with-C++}
+\end{figure}
+
+\begin{enumerate}
+    \item \textbf{Arduino CLI herunterladen}\\
+    \bigskip
+    Die aktuellste Version ist auf der ArduinoCLI Website \cite{ArduinoCLI:2025Installation}
+    verfügbar. Das passende Installationspaket je nach Betriebssystem auswählen und herunterladen \ref{fig:Downloadbereich-Arduino-CLI}.
+    
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=1\textwidth]{MWIVR/Downloadbereich-Arduino-CLI}
+        \caption{Downloadbereich Arduino CLI}
+        \label{fig:Downloadbereich-Arduino-CLI}
+    \end{figure}
+    
+    \item \textbf{Installation je nach Betriebssystem}\\
+    \bigskip
+    \begin{itemize}
+        \item \textbf{Windows:} Die .exe-Datei direkt ausführen
+        
+        \item \textbf{macOS/Linux:} Das Archiv entpacken und den CLI-Befehl manuell in den Pfad integrieren
+    \end{itemize}
+    
+    \item \textbf{Funktionstest}\\
+    \bigskip
+    Im Terminal den Befehl \texttt{arduino-cli version} \ref{fig:Funktionstest-Arduino-CLI} ausführen. Die installierte Version sollte angezeigt werden.
+    
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=1\textwidth]{MWIVR/Funktionstest-Arduino-CLI}
+        \caption{Funktionstest Arduino CLI}
+        \label{fig:Funktionstest-Arduino-CLI}
+    \end{figure}
+\end{enumerate}
+
+
+\section{Firmware-Installation auf dem Arduino Nano 33 BLE Sense}
+
+Damit das Arduino Nano 33 BLE Sense mit Edge Impulse kommunizieren kann, ist es notwendig, eine spezielle Firmware zu installieren. Diese Firmware ermöglicht die Datenübertragung und Steuerung über die Edge Impulse CLI.
+
+\subsection{Firmware herunterladen und entpacken}
+
+\begin{enumerate}
+    \item Die aktuelle Firmware für das Arduino Nano 33 BLE Sense kann von folgender Quelle bezogen werden \ref{fig:Download-zip-folder-firmware-arduino-nano-33-ble-sense}: \HREF{https://cdn.edgeimpulse.com/firmware/arduino-nano-33-ble-sense.zip}{Firmware Download}
+    
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=1\textwidth]{MWIVR/Download-zip-folder-firmware-arduino-nano-33-ble-sense}
+        \caption{Download zip-folder firmware arduino-nano-33-ble-sense}
+        \label{fig:Download-zip-folder-firmware-arduino-nano-33-ble-sense}
+    \end{figure}
+    
+    \item Die ZIP-Datei wird in ein bekanntes Verzeichnis auf dem Computer entpackt. Sie enthält u.a. drei Flash-Skripte für unterschiedliche Betriebssysteme \ref{fig:Entpackter-Zip-Ordner-mit-Flash-Skripts}.
+    
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=1\textwidth]{MWIVR/Entpackter-Zip-Ordner-mit-Flash-Skripts}
+        \caption{Entpackter Zip-Ordner mit Flash-Skripts}
+        \label{fig:Entpackter-Zip-Ordner-mit-Flash-Skripts}
+    \end{figure}
+    
+\end{enumerate}
+
+\subsection{Board in den Bootloader-Modus versetzen}
+
+Bevor das Flashen möglich ist, muss das Board in den Bootloader-Modus versetzt werden. Dazu wird die Reset-Taste zweimal schnell hintereinander gedrückt. Die eingebaute LED beginnt langsam zu pulsieren, was den aktiven Bootloader anzeigt \ref{fig:Arduino-Nano-33-BLE-Sense-lite-im-Bootloader-Modus}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{MWIVR/Arduino-Nano-33-BLE-Sense-lite-im-Bootloader-Modus}
+    \caption{Arduino Nano 33 BLE Sense lite im Bootloader-Modus}
+    \label{fig:Arduino-Nano-33-BLE-Sense-lite-im-Bootloader-Modus}
+\end{figure}
+
+\subsection{Flash-Skript ausführen}
+
+Je nach verwendetem Betriebssystem wird nun das entsprechende Skript ausgeführt:
+
+\begin{itemize}
+    \item \texttt{flash\_windows.bat} für Windows
+    
+    \item \texttt{flash\_mac.command} für macOS
+    
+    \item \texttt{flash\_linux.sh} für Linux
+\end{itemize}
+
+Das Skript öffnet ein Terminalfenster und überträgt automatisch die Firmware auf das angeschlossene Board \ref{fig:Flash-Vorgang-Arduino-Nano-33-BLE-Sense-lite}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{MWIVR/Flash-Vorgang-Arduino-Nano-33-BLE-Sense-lite}
+    \caption{Flash-Vorgang Arduino Nano 33 BLE Sense lite}
+    \label{fig:Flash-Vorgang-Arduino-Nano-33-BLE-Sense-lite}
+\end{figure}
+
+\subsection{Neustart des Boards}
+
+Nach erfolgreichem Flashen wird die Reset-Taste \textbf{einmal} gedrückt, um das Board mit der neuen Firmware zu starten. Danach kann die Verbindung zu Edge Impulse über die CLI aufgebaut werden \ref{sec:Konfiguration}. 
+
+Mit dieser Firmware ist das Board nun vollständig für die Arbeit mit Edge Impulse vorbereitet. \cite{ArduinoEdgeImpulse:2025}
+
+
+
+\chapter{Konfiguration} \label{sec:Konfiguration}
+
+Bevor mit der Konfiguration des Systems begonnen wird, muss sichergestellt sein, dass alle notwendigen Schritte aus dem Kapitel Installation \ref{sec:Installation} vollständig durchgeführt wurden. Dazu gehören insbesondere die Einrichtung eines Edge Impulse Kontos, die Installation der benötigten Softwarekomponenten sowie das Aufspielen der speziellen Firmware auf das Arduino Nano 33 BLE Sense Board. \cite{ArduinoEdgeImpulse:2025}
+
+\section{Verbindung des Boards mit Edge Impulse}
+
+\begin{enumerate}
+    \item Eine Konsole oder ein Terminalfenster wird geöffnet.
+    
+    \item Zur Verbindung des Geräts mit Edge Impulse wird folgender Befehl eingegeben \ref{fig:Console-ausgeführter-Befehl-edge-impulse-daemon}:\\
+    \bigskip
+    \texttt{edge-impulse-daemon}
+    
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=1\textwidth]{MWIVR/Console-ausgeführter-Befehl-edge-impulse-daemon}
+        \caption{Console-ausgeführter-Befehl:-edge-impulse-daemon}
+        \label{fig:Console-ausgeführter-Befehl-edge-impulse-daemon}
+    \end{figure}
+    
+    \item Das Tool fordert zur Anmeldung mit dem Edge Impulse-Konto auf.
+    
+    \item Nach erfolgreicher Anmeldung muss der Port ausgewählt werden, über welchen das Board mit dem Computer verbunden ist \ref{fig:Aufforderung Port-Auswahl}.
+    \begin{itemize}
+        \item Achtung! Zur erfolgreichen Anmeldung muss im Edge-Impulse-Account ein Passwort festgelegt sein. Hierzu wird auf der Oberfläche von Edge-Impulse rechts oben über das Benutzer-Icon zu  Account Settings navigiert. Unter Password kann das Password festgelegt oder geändert werden \ref{fig:Edge-Impulse Passwort festlegen/ändern}.
+        
+        \begin{figure}[h]
+            \centering
+            \includegraphics[width=1\textwidth]{MWIVR/Aufforderung Port-Auswahl}
+            \caption{Aufforderung Port-Auswahl}
+            \label{fig:Aufforderung Port-Auswahl}
+        \end{figure}
+        
+        \begin{figure}[h]
+            \centering
+            \includegraphics[width=1\textwidth]{MWIVR/Edge-Impulse Passwort festlegen-ändern}
+            \caption{Edge-Impulse Passwort festlegen/ändern}
+            \label{fig:Edge-Impulse Passwort festlegen/ändern}
+        \end{figure}
+        
+    \end{itemize}
+    
+    
+    \item Nach erfolgreicher Authentifizierung kann ein vorhandenes Projekt ausgewählt werden oder es wird automatisch ein neues erstellt, wenn noch kein Projekt vorhanden ist \ref{fig:Edge Impulse Projekt auswählen}.
+    
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=1\textwidth]{MWIVR/Edge Impulse Projekt auswählen}
+        \caption{Edge Impulse Projekt auswählen}
+        \label{fig:Edge Impulse Projekt auswählen}
+    \end{figure}
+    
+    \item Bei erfolgreicher Verbindung erscheint das Gerät mit einem grünen Punkt in der Geräteliste im Bereich \menu{Devices} der Edge Impulse Studio-Oberfläche \ref{fig:Geräteliste Edge Impulse mit erfolgreich verbundenem Board}.
+    
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=1\textwidth]{MWIVR/Geräteliste Edge Impulse mit erfolgreich verbundenem Board}
+        \caption{Geräteliste Edge Impulse mit erfolgreich verbundenem Board}
+        \label{fig:Geräteliste Edge Impulse mit erfolgreich verbundenem Board}
+    \end{figure}
+    
+    \item \textbf{Hinweis:} Wird das Terminalfenster geschlossen, geht die Verbindung zum Board verloren. Der oben genannte Befehl muss erneut ausgeführt werden, um die Verbindung wiederherzustellen.
+\end{enumerate}
+
+\cite{ArduinoEdgeImpulse:2025}
+
+\section{Überprüfung des Projekts}
+
+Es wird sichergestellt, dass im Studio das korrekte Projekt ausgewählt ist und das Board dort angezeigt wird. Sollte dies nicht der Fall sein, kann der Verbindungsaufbau durch die erneute Ausführung des Befehls mit der Option \texttt{--clean} erfolgen \cite{ArduinoEdgeImpulse:2025}:\\
+\texttt{edge-impulse-daemon --clean}
+
+Nach erfolgreicher Konfiguration ist das Board bereit für die Datenerfassung und das Training von Machine-Learning-Modellen mit Edge Impulse. \cite{ArduinoEdgeImpulse:2025}
+
+\section{Erstellung und Training des Machine-Learning-Modells}
+
+
+
+\subsection{Datenerfassung} 
+
+\begin{enumerate}
+    \item Im Edge Impulse Studio wird auf der linken Seite der Menüpunkt \menu{Data acquisition} ausgewählt \ref{fig:Datenerfassung Edge Impulse}.
+    
+    \item Unter Device wird das angeschlossene Board ausgewählt, unter Sensor das eingebaute Mikrofon.
+    
+    \item Die Aufnahmezeit wird auf 2500 ms gesetzt, die Abtastrate auf 16000 Hz belassen. 
+    
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=1\textwidth]{MWIVR/Datenerfassung Edge Impulse}
+        \caption{Datenerfassung Edge Impulse}
+        \label{fig:Datenerfassung Edge Impulse}
+    \end{figure}
+    
+    \item Für die Schlüsselwörter „rot“, „grün“, „beide“ und „blinken“ werden jeweils mindestens 50 Proben aufgenommen.
+    
+    \item Zusätzlich werden 50 Proben mit der Bezeichnung „noise“ ohne Sprachinhalt aufgezeichnet, um eine bessere Unterscheidung im Modell zu ermöglichen \ref{fig:Aufgenommene Probe Edge Impulse}. 
+    
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=1\textwidth]{MWIVR/Aufgenommene Probe Edge Impulse}
+        \caption{Aufgenommene Probe Edge Impulse}
+        \label{fig:Aufgenommene Probe Edge Impulse}
+    \end{figure}
+    
+\end{enumerate}
+
+\cite{ArduinoEdgeImpulse:2025}
+
+\subsection{Erstellung des Impulses}
+
+\begin{enumerate}
+    \item Unter dem Menüpunkt \menu{Impulse design} wird ein neuer Impuls erstellt.
+    
+    \item Es wird ein Processing Block vom Typ Audio (MFCC) sowie ein Learning Block vom Typ Classification (Keras) hinzugefügt \ref{fig:Impuls erstellen Edge Impulse}. 
+    
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=1\textwidth]{MWIVR/Impuls erstellen Edge Impulse}
+        \caption{Impuls erstellen Edge Impulse}
+        \label{fig:Impuls erstellen Edge Impulse}
+    \end{figure}
+    
+    \item Die Standardparameter werden beibehalten und der Impuls wird gespeichert.
+    
+\end{enumerate}
+
+\cite{ArduinoEdgeImpulse:2025}
+
+\subsection{Merkmalsextraktion (Feature Generation)}
+
+\begin{enumerate}
+    \item Im nächsten Schritt wird unter \menu{MFCC}  und dann \menu{Generate features} aus den Rohdaten Merkmale extrahiert.
+    
+    \item Dazu wird auf \menu{Generate features} geklickt; die Ergebnisse werden im rechten Bereich visuell dargestellt \ref{fig:Generate features Edge Impulse}. 
+    
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=1\textwidth]{MWIVR/Generate features Edge Impulse}
+        \caption{Generate features Edge Impulse}
+        \label{fig:Generate features Edge Impulse}
+    \end{figure}
+    
+\end{enumerate}
+
+\cite{ArduinoEdgeImpulse:2025}
+
+\subsection{Training des Modells}
+
+\begin{enumerate}
+    \item Über den Punkt \menu{Classifier} wird das neuronale Netz trainiert.
+    
+    \item Die Voreinstellungen bleiben unverändert. Mit \menu{save and train} wird der Trainingsprozess begonnen. 
+    
+    \item Nach Abschluss zeigt das System eine Genauigkeit für jede Klasse. Bei schlechten Ergebnissen sollte die Datenbasis überprüft und ggf. verbessert werden \ref{fig:Classifier Edge Impulse}.
+    
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=1\textwidth]{MWIVR/Classifier Edge Impulse}
+        \caption{Classifier Edge Impulse}
+        \label{fig:Classifier Edge Impulse}
+    \end{figure}
+    
+\end{enumerate}
+
+\cite{ArduinoEdgeImpulse:2025}
+
+\section{Deployment und Test auf dem Arduino Nano 33 BLE Sense}
+
+\subsection{Erstellen der Arduino-Bibliothek} 
+
+\begin{enumerate}
+    \item Im Menü \menu{Deployment} wird als Zielplattform Arduino Library gewählt \ref{fig:Arduino-Bibliothek in Edge Impulse erzeugen}.
+    
+    \item Unter \menu{Model optimizations} wird Tensorflow Lite ausgewählt.
+    
+    \item Nach Klick auf \menu{Build} wird eine ZIP-Datei erzeugt und heruntergeladen. 
+    
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=1\textwidth]{MWIVR/Arduino-Bibliothek in Edge Impulse erzeugen}
+        \caption{Arduino-Bibliothek in Edge Impulse erzeugen}
+        \label{fig:Arduino-Bibliothek in Edge Impulse erzeugen}
+    \end{figure}
+    
+\end{enumerate}
+
+\cite{ArduinoEdgeImpulse:2025}
+
+\subsection{Integration der Bibliothek in die Arduino IDE}
+
+Die Arduino IDE wird geöffnet, und über \menu{Sketch -> Include Library -> Add .ZIP Library…} wird die heruntergeladene ZIP-Datei eingebunden \ref{fig:Bibliothek in der Arduino IDE einfügen}. \cite{ArduinoEdgeImpulse:2025} 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{MWIVR/Bibliothek in der Arduino IDE einfügen}
+    \caption{Bibliothek in der Arduino IDE einfügen}
+    \label{fig:Bibliothek in der Arduino IDE einfügen}
+\end{figure}
+
+\subsection{Beispielsketch anpassen und hochladen}
+
+\begin{enumerate}
+    \item Über \menu{File -> Examples -> Examples from Custom Libraries} wird das Beispiel \texttt{nano\_ble\_33\_sense\_microphone\_continuous} geöffnet \ref{fig:Beispielsketch für Mikrofon einfügen}. \cite{ArduinoEdgeImpulse:2025}
+    
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=1\textwidth]{MWIVR/Beispielsketch für Mikrofon einfügen}
+        \caption{Beispielsketch für Mikrofon einfügen}
+        \label{fig:Beispielsketch für Mikrofon einfügen}
+    \end{figure}
+    
+    \item Der Sketch kann nun angepasst werden, um die gewünschten Kriterien auszuführen. Der im Projekt verwendete bearbeitete Sketch ist in Kapitel Gesamtsystemcode \ref{sec:Gesamtsystemcode} abgebildet und kann übernommen werden.
+    
+    \item Das Board wird ausgewählt, der Sketch kompiliert und hochgeladen.
+    
+    \item Über den Serial Monitor kann die Erkennung in Echtzeit beobachtet werden.
+    
+\end{enumerate}
+
+
+
+
+
+
+
+
+

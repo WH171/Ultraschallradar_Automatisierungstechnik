@@ -1,0 +1,26 @@
+%%%%%%%%%%%%
+%
+% $Autor: Wings $
+% $Datum: 2019-03-05 08:03:15Z $
+% $Pfad: TemplateSensor $
+% $Version: 4250 $
+% !TeX spellcheck = en_GB/de_DE
+% !TeX encoding = utf8
+% !TeX root = filename 
+% !TeX TXS-program:bibliography = txs:///biber
+%
+%%%%%%%%%%%%
+
+% Structure
+\chapter{Offene Punkte}
+
+\section{LoRaWAN Server}
+\begin{enumerate}
+	\item Der ChirpStack-Server soll eine feste IP-Adresse besitzen, damit die Gateways ihn jederzeit erreichen können. Diese Einstellung wird vorgenommen, sobald der Server in die eigentliche LAN-Infrastruktur integriert wird.
+\end{enumerate}
+
+\section{LoRaWAN-Architektur \label{openPoints:LoRaWANArch}}
+\begin{enumerate}
+	\item Die maximale Größe des Payloads wird so festgelegt, dass sie der zulässigen Payload-Größe bei Datenrate \PYTHON{DR0} entspricht. Dadurch ist sichergestellt, dass alle Sensordaten selbst unter den ungünstigsten Übertragungsbedingungen zuverlässig übertragen werden können. Zwar ist es bei höheren Datenraten grundsätzlich möglich, größere Payloads zu senden, jedoch werden bei Auswahl von \PYTHON{DR0} alle über die maximal zulässige Größe hinausgehenden Daten verworfen. In diesem Fall wäre die Übertragung nicht vollständig (siehe~\autoref{tab:lorawan-payload-m}).
+	\end{enumerate}
+	

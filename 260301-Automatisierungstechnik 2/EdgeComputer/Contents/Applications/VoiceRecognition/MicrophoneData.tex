@@ -1,0 +1,2576 @@
+%%%
+%
+% $Autor: Arne Bussen, Finn Wojtysiak, Francesco Kirschner, Levi Weber $
+% $Date: 2025-05 $
+% $File: MWIVR-Daten.tex $
+% $Version: 1 $
+%
+% Project: 
+%
+%%%
+
+
+\chapter{Daten} \label{sec:Daten}
+
+\section{Verwendete Datentypen}
+
+In diesem Kapitel werden die verwendeten Datentypen beschrieben, die für die Realisierung der Spracherkennung innerhalb dieses Projekts als entscheidend erweisen. Die spezifischen Anforderungen einer ressourcenbeschränkten Mikrocontroller-Umgebung machen Transformationen des Audiosignals notwendig. Diese Transformationen ermöglichen die Extraktion relevanter akustischer Merkmale für eine präzise und zuverlässige Erkennung. Die nachfolgende Beschreibung der verwendeten Datentypen orientiert sich an etablierten Prinzipien der Sprachverarbeitung.1. Spektrogramme \cite{Pfister:2008}
+
+\section{Spektrogramme}
+
+Das Spektrogramm stellt eine visuelle Darstellung der spektralen Zusammensetzung eines Audiosignals über die Zeit dar. Seine Erzeugung erfolgt durch die Anwendung der Kurzzeit-Fourier-Transformation (STFT) auf das Zeitsignal. Hierfür wird das kontinuierliche Zeitsignal in überlappende Rahmen segmentiert, für die anschließend jeweils das Frequenzspektrum berechnet wird.
+\begin{itemize}
+	\item Darstellung: Ein Spektrogramm präsentiert auf der horizontalen Achse die Zeit und auf der vertikalen Achse die Frequenz. Die Intensität bzw. Energie der Frequenzkomponenten wird dabei durch eine Farbskala veranschaulicht. \ref{fig:Spektogramm}
+	
+	\item Informationsgehalt: Spektrogramme machen die zeitliche Entwicklung von Frequenzkomponenten sichtbar, was für die Analyse von Sprachlauten wie Vokalen, Konsonanten und deren Übergängen von großer Bedeutung ist. Sie gestatten zudem Rückschlüsse auf Formanten, die eine zentrale Rolle bei der Vokalklassifikation spielen. Obwohl rohe Spektrogramme für die direkte Verarbeitung auf ressourcenbeschränkten Systemen zu datenintensiv wären, dienen sie als notwendige Zwischenstufe für effizientere Merkmalsextraktionsverfahren. Im Kontext der Spracherkennung können Spektrogramme darüber hinaus zur visuellen Inspektion von Sprachdaten oder zur Analyse von Fehlerursachen bei der Erkennung herangezogen werden.
+\end{itemize} \cite{Pfister:2008}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=1\linewidth]{MWIVR/Spektogramm.png}
+	\caption{Spektogramm}
+	\label{fig:Spektogramm}
+\end{figure}
+
+\section{Mel-Spektrogramme}
+
+Das Mel-Spektrogramm \ref{fig:Mel-Spektogramm} ist eine Weiterentwicklung des klassischen Spektrogramms, bei der die Frequenzachse an die nicht-lineare Frequenzwahrnehmung des menschlichen Gehörs angepasst wird – die sogenannte Mel-Skala. Diese Skalierung berücksichtigt, dass das menschliche Ohr im unteren Frequenzbereich feiner auflöst als im oberen.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=1\linewidth]{MWIVR/Mel-Spektogramm.png}
+	\caption{Mel-Spektogramm}
+	\label{fig:Mel-Spektogramm}
+\end{figure}
+
+\begin{itemize}
+	\item Erzeugung: Nach der Berechnung des Leistungs- oder Energiespektrums (analog zum Spektrogramm) werden die Frequenzbänder mittels einer Reihe überlappender Dreiecksfilter, die auf der Mel-Skala angeordnet sind, gewichtet und zusammengefasst.
+	
+	\item Vorteile: Durch diese Anpassung an die menschliche Hörwahrnehmung sind Mel-Spektrogramme weniger anfällig für irrelevante Frequenzinformationen und können die für die Spracherkennung relevanten Merkmale effektiver hervorheben. Diese biologisch inspirierte Skalierung ist entscheidend, um menschenähnliche Sprechmuster optimal zu erfassen. Sie bilden die fundamentale Grundlage für die Ableitung der Mel-Frequency Cepstral Coefficients (MFCCs), die als Schlüsselmerkmale in modernen Spracherkennungssystemen gelten.
+\end{itemize} \cite{Pfister:2008}
+
+\section{Mel-Frequency Cepstral Coefficients (MFCCs)}
+
+Die Mel-Frequency Cepstral Coefficients (MFCCs) \ref{fig:MFCC} stellen eine der am weitesten verbreiteten Merkmalsvektoren in der Spracherkennung dar. Sie werden direkt aus den Mel-Spektrogrammen abgeleitet und bieten eine kompakte sowie effiziente Repräsentation des Sprachsignals, die sich für Klassifikationsaufgaben mittels maschinellen Lernens eignet.
+\begin{itemize}
+	\item Erzeugungsprozess: Die Ableitung der MFCCs aus dem Audiosignal erfolgt in mehreren aufeinanderfolgenden Schritten: 
+	\begin{enumerate}
+		\item Framing und Windowing: Zunächst wird das Audiosignal in kurze, sich überlappende Zeitrahmen zerlegt, die anschließend mit einer Fensterfunktion (beispielsweise einem Hamming-Fenster) multipliziert werden, um Randeffekte zu minimieren.
+		
+		\item Fast Fourier Transformation (FFT): Für jeden dieser Rahmen wird eine Schnelle Fourier-Transformation (FFT) durchgeführt, um das zugehörige Leistungsspektrum zu ermitteln.
+		
+		\item Mel-Filterbank: Das resultierende Leistungsspektrum wird daraufhin durch eine Filterbank verarbeitet, die aus logarithmisch skalierten (Mel-Skala) Dreiecksfiltern besteht. Die Energie in jedem dieser Filterbänder wird summiert.
+		
+		\item Logarithmierung: Anschließend wird der Logarithmus der Energien der Mel-Filterbänder berechnet. Dies reduziert den Dynamikbereich und verbessert die Trennbarkeit der Merkmale.
+		
+		\item Diskrete Kosinus-Transformation (DCT): Die logarithmischen Mel-Filterbank-Energien werden einer Diskreten Kosinus-Transformation (DCT) unterzogen. Die Koeffizienten, die aus dieser Transformation resultieren, sind die eigentlichen MFCCs. Üblicherweise werden lediglich die ersten 12 bis 20 Koeffizienten verwendet, da höhere Koeffizienten oft redundante oder für die Sprachinformation unwesentliche Anteile enthalten.
+	\end{enumerate}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=1\linewidth]{MWIVR/MFCC.png}
+	\caption{MFCC}
+	\label{fig:MFCC}
+\end{figure}
+	
+	\item Bedeutung in der Spracherkennung: MFCCs erweisen sich als besonders wertvoll, da sie die entscheidenden spektralen Hüllkurven-Informationen des Sprachsignals erfassen. Diese sind maßgeblich für die Identifikation von Phonemen und die Unterscheidung verschiedener Sprachlaute. Ihre inhärente Robustheit gegenüber Variationen im Sprecher oder in der Aufnahmeumgebung macht sie zu bevorzugten Merkmalen für zahlreiche Spracherkennungsanwendungen, inklusive der Erkennung spezifischer Befehlswörter. Die zeitliche Abfolge der MFCC-Vektoren bildet die spektrale Dynamik des Sprachsignals ab und dient als Eingabesequenz für akustische Modelle.
+	Keywords: Sprachsignal, Spektrogramm, Fouriertransformation, MFCC, Mel-Skala, Mel-Spektrogramm, Mel-Filterbank, Merkmalsextraktion, Spracherkennung, akustische Modelle
+\end{itemize} \cite{Pfister:2008}
+
+
+
+\chapter{Wave-Datei Auswertung} \label{sec:Wave-Datei Auswertung}
+
+Eines der im professionellen Audio-Bereich typischsten Formate für unkomprimierte Audiodateien ist das Format der Wave-Datei.
+
+\bigskip
+
+Im Folgenden wird auf den Aufbau einer Wave-Datei eingegangen, sowie auf zwei unterschiedliche Methoden der Auswertung und Featureextraktion mittels Python und Matlab, im Hinblick der Analyse einer Audiodatei in der Spracherkennung im Edge-Bereich.  
+
+\section{Wave-Datei Allgemein}
+
+Unkomprimierte Audiodaten werden üblicherweise im Wave-Dateiformat gespeichert (siehe Abbildung \ref{fig:AufbauWave}). Dieses Dateiformat ist ein von 
+Microsoft und IBM, im Jahr 1991 veröffentlichtes Format zur digitalen Speicherung von Audiodaten.
+Es setzt auf dem RIFF (Resource Interchange File Format) Dateiformat auf.
+Das besondere beim RIFF-Datenformat ist, dass in diesen Dateien Informationen über das Format des Dateiinhalts 
+am Anfang der Datei gespeichert sind.
+Bei WAV-Audiodateien handelt es sich um eine RIFF Datei mit einem WAVE Container. 
+Normalerweise sind die Audiodateien als  PCM (Pulse-Code-Modulation)-Rohdaten enthalten, wobei PCM das Pulsmodulationsverfahren ist, mit dem die analogen Signale in digitale Signale umgesetzt werden.
+Meist enthält eine RIFF Audiodatei einen WAVE Container, welcher zwei Untercontainer enthält:
+Den fmt (Format) Container, der das Format der Audiodaten und deren Speicherung beschreibt und 
+einen data Container, welcher die eigentlichen Audiodaten in dem Format enthält, das im fmt Container beschrieben wird.
+
+\bigskip
+
+Eine Wave-Datei enthält in den ersten 4 Byte das Wort RIFF im ASCII-Format.
+Die folgenden vier Byte enthalten Größen der noch folgenden Daten im little-endian-Format.  Der letzte Teil der Beschreibung sind noch einmal 4 Byte, die den Dateityp angeben. 
+In unserem Fall also immer das Wort WAVE im ASCII-Format.
+
+
+\label{ascii}ASCII steht für \glqq American Standard Code for Information Interchange\grqq~und ist einer 7-Bit Zeichenkodierung, die der ISO-646 entspricht.
+
+Die Zeichenkodierung besteht aus 128 Zeichen wovon 95 druckbar und 33 nicht druckbar sind. 
+Einige hiervon sind:
+\begin{itemize}
+    \item Buchstaben: A, B, C, …, Z, a, b, c, …, z
+    \item Ziffern: 0, 1, 2, …, 9
+    \item Interpunktionszeichen: !, ", \#,\$, \%, \&, 
+\end{itemize}
+Eine ausführliche Darstellung ist in Abbildung \ref{fig:ASCII}.
+
+Wichtig anzumerken ist, dass jedes Zeichen einem definiertem Zahlenwert entspricht.
+
+
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=1\linewidth]{Microphon/ASCII.png}
+    \caption{Symbole und numerische Werte des ASCII Formats}
+    \label{fig:ASCII}
+\end{figure}
+
+
+
+Die Zusatzwerte little endian(LE)/big endian(BE) geben an, von welcher Reihenfolge die Zahlenwerte der Bytes betrachtet 
+werden.
+
+\begin{itemize}
+    \item BE, auch als big-endian bekannt, speichert das höchstwertige Byte zuerst. Wenn mehrere Bytes gelesen werden, 
+    ist das erste Byte (oder die niedrigste Speicheradresse) das größte. 
+    \item LE, auch als little-endian bekannt, speichert das niederwertigste Byte zuerst. Wenn mehrere Bytes gelesen werden, 
+    ist das erste Byte (oder die niedrigste Speicheradresse) das kleinste.
+\end{itemize}
+
+In dem Container \grqq fmt\grqq \ (Format)  sind sämtliche Angaben zum Aufbau der nachfolgenden Audiodatei spezifiziert.
+
+\begin{itemize}
+    \item 
+    Die ersten 4 Bytes leiten das Format Container mit dem Wort \grqq fmt\grqq \ ein. Also die Buchstaben f, m, t und ein Leerzeichen.
+    (ASCII) (big endian).
+    \item (Subchunk1Size) Die nächsten 4 Bytes geben an, wie groß der restliche fmt Container noch ist. (little endian).
+    \item (AudioFormat) Die nächsten zwei Bytes geben die Art an, wie die Audiodaten gespeichert sind. (üblicherweise 1 = PCM unkomprimiert) (little endian).
+    \item (NumChannels) In den nächsten zwei Bytes steht, wie viele Kanäle in der Audiodatei enthalten sind (mono = 1, stereo = 2, ...).
+    \item (SampleRate) Die nächsten 4 Bytes geben die Abtastrate des Signals in Hertz an.
+    \item (ByteRate) In den nächsten 4 Bytes ist die Bandbreite des Audiosignals angegeben. Diese wird in Bytes pro Sekunde (Bytes/s) angegeben.
+    \item (BlockAlign) In den nächsten zwei Bytes wird angegeben, wie viele Byte ein Block enthält. Ein Block entspricht einem Sample mal die Anzahl der Kanäle. (Bits pro Audiowert * Anzahl der Kanäle / 8).
+    \item (BitsPerSample) In den hier letzten beiden Bytes des Beispiels wird angegeben, wie viele Bit ein Audiowert enthält. 8 Bit entsprechen einem Byte.
+\end{itemize}
+
+Würde bei den Audiodaten etwas Anderes als PCM verwendet werden, würde nach dem jetzigem
+Abschnitt noch ein Abschnitt folgen, der dieses Format spezifiziert.
+\newline
+Als letztes sind im data-Container die wirklichen Audiodaten gespeichert, wie oben spezifiziert wurde.
+Eingeleitet wird dieser Container mit dem Wort \glqq data\grqq~in den ersten 4 Bytes (ASCII). In den darauf folgenden 4 Bytes
+wird die Größe der tatsächlichen Audiodaten in Byte (little Endian) angegeben.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=1\linewidth]{Microphon/AufbauWaveDatei.png}
+    \caption{Aufbau des Wave
+        Dateiformats 
+        mit Erklärung \cite{Wilson:2003}}
+    \label{fig:AufbauWave}
+\end{figure}
+
+%
+%
+%-----------------------------------------------------
+%
+%
+
+\section{Übertragung einer WAV-Datei über USB}
+
+\subsection{Zielsetzung}
+
+Diese Dokumentation beschreibt die Übertragung und Speicherung von Audiodaten, die mit dem integrierten Mikrofon des Arduino Nano 33 BLE Sense aufgenommen werden. Ziel ist es, die digitalen Audiodaten über die serielle USB-Schnittstelle an einen PC zu senden und sie dort im standardisierten WAV-Dateiformat abzuspeichern \cite{Warden:2019}.  
+Der Arduino nutzt hierzu die Pulse-Density-Modulation (PDM), um das Audiosignal des eingebauten MEMS-Mikrofons (MP34DT05) zu erfassen. Dieses Signal wird auf dem Mikrocontroller in 16-Bit-PCM (Pulse Code Modulation) umgewandelt. Anschließend erfolgt die Übertragung über die serielle Schnittstelle \cite{Warden:2019}.  
+Auf dem PC empfängt ein Python-Programm die Daten, skaliert sie digital um +30 Dezibel (dB) und speichert sie als WAV-Datei. Die Verstärkung ist notwendig, da das Rohsignal des Mikrofons sehr geringe Amplituden aufweist. Dies ist technisch bedingt: das Mikrofon selbst verfügt über keine integrierte Verstärkung, und die Arduino-PDM-Bibliothek bietet keine softwareseitige Gain-Einstellung \cite{Warden:2019}. Ohne eine digitale Anhebung wären die aufgenommenen Signale kaum hörbar.
+
+\subsection{Komponenten und Voraussetzungen}
+
+Zum Aufbau gehören folgende Hard- und Software-Komponenten:
+
+\begin{itemize}
+    \item Ein Arduino Nano 33 BLE Sense mit integriertem MEMS-Mikrofon (MP34DT05) \cite{Warden:2019}
+    \item Ein USB-Anschluss zur Kommunikation zwischen Mikrocontroller und PC
+    \item Die Arduino IDE zur Programmierung des Mikrocontrollers
+    \item Ein Python-Interpreter mit den Modulen pyserial \cite{PySerial:2025}, wave \cite{PythonWave:2025} und struct für die Datenverarbeitung am PC
+\end{itemize}
+
+\subsection{Technischer Ablauf}
+
+Die Übertragung erfolgt in zwei klar getrennten Schritten \cite{Warden:2019}:
+
+\begin{enumerate}
+    \item Der Arduino liest kontinuierlich die PDM-Daten des Mikrofons aus, konvertiert sie in 16-Bit-PCM-Samples und überträgt sie seriell \cite{Warden:2019}.
+    \item Auf dem PC empfängt ein Python-Skript die PCM-Daten, verstärkt sie softwareseitig und speichert sie als WAV-Datei \cite{Warden:2019}.
+\end{enumerate}
+
+\subsection{Arduino-Programm: Mikrofonaufnahme und Serial-Übertragung}
+
+Das folgende Arduino-Programm \ref{lst:ArduinoSerialÜbertragung} nutzt die PDM-Bibliothek zur Aufnahme der Audiodaten. Die Daten werden bei einer Abtastrate von 16 kHz als 16-Bit-Samples gesammelt und über die serielle Schnittstelle gesendet \cite{Warden:2019}.
+
+{
+    \captionof{code}{Arduino Mikrofonaufnahme und Serial-Übertragung}\label{lst:ArduinoSerialÜbertragung}
+    \ArduinoExternal{}{../../Code/Arduino/MicrophoneMP34DT05/ArduinoSerialUebertragung/ArduinoSerialUebertragung.ino}
+}
+
+Diese Konfiguration sorgt für eine kontinuierliche Aufnahme des Audiosignals mit festgelegtem Puffer. Bei jeder Unterbrechung (Interrupt) wird der Puffer gefüllt und seriell versendet. Es handelt sich um eine Direktübertragung ohne Komprimierung oder Zwischenverarbeitung auf dem Arduino \cite{Warden:2019}.
+
+\paragraph{Python-Programm: Empfang, Verstärkung und WAV-Speicherung}
+
+Das folgende Python-Programm liest die seriell übertragenen Audiodaten, verstärkt sie digital und speichert sie als WAV-Datei \cite{Warden:2019}:
+
+
+{
+    \captionof{code}{Python Code zum lesen der seriell übertragenen Audiodaten}\label{lst:audio_recording}
+    \ArduinoExternal{}{../../Code/Python/UebertragungEinerWaveDateiUeberUSB/audiorecording.txt}
+}
+
+
+Die Audioverstärkung um +30 dB ist ein zentraler Bestandteil dieses Skripts. Sie erfolgt durch Multiplikation jedes 16-Bit-Werts mit einem Verstärkungsfaktor von 31,62. Dieser wurde gewählt, da er exakt +30 dB entspricht (Formel: dB = 20 * log10(Faktor)) \cite{Weinzierl:2020a}. Damit wird das Ausgangssignal hörbar gemacht, ohne dass es zu Übersteuerungen kommt, da die Werte im zulässigen 16-Bit-Bereich (-32.768 bis 32.767) beschnitten werden.
+
+
+\subsection{Schritt-für-Schritt-Anleitung: WAV-Datei mit dem Arduino Nano 33 BLE Sense aufnehmen}
+
+Diese Anleitung beschreibt, wie mit dem Arduino Nano 33 BLE Sense eine Audiodatei aufgenommen, über USB an den PC gesendet und dort als WAV-Datei gespeichert wird. Sie richtet sich an technische Nutzerinnen und Nutzer mit grundlegender Erfahrung in Arduino und Python \cite{Warden:2019}.
+
+\subsubsection{Voraussetzungen}
+\begin{itemize}
+    \item Hardware:
+    \begin{itemize}
+        \item Arduino Nano 33 BLE Sense
+        
+        \item USB-Kabel
+    \end{itemize}
+    
+    \item Software:
+    \begin{itemize}
+        \item Arduino IDE (Version $\leq$ 1.8.x empfohlen)
+        
+        \item Python 3.x
+        
+        \item Python-Pakete: pyserial \cite{PySerial:2025}
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsection{Schritt 1: Arduino-Code übertragen}
+
+\begin{enumerate}
+    \item Ein neues Sketch-Fenster in der Arduino IDE öffnen.
+    
+    \item Den Beispielcode aus Kapitel X zur Mikrofonaufnahme und seriellen Übertragung in das Editor-Feld kopieren \cite{Warden:2019}.
+    
+    \item Auf Hochladen klicken, um das Programm auf den Mikrocontroller zu übertragen.
+    
+\end{enumerate}
+
+
+\subsubsection{Schritt 2: Aufnahme durchführen}
+
+\begin{enumerate}
+    \item Sicherstellen, dass der Arduino per USB mit dem PC verbunden ist.
+    
+    \item Das Python-Skript aus Kapitel X im Terminal starten:
+    \texttt{python usb\_uebertragung.py}  
+    
+    \item Die Konsole zeigt den Fortschritt an \ref{fig:Konsole Audioaufnahme über Python}.
+    
+\end{enumerate}
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1.0\textwidth]{Microphon/KonsoleAudioaufnahmeueberPython}
+    \caption{Konsole Audioaufnahme über Python}
+    \label{fig:Konsole Audioaufnahme über Python}
+\end{figure}
+
+
+\subsubsection{Schritt 3: Aufnahme anhören}
+
+\begin{enumerate}
+    \item Im Dateiexplorer zur generierten Datei „aufnahme.wav“ navigieren \ref{fig:Dateiexplorer mit erzeugter WAV-Datei}
+    
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=1.0\textwidth]{Microphon/Dateiexplorer mit erzeugter WAV-Datei}
+        \caption{Dateiexplorer mit erzeugter WAV-Datei}
+        \label{fig:Dateiexplorer mit erzeugter WAV-Datei}
+    \end{figure}
+    
+    \item  Die Datei mit einem Audioplayer (z. B. VLC, Audacity oder Windows Medien-Wiedergabe) öffnen, um die Aufnahme anzuhören \ref{fig:Wiedergabe der WAV-Datei über Windows Medien-Wiedergabe}.
+    
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=1.0\textwidth]{Microphon/Wiedergabe der WAV-Datei über Windows Medien-Wiedergabe}
+        \caption{Wiedergabe der WAV-Datei über Windows Medien-Wiedergabe}
+        \label{fig:Wiedergabe der WAV-Datei über Windows Medien-Wiedergabe}
+    \end{figure}
+\end{enumerate}
+
+
+%
+%
+%-----------------------------------------------------
+%
+%
+
+
+\section{Wave-Datei Auswertung mit Matlab}
+
+\subsection{GUI-Fenstererstellung}
+
+Die MATLAB-Funktion \PYTHON{WAV\_Audio\_Verarbeitung} erstellt eine grafische Benut-zeroberfläche (GUI) zur Analyse und Bearbeitung von Audiodateien im WAV-Format. Zu Beginn wird ein Hauptfenster mit dem Titel „Complete WAV Audio Verarbeitung“ geöff-net. Dieses Fenster ist 1200 Pixel breit und 800 Pixel hoch, besitzt weder eine Menü-leiste noch eine Toolbar und dient als zentrale Steuerzentrale der gesamten Anwendung. \cite{MathWorks:2025GUIDevelopment}
+
+
+\begin{lstlisting}[frame=single, numbers=left, style=Matlab-Pyglike]
+    
+    mainFig = figure('Name', 'Complete WAV Audio Verarbeitung', ...
+    
+    'Position', [100 100 1200 800], ...
+    
+    'NumberTitle', 'off', ...
+    
+    'MenuBar', 'none', ...
+    
+    'ToolBar', 'none');
+    
+\end{lstlisting}
+
+
+\subsection{Datenstruktur „audio“ initialisieren}
+
+Direkt im Anschluss wird eine strukturierte Datenvariable namens \PYTHON{audio} initialisiert. Diese Struktur dient als zentrales Element zur Verwaltung sämtlicher Informationen rund um die eingelesene Audiodatei. Sie enthält unter anderem das Originalsignal, ein bearbeitetes Signal, die Abtastrate, die Anzahl der Audiokanäle, die Auflösung der Daten in Bits sowie Dateiname und -pfad. Weitere Felder sind Platzhalter für Analyseergebnisse, Visualisierungsachsen und Audio-Player-Objekte, welche die Wiedergabe der Daten ermöglichen. \cite{MathWorks:2025DataImportExport} \cite{Hossain:2025}
+
+
+\begin{lstlisting}[frame=single, numbers=left, style=Matlab-Pyglike]
+    
+    audio = struct('origData', [], 'modData', [], 'fs', [], ...
+    
+    'nChannels', 0, 'bitsPerSample', 0, ...
+    
+    'filename', '', 'filepath', '', ...
+    
+    'ylim', [-1 1], 'features', struct(), 'analysis', struct(), ...
+    
+    'axTime', [], 'axSpec', [], 'axMel', [], 'axMFCC', [], ...
+    
+    'axFeatures', [], 'ax3D', [], 'player', [], 'playerOriginal', []);
+    
+\end{lstlisting}
+
+Ein weiteres wichtiges Strukturelement innerhalb dieser Datenstruktur ist \PYTHON{audio.params}, das die Parameter für die spätere Feature-Extraktion und Signalverarbeitung festlegt. Diese Parameter wurden speziell auf Anwendungen mit Mikrocontrollern und Embedded-Geräten abgestimmt. Dazu gehören unter anderem die Länge der Analysefenster (standardmäßig 25 Millisekunden), die Überlappung der Fenster (10 Millisekunden), die Anzahl der Mel-Filterbänke, die Frequenzgrenzen der Analyse (zwischen 50 Hz und 4000 Hz), die Anzahl der zu extrahierenden MFCCs (Mel Frequency Cepstral Coefficients) sowie ein Glättungsfaktor für die spätere Signalbearbeitung. Auch die Lautstärke für die Audiowiedergabe lässt sich über diesen Parameterbereich einstellen. \cite{MathWorks:2025DataImportExport} \cite{MathWorks:2025Struct} 
+
+\begin{lstlisting}[frame=single, numbers=left, style=Matlab-Pyglike]
+    
+    audio.params = struct( ...
+    
+    'frameLength', 0.025, ...
+    
+    'frameOverlap', 0.010, ...
+    
+    'numFilterBanks', 40, ...
+    
+    'lowFreq', 50, ...
+    
+    'highFreq', 4000, ...
+    
+    'numCepstral', 13, ...
+    
+    'deltaWindow', 2, ...
+    
+    'smoothingAlpha', 0.1, ...
+    
+    'volume', 0.8 ...
+    
+    );
+    
+\end{lstlisting}
+
+\subsection{UI-Erstellung}
+
+\subsubsection{Erstellung der Haupt-UI}
+
+Nachdem die grundlegenden Datenstrukturen definiert wurden, ruft das Programm die Funktion \PYTHON{createMainUI} auf. Diese Funktion baut das grafische Benutzerinterface auf.
+
+\begin{lstlisting}[frame=single, numbers=left, style=Matlab-Pyglike]
+    
+    createMainUI(mainFig);
+    
+    function createMainUI(fig)
+    
+\end{lstlisting}
+
+
+In einem oberen Bereich der GUI, einem sogenannten \PYTHON{uipanel} mit dem Titel „Steuerung“ werden eine Vielzahl an Steuerelementen eingebettet. \cite{Hossain:2025}
+
+\begin{lstlisting}[frame=single, numbers=left, style=Matlab-Pyglike]
+    
+    controlPanel = uipanel(fig, 'Position', [0.02 0.75 0.96 0.23], 'Title', 'Steuerung');
+    
+\end{lstlisting}
+
+\subsubsection{Dateioperationen, Audio-Wiedergabe und Lautstärke}
+
+Dazu gehören Buttons zum Laden und Speichern von Audiodateien, zur Wiedergabe sowohl der Original- als auch der bearbeiteten Audiodaten sowie ein Button zum Stoppen der aktuellen Wiedergabe. Ergänzend wird ein Schieberegler für die Lautstärkeregelung integriert, über den die Wiedergabelautstärke in Echtzeit angepasst werden kann. \cite{Hossain:2025} \cite{MathWorks:2025ModelCallbacks} 
+
+\begin{lstlisting}[frame=single, numbers=left, style=Matlab-Pyglike]
+    
+    uicontrol(controlPanel, 'Style', 'pushbutton', ...
+    
+    'String', 'Datei laden', ...
+    
+    'Position', [20 100 100 30], ...
+    
+    'Callback', @loadAudio);
+    
+    uicontrol(controlPanel, 'Style', 'pushbutton', ...
+    
+    'String', 'Speichern unter', ...
+    
+    'Position', [20 60 100 30], ...
+    
+    'Callback', @saveAudio);
+    
+    uicontrol(controlPanel, 'Style', 'pushbutton', ...
+    
+    'String', 'Original abspielen', ...
+    
+    'Position', [140 100 120 30], ...
+    
+    'Callback', @playOriginal);
+    
+    uicontrol(controlPanel, 'Style', 'pushbutton', ...
+    
+    'String', 'Bearbeitet abspielen', ...
+    
+    'Position', [140 60 120 30], ...
+    
+    'Callback', @playModified);
+    
+    uicontrol(controlPanel, 'Style', 'pushbutton', ...
+    
+    'String', 'Stopp', ...
+    
+    'Position', [270 100 80 30], ...
+    
+    'Callback', @stopPlayback);
+    
+    uicontrol(controlPanel, 'Style', 'slider', ...
+    
+    'Min', 0, 'Max', 1, 'Value', audio.params.volume, ...
+    
+    'Position', [330 70 80 20], ...
+    
+    'Tag', 'volumeSlider', ...
+    
+    'Callback', @updateVolume);
+    
+\end{lstlisting}
+
+\subsubsection{Signalbearbeitung – Glättung}
+
+Für die Bearbeitung des Audiosignals stehen dem Nutzer zusätzliche Funktionen zur Verfügung: Über ein Eingabefeld lässt sich ein Glättungsfaktor zwischen 0 und 1 festlegen, mit dem anschließend per Button die Glättung des Audiosignals aktiviert werden kann. Sollte die Bearbeitung unerwünscht oder fehlerhaft sein, kann das Signal über einen „Zurücksetzen“-Button wieder in seinen ursprünglichen Zustand versetzt werden. \cite{Hossain:2025} \cite{MathWorks:2025ModelCallbacks}
+
+\begin{lstlisting}[frame=single, numbers=left, style=Matlab-Pyglike]
+    
+    % Bearbeitungstools
+    
+    uicontrol(controlPanel, 'Style', 'text', ...
+    
+    'String', 'Glaettungsfaktor (0-1):', ...
+    
+    'Position', [430 130 120 20]);
+    
+    
+    uicontrol(controlPanel, 'Style', 'edit', ...
+    
+    'String', num2str(audio.params.smoothingAlpha), ...
+    
+    'Position', [550 130 50 20], ...
+    
+    'Tag', 'smoothingAlphaEdit', ...
+    
+    'Callback', @updateParams);
+    
+    uicontrol(controlPanel, 'Style', 'pushbutton', ...
+    
+    'String', 'Glaetten', ...
+    
+    'Position', [610 100 80 30], ...
+    
+    'Callback', @smoothAudio);
+    
+    uicontrol(controlPanel, 'Style', 'pushbutton', ...
+    
+    'String', 'Zuruecksetzen', ...
+    
+    'Position', [610 60 80 30], ...
+    
+    'Callback', @resetAudio);
+    
+\end{lstlisting}
+
+\subsubsection{Feature-Export}
+
+Schließlich bietet die Oberfläche auch eine Funktion zum Exportieren extrahierter Audio-Features. Diese Funktion zielt vor allem auf Machine-Learning-Anwendungen ab, etwa auf Plattformen wie Edge Impulse, die für die Entwicklung von KI-Modellen auf Mikrocontrollern gedacht sind. \cite{Hossain:2025} \cite{MathWorks:2025ModelCallbacks}
+
+\begin{lstlisting}[frame=single, numbers=left, style=Matlab-Pyglike]
+    
+    uicontrol(controlPanel, 'Style', 'pushbutton', ...
+    
+    'String', 'Features exportieren', ...
+    
+    'Position', [710 100 120 30], ...
+    
+    'Callback', @exportFeatures);
+    
+\end{lstlisting}
+
+\subsubsection{Parameteranpassung}
+
+In diesem Abschnitt wird eine Schleife verwendet, um vier UI-Elemente zur Parametereingabe dynamisch im Steuerungsbereich (\PYTHON{controlPanel}) zu erstellen. Für jeden Parameter, wie Fensterlänge, Überlappung, Anzahl der Filterbänke und maximale Frequenz wird ein Textlabel sowie ein passendes Eingabefeld (\PYTHON{edit}) angezeigt. Die Werte stammen aus der Struktur \PYTHON{audio.params}, und bei Änderungen wird die Callback-Funktion \PYTHON{@updateParams} aufgerufen, um die neuen Einstellungen zu übernehmen. Die vertikale Anordnung entsteht durch schrittweise Verschiebung der Y-Position. \cite{Hossain:2025}
+
+\begin{lstlisting}[frame=single, numbers=left, style=Matlab-Pyglike]
+    
+    % Parameteranpassung
+    
+    params = {'frameLength', 'Frame Laenge (s):';
+        
+        'frameOverlap', 'Frame Ueberlappung (s):';
+        
+        'numFilterBanks', 'Anzahl Filterbaenke:';
+        
+        'highFreq', 'Max Frequenz (Hz):'};
+    
+    
+    for i = 1:size(params,1)
+    
+    uicontrol(controlPanel, 'Style', 'text', ...
+    
+    'String', params{i,2}, ...
+    
+    'Position', [850 130-(i-1)*30 150 20]);
+    
+    
+    uicontrol(controlPanel, 'Style', 'edit', ...
+    
+    'String', num2str(audio.params.(params{i,1})), ...
+    
+    'Position', [1000 130-(i-1)*30 50 20], ...
+    
+    'Tag', [params{i,1} 'Edit'], ...
+    
+    'Callback', @updateParams);
+    
+    end
+    
+\end{lstlisting}
+
+\subsection{Audio einlesen und abspielen}
+
+\subsubsection{Analysebereich}
+
+In diesem Abschnitt wird eine Registerkarten-Gruppe (\PYTHON{tabGroup}) erstellt, in der verschiedene Analyseansichten als Tabs organisiert sind. Jeder Tab enthält eine eigene Achse (\PYTHON{axes}), auf der spezifische Darstellungen wie Zeitverlauf, Spektrogramm, Mel-Spektrogramm, MFCCs, Edge-ML-Features oder eine 3D-Frequenzanalyse angezeigt werden können. So können die unterschiedlichen Analyseformen übersichtlich getrennt und gezielt dargestellt werden. \cite{Hossain:2025} \cite{MathWorks:2025RaspberryPiAudio}
+
+\begin{lstlisting}[frame=single, numbers=left, style=Matlab-Pyglike]
+    
+    % Analysebereich
+    
+    tabGroup = uitabgroup(fig, 'Position', [0.02 0.02 0.96 0.73]);
+    
+    
+    % Erstelle Tabs fuer verschiedene Analysen
+    
+    timeTab = uitab(tabGroup, 'Title', 'Zeitverlauf');
+    
+    audio.axTime = axes('Parent', timeTab, 'Position', [0.1 0.1 0.85 0.8]);
+    
+    
+    specTab = uitab(tabGroup, 'Title', 'Spektrogramm');
+    
+    audio.axSpec = axes('Parent', specTab, 'Position', [0.1 0.1 0.85 0.8]);
+    
+    
+    melTab = uitab(tabGroup, 'Title', 'Mel-Spektrogramm');
+    
+    audio.axMel = axes('Parent', melTab, 'Position', [0.1 0.1 0.85 0.8]);
+    
+    
+    mfccTab = uitab(tabGroup, 'Title', 'MFCC');
+    
+    audio.axMFCC = axes('Parent', mfccTab, 'Position', [0.1 0.1 0.85 0.8]);
+    
+    
+    featuresTab = uitab(tabGroup, 'Title', 'Edge ML Features');
+    
+    audio.axFeatures = axes('Parent', featuresTab, 'Position', [0.1 0.1 0.85 0.8]);
+    
+    
+    freq3DTab = uitab(tabGroup, 'Title', '3D Frequenzanalyse');
+    
+    audio.ax3D = axes('Parent', freq3DTab, 'Position', [0.1 0.1 0.85 0.8]);
+    
+    end
+    
+\end{lstlisting}
+
+\subsubsection{Audio Playback Funktionen}
+
+In diesem Abschnitt werden zwei Funktionen definiert, die entweder die originale oder die bearbeitete Audiodatei abspielen. Zuerst wird geprüft, ob entsprechende Audiodaten vorhanden sind. Falls ja, wird eine eventuell laufende Wiedergabe gestoppt, und ein neuer \PYTHON{audioplayer} mit den aktuellen Daten und der eingestellten Lautstärke erstellt. Anschließend startet die Wiedergabe über den jeweiligen Player (\PYTHON{audio.playerOriginal} bzw. \PYTHON{audio.player}). \cite{Hossain:2025} \cite{MathWorks:2025RaspberryPiAudio}
+
+\begin{lstlisting}[frame=single, numbers=left, style=Matlab-Pyglike]
+    
+    %% Audio Playback Funktionen
+    
+    function playOriginal(~, ~)
+    
+    if isempty(audio.origData)
+    
+    return;
+    
+    end
+    
+    
+    stopPlayback(); % Stoppe eventuell laufende Wiedergabe
+    
+    
+    % Erstelle Audio-Player mit aktueller Lautstaerke
+    
+    audio.playerOriginal = audioplayer(audio.origData * audio.pa-rams.volume, audio.fs);
+    
+    
+    % Starte Wiedergabe
+    
+    play(audio.playerOriginal);
+    
+    end
+    
+    
+    function playModified(~, ~)
+    
+    if isempty(audio.modData)
+    
+    return;
+    
+    end
+    
+    
+    stopPlayback(); % Stoppe eventuell laufende Wiedergabe
+    
+    
+    % Erstelle Audio-Player mit aktueller Lautstaerke
+    
+    audio.player = audioplayer(audio.modData * audio.params.volume, audio.fs);
+    
+\end{lstlisting}
+
+\subsubsection{Wiedergabe starten}
+
+In diesem Abschnitt wird die Wiedergabesteuerung vervollständigt: Die Funktion \PYTHON{play(adio.player)} startet die Wiedergabe der bearbeiteten Audiodaten. Die Funktion \PYTHON{stopPlayback} stoppt beide möglichen Wiedergaben (die Bearbeitete und das Original), wenn diese ausgeführt werden. Die Funktion \PYTHON{updateVolume} passt die Lautstärke basierend auf dem Wert eines Slide-Reglers (\PYTHON{src}) an. Wird gerade eine Wiedergabe abgespielt, stoppt diese beim Betätigen des Reglers. \cite{Hossain:2025} \cite{MathWorks:2025RaspberryPiAudio}
+
+\begin{lstlisting}[frame=single, numbers=left, style=Matlab-Pyglike]
+    
+    % Starte Wiedergabe
+    
+    play(audio.player);
+    
+    end
+    
+    
+    function stopPlayback(~, ~)
+    
+    if ~isempty(audio.player) && isplaying(audio.player)
+    
+    stop(audio.player);
+    
+    end
+    
+    if ~isempty(audio.playerOriginal) && isplaying(audio.play-erOriginal)
+    
+    stop(audio.playerOriginal);
+    
+    end
+    
+    end
+    
+    
+    function updateVolume(src, ~)
+    
+    audio.params.volume = get(src, 'Value');
+    
+    
+    % Aktualisiere laufende Wiedergabe
+    
+    if ~isempty(audio.player) && isplaying(audio.player)
+    
+    stop(audio.player);
+    
+    audio.player = audioplayer(audio.modData * au-dio.params.volume, audio.fs);
+    
+    play(audio.player);
+    
+    end
+    
+    
+    if ~isempty(audio.playerOriginal) && isplaying(audio.play-erOriginal)
+    
+    stop(audio.playerOriginal);
+    
+    audio.playerOriginal = audioplayer(audio.origData * au-dio.params.volume, audio.fs);
+    
+    play(audio.playerOriginal);
+    
+    end
+    
+    end
+    
+\end{lstlisting}
+
+\subsection{Kernfunktionen}
+
+\subsubsection{Audiodatei laden}
+
+In dieser Funktion wird eine WAV-Audiodatei geladen und für die weitere Verarbeitung vorbereitet. Zunächst öffnet eine Dateiauswahl, bei der der Nutzer eine WAV-Datei auswählen kann. Wird eine Datei gewählt, so wird sie mit der Hilfsfunktion \PYTHON{readWavFile} eingelesen. Danach prüft der Code, ob die Datei gültige Daten enthält und ob die Abtastrate korrekt ist.
+
+Falls die Datei stereo ist (zwei Kanäle), wird sie in Mono umgewandelt, indem beide Kanäle gemittelt werden. Anschließend werden die Daten normalisiert, sodass sie zwischen -1 und 1 liegen. Die geladenen Informationen wie Abtastrate, Bit-Tiefe, Dateiname und Pfad werden im struct \PYTHON{audio} gespeichert.
+
+Nach dem Laden erfolgt eine automatische Skalierung der y-Achse (\PYTHON{autoScaleYAxis}), dann wird die Edge-ML-Feature-Extraktion sowie eine 3D-Analyse durchgeführt. Schließlich werden alle grafischen Darstellungen aktualisiert. Bei Fehlern wird eine Fehlermeldung angezeigt und eine detaillierte Fehlerausgabe generiert. \cite{Hossain:2025} \cite{MathWorks:2025RaspberryPiAudio}
+
+\begin{lstlisting}[frame=single, numbers=left, style=Matlab-Pyglike]
+    
+    function loadAudio(~, ~)
+    
+    [file, path] = uigetfile({'*.wav;*.WAV', 'WAV Audio Files (*.wav, *.WAV)'}, 'Waehlen Sie eine WAV-Datei');
+    
+    if isequal(file, 0)
+    
+    disp('Dateiauswahl abgebrochen');
+    
+    return;
+    
+    end
+    
+    
+    try
+    
+    % Audiodatei laden
+    
+    [data, fs, bits] = readWavFile(fullfile(path, file));
+    
+    
+    % Ueberpruefe die gelesenen Daten
+    
+    if isempty(data)
+    
+    
+    end
+    
+    
+    if fs <= 0
+    
+    error('Ungueltige Abtastrate: %f Hz', fs);
+    
+    end
+    
+    
+    % Mono-Konvertierung und Normalisierung
+    
+    if size(data, 2) == 2
+    
+    data = mean(data, 2);
+    
+    audio.nChannels = 2;
+    
+    else
+    
+    audio.nChannels = 1;
+    
+    end
+    
+    
+    data = data/max(abs(data(:))); % Normalisierung
+    
+    
+    % Daten speichern
+    
+    audio.origData = data;
+    
+    audio.modData = data;
+    
+    audio.fs = fs;
+    
+    audio.bitsPerSample = bits;
+    
+    audio.filename = file;
+    
+    audio.filepath = path;
+    
+    
+    % Automatische Skalierung
+    
+    autoScaleYAxis();
+    
+    
+    % Analysen durchfuehren
+    
+    performClassicAnalyses();
+    
+    extractEdgeMLFeatures();
+    
+    perform3DAnalysis();
+    
+    
+    % Plots aktualisieren
+    
+    updateAllPlots();
+    
+    
+    disp(['Erfolgreich geladen: ' fullfile(path, file)]);
+    
+    disp(['Abtastrate: ' num2str(fs) ' Hz']);
+    
+    disp(['Bit-Tiefe: ' num2str(bits) ' bit']);
+    
+    disp(['Kanaele: ' num2str(audio.nChannels)]);
+    
+    disp(['Dauer: ' num2str(length(data)/fs) ' Sekunden']);
+    
+    
+    catch ME
+    
+    errordlg(sprintf('Fehler beim Laden:\n%s', ME.message), 'Dateifehler');
+    
+    disp(['FEHLER: ' ME.message]);
+    
+    for k = 1:length(ME.stack)
+    
+    disp([' in ' ME.stack(k).name ' (Zeile ' num2str(ME.stack(k).line) ')']);
+    
+    end
+    
+    end
+    
+    end
+    
+\end{lstlisting}
+
+\subsubsection{Audiodatei speichern/zurücksetzen}
+
+In diesem Abschnitt wird zunächst mit \PYTHON{saveAudio} das Speichern bearbeiteter Audiodaten als WAV-Datei ermöglicht. Über einen Dialog wird ein Speicherort gewählt und die Datei geschrieben, bei Fehlern erscheint eine Meldung.
+
+Die Funktion \PYTHON{resetAudio} setzt das bearbeitete Signal auf den Originalzustand zurück, führt alle Analysen neu aus und aktualisiert die Plots.
+
+Mit \PYTHON{performClassicAnalyses} werden das Zeitsignal, Spektrogramm, Mel-Spektrogramm und MFCCs berechnet, um die wichtigsten Merkmale der Audiodatei zu erfassen. Die Funktion \PYTHON{perform3DAnalysis} bereitet eine dreidimensionale Frequenzanalyse mittels FFT (Fast Fourier Transform) vor, um eine alternative Frequenzdarstellung über die Zeit zu ermöglichen. \cite{Hossain:2025} \cite{MathWorks:2025RaspberryPiAudio}
+
+\begin{lstlisting}[frame=single, numbers=left, style=Matlab-Pyglike]
+    
+    function saveAudio(~, ~)
+    
+    if isempty(audio.modData)
+    
+    errordlg('Keine Audiodaten zum Speichern vorhanden!', 'Speicherfehler');
+    
+    return;
+    
+    end
+    
+    
+    [file, path] = uiputfile({'*.wav', 'WAV-Dateien (*.wav)'}, ...
+    
+    'Audio speichern unter', ...
+    
+    [audio.filename(1:end-4) '_modi-fied.wav']);
+    
+    if isequal(file, 0)
+    
+    disp('Speichern abgebrochen');
+    
+    return;
+    
+    end
+    
+    
+    try
+    
+    writeWavFile(fullfile(path, file), audio.modData, audio.fs, audio.bitsPerSample);
+    
+    msgbox(sprintf('Audio erfolgreich gespeichert als:\n%s', fullfile(path, file)), 'Speichern erfolgreich');
+    
+    catch ME
+    
+    errordlg(sprintf('Fehler beim Speichern:\n%s', ME.message), 'Speicherfehler');
+    
+    end
+    
+    end
+    
+    
+    function resetAudio(~, ~)
+    
+    if isempty(audio.origData)
+    
+    return;
+    
+    end
+    
+    
+    audio.modData = audio.origData;
+    
+    
+    % Analysen neu durchfuehren
+    
+    performClassicAnalyses();
+    
+    extractEdgeMLFeatures();
+    
+    perform3DAnalysis();
+    
+    
+    % Plots aktualisieren
+    
+    updateAllPlots();
+    
+    end
+    
+    
+    function performClassicAnalyses()
+    
+    % Zeitbereichsanalyse
+    
+    audio.analysis.time = audio.modData;
+    
+    
+    % Spektrogramm
+    
+    [audio.analysis.S, audio.analysis.F, audio.analysis.T] = ...
+    
+    computeSpectrogram(audio.modData, audio.fs);
+    
+    
+    % Mel-Spektrogramm
+    
+    audio.analysis.melSpec = ...
+    
+    computeMelSpectrogram(audio.modData, audio.fs);
+    
+    
+    % MFCC (klassisch)
+    
+    audio.analysis.mfcc = ...
+    
+    computeMFCC(audio.modData, audio.fs);
+    
+    end
+    
+    
+    function perform3DAnalysis()
+    
+    % Alternative 3D-Analyse ohne Wavelet Toolbox
+    
+    if isempty(audio.modData)
+    
+    return;
+    
+    end
+    
+    
+    % Parameter fuer die FFT-basierte Analyse
+    
+    windowSize = 1024;
+    
+    overlap = 512;
+    
+    nfft = 4096;
+    
+\end{lstlisting}
+
+\subsubsection{Spektogramm mit höherer Frequenzauflösung berechnen}
+
+In diesem Codeabschnitt wird ein Spektrogramm mit hoher Frequenzauflösung erstellt. Zunächst berechnet \PYTHON{spectrogram} die spektralen Anteile des modifizierten Audiosignals über die Zeit hinweg. Anschließend wird der Frequenzbereich auf einen gewünschten Bereich begrenzt (zwischen \PYTHON{lowFreq} und \PYTHON{highFreq}). Die Spektraldaten werden in logarithmischer Skala (Dezibel) umgewandelt und als 3D-Daten (X, Y, Z) vorbereitet, um sie später grafisch darzustellen. Diese Ergebnisse werden schließlich in der Struktur \PYTHON{audio.analysis.wavelet3D} gespeichert. \cite{Hossain:2025} \cite{MathWorks:2025RaspberryPiAudio}
+
+\begin{lstlisting}[frame=single, numbers=left, style=Matlab-Pyglike]
+    
+    % Spektrogramm mit hoeherer Frequenzaufloesung berechnen
+    
+    [S, F, T] = spectrogram(audio.modData, windowSize, overlap, nfft, audio.fs);
+    
+    
+    % Nur den interessanten Frequenzbereich behalten
+    
+    freqIdx = F >= audio.params.lowFreq & F <= audio.params.highFreq;
+    
+    F = F(freqIdx);
+    
+    S = abs(S(freqIdx,:));
+    
+    
+    % Fuer 3D-Plot vorbereiten
+    
+    [X, Y] = meshgrid(T, F);
+    
+    Z = 20*log10(S + eps);
+    
+    
+    % Ergebnisse speichern
+    
+    audio.analysis.wavelet3D.X = X;
+    
+    audio.analysis.wavelet3D.Y = Y;
+    
+    audio.analysis.wavelet3D.Z = Z;
+    
+    end
+    
+\end{lstlisting}
+
+\subsubsection{Edge-ML Features}
+
+In diesem Codeabschnitt wird die Funktion \PYTHON{extractEdgeMLFeatures()} definiert, die verschiedenen Merkmale (Features) aus dem Audiosignal extrahiert, ähnlich wie es Machine-Learning-Plattformen für Edge Devices (z.B. Edge Impulse) tun. Als Grundlage dafür wird die MATLAB Signal Processing Toolbox verwendet, die Funktionen zum Verarbeiten und Visualisieren von Audiosignalen.  
+
+Zunächst wird das Audiosignal in überlappende Zeitfenster (Frames) unterteilt. Dazu wird basierend auf der Abtastrate und den eingestellten Parametern die Fenstergröße und der Schritt (frameStep) berechnet. Die Funktion \PYTHON{buffer} segmentiert das Signal entsprechend. 
+
+Für jeden Frame wird dann eine Vorverarbeitung durchgeführt: Der Gleichanteil (DC-Offset) wird entfernt, das Signal wird mit einem Hamming-Fenster geglättet und anschließend mit der FFT in den Frequenzbereich transformiert. Aus dem so gewonnenen Leistungsspektrum werden zwei Arten von Merkmalen berechnet: 
+\begin{itemize}
+    \item MFCCs, in einer vereinfachten Version, die auf Mikrocontrollern nutzbar ist. 
+    
+    \item Spektrale Features wie z.B. Spektralbreite, die lediglich zur Visualisierung dienen.  
+\end{itemize}
+
+Abschließend werden sogenannte Delta-Features berechnet, also die zeitlichen Änderungen der MFCCs, sowie deren zweite Ableitung (Delta-Delta), um dynamische Muster im Signalverlauf zu erfassen. Diese Merkmale können später z.B. zur Klassifikation von Audiodaten genutzt werden. \cite{Hossain:2025}  \cite{MathWorks:2025RaspberryPiAudio} \cite{MathWorks:2025SignalToolbox}
+
+\begin{lstlisting}[frame=single, numbers=left, style=Matlab-Pyglike]
+    
+    function extractEdgeMLFeatures() 
+    
+    % Parameter 
+    
+    frameSize = round(audio.params.frameLength * audio.fs); 
+    
+    frameStep = round((audio.params.frameLength - audio.params.frameOverlap) * audio.fs); 
+    
+    
+    
+    % Framing des Signals (wie auf Arduino) 
+    
+    frames = buffer(audio.modData, frameSize, frameSize-frameStep, 'nodelay'); 
+    
+    
+    
+    % Berechne Features fuer jeden Frame (aehnlich wie Edge Impulse) 
+    
+    numFrames = size(frames, 2); 
+    
+    mfccFeatures = zeros(audio.params.numCepstral, numFrames); 
+    
+    spectralFeatures = zeros(5, numFrames); 
+    
+    
+    
+    for i = 1:numFrames 
+    
+    frame = frames(:,i); 
+    
+    
+    
+    % 1. Vorverarbeitung: DC-Offset entfernen 
+    
+    frame = frame - mean(frame); 
+    
+    
+    
+    % 2. Fensterung (Hamming Window) 
+    
+    window = hamming(length(frame)); 
+    
+    frame = frame .* window; 
+    
+    
+    
+    % 3. FFT berechnen 
+    
+    nfft = 2^nextpow2(length(frame)); 
+    
+    fftFrame = fft(frame, nfft); 
+    
+    powerSpectrum = abs(fftFrame(1:nfft/2+1)).^2; 
+    
+    freqAxis = (0:nfft/2)*audio.fs/nfft; 
+    
+    
+    
+    % 4. MFCC berechnen (lightweight Version fuer Mikrocontroller) 
+    
+    mfccFeatures(:,i) = computeLightMFCC(powerSpectrum, freqAxis); 
+    
+    
+    
+    % 5. Zusaetzliche spektrale Features (wie in Edge Impulse) 
+    
+    spectralFeatures(:,i) = computeSpectralFeatures(powerSpectrum, freqAxis); 
+    
+    end 
+    
+    
+    
+    % Delta-Features berechnen (Aenderung der Features ueber Zeit) 
+    
+    deltaFeatures = computeDeltaFeatures(mfccFeatures, audio.params.deltaWindow); 
+    
+    deltaDeltaFeatures = computeDeltaFeatures(deltaFeatures, audio.params.deltaWindow); 
+    
+\end{lstlisting}
+
+\subsubsection{Features zusammenführen}
+
+In diesem Codeabschnitt werden alle berechneten Merkmale (Features) des Audiosignals zusammengeführt und für weitere Auswertungen gespeichert. Zuerst werden die einzelnen Feature-Gruppen wie die MFCCs, spektrale Merkmale sowie deren zeitliche Änderungen (Delta- und Delta-Delta-Features) jeweils in eigene Felder der Struktur \PYTHON{audio.features} abgelegt. Anschließend werden diese Feature-Gruppen zu einer kombinierten Matrix zusammengefügt, die alle Informationen in einem einzigen Datensatz enthält. Zusätzlich wird eine Zeitachse erstellt, die jedem Frame den entsprechenden Zeitpunkt im Signal zuordnet. \cite{Hossain:2025}
+
+\begin{lstlisting}[frame=single, numbers=left, style=Matlab-Pyglike]
+    
+    % Alle Features zusammenfuehren 
+    
+    audio.features.mfcc = mfccFeatures; 
+    
+    audio.features.spectral = spectralFeatures; 
+    
+    audio.features.delta = deltaFeatures; 
+    
+    audio.features.deltaDelta = deltaDeltaFeatures; 
+    
+    audio.features.combined = [mfccFeatures; spectralFeatures; deltaFeatures; deltaDeltaFeatures]; 
+    
+    
+    
+    % Zeitachse fuer Features 
+    
+    audio.features.time = (0:numFrames-1) * frameStep/audio.fs + frameSize/(2*audio.fs); 
+    
+    end 
+    
+\end{lstlisting}
+
+\subsubsection{MFCC-Berechnung}
+
+In dieser Funktion wird eine vereinfachte Version der MFCC-Berechnung durchgeführt, die speziell für ressourcenschwache Systeme wie Mikrocontroller optimiert ist. Zunächst wird eine Mel-Filterbank erzeugt und auf das Leistunsspektrum des Audiosignals angewendet, um die Energie in psychoakustisch relevanten Frequenzbereichen zu erfassen. Danach wird die logarithmierte Mel-Energie berechnet, um die Dynamik zu komprimieren. Anschließend wird eine diskrete Kosinustransformation (DCT) durchgeführt, um die resultierenden Daten zu entkoppeln und kompakter darzustellen. Schließlich werden nur die ersten MFCC-Koeffizienten extrahiert, da diese den Großteil der relevanten Informationen enthalten. Diese kompakten Merkmale eignen sich ideal für spätere Klassifikations- oder Analyseaufgaben im gesamten Audiosystem. \cite{Hossain:2025} \cite{MathWorks:2025SignalToolbox}
+
+\begin{lstlisting}[frame=single, numbers=left, style=Matlab-Pyglike]
+    
+    function mfcc = computeLightMFCC(powerSpectrum, freqAxis) 
+    
+    % Lightweight MFCC Berechnung (optimiert fuer Mikrocontroller) 
+    
+    
+    
+    % 1. Mel-Filterbank anwenden 
+    
+    melFilters = designMelFilterBank(audio.fs, length(powerSpectrum)*2-2, ... 
+    
+    audio.params.numFilterBanks, audio.params.lowFreq, audio.params.highFreq); 
+    
+    melEnergy = melFilters * powerSpectrum; 
+    
+    
+    
+    % 2. Logarithmieren 
+    
+    logMelEnergy = log(melEnergy + eps); 
+    
+    
+    
+    % 3. DCT anwenden (nur erste Koeffizienten) 
+    
+    mfcc = dct(logMelEnergy); 
+    
+    mfcc = mfcc(1:audio.params.numCepstral); 
+    
+    end 
+    
+\end{lstlisting}
+
+\subsubsection{Berechnung zusätzlicher Features}
+
+In diesen beiden Funktionen werden zusätzliche Merkmale aus dem Audiosignal berechnet, die typische Eigenschaften im Frequenzbereich und deren zeitliche Veränderungen erfassen. 
+
+Die Funktion \PYTHON{computeSpectralFeatures} berechnet fünf spektrale Merkmale aus dem Leistungsfrequenzspektrum eines Audioframes: 
+
+\begin{itemize}
+    \item Die Gesamtenergie misst die gesamte Signalleistung. 
+    
+    \item Das Spektrale Zentrum (Spectral Centroid) beschreibt den „Schwerpunkt“ der Frequenzverteilung. 
+    
+    \item Die Spektrale Breite (Spectral Spread) gibt an, wie stark die Frequenzen um das Zentrum streuen. 
+    
+    \item Der Spektrale Fluss (Spectral Flux) misst die Veränderung des Spektrums im Vergleich zum vorherigen Frame. 
+    
+    \item Die Spektrale Entropie erfasst die Unordnung bzw. Verteilung der Energie im Spektrum. 
+    Diese Features geben einen kompakten Eindruck vom Klangcharakter und der Dynamik eines Audiosignals und eignen sich gut zur Erkennung akustischer Muster. 
+\end{itemize}
+
+Die Funktion \PYTHON{computeDeltaFeatures} berechnet dann sogenannte Delta-Features, also die zeitliche Veränderung der ursprünglichen Merkmale. Dies erfolgt über eine numerische Ableitung innerhalb eines festgelegten Zeitfensters. Die resultierenden Werte zeigen, wie sich ein akustisches Merkmal über die Zeit entwickelt, was besonders für Klassifikations- oder maschinelle Lernverfahren hilfreich ist. \cite{Hossain:2025} \cite{MathWorks:2025SignalToolbox}
+
+\begin{lstlisting}[frame=single, numbers=left, style=Matlab-Pyglike]
+    
+    function features = computeSpectralFeatures(powerSpectrum, freqAxis) 
+    
+    % Berechnet zusaetzliche spektrale Features (wie in Edge Impulse) 
+    
+    
+    
+    % Gesamtenergie 
+    
+    totalEnergy = sum(powerSpectrum); 
+    
+    
+    
+    % Spektrales Zentrum (Spectral Centroid) 
+    
+    if totalEnergy > 0 
+    
+    spectralCentroid = sum(powerSpectrum .* freqAxis') / totalEnergy; 
+    
+    else 
+    
+    spectralCentroid = 0; 
+    
+    end 
+    
+    
+    
+    % Spektrale Breite (Spectral Spread) 
+    
+    if totalEnergy > 0 
+    
+    spectralSpread = sqrt(sum(powerSpectrum .* (freqAxis' - spectralCentroid).^2) / totalEnergy); 
+    
+    else 
+    
+    spectralSpread = 0; 
+    
+    end 
+    
+    
+    
+    % Spektrale Fluss (Spectral Flux) - benoetigt vorherigen Frame 
+    
+    persistent prevSpectrum; 
+    
+    if isempty(prevSpectrum) 
+    
+    spectralFlux = 0; 
+    
+    else 
+    
+    spectralFlux = sum((powerSpectrum - prevSpectrum).^2); 
+    
+    end 
+    
+    prevSpectrum = powerSpectrum; 
+    
+    
+    
+    % Spektrale Entropie 
+    
+    normalizedSpectrum = powerSpectrum / (totalEnergy + eps); 
+    
+    spectralEntropy = -sum(normalizedSpectrum .* log2(normalizedSpectrum + eps)); 
+    
+    
+    
+    % Features zusammenfassen 
+    
+    features = [totalEnergy; spectralCentroid; spectralSpread; spectralFlux; spectralEntropy]; 
+    
+    end 
+    
+    
+    
+    function delta = computeDeltaFeatures(features, window) 
+    
+    % Berechnet Delta-Features (Aenderung ueber Zeit) 
+    
+    [numFeatures, numFrames] = size(features); 
+    
+    delta = zeros(numFeatures, numFrames); 
+    
+    
+    
+    for t = 1:numFrames 
+    
+    % Fenster fuer Delta-Berechnung 
+    
+    startIdx = max(1, t - window); 
+    
+    endIdx = min(numFrames, t + window); 
+    
+    
+    
+    % Numerische Ableitung 
+    
+    numerator = sum((startIdx:endIdx) .* features(:,startIdx:endIdx), 2); 
+    
+    denominator = sum((startIdx:endIdx).^2); 
+    
+    
+    
+    delta(:,t) = numerator / (denominator + eps); 
+    
+    end 
+    
+    end 
+    
+\end{lstlisting}
+
+\subsubsection{Audioglättung}
+
+In dieser Funktion \PYTHON{smoothAudio} wird das aktuell bearbeitete Audiosignal geglättet, um abrupte Veränderungen oder Rauschen zu reduzieren. Dabei kommt ein einfacher exponentieller Glättungsfilter zum Einsatz. 
+
+Zuerst wird überprüft, ob Audiodaten vorhanden sind und ob der eingegebene Glättungsfaktor \PYTHON{alpha} gültig ist (zwischen 0 und 1). Dann wird für jedes Sample im Signal ein neuer Wert berechnet: Er ist eine gewichtete Mischung aus dem aktuellen Originalwert und dem vorher geglätteten Wert. Je höher \PYTHON{alpha}, desto stärker orientiert sich das Ergebnis am aktuellen Sample (weniger Glättung), je niedriger \PYTHON{alpha}, desto stärker wirkt der vergangene Verlauf (mehr Glättung). 
+
+Das geglättete Signal ersetzt anschließend die bisherige bearbeitete Version \PYTHON{audio.modData}. Die Funktion ist besonders nützlich zur Nachbearbeitung verrauschter oder unruhiger Audiosignale. \cite{Hossain:2025} \cite{MathWorks:2025SignalToolbox}
+
+\begin{lstlisting}[frame=single, numbers=left, style=Matlab-Pyglike]
+    
+    function smoothAudio(~, ~) 
+    
+    if isempty(audio.modData), return; end 
+    
+    
+    
+    alpha = audio.params.smoothingAlpha; 
+    
+    if isnan(alpha) || alpha < 0 || alpha > 1 
+    
+    errordlg('Ungueltiger Glaettungsfaktor (0-1)!'); 
+    
+    return; 
+    
+    end 
+    
+    
+    
+    [nSamples, nChannels] = size(audio.modData); 
+    
+    smoothed = zeros(nSamples, nChannels); 
+    
+    smoothed(1,:) = audio.modData(1,:); 
+    
+    
+    
+    for i = 2:nSamples 
+    
+    smoothed(i,:) = alpha * audio.modData(i,:) + (1-alpha) * smoothed(i-1,:); 
+    
+    end 
+    
+    
+    
+    audio.modData = smoothed; 
+    
+\end{lstlisting}
+
+\subsection{Darstellung}
+
+\subsubsection{Analyse und Plots aktualisieren}
+
+In diesem Codeabschnitt werden alle Analysefunktionen neu ausgeführt und die grafischen Darstellungen (Plots) aktualisiert. Zunächst rufen \PYTHON{performClassicAnalyses}, \PYTHON{extractEdgeMLFeatures} und \PYTHON{perform3DAnalysis} die verschiedenen Analyseverfahren auf, um Merkmale wie Spektrogramme, MFCCs und 3D-Frequenzinformationen aus dem bearbeiteten Audiosignal zu berechnen. Anschließend sorgt \PYTHON{updateAllPlots} dafür, dass alle zugehörigen Diagramme – also Zeitverlauf, Spektrogramm, Mel-Spektrogramm, MFCC, Edge-ML-Features und 3D-Frequenzanalyse – mit den aktuellen Daten neu gezeichnet werden. Dies stellt sicher, dass alle Visualisierungen stets dem aktuellen Bearbeitungsstand des Audios entsprechen. \cite{Hossain:2025} \cite{MathWorks:2025Plots}
+
+\begin{lstlisting}[frame=single, numbers=left, style=Matlab-Pyglike]
+    
+    % Analysen und Plots aktualisieren 
+    
+    performClassicAnalyses(); 
+    
+    extractEdgeMLFeatures(); 
+    
+    perform3DAnalysis(); 
+    
+    updateAllPlots(); 
+    
+    end 
+    
+    
+    
+    function updateAllPlots() 
+    
+    % Zeitverlauf 
+    
+    plotTimeDomain(); 
+    
+    
+    
+    % Spektrogramm 
+    
+    plotSpectrogram(); 
+    
+    
+    
+    % Mel-Spektrogramm 
+    
+    plotMelSpectrogram(); 
+    
+    
+    
+    % MFCC (klassisch) 
+    
+    plotMFCC(); 
+    
+    
+    
+    % Edge ML Features 
+    
+    plotFeatures(); 
+    
+    
+    
+    % 3D Frequenzanalyse 
+    
+    plot3DAnalysis(); 
+    
+    end 
+    
+\end{lstlisting}
+
+\subsubsection{Klassische Audioanalysefunktionen}
+
+In diesem Abschnitt werden klassische Audioanalysefunktionen definiert. Die Funktion computeSpectrogram berechnet ein Spektrogramm mithilfe einer Hamming-Fensterung, Überlappung und FFT – konkret über eine eigene STFT-Implementierung (mySTFT). Die Amplitudenwerte werden logarithmisch skaliert, um sie besser sichtbar zu machen. Die Funktion computeMelSpectrogram erstellt ein Mel-Spektrogramm, indem sie eine Mel-Filterbank auf das Frequenzspektrum anwendet, was die Darstellung der Frequenzverteilung an die menschliche Wahrnehmung anpasst. Schließlich berechnet computeMFCC aus dem Mel-Spektrogramm die sogenannten MFCCs (Mel-Frequency Cepstral Coefficients), die wichtige Merkmale für Spracherkennung und maschinelles Lernen darstellen – hier auf die ersten 13 Koeffizienten begrenzt. Diese Funktionen bilden die Grundlage für viele Audiosignalverarbeitungs- und Klassifikationsaufgaben. \cite{Hossain:2025} \cite{MathWorks:2025SignalToolbox} \cite{Pfister:2017}
+
+\begin{lstlisting}[frame=single, numbers=left, style=Matlab-Pyglike]
+    
+    %% Klassische Analysefunktionen 
+    
+    function [S, F, T] = computeSpectrogram(data, fs) 
+    
+    window = hamming(1024); 
+    
+    nfft = 1024; 
+    
+    noverlap = 512; 
+    
+    
+    
+    % Eigenimplementierung der STFT 
+    
+    [S, F, T] = mySTFT(data, fs, window, noverlap, nfft); 
+    
+    S = 20*log10(abs(S) + eps); 
+    
+    end 
+    
+    
+    
+    function melSpec = computeMelSpectrogram(data, fs) 
+    
+    % Implementierung der Mel-Filterbank 
+    
+    numBands = 40; 
+    
+    [melFilters, ~] = designMelFilterBank(fs, 1024, numBands); 
+    
+    
+    
+    % Anwendung der Filterbank 
+    
+    [S, ~, ~] = mySTFT(data, fs, hamming(1024), 512, 1024); 
+    
+    melSpec = melFilters * abs(S); 
+    
+    melSpec = 20*log10(melSpec + eps); 
+    
+    end 
+    
+    function mfcc = computeMFCC(data, fs) 
+    
+    % Berechnung der MFCCs aus Mel-Spektrogramm 
+    
+    melSpec = computeMelSpectrogram(data, fs); 
+    
+    mfcc = dct(log(melSpec + eps))'; 
+    
+    mfcc = mfcc(:,1:13); % Erste 13 Koeffizienten 
+    
+    end 
+    
+\end{lstlisting}
+
+
+\subsubsection{Eigene STFT Implementierung}
+
+In dieser Funktion wird eine eigene Implementierung der Kurzzeit-Fourier-Transformation (STFT) realisiert. Das Eingangssignal \PYTHON{x} wird zunächst mithilfe eines Fensters (z.B. Hamming) in überlappende Segmente („Frames“) aufgeteilt. Diese Segmente werden mit dem Fenster multipliziert, um Randeffekte zu minimieren. Anschließend wird auf jedes Frame eine FFT angewendet, um das Frequenzspektrum im Zeitverlauf zu berechnen. Es wird nur der positive Frequenzbereich behalten. Abschließend werden passende Zeit- und Frequenzachsen berechnet, sodass das Ergebnis S die spektrale Entwicklung des Signals über die Zeit zeigt. \cite{Hossain:2025} \cite{MathWorks:2025SignalToolbox} \cite{Pfister:2017}
+
+\begin{lstlisting}[frame=single, numbers=left, style=Matlab-Pyglike]
+    
+    %% Eigene STFT Implementierung 
+    
+    function [S, F, T] = mySTFT(x, fs, window, noverlap, nfft) 
+    
+    window = window(:); 
+    
+    win_length = length(window); 
+    
+    step = win_length - noverlap; 
+    
+    
+    
+    % Framing 
+    
+    frames = buffer(x, win_length, noverlap, 'nodelay'); 
+    
+    frames = frames .* window; 
+    
+    
+    
+    % FFT 
+    
+    S = fft(frames, nfft); 
+    
+    S = S(1:nfft/2+1, :); 
+    
+    
+    
+    % Frequenz- und Zeitachsen 
+    
+    F = linspace(0, fs/2, nfft/2+1); 
+    
+    T = (0:size(S,2)-1) * step / fs; 
+    
+    end 	
+    
+\end{lstlisting}
+
+\subsubsection{Plotfunktionen}
+
+In diesem Abschnitt werden verschiedene Plotfunktionen definiert, um Analyseergebnisse des Audiosignals grafisch darzustellen. Die Funktion \PYTHON{plotTimeDomain} zeigt den zeitlichen Verlauf des bearbeiteten Audiosignals. \PYTHON{plotSpectrogram} visualisiert das Spektrogramm, also die Frequenzverteilung über die Zeit in Dezibel. \PYTHON{plotMelSpectrogram} zeigt das Mel-Spektrogramm, das auf einer skalierten Frequenzachse basiert, wie sie für die Sprachverarbeitung typisch ist. \PYTHON{plotMFCC} stellt die MFCC-Koeffizienten dar, die wichtige Merkmale für Audio- und Spracherkennung enthalten. Die Funktion \PYTHON{plotFeatures} zeigt ausgewählte Merkmale (MFCCs, spektrale Energie, spektrales Zentrum, Delta-MFCC) über die Zeit, wobei die Features normalisiert werden, um Unterschiede besser vergleichen zu können. Alle Plots nutzen eine farbige Darstellung mit \PYTHON{colormap} und beinhalten Achsenbeschriftungen und eine Farbskala. \cite{Hossain:2025} \cite{MathWorks:2025Plots} \cite{MathWorks:2025CategoricalPlot}
+
+\begin{lstlisting}[frame=single, numbers=left, style=Matlab-Pyglike]
+    
+    %% Plotfunktionen 
+    
+    function plotTimeDomain() 
+    
+    cla(audio.axTime); 
+    
+    t = (0:length(audio.modData)-1)/audio.fs; 
+    
+    plot(audio.axTime, t, audio.modData); 
+    
+    title(audio.axTime, 'Zeitverlauf'); 
+    
+    xlabel(audio.axTime, 'Zeit [s]'); 
+    
+    ylabel(audio.axTime, 'Amplitude'); 
+    
+    grid(audio.axTime, 'on'); 
+    
+    xlim(audio.axTime, [0 t(end)]); 
+    
+    ylim(audio.axTime, audio.ylim); 
+    
+    end 
+    
+    
+    
+    function plotSpectrogram() 
+    
+    cla(audio.axSpec); 
+    
+    imagesc(audio.axSpec, audio.analysis.T, audio.analysis.F, real(audio.analysis.S)); 
+    
+    axis(audio.axSpec, 'xy'); 
+    
+    colorbar(audio.axSpec); 
+    
+    title(audio.axSpec, 'Spektrogramm (dB)'); 
+    
+    xlabel(audio.axSpec, 'Zeit [s]'); 
+    
+    ylabel(audio.axSpec, 'Frequenz [Hz]'); 
+    
+    colormap(audio.axSpec, 'jet'); 
+    
+    end 
+    
+    
+    
+    function plotMelSpectrogram() 
+    
+    cla(audio.axMel); 
+    
+    imagesc(audio.axMel, audio.analysis.T, 1:size(audio.analysis.melSpec,1), real(audio.analysis.melSpec)); 
+    
+    axis(audio.axMel, 'xy'); 
+    
+    colorbar(audio.axMel); 
+    
+    title(audio.axMel, 'Mel-Spektrogramm (dB)'); 
+    
+    xlabel(audio.axMel, 'Zeit [s]'); 
+    
+    ylabel(audio.axMel, 'Mel-Band'); 
+    
+    colormap(audio.axMel, 'jet'); 
+    
+    end 
+    
+    
+    
+    function plotMFCC() 
+    
+    cla(audio.axMFCC); 
+    
+    imagesc(audio.axMFCC, audio.analysis.T, 1:13, real(audio.analysis.mfcc')); 
+    
+    axis(audio.axMFCC, 'xy'); 
+    
+    colorbar(audio.axMFCC); 
+    
+    title(audio.axMFCC, 'MFCC-Koeffizienten'); 
+    
+    xlabel(audio.axMFCC, 'Zeit [s]'); 
+    
+    ylabel(audio.axMFCC, 'MFCC-Koeffizient'); 
+    
+    colormap(audio.axMFCC, 'jet'); 
+    
+    end 
+    
+    
+    
+    function plotFeatures() 
+    
+    cla(audio.axFeatures); 
+    
+    
+    
+    % Wichtige Features auswaehlen 
+    
+    featuresToPlot = [audio.features.mfcc(1:3,:);  % Erste 3 MFCCs 
+    
+    audio.features.spectral(1:2,:); % Energie und Spectral Centroid 
+    
+    audio.features.delta(1,:)];     % Erste Delta MFCC 
+    
+    
+    
+    % Feature-Namen fuer Legende 
+    
+    featureNames = {'MFCC1', 'MFCC2', 'MFCC3', 'Energy', 'Spectral Centroid', 'Delta MFCC1'}; 
+    
+    
+    
+    % Normalisierung fuer bessere Darstellung 
+    
+    normalizedFeatures = zeros(size(featuresToPlot)); 
+    
+    for i = 1:size(featuresToPlot,1) 
+    
+    normalizedFeatures(i,:) = (featuresToPlot(i,:) - mean(featuresToPlot(i,:))) / std(featuresToPlot(i,:)+eps); 
+    
+    end 
+    
+\end{lstlisting}
+
+\bigskip
+
+\textbf{Features plotten}\\
+\medskip
+
+In diesem Abschnitt wird die grafische Darstellung von extrahierten Audio-Features fortgesetzt. Die \PYTHON{plotFeatures}-Funktion zeichnet die zuvor normalisierten Features (z.B. MFCCs, spektrale Energie) über die Zeit in einem gemeinsamen Diagramm. Dabei werden unterschiedliche Farben aus einer Linienfarbpalette (\PYTHON{lines}) verwendet, um jede Feature-Kurve eindeutig darzustellen. Die Legende zeigt die Namen der Features, und der Plot wird optisch durch Titel, Achsenbeschriftungen, Gitter und passende Achsenlimits ergänzt. 
+
+Die Funktion \PYTHON{plot3DAnalysis} bereitet einen 3D-Plot vor, der Ergebnisse einer vorhergehenden 3D-Wavelet-Analyse visualisieren könnte. Bevor etwas geplottet wird, wird die entsprechende Achse (\PYTHON{audio.ax3D}) geleert. Falls keine Daten (\PYTHON{audio.analysis.wavelet3D}) vorliegen, wird der Plot übersprungen. Die eigentliche Visualisierung erfolgt also nur, wenn gültige 3D-Daten vorhanden sind. \cite{Hossain:2025} \cite{MathWorks:2025Plots} \cite{MathWorks:2025CategoricalPlot}
+
+\begin{lstlisting}[frame=single, numbers=left, style=Matlab-Pyglike]
+    
+    % Features plotten 
+    
+    hold(audio.axFeatures, 'on'); 
+    
+    colors = lines(size(normalizedFeatures,1)); 
+    
+    for i = 1:size(normalizedFeatures,1) 
+    
+    plot(audio.axFeatures, audio.features.time, normalizedFeatures(i,:), ... 
+    
+    'Color', colors(i,:), 'LineWidth', 1.5, 'DisplayName', featureNames{i}); 
+    
+    end 
+    
+    hold(audio.axFeatures, 'off'); 
+    
+    
+    
+    title(audio.axFeatures, 'Edge ML Features (normalisiert)'); 
+    
+    xlabel(audio.axFeatures, 'Zeit [s]'); 
+    
+    ylabel(audio.axFeatures, 'Normalisierter Wert'); 
+    
+    grid(audio.axFeatures, 'on'); 
+    
+    legend(audio.axFeatures, 'show'); 
+    
+    xlim(audio.axFeatures, [0 audio.features.time(end)]); 
+    
+    end 
+    
+    
+    
+    function plot3DAnalysis() 
+    
+    cla(audio.ax3D); 
+    
+    
+    
+    if isempty(audio.analysis.wavelet3D) 
+    
+    return; 
+    
+    end 	
+    
+\end{lstlisting}
+
+\textbf{3D-Oberflächenplot der Wavelet-Transformation}\\
+\medskip
+
+In diesem Abschnitt wird der 3D-Oberflächenplot für die Wavelet-Transformation erstellt. Mit \PYTHON{surf} wird eine farbcodierte 3D-Oberfläche auf der Achse \PYTHON{audio.ax3D} gezeichnet, wobei die X-, Y- und Z-Daten aus dem Ergebnis der Wavelet-Analyse stammen. Die Darstellung wird in einer perspektivischen Ansicht (45° horizontal, 30° vertikal) gezeigt und optisch durch Farbverlauf (\PYTHON{jet}), Farbleiste und Achsentitel ergänzt. Die Frequenzachse (Y-Achse) wird dabei logarithmisch skaliert, was eine bessere Darstellung der typischerweise logarithmisch verteilten Frequenzinhalte gewährleistet. Zusätzlich werden ausgewählte Frequenzmarkierungen gesetzt. \cite{Hossain:2025} \cite{MathWorks:2025WaveletToolbox}
+
+\begin{lstlisting}[frame=single, numbers=left, style=Matlab-Pyglike]
+    
+    % 3D-Oberflaechenplot der Wavelet-Transformation 
+    
+    surf(audio.ax3D, audio.analysis.wavelet3D.X, audio.analysis.wavelet3D.Y, audio.analysis.wavelet3D.Z, ... 
+    
+    'EdgeColor', 'none'); 
+    
+    
+    
+    view(audio.ax3D, 45, 30); 
+    
+    axis(audio.ax3D, 'tight'); 
+    
+    colormap(audio.ax3D, 'jet'); 
+    
+    colorbar(audio.ax3D); 
+    
+    
+    
+    title(audio.ax3D, '3D Frequenzanalyse (Wavelet-Transformation)'); 
+    
+    xlabel(audio.ax3D, 'Zeit [s]'); 
+    
+    ylabel(audio.ax3D, 'Frequenz [Hz]'); 
+    
+    zlabel(audio.ax3D, 'Amplitude [dB]'); 
+    
+    
+    
+    % Log-Skala fuer Frequenzachse 
+    
+    set(audio.ax3D, 'YScale', 'log'); 
+    
+    yticks = [50 100 200 500 1000 2000 4000]; 
+    
+    set(audio.ax3D, 'YTick', yticks); 
+    
+    set(audio.ax3D, 'YTickLabel', arrayfun(@num2str, yticks, 'UniformOutput', false)); 
+    
+    end 
+    
+\end{lstlisting}
+
+\subsection{Spezifische Datenverarbeitung}
+
+\subsubsection{Exportfunktionen}
+
+In diesem Abschnitt wird die Funktion \PYTHON{exportFeatures} vollständig definiert, die extrahierte Audio-Features in eine CSV-Datei exportiert. Zunächst wird geprüft, ob überhaupt Feature-Daten vorliegen, falls nicht, erscheint eine Fehlermeldung. 
+
+Anschließend wird ein Standard-Dateiname auf Basis des geladenen Audio-Dateinamens vorgeschlagen und ein Dialogfenster (\PYTHON{uiputfile}) geöffnet, über das der Benutzer einen Speicherort auswählen kann. Bricht der Nutzer diesen Vorgang ab, wird der Export abgebrochen. 
+
+Die vorhandenen Features (MFCCs, spektrale Features, Delta- und Delta-Delta-Koeffizienten) werden dann in eine Tabelle (\PYTHON{featureTable}) umgewandelt. Die Spaltennamen werden dynamisch erzeugt und so benannt, dass sie den enthaltenen Feature-Typ eindeutig widerspiegeln (z.B. \PYTHON{mfcc\_1}, \PYTHON{spectral\_centroid}, \PYTHON{delta\_mfcc\_2} usw.). 
+
+Zusätzlich wird eine Spalte mit Zeitstempeln ergänzt, sodass jede Zeile der Tabelle einem bestimmten Zeitpunkt im Audiosignal zugeordnet werden kann. Zum Schluss wird die Tabelle als CSV-Datei gespeichert, und eine Bestätigungsmeldung zeigt dem Nutzer den Speicherort an. \cite{Hossain:2025} \cite{MathWorks:2025BigDataVideo} \cite{Pfister:2017} \cite{MathWorks:2025SignalToolbox}
+
+\begin{lstlisting}[frame=single, numbers=left, style=Matlab-Pyglike]
+    
+    %% Exportfunktionen 
+    
+    function exportFeatures(~, ~) 
+    
+    if isempty(audio.features) 
+    
+    errordlg('Keine Features zum Exportieren vorhanden!', 'Exportfehler'); 
+    
+    return; 
+    
+    end 
+    
+    
+    
+    % Dateinamen vorschlagen 
+    
+    [~,name] = fileparts(audio.filename); 
+    
+    defaultName = [name '_features.csv']; 
+    
+    
+    
+    % Speicherort auswaehlen 
+    
+    [file, path] = uiputfile('*.csv', 'Features speichern als', defaultName); 
+    
+    if isequal(file, 0) 
+    
+    disp('Feature-Export abgebrochen'); 
+    
+    return; 
+    
+    end 
+    
+    
+    
+    % Features in Tabelle umwandeln 
+    
+    featureTable = array2table(audio.features.combined'); 
+    
+    
+    
+    % Spaltennamen generieren 
+    
+    colNames = {}; 
+    
+    
+    
+    % MFCCs 
+    
+    for i = 1:size(audio.features.mfcc,1) 
+    
+    colNames{end+1} = sprintf('mfcc_%d', i); 
+    
+    end 
+    
+    
+    
+    % Spektrale Features 
+    
+    specNames = {'energy', 'spectral_centroid', 'spectral_spread', 'spectral_flux', 'spectral_entropy'}; 
+    
+    for i = 1:length(specNames) 
+    
+    colNames{end+1} = specNames{i}; 
+    
+    end 
+    
+    
+    
+    % Delta Features 
+    
+    for i = 1:size(audio.features.delta,1) 
+    
+    colNames{end+1} = sprintf('delta_mfcc_%d', i); 
+    
+    end 
+    
+    
+    
+    % Delta-Delta Features 
+    
+    for i = 1:size(audio.features.deltaDelta,1) 
+    
+    colNames{end+1} = sprintf('delta_delta_mfcc_%d', i); 
+    
+    end 
+    
+    
+    
+    % Spaltennamen zuweisen 
+    
+    featureTable.Properties.VariableNames = colNames; 
+    
+    
+    
+    % Zeitstempel hinzufuegen 
+    
+    featureTable.time = audio.features.time'; 
+    
+    
+    
+    % In CSV schreiben 
+    
+    writetable(featureTable, fullfile(path, file)); 
+    
+    
+    
+    msgbox(sprintf('Features erfolgreich exportiert nach:\n%s', fullfile(path, file)), 'Export erfolgreich'); 
+    
+    end 	
+    
+\end{lstlisting}
+
+\subsubsection{Hilfsfunktionen}
+
+\textbf{Zentrale Hilfsfunktionen}\\
+\medskip
+
+In diesem Abschnitt werden zwei zentrale Hilfsfunktionen zur Audiobearbeitung definiert. Die Funktion \PYTHON{designMelFilterBank} erzeugt eine Mel-Filterbank, die für die Berechnung von MFCCs oder Mel-Spektrogrammen verwendet wird. Dazu wird der gewünschte Frequenzbereich zunächst in die Mel-Skala umgerechnet, dort gleichmäßig unterteilt und anschließend wieder in lineare Frequenzen transformiert. Aus diesen Punkten werden dreieckige Filter gebildet, die anschließend normalisiert werden. \cite{Hossain:2025} \cite{MathWorks:2025BigDataVideo} \cite{Pfister:2017} 
+
+\begin{lstlisting}[frame=single, numbers=left, style=Matlab-Pyglike]
+    
+    %% Hilfsfunktionen 
+    
+    function [melFilters, cf] = designMelFilterBank(fs, fftSize, numBands, lowFreq, highFreq) 
+    
+    % Erstellt eine Mel-Filterbank mit angepasstem Frequenzbereich 
+    
+    
+    
+    if nargin < 4 
+    
+    lowFreq = 0; 
+    
+    end 
+    
+    if nargin < 5 
+    
+    highFreq = fs/2; 
+    
+    end 
+    
+    
+    
+    % Frequenzgrenzen in Mel umrechnen 
+    
+    melMin = 2595 * log10(1 + lowFreq/700); 
+    
+    melMax = 2595 * log10(1 + highFreq/700); 
+    
+    
+    
+    % Gleichmaessige Verteilung im Mel-Bereich 
+    
+    melPoints = linspace(melMin, melMax, numBands + 2); 
+    
+    
+    
+    % Zurueck in Frequenzbereich umrechnen 
+    
+    freqPoints = 700*(10.^(melPoints/2595) - 1); 
+    
+    
+    
+    % Frequenzachsen fuer FFT-Bins 
+    
+    binFreqs = linspace(0, fs/2, fftSize/2 + 1); 
+    
+    
+    
+    % Filterbank initialisieren 
+    
+    melFilters = zeros(numBands, fftSize/2 + 1); 
+    
+    
+    
+    % Dreieckige Filter erstellen 
+    
+    for b = 1:numBands 
+    
+    left = freqPoints(b); 
+    
+    center = freqPoints(b+1); 
+    
+    right = freqPoints(b+2); 
+    
+    
+    
+    % Aufsteigende Flanke 
+    
+    rising = (binFreqs >= left & binFreqs <= center) ./ (center - left + eps); 
+    
+    
+    
+    % Abfallende Flanke 
+    
+    falling = (binFreqs > center & binFreqs <= right) ./ (right - center + eps); 
+    
+    
+    
+    % Filter kombinieren 
+    
+    melFilters(b,:) = rising .* (binFreqs <= center) + falling .* (binFreqs > center); 
+    
+    end 
+    
+    
+    
+    % Normalisierung (Flaeche = 1) 
+    
+    melFilters = melFilters ./ sum(melFilters, 2); 
+    
+    cf = freqPoints(2:end-1); 
+    
+    end 	
+    
+\end{lstlisting}
+
+\textbf{Funktion zum Lesen einer WAV-Datei}\\
+\medskip
+Die zweite Funktion, \PYTHON{readWavFile}, öffnet eine WAV-Datei und prüft, ob sie erfolgreich gelesen werden kann. Sie bildet den Einstiegspunkt zum Laden der Audiodaten und stellt sicher, dass diese korrekt verarbeitet werden können. Beide Funktionen sind grundlegende Bausteine für die Merkmalsextraktion und Analyse im gesamten Code. Sie liest den Inhalt einer WAV-Datei im RIFF-Format manuell ein, also Byte für Byte, ohne auf Standardfunktionen in MATLAB wie \PYTHON{audioread} zurückzugreifen. 
+
+Zunächst wird geprüft, ob es sich tatsächlich um eine gültige WAV-Datei handelt, indem der \PYTHON{RIFF}- und \PYTHON{WAVE}-Header gelesen und validiert wird. Danach sucht die Funktion den sogenannten \PYTHON{fmt}-Unterstruktur (Subchunk), in dem wichtige Formatinformationen wie das Audioformat, die Anzahl der Kanäle, die Abtastrate und die Bit-Tiefe enthalten sind. Anschließend wird die \PYTHON{data}-Unterstruktur (Subchunk) gesucht, der die eigentlichen Audiodaten enthält. 
+
+Je nach Bit-Tiefe (8, 16 oder 32 Bit) werden die Audiodaten korrekt eingelesen, skaliert und als normalisierte Gleitkommazahlen (zwischen -1 und 1) zurückgegeben. Bei 24-Bit-Dateien wird ein Fehler geworfen, da dieses Format hier nicht unterstützt wird. 
+
+Diese manuelle WAV-Lesefunktion ergänzt die Funktionalität des gesamten Analyse-Frameworks, indem sie es ermöglicht, Audioformate gezielt und kontrolliert einzulesen, was besonders wichtig ist, wenn man vollständige Kontrolle über die Datenstruktur benötigt, z.B. für die Weiterverarbeitung mit selbst implementierten Analysefunktionen wie MFCC-Berechnung oder STFT. \cite{Hossain:2025} \cite{MathWorks:2025BigDataVideo} \cite{Pfister:2017} \cite{MathWorks:2025SignalToolbox}
+
+\begin{lstlisting}[frame=single, numbers=left, style=Matlab-Pyglike]
+    
+    function [data, fs, bits] = readWavFile(filename) 
+    
+    fid = fopen(filename, 'r'); 
+    
+    if fid == -1 
+    
+    error('Datei konnte nicht geoeffnet werden: %s', filename); 
+    
+    end 
+    
+    try 
+    
+    % RIFF Header lesen 
+    
+    riff = char(fread(fid, 4, 'char*1')'); 
+    
+    if ~strcmp(riff, 'RIFF') 
+    
+    error('Keine gueltige RIFF-Datei'); 
+    
+    end 
+    
+    
+    
+    % Gesamtgroesse ueberspringen 
+    
+    fseek(fid, 4, 'cof'); 
+    
+    
+    
+    % WAVE Format pruefen 
+    
+    wave = char(fread(fid, 4, 'char*1')'); 
+    
+    if ~strcmp(wave, 'WAVE') 
+    
+    error('Keine gueltige WAV-Datei'); 
+    
+    end 
+    
+    
+    
+    % fmt Subchunk finden 
+    
+    foundFmt = false; 
+    
+    while ~foundFmt && ~feof(fid) 
+    
+    subchunkId = char(fread(fid, 4, 'char*1')'); 
+    
+    subchunkSize = fread(fid, 1, 'uint32'); 
+    
+    
+    
+    if strcmp(subchunkId, 'fmt ') 
+    
+    foundFmt = true; 
+    
+    else 
+    
+    fseek(fid, subchunkSize, 'cof'); 
+    
+    end 
+    
+    end 
+    
+    
+    
+    if ~foundFmt 
+    
+    error('fmt Subchunk nicht gefunden'); 
+    
+    end 
+    
+    
+    
+    % Audioformat lesen (1 = PCM) 
+    
+    audioFormat = fread(fid, 1, 'uint16'); 
+    
+    if audioFormat ~= 1 
+    
+    error('Nur PCM-WAV-Dateien werden unterstuetzt (Format: %d)', audioFormat); 
+    
+    end 
+    
+    
+    
+    % Kanaele 
+    
+    nChannels = fread(fid, 1, 'uint16'); 
+    
+    
+    
+    % Abtastrate 
+    
+    fs = fread(fid, 1, 'uint32'); 
+    
+    
+    
+    % Byte-Rate ueberspringen 
+    
+    fseek(fid, 4, 'cof'); 
+    
+    
+    
+    % Block-Align ueberspringen 
+    
+    fseek(fid, 2, 'cof'); 
+    
+    
+    
+    % Bits pro Sample 
+    
+    bits = fread(fid, 1, 'uint16'); 
+    
+    
+    
+    % data Subchunk finden 
+    
+    foundData = false; 
+    
+    while ~foundData && ~feof(fid) 
+    
+    subchunkId = char(fread(fid, 4, 'char*1')'); 
+    
+    subchunkSize = fread(fid, 1, 'uint32'); 
+    
+    
+    
+    if strcmp(subchunkId, 'data') 
+    
+    foundData = true; 
+    
+    else 
+    
+    fseek(fid, subchunkSize, 'cof'); 
+    
+    end 
+    
+    end 
+    
+    
+    
+    if ~foundData 
+    
+    error('data Subchunk nicht gefunden'); 
+    
+    end 
+    
+    
+    
+    % Audiodaten lesen 
+    
+    bytesPerSample = bits/8; 
+    
+    totalSamples = subchunkSize / (nChannels * bytesPerSample); 
+    
+    
+    
+    switch bits 
+    
+    case 8 
+    
+    data = fread(fid, [nChannels, totalSamples], 'uint8')'; 
+    
+    data = (double(data) - 128) / 128; 
+    
+    case 16 
+    
+    data = fread(fid, [nChannels, totalSamples], 'int16')'; 
+    
+    data = double(data) / 32768; 
+    
+    case 24 
+    
+    error('24-bit WAV wird nicht unterstuetzt'); 
+    
+    case 32 
+    
+    data = fread(fid, [nChannels, totalSamples], 'int32')'; 
+    
+    data = double(data) / 2147483648 ; 
+    
+    otherwise 
+    
+    error('Nicht unterstuetzte Bit-Tiefe: %d', bits); 
+    
+    end 
+    
+    
+    
+    catch ME 
+    
+    fclose(fid); 
+    
+    rethrow(ME); 
+    
+    end 
+    
+    
+    
+    fclose(fid); 
+    
+    end 
+    
+\end{lstlisting}
+
+\subsubsection{WAV-Datei erstellen}
+
+Die Funktion \PYTHON{writeWavFile} erstellt eine WAV-Datei im PCM-Format und schreibt darin die übergebenen Audiodaten zusammen mit den zugehörigen Metadaten (Abtastrate, Bit-Tiefe usw.) im RIFF-Format. 
+
+Zuerst wird die Datei geöffnet und der RIFF-Header mit Platzhaltern für die Dateigrößen geschrieben. Danach folgt der \PYTHON{fmt}-Subchunk, der die Formatinformationen enthält: PCM-Kodierung, Anzahl der Kanäle, Abtastrate, Byte-Rate, Blockgröße und Bit-Tiefe. 
+
+Im Anschluss wird der \PYTHON{data}-Subchunk vorbereitet, in dem die eigentlichen Audiodaten geschrieben werden. Diese Daten werden je nach Bit-Tiefe korrekt in das passende Ganzzahlformat umgerechnet (z.B. 16-Bit → \PYTHON{int16}). Nachdem alle Daten geschrieben wurden, kehrt die Funktion an die zuvor gesetzten Positionen zurück, um die tatsächlichen Größen der Datei- und Datenblöcke zu aktualisieren – wie im RIFF-Format erforderlich. 
+
+Diese Funktion ist das Gegenstück zur zuvor erklärten \PYTHON{readWavFile} und ermöglicht es, bearbeitete oder neu erzeugte Audiodaten korrekt im WAV-Format abzuspeichern. \cite{Hossain:2025} \cite{MathWorks:2025BigDataVideo} \cite{Pfister:2017} \cite{MathWorks:2025SignalToolbox}
+
+\begin{lstlisting}[frame=single, numbers=left, style=Matlab-Pyglike]
+    
+    function writeWavFile(filename, data, fs, bitsPerSample) 
+    
+    fid = fopen(filename, 'w'); 
+    
+    
+    
+    % RIFF Header 
+    
+    fwrite(fid, 'RIFF', 'char*1'); 
+    
+    fileSizePos = ftell(fid); 
+    
+    fwrite(fid, 0, 'uint32'); % Platzhalter fuer Dateigroesse 
+    
+    
+    
+    % WAVE Format 
+    
+    fwrite(fid, 'WAVE', 'char*1'); 
+    
+    
+    
+    % fmt Subchunk 
+    
+    fwrite(fid, 'fmt ', 'char*1'); 
+    
+    fwrite(fid, 16, 'uint32'); % Subchunk Groesse 
+    
+    fwrite(fid, 1, 'uint16');  % PCM 
+    
+    fwrite(fid, size(data,2), 'uint16'); % Kanaele 
+    
+    fwrite(fid, fs, 'uint32'); % Abtastrate 
+    
+    fwrite(fid, fs*size(data,2)*bitsPerSample/8, 'uint32'); % ByteRate 
+    
+    fwrite(fid, size(data,2)*bitsPerSample/8, 'uint16'); % BlockAlign 
+    
+    fwrite(fid, bitsPerSample, 'uint16'); 
+    
+    
+    
+    % data Subchunk 
+    
+    fwrite(fid, 'data', 'char*1'); 
+    
+    dataSizePos = ftell(fid); 
+    
+    fwrite(fid, 0, 'uint32'); % Platzhalter fuer Datenbereich 
+    
+    
+    
+    % Audiodaten schreiben 
+    
+    switch bitsPerSample 
+    
+    case 8 
+    
+    dataToWrite = uint8((data * 128) + 128); 
+    
+    fwrite(fid, dataToWrite', 'uint8'); 
+    
+    case 16 
+    
+    dataToWrite = int16(data * 32767); 
+    
+    fwrite(fid, dataToWrite', 'int16'); 
+    
+    case 32 
+    
+    dataToWrite = int32(data * 2147483647); 
+    
+    fwrite(fid, dataToWrite', 'int32'); 
+    
+    otherwise 
+    
+    fclose(fid); 
+    
+    error('Nicht unterstuetzte Bit-Tiefe'); 
+    
+    end 
+    
+    
+    
+    % Dateigroessen aktualisieren 
+    
+    fileEndPos = ftell(fid); 
+    
+    
+    
+    % Datenbereich Groesse 
+    
+    fseek(fid, dataSizePos, 'bof'); 
+    
+    fwrite(fid, fileEndPos-dataSizePos-4, 'uint32'); 
+    
+    
+    
+    % Gesamtdateigroesse 
+    
+    fseek(fid, fileSizePos, 'bof'); 
+    
+    fwrite(fid, fileEndPos-8, 'uint32'); 
+    
+    
+    
+    fclose(fid); 
+    
+    end 	
+    
+\end{lstlisting}
+
+
+\subsection{Datenverarbeitung aktualisieren}
+
+\subsubsection{Verarbeitungsparameter aktualisieren}
+
+Die Funktion \PYTHON{updateParams} dient dazu, Verarbeitungsparameter in einer grafischen Benutzeroberfläche (GUI) zu aktualisieren, wenn der Benutzer einen neuen Wert eingibt. 
+
+Zunächst wird über das \PYTHON{Tag} des aufrufenden Elements (\PYTHON{src}, z.B. ein Edit-Feld) der Name des Parameters ermittelt, indem der Suffix „Edit“ entfernt wird. Dann wird der vom Benutzer eingegebene Text (\PYTHON{String}) in eine Zahl (\PYTHON{double}) umgewandelt. 
+
+Wenn der eingegebene Wert kein gültiger numerischer Wert ist (\PYTHON{NaN}), erscheint eine Fehlermeldung in einem Dialogfenster, und das Eingabefeld wird auf den bisherigen, gültigen Parameterwert zurückgesetzt. 
+
+Diese Funktion stellt also sicher, dass nur sinnvolle numerische Eingaben in das System übernommen werden und verhindert eine fehlerhafte Weiterverarbeitung durch ungültige Parameterwerte. \cite{Hossain:2025} \cite{MathWorks:2025SignalToolbox}
+
+\begin{lstlisting}[frame=single, numbers=left, style=Matlab-Pyglike]
+    
+    function updateParams(src, ~) 
+    
+    % Aktualisiert die Verarbeitungsparameter 
+    
+    paramName = strrep(get(src, 'Tag'), 'Edit', ''); 
+    
+    newValue = str2double(get(src, 'String')); 
+    
+    
+    
+    if isnan(newValue) 
+    
+    errordlg('Ungueltiger numerischer Wert!', 'Parameterfehler'); 
+    
+    set(src, 'String', num2str(audio.params.(paramName))); 
+    
+    return; 
+    
+    end 
+    
+\end{lstlisting}
+
+\subsubsection{Parameter spezifischer Validierung}
+
+Dieser Abschnitt der Funktion \PYTHON{updateParams} führt parameter-spezifische Validierungen durch, um sicherzustellen, dass die neu eingegebenen Werte innerhalb sinnvoller und zulässiger Grenzen liegen. 
+
+Für jeden möglichen Parameter (wie z.B. \PYTHON{frameLength}, \PYTHON{frameOverlap}, \PYTHON{numFilterBanks}, usw.) wird im \PYTHON{switch}-Block überprüft, ob der neue Wert logisch korrekt und im erlaubten Bereich ist. Falls ein Wert ungültig ist, wird ein Fehlerdialog angezeigt (\PYTHON{errordlg}), und das Eingabefeld wird automatisch auf den alten, gültigen Wert zurückgesetzt (\PYTHON{set(src, 'String', ...)}). \cite{Hossain:2025} \cite{MathWorks:2025BigDataVideo} \cite{Pfister:2017}
+
+Beispiele dafür sind unter anderem: 
+
+\PYTHON{frameLength} muss zwischen 0 und 1 Sekunden liegen. 
+
+\PYTHON{frameOverlap} darf nicht größer oder gleich der Frame-Länge sein. 
+
+\PYTHON{numFilterBanks} darf nur zwischen 10 und 80 liegen. 
+
+\PYTHON{highFreq} muss größer als \PYTHON{lowFreq} und kleiner als die Nyquist-Frequenz (\PYTHON{fs/2}) sein. 
+
+\PYTHON{smoothingAlpha} und \PYTHON{volume} dürfen nur Werte zwischen 0 und 1 annehmen. 
+
+Diese Validierungen schützen die Signalverarbeitung vor unplausiblen Eingaben und sorgen für eine robuste und benutzerfreundliche Parameteranpassung innerhalb der Anwendung. \cite{Hossain:2025} \cite{MathWorks:2025BigDataVideo} \cite{Pfister:2017} \cite{MathWorks:2025SignalToolbox}
+
+\begin{lstlisting}[frame=single, numbers=left, style=Matlab-Pyglike]
+    
+    % Parameter spezifische Validierung 
+    
+    switch paramName 
+    
+    case 'frameLength' 
+    
+    if newValue <= 0 || newValue > 1 
+    
+    errordlg('Frame-Laenge muss zwischen 0 und 1 Sekunden liegen!', 'Parameterfehler'); 
+    
+    set(src, 'String', num2str(audio.params.frameLength)); 
+    
+    return; 
+    
+    end 
+    
+    
+    
+    case 'frameOverlap' 
+    
+    if newValue <= 0 || newValue >= audio.params.frameLength 
+    
+    errordlg('Frame-Ueberlappung muss kleiner als Frame-Laenge sein!', 'Parameterfehler'); 
+    
+    set(src, 'String', num2str(audio.params.frameOverlap)); 
+    
+    return; 
+    
+    end 
+    
+    
+    
+    case 'numFilterBanks' 
+    
+    if newValue < 10 || newValue > 80 
+    
+    errordlg('Anzahl Filterbaenke muss zwischen 10 und 80 liegen!', 'Parameterfehler'); 
+    
+    set(src, 'String', num2str(audio.params.numFilterBanks)); 
+    
+    return; 
+    
+    end 
+    
+    
+    
+    case 'highFreq' 
+    
+    if newValue <= audio.params.lowFreq || newValue > audio.fs/2 
+    
+    errordlg(sprintf('Obere Frequenzgrenze muss zwischen %d und %d Hz liegen!', ... 
+    
+    audio.params.lowFreq, audio.fs/2), 'Parameterfehler'); 
+    
+    set(src, 'String', num2str(audio.params.highFreq)); 
+    
+    return; 
+    
+    end 
+    
+    
+    
+    case 'smoothingAlpha' 
+    
+    if newValue < 0 || newValue > 1 
+    
+    errordlg('Glaettungsfaktor muss zwischen 0 und 1 liegen!', 'Parameterfehler'); 
+    
+    set(src, 'String', num2str(audio.params.smoothingAlpha)); 
+    
+    return; 
+    
+    end 
+    
+    
+    
+    case 'volume' 
+    
+    if newValue < 0 || newValue > 1 
+    
+    errordlg('Lautstaerke muss zwischen 0 und 1 liegen!', 'Parameterfehler'); 
+    
+    set(src, 'String', num2str(audio.params.volume)); 
+    
+    return; 
+    
+    end 
+    
+    end 	
+    
+\end{lstlisting}
+
+
+\subsection{Aktualisierung und Darstellung der Audiodaten}
+
+
+Im letzten Codeabschnitt werden zwei Funktionen definiert, die für die Aktualisierung und Darstellung der Audiodaten verantwortlich sind. Die Funktion \PYTHON{updateParams} wird aufgerufen, wenn ein Benutzer in der grafischen Oberfläche einen Parameter (z.B. Frame-Länge oder Filteranzahl) verändert. Der neue Wert wird geprüft und in der globalen \PYTHON{audio.params}-Struktur gespeichert. Falls bereits bearbeitete Audiodaten (\PYTHON{modData}) vorhanden sind und der geänderte Parameter einflussreich für die Merkmalsberechnung ist (z.B. Filteranzahl, Frequenzgrenzen), werden die Merkmale mit \PYTHON{extractEdgeMLFeatures} neu berechnet und eine 3D-Analyse aktualisiert. Anschließend wird in jedem Fall die grafische Darstellung über \PYTHON{updateAllPlots} erneuert. 
+
+Die zweite Funktion, \PYTHON{autoScaleYAxis}, passt die Y-Achse für die Zeitbereichsanzeige automatisch an die maximale Amplitude des Original- und bearbeiteten Audiosignals an. Sie stellt sicher, dass beide Signale vollständig sichtbar sind, indem sie 10 \% Sicherheitsabstand zur maximalen Amplitude hinzufügt. \cite{Hossain:2025} \cite{MathWorks:2025BigDataVideo} \cite{Pfister:2017}
+
+\begin{lstlisting}[frame=single, numbers=left, style=Matlab-Pyglike]
+    
+    % Parameter aktualisieren 
+    
+    audio.params.(paramName) = newValue; 
+    
+    
+    
+    % Bei Aenderung von Audio-Parametern: Features neu berechnen 
+    
+    if ~isempty(audio.modData) 
+    
+    if any(strcmp(paramName, {'frameLength', 'frameOverlap', 'numFilterBanks', 'highFreq'})) 
+    
+    extractEdgeMLFeatures(); 
+    
+    perform3DAnalysis(); 
+    
+    end 
+    
+    updateAllPlots(); 
+    
+    end 
+    
+    end 
+    
+    
+    
+    function autoScaleYAxis() 
+    
+    max_amp = max([max(abs(audio.origData(:))), max(abs(audio.modData(:)))]); 
+    
+    audio.ylim = [-1.1*max_amp, 1.1*max_amp]; 
+    
+    end 
+    
+    end 
+    
+    
+\end{lstlisting}
+
+
+
+
+\subsection{Gesamtcode für die Wave-Datei Auswertung mit Matlab}
+
+
+
+{
+    \captionof{code}{Gesamtcode für die Wave-Datei Auswertung mit Matlab}\label{lst:WAVE-Datei AuswertungMitMatlab}
+    \ArduinoExternal{}{../../Code/Matlab/WAVEAudioVerarbeitung.txt}
+}
+
+
+
+
+
+
+

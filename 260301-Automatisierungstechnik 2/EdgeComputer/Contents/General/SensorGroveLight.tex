@@ -1,0 +1,224 @@
+%%%%%%%%%%%%
+%
+% $Autor: Wings $
+% $Datum: 2019-03-05 08:03:15Z $
+% $Pfad: TemplateSensor $
+% $Version: 4250 $
+% !TeX spellcheck = en_GB/de_DE
+% !TeX encoding = utf8
+% !TeX root = filename 
+% !TeX TXS-program:bibliography = txs:///biber
+%
+%%%%%%%%%%%%
+% Structure
+\chapter{Grove - Lichtsensor v1.2}
+
+Dieses Kapitel behandelt den Grove-Lichtsensor v1.2, der mithilfe eines Fotowiderstands und eines LM358-Verstärkers die Lichtintensität als analoges Signal ausgibt. Es beschreibt die grundlegende Funktionsweise von Lichtsensoren, den Aufbau und die Pinbelegung des Sensors sowie die technischen Eigenschaften von LDR und Verstärker. Darüber hinaus werden typische Einflussfaktoren, Kalibrierungsmöglichkeiten, Hinweise zur Auswertung analoger Messwerte und Beispielprogramme vorgestellt, einschließlich einer einfachen Lichtsteuerungsapplikation mit Relais.
+
+\section{General}
+
+Lichtsensoren messen die Lichtintensität der Umgebung. Sie zeichnen sich durch verschiedene Merkmale aus, wie z. B. den Messbereich und die Lichtfarbe (Wellenlänge). Zudem nutzen Lichtsensoren unterschiedliche Kommunikationsprotokolle zur Verbindung mit einem Mikrocontroller, z. B. I\textsuperscript{2}C, Analog oder SPI.
+
+Lichtsensoren benötigen eine Versorgungsspannung, meist 5 V oder 3,3 V. Bei manchen Sensoren kann man auch den ``Gain'' oder die Messdauer einstellen, um genauere Ergebnisse zu erhalten.
+
+
+\begin{center}
+	%todo tikz picture with strip red - red - black - brown 1\%
+	% or red - red - black - gold 5\%
+	\includegraphics[width=0.8\textwidth]{Sensor/GroveSen/GroveLightSen}
+	\captionof{figure}{Grove-Lichtsensor \cite{Huang:2023}}
+\end{center}
+%cite books
+
+\begin{center}
+	\begin{tikzpicture}
+		\GrooveLightSensor
+	\end{tikzpicture}
+	\captionof{figure}{Grove Lichtsensor}
+\end{center}
+
+
+\section{Specific Sensor}
+
+Der Grove-Light-Sensor nutzt einen Fotowiderstand (Light Dependent Resistor - LDR) zur Messung der Lichtintensität. Mit steigender Helligkeit sinkt der Widerstand des LDR, wodurch sich die Ausgangsspannung verändert. Ein auf dem Sensorboard integrierter LM358-Verstärker verarbeitet dieses Signal und gibt einen analogen Wert aus. Die Messung liefert keine exakten Lux-Werte, sondern eine ungefähre Einschätzung der Lichtstärke basierend auf der Widerstandsänderung des LDR.
+
+Der Grove - LM358 Lichtsensor v1.2 verfügt über einen 4-poligen Anschluss, der eine einfache Verbindung zu Plattformen wie Arduino oder Raspberry Pi mit einem Grove-Kabel ermöglicht.
+
+Bedeutung der Pins am Grove - LM358 Sensor:
+
+\begin{enumerate}
+	\item VCC -- Stromversorgung des Sensors (3,3V oder 5V, je nach System).
+	\item GND -- Masse (GND).
+	\item SIG (Signal) -- Analogausgang, der eine Spannung proportional zur Lichtintensität liefert.
+	\item NC (Not Connected) -- Dieser Pin ist nicht verbunden und hat in dieser Version des Sensors keine Funktion.
+\end{enumerate}
+
+Für den Betrieb müssen VCC, GND und SIG mit den entsprechenden Pins eines Mikrocontrollers (z. B. Arduino) verbunden werden. 
+
+
+\section{Specification}
+Der Grove - Lichtsensor verwendet eine analoge Kommunikation. Das Ausgangssignal ist eine Spannung, die proportional zur Lichtintensität ist. Dabei kann die Spannung niemals höher sein als die angelegte Versorgungsspannung.
+
+
+
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|l|l|}
+		\hline
+		\textbf{Eigenschaft} & \textbf{Wert} \\
+		\hline
+		Lichtwiderstand bei 10 Lux (bei 25 C) & 8 - 20 M$\Omega$ (min) \\	% ADD DEGREE
+		\hline
+		Dunkelwiderstand bei 0 Lux & 1.0 M$\Omega$ (min) \\
+		\hline
+		Gamma-Wert bei 100-10 Lux & 0.7 \\
+		\hline
+		Leistungsaufnahme (bei 25 C) & 100 mW \\
+		\hline
+		Maximalspannung (bei 25 C) & 150 V \\
+		\hline
+		Spektrale Empfindlichkeitspitze (bei 25 C) & 540 nm \\
+		\hline
+		Umgebungstemperaturbereich & -30 C bis +70 C \\
+		\hline
+	\end{tabular}
+	\caption{Technische Daten des Fotowiderstandes  }	% <- BIB
+\end{table}
+
+\begin{table}[h]
+	\centering
+	\renewcommand{\arraystretch}{1.3}
+	\begin{tabular}{|l|l|}
+		\hline
+		\textbf{Eigenschaft} & \textbf{Wert} \\
+		\hline
+		Versorgungsspannung (Einzelversorgung) & 3 V bis 30 V \\
+		\hline
+		Ruhestromverbrauch & 0.7 mA \\
+		\hline
+		Eingangs-Offset-Spannung & 3 mV \\
+		\hline
+		Eingangs-Offset-Strom & 2 nA  \\
+		\hline
+		Eingangsruhestrom & 20 nA  \\
+		\hline
+		Differenz-Eingangsspannung & Maximal zulässige Versorgungsspannung $\pm$ 32 V \\
+		\hline
+		Open-Loop-Verstärkung & 100 V/mV  \\
+		\hline
+		Interne Frequenzkompensation & Ja \\
+		\hline
+		Temperaturbereich LM358/LM358A & 0 C bis 70 C \\
+		\hline
+	\end{tabular}
+	\caption{Technische Daten der LM358 Operationsverstärker} 	% <- BIB
+	%\label{tab:lm_opamps}
+\end{table}
+
+\section{Bibliothek}
+
+Der Grove Lichtsensor ist ein analoger Sensor, daher sind keine zusätzlichen Bibliotheken erforderlich. Die Daten können mithilfe von `analogRead()` ausgelesen werden.
+%\subsection{Description}
+
+%\subsection{Installation}
+
+%\subsection{Functions}
+
+%\subsection{Example - Manual}
+
+%\subsection{Example}
+
+%\subsection{Example - Code}
+
+%\subsection{Example - Files}
+
+
+
+\section{Calibration}
+
+Der Grove Sensor benötigt keine Kalibrierung, weil sein Ausgang analog ist und direkt von der Lichtverhältnissen abhängt. Allerdings, in manchen Anwendungen können die Werte angepasst werden:
+\begin{enumerate}
+	\item Normalisierung der Messwerte - Wenn der Sensor für relative Messungen verwendet wird, kann er anhand bekannter Lichtstärken kalibriert werden.
+	\item Temperaturkompensation - Der Widerstand des Fotowiederstands ändert sich leicht mit der Temperatur.
+\end{enumerate}
+
+\section{Simple Code}
+
+Sobald der Sensor an das Arduino Board angeschlossen wird, kann er benutzt werden. Die Installation der zusätzlichen Bibliotheken ist nicht erforderlich.
+
+\begin{enumerate}
+	\item  Zunächst müssen wir sicherstellen, dass der Sensor an einen analogen Eingang angeschlossen ist. Im Code definieren wir den entsprechenden Pin:
+	
+	{
+		\captionof{code}{Definition des Pins für den Lichtsensor}
+		\begin{Arduino}
+			const int lightSensorPin = A5;
+		\end{Arduino}
+	}
+	\item Im nächsten Schritt muss der pin in \PYTHON{setup} initialisiert werden:
+	
+	{
+		\captionof{code}{Initialisierung des Pins für den Lichtsensor}
+		\begin{Arduino}
+			pinMode(lightSensorPin, INPUT)   
+		\end{Arduino}
+	}
+	\item Nun können wir den Sensor in der \PYTHON{loop} - Funktion verwenden.Der ausgelesene Wert wird ausgegeben, und schließlich warten wir 5 Sekunden, bevor der nächste Wert gelesen wird.
+	
+	{
+		\captionof{code}{Werte auslesen und ausgeben}
+		\begin{Arduino}
+			// Signal von der Sensor auslesen        
+			int readValue = analogRead(lightSensorPin);
+			
+			Serial.print("Ausgelesener Wert: ");
+			Serial.println(readValue);
+			
+			// Warte 5 sekunden
+			delay(5000);
+		\end{Arduino}
+	}
+	
+\end{enumerate}
+
+
+%\section{Simple Application}
+
+
+
+\section{Tests}
+
+Das Testen von analogen Signalen kann eine Fehlertoleranz aufweisen. Die Messwerte sind manchmal ungenau oder anfällig für Störungen. Der folgende Code gibt die Nachricht ``Light recognized'' aus, wenn der gelesene Wert größer als 0 ist. Unter bestimmten Umständen wird diese Bedingung jedoch auch erfüllt, wenn das Verbindungskabel nicht mit dem Lichtsensor verbunden ist. In diesem Fall kann das Kabel wie eine Antenne wirken und Signale aus der Umgebung aufnehmen.
+
+{
+	\captionof{code}{Beispielcode für Lichtsensor}\label{Grove:TEST}
+	\ArduinoExternal{}{../../Code/MKRWAN1310/TESTGroveLightSen/TESTGroveLightSen.ino}
+	
+}
+
+Um die Plausibilität der Werte zu überprüfen, sollten wir die gelesenen Werte und deren Tendenzen analysieren. Ein solcher Test kann durchgeführt werden, indem wir die Werte ausgeben und das Verhalten sowohl in der Dunkelheit als auch bei Licht untersuchen. Da der Sensor relative Werte liefert, sollten wir besonders auf die Tendenz achten: Im Dunkeln sollten die Werte sinken, während sie bei Zugang zum Licht steigen sollten. Zusätzlich können verschiedene Skalierungen angewendet werden, um die Ergebnisse besser zu interpretieren.
+
+Der folgende Code ähnelt dem in \ref{Grove:TEST}, jedoch wird der skalierte Wert ausgegeben, sodass die Plausibilität der Ergebnisse besser analysiert werden kann. 
+
+{
+	\captionof{code}{Überprüfung der Plausibilität der Werten}\label{Grove:TEST_Plaus}
+	\ArduinoExternal{}{../../Code/MKRWAN1310/TESTGrovePlausLightSen/TESTGrovePlausLightSen.ino}
+	
+}
+%\subsection{Simple Function Test}
+
+%\subsection{Test all Functions}
+
+\section{Simple Application}
+Der Lichtsensor kann verwendet werden, um die Lichtintensität in einem Raum zu messen. Wird es zu dunkel, erkennt der Sensor dies und aktiviert ein Relais, das die Raumbeleuchtung einschaltet. So wird die Beleuchtung automatisch angepasst und sorgt für mehr Komfort und Energieeffizienz.
+
+Der Code aus \ref{Grove:TEST_Plaus} kann um ein Relais erweitert werden. Wir legen einen Schwellenwert fest, bei dem das Relais den Schaltkreis schließt und das Licht einschaltet.
+
+{
+	\captionof{code}{Lichtsteuerung mithilfe von Lichterkennung}
+	\ArduinoExternal{}{../../Code/MKRWAN1310/SimpleApplicationGroveLightSen/SimpleApplicationGroveLightSen.ino}
+	
+}
+
+%\section{Further Readings}
+

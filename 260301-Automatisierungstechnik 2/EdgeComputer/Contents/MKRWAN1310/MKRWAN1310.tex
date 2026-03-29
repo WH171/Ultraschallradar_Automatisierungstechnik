@@ -1,0 +1,141 @@
+%%%%%%%%%%%%%%%
+%
+% $Autor: Wings $
+% $Datum: 2020-01-29 07:55:27Z $
+% $Pfad: Nano33BLESense.tex $
+% $Version: 1785 $
+%
+%
+%%%%%%%%%%%%%%%
+
+
+\chapter{Arduino MKR WAN 1310}
+
+Dieses Kapitel beschreibt den Aufbau, die Eigenschaften und die Einsatzmöglichkeiten des Arduino MKR WAN 1310. Es erläutert die zugrunde liegende Hardwarearchitektur sowie die \acs{lorawan}-Funktionen. Darüber hinaus werden zentrale technische Merkmale, Spannungsversorgungsoptionen und sicherheitsrelevante Hinweise zusammengefasst.
+	
+\section{Arduino - Einführung}
+
+Arduino ist eine Open-Source-Elektronikplattform, die auf flexibler und benutzerfreundlicher Hardware sowie Software basiert. Sie bietet Mikrokontroller- und Mikroprozessorkits, die es ermöglichen, digitale und analoge Geräte zu entwickeln. Der Mikrokontroller, oft als ``Mini-Compute'' bezeichnet, ist auf dem Arduino-Board integriert. Normalerweise erfordert der Betrieb eines Mikrokontrollers zusätzliche elektronische Bauteile wie Dioden, Widerstände, Kondensatoren und Transistoren, um die Spannung und den Strom zu steuern. Das Arduino-Team hat jedoch eine benutzerfreundliche Umgebung geschaffen, die diese elektronischen Komplikationen überwindet. Man muss lediglich das Board mit der erforderlichen Spannung versorgen, das gewünschte Programm schreiben und es in wenigen Sekunden hochladen. Auf diese Weise wird der gesamte Hardwarebetrieb ermöglicht, ohne sich um die komplexen elektronischen Details kümmern zu müssen.
+
+Durch den technologischen Fortschritt in der Halbleiter- und Elektronikindustrie werden heute viele Steuerungsprobleme nicht mehr mit mechanischen oder elektrischen Schaltern, sondern mit kleinen Mikrokontrollern gelöst. Alle Arduino-Boards haben eines gemeinsam: einen Mikrokontroller, der im Wesentlichen als ein äußerst kompakter Computer fungiert und es ermöglicht, Edge-Computing-Anwendungen zu entwickeln. \cite{Arduino:2021b}
+
+\section{Arduino MKR WAN 1310}
+
+Das Arduino MKR WAN 1310 Board biete eine vielseitige und kostengünstige Lösung, um LoRa-Konnektivität in stromsparende Projekte zu integrieren. Als Open-Source-Plattform ermöglicht es eine nahtlose Verbindung zu verschiedenen LoRa-Netzwerken, einschließlich der Arduino IoT Cloud, persönlichen LoRa-Netzwerken, bestehenden LoRaWAN-Infrastrukturen wie The Things Network oder anderen kompatiblen Boards im Direktverbindungsmodus.
+
+Das MKR WAN 1310 basiert auf dem Microchip SAMD21 Low-Power-Prozessor und dem Murata CMWX1ZZABZ LoRa-Modul, wobei es die grundlegende Funktionalität der MKE-Familie beibehält und dabei bedeutende Verbesserungen integriert. Zu den Neuerungen gehören ein neuer Ladebaustein, verbesserte Steuerung des Stromverbrauchs und die Hinzufügung von 2 MB SPI-Flash-Speicher, was die Leistung und Effizienz des Boards im Vergleich zu seinem Vorgänger, dem MKR WAN 1300 erheblich steigert.Die Stromaufnahme wurde auf 104 $\mu$ A im Energiesparmodus optimiert, was die Batterielebensdauer erheblich verlängert. Das Board kann über den USB-Port (5 V) oder mit wiederaufladbaren Li-Ion- oder Li-Po-Batterien mit einer Mindestkapazität von 1024 mAh betrieben werden.
+Dank des 2 MB SPI-Flash-Speichers unterstützt das MKR WAN 1310 fortgeschrittene Funktionen wie Datenprotokollierung und OTA (Over The Air) - Updates. So können Benutzer Daten lokal speichern, konfigurationsdateien hochladen oder Skripte übertragen, wenn die Verbindungsbedingungen optimal sind. Der integrierte Kryptochip (ATECC508) bietet zusätzliche Sicherheit, indem er Anmeldeinformationen und Zertifikate im sicheren Element speichert.
+
+Das MKR WAN 1310 eignet sich besonders gut für IoT-Anwendungen und stellt eine hervorragende Wahl für die Entwicklung von stromsparenden, groß angelegten IoT-Netzwerken dar. Über die Arduino IoT Cloud können Geräte einfach verbunden und verwaltet werden, wobei eine sichere Kommunikation gewährleistet ist. Um die Reichweite und Signalstärke des Boards zu steigern, verfügt es über einen uFL (U.FL)-Anschluss, der für eine externe LoRa-Antenne vorgesehen ist.
+
+{\tiny }Das Board verfügt au{\ss} sserdem über einen zusätzlichen I2C-Port, der den I2C-Bus erweitert und über einen 5-Pin-Anschluss verfügbar ist, wodurch eine erweiterte Geräteintegration in komplexe Projekte ermöglicht wird. \cite{Allan:2018}
+
+Die Grafik~\ref{fig:arduinoMkrWan} stellt das Arduino MKR WAN 1310 dar.
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[]
+		\ArduinoMkrWan{0.6}{270}{0}{0}{1}
+	\end{tikzpicture}
+	\caption{Arduino MKR WAN 1310 mit Pinbelegung}
+	\label{fig:arduinoMkrWan}
+\end{figure}
+
+Der Mikrocontroller auf diesem Board läuft mit einer Betriebsspannung von 3,3 V, was bedeutet, dass niemals mehr als 3,3 V an die digitalen und analogen Pins angelegt werden dürfen. Es ist wichtig, beim Anschließen von Sensoren und Aktuatoren darauf zu achten, dass dieses Limit von 3,3 V niemals überschritten wird. Das Anlegen höherer Spannungssignale, wie zum Beispiel die 5 V, die bei anderen Arduino-Boards häufig verwendet werden, kann das Board beschädigen.
+
+
+%\section{Was ist der Unterschied zwischen MKR WAN 1300 und MKR WAN 1310?}
+%
+%Der Arduino MKR WAN 1310 stellt eine verbesserte Version des MKR WAN 1300 dar. Die wichtigsten Unterschiede zwischen den beiden Boards liegen in der Energieeffizien, Speichererweiterung und verbesserten Steuerungsmöglichkeiten
+%
+%\subsubsection{Energieeffizienz}
+%Der MKR WAN 1310 bietet eine verbesserte Energieeffizienz und reduziert den Stromverbrauch im Vergleich zum MKR WAN 1300. Bei der richtigen Konfiguration, nimmt der MKR WAN 1310 nut 104 \mu A auf, was zu einer längeren Batterielebensdauer führt.
+%
+%\subsubsection{Speicherverwaltung}
+%Der MKR WAN 1310 enthält 2 MB SPI-Flasch-Speicher, der für zusätzliche Funktionen wie Datenprotokollierung und Over-the-Air-Updates verwendet werden kann.
+%
+%\subsubsection{Kryptografischer Chip}
+%Der MKR WAN 1310 verfügt über den Kryptochip (ATECC508) zur sicheren Speicherung von Anmeldeinformationen und Zertifikaten, was die Sicherheit und den Schutz der Daten erhöht
+%
+%\subsubsection{Ladefunktion}
+%Der MKR WAN 1310 verfügt über einen Ladebaustein, der es ermöglicht, Li-Ion- oder Li-Po-Akkus aufzuladen und das Board damit zu betreiben.
+
+%
+%\begin{center}
+%	\begin{tikzpicture}
+%		\ArduinoNanoTikz
+%		
+%		\node(HTS) at (-10,5){\textcolor{red}{\tiny HTS221}};
+%		\draw[line width=1pt,red]  (-6.3,2.8) -- (-10,4.9);
+%		\node(APD) at (-6,5){\textcolor{red}{\tiny APDS9960}};
+%		\draw[line width=1pt,red]  (-5,2.25) -- (-6,4.9);
+%		\node(LSM9DS1) at (-2,5){\textcolor{red}{\tiny LSM9DS1}};
+%		\draw[line width=1pt,red]  (-5,3.15) -- (-2,4.9);
+%		
+%		\node(LSM9DS1) at (1,5){\textcolor{red}{\tiny RGB Programmable LED}};
+%		\draw[line width=1pt,red]  (-3.6,2.95) -- (1,4.9);
+%		
+%		\node(HTS) at (1.5,2.25){\textcolor{red}{\tiny Nordic nRF 52840}};
+%		\draw[line width=1pt,red]  (-2,2.25) -- (0.5,2.25);
+%		
+%		\node(MP) at (-2,-0.75){\textcolor{red}{\tiny MP34DT05-A}};
+%		\draw[line width=1pt,red]  (-3.9,2.25) -- (-1.75,-0.6);
+%		
+%		\node(MP) at (-6,-0.75){\textcolor{red}{\tiny LPS22HB}};
+%		\draw[line width=1pt,red]  (-4.5,1.0) -- (-6,-0.6);
+%		
+%		\node(LEDPower) at (-11.5,3.55){\textcolor{red}{\tiny Power LED}};
+%		\draw[line width=1pt,red]  (-10.8,3.55) -- (-10,3.55);
+%		
+%		\node(USB) at (-12,2.25){\textcolor{red}{\tiny Micro-USB Port}};
+%		\draw[line width=1pt,red]  (-11.1,2.25) -- (-10.2,2.25);
+%		
+%		\node(LEDOrange) at (-11.8,0.8){\textcolor{red}{\tiny Progammable LED}};
+%		\draw[line width=1pt,red]  (-10.8,0.8) -- (-10,0.8);
+%		
+%	\end{tikzpicture}
+%	\captionof{figure}[Bauteilanordnung auf dem Arduino MKR 1310]{Bauteilanordnung auf dem Arduino MKR 1310}
+%\end{center}
+
+
+\begin{table}[H]
+	\begin{center}
+		\begin{tabular}{llm{90mm}} 
+			\textbf{\MapleCommand{MIKROCONTROLLER}}  & SAMD21G18A\\
+			\textbf{\MapleCommand{LoRa-MODUL}}  & Murata CMWX1ZZABZ \\
+			\textbf{\MapleCommand{BETRIEBSSPANNUNG}}  & 3{,}3\,V\\
+			\textbf{\MapleCommand{EINGANGSSPANNUNG (MAX.)}}  & 5{,}5\,V \\
+			\textbf{\MapleCommand{GLEICHSTROM PRO I/O-PIN}}  & 15\,mA \\
+			\textbf{\MapleCommand{TAKTFREQUENZ}} & 48\,MHz \\
+			\textbf{\MapleCommand{FLASH-SPEICHER}}  & 256\,KB  \\
+			\textbf{\MapleCommand{SRAM}}  & 32\,KB  \\
+			\textbf{\MapleCommand{LED\_BUILTIN}}  & 6 \\
+		\end{tabular}
+	\end{center}
+	\caption{Technische Spezifikationen des Arduino MKR WAN 1310 \cite{Arduino:2025}}
+\end{table}
+
+
+\section{Spannungsversorgungsmöglichkeiten}
+
+	Arduino-Boards bieten mehrere Möglichkeiten zur Spannungsversorgung, indem man die Spannung an bestimmte Pins oder Konnektoren anschließt. Dabei sollte man beachten, dass nicht alle Lösungen gleich sicher sind und manche Konfigurationen bevorzugt werden\cite{Bagur:2025}. Hier werden zwei der sichersten Methoden beschrieben:
+	
+\subsection{USB-Anschluss}
+
+	Die gängigste Methode, ein Arduino mit Strom zu versorgen, ist über den USB-Anschluss. Dieser liefert eine konstante Spannung von 5 V, die nicht nur das Arduino-Board selbst versorgt, sondern auch die an es angeschlossenen Aktoren und Sensoren. Dadurch lässt sich Arduino sowohl an einen Computer als auch an eine Powerbank, ein Handynetzteil oder andere USB-basierte Spannungsquellen anschließen. Es ist jedoch wichtig, darauf zu achten, dass die Stromquelle ausreichend Leistung bereitstellt. Dies kann insbesondere dann problematisch werden, wenn das Arduino direkt an einen Computer angeschlossen wird, da viele Computer nur eine maximale Stromstärke von 500 mA über USB liefern können.
+	Für Boards, die mit 5 V betrieben werden, wird diese Spannung direkt genutzt. Bei Boards wie dem MKR WAN 1310, das mit 3,3 V betrieben wird, wird die Spannung jedoch intern auf dem Board weiter herunter geregelt, um die benötigte Betriebsspannung zu erreichen.
+	
+\subsection{VIN-Pin}
+
+	Der VIN-Pin dient als Eingang für Spannungen, die von externen Quellen stammen und bereits herunter geregelt wurden. Es ist jedoch wichtig zu beachten, dass der VIN-Pin direkt mit dem Eingang des Spannungsreglers verbunden ist. Daher wird keine Rückpolarisation gewährleistet. Sollte also die Verbindung von V+ und V- vertauscht werden, kann dies zu Schäden am Arduino führen.
+	Da Arduino über einen ``Onboard-Spannungsregler'' verfügt, bietet es einen bestimmten Toleranzbereich. Beim Arduino MKR WAN 1310 liegt dieser beispielsweise zwischen 5 V und 7 V.
+	
+\subsection{Akkuanschluss \label{powerSupply:battery}}
+
+	Der Arduino MKR WAN 1310 verfügt über einen Akkuanschluss, der es ermöglicht, einen Akku als Haupt- oder Backup-Stromquelle zu verwenden (Steckertyp: 2-polig, 2 mm JST PH). Das Board besitzt eine integrierte Ladeschaltung, die grundlegende Funktionen wie das Laden des Akkus, Spannungsregelung und einen Lastschalter bereitstellt.
+	Dieser Arduino kann nur mit einem 3,7 V Li-Ion- oder Li-Polymer-Akku betrieben werden.
+	
+% TO DO
+	% MKR WAN 1310 Grafiken!
+	% Technische Spezifikation!
+
