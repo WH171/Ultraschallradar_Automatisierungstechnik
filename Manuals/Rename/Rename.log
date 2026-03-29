@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.16)  29 MAR 2026 09:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.16)  29 MAR 2026 15:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1908,10 +1908,10 @@ Package logreq Info: Writing requests to 'Rename.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 59600 strings out of 467525
- 1477770 string characters out of 5418982
- 2505181 words of memory out of 5000000
- 87545 multiletter control sequences out of 15000+600000
+ 59598 strings out of 467525
+ 1477705 string characters out of 5418982
+ 2505143 words of memory out of 5000000
+ 87543 multiletter control sequences out of 15000+600000
  667653 words of font info for 191 fonts, out of 8000000 for 9000
  1148 hyphenation exceptions out of 8191
  110i,8n,113p,11209b,2483s stack positions out of 10000i,1000n,20000p,200000b,200000s
