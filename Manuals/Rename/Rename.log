@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.16)  29 MAR 2026 15:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.16)  30 MAR 2026 08:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -942,7 +942,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.39 \DeclareMathOperator{\Atan2}{Atan2}
+l.38 \DeclareMathOperator{\Atan2}{Atan2}
                                         
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -1910,7 +1910,7 @@ Package logreq Info: Writing requests to 'Rename.run.xml'.
 Here is how much of TeX's memory you used:
  59598 strings out of 467525
  1477705 string characters out of 5418982
- 2505143 words of memory out of 5000000
+ 2505157 words of memory out of 5000000
  87543 multiletter control sequences out of 15000+600000
  667653 words of font info for 191 fonts, out of 8000000 for 9000
  1148 hyphenation exceptions out of 8191
@@ -1928,7 +1928,7 @@ live/2026/texmf-dist/fonts/type1/public/cm-super/sfsx1200.pfb></usr/local/texli
 ve/2026/texmf-dist/fonts/type1/public/cm-super/sfsx2488.pfb></usr/local/texlive
 /2026/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb></usr/local/texlive/2
 026/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on Rename.pdf (31 pages, 230193 bytes).
+Output written on Rename.pdf (31 pages, 233956 bytes).
 PDF statistics:
  295 PDF objects out of 1000 (max. 8388607)
  230 compressed objects within 3 object streams
