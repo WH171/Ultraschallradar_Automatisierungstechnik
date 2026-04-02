@@ -18,6 +18,25 @@
 	\item \textbf{Kein Bild auf dem Monitor:} Stellen Sie sicher, dass in der Software der richtige „COM-Port“ ausgewählt wurde.
 	\item \textbf{Falsche Entfernungen:} Prüfen Sie, ob der Sensor freie Sicht hat oder ob Kabel im Weg hängen, die selbst als Hindernis erkannt werden.
 \end{itemize}
+\chapter{Fehlerbehebung via Software-Diagnose}
+Sollten während des Betriebs Unregelmäßigkeiten auftreten, gibt die Radar-Software auf Ihrem Laptop entsprechende Warnhinweise aus.
+
+\section{Software-Fehlermeldungen}
+Achten Sie auf Textmeldungen, die im Hauptfenster oder in einer separaten Statuskonsole erscheinen:
+
+\begin{table}[h]
+	\centering
+	\renewcommand{\arraystretch}{1.5}
+	\begin{tabular}{|l|p{5cm}|p{4cm}|}
+		\hline
+		\textbf{Software-Warnung} & \textbf{Ursache} & \textbf{Behebung} \\ \hline
+		\texttt{Connection Lost} & Das USB-Kabel wurde während des Betriebs getrennt. & Prüfen Sie die Verbindung und starten Sie die Software neu. \\ \hline
+		\texttt{No Data Stream} & Der Sensor liefert keine Werte, obwohl der Motor dreht. & Prüfen Sie die Verkabelung des HC-SR04 Sensors an der Basisstation. \\ \hline
+		\texttt{Port busy / Access denied} & Ein anderes Programm greift auf den USB-Anschluss zu. & Schließen Sie andere Anwendungen (z.\,B. Arduino IDE), die den Port belegen könnten. \\ \hline
+		\texttt{Object too close} & Ein Hindernis befindet sich unterhalb der 2\,cm Grenze. & Entfernen Sie das Objekt unmittelbar vor dem Sensorkopf. \\ \hline
+	\end{tabular}
+	\caption{Fehlersignale in der Laptop-Software}
+\end{table}
 
 
 

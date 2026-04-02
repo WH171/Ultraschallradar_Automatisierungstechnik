@@ -20,5 +20,7 @@
 \contentsline {section}{\numberline {7.2}Lagerung}{13}{section.7.2}%
 \contentsline {chapter}{\numberline {8}Sicherheitshinweise}{15}{chapter.8}%
 \contentsline {chapter}{\numberline {9}Fehlersuche}{17}{chapter.9}%
-\contentsline {chapter}{\numberline {10}Sonstiges}{19}{chapter.10}%
+\contentsline {chapter}{\numberline {10}Fehlerbehebung via Software-Diagnose}{19}{chapter.10}%
+\contentsline {section}{\numberline {10.1}Software-Fehlermeldungen}{19}{section.10.1}%
+\contentsline {chapter}{\numberline {11}Sonstiges}{21}{chapter.11}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
