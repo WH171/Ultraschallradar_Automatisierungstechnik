@@ -11,14 +11,12 @@
 %
 %%%%%%%%%%%%
 
-\chapter{Main Function}
+\chapter{Die Hauptfunktionen}
 
-Das Radarsystem dient der automatisierten Überwachung und digitalen Abbildung des unmittelbaren Umfelds. Nach der Aktivierung führt das System folgende Kernfunktionen autonom aus:
+Das Radarsystem arbeitet nach dem Prinzip des „Echo-Lot-Verfahrens“. Hierbei erfüllt das Gerät drei Kernaufgaben vollautomatisch:
 
-\begin{itemize}
-	\item \textbf{Automatisierte Umfeldabtastung:} Durch eine koordinierte Ansteuerung des Servomotors wird der Ultraschallsensor in einem Schwenkbereich von $180^\circ$ bewegt. Diese Bewegung ermöglicht eine lückenlose Erfassung des vorderen Halbraums.
-	\item \textbf{Akustische Distanzmessung:} Während des Scan-Vorgangs emittiert der Sensor hochfrequente Ultraschallimpulse. Durch die Auswertung der Echo-Laufzeit berechnet das System in Echtzeit die Distanz zu Objekten im Erfassungsbereich.
-	\item \textbf{Datenübermittlung und Visualisierung:} Die ermittelten Messwerte (Winkelposition und Distanz) werden über die serielle Schnittstelle an das Host-System übertragen. Dort erfolgt die grafische Aufbereitung, welche Hindernisse ortsgetreu darstellt und ein digitales Abbild der Umgebung generiert.
-\end{itemize}
-
-Das System ist auf einen wartungsfreien Dauerbetrieb ausgelegt und passt die Abtastrate automatisch an die interne Verarbeitungsgeschwindigkeit an, um eine konsistente Datenqualität zu gewährleisten.
+\begin{enumerate}
+	\item \textbf{Die Suchbewegung:} Der integrierte Servomotor schwenkt den Sensor kontinuierlich in einem Halbkreis ($180^\circ$). Dadurch wird der gesamte Bereich vor dem Gerät lückenlos überwacht.
+	\item \textbf{Die Messung:} Der Sensor sendet für das menschliche Ohr unhörbare Schallimpulse aus. Treffen diese auf ein Hindernis, werden sie zurückgeworfen. Das Gerät misst die Zeit, bis das Echo eintrifft, und errechnet daraus zentimetergenau die Entfernung.
+	\item \textbf{Die Visualisierung:} Diese Daten werden an Ihren Computer gesendet, wo sie in eine grafische Karte übersetzt werden.
+\end{enumerate}
