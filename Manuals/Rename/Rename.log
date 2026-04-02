@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.16)  2 APR 2026 10:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.16)  2 APR 2026 10:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1841,37 +1841,32 @@ chapter 8.
 
 ]
 chapter 9.
-[17] [18
 
-
-]
-chapter 10.
-
-Underfull \hbox (badness 10000) in paragraph at lines 35--35
+Underfull \hbox (badness 10000) in paragraph at lines 33--33
 []|\T1/cmr/m/n/12 (+20) Ein an^^?de^^?res Pro^^?gramm
  []
 
 
-Underfull \hbox (badness 5388) in paragraph at lines 35--35
+Underfull \hbox (badness 5388) in paragraph at lines 33--33
 \T1/cmr/m/n/12 (+20) greift auf den US^^?B-^^?An^^?
  []
 
 
-Underfull \hbox (badness 6526) in paragraph at lines 35--35
+Underfull \hbox (badness 6526) in paragraph at lines 33--33
 []|\T1/cmr/m/n/12 (+20) Schlieÿen Sie an^^?de^^?
  []
 
 
-Overfull \hbox (15.53018pt too wide) in paragraph at lines 30--38
+Overfull \hbox (15.53018pt too wide) in paragraph at lines 28--36
  [][] 
  []
 
-) (./Chapters/de/AddOns.tex [19] [20
+) (./Chapters/de/AddOns.tex [17] [18
 
 
 ]
-chapter 11.
-) [21] [22
+chapter 10.
+) [19] [20
 
 
 ]
@@ -1888,11 +1883,11 @@ Package logreq Info: Writing requests to 'Rename.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 59694 strings out of 467525
- 1479133 string characters out of 5418982
- 2510186 words of memory out of 5000000
+ 59691 strings out of 467525
+ 1479135 string characters out of 5418982
+ 2509198 words of memory out of 5000000
  87572 multiletter control sequences out of 15000+600000
- 669910 words of font info for 217 fonts, out of 8000000 for 9000
+ 669908 words of font info for 217 fonts, out of 8000000 for 9000
  1148 hyphenation exceptions out of 8191
  110i,10n,113p,11209b,2483s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb
@@ -1911,10 +1906,10 @@ e/2026/texmf-dist/fonts/type1/public/cm-super/sfsx1728.pfb></usr/local/texlive/
 26/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2026
 /texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb></usr/local/texlive/2026/t
 exmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on Rename.pdf (27 pages, 318121 bytes).
+Output written on Rename.pdf (25 pages, 317311 bytes).
 PDF statistics:
- 369 PDF objects out of 1000 (max. 8388607)
- 301 compressed objects within 4 object streams
- 60 named destinations out of 1000 (max. 500000)
- 36074 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 356 PDF objects out of 1000 (max. 8388607)
+ 291 compressed objects within 3 object streams
+ 57 named destinations out of 1000 (max. 500000)
+ 36066 words of extra memory for PDF output out of 42996 (max. 10000000)
 
