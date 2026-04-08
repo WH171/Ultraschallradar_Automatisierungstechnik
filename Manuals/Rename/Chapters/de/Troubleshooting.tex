@@ -12,30 +12,23 @@
 %%%%%%%%%%%%
 
 \chapter{Fehlersuche}
+\section{Software-Fehlermeldungen}
+Sollte während des Selbsttests oder im laufenden Betrieb ein kritischer Hardwarefehler auftreten, greift eine Sicherheitsschaltung. Alle motorischen Bewegungen des Servos werden sofort gestoppt.
 
 \begin{itemize}
-	\item \textbf{Der Sensor dreht sich nicht:} Prüfen Sie, ob das USB-Kabel fest eingesteckt ist. Versuchen Sie einen anderen USB-Port an Ihrem Computer.
-	\item \textbf{Kein Bild auf dem Monitor:} Stellen Sie sicher, dass in der Software der richtige „COM-Port“ ausgewählt wurde.
-	\item \textbf{Falsche Entfernungen:} Prüfen Sie, ob der Sensor freie Sicht hat oder ob Kabel im Weg hängen, die selbst als Hindernis erkannt werden.
+	\item \textbf{Visuelle Darstellung:} Die Benutzeroberfläche wechselt auf einen warnenden, vollflächig roten Hintergrund mit zentrierten, großformatigen Warnhinweisen. Das Radarbild wird komplett ausgeblendet, um die Fehlinterpretation von fehlerhaften oder veralteten Sensordaten zu verhindern.
+	\item \textbf{Fehlermeldung:} \textit{,,$\triangle$ SYSTEMFEHLER $\triangle$ - Ultraschallsensor antwortet nicht (Hardware-Timeout). Anlage überprüfen und Arduino neustarten.''}
+	\item \textbf{Hardware-Indikator:} Am Gehäuse des Radarsystems leuchtet die rote LED dauerhaft auf.
 \end{itemize}
 
-\section{Software-Fehlermeldungen}
-Achten Sie auf Textmeldungen, die im Hauptfenster oder in einer separaten Statuskonsole erscheinen:
-
-\begin{table}[h]
-	\centering
-	\renewcommand{\arraystretch}{1.5}
-	\begin{tabular}{|l|p{5cm}|p{4cm}|}
-		\hline
-		\textbf{Software-Warnung} & \textbf{Ursache} & \textbf{Behebung} \\ \hline
-		\texttt{Connection Lost} & Das USB-Kabel wurde während des Betriebs getrennt. & Prüfen Sie die Verbindung und starten Sie die Software neu. \\ \hline
-		\texttt{No Data Stream} & Der Sensor liefert keine Werte, obwohl der Motor dreht. & Prüfen Sie die Verkabelung des HC-SR04 Sensors an der Basisstation. \\ \hline
-		\texttt{Port busy / Access denied} & Ein anderes Programm greift auf den USB-Anschluss zu. & Schließen Sie andere Anwendungen (z.\,B. Arduino IDE), die den Port belegen könnten. \\ \hline
-		\texttt{Object too close} & Ein Hindernis befindet sich unterhalb der 2\,cm Grenze. & Entfernen Sie das Objekt unmittelbar vor dem Sensorkopf. \\ \hline
-	\end{tabular}
-	\caption{Fehlersignale in der Laptop-Software}
-\end{table}
-
+\vspace{0.5cm}
+\noindent \textbf{Handlungsanweisung bei Sensor-Timeout:}
+\begin{enumerate}
+	\item \textbf{Stromversorgung trennen:} Die Anlage sofort stromlos machen (USB-Verbindung zum Computer trennen).
+	\item \textbf{Verkabelung prüfen:} Den korrekten Sitz der Kabel am HC-SR04 Ultraschallsensor (GND, VCC, Trigger, Echo) sowie den Spannungsteiler auf 3,3V überprüfen.
+	\item \textbf{Sichtfeld kontrollieren:} Sicherstellen, dass das Sichtfeld des Sensors beim Starten nicht direkt auf 0\,cm blockiert ist, da dies das Echo dämpfen kann.
+	\item \textbf{Neustart:} Die USB-Verbindung wiederherstellen und den Reset-Button auf dem Arduino Nano 33 BLE Sense drücken, um den Selbsttest erneut zu initiieren.
+\end{enumerate}
 
 
 
