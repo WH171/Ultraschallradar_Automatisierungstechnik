@@ -1,0 +1,20 @@
+\begin{tikzpicture}[
+	node distance=1.5cm and 2cm,
+	startstop/.style={rectangle, rounded corners, minimum width=3cm, minimum height=1cm, align=center, draw=black, fill=red!20, thick},
+	process/.style={rectangle, minimum width=3cm, minimum height=1cm, align=center, draw=black, fill=blue!10, thick},
+	decision/.style={diamond, aspect=2.5, minimum width=3cm, minimum height=1cm, align=center, draw=black, fill=yellow!20, thick},
+	arrow/.style={thick, -Latex}
+	]
+	
+	\node (start) [startstop] {\textbf{Störung / Fehlerbildschirm}};
+	\node (dec1) [decision, below=of start] {Leuchtet die\\rote LED dauerhaft?};
+	\node (proc1) [process, right=of dec1, xshift=1cm] {Verkabelung (Sensor)\\prüfen \& USB trennen};
+	\node (proc2) [process, below=of dec1, yshift=-0.5cm] {Processing-Software\\neu starten};
+	\node (proc3) [process, below=of proc1] {Hardware-Reset\\(Button am Arduino)};
+	
+	\draw [arrow] (start) -- (dec1);
+	\draw [arrow] (dec1) -- node[anchor=south] {\textbf{Ja (Hardwarefehler)}} (proc1);
+	\draw [arrow] (dec1) -- node[anchor=east] {\textbf{Nein (Softwarehänger)}} (proc2);
+	\draw [arrow] (proc1) -- (proc3);
+	
+\end{tikzpicture}

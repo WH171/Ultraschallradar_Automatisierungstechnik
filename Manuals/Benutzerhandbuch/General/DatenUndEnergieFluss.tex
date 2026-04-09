@@ -1,0 +1,14 @@
+\begin{tikzpicture}[
+	node distance=1.5cm and 2.5cm,
+	box/.style={draw, rectangle, minimum width=2.5cm, minimum height=1.5cm, align=center, fill=blue!10, rounded corners, thick},
+	arrow/.style={-Latex, thick}
+	]
+	\node[box] (pc) {PC / Monitor\\(Software \& 5V)};
+	\node[box, right=of pc] (arduino) {Arduino Nano\\33 BLE Sense};
+	\node[box, above right=of arduino] (sensor) {Ultraschall-\\sensor};
+	\node[box, below right=of arduino] (servo) {Servo-\\motor};
+	
+	\draw[arrow] (pc) -- node[above] {Strom \& Daten} (arduino);
+	\draw[arrow] (arduino) |- node[above left] {Trigger / Echo} (sensor);
+	\draw[arrow] (arduino) |- node[below left] {PWM Signal} (servo);
+\end{tikzpicture}

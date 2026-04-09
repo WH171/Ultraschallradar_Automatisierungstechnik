@@ -1,0 +1,5 @@
+[0] Config.pm:328> INFO - This is Biber 2.21
+[0] Config.pm:331> INFO - Logfile is 'Benutzerhandbuch.blg'
+[55] biber-darwin:342> INFO - === Wed Apr  8, 2026, 10:29:41
+[200] Utils.pm:479> ERROR - Cannot find 'Benutzerhandbuch.bcf'!
+[200] Biber.pm:137> INFO - ERRORS: 1
