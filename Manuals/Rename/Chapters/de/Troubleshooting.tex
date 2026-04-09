@@ -1,0 +1,37 @@
+%%%%%%%%%%%%
+%
+% $Autor: Wings $
+% $Datum: 2019-03-05 08:03:15Z $
+% $Pfad: Troubleshooting.tex $
+% $Version: 4250 $
+% !TeX spellcheck = en_GB/de_DE
+% !TeX encoding = utf8
+% !TeX root = manual 
+% !TeX TXS-program:bibliography = txs:///biber
+%
+%%%%%%%%%%%%
+
+\chapter{Fehlersuche}
+\section{Software-Fehlermeldungen}
+Sollte während des Selbsttests oder im laufenden Betrieb ein kritischer Hardwarefehler auftreten, greift eine Sicherheitsschaltung. Alle motorischen Bewegungen des Servos werden sofort gestoppt.
+
+\begin{itemize}
+	\item \textbf{Visuelle Darstellung:} Die Benutzeroberfläche wechselt auf einen warnenden, vollflächig roten Hintergrund mit zentrierten, großformatigen Warnhinweisen. Das Radarbild wird komplett ausgeblendet, um die Fehlinterpretation von fehlerhaften oder veralteten Sensordaten zu verhindern.
+	\item \textbf{Fehlermeldung:} \textit{,,$\triangle$ SYSTEMFEHLER $\triangle$ - Ultraschallsensor antwortet nicht (Hardware-Timeout). Anlage überprüfen und Arduino neustarten.''}
+	\item \textbf{Hardware-Indikator:} Am Gehäuse des Radarsystems leuchtet die rote LED dauerhaft auf.
+\end{itemize}
+
+\vspace{0.5cm}
+\noindent \textbf{Handlungsanweisung bei Sensor-Timeout:}
+\begin{enumerate}
+	\item \textbf{Stromversorgung trennen:} Die Anlage sofort stromlos machen (USB-Verbindung zum Computer trennen).
+	\item \textbf{Verkabelung prüfen:} Den korrekten Sitz der Kabel am HC-SR04 Ultraschallsensor (GND, VCC, Trigger, Echo) sowie den Spannungsteiler auf 3,3V überprüfen.
+	\item \textbf{Sichtfeld kontrollieren:} Sicherstellen, dass das Sichtfeld des Sensors beim Starten nicht direkt auf 0\,cm blockiert ist, da dies das Echo dämpfen kann.
+	\item \textbf{Neustart:} Die USB-Verbindung wiederherstellen und den Reset-Button auf dem Arduino Nano 33 BLE Sense drücken, um den Selbsttest erneut zu initiieren.
+\end{enumerate}
+
+
+
+
+
+
