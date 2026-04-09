@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.16)  9 APR 2026 08:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.16)  9 APR 2026 10:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1566,9 +1566,7 @@ Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
 (./Benutzerhandbuch.aux
 Package babel Info: 'ngerman' activates 'german' shorthands.
 (babel)             Reported on input line 14.
- (./General/EchoLotVerfahren.aux)
-(./General/DatenUndEnergieFluss.aux) (./General/SketchBenutzerschnittstelle.aux
-) (./General/Reichweite.aux) (./General/FlussdiagrammFehlermeldungen.aux))
+ (./General/DatenUndEnergieFluss.aux))
 \openout1 = `Benutzerhandbuch.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
@@ -1806,114 +1804,75 @@ l.14 \chapter
 
 ]
 chapter 2.
-[3]
-\openout2 = `General/EchoLotVerfahren.aux'.
-
- (./General/EchoLotVerfahren.tex)
-Overfull \hbox (8.8084pt too wide) in paragraph at lines 21--16
-[][] 
- []
-
-Package babel Info: 'ngerman' activates 'german' shorthands.
-(babel)             Reported on input line 16.
-[4
-
-]) (./Chapters/de/Sketch.tex [5
-
-
-] [6
+(./General/Funktionsweise.tex)) (./Chapters/de/Sketch.tex [3] [4
 
 
 ]
 chapter 3.
 \openout2 = `General/DatenUndEnergieFluss.aux'.
 
-(./General/DatenUndEnergieFluss.tex)) (./Chapters/de/ListOfParts.tex [7
+(./General/DatenUndEnergieFluss.tex)) (./Chapters/de/ListOfParts.tex [5
 
 
 
 {/usr/local/texlive/2026/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
 
-[8
+[6
 
 
 ]
 chapter 4.
-) (./Chapters/de/SetUp.tex [9] [10
+) (./Chapters/de/SetUp.tex [7] [8
 
 
 ]
 chapter 5.
-[11]) (./Chapters/de/Functions.tex [12]
+[9]) (./Chapters/de/Functions.tex
+Package babel Info: 'ngerman' activates 'german' shorthands.
+(babel)             Reported on input line 14.
+ [10]
 chapter 6.
-[13
-
-
-]
-\openout2 = `General/SketchBenutzerschnittstelle.aux'.
-
- (./General/SketchBenutzerschnittstelle.tex)
-Overfull \hbox (68.34279pt too wide) in paragraph at lines 36--18
-[][] 
+(./General/Benutzeroberfläche.tex)
+Overfull \hbox (56.59566pt too wide) in paragraph at lines 36--20
+ [][] 
  []
 
-[14
-
-] [15
+(./General/Reichweite.tex) [11
 
 
-]
-\openout2 = `General/Reichweite.aux'.
-
- (./General/Reichweite.tex) [16
-
-]) (./Chapters/de/Maintenance.tex
-[17
-
-
-] [18
-
-
-]
+]) (./Chapters/de/Maintenance.tex [12]
 chapter 7.
-) (./Chapters/de/SafetyGuidelines.tex [19] [20
+) (./Chapters/de/SafetyGuidelines.tex [13
+
+
+] [14
 
 
 ]
 chapter 8.
-) (./Chapters/de/Troubleshooting.tex [21] [22
+) (./Chapters/de/Troubleshooting.tex [15] [16
 
 
 ]
 chapter 9.
-[23]
-\openout2 = `General/FlussdiagrammFehlermeldungen.aux'.
-
- (./General/FlussdiagrammFehlermeldungen.tex)
-Overfull \hbox (28.06609pt too wide) in paragraph at lines 20--15
-[][] 
+(./General/FlussdiagrammFehlermeldungen.tex)
+Overfull \hbox (16.31895pt too wide) in paragraph at lines 20--19
+ [][] 
  []
 
-[24
-
-]) (./Chapters/de/AddOns.tex [25
-
-
-] [26
-
-
-]
+[17]) (./Chapters/de/AddOns.tex [18]
 chapter 10.
-) [27] [28
+) [19
+
+
+] [20
 
 
 ]
 
 LaTeX Warning: Empty bibliography on input line 78.
 
-(./Benutzerhandbuch.aux (./General/EchoLotVerfahren.aux)
-(./General/DatenUndEnergieFluss.aux) (./General/SketchBenutzerschnittstelle.aux
-) (./General/Reichweite.aux) (./General/FlussdiagrammFehlermeldungen.aux))
+(./Benutzerhandbuch.aux (./General/DatenUndEnergieFluss.aux))
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
@@ -1923,11 +1882,11 @@ Package logreq Info: Writing requests to 'Benutzerhandbuch.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 60395 strings out of 467525
- 1498407 string characters out of 5418982
- 2540096 words of memory out of 5000000
- 88201 multiletter control sequences out of 15000+600000
- 672499 words of font info for 231 fonts, out of 8000000 for 9000
+ 60323 strings out of 467525
+ 1495190 string characters out of 5418982
+ 2525077 words of memory out of 5000000
+ 88149 multiletter control sequences out of 15000+600000
+ 672491 words of font info for 231 fonts, out of 8000000 for 9000
  1148 hyphenation exceptions out of 8191
  117i,9n,112p,11219b,2483s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb
@@ -1949,10 +1908,10 @@ exmf-dist/fonts/type1/public/cm-super/sfsx2488.pfb></usr/local/texlive/2026/tex
 mf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2026/texmf
 -dist/fonts/type1/public/cm-super/sftt1095.pfb></usr/local/texlive/2026/texmf-d
 ist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on Benutzerhandbuch.pdf (33 pages, 395653 bytes).
+Output written on Benutzerhandbuch.pdf (25 pages, 391910 bytes).
 PDF statistics:
- 426 PDF objects out of 1000 (max. 8388607)
- 346 compressed objects within 4 object streams
- 73 named destinations out of 1000 (max. 500000)
+ 399 PDF objects out of 1000 (max. 8388607)
+ 327 compressed objects within 4 object streams
+ 69 named destinations out of 1000 (max. 500000)
  40178 words of extra memory for PDF output out of 42996 (max. 10000000)
 
