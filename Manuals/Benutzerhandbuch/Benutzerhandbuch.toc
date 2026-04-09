@@ -27,4 +27,5 @@
 \contentsline {section}{\numberline {9.1}Software-Fehlermeldungen}{17}{section.9.1}%
 \contentsline {chapter}{\numberline {10}Sonstiges}{19}{chapter.10}%
 \contentsline {section}{\numberline {10.1}Technische Spezifikationen: Energie}{19}{section.10.1}%
+\contentsline {section}{\numberline {10.2}Daten und Energiefluss}{19}{section.10.2}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

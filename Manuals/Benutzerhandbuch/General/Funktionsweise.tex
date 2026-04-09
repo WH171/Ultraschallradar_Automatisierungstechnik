@@ -11,11 +11,11 @@
 	\foreach \r in {1.5, 2, 2.5, 3} {
 		\draw[thick, blue] (1,0) ++(45:\r) arc (45:-45:\r);
 	}
-	\draw[-Latex, thick, blue] (3.5, 0.2) -- (5.5, 0.2) node[midway, above] {Sendesignal (Ping)};
+	\draw[-Latex, blue] (3.5, 0.2) -- (5.5, 0.2) node[midway, above] {Sendesignal (Ping)};
 	
 	% Wellen Empfangen (Dashed)
 	\foreach \r in {1, 1.5, 2} {
 		\draw[thick, dashed, orange] (7,0) ++(135:\r) arc (135:225:\r);
 	}
-	\draw[-Latex, thick, dashed, orange] (6, -0.2) -- (4, -0.2) node[midway, below] {Echo (Reflexion)};
+	\draw[-Latex, dashed, orange] (6, -0.2) -- (4, -0.2) node[midway, below] {Echo (Reflexion)};
 \end{tikzpicture}
