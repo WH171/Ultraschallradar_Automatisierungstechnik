@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.16)  9 APR 2026 12:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.16)  12 APR 2026 11:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1832,7 +1832,7 @@ Package babel Info: 'ngerman' activates 'german' shorthands.
  [10]
 chapter 6.
 (./General/Benutzeroberfläche.tex)
-Overfull \hbox (22.14182pt too wide) in paragraph at lines 36--20
+Overfull \hbox (3.64206pt too wide) in paragraph at lines 65--20
  [][] 
  []
 
@@ -1881,11 +1881,11 @@ Package logreq Info: Writing requests to 'Benutzerhandbuch.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 60401 strings out of 467525
- 1496644 string characters out of 5418982
- 2525077 words of memory out of 5000000
- 88222 multiletter control sequences out of 15000+600000
- 673957 words of font info for 232 fonts, out of 8000000 for 9000
+ 60630 strings out of 467525
+ 1500830 string characters out of 5418982
+ 2536077 words of memory out of 5000000
+ 88438 multiletter control sequences out of 15000+600000
+ 675132 words of font info for 239 fonts, out of 8000000 for 9000
  1148 hyphenation exceptions out of 8191
  117i,9n,112p,11219b,2483s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb
@@ -1899,19 +1899,20 @@ l/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/
 texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/te
 xlive/2026/texmf-dist/fonts/type1/public/cm-super/sfsl1200.pfb></usr/local/texl
 ive/2026/texmf-dist/fonts/type1/public/cm-super/sfsl2074.pfb></usr/local/texliv
-e/2026/texmf-dist/fonts/type1/public/cm-super/sfss1200.pfb></usr/local/texlive/
-2026/texmf-dist/fonts/type1/public/cm-super/sfss2074.pfb></usr/local/texlive/20
-26/texmf-dist/fonts/type1/public/cm-super/sfsx1200.pfb></usr/local/texlive/2026
-/texmf-dist/fonts/type1/public/cm-super/sfsx1440.pfb></usr/local/texlive/2026/t
-exmf-dist/fonts/type1/public/cm-super/sfsx1728.pfb></usr/local/texlive/2026/tex
-mf-dist/fonts/type1/public/cm-super/sfsx2488.pfb></usr/local/texlive/2026/texmf
--dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2026/texmf-d
-ist/fonts/type1/public/cm-super/sftt1095.pfb></usr/local/texlive/2026/texmf-dis
-t/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on Benutzerhandbuch.pdf (25 pages, 412838 bytes).
+e/2026/texmf-dist/fonts/type1/public/cm-super/sfss1000.pfb></usr/local/texlive/
+2026/texmf-dist/fonts/type1/public/cm-super/sfss1200.pfb></usr/local/texlive/20
+26/texmf-dist/fonts/type1/public/cm-super/sfss2074.pfb></usr/local/texlive/2026
+/texmf-dist/fonts/type1/public/cm-super/sfsx1200.pfb></usr/local/texlive/2026/t
+exmf-dist/fonts/type1/public/cm-super/sfsx1440.pfb></usr/local/texlive/2026/tex
+mf-dist/fonts/type1/public/cm-super/sfsx1728.pfb></usr/local/texlive/2026/texmf
+-dist/fonts/type1/public/cm-super/sfsx2488.pfb></usr/local/texlive/2026/texmf-d
+ist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2026/texmf-dis
+t/fonts/type1/public/cm-super/sftt1095.pfb></usr/local/texlive/2026/texmf-dist/
+fonts/type1/public/cm-super/sftt1200.pfb>
+Output written on Benutzerhandbuch.pdf (25 pages, 424126 bytes).
 PDF statistics:
- 411 PDF objects out of 1000 (max. 8388607)
- 337 compressed objects within 4 object streams
+ 416 PDF objects out of 1000 (max. 8388607)
+ 340 compressed objects within 4 object streams
  71 named destinations out of 1000 (max. 500000)
- 44282 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 46330 words of extra memory for PDF output out of 51595 (max. 10000000)
 
