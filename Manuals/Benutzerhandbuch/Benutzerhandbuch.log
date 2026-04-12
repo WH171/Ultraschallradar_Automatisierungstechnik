@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.16)  12 APR 2026 11:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.16)  12 APR 2026 16:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1566,7 +1566,12 @@ Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
 (./Benutzerhandbuch.aux
 Package babel Info: 'ngerman' activates 'german' shorthands.
 (babel)             Reported on input line 14.
- (./General/SkizzeGesamtsystem.aux))
+ (./General/SkizzeGesamtsystem.aux)
+
+LaTeX Warning: Label `fig: Benutzeroberfläche: System fährt hoch' multiply de
+fined.
+
+)
 \openout1 = `Benutzerhandbuch.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
@@ -1587,8 +1592,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 33.
 LaTeX Font Info:    ... okay on input line 33.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 33.
 LaTeX Font Info:    ... okay on input line 33.
-
-(/usr/local/texlive/2026/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+ (/usr/local/texlive/2026/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count580
 \scratchdimen=\dimen323
@@ -1826,45 +1830,67 @@ chapter 4.
 
 ]
 chapter 5.
-[9]) (./Chapters/de/Functions.tex
+
+Overfull \hbox (3.10858pt too wide) in paragraph at lines 33--34
+[]$\T1/cmtt/m/n/12 https : / / github . com / WH171 / Ultraschallradar _ Automa
+tisierungstechnik /
+ []
+
+[9]
+<General/BenutzeroberflaecheBilder/BenutzeroberflaecheSystemFaehrtHoch.png, id=
+168, 1000.73875pt x 598.235pt>
+File: General/BenutzeroberflaecheBilder/BenutzeroberflaecheSystemFaehrtHoch.png
+ Graphic file (type png)
+<use General/BenutzeroberflaecheBilder/BenutzeroberflaecheSystemFaehrtHoch.png>
+
+Package pdftex.def Info: General/BenutzeroberflaecheBilder/BenutzeroberflaecheS
+ystemFaehrtHoch.png  used on input line 60.
+(pdftex.def)             Requested size: 345.98685pt x 206.82945pt.
+) (./Chapters/de/Functions.tex
 Package babel Info: 'ngerman' activates 'german' shorthands.
-(babel)             Reported on input line 14.
- [10]
+(babel)             Reported on input line 13.
+ [10 <./General/BenutzeroberflaecheBilder/BenutzeroberflaecheSystemFaehrtHoch.p
+ng>] [11] [12
+
+
+]
 chapter 6.
 (./General/Benutzeroberfläche.tex)
 Overfull \hbox (3.64206pt too wide) in paragraph at lines 65--20
  [][] 
  []
 
-(./General/Reichweite.tex) [11
-
-
-]) (./Chapters/de/Maintenance.tex [12]
+(./General/Reichweite.tex) [13]) (./Chapters/de/Maintenance.tex [14]
 chapter 7.
-) (./Chapters/de/SafetyGuidelines.tex [13
+) (./Chapters/de/SafetyGuidelines.tex [15
 
 
-] [14
+] [16
 
 
 ]
 chapter 8.
-) (./Chapters/de/Troubleshooting.tex [15] [16
+) (./Chapters/de/Troubleshooting.tex [17] [18
 
 
 ]
 chapter 9.
 (./General/FlussdiagrammFehlermeldungen.tex)
-Overfull \hbox (16.31895pt too wide) in paragraph at lines 20--19
- [][] 
- []
-
-[17]) (./Chapters/de/AddOns.tex [18]
+<General/BenutzeroberflaecheBilder/BenutzeroberflaecheSystemFehler.png, id=212,
+ 1002.74625pt x 602.25pt>
+File: General/BenutzeroberflaecheBilder/BenutzeroberflaecheSystemFehler.png Gra
+phic file (type png)
+<use General/BenutzeroberflaecheBilder/BenutzeroberflaecheSystemFehler.png>
+Package pdftex.def Info: General/BenutzeroberflaecheBilder/BenutzeroberflaecheS
+ystemFehler.png  used on input line 26.
+(pdftex.def)             Requested size: 345.98685pt x 207.80403pt.
+ [19]) (./Chapters/de/AddOns.tex
+[20 <./General/BenutzeroberflaecheBilder/BenutzeroberflaecheSystemFehler.png>]
 chapter 10.
-(./General/DatenUndEnergiefluss.tex)) [19
+(./General/DatenUndEnergiefluss.tex)) [21
 
 
-] [20
+] [22
 
 
 ]
@@ -1876,18 +1902,22 @@ LaTeX Warning: Empty bibliography on input line 78.
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
+
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package logreq Info: Writing requests to 'Benutzerhandbuch.run.xml'.
 \openout1 = `Benutzerhandbuch.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 60630 strings out of 467525
- 1500830 string characters out of 5418982
- 2536077 words of memory out of 5000000
- 88438 multiletter control sequences out of 15000+600000
- 675132 words of font info for 239 fonts, out of 8000000 for 9000
+ 60641 strings out of 467525
+ 1502436 string characters out of 5418982
+ 2536176 words of memory out of 5000000
+ 88461 multiletter control sequences out of 15000+600000
+ 674566 words of font info for 231 fonts, out of 8000000 for 9000
  1148 hyphenation exceptions out of 8191
- 117i,9n,112p,11219b,2483s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 117i,10n,112p,11219b,2483s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb
 ></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><
 /usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></
@@ -1909,10 +1939,10 @@ mf-dist/fonts/type1/public/cm-super/sfsx1728.pfb></usr/local/texlive/2026/texmf
 ist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2026/texmf-dis
 t/fonts/type1/public/cm-super/sftt1095.pfb></usr/local/texlive/2026/texmf-dist/
 fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on Benutzerhandbuch.pdf (25 pages, 424126 bytes).
+Output written on Benutzerhandbuch.pdf (27 pages, 485254 bytes).
 PDF statistics:
- 416 PDF objects out of 1000 (max. 8388607)
- 340 compressed objects within 4 object streams
- 71 named destinations out of 1000 (max. 500000)
- 46330 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 435 PDF objects out of 1000 (max. 8388607)
+ 353 compressed objects within 4 object streams
+ 75 named destinations out of 1000 (max. 500000)
+ 46340 words of extra memory for PDF output out of 51595 (max. 10000000)
 

@@ -14,18 +14,18 @@
 \contentsline {section}{\numberline {5.2}Verbindung mit dem PC}{9}{section.5.2}%
 \contentsline {section}{\numberline {5.3}Software-Start}{9}{section.5.3}%
 \contentsline {subsection}{\numberline {5.3.1}Visuelle Darstellung:}{10}{subsection.5.3.1}%
-\contentsline {subsection}{\numberline {5.3.2}Bedeutung für den Anwender:}{10}{subsection.5.3.2}%
-\contentsline {chapter}{\numberline {6}Bedienung und Anzeige}{11}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Das Radar-Bild interpretieren}{11}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Reichweite}{12}{section.6.2}%
-\contentsline {chapter}{\numberline {7}Pflege und Wartung}{13}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Reinigung}{13}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Lagerung}{13}{section.7.2}%
-\contentsline {chapter}{\numberline {8}Sicherheitshinweise}{15}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Sicherheit im Umgang mit der Energieversorgung}{15}{section.8.1}%
-\contentsline {chapter}{\numberline {9}Fehlersuche}{17}{chapter.9}%
-\contentsline {section}{\numberline {9.1}Software-Fehlermeldungen}{17}{section.9.1}%
-\contentsline {chapter}{\numberline {10}Sonstiges}{19}{chapter.10}%
-\contentsline {section}{\numberline {10.1}Technische Spezifikationen: Energie}{19}{section.10.1}%
-\contentsline {section}{\numberline {10.2}Daten und Energiefluss}{19}{section.10.2}%
+\contentsline {subsection}{\numberline {5.3.2}Bedeutung für den Anwender:}{11}{subsection.5.3.2}%
+\contentsline {chapter}{\numberline {6}Bedienung und Anzeige}{13}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Das Radar-Bild interpretieren}{13}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Reichweite}{14}{section.6.2}%
+\contentsline {chapter}{\numberline {7}Pflege und Wartung}{15}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Reinigung}{15}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Lagerung}{15}{section.7.2}%
+\contentsline {chapter}{\numberline {8}Sicherheitshinweise}{17}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Sicherheit im Umgang mit der Energieversorgung}{17}{section.8.1}%
+\contentsline {chapter}{\numberline {9}Fehlersuche}{19}{chapter.9}%
+\contentsline {section}{\numberline {9.1}Software-Fehlermeldungen}{19}{section.9.1}%
+\contentsline {chapter}{\numberline {10}Sonstiges}{21}{chapter.10}%
+\contentsline {section}{\numberline {10.1}Technische Spezifikationen: Energie}{21}{section.10.1}%
+\contentsline {section}{\numberline {10.2}Daten und Energiefluss}{21}{section.10.2}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

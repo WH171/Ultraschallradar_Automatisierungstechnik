@@ -20,7 +20,7 @@ Platzieren Sie das Radarsystem auf einer ebenen Fläche (z. B. einem Tisch). Ach
 \section{Verbindung mit dem PC}
 1. Stecken Sie das Micro-USB Kabelende in den Micro-USB Port des Gehäuses.
 2. Stecken Sie das andere Ende in einen freien USB-Port Ihres Computers.
-3. Die LED`s an der Basisstation sollte nun leuchten. Das Radarsystem führt beim Einstecken eine kurze Testbewegung durch.
+3. Die LED`s an der Basisstation sollten nun kurz leuchten. Das Radarsystem führt nach dem Einstecken eine kurzen Systemtest durch.
 
 \section{Software-Start}
 
@@ -30,10 +30,14 @@ Das Radarsystem wird in Kombination mit einer PC-Software betrieben, die als gra
 Um die Software zu beziehen, benötigen Sie lediglich einen Webbrowser.
 
 \begin{itemize}
-	\item Öffnen Sie die Projektseite unter folgendem Link: \\ \url{https://github.com/EUER_BENUTZERNAME/EUER_PROJEKT} % <--- Hier euren Link eintragen!
+	\item Öffnen Sie die Projektseite unter folgendem Link: \\ \url{https://github.com/WH171/Ultraschallradar_Automatisierungstechnik/tree/main/Benutzeroberflaeche_Ultraschallradar_Processing} 
+	
 	\item \textbf{Für Anwender (Empfohlen):} Navigieren Sie auf der GitHub-Seite im rechten Seitenmenü zum Bereich \glqq Releases\grqq. Laden Sie dort die aktuellste gepackte Version der Software (z.\,B. \texttt{RadarUI\_v1.0.zip}) herunter.
+	
 	\item \textbf{Für Entwickler (Optional):} Möchten Sie den Quellcode einsehen, klicken Sie auf den grünen Button \glqq Code\grqq~und wählen Sie \glqq Download ZIP\grqq.
+	
 	\item Entpacken Sie das heruntergeladene Archiv vollständig an einen beliebigen Ort auf Ihrer lokalen Festplatte (z.\,B. auf den Desktop).
+	
 	\item \textbf{Hinweis:} Es ist keine Installation von Drittsoftware oder einer Entwicklungsumgebung  notwendig. Das Programm ist sofort lauffähig.
 \end{itemize}
 
@@ -41,13 +45,22 @@ Um die Software zu beziehen, benötigen Sie lediglich einen Webbrowser.
 Um eine reibungslose Kommunikation zwischen Hardware und Software zu gewährleisten, halten Sie bitte folgende Reihenfolge ein:
 
 \begin{enumerate}
-	\item \textbf{Hardware anschließen:} Stellen Sie sicher, dass das Radarsystem (Arduino Nano 33 BLE Sense) über das USB-Kabel mit dem Computer verbunden ist und mit Strom versorgt wird.
-	\item \textbf{Software ausführen:} Navigieren Sie in den zuvor kopierten Ordner auf Ihrem Computer. Führen Sie die ausführbare Programmdatei (z.\,B. \texttt{RadarUI.exe} unter Windows) mit einem Doppelklick aus.
-	\item \textbf{System-Initialisierung:} Die Benutzeroberfläche öffnet sich nun automatisch, sucht den aktiven COM-Port des Arduinos und leitet den Hardware-Selbsttest ein (siehe Kapitel 6: Bedienung und Anzeige).
+	\item \textbf{Hardware anschließen:} Stellen Sie sicher, dass das Radarsystem über das USB-Kabel mit dem Computer verbunden ist und mit Strom versorgt wird.
+	
+	\item \textbf{Software ausführen:} Navigieren Sie in den zuvor kopierten Ordner auf Ihrem Computer. Führen Sie die ausführbare Programmdatei: Ultraschallradar Benutzeroberfläche App  mit einem Doppelklick aus.
+	
+	\item \textbf{System-Initialisierung:} Die Benutzeroberfläche öffnet sich nun automatisch und leitet den Hardware-Selbsttest ein.
 \end{enumerate}
 
 \subsection{Visuelle Darstellung:} 
 Der Bildschirm auf dem Computermonitor ist abgedunkelt. Im Zentrum erscheint gut lesbar die Meldung: \textit{,,System fährt hoch... Hardware-Selbsttest wird durchgeführt.''}
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.8\textwidth]{General/BenutzeroberflaecheBilder/BenutzeroberflaecheSystemFaehrtHoch}
+	\caption{Benutzeroberfläche: System fährt hoch}
+	\label{fig: Benutzeroberfläche: System fährt hoch}
+\end{figure}
 
 \subsection{Bedeutung für den Anwender:} 
 Das System prüft die interne serielle Kommunikation, fährt den Servomotor in die definierte Ausgangsposition ($0^\circ$) und sendet einen ersten Test-Ultraschallimpuls, um Hardware- oder Kabelbrüche auszuschließen. Der Benutzer muss in dieser Phase keine Eingaben tätigen, sondern lediglich warten. Am Gehäuse der Hardware leuchten zur visuellen Bestätigung kurz beide LEDs (Grün und Rot) auf.

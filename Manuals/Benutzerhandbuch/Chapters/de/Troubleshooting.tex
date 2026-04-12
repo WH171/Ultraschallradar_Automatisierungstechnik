@@ -19,11 +19,18 @@
 	\caption{Flussdiagramm: Fehlermeldungen}
 \end{figure}
 \section{Software-Fehlermeldungen}
-Sollte während des Selbsttests oder im laufenden Betrieb ein kritischer Hardwarefehler auftreten, greift eine Sicherheitsschaltung. Alle motorischen Bewegungen des Servos werden sofort gestoppt.
+Sollte während des Selbsttests oder im laufenden Betrieb ein kritischer Hardwarefehler auftreten, erscheint eine Meldung. Alle motorischen Bewegungen des Servos werden sofort gestoppt.
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.8\textwidth]{General/BenutzeroberflaecheBilder/BenutzeroberflaecheSystemFehler}
+	\caption{Benutzeroberfläche: Systemfehler}
+	\label{fig: Benutzeroberfläche: System fährt hoch}
+\end{figure}
 
 \begin{itemize}
-	\item \textbf{Visuelle Darstellung:} Die Benutzeroberfläche wechselt auf einen warnenden, vollflächig roten Hintergrund mit zentrierten, großformatigen Warnhinweisen. Das Radarbild wird komplett ausgeblendet, um die Fehlinterpretation von fehlerhaften oder veralteten Sensordaten zu verhindern.
-	\item \textbf{Fehlermeldung:} \textit{,,$\triangle$ SYSTEMFEHLER $\triangle$ - Ultraschallsensor antwortet nicht (Hardware-Timeout). Anlage überprüfen und Arduino neustarten.''}
+	\item \textbf{Visuelle Darstellung:} Die Benutzeroberfläche wechselt auf einen warnenden, roten Hintergrund mit Warnhinweisen. Das Radarbild wird komplett ausgeblendet.
+	\item \textbf{Fehlermeldung:} \textit{,, SYSTEMFEHLER  - Ultraschallsensor antwortet nicht (Hardware-Timeout). Anlage überprüfen und Arduino neustarten.''}
 	\item \textbf{Hardware-Indikator:} Am Gehäuse des Radarsystems leuchtet die rote LED dauerhaft auf.
 \end{itemize}
 
