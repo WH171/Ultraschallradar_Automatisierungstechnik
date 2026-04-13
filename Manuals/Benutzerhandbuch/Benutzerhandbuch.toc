@@ -25,7 +25,8 @@
 \contentsline {section}{\numberline {8.1}Sicherheit im Umgang mit der Energieversorgung}{17}{section.8.1}%
 \contentsline {chapter}{\numberline {9}Fehlersuche}{19}{chapter.9}%
 \contentsline {section}{\numberline {9.1}Software-Fehlermeldungen}{19}{section.9.1}%
-\contentsline {chapter}{\numberline {10}Sonstiges}{21}{chapter.10}%
-\contentsline {section}{\numberline {10.1}Technische Spezifikationen: Energie}{21}{section.10.1}%
-\contentsline {section}{\numberline {10.2}Daten und Energiefluss}{21}{section.10.2}%
+\contentsline {subsection}{\numberline {9.1.1}Handlungsanweisung bei Systemfehler}{20}{subsection.9.1.1}%
+\contentsline {chapter}{\numberline {10}Spezifikationen}{21}{chapter.10}%
+\contentsline {section}{\numberline {10.1}Daten und Energiefluss}{21}{section.10.1}%
+\contentsline {section}{\numberline {10.2}Technische Spezifikationen}{21}{section.10.2}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

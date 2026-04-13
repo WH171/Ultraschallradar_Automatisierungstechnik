@@ -14,7 +14,7 @@
 	\node (proc3) [process, below=of proc1] {Mit Hersteller in Verbindung setzen};
 	
 	\draw [arrow] (start) -- (dec1);
-	\draw [arrow] (dec1) -- node[anchor=south] {\textbf{Ja(Hardwarefehler)}} (proc1);
+	\draw [arrow] (dec1) -- node[anchor=south] {\textbf{Ja (Hardwarefehler)}} (proc1);
 	\draw [arrow] (dec1) -- node[anchor=east] {\textbf{Nein (Softwarehänger)}} (proc2);
 	\draw [arrow] (proc1) -- (proc3);
 	

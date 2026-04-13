@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.16)  12 APR 2026 16:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.16)  13 APR 2026 09:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1838,7 +1838,7 @@ tisierungstechnik /
 
 [9]
 <General/BenutzeroberflaecheBilder/BenutzeroberflaecheSystemFaehrtHoch.png, id=
-168, 1000.73875pt x 598.235pt>
+170, 1000.73875pt x 598.235pt>
 File: General/BenutzeroberflaecheBilder/BenutzeroberflaecheSystemFaehrtHoch.png
  Graphic file (type png)
 <use General/BenutzeroberflaecheBilder/BenutzeroberflaecheSystemFaehrtHoch.png>
@@ -1876,14 +1876,14 @@ chapter 8.
 ]
 chapter 9.
 (./General/FlussdiagrammFehlermeldungen.tex)
-<General/BenutzeroberflaecheBilder/BenutzeroberflaecheSystemFehler.png, id=212,
- 1002.74625pt x 602.25pt>
+<General/BenutzeroberflaecheBilder/BenutzeroberflaecheSystemFehler.png, id=214,
+ 1000.73875pt x 598.235pt>
 File: General/BenutzeroberflaecheBilder/BenutzeroberflaecheSystemFehler.png Gra
 phic file (type png)
 <use General/BenutzeroberflaecheBilder/BenutzeroberflaecheSystemFehler.png>
 Package pdftex.def Info: General/BenutzeroberflaecheBilder/BenutzeroberflaecheS
-ystemFehler.png  used on input line 26.
-(pdftex.def)             Requested size: 345.98685pt x 207.80403pt.
+ystemFehler.png  used on input line 34.
+(pdftex.def)             Requested size: 345.98685pt x 206.82945pt.
  [19]) (./Chapters/de/AddOns.tex
 [20 <./General/BenutzeroberflaecheBilder/BenutzeroberflaecheSystemFehler.png>]
 chapter 10.
@@ -1911,11 +1911,11 @@ Package logreq Info: Writing requests to 'Benutzerhandbuch.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 60641 strings out of 467525
- 1502436 string characters out of 5418982
+ 60644 strings out of 467525
+ 1502471 string characters out of 5418982
  2536176 words of memory out of 5000000
- 88461 multiletter control sequences out of 15000+600000
- 674566 words of font info for 231 fonts, out of 8000000 for 9000
+ 88462 multiletter control sequences out of 15000+600000
+ 674637 words of font info for 232 fonts, out of 8000000 for 9000
  1148 hyphenation exceptions out of 8191
  117i,10n,112p,11219b,2483s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb
@@ -1939,10 +1939,10 @@ mf-dist/fonts/type1/public/cm-super/sfsx1728.pfb></usr/local/texlive/2026/texmf
 ist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2026/texmf-dis
 t/fonts/type1/public/cm-super/sftt1095.pfb></usr/local/texlive/2026/texmf-dist/
 fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on Benutzerhandbuch.pdf (27 pages, 485254 bytes).
+Output written on Benutzerhandbuch.pdf (27 pages, 485584 bytes).
 PDF statistics:
- 435 PDF objects out of 1000 (max. 8388607)
- 353 compressed objects within 4 object streams
+ 439 PDF objects out of 1000 (max. 8388607)
+ 357 compressed objects within 4 object streams
  75 named destinations out of 1000 (max. 500000)
- 46340 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 46348 words of extra memory for PDF output out of 51595 (max. 10000000)
 
