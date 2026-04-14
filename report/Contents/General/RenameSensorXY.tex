@@ -12,77 +12,157 @@
 %%%%%%%%%%%%
 
 % Structure
-\chapter{\textcolor{red}{Sensor XY}}
+\section{Further Readings}
 
-Introduction
-\Mynote{cite books, applications, board}
+\chapter{\textcolor{red}{HC-SR04 Ultraschallsensor}}
 
-\section{General}
+\section*{Einleitung}
+Dieses Kapitel beschreibt den HC-SR04 Ultraschallsensor im Detail, einschließlich seiner Hardware-Spezifikationen, der verwendeten Software-Bibliotheken sowie praktischer Anwendungs- und Codebeispiele.
+\Mynote{\cite{berrybase, sparkfun, arduino_newping}}
 
-General description
+\section{Allgemeines}
+Der HC-SR04 ist ein weit verbreitetes, kostengünstiges Ultraschallmodul zur berührungslosen Entfernungsmessung. Das Modul sendet hochfrequente Schallwellen aus und misst die exakte Zeitdauer, bis das akustische Echo von einem reflektierenden Objekt zurückkehrt. Anhand dieser Laufzeit lässt sich die exakte Distanz zum Objekt präzise berechnen. Typische Einsatzgebiete in der Praxis umfassen die Robotik (Hinderniserkennung), Automatisierungstechnik, Sicherheitssysteme sowie Füllstandsmessungen und Abstandswarner (z.B. Einparkhilfen).
 
-cite books
+\section{Spezifischer Sensor/Aktor}
+Das HC-SR04-Modul besteht grundlegend aus drei Hauptkomponenten: einem Ultraschallsender (Transmitter), einem Ultraschallempfänger (Receiver) und einer integrierten Steuerschaltung. Es verfügt über vier Pins zur Verbindung mit der Hardware: \texttt{VCC} (Stromversorgung), \texttt{TRIG} (Triggereingang), \texttt{ECHO} (Ausgang für das Messergebnis) und \texttt{GND} (Masse). Um den Sensor mit einem Entwicklungsboard (z. B. einem Arduino) anzusteuern, wird ein mindestens 10 Mikrosekunden langer HIGH-Impuls an den \texttt{TRIG}-Pin gesendet. Daraufhin sendet der Sensor vollautomatisch acht Ultraschallimpulse mit einer Frequenz von 40 kHz aus und setzt parallel den \texttt{ECHO}-Pin auf HIGH. Sobald das Ultraschallsignal reflektiert wird und zum Empfänger zurückkehrt, fällt der \texttt{ECHO}-Pin wieder auf LOW. Die Dauer, die der \texttt{ECHO}-Pin auf HIGH stand, entspricht der Schalllaufzeit.
 
-\section{Specific Sensor/Actor}
-
-cite board
-
-\section{Specification}
-
+\section{Spezifikation}
 \begin{itemize}
-  \item Cite the data sheet
-  \item Extract te information from the data sheet
-  \item Circuit Diagram
+	\item \textbf{Datenblatt referenzieren:} Als primäre Referenzen für die physikalischen Grenzen dienen die offiziellen Datenblätter von Sparkfun, BerryBase und Handson Technology.
+	\item \textbf{Extrahierte Informationen:}
+	\begin{itemize}
+		\item Betriebsspannung: 5 V DC
+		\item Betriebsstrom: ca. 15 mA (Ruhestrom < 2 mA)
+		\item Arbeitsfrequenz: 40 kHz
+		\item Messbereich: 2 cm bis 400 cm (Herstellerabhängig spezifiziert bis max. 450 cm)
+		\item Messgenauigkeit: bis zu 3 mm
+		\item Effektiver Messwinkel: < 15 Grad
+		\item Trigger-Signal: 10 µs TTL-Impuls
+	\end{itemize}
+	\item \textbf{Schaltplan:} In einem typischen Schaltungsaufbau wird VCC des Sensors mit dem 5V-Ausgang des Mikrocontrollers verbunden und GND mit der gemeinsamen Masse. TRIG wird an einen digitalen Ausgangspin (z.B. Pin 12) und ECHO an einen digitalen Eingangspin (z.B. Pin 11) des Mikrocontrollers angeschlossen.
 \end{itemize}
 
-\section{Library}
+\section{Bibliothek}
 
-\subsection{Description}
+\subsection{Beschreibung}
+Für die effiziente Ansteuerung des HC-SR04 wird in der Regel die \texttt{NewPing}-Bibliothek von Tim Eckel verwendet. Diese Bibliothek löst zahlreiche Architektur-Probleme älterer Ultraschall-Bibliotheken (wie massive Programmverzögerungen, wenn kein Echo zurückkehrt) und verzichtet auf die extrem langsame und oft fehlerhafte \texttt{pulseIn()}-Funktion. Sie bietet erweiterte Features wie Timer-Interrupts für blockierungsfreie ereignisgesteuerte Sketche sowie integrierte digitale Filterung.
 
 \subsection{Installation}
-
+Die Installation kann direkt in der Arduino IDE über den internen Bibliotheksverwalter erfolgen. Alternativ kann sie als .ZIP-Datei von der Entwicklerseite bezogen und manuell in die Entwicklungsumgebung (über "Sketch > Bibliothek einbinden > .ZIP-Bibliothek hinzufügen") importiert werden.
 \begin{itemize}
-    \item data types
-    \item data structure
-    \item data quantity
-    \item data quality
+	\item \textbf{Data types:} Die Bibliothek operiert primär mit \texttt{unsigned int} als Rückgabedatentyp, um Messzeiten in Mikrosekunden oder Längen in cm/inch speichereffizient zu verarbeiten.
+	\item \textbf{Data structure:} Jeder verbaute Sensor wird als dediziertes C++ Objekt der Klasse \texttt{NewPing} instanziiert.
+	\item \textbf{Data quantity:} Das Softwaredesign der Bibliothek ermöglicht das gleichzeitige, asynchrone Pingen von bis zu 15 Sensoren durch den Einsatz von Hardware-Timern. Pro Sensor können absolut zuverlässig bis zu 30 Pings pro Sekunde durchgeführt werden.
+	\item \textbf{Data quality:} Die integrierte Funktion \texttt{ping\_median(iterations)} erhöht die Datenqualität drastisch. Sie führt mehrere Messungen hintereinander aus und liefert den Medianwert zurück, wodurch zufällige Messausreißer effektiv herausgefiltert werden.
 \end{itemize}
 
-\subsection{Functions}
+\subsection{Funktionen}
+Die Bibliothek stellt primär folgende Methoden zur Verfügung:
+\begin{itemize}
+	\item \texttt{sonar.ping()}: Sendet ein Ultraschallsignal aus und gibt die exakte Laufzeit in Mikrosekunden zurück.
+	\item \texttt{sonar.ping\_cm()}: Führt eine Messung durch und gibt die direkt berechnete Distanz in ganzen Zentimetern zurück.
+	\item \texttt{sonar.ping\_median(iterations)}: Führt eine definierte Anzahl an Messungen durch und verwirft ungültige Ausreißer.
+\end{itemize}
 
-\section{Example}
+\section{Beispiel}
+In diesem Abschnitt wird ein einfaches Anwendungsbeispiel zur Distanzmessung mit der NewPing-Bibliothek detailliert beschrieben.
 
-In this section, a simple example is described in detail, which demonstrates how the library supports the sensor/actor.
+\subsection{Handbuch}
+Verbinden Sie die Stromversorgungs-Pins (VCC und GND) des HC-SR04 mit den 5V- und GND-Pins des Arduinos. Verbinden Sie den TRIG-Pin des Sensors mit dem digitalen Pin 12 und den ECHO-Pin mit dem digitalen Pin 11 auf dem Board. Verbinden Sie den Arduino über USB mit dem Rechner, kompilieren Sie das Skript und öffnen Sie den seriellen Monitor.
 
-
-\subsection{Manual}
-
-\subsection{Inside the Example}
+\subsection{Im Inneren des Beispiels}
+Das Beispiel beginnt mit der Einbindung der Bibliothek und der Definition der Pins. Das \texttt{NewPing}-Objekt \texttt{sonar} wird mit Trigger-Pin, Echo-Pin und einer definierten maximalen Messdistanz initialisiert. In der Hauptschleife (\texttt{loop}) wird im Abstand von 50 Millisekunden ein Ping ausgelöst. Die zurückgegebene Laufzeit in Mikrosekunden wird durch den standardisierten Teilerfaktor 58 dividiert, um die korrekte Entfernung in Zentimetern zu errechnen.
 
 \subsection{Code}
+\begin{verbatim}
+	#include <NewPing.h>
+	
+	#define TRIGGER_PIN  12  // Arduino Pin verbunden mit TRIG
+	#define ECHO_PIN     11  // Arduino Pin verbunden mit ECHO
+	#define MAX_DISTANCE 400 // Maximale Reichweite in cm 
+	
+	// Initialisierung des Objektes
+	NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE);
+	
+	void setup() {
+		Serial.begin(9600);
+	}
+	
+	void loop() {
+		delay(50); // Empfohlene Mindestwartezeit zwischen Pings (ca. 20 pings/sec)
+		unsigned int uS = sonar.ping(); // Pingen und Zeit in Mikrosekunden erhalten
+		
+		Serial.print("Distanz: ");
+		Serial.print(uS / 58); // Formel: Mikrosekunden / 58 = Zentimeter
+		Serial.println(" cm");
+	}
+\end{verbatim}
 
-\subsection{Files}
+\subsection{Dateien}
+Für das reibungslose Kompilieren dieses Beispiels wird zwingend die Header-Datei \texttt{NewPing.h} benötigt, die auf dem System installiert sein muss.
 
+\section{Kalibrierung}
+Die Messung der Ultraschall-Laufzeit basiert physikalisch auf der Ausbreitung von Schall in der Luft (Schallgeschwindigkeit), welche bei ca. 20 °C exakt 343 m/s beträgt. 
+Die standardisierte Berechnungsformel lautet: 
+\[ \text{Distanz (cm)} = \frac{\text{Laufzeit (µs)}}{58} \]
+oder als Rohberechnung:
+\[ \text{Distanz} = \frac{\text{Laufzeit} \times \text{Schallgeschwindigkeit}}{2} \]
+(Dividiert durch 2, da der Schall die Strecke zum Objekt und wieder zurück zurücklegen muss). 
+Da die Schallgeschwindigkeit temperaturabhängig ist, kann für hochpräzise Kalibrierungen ein zusätzlicher Temperatursensor in die Schaltung integriert werden, um den Teilerfaktor in Echtzeit anzupassen.
 
+\section{Einfacher Code (ohne Bibliothek)}
+Um das nackte Hardware-Verhalten des Sensors ohne Software-Bibliothek zu testen, reicht folgendes natives C++ Konstrukt:
+\begin{verbatim}
+	int trig = 11;
+	int echo = 12;
+	
+	void setup() {
+		pinMode(trig, OUTPUT);
+		pinMode(echo, INPUT);
+		Serial.begin(9600);
+	}
+	
+	void loop() {
+		// Trigger-Impuls erzeugen (10 Mikrosekunden)
+		digitalWrite(trig, LOW);
+		delayMicroseconds(2);
+		digitalWrite(trig, HIGH);
+		delayMicroseconds(10); 
+		digitalWrite(trig, LOW);
+		
+		// Zeit messen, bis Echo-Pin auf LOW fällt
+		long duration = pulseIn(echo, HIGH);
+		float distance = duration / 58.0; 
+		
+		Serial.print("Distanz: ");
+		Serial.print(distance);
+		Serial.println(" cm");
+		delay(100);
+	}
+\end{verbatim}
 
-\section{Calibration}
-
-cite method
-
-\section{Simple Code}
-
-
-\section{Simple Application}
-
-
+\section{Einfache Anwendung}
+Eine gängige, einfache Anwendung für den HC-SR04 ist ein smarter Garagen-Einparkassistent. Das Sensormodul wird auf Stoßstangenhöhe an der Garagenwand angebracht. Nähert sich das Fahrzeug auf unter 50 cm, warnt eine LED-Matrix (Gelb). Bei weniger als 15 cm Entfernung leuchtet die Matrix Rot und ein aktiver Summer gibt ein akustisches Stopp-Signal. Die \texttt{NewPing}-Bibliothek gewährt hierbei die Sicherheit, dass es durch Fehlmessungen oder Reflektionen an Autokonturen nicht zu Softwarehängern kommt.
 
 \section{Tests}
 
-\subsection{Simple Function Test}
+\subsection{Einfacher Funktionstest}
+Zur Überprüfung der grundlegenden Schaltung sollte nach dem Upload ein harter, planer Gegenstand (z. B. ein Buchkasten) in exakt 20 cm Abstand frontal vor den Sensor gehalten werden. Der Code sollte im Serial Monitor den konstanten Wert von 20 cm anzeigen, mit einer minimalen Abweichung von höchstens ± 3 mm.
 
-\subsection{Test all Functions}
+\subsection{Alle Funktionen testen}
+Ein umfassender Belastungstest für Sensor und Code umfasst folgende Kriterien:
+1. \textbf{Minimaldistanz:} Annäherung auf 2 cm – prüfen, ob der Messwert linear bleibt oder verfälscht wird.
+2. \textbf{Maximaldistanz:} Ausrichtung auf eine flache, große Wand in über 4 Metern Entfernung (Fläche muss > 0.5 qm betragen), um das Reichweitenlimit auszutesten.
+3. \textbf{Messwinkel:} Bewegungen von Objekten in Winkeln von $> 15^\circ$ zur Sensorachse dürfen keine gültigen Echos mehr erzeugen.
+4. \textbf{Filterung:} Überprüfung von \texttt{sonar.ping\_median(5)}, indem der Sensor auf weiche, schallschluckende Stoffe oder extrem unebene Oberflächen gerichtet wird, bei denen herkömmliche Codes stark springende Werte ausgeben.
 
-
-
-\section{Further Readings}
+\section{Weiterführende Literatur}
+\begin{thebibliography}{9}
+	\bibitem{berrybase} BerryBase (2024): \textit{Datasheet for HC-SR04 Ultraschall Sensor}. 
+	\bibitem{sparkfun} SparkFun Electronics: \textit{Ultrasonic Ranging Module HC - SR04}.
+	\bibitem{handsontec} Handson Technology: \textit{HC-SR04 Ultrasonic Sensor Module User Guide}.
+	\bibitem{arduino_newping} Arduino Documentation: \textit{NewPing Library Reference}.
+	\bibitem{scribd_newping} Tim Eckel / Scribd: \textit{Arduino NewPing Library Documentation}.
+	\bibitem{teachengineering} Teach Engineering: \textit{NewPing Instructions and Code for Distance Sensing}.
+\end{thebibliography}
 

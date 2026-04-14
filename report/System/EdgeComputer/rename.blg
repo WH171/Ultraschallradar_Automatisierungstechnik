@@ -21,12 +21,18 @@ Database file #1: rename-blx.bib
 Database file #2: ../../../MLbib/Jetson.bib
 Database file #3: ../../../MLbib/literature.bib
 Database file #4: ../../../MLbib/MyLiterature.bib
+Warning--I didn't find a database entry for "berrybase"
+Warning--I didn't find a database entry for "sparkfun"
+Warning--I didn't find a database entry for "arduino_newping"
+Warning--I didn't find a database entry for "towerpro"
+Warning--I didn't find a database entry for "arduino_servo"
+Warning--I didn't find a database entry for "components101"
 Biblatex version: 3.21
 Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 You've used 14 entries,
             6402 wiz_defined-function locations,
-            1298 strings with 12785 characters,
+            1304 strings with 12851 characters,
 and the built_in function-call counts, 134059 in all, are:
 = -- 11245
 > -- 1642
@@ -65,3 +71,4 @@ warning$ -- 0
 while$ -- 2133
 width$ -- 0
 write$ -- 571
+(There were 6 warnings)
