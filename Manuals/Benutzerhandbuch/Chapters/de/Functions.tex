@@ -14,19 +14,25 @@
 \chapter{Bedienung und Anzeige}
 
 \section{Das Radar-Bild interpretieren}
+\begin{figure}[h]
+	\centering
+	\input{General/Benutzeroberfläche}
+	\caption{Benutzeroberfläche}
+\end{figure}
 
-\include{General/SketchBenutzerschnittstelle}
 Nach bestandenem Selbsttest wechselt das System automatisch in den Normalbetrieb. Die grüne Status-LED am Gehäuse leuchtet nun dauerhaft.
 
 Auf Ihrem Bildschirm sehen Sie eine kreisförmige Anzeige.
 
 \begin{itemize}
-	\item \textbf{Visuelle Darstellung:} Das Zentrum der Benutzeroberfläche bildet ein Radar-Gitter in Form von Halbkreisen mit festen Abstands- und Winkelmarkierungen. Ein optischer Scan-Strahl (Linie) bewegt sich synchron zum physischen Servomotor stufenlos von $0^\circ$ auf $180^\circ$ und wieder zurück. Ein leicht transparenter Hintergrund erzeugt einen \glqq Nachleucht-Effekt\grqq~vergangener Messungen.
-	\item \textbf{Hindernisse:} Physisch erkannte Hindernisse werden als markante rote Punkte auf dem Gitter eingezeichnet.
+	\item \textbf{Visuelle Darstellung:} Das Zentrum der Benutzeroberfläche bildet ein Radar-Gitter in Form von Halbkreisen mit festen Abstands- und Winkelmarkierungen. Ein optischer Scan-Strahl bewegt sich im Halbkreis stufenlos von $0^\circ$ auf $180^\circ$ und wieder zurück.
+	\item \textbf{Hindernisse:} Erkannte Hindernisse werden als rote Punkte auf dem Gitter eingezeichnet.
 \end{itemize}
 
 \section{Reichweite}
-\include{General/Reichweite}
-In der oberen linken Ecke der Benutzeroberfläche befindet sich die Statusanzeige. Sie zeigt den aktuellen Systemstatus (\textit{,,SYSTEM OK''}), den exakten aktuellen Scan-Winkel in Grad sowie die berechnete Distanz zum nächsten Objekt in Zentimetern an. Befindet sich kein Hindernis im definierten Messbereich (0 -- 40\,cm), zeigt die Statusleiste \textit{,,Außer Reichweite''} an.
-
-Das System erkennt Objekte zuverlässig in einer Distanz von ca. $2\,cm$ bis $400\,cm$. Sehr weiche Oberflächen (wie Vorhänge) können den Schall schlucken und werden evtl. später erkannt als harte Oberflächen (wie Wände).
+\begin{figure}[h]
+	\centering
+	\input{General/Reichweite}
+	\caption{Reichweite}
+\end{figure}
+In der oberen linken Ecke der Benutzeroberfläche befindet sich die Statusanzeige. Sie zeigt den aktuellen Systemstatus (\textit{,,SYSTEM OK''}), den exakten aktuellen Scan-Winkel in Grad sowie die berechnete Distanz zum nächsten Objekt in Zentimetern an. Das System erkennt Objekte zuverlässig in einer Distanz von ca. $2\,cm$ bis $40\,cm$.
