@@ -5,9 +5,7 @@
 			arrow/.style={thick, -Latex, black!70}
 			]
 			
-			% ==========================================
 			% ANSICHT: VORNE
-			% ==========================================
 			\begin{scope}[shift={(0,0)}]
 				% Titel
 				\node at (2, -1.5) {\textbf{Ansicht: Vorne}};
@@ -35,9 +33,7 @@
 				\draw[arrow] (lblGeh) -- (0, 2);
 			\end{scope}
 			
-			% ==========================================
 			% ANSICHT: HINTEN
-			% ==========================================
 			\begin{scope}[shift={(5,0)}]
 				% Titel
 				\node at (2, -1.5) {\textbf{Ansicht: Hinten}};
@@ -45,8 +41,8 @@
 				% Gehäuse (Hauptkörper)
 				\draw[fill=black!5, rounded corners=3pt] (0,0) rectangle (4,4);
 				
-				% Öffnungen Hinten (LEDs und USB-C)
-				% USB-C Port (unten mittig)
+				% Öffnungen Hinten (LEDs und USB)
+				% USB Port (unten mittig)
 				\draw[fill=white, thick, rounded corners=1pt] (1.6, 0.6) rectangle (2.4, 0.9);
 				\draw[fill=black!70] (1.7, 0.7) rectangle (2.3, 0.8); % Kontaktzunge
 				
@@ -57,7 +53,7 @@
 				% Dreheinheit (Rückseite)
 				\draw[fill=black!15, thick] (1.2, 4) rectangle (2.8, 4.6);
 				
-				% Ultraschallsensor (Rückseite - keine Augen sichtbar)
+				% Ultraschallsensor (Rückseite)
 				\draw[fill=black!10, thick] (0.1, 4.4) rectangle (3.9, 5.8);
 				% Rückseite des PCBs (kleine Details)
 				%\draw[fill=black!20, draw=none] (1.2, 4.8) rectangle (1.6, 5.4);

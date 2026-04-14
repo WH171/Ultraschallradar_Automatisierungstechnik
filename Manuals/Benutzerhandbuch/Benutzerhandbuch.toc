@@ -1,6 +1,7 @@
 \acswitchoff 
 \babel@toc {ngerman}{}\relax 
 \contentsline {chapter}{ Abbildungsverzeichnis}{iii}{chapter*.1}%
+\contentsline {chapter}{ Tabellenverzeichnis}{v}{chapter*.2}%
 \contentsline {chapter}{\numberline {1}Wichtige Hinweise vorab}{1}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Willkommen}{1}{section.1.1}%
 \contentsline {section}{\numberline {1.2}Zu diesem Handbuch}{1}{section.1.2}%
@@ -11,22 +12,21 @@
 \contentsline {section}{\numberline {4.1}Anforderungen an die Stromversorgung}{7}{section.4.1}%
 \contentsline {chapter}{\numberline {5}Inbetriebnahme}{9}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Aufstellung}{9}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Verbindung mit dem PC}{9}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Software-Start}{9}{section.5.3}%
-\contentsline {subsection}{\numberline {5.3.1}Visuelle Darstellung:}{10}{subsection.5.3.1}%
-\contentsline {subsection}{\numberline {5.3.2}Bedeutung für den Anwender:}{11}{subsection.5.3.2}%
-\contentsline {chapter}{\numberline {6}Bedienung und Anzeige}{13}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Das Radar-Bild interpretieren}{13}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Reichweite}{14}{section.6.2}%
-\contentsline {chapter}{\numberline {7}Pflege und Wartung}{15}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Reinigung}{15}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Lagerung}{15}{section.7.2}%
-\contentsline {chapter}{\numberline {8}Sicherheitshinweise}{17}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Sicherheit im Umgang mit der Energieversorgung}{17}{section.8.1}%
-\contentsline {chapter}{\numberline {9}Fehlersuche}{19}{chapter.9}%
-\contentsline {section}{\numberline {9.1}Software-Fehlermeldungen}{19}{section.9.1}%
-\contentsline {subsection}{\numberline {9.1.1}Handlungsanweisung bei Systemfehler}{20}{subsection.9.1.1}%
-\contentsline {chapter}{\numberline {10}Spezifikationen}{21}{chapter.10}%
-\contentsline {section}{\numberline {10.1}Daten und Energiefluss}{21}{section.10.1}%
-\contentsline {section}{\numberline {10.2}Technische Spezifikationen}{21}{section.10.2}%
+\contentsline {section}{\numberline {5.2}Software-Start}{9}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Visuelle Darstellung:}{10}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Bedeutung für den Anwender:}{10}{subsection.5.2.2}%
+\contentsline {chapter}{\numberline {6}Bedienung und Anzeige}{11}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Das Radar-Bild interpretieren}{11}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Reichweite}{12}{section.6.2}%
+\contentsline {chapter}{\numberline {7}Pflege und Wartung}{13}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Reinigung}{13}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Lagerung}{13}{section.7.2}%
+\contentsline {chapter}{\numberline {8}Sicherheitshinweise}{15}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Sicherheit im Umgang mit der Energieversorgung}{15}{section.8.1}%
+\contentsline {chapter}{\numberline {9}Fehlersuche}{17}{chapter.9}%
+\contentsline {section}{\numberline {9.1}Software-Fehlermeldungen}{17}{section.9.1}%
+\contentsline {subsection}{\numberline {9.1.1}Handlungsanweisung bei Systemfehler}{18}{subsection.9.1.1}%
+\contentsline {chapter}{\numberline {10}Spezifikationen}{19}{chapter.10}%
+\contentsline {section}{\numberline {10.1}Daten und Energiefluss}{19}{section.10.1}%
+\contentsline {section}{\numberline {10.2}Technische Spezifikationen}{19}{section.10.2}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
