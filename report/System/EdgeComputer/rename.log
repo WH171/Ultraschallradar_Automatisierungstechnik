@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.24.0 (TeX Live 2026)  (format=lualatex 2026.3.27)  17 APR 2026 16:56
+This is LuaHBTeX, Version 1.24.0 (TeX Live 2026)  (format=lualatex 2026.3.27)  19 APR 2026 18:49
  restricted system commands enabled.
 **rename.tex
 (./rename.tex
@@ -2829,23 +2829,28 @@ Overfull \hbox (1.3333pt too wide) detected at line 106
  []
 
 
-Overfull \hbox (0.99997pt too wide) detected at line 115
+Overfull \hbox (0.99997pt too wide) detected at line 113
  []\T1/lmss/bx/n/10 101
  []
 
 
-Overfull \hbox (0.99997pt too wide) detected at line 116
- []\T1/lmss/bx/n/10 105
+Overfull \hbox (0.99997pt too wide) detected at line 115
+ []\T1/lmss/bx/n/10 103
  []
 
 
-Overfull \hbox (0.99997pt too wide) detected at line 117
+Overfull \hbox (0.99997pt too wide) detected at line 116
  []\T1/lmss/bx/n/10 107
  []
 
 
-Overfull \hbox (0.99997pt too wide) detected at line 118
+Overfull \hbox (0.99997pt too wide) detected at line 117
  []\T1/lmss/bx/n/10 109
+ []
+
+
+Overfull \hbox (0.99997pt too wide) detected at line 118
+ []\T1/lmss/bx/n/10 111
  []
 
 )
@@ -3096,10 +3101,18 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[34]) [35
+[34]
+
+Package fancyhdr Warning: \headheight is too small (1.0pt): 
+(fancyhdr)                Make it at least 12.0pt, for example:
+(fancyhdr)                \setlength{\headheight}{12.0pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
+
+[35] [36
 
 
-] [36
+]) [37] [38
 
 
 ]
@@ -3107,17 +3120,17 @@ part III.
 Package scrkbase Info: You've told me to use the font selection of the element
 (scrkbase)             `partprefix' that is an alias of element `partnumber'
 (scrkbase)              on input line 86.
-[37] [38] (../../Contents/General/RenamePythonToolXY.tex
+[39] [40] (../../Contents/General/RenamePythonToolXY.tex
 chapter 6.
-) (../../Contents/General/RenameHardwareToolXY.tex [39
+) (../../Contents/General/RenameHardwareToolXY.tex [41
 
 
-] [40
+] [42
 
 
 ]
 chapter 7.
-) [41] [42
+) [43] [44
 
 
 ]
@@ -3125,12 +3138,12 @@ part IV.
 Package scrkbase Info: You've told me to use the font selection of the element
 (scrkbase)             `partprefix' that is an alias of element `partnumber'
 (scrkbase)              on input line 93.
-[43] [44] (../../Contents/General/RenameFlowChartDevelopmentXY.tex
+[45] [46] (../../Contents/General/RenameFlowChartDevelopmentXY.tex
 chapter 8.
-) [45
+) [47
 
 
-] [46
+] [48
 
 
 ]
@@ -3138,12 +3151,12 @@ part V.
 Package scrkbase Info: You've told me to use the font selection of the element
 (scrkbase)             `partprefix' that is an alias of element `partnumber'
 (scrkbase)              on input line 99.
-[47] [48] (../../Contents/General/RenameMonitoringXY.tex
+[49] [50] (../../Contents/General/RenameMonitoringXY.tex
 chapter 9.
-) [49
+) [51
 
 
-] [50
+] [52
 
 
 ]
@@ -3151,22 +3164,22 @@ part VI.
 Package scrkbase Info: You've told me to use the font selection of the element
 (scrkbase)             `partprefix' that is an alias of element `partnumber'
 (scrkbase)              on input line 104.
-[51] [52] (../../Contents/General/RenameEvaluationXY.tex
+[53] [54] (../../Contents/General/RenameEvaluationXY.tex
 chapter 10.
-) (../../Contents/General/RenameToDoXY.tex [53
+) (../../Contents/General/RenameToDoXY.tex [55
 
 
-] [54
+] [56
 
 
 ]
 chapter 11.
-) (../../Contents/General/RenameConclusionXY.tex [55] [56
+) (../../Contents/General/RenameConclusionXY.tex [57] [58
 
 
 ]
 chapter 12.
-) [57] [58
+) [59] [60
 
 
 ]
@@ -3174,22 +3187,22 @@ part VII.
 Package scrkbase Info: You've told me to use the font selection of the element
 (scrkbase)             `partprefix' that is an alias of element `partnumber'
 (scrkbase)              on input line 114.
-[59] [60] (../../Contents/General/RenameBOMXY.tex
+[61] [62] (../../Contents/General/RenameBOMXY.tex
 chapter 13.
-) [61
+) [63
 
 
 
 
-] [62
+] [64
 
 
 ] (../../Contents/General/RenameSBOMXY.tex
 chapter 14.
-) (../../Contents/General/RenamePackageXY.tex [63
+) (../../Contents/General/RenamePackageXY.tex [65
 
 
-] [64
+] [66
 
 
 ]
@@ -3259,7 +3272,7 @@ Package biblatex Info: Setting label 'refsegment:031' on input line 46.
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/lmr/m/sc/10'.
 (microtype)             Ignoring protrusion settings for this character.
-) [65] [66
+) [67] [68
 
 
 ]
@@ -3267,9 +3280,9 @@ part VIII.
 Package scrkbase Info: You've told me to use the font selection of the element
 (scrkbase)             `partprefix' that is an alias of element `partnumber'
 (scrkbase)              on input line 125.
-[67] [68] (../../Contents/General/en/Hints.tex
+[69] [70] (../../Contents/General/en/Hints.tex
 chapter 16.
-) [69
+) [71
 
 
 ] (../../Contents/General/en/Bezier.tex
@@ -3307,12 +3320,12 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[70]
+[72]
 
-LaTeX Warning: Reference `Kpoints4' on page 71 undefined on input line 182.
+LaTeX Warning: Reference `Kpoints4' on page 73 undefined on input line 182.
 
 
-LaTeX Warning: Reference `KPoints4Graph' on page 71 undefined on input line 182
+LaTeX Warning: Reference `KPoints4Graph' on page 73 undefined on input line 182
 .
 
 
@@ -3328,7 +3341,7 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[71] (../../Contents/General/en/ArcStrategy.tex
+[73] (../../Contents/General/en/ArcStrategy.tex
 
 Package fancyhdr Warning: \headheight is too small (1.0pt): 
 (fancyhdr)                Make it at least 12.0pt, for example:
@@ -3336,19 +3349,19 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[72]
+[74]
 chapter 17.
 Package biblatex Info: Reference segment=33 on input line 22.
 Package biblatex Info: Setting label 'refsegment:033' on input line 22.
 
-LaTeX Warning: Reference `StrategySymmetricDefStandardHP' on page 73 undefined 
+LaTeX Warning: Reference `StrategySymmetricDefStandardHP' on page 75 undefined 
 on input line 24.
 
 
-LaTeX Warning: Reference `CircleGlazingTriangle' on page 73 undefined on input 
+LaTeX Warning: Reference `CircleGlazingTriangle' on page 75 undefined on input 
 line 80.
 
-[73
+[75
 
 
 ]
@@ -3357,11 +3370,11 @@ Overfull \hbox (6.79999pt too wide) in paragraph at lines 168--169
  []
 
 
-LaTeX Warning: Reference `CircleStrategyCircle' on page 74 undefined on input l
+LaTeX Warning: Reference `CircleStrategyCircle' on page 76 undefined on input l
 ine 172.
 
 
-LaTeX Warning: Reference `CircleStrategyCircle' on page 74 undefined on input l
+LaTeX Warning: Reference `CircleStrategyCircle' on page 76 undefined on input l
 ine 207.
 
 
@@ -3381,32 +3394,32 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[74]
+[76]
 Package biblatex Info: Reference segment=34 on input line 289.
 Package biblatex Info: Setting label 'refsegment:034' on input line 289.
 
 
-LaTeX Warning: Reference `circlestrategyangle' on page 75 undefined on input li
+LaTeX Warning: Reference `circlestrategyangle' on page 77 undefined on input li
 ne 291.
 
 
-LaTeX Warning: Reference `CircleStrategyCurvature' on page 75 undefined on inpu
+LaTeX Warning: Reference `CircleStrategyCurvature' on page 77 undefined on inpu
 t line 320.
 
 
-LaTeX Warning: Reference `Circle strategyL' on page 75 undefined on input line 
+LaTeX Warning: Reference `Circle strategyL' on page 77 undefined on input line 
 348.
 
 
-LaTeX Warning: Reference `Circle StrategyEps' on page 75 undefined on input lin
+LaTeX Warning: Reference `Circle StrategyEps' on page 77 undefined on input lin
 e 373.
 
 
-LaTeX Warning: Reference `Circle StrategyL' on page 75 undefined on input line 
+LaTeX Warning: Reference `Circle StrategyL' on page 77 undefined on input line 
 399.
 
 
-LaTeX Warning: Reference `Circle StrategyEps' on page 75 undefined on input lin
+LaTeX Warning: Reference `Circle StrategyEps' on page 77 undefined on input lin
 e 399.
 
 
@@ -3416,7 +3429,7 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[75]
+[77]
 Package biblatex Info: Reference segment=35 on input line 404.
 Package biblatex Info: Setting label 'refsegment:035' on input line 404.
 
@@ -3436,7 +3449,7 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[76]
+[78]
 Overfull \hbox (6.79999pt too wide) in paragraph at lines 491--492
 [][][][] 
  []
@@ -3462,7 +3475,7 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[77]
+[79]
 Overfull \hbox (6.79999pt too wide) in paragraph at lines 574--575
 [][][][] 
  []
@@ -3480,13 +3493,13 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[78] (../../Contents/General/en/MapleFiles.tex
+[80] (../../Contents/General/en/MapleFiles.tex
 chapter 18.
 Package biblatex Info: Reference segment=36 on input line 17.
 Package biblatex Info: Setting label 'refsegment:036' on input line 17.
 Package biblatex Info: Reference segment=37 on input line 28.
 Package biblatex Info: Setting label 'refsegment:037' on input line 28.
-[79
+[81
 
 
 ]
@@ -3494,33 +3507,10 @@ Package biblatex Info: Reference segment=38 on input line 47.
 Package biblatex Info: Setting label 'refsegment:038' on input line 47.
 
 
-LaTeX Warning: Reference `Listekennung' on page 80 undefined on input line 49.
+LaTeX Warning: Reference `Listekennung' on page 82 undefined on input line 49.
 
 Package biblatex Info: Reference segment=39 on input line 91.
 Package biblatex Info: Setting label 'refsegment:039' on input line 91.
-
-Package fancyhdr Warning: \headheight is too small (1.0pt): 
-(fancyhdr)                Make it at least 12.0pt, for example:
-(fancyhdr)                \setlength{\headheight}{12.0pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
-
-[80]
-
-Package fancyhdr Warning: \headheight is too small (1.0pt): 
-(fancyhdr)                Make it at least 12.0pt, for example:
-(fancyhdr)                \setlength{\headheight}{12.0pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
-
-[81]
-LaTeX Font Info:    Font shape `T1/fvm/m/n' will be
-(Font)              scaled to size 6.29996pt on input line 214.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 214.
-LaTeX Font Info:    Font shape `T1/fvm/m/n' will be
-(Font)              scaled to size 7.19995pt on input line 221.
-
 
 Package fancyhdr Warning: \headheight is too small (1.0pt): 
 (fancyhdr)                Make it at least 12.0pt, for example:
@@ -3537,6 +3527,29 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
 [83]
+LaTeX Font Info:    Font shape `T1/fvm/m/n' will be
+(Font)              scaled to size 6.29996pt on input line 214.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 214.
+LaTeX Font Info:    Font shape `T1/fvm/m/n' will be
+(Font)              scaled to size 7.19995pt on input line 221.
+
+
+Package fancyhdr Warning: \headheight is too small (1.0pt): 
+(fancyhdr)                Make it at least 12.0pt, for example:
+(fancyhdr)                \setlength{\headheight}{12.0pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
+
+[84]
+
+Package fancyhdr Warning: \headheight is too small (1.0pt): 
+(fancyhdr)                Make it at least 12.0pt, for example:
+(fancyhdr)                \setlength{\headheight}{12.0pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
+
+[85]
 Package biblatex Info: Reference segment=40 on input line 314.
 Package biblatex Info: Setting label 'refsegment:040' on input line 314.
 LaTeX Font Info:    Font shape `T1/fvm/b/n' will be
@@ -3637,7 +3650,7 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[84]
+[86]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\fontdimen' on input line 392.
@@ -3733,7 +3746,7 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[85]
+[87]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\fontdimen' on input line 454.
@@ -3829,7 +3842,7 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[86]
+[88]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\fontdimen' on input line 519.
@@ -3925,7 +3938,7 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[87]
+[89]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\fontdimen' on input line 576.
@@ -4031,7 +4044,7 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[88]
+[90]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\fontdimen' on input line 632.
@@ -4136,7 +4149,7 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[89]
+[91]
 Package biblatex Info: Reference segment=41 on input line 686.
 Package biblatex Info: Setting label 'refsegment:041' on input line 686.
 
@@ -4157,7 +4170,7 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[90]
+[92]
 
 Package fancyhdr Warning: \headheight is too small (1.0pt): 
 (fancyhdr)                Make it at least 12.0pt, for example:
@@ -4165,7 +4178,7 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[91]
+[93]
 
 Package fancyhdr Warning: \headheight is too small (1.0pt): 
 (fancyhdr)                Make it at least 12.0pt, for example:
@@ -4173,7 +4186,7 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[92] (../../Contents/General/en/CodePython.tex
+[94] (../../Contents/General/en/CodePython.tex
 chapter 19.
 Package hyperref Info: bookmark level for unknown code defaults to 0 on input l
 ine 17.
@@ -4182,7 +4195,7 @@ Overfull \hbox (27.518pt too wide) in paragraph at lines 21--22
 [][][][] 
  []
 
-)) [93
+)) [95
 
 
 ]
@@ -4193,13 +4206,13 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[94] (../../Contents/General/en/CodeArduino.tex
+[96] (../../Contents/General/en/CodeArduino.tex
 chapter 20.
 (../../Code/Arduino/Blink/Blink.ino)
 
 LaTeX Warning: Float too large for page by 96.16306pt on input line 21.
 
-) [95
+) [97
 
 
 ]
@@ -4210,17 +4223,17 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[96] (../../Contents/General/en/FirstChapter.tex
+[98] (../../Contents/General/en/FirstChapter.tex
 chapter 21.
-[97
+[99
 
 
-] [98
+] [100
 
 
 ]
 chapter 22.
-) [99] [100
+) [101] [102
 
 
 ] (../../Contents/General/en/AppendixTikz.tex
@@ -4239,7 +4252,7 @@ Overfull \hbox (74.11868pt too wide) in paragraph at lines 2--3
 ) (../../tikz/Arc.tex)
 Underfull \vbox (badness 2790) has occurred while \output is active []
 
- [101
+ [103
 
 
 ]
@@ -4251,7 +4264,7 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[102]
+[104]
 Overfull \hbox (152.11948pt too wide) in paragraph at lines 5--6
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ] 
@@ -4266,7 +4279,7 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[103
+[105
 Missing character: There is no ; (U+003B) in font nullfont!
 ] (../../tikz/Node.tex) (../../tikz/Node.tex) (../../tikz/Node3.tex)
 (../../tikz/Node3.tex) (../../tikz/Node2.tex) (../../tikz/Node2.tex))
@@ -4277,7 +4290,7 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[104] (../../Contents/General/en/Appendix.tex
+[106] (../../Contents/General/en/Appendix.tex
 chapter B.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <20.74> on input line 13.
@@ -4285,20 +4298,20 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <14.4> on input line 13.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <12> on input line 13.
-) [105
+) [107
 
 
 
 
-] [106
+] [108
 
 
 ]
 chapter without number
-[107] [108
+[109] [110
 
 
-] (./rename.ind [109
+] (./rename.ind [111
 
 
 ]) (./rename.aux)
@@ -4324,7 +4337,7 @@ Package logreq Info: Writing requests to 'rename.run.xml'.
 )
 
 Here is how much of LuaTeX's memory you used:
- 100999 strings out of 476076
+ 101003 strings out of 476076
  745275,4101490 words of node,token memory allocated
  5218 words of node memory still in use:
    23 hlist, 2 vlist, 10 rule, 1 local_par, 8 glue, 4 kern, 1 penalty, 2 margin_
@@ -4332,7 +4345,7 @@ kern, 5 glyph, 1349 attribute, 96 glue_spec, 675 attribute_list, 3 write, 16 pdf
 _literal, 10 pdf_action, 16 pdf_colorstack nodes
    avail lists: 1:9,2:12023,3:2603,4:19806,5:14537,6:151,7:17679,8:152,9:36846,1
 0:38,11:1334,12:2
- 120914 multiletter control sequences out of 65536+600000
+ 120916 multiletter control sequences out of 65536+600000
  115 fonts using 7837031 bytes
  108i,16n,131p,11208b,2834s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {c:/texlive/2026/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/texlive/2026/texmf-
@@ -4361,10 +4374,10 @@ texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2026/texmf-dist/fonts/ty
 pe1/public/lm/lmsy7.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmsy9.
 pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><
 c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on rename.pdf (109 pages, 648983 bytes).
+Output written on rename.pdf (111 pages, 649806 bytes).
 
-PDF statistics: 1762 PDF objects out of 2073 (max. 8388607)
- 1588 compressed objects within 16 object streams
- 490 named destinations out of 1000 (max. 1048576)
+PDF statistics: 1775 PDF objects out of 2073 (max. 8388607)
+ 1599 compressed objects within 16 object streams
+ 492 named destinations out of 1000 (max. 1048576)
  1098 words of extra memory for PDF output out of 10000 (max. 100000000)
 
