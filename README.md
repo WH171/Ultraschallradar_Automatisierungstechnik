@@ -10,15 +10,15 @@ Das Ziel ist ein autonomer Scanvorgang zur digitalen Abbildung des unmittelbaren
 
 ## 🛠 Hardware-Komponenten
 Für den Aufbau wurden folgende Komponenten verwendet:
-* **Mikrocontroller:** [Arduino Nano 33 BLE Sense Lite](https://store.arduino.cc/products/arduino-nano-33-ble-sense-lite)
+* **Mikrocontroller:** Arduino Nano 33 BLE Sense Lite
 * **Aktorik:** Servomotor SG90
 * **Sensorik:** Ultraschallsensor HC-SR04
 * **Erweiterung:** Spannungsteiler, Jumperkabel
-* **Gehäuse/Montage:** Eigens entwickeltes Gehäuse mit drehbarem Aufsatz in dem Ultraschallsensor integriert ist
+* **Gehäuse/Montage:** Eigens entwickeltes Gehäuse mit drehbarem Aufsatz in dem der Ultraschallsensor integriert ist
 
 ## 💻 Software & Abhängigkeiten
 Die Software ist modular aufgebaut und befindet sich im Ordner `Code`.
-* **Entwicklungsumgebung:** Arduino IDE 2.x
+* **Entwicklungsumgebung:** Arduino IDE
 * **Bibliotheken:** * `Servo.h` (Standardbibliothek)
   * `Ultrasonic.h` (für Grove-Sensorik)
 * **Visualisierung:** Eine über Processing entwickelte Anwendung
