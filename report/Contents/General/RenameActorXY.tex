@@ -42,7 +42,7 @@ Der TowerPro SG90 ist einer der weltweit am häufigsten verwendeten Micro-Servom
 \section{Bibliothek}
 
 \subsection{Beschreibung}
-Für die Ansteuerung des SG90 wird in der Arduino-Umgebung die integrierte \texttt{Servo}-Bibliothek genutzt. Diese abstrahiert die komplexe Erzeugung der exakten 50-Hz-Pulsweitenmodulation und ermöglicht es dem Programmierer, den Motor durch die einfache Angabe von Gradzahlen (0 bis 180) zu positionieren. 
+Für die Ansteuerung des SG90 wird in der Arduino-Umgebung die integrierte \texttt{Servo}-Bibliothek genutzt. Dadurch entfällt für den Programmierer die aufwändige Erzeugung des exakten 50-Hz-PWM-Signals, und der Motor kann bequem über die direkte Vorgabe eines Winkelwertes von 0 bis 180 Grad angesteuert werden. 
 
 \subsection{Installation}
 Die \texttt{Servo}-Bibliothek gehört zu den Kern-Bibliotheken der Arduino IDE und muss nicht separat heruntergeladen werden. Sie ist direkt nach der Installation der Entwicklungsumgebung unter \texttt{\#include <Servo.h>} verfügbar.
