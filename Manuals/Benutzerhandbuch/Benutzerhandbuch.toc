@@ -22,11 +22,8 @@
 \contentsline {section}{\numberline {7.1}Reinigung}{13}{section.7.1}%
 \contentsline {section}{\numberline {7.2}Lagerung}{13}{section.7.2}%
 \contentsline {chapter}{\numberline {8}Sicherheitshinweise}{15}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Sicherheit im Umgang mit der Energieversorgung}{15}{section.8.1}%
 \contentsline {chapter}{\numberline {9}Fehlersuche}{17}{chapter.9}%
 \contentsline {section}{\numberline {9.1}Software-Fehlermeldungen}{17}{section.9.1}%
 \contentsline {subsection}{\numberline {9.1.1}Handlungsanweisung bei Systemfehler}{18}{subsection.9.1.1}%
 \contentsline {chapter}{\numberline {10}Spezifikationen}{19}{chapter.10}%
-\contentsline {section}{\numberline {10.1}Daten und Energiefluss}{19}{section.10.1}%
-\contentsline {section}{\numberline {10.2}Technische Spezifikationen}{19}{section.10.2}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

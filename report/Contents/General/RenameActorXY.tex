@@ -70,7 +70,7 @@ Dieser Abschnitt zeigt ein elementares Beispiel ("Sweep"), bei dem der Servo kon
 \subsection{Handbuch}
 Schließen Sie das rote Kabel an 5V, das braune an GND und das orange Signalkabel an Pin 9 des Arduinos an. Kompilieren Sie das Programm und laden Sie es auf das Board. Der Arm des Servomotors sollte nun anfangen, langsam und gleichmäßig hin und her zu wischen.
 
-\subsection{Im Inneren des Beispiels}
+\subsection{An einem Beispiel}
 Das Skript bindet zunächst die Bibliothek ein und erstellt ein Servo-Objekt. In der \texttt{setup()}-Routine wird der Motor an Pin 9 gebunden. In der \texttt{loop()}-Schleife sorgen zwei \texttt{for}-Schleifen für die Bewegung. Die erste Schleife erhöht den Winkel schrittweise von 0 auf 180, gefolgt von einer kurzen Pause (\texttt{delay}) von 15 ms pro Grad, um dem Motor Zeit zu geben, die physikalische Position zu erreichen. Die zweite Schleife führt die Rückwärtsbewegung aus.
 
 \subsection{Code}
