@@ -21,8 +21,8 @@ Dieses Kapitel beschreibt den mechanischen Aktor des Systems, den Micro-Servomot
 \section{Allgemeines}
 Ein Servomotor ist ein geschlossenes mechatronisches System (Closed-Loop), das für präzise Winkelpositionierungen eingesetzt wird. Im Gegensatz zu kontinuierlich drehenden Gleichstrommotoren besteht ein Standard-Servo aus einem DC-Motor, einem Untersetzungsgetriebe, einem Potentiometer zur Positionserfassung und einer Steuerelektronik. Der Mikrocontroller sendet ein Pulsweitenmodulations-Signal (PWM), welches die Steuerelektronik auswertet und den Motor exakt auf den gewünschten Winkel dreht und dort aktiv hält. Servomotoren findet man vor allem im RC-Modellbau (z.B. Lenkung, Ruder, Klappen), in Robotergelenken sowie in Schwenkmechanismen für Kameras oder Sensoren, bei denen wiederholgenaue und stabile Positionen erforderlich sind
 
-\section{Spezifischer Sensor/Aktor}
-Der TowerPro SG90 ist einer der weltweit am häufigsten verwendeten Micro-Servomotoren für Maker-Projekte. Er zeichnet sich durch sein extrem geringes Gewicht, seine kompakte Bauform und sein Nylon-Zahnradgetriebe aus. Der Aktor verfügt über ein dreipoliges Anschlusskabel: Braun für die Masse (\texttt{GND}), Rot für die Versorgungsspannung (\texttt{VCC}) und Orange für das PWM-Steuersignal (\texttt{Signal}). Der SG90 hat einen mechanischen Rotationsspielraum von 180 Grad ($0^\circ$ bis $180^\circ$). Gesteuert wird er über ein 50-Hz-PWM-Signal (20 ms Periodendauer). Eine Pulsweite von 1 ms entspricht theoretisch $0^\circ$, 1,5 ms entsprechen $90^\circ$ (Mittelstellung) und 2 ms entsprechen $180^\circ$. 
+\section{Spezifischer Aktor}
+Der TowerPro SG90 ist einer der weltweit am häufigsten verwendeten Micro-Servomotoren für Maker-Projekte. Er zeichnet sich durch sein extrem geringes Gewicht, seine kompakte Bauform und sein Nylon-Zahnradgetriebe aus. Der Aktor verfügt über ein dreipoliges Anschlusskabel: Braun für die Masse (\texttt{GND}), Rot für die Versorgungsspannung (\texttt{VCC}) und Orange für das PWM-Steuersignal (\texttt{Signal}). Der SG90 hat einen mechanischen Rotationsspielraum von 180 Grad ($0^\circ$ bis $180^\circ$). Gesteuert wird er über ein 50-Hz-PWM-Signal (20 ms Periodendauer). Eine Pulsweite von 1 ms entspricht theoretisch $0^\circ$, 1,5 ms entsprechen $90^\circ$ (Mittelstellung) und 2 ms entsprechen $180^\circ$.\cite{Raj:2026}  
 
 \section{Spezifikation}
 \begin{itemize}
@@ -42,7 +42,7 @@ Der TowerPro SG90 ist einer der weltweit am häufigsten verwendeten Micro-Servom
 \section{Bibliothek}
 
 \subsection{Beschreibung}
-Für die Ansteuerung des SG90 wird in der Arduino-Umgebung die integrierte \texttt{Servo}-Bibliothek genutzt. Dadurch entfällt für den Programmierer die aufwändige Erzeugung des exakten 50-Hz-PWM-Signals, und der Motor kann bequem über die direkte Vorgabe eines Winkelwertes von 0 bis 180 Grad angesteuert werden. 
+Für die Ansteuerung des SG90 wird in der Arduino-Umgebung die integrierte \texttt{Servo}-Bibliothek genutzt. Dadurch entfällt für den Programmierer die aufwändige Erzeugung des exakten 50-Hz-PWM-Signals, und der Motor kann bequem über die direkte Vorgabe eines Winkelwertes von 0 bis 180 Grad angesteuert werden.
 
 \subsection{Installation}
 Die \texttt{Servo}-Bibliothek gehört zu den Kern-Bibliotheken der Arduino IDE und muss nicht separat heruntergeladen werden. Sie ist direkt nach der Installation der Entwicklungsumgebung unter \texttt{\#include <Servo.h>} verfügbar.

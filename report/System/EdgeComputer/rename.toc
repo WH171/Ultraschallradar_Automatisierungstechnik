@@ -32,7 +32,7 @@
 \contentsline {chapter}{Bibliography}{29}{chapter*.5}%
 \contentsline {chapter}{\numberline {5}\textcolor {red}{SG90 Servomotor}}{31}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Allgemeines}{31}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Spezifischer Sensor/Aktor}{31}{section.5.2}%
+\contentsline {section}{\numberline {5.2}Spezifischer Aktor}{31}{section.5.2}%
 \contentsline {section}{\numberline {5.3}Spezifikation}{31}{section.5.3}%
 \contentsline {section}{\numberline {5.4}Bibliothek}{32}{section.5.4}%
 \contentsline {subsection}{\numberline {5.4.1}Beschreibung}{32}{subsection.5.4.1}%

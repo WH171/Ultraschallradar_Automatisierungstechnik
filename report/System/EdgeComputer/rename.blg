@@ -30,45 +30,45 @@ Warning--I didn't find a database entry for "components101"
 Biblatex version: 3.21
 Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-You've used 14 entries,
+You've used 15 entries,
             6402 wiz_defined-function locations,
-            1304 strings with 12851 characters,
-and the built_in function-call counts, 134059 in all, are:
-= -- 11245
-> -- 1642
-< -- 533
-+ -- 4252
-- -- 623
-* -- 9469
-:= -- 16335
+            1312 strings with 13020 characters,
+and the built_in function-call counts, 139999 in all, are:
+= -- 11535
+> -- 1992
+< -- 579
++ -- 4584
+- -- 886
+* -- 9795
+:= -- 17025
 add.period$ -- 0
-call.type$ -- 14
-change.case$ -- 13
-chr.to.int$ -- 62
-cite$ -- 26
-duplicate$ -- 14722
-empty$ -- 11234
-format.name$ -- 1126
-if$ -- 26279
+call.type$ -- 15
+change.case$ -- 14
+chr.to.int$ -- 86
+cite$ -- 28
+duplicate$ -- 15326
+empty$ -- 11721
+format.name$ -- 1177
+if$ -- 27323
 int.to.chr$ -- 0
-int.to.str$ -- 47
+int.to.str$ -- 49
 missing$ -- 0
-newline$ -- 584
-num.names$ -- 702
-pop$ -- 5190
+newline$ -- 610
+num.names$ -- 747
+pop$ -- 5542
 preamble$ -- 1
-purify$ -- 342
+purify$ -- 356
 quote$ -- 0
-skip$ -- 2837
+skip$ -- 3028
 stack$ -- 0
-substring$ -- 20688
-swap$ -- 2416
-text.length$ -- 488
-text.prefix$ -- 24
+substring$ -- 21159
+swap$ -- 2568
+text.length$ -- 527
+text.prefix$ -- 26
 top$ -- 1
-type$ -- 460
+type$ -- 494
 warning$ -- 0
-while$ -- 2133
+while$ -- 2209
 width$ -- 0
-write$ -- 571
+write$ -- 596
 (There were 6 warnings)

@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.24.0 (TeX Live 2026)  (format=lualatex 2026.3.27)  27 APR 2026 17:44
+This is LuaHBTeX, Version 1.24.0 (TeX Live 2026)  (format=lualatex 2026.3.27)  27 APR 2026 19:10
  restricted system commands enabled.
 **rename.tex
 (./rename.tex
@@ -2643,7 +2643,13 @@ Package biblatex Info: Input encoding 'ascii' forced by
 \openout4 = rename-blx.bib
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'rename.bbl' found.
- (./rename.bbl)
+ (./rename.bbl
+
+Package biblatex Warning: BibTeX reported the following issues
+(biblatex)                with 'Raj:2026':
+(biblatex)                - Invalid format of field 'urldate'.
+
+)
 Package biblatex Info: Reference section=0 on input line 46.
 Package biblatex Info: Reference segment=0 on input line 46.
 Package newfloat Info: `float' package detected.
@@ -4337,15 +4343,15 @@ Package logreq Info: Writing requests to 'rename.run.xml'.
 )
 
 Here is how much of LuaTeX's memory you used:
- 101001 strings out of 476076
- 745275,4101490 words of node,token memory allocated
- 5218 words of node memory still in use:
+ 101006 strings out of 476076
+ 745261,4101490 words of node,token memory allocated
+ 5242 words of node memory still in use:
    23 hlist, 2 vlist, 10 rule, 1 local_par, 8 glue, 4 kern, 1 penalty, 2 margin_
-kern, 5 glyph, 1349 attribute, 96 glue_spec, 675 attribute_list, 3 write, 16 pdf
-_literal, 10 pdf_action, 16 pdf_colorstack nodes
-   avail lists: 1:9,2:12023,3:2603,4:19806,5:14537,6:151,7:17679,8:152,9:36846,1
+kern, 5 glyph, 1353 attribute, 96 glue_spec, 677 attribute_list, 3 write, 16 pdf
+_literal, 12 pdf_action, 16 pdf_colorstack nodes
+   avail lists: 1:8,2:12020,3:2599,4:19807,5:14537,6:150,7:17679,8:152,9:36846,1
 0:38,11:1334,12:2
- 120914 multiletter control sequences out of 65536+600000
+ 120918 multiletter control sequences out of 65536+600000
  115 fonts using 7837031 bytes
  108i,16n,131p,11208b,2834s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {c:/texlive/2026/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/texlive/2026/texmf-
@@ -4374,10 +4380,10 @@ texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2026/texmf-dist/fonts/ty
 pe1/public/lm/lmsy7.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmsy9.
 pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><
 c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on rename.pdf (111 pages, 649654 bytes).
+Output written on rename.pdf (111 pages, 650387 bytes).
 
-PDF statistics: 1775 PDF objects out of 2073 (max. 8388607)
- 1599 compressed objects within 16 object streams
- 492 named destinations out of 1000 (max. 1048576)
+PDF statistics: 1781 PDF objects out of 2073 (max. 8388607)
+ 1604 compressed objects within 17 object streams
+ 493 named destinations out of 1000 (max. 1048576)
  1098 words of extra memory for PDF output out of 10000 (max. 100000000)
 

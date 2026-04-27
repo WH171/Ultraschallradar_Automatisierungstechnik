@@ -355,6 +355,32 @@
     \field{year}{2007}
   \endentry
 
+  \entry{Raj:2026}{misc}{}{}
+    \name{author}{1}{}{%
+      {{hash=Sr}{%
+         family={Sawkare},
+         familyi={S\bibinitperiod},
+         given={raj},
+         giveni={r\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{Sr1}
+    \strng{fullhash}{Sr1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Saw 1}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{title}{Towerpro SG90 Servo Motor And Its Application}
+    \verb{url}
+    \verb https://vayuyaan.com/blog/towerpro-sg90-servo-motor-and-its-applicati
+    \verb on/
+    \endverb
+    \field{journaltitle}{Blog}
+    \field{year}{03-12-2022}
+    \warn{\item Invalid format of field 'urldate'}
+  \endentry
+
   \entry{Wat:2017e}{online}{}{}
     \name{author}{1}{}{%
       {{hash=W}{%
