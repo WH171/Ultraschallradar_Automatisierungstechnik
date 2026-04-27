@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.24.0 (TeX Live 2026)  (format=lualatex 2026.3.27)  23 APR 2026 17:14
+This is LuaHBTeX, Version 1.24.0 (TeX Live 2026)  (format=lualatex 2026.3.27)  27 APR 2026 17:44
  restricted system commands enabled.
 **rename.tex
 (./rename.tex
@@ -4374,7 +4374,7 @@ texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2026/texmf-dist/fonts/ty
 pe1/public/lm/lmsy7.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmsy9.
 pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><
 c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on rename.pdf (111 pages, 649836 bytes).
+Output written on rename.pdf (111 pages, 649654 bytes).
 
 PDF statistics: 1775 PDF objects out of 2073 (max. 8388607)
  1599 compressed objects within 16 object streams
