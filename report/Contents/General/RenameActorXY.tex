@@ -36,7 +36,9 @@ Der TowerPro SG90 ist einer der weltweit am häufigsten verwendeten Micro-Servom
 		\item Getriebetyp: Kunststoff (Nylon)
 		\item Steuersignal: PWM (50 Hz / 20 ms Periode)
 	\end{itemize}
-	\item \textbf{Schaltplan:} Das rote Kabel (\texttt{VCC}) des SG90 wird mit dem 5V-Ausgang (VUSB) des Systems verbunden, um ausreichend Leistung für den Motor bereitzustellen. Das braune Kabel (\texttt{GND}) wird mit der gemeinsamen Masse verbunden. Das orange Kabel (\texttt{Signal}) wird an einen digitalen PWM-fähigen Pin (z.B. Pin 9) des Mikrocontrollers angeschlossen. \textit{Hinweis:} Obwohl der Arduino Nano 33 BLE mit 3,3V-Logik arbeitet, reicht die 3,3V-Signalspannung am PWM-Pin völlig aus, um den 5V-Servomotor zuverlässig zu triggern.
+	\item \textbf{Schaltplan:} Das rote Kabel (\texttt{VCC}) des SG90 wird mit dem 5V-Ausgang (VUSB) des Systems verbunden, um ausreichend Leistung für den Motor bereitzustellen. Das braune Kabel (\texttt{GND}) wird mit der gemeinsamen Masse verbunden. Das orange Kabel (\texttt{Signal}) wird an einen digitalen PWM-fähigen Pin (z.B. Pin 9) des Mikrocontrollers angeschlossen. 
+	
+	\textit{Hinweis:} Obwohl der Arduino Nano 33 BLE mit 3,3V-Logik arbeitet, reicht die 3,3V-Signalspannung am PWM-Pin völlig aus, um den 5V-Servomotor zuverlässig zu triggern.
 \end{itemize}
 
 \section{Bibliothek}
@@ -72,29 +74,9 @@ Schließen Sie das rote Kabel an 5V, das braune an GND und das orange Signalkabe
 Das Skript bindet zunächst die Bibliothek ein und erstellt ein Servo-Objekt. In der \texttt{setup()}-Routine wird der Motor an Pin 9 gebunden. In der \texttt{loop()}-Schleife sorgen zwei \texttt{for}-Schleifen für die Bewegung. Die erste Schleife erhöht den Winkel schrittweise von 0 auf 180, gefolgt von einer kurzen Pause (\texttt{delay}) von 15 ms pro Grad, um dem Motor Zeit zu geben, die physikalische Position zu erreichen. Die zweite Schleife führt die Rückwärtsbewegung aus.
 
 \subsection{Code}
-\begin{verbatim}
-	#include <Servo.h>
-	
-	Servo radarServo;  // Erstellt ein Servo-Objekt
-	int pos = 0;       // Variable zum Speichern der aktuellen Position
-	
-	void setup() {
-		radarServo.attach(9);  // Verbindet den Servo an Pin 9 mit dem Objekt
-	}
-	
-	void loop() {
-		// Schwenkt von 0 Grad auf 180 Grad
-		for (pos = 0; pos <= 180; pos += 1) { 
-			radarServo.write(pos);              
-			delay(15);  // Wartet 15ms für das Erreichen der Position
-		}
-		// Schwenkt von 180 Grad zurück auf 0 Grad
-		for (pos = 180; pos >= 0; pos -= 1) { 
-			radarServo.write(pos);              
-			delay(15);                       
-		}
-	}
-\end{verbatim}
+\begin{center}
+	 \captionof{code}{Simple sketch to test the RGB LED} \label{Nano:RGBLEDTest} \ArduinoExternal{}{../../Code/Servomotor/Servomotor.ino} 
+\end{center}
 
 \subsection{Dateien}
 Für das Ausführen des Codes wird ausschließlich die Standard-Headerdatei \texttt{Servo.h} benötigt, welche in der Arduino IDE vorinstalliert ist.

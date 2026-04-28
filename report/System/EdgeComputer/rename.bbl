@@ -355,17 +355,17 @@
     \field{year}{2007}
   \endentry
 
-  \entry{Raj:2026}{misc}{}{}
+  \entry{Raj:2026}{article}{}{}
     \name{author}{1}{}{%
-      {{hash=Sr}{%
+      {{hash=SR}{%
          family={Sawkare},
          familyi={S\bibinitperiod},
-         given={raj},
-         giveni={r\bibinitperiod},
+         given={Raj},
+         giveni={R\bibinitperiod},
       }}%
     }
-    \strng{namehash}{Sr1}
-    \strng{fullhash}{Sr1}
+    \strng{namehash}{SR1}
+    \strng{fullhash}{SR1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelalpha}{Saw 1}

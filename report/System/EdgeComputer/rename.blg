@@ -21,6 +21,11 @@ Database file #1: rename-blx.bib
 Database file #2: ../../../MLbib/Jetson.bib
 Database file #3: ../../../MLbib/literature.bib
 Database file #4: ../../../MLbib/MyLiterature.bib
+I was expecting a `,' or a `}'---line 1509 of file ../../../MLbib/MyLiterature.bib
+ : 
+ : %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
 Warning--I didn't find a database entry for "berrybase"
 Warning--I didn't find a database entry for "sparkfun"
 Warning--I didn't find a database entry for "arduino_newping"
@@ -71,4 +76,4 @@ warning$ -- 0
 while$ -- 2209
 width$ -- 0
 write$ -- 596
-(There were 6 warnings)
+(There was 1 error message)

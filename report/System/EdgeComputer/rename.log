@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.24.0 (TeX Live 2026)  (format=lualatex 2026.3.27)  27 APR 2026 19:10
+This is LuaHBTeX, Version 1.24.0 (TeX Live 2026)  (format=lualatex 2026.3.27)  28 APR 2026 12:14
  restricted system commands enabled.
 **rename.tex
 (./rename.tex
@@ -3063,10 +3063,10 @@ en-de-ten Micro-Servomotoren
 Package biblatex Info: Reference segment=16 on input line 27.
 Package biblatex Info: Setting label 'refsegment:016' on input line 27.
 [31]
-Package biblatex Info: Reference segment=17 on input line 42.
-Package biblatex Info: Setting label 'refsegment:017' on input line 42.
-Package biblatex Info: Reference segment=18 on input line 65.
-Package biblatex Info: Setting label 'refsegment:018' on input line 65.
+Package biblatex Info: Reference segment=17 on input line 44.
+Package biblatex Info: Setting label 'refsegment:017' on input line 44.
+Package biblatex Info: Reference segment=18 on input line 67.
+Package biblatex Info: Setting label 'refsegment:018' on input line 67.
 
 
 Package fancyhdr Warning: \headheight is too small (1.0pt): 
@@ -3076,11 +3076,9 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
 [32]
-Package biblatex Info: Reference segment=19 on input line 102.
-Package biblatex Info: Setting label 'refsegment:019' on input line 102.
-Package biblatex Info: Reference segment=20 on input line 105.
-Package biblatex Info: Setting label 'refsegment:020' on input line 105.
-
+Package hyperref Info: bookmark level for unknown code defaults to 0 on input l
+ine 78.
+ (../../Code/Servomotor/Servomotor.ino
 
 Package fancyhdr Warning: \headheight is too small (1.0pt): 
 (fancyhdr)                Make it at least 12.0pt, for example:
@@ -3088,18 +3086,18 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[33]
-Package biblatex Info: Reference segment=21 on input line 125.
-Package biblatex Info: Setting label 'refsegment:021' on input line 125.
+[33])
+Package biblatex Info: Reference segment=19 on input line 84.
+Package biblatex Info: Setting label 'refsegment:019' on input line 84.
+Package biblatex Info: Reference segment=20 on input line 87.
+Package biblatex Info: Setting label 'refsegment:020' on input line 87.
+Package biblatex Info: Reference segment=21 on input line 107.
+Package biblatex Info: Setting label 'refsegment:021' on input line 107.
 
-Overfull \hbox (4.99603pt too wide) in paragraph at lines 126--127
+Overfull \hbox (4.99603pt too wide) in paragraph at lines 108--109
 \T1/lmr/m/n/10 Eine klas-sis-che An-wen-dung für den SG90 ist die Ba-sis eines \T1/lmr/bx/n/10 Ultraschall-Radarsystems
  []
 
-Package biblatex Info: Reference segment=22 on input line 128.
-Package biblatex Info: Setting label 'refsegment:022' on input line 128.
-Package biblatex Info: Reference segment=23 on input line 139.
-Package biblatex Info: Setting label 'refsegment:023' on input line 139.
 
 Package fancyhdr Warning: \headheight is too small (1.0pt): 
 (fancyhdr)                Make it at least 12.0pt, for example:
@@ -3108,6 +3106,11 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
 [34]
+Package biblatex Info: Reference segment=22 on input line 110.
+Package biblatex Info: Setting label 'refsegment:022' on input line 110.
+Package biblatex Info: Reference segment=23 on input line 121.
+Package biblatex Info: Setting label 'refsegment:023' on input line 121.
+
 
 Package fancyhdr Warning: \headheight is too small (1.0pt): 
 (fancyhdr)                Make it at least 12.0pt, for example:
@@ -4194,8 +4197,6 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 
 [94] (../../Contents/General/en/CodePython.tex
 chapter 19.
-Package hyperref Info: bookmark level for unknown code defaults to 0 on input l
-ine 17.
 (c:/texlive/2026/texmf-dist/tex/latex/tools/.tex
 Overfull \hbox (27.518pt too wide) in paragraph at lines 21--22
 [][][][] 
@@ -4343,21 +4344,21 @@ Package logreq Info: Writing requests to 'rename.run.xml'.
 )
 
 Here is how much of LuaTeX's memory you used:
- 101006 strings out of 476076
- 745261,4101490 words of node,token memory allocated
+ 101087 strings out of 476076
+ 745226,4101490 words of node,token memory allocated
  5242 words of node memory still in use:
    23 hlist, 2 vlist, 10 rule, 1 local_par, 8 glue, 4 kern, 1 penalty, 2 margin_
 kern, 5 glyph, 1353 attribute, 96 glue_spec, 677 attribute_list, 3 write, 16 pdf
 _literal, 12 pdf_action, 16 pdf_colorstack nodes
-   avail lists: 1:8,2:12020,3:2599,4:19807,5:14537,6:150,7:17679,8:152,9:36846,1
-0:38,11:1334,12:2
- 120918 multiletter control sequences out of 65536+600000
+   avail lists: 1:13,2:12019,3:2600,4:19807,5:14537,6:150,7:17679,8:152,9:36846,
+10:40,11:1334,12:2
+ 120937 multiletter control sequences out of 65536+600000
  115 fonts using 7837031 bytes
  108i,16n,131p,11208b,2834s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {c:/texlive/2026/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/texlive/2026/texmf-
-dist/fonts/enc/dvips/lm/lm-ts1.enc}{c:/texlive/2026/texmf-dist/fonts/enc/dvips/l
-m/lm-rm.enc}{c:/texlive/2026/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/tex
-live/2026/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{c:/texlive/2026/texmf-dis
+dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/texlive/2026/texmf-dist/fonts/enc/dvips/lm
+/lm-mathit.enc}{c:/texlive/2026/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{c:/
+texlive/2026/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{c:/texlive/2026/texmf-dis
 t/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/texlive/2026/texmf-dist/fonts/enc/dvips/b
 ase/8r.enc}<c:/texlive/2026/texmf-dist/fonts/type1/public/bera/fvmb8a.pfb><c:/te
 xlive/2026/texmf-dist/fonts/type1/public/bera/fvmr8a.pfb><c:/texlive/2026/texmf-
@@ -4380,10 +4381,10 @@ texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2026/texmf-dist/fonts/ty
 pe1/public/lm/lmsy7.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmsy9.
 pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><
 c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on rename.pdf (111 pages, 650387 bytes).
+Output written on rename.pdf (111 pages, 659029 bytes).
 
-PDF statistics: 1781 PDF objects out of 2073 (max. 8388607)
- 1604 compressed objects within 17 object streams
- 493 named destinations out of 1000 (max. 1048576)
+PDF statistics: 1840 PDF objects out of 2073 (max. 8388607)
+ 1663 compressed objects within 17 object streams
+ 549 named destinations out of 1000 (max. 1048576)
  1098 words of extra memory for PDF output out of 10000 (max. 100000000)
 
