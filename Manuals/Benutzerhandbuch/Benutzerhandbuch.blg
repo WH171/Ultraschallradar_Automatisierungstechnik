@@ -1,5 +1,9 @@
 [0] Config.pm:328> INFO - This is Biber 2.21
 [0] Config.pm:331> INFO - Logfile is 'Benutzerhandbuch.blg'
-[55] biber-darwin:342> INFO - === Wed Apr  8, 2026, 10:29:41
-[200] Utils.pm:479> ERROR - Cannot find 'Benutzerhandbuch.bcf'!
-[200] Biber.pm:137> INFO - ERRORS: 1
+[52] biber-darwin:342> INFO - === Sat Apr 25, 2026, 11:00:52
+[65] Biber.pm:421> INFO - Reading 'Benutzerhandbuch.bcf'
+[140] Biber.pm:1002> INFO - Found 0 citekeys in bib section 0
+[152] bbl.pm:676> INFO - Writing 'Benutzerhandbuch.bbl' with encoding 'UTF-8'
+[152] bbl.pm:779> INFO - Output to Benutzerhandbuch.bbl
+[152] Biber.pm:132> WARN - The file 'Benutzerhandbuch.bcf' does not contain any citations!
+[152] Biber.pm:134> INFO - WARNINGS: 1

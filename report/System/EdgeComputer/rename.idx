@@ -2,21 +2,21 @@
 \indexentry{Computerized Numerical Control! \emph  {see} {CNN}}{11}
 \indexentry{SPS}{11}
 \indexentry{Speicherprogrammierbare Steuerung! \emph  {see} SPS}{11}
-\indexentry{ File!requirements.txt}{65}
-\indexentry{Example}{67}
-\indexentry{Example!Introduction}{67}
-\indexentry{Example!Description}{67}
-\indexentry{Example!Installation}{67}
-\indexentry{ File!PackageExample.py}{67}
-\indexentry{ File!Blink.py}{96}
-\indexentry{ File!Blink.ino}{98}
-\indexentry{Speicherprogrammierbare Steuerung! \emph  {see} SPS}{99}
-\indexentry{SPS}{99}
-\indexentry{Computerized Numerical Control! \emph  {see} {CNN}}{99}
-\indexentry{CNN}{99}
-\indexentry{SPS}{99}
-\indexentry{     Programmable Logic Controller}{99}
-\indexentry{PLC|see{         Programmable Logic Controller}}{99}
-\indexentry{CAGD}{101}
-\indexentry{CAGD!Splines}{101}
-\indexentry{3D printer}{101}
+\indexentry{ File!requirements.txt}{73}
+\indexentry{Example}{75}
+\indexentry{Example!Introduction}{75}
+\indexentry{Example!Description}{75}
+\indexentry{Example!Installation}{75}
+\indexentry{ File!PackageExample.py}{75}
+\indexentry{ File!Blink.py}{104}
+\indexentry{ File!Blink.ino}{106}
+\indexentry{Speicherprogrammierbare Steuerung! \emph  {see} SPS}{107}
+\indexentry{SPS}{107}
+\indexentry{Computerized Numerical Control! \emph  {see} {CNN}}{107}
+\indexentry{CNN}{107}
+\indexentry{SPS}{107}
+\indexentry{     Programmable Logic Controller}{107}
+\indexentry{PLC|see{         Programmable Logic Controller}}{107}
+\indexentry{CAGD}{109}
+\indexentry{CAGD!Splines}{109}
+\indexentry{3D printer}{109}

@@ -44,11 +44,11 @@
 				% Öffnungen Hinten (LEDs und USB)
 				% USB Port (unten mittig)
 				\draw[fill=white, thick, rounded corners=1pt] (1.6, 0.6) rectangle (2.4, 0.9);
-				\draw[fill=black!70] (1.7, 0.7) rectangle (2.3, 0.8); % Kontaktzunge
+				\draw[fill=black!70] (1.7, 0.7) rectangle (2.3, 0.8); 
 				
 				% LEDs (oben)
-				\draw[fill=white, thick] (2.5, 3) circle (0.2); % LED rot Position
-				\draw[fill=white, thick] (3, 3) circle (0.2); % LED grün Position
+				\draw[fill=white, thick] (2.5, 3) circle (0.2); 
+				\draw[fill=white, thick] (3, 3) circle (0.2); 
 				
 				% Dreheinheit (Rückseite)
 				\draw[fill=black!15, thick] (1.2, 4) rectangle (2.8, 4.6);
@@ -68,6 +68,8 @@
 				
 				\node[label_node] (lblUSB) at (5, 0.75) {Micro-USB Port};
 				\draw[arrow] (lblUSB) -- (2.6, 0.75);
+				\node[label_node] (lblGeh) at (5.5, 2) {Geh\"ause};
+				\draw[arrow] (lblGeh) -- (4, 2);
 			\end{scope}
 			
 		\end{tikzpicture}%
