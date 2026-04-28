@@ -4,7 +4,9 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {code}{\numberline {5.1}{\ignorespaces Beispiel Code}}{33}{code.caption.6}%
+\addvspace {10\p@ }
+\contentsline {code}{\numberline {6.1}{\ignorespaces Beispiel Code}}{41}{code.caption.7}%
+\contentsline {code}{\numberline {6.2}{\ignorespaces \relax }}{42}{code.caption.8}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
@@ -19,9 +21,9 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {code}{\numberline {19.1}{\ignorespaces \glqq Hello World\grqq {} in Python -- Variant 1}}{96}{code.caption.18}%
+\contentsline {code}{\numberline {20.1}{\ignorespaces \glqq Hello World\grqq {} in Python -- Variant 1}}{104}{code.caption.20}%
 \addvspace {10\p@ }
-\contentsline {code}{\numberline {20.1}{\ignorespaces \glqq Hello World\grqq {} in Python -- Variant 1}}{98}{code.caption.19}%
+\contentsline {code}{\numberline {21.1}{\ignorespaces \glqq Hello World\grqq {} in Python -- Variant 1}}{106}{code.caption.21}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \def \@chapapp {\appendixname }

@@ -1,14 +1,6 @@
 /**
  * @file Servomotor.ino
  * @brief Servo basiertes Radarschwenksystem
- * 
- * @details Dieses Programm steuert einen Servomotor, der sich kontinuierlich
- * zwischen 0 und 180 Grad hin- und herbewegt. Typische Anwendung für 
- * Radar-Scanning-Systeme mit Ultraschallsensoren.
- * 
- * @author Simon Müller
- * @date 27.04.2026
- * @version 1.0
  */
 
 #include <Servo.h>

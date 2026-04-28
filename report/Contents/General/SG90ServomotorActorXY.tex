@@ -1,0 +1,130 @@
+%%%%%%%%%%%%
+%
+% $Autor: Wings $
+% $Datum: 2019-03-05 08:03:15Z $
+% $Pfad: TemplateSensor $
+% $Version: 4250 $
+% !TeX spellcheck = en_GB/de_DE
+% !TeX encoding = utf8
+% !TeX root = filename 
+% !TeX TXS-program:bibliography = txs:///biber
+%
+%%%%%%%%%%%%
+
+% Structure
+\chapter{\textcolor{red}{SG90 Servomotor}}
+
+\section*{Einleitung}
+Dieses Kapitel beschreibt den mechanischen Aktor des Systems, den Micro-Servomotor SG90. Es werden die technischen Spezifikationen, die hardwareseitige Einbindung sowie die softwareseitige Ansteuerung über die Standard-Bibliotheken detailliert erläutert.
+\Mynote{\cite{towerpro, arduino_servo, components101}}
+
+\section{Allgemeines}
+Ein Servomotor ist ein geschlossenes mechatronisches System (Closed-Loop), das für präzise Winkelpositionierungen eingesetzt wird. Im Gegensatz zu kontinuierlich drehenden Gleichstrommotoren besteht ein Standard-Servo aus einem DC-Motor, einem Untersetzungsgetriebe, einem Potentiometer zur Positionserfassung und einer Steuerelektronik. Der Mikrocontroller sendet ein Pulsweitenmodulations-Signal (PWM), welches die Steuerelektronik auswertet und den Motor exakt auf den gewünschten Winkel dreht und dort aktiv hält. Servomotoren findet man vor allem im RC-Modellbau (z.B. Lenkung, Ruder, Klappen), in Robotergelenken sowie in Schwenkmechanismen für Kameras oder Sensoren, bei denen wiederholgenaue und stabile Positionen erforderlich sind
+
+\section{Spezifischer Aktor}
+Der TowerPro SG90 ist einer der weltweit am häufigsten verwendeten Micro-Servomotoren für Maker-Projekte. Er zeichnet sich durch sein extrem geringes Gewicht, seine kompakte Bauform und sein Nylon-Zahnradgetriebe aus. Der Aktor verfügt über ein dreipoliges Anschlusskabel: Braun für die Masse (\texttt{GND}), Rot für die Versorgungsspannung (\texttt{VCC}) und Orange für das PWM-Steuersignal (\texttt{Signal}). Der SG90 hat einen mechanischen Rotationsspielraum von 180 Grad ($0^\circ$ bis $180^\circ$). Gesteuert wird er über ein 50-Hz-PWM-Signal (20 ms Periodendauer). Eine Pulsweite von 1 ms entspricht theoretisch $0^\circ$, 1,5 ms entsprechen $90^\circ$ (Mittelstellung) und 2 ms entsprechen $180^\circ$.\cite{Raj:2026}  
+
+\section{Spezifikation}
+\begin{itemize}
+	\item \textbf{Datenblatt referenzieren:} Die physikalischen und elektrischen Kennwerte beziehen sich auf die offiziellen Spezifikationen von TowerPro und das Datenblatt von Components101.
+	\item \textbf{Extrahierte Informationen:}
+	\begin{itemize}
+		\item Betriebsspannung: 4,8 V bis 6,0 V DC (Optimaler Betrieb bei 5 V)
+		\item Stellmoment (Stall Torque): 1,8 kg/cm (bei 4,8 V)
+		\item Stellgeschwindigkeit (ohne Last): 0,1 Sekunden / 60 Grad (bei 4,8 V)
+		\item Gewicht: 9 Gramm
+		\item Getriebetyp: Kunststoff (Nylon)
+		\item Steuersignal: PWM (50 Hz / 20 ms Periode)
+	\end{itemize}
+	\item \textbf{Schaltplan:} Das rote Kabel (\texttt{VCC}) des SG90 wird mit dem 5V-Ausgang (VUSB) des Systems verbunden, um ausreichend Leistung für den Motor bereitzustellen. Das braune Kabel (\texttt{GND}) wird mit der gemeinsamen Masse verbunden. Das orange Kabel (\texttt{Signal}) wird an einen digitalen PWM-fähigen Pin (z.B. Pin 9) des Mikrocontrollers angeschlossen. 
+	
+	\textit{Hinweis:} Obwohl der Arduino Nano 33 BLE mit 3,3V-Logik arbeitet, reicht die 3,3V-Signalspannung am PWM-Pin völlig aus, um den 5V-Servomotor zuverlässig zu triggern.
+\end{itemize}
+
+\section{Bibliothek}
+
+\subsection{Beschreibung}
+Für die Ansteuerung des SG90 wird in der Arduino-Umgebung die integrierte \texttt{Servo}-Bibliothek genutzt. Dadurch entfällt für den Programmierer die aufwändige Erzeugung des exakten 50-Hz-PWM-Signals, und der Motor kann bequem über die direkte Vorgabe eines Winkelwertes von 0 bis 180 Grad angesteuert werden.
+
+\subsection{Installation}
+Die \texttt{Servo}-Bibliothek gehört zu den Kern-Bibliotheken der Arduino IDE und muss nicht separat heruntergeladen werden. Sie ist direkt nach der Installation der Entwicklungsumgebung unter \texttt{\#include <Servo.h>} verfügbar.
+\begin{itemize}
+	\item \textbf{Data types:} Die Zielwinkel werden als \texttt{int} (Integer/Ganzzahlen) übergeben. Für präzisere Steuerungen können Pulsweiten in Mikrosekunden ebenfalls als \texttt{int} übergeben werden.
+	\item \textbf{Data structure:} Jeder Servomotor wird im Code als Objekt der Klasse \texttt{Servo} deklariert (z.B. \texttt{Servo meinServo;}).
+	\item \textbf{Data quantity:} Auf Standard-Arduino-Boards unterstützt die Bibliothek bis zu 12 Servos gleichzeitig; auf speziellen Architekturen (wie der Mbed-OS Architektur des Nano 33 BLE) kann dies variieren, reicht jedoch für mehrere Aktoren vollkommen aus.
+	\item \textbf{Data quality:} Die Bibliothek nutzt Hardware-Timer des Mikrocontrollers (statt softwareseitiger Delays), wodurch das PWM-Signal im Hintergrund extrem stabil und jitter-frei generiert wird, ohne den restlichen Programmablauf zu blockieren.
+\end{itemize}
+
+\subsection{Funktionen}
+Die wichtigsten Methoden der Bibliothek sind:
+\begin{itemize}
+	\item \texttt{attach(pin)}: Verbindet das Servo-Objekt mit einem bestimmten digitalen Pin.
+	\item \texttt{write(angle)}: Dreht den Servo auf den entsprechenden Winkel ($0^\circ$ bis $180^\circ$).
+	\item \texttt{writeMicroseconds(uS)}: Feinkontrolle des Servos durch direkte Angabe der Pulsweite in Mikrosekunden.
+	\item \texttt{read()}: Gibt den aktuellen, zuletzt geschriebenen Winkel des Servos zurück.
+\end{itemize}
+
+\section{Beispiel}
+Dieser Abschnitt zeigt ein elementares Beispiel ("Sweep"), bei dem der Servo kontinuierlich von 0 auf 180 Grad und wieder zurück schwenkt.
+
+\subsection{Handbuch}
+Schließen Sie das rote Kabel an 5V, das braune an GND und das orange Signalkabel an Pin 9 des Arduinos an. Kompilieren Sie das Programm und laden Sie es auf das Board. Der Arm des Servomotors sollte nun anfangen, langsam und gleichmäßig hin und her zu wischen.
+
+\subsection{An einem Beispiel}
+Das Skript bindet zunächst die Bibliothek ein und erstellt ein Servo-Objekt. In der \texttt{setup()}-Routine wird der Motor an Pin 9 gebunden. In der \texttt{loop()}-Schleife sorgen zwei \texttt{for}-Schleifen für die Bewegung. Die erste Schleife erhöht den Winkel schrittweise von 0 auf 180, gefolgt von einer kurzen Pause (\texttt{delay}) von 15 ms pro Grad, um dem Motor Zeit zu geben, die physikalische Position zu erreichen. Die zweite Schleife führt die Rückwärtsbewegung aus.
+
+\subsection{Code}
+\begin{center}
+	 \captionof{code}{Beispiel Code} \label{Nano:RGBLEDTest} \ArduinoExternal{}{../../Code/Servomotor/Servomotor.ino} 
+\end{center}
+
+\subsection{Dateien}
+Für das Ausführen des Codes wird ausschließlich die Standard-Headerdatei \texttt{Servo.h} benötigt, welche in der Arduino IDE vorinstalliert ist.
+
+\section{Kalibrierung}
+Oftmals weichen günstige SG90-Motoren mechanisch von den theoretischen PWM-Werten ab (1000 µs bis 2000 µs). Wird der Motor mit \texttt{write(0)} oder \texttt{write(180)} an seine physischen Grenzen gezwungen, kann er brummen, vibrieren und überhitzen (Stalling). Zur Kalibrierung bietet die \texttt{attach()}-Funktion optionale Parameter für die minimalen und maximalen Mikrosekunden: \texttt{radarServo.attach(9, 500, 2400);}. Diese Werte müssen durch iteratives Ausprobieren (mit \texttt{writeMicroseconds()}) an den individuellen Motor angepasst werden, bis der volle $180^\circ$-Winkel ohne mechanisches Blockieren erreicht ist.
+
+\section{Einfacher Code (ohne Bibliothek)}
+Um zu verdeutlichen, wie die Hardware funktioniert, zeigt dieser Code die Ansteuerung des SG90 durch reine Bit-Manipulation (Blink-Prinzip), ohne die Servo-Bibliothek zu verwenden:
+\begin{verbatim}
+	int servoPin = 9;
+	
+	void setup() {
+		pinMode(servoPin, OUTPUT);
+	}
+	
+	void loop() {
+		// Bewegung auf ca. 90 Grad (1.5ms HIGH-Puls)
+		digitalWrite(servoPin, HIGH);
+		delayMicroseconds(1500); // 1.5 Millisekunden
+		digitalWrite(servoPin, LOW);
+		
+		// Auffüllen der restlichen 20ms Periode (50 Hz)
+		delayMicroseconds(18500); 
+	}
+\end{verbatim}
+
+\section{Einfache Anwendung}
+Eine klassische Anwendung für den SG90 ist die Basis eines \textbf{Ultraschall-Radarsystems} (wie im vorliegenden Projekt). Der Ultraschallsensor HC-SR04 wird auf der Achse des Servos montiert. Der Servo tastet systematisch in 1-Grad-Schritten die Umgebung vor sich ab ($0^\circ$ bis $180^\circ$). Bei jedem Schritt wird eine Entfernungsmessung durchgeführt. Diese Kombination aus Aktor-Winkel und Sensor-Distanz ermöglicht es der Software (z. B. in Processing), eine zweidimensionale "Radarkarte" der Umgebung auf dem Bildschirm zu zeichnen.
+
+\section{Tests}
+
+\subsection{Einfacher Funktionstest}
+Mit dem "Sweep"-Code aus Abschnitt 6.3 lässt sich leicht prüfen, ob der Motor korrekt verkabelt ist. Der Motor muss ruckelfrei und flüssig schwenken. Ein stotternder Motor oder ein Neustart des Arduinos während der Bewegung deutet auf eine unzureichende Stromversorgung (VCC-Abfall) hin.
+
+\subsection{Alle Funktionen testen}
+Ein vollständiger Systemtest umfasst:
+1. \textbf{Grenztest:} Anfahren von $0^\circ$ und $180^\circ$. Der Motor darf in diesen Endlagen nicht surren oder ungewöhnlich warm werden.
+2. \textbf{Geschwindigkeitstest:} Befehle \texttt{write(0)} und sofort danach \texttt{write(180)} ohne Delay. Messung, ob der Motor die physikalische Herstellerangabe von 0,3 Sekunden für diesen $180^\circ$-Weg einhalten kann.
+3. \textbf{Präzisionstest:} Verwendung von \texttt{writeMicroseconds(1500)} zur exakten Zentrierung, gefolgt von der Überprüfung der Winkelgenauigkeit mittels eines Geodreiecks auf dem Rotorkopf.
+
+\section{Weiterführende Literatur}
+    Towerpro SG90 Servo Motor and its application,Vayuyaan; Autor: Raj Sawkare; 03.12.2022 entnommen 19.04.2026
+    
+    Servomotor (SG90); SunFounder Ultimate Sensor Kit; entnommen 19.04.2026
+\begin{thebibliography}{9}
+	\bibitem{towerpro} TowerPro Ltd: \textit{SG90 9g Micro Servo Datasheet \& Specifications}.
+	\bibitem{arduino_servo} Arduino Documentation: \textit{Servo Library Reference \& Tutorials}.
+	\bibitem{components101} Components101 (2020): \textit{SG90 Servo Motor Pinout, Datasheet \& Wiring}.
+	\bibitem{mbed_servo} ARM mbed OS Documentation: \textit{PWM Configuration for Servo Control on nRF52-based boards}.
+\end{thebibliography}

@@ -86,23 +86,10 @@ Oftmals weichen günstige SG90-Motoren mechanisch von den theoretischen PWM-Wert
 
 \section{Einfacher Code (ohne Bibliothek)}
 Um zu verdeutlichen, wie die Hardware funktioniert, zeigt dieser Code die Ansteuerung des SG90 durch reine Bit-Manipulation (Blink-Prinzip), ohne die Servo-Bibliothek zu verwenden:
-\begin{verbatim}
-	int servoPin = 9;
-	
-	void setup() {
-		pinMode(servoPin, OUTPUT);
-	}
-	
-	void loop() {
-		// Bewegung auf ca. 90 Grad (1.5ms HIGH-Puls)
-		digitalWrite(servoPin, HIGH);
-		delayMicroseconds(1500); // 1.5 Millisekunden
-		digitalWrite(servoPin, LOW);
-		
-		// Auffüllen der restlichen 20ms Periode (50 Hz)
-		delayMicroseconds(18500); 
-	}
-\end{verbatim}
+\begin{center}
+	\captionof{code}{} \label{Nano:RGBLEDTest} 
+	\ArduinoExternal{}{../../Code/Servomotor/Servomotor_ohne_Bib.ino} 
+\end{center}
 
 \section{Einfache Anwendung}
 Eine klassische Anwendung für den SG90 ist die Basis eines \textbf{Ultraschall-Radarsystems} (wie im vorliegenden Projekt). Der Ultraschallsensor HC-SR04 wird auf der Achse des Servos montiert. Der Servo tastet systematisch in 1-Grad-Schritten die Umgebung vor sich ab ($0^\circ$ bis $180^\circ$). Bei jedem Schritt wird eine Entfernungsmessung durchgeführt. Diese Kombination aus Aktor-Winkel und Sensor-Distanz ermöglicht es der Software (z. B. in Processing), eine zweidimensionale "Radarkarte" der Umgebung auf dem Bildschirm zu zeichnen.
