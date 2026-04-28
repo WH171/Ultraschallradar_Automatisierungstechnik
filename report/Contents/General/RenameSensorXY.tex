@@ -183,32 +183,38 @@ Sensoren zur Abstandsmessung sind wichtige  Komponenten in der modernen Automati
 \section{Spezifischer Sensor/Aktor}
 In diesem Projekt kommt der Ultraschallsensor \textbf{HC-SR04} zum Einsatz. Er wandelt die gemessene Entfernung in ein PWM-Signal um, welches am Ausgang zur Verfügung steht \cite{KT:2012}. 
 
-Das Auslösen eines Messzyklus geschieht durch eine fallende Flanke am \python{TRIG}-Eingang für min dest Sens 10 \textmu s. Das Modul sendet darauf nach ca. 250 \textm s ei40 kHz Burst-Signal für die Dauer von 200 \textmu s aus. Danach gehtors senden. Der HC-SR04 erzeugt daraufhin vollautomatisch acht Ultrascin des Sensors auf HIGH gesetzt. Sobald das akustische Signal von einemuf LOW-Pegel. Wird kein Echo detektier trifft, fällt der \python{ECHO}-Pin wieder auf LOW \cite{SparkFun:2020}. Die Zeitdauert, verweilt der Ausgang für insgesamt 200 ms auf HIGH-Pgel udie der \python{ECHO}-Pin den HIGH-Zustand zbeigt so eine erfolglose Messung an. Ein vollstänbehält, entspricht exakt der Laufzeit des Schalls. Aus diges Messintervall hat eine Dauer von 2er Zeit lässt sich die Distanz präzise berechnen.               }                                                                                          	\item \textbf{Datenblatt referenzieren:} Die elektrischen und physikalischen Parameter T-elekElecFreaks und SparkFun Electronics \cite{KTSparkFun:201220}.                                                             egin{itemize}                            5,0
+Das Auslösen eines Messzyklus geschieht durch eine fallende Flanke am \python{TRIG}-Eingang für mindestens 10 \textmu s. Das Modul sendet darauf nach ca. 250 \textmu s ein 40 kHz Burst-Signal für die Dauer von 200 \textmu s aus. Danach geht der \python{ECHO}-Ausgang sofort auf HIGH-Pegel und das Modul wartet auf den Empfang des Echos. Wird dieses detektiert, fällt der Ausgang auf LOW-Pegel. Wird kein Echo detektiert, verweilt der Ausgang für insgesamt 200 ms auf HIGH-Pegel und zeigt so eine erfolglose Messung an. Ein vollständiges Messintervall hat eine Dauer von 20 ms, sodass maximal 50 Messungen pro Sekunde durchgeführt werden können \cite{KT:2012}.
+
+\section{Spezifikation}
+\begin{itemize}
+	\item \textbf{Datenblatt:} Die elektrischen und physikalischen Parameter beziehen sich auf die offiziellen Spezifikationen von KT-elektronic \cite{KT:2012}.
+	\begin{itemize}
 		\item Betriebsspannung (\python{VCC}): +5 V DC
 		\item Stromaufnahme: < 2 mA
 		\item Messbare Distanz: 2 cm bis ca. 300 cm
-		\item Messauflösung: 3 mm                                    
+		\item Messauflösung: 3 mm
 		\item Messintervall: 20 ms (maximal 50 Messungen pro Sekunde)
 		\item Messwinkel: Bis zu $45^\circ$ bei kurzen Distanzen (< 1 m), Sendekegel von $15^\circ$ bei maximaler Distanz
 		\item Abmessungen (L x B x T): 45 x 21 x 18 mm
-	\end{itemize}                                                                                                                                                                                                                                                       1        angeschlossen. D                    Pin wird mit einem digitaen Ein                     z.B. Pi020}. \textit{                                  }                        und muss                                      	\item \textbf{Schaltplan:} Das Modul besitzt vier Pins. Der \python{VCC}-Pin (ird mit der 5V-Spannungsversorgung des Mikroers verbunden, der \python{GND}-Pin (Pin 4) mit dem \python{GND}-Pin des Microcontrollers. Der \python{TRIG}-Eingang (Pin 2) und der \python{ECHO}-Ausgang (Pin 3) arbeiten mit TTL-Pegel. Hinweis bei 3.3V Mikrocontrollern: Da der \python{ECHO}-Pin ein 5V-Signal liefert, muss dieser zwingend durch einen Spannungsteiler an den 3.3V-Eingang des Mikrocontrollers angepasst werden \cite{KT:2012}.
+	\end{itemize}
+	\item \textbf{Schaltplan:} Das Modul besitzt vier Pins. Der \python{VCC}-Pin (Pin 1) wird mit der 5V-Spannungsversorgung des Mikrocontrollers verbunden, der \python{GND}-Pin (Pin 4) mit dem \python{GND}-Pin des Microcontrollers. Der \python{TRIG}-Eingang (Pin 2) und der \python{ECHO}-Ausgang (Pin 3) arbeiten mit TTL-Pegel. Hinweis bei 3.3V Mikrocontrollern: Da der \python{ECHO}-Pin ein 5V-Signal liefert, muss dieser zwingend durch einen Spannungsteiler an den 3.3V-Eingang des Mikrocontrollers angepasst werden \cite{KT:2012}.
 \end{itemize}
 
 \section{Bibliothek}
 
-\subsection{Beschreibung}                                                                                                 
+\subsection{Beschreibung}
 Für die Ansteuerung des Sensors wird die externe C++ Bibliothek \textbf{NewPing} von Tim Eckel verwendet \cite{Eckel:2023}.
 
-\subsection{Installation}                                                                                            
+\subsection{Installation}
 Die Bibliothek kann direkt über den internen Bibliotheksverwalter der Arduino IDE installiert werden \cite{Eckel:2023}.
-\begin{itemize}                                                                                                                                                                                   
+\begin{itemize}
 	\item \textbf{Data types:} Messzeiten in Mikrosekunden und Distanzen in Zentimetern werden als \python{unsigned int} deklariert, um Speicherplatz zu sparen und negative Distanzen auszuschließen.
-	\item \textbf{Data structure:} Der Sensor wird als Objekt der Klasse \python{NewPing} instanziiert.                                                                                                                                                            
+	\item \textbf{Data structure:} Der Sensor wird als Objekt der Klasse \python{NewPing} instanziiert.
 	\item \textbf{Data quantity:} Das Softwaredesign ist ressourcenschonend konzipiert. Es können bis zu 15 Ultraschallsensoren gleichzeitig und asynchron über ein einziges Board betrieben werden, bei einer Abtastrate von bis zu 30 Pings pro Sekunde je Sensor.
 	\item \textbf{Data quality:} Die Bibliothek bietet integrierte digitale Filter. Die Funktion \python{ping_median(iterations)} verarbeitet mehrere Messwerte zu einem Median, was Rauschen und fehlerhafte Echos effektiv aus dem Datensatz entfernt.
 \end{itemize}
 
-\subsection{Funktionen}                                                          
+\subsection{Funktionen}
 Die wichtigsten Befehle der \python{NewPing}-Bibliothek umfassen \cite{Eckel:2023}:
 \begin{itemize}
 	\item \python{NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE)}: Konstruktor zur Erstellung des Sensor-Objekts.
@@ -220,23 +226,17 @@ Die wichtigsten Befehle der \python{NewPing}-Bibliothek umfassen \cite{Eckel:202
 \section{Beispiel}
 In diesem Abschnitt wird ein einfaches, eigenständiges Beispiel im Detail beschrieben, welches die Funktionsweise und Integration der Bibliothek in C++ verdeutlicht.
 
-\subsection{Handbuch}                                                               
+\subsection{Handbuch}
 1. Verbinden Sie \python{VCC} und \python{GND} des HC-SR04 mit 5V und GND des Boards. 
 2. Verbinden Sie den \python{TRIG}-Pin mit Pin 12 und den \python{ECHO}-Pin mit Pin 11.
 3. Öffnen Sie die Arduino IDE, kompilieren Sie den Code und laden Sie ihn hoch.
 4. Öffnen Sie den Seriellen Monitor (Baudrate 115200)\cite{SparkFun:2020}.
-                                 
-\subsection{Funktion vom Beispiel}                                                                                                                                                                                                                                                                                                                                                                                                                                      
+
+\subsection{Funktion vom Beispiel}
 Das Skript bindet die \python{NewPing.h} ein. Über \python{\#define} werden Pins und der maximale Messbereich (200 cm) definiert. In der Hauptschleife (\python{loop()}) stellt \python{delay(50)} sicher, dass zwischen zwei Pings gewartet wird, um Echosüberlappungen zu verhindern \cite{Eckel:2023}. Anschließend wird \python{ping_median(5)} aufgerufen. Der Rückgabewert wird durch \python{US_ROUNDTRIP_CM} geteilt, um Zentimeter zu erhalten \cite{Eckel:2023}.
 
 \subsection{Code}
-	/**
-file    HCSR04_NewPing_Example.ino
-lterten Distanzmessung mit dem HC-SR04.
-
-Max Mustermann
-/
-egin{verbatim}
+\begin{verbatim}
 
 	#include <NewPing.h>
 	
@@ -270,12 +270,9 @@ egin{verbatim}
 		Serial.print("Gefilterte Distanz: ");
 		
 		if (uS == 0) {
-\subsection{Dateien}
-ieses Codes ist neben dem \python{.ino}-Sketch zwingend die Datei \python{NewPing.h} erforderlich \cite{newping_doc}.
-                                                                                                                         physics_sensors}                                                                                                                                    physics_sensors
 			Serial.println("Außerhalb der Reichweite");
 		} else {
-			// Umrechnung von Mikrosekunden in Zentimeter                                                  
+			// Umrechnung von Mikrosekunden in Zentimeter
 			Serial.print(uS / US_ROUNDTRIP_CM); 
 			Serial.println(" cm");
 		}
@@ -316,18 +313,18 @@ Der folgende Code demonstriert eine Abstandsmessung ohne Bibliotheken und nutzt 
 		/** * @brief pulseIn misst die Länge des ECHO-Impulses. */
 		long duration = pulseIn(ECHO_PIN, HIGH);
 		
-		// Berechnung der Distanz (Laufzeit in us / 58)                                                                                                                                                                                                                                                            
+		// Berechnung der Distanz (Laufzeit in us / 58)
 		float distance = duration / 58.0; 
 		
 		Serial.print("Gemessene Distanz: ");
 		Serial.print(distance);
-		Serial.println(" cm");                                                                                                                                                                                                                            
+		Serial.println(" cm");
 		
 		delay(100); 
 	}
 \end{verbatim}
-                                                                                                                        
-\section{Einfache Anwendung}                                                                                                                  
+
+\section{Einfache Anwendung}
 Eine anschauliche Anwendung für den HC-SR04 ist eine automatisierte Einparkhilfe. Fährt ein Fahrzeug heran, liest der Sensor die Distanz. Unterschreitet der \python{distance}-Wert 50 cm, schaltet das System eine Warn-LED ein. Fällt der Wert auf unter 10 cm, wird ein Buzzer getriggert \cite{Eckel:2023}.
 
 \section{Tests}
