@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.24.0 (TeX Live 2026)  (format=lualatex 2026.3.27)  28 APR 2026 12:14
+This is LuaHBTeX, Version 1.24.0 (TeX Live 2026)  (format=lualatex 2026.3.27)  28 APR 2026 13:16
  restricted system commands enabled.
 **rename.tex
 (./rename.tex
@@ -4345,12 +4345,12 @@ Package logreq Info: Writing requests to 'rename.run.xml'.
 
 Here is how much of LuaTeX's memory you used:
  101087 strings out of 476076
- 745226,4101490 words of node,token memory allocated
+ 745230,4101490 words of node,token memory allocated
  5242 words of node memory still in use:
    23 hlist, 2 vlist, 10 rule, 1 local_par, 8 glue, 4 kern, 1 penalty, 2 margin_
 kern, 5 glyph, 1353 attribute, 96 glue_spec, 677 attribute_list, 3 write, 16 pdf
 _literal, 12 pdf_action, 16 pdf_colorstack nodes
-   avail lists: 1:13,2:12019,3:2600,4:19807,5:14537,6:150,7:17679,8:152,9:36846,
+   avail lists: 1:11,2:12019,3:2600,4:19807,5:14537,6:150,7:17679,8:152,9:36846,
 10:40,11:1334,12:2
  120937 multiletter control sequences out of 65536+600000
  115 fonts using 7837031 bytes
@@ -4381,7 +4381,7 @@ texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2026/texmf-dist/fonts/ty
 pe1/public/lm/lmsy7.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmsy9.
 pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><
 c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on rename.pdf (111 pages, 659029 bytes).
+Output written on rename.pdf (111 pages, 658958 bytes).
 
 PDF statistics: 1840 PDF objects out of 2073 (max. 8388607)
  1663 compressed objects within 17 object streams

@@ -1,6 +1,6 @@
 /**
- * @file RadarServo.ino
- * @brief Servo-basiertes Radar-Schwenksystem
+ * @file Servomotor.ino
+ * @brief Servo basiertes Radarschwenksystem
  * 
  * @details Dieses Programm steuert einen Servomotor, der sich kontinuierlich
  * zwischen 0 und 180 Grad hin- und herbewegt. Typische Anwendung für 
