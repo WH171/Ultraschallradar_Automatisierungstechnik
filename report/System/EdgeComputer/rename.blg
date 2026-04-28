@@ -25,8 +25,8 @@ Repeated entry---line 467 of file ../../../MLbib/MyLiterature.bib
  : @misc{Eckel:2023
  :                 ,
 I'm skipping whatever remains of this entry
-Warning--I didn't find a database entry for "KTSparkFun:201220"
-Warning--I didn't find a database entry for "newping_doc"
+Warning--I didn't find a database entry for "Sparkfun:2019"
+Warning--I didn't find a database entry for "Arduino:2024"
 Warning--I didn't find a database entry for "towerpro"
 Warning--I didn't find a database entry for "arduino_servo"
 Warning--I didn't find a database entry for "components101"
@@ -34,45 +34,45 @@ Warning--I didn't find a database entry for "Raj:2026"
 Biblatex version: 3.21
 Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-You've used 19 entries,
+You've used 20 entries,
             6402 wiz_defined-function locations,
-            1337 strings with 13678 characters,
-and the built_in function-call counts, 155468 in all, are:
-= -- 12509
-> -- 2061
-< -- 701
-+ -- 4639
-- -- 765
-* -- 10913
-:= -- 18224
+            1344 strings with 13801 characters,
+and the built_in function-call counts, 162227 in all, are:
+= -- 12880
+> -- 2441
+< -- 765
++ -- 4991
+- -- 1029
+* -- 11268
+:= -- 18952
 add.period$ -- 0
-call.type$ -- 19
-change.case$ -- 18
-chr.to.int$ -- 62
-cite$ -- 36
-duplicate$ -- 17204
-empty$ -- 13403
-format.name$ -- 1380
-if$ -- 30878
+call.type$ -- 20
+change.case$ -- 19
+chr.to.int$ -- 86
+cite$ -- 38
+duplicate$ -- 17882
+empty$ -- 13944
+format.name$ -- 1438
+if$ -- 32129
 int.to.chr$ -- 0
-int.to.str$ -- 58
+int.to.str$ -- 63
 missing$ -- 0
-newline$ -- 700
-num.names$ -- 938
-pop$ -- 6883
+newline$ -- 730
+num.names$ -- 1009
+pop$ -- 7221
 preamble$ -- 1
-purify$ -- 421
+purify$ -- 453
 quote$ -- 0
-skip$ -- 3735
+skip$ -- 4011
 stack$ -- 0
-substring$ -- 22510
-swap$ -- 3038
-text.length$ -- 638
-text.prefix$ -- 34
+substring$ -- 23076
+swap$ -- 3225
+text.length$ -- 678
+text.prefix$ -- 36
 top$ -- 1
-type$ -- 630
+type$ -- 664
 warning$ -- 0
-while$ -- 2387
+while$ -- 2466
 width$ -- 0
-write$ -- 682
+write$ -- 711
 (There was 1 error message)

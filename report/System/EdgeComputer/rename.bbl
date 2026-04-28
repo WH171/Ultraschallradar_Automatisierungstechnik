@@ -340,6 +340,37 @@
     \field{year}{2002}
   \endentry
 
+  \entry{Fraden:2010}{book}{}{}
+    \name{author}{1}{}{%
+      {{hash=FJ}{%
+         family={Fraden},
+         familyi={F\bibinitperiod},
+         given={Jacob},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Springer New York}%
+    }
+    \strng{namehash}{FJ1}
+    \strng{fullhash}{FJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Fra10}
+    \field{sortinit}{F}
+    \field{sortinithash}{F}
+    \field{isbn}{9781441964663}
+    \field{title}{Handbook of Modern Sensors: Physics, Designs, and
+  Applications}
+    \verb{url}
+    \verb https://link.springer.com/book/10.1007/978-1-4419-6466-3
+    \endverb
+    \field{year}{2010}
+    \field{urlday}{24}
+    \field{urlmonth}{09}
+    \field{urlyear}{2025}
+  \endentry
+
   \entry{Fraden:2016}{book}{}{}
     \name{author}{1}{}{%
       {{hash=FJ}{%

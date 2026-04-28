@@ -3,14 +3,12 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
+\contentsline {code}{\numberline {4.1}{\ignorespaces Beispiel Code}}{25}{code.caption.7}%
+\contentsline {code}{\numberline {4.2}{\ignorespaces Beispiel Code}}{26}{code.caption.8}%
+\contentsline {code}{\numberline {4.3}{\ignorespaces Einparkhilfe Beispielcode}}{27}{code.caption.9}%
 \addvspace {10\p@ }
-\contentsline {code}{\numberline {5.1}{\ignorespaces Beispiel Code}}{33}{code.caption.8}%
-\contentsline {code}{\numberline {5.2}{\ignorespaces \relax }}{34}{code.caption.9}%
-\addvspace {10\p@ }
-\addvspace {10\p@ }
-\addvspace {10\p@ }
-\addvspace {10\p@ }
-\addvspace {10\p@ }
+\contentsline {code}{\numberline {5.1}{\ignorespaces Beispiel Code}}{35}{code.caption.11}%
+\contentsline {code}{\numberline {5.2}{\ignorespaces \relax }}{36}{code.caption.12}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
@@ -20,9 +18,14 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {code}{\numberline {19.1}{\ignorespaces \glqq Hello World\grqq {} in Python -- Variant 1}}{96}{code.caption.21}%
 \addvspace {10\p@ }
-\contentsline {code}{\numberline {20.1}{\ignorespaces \glqq Hello World\grqq {} in Python -- Variant 1}}{98}{code.caption.22}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {code}{\numberline {19.1}{\ignorespaces \glqq Hello World\grqq {} in Python -- Variant 1}}{98}{code.caption.24}%
+\addvspace {10\p@ }
+\contentsline {code}{\numberline {20.1}{\ignorespaces \glqq Hello World\grqq {} in Python -- Variant 1}}{100}{code.caption.25}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \def \@chapapp {\appendixname }
