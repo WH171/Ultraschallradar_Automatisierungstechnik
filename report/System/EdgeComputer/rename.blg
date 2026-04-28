@@ -21,59 +21,58 @@ Database file #1: rename-blx.bib
 Database file #2: ../../../MLbib/Jetson.bib
 Database file #3: ../../../MLbib/literature.bib
 Database file #4: ../../../MLbib/MyLiterature.bib
-I was expecting a `,' or a `}'---line 1509 of file ../../../MLbib/MyLiterature.bib
- : 
- : %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-(Error may have been on previous line)
+Repeated entry---line 467 of file ../../../MLbib/MyLiterature.bib
+ : @misc{Eckel:2023
+ :                 ,
 I'm skipping whatever remains of this entry
-Warning--I didn't find a database entry for "berrybase"
-Warning--I didn't find a database entry for "sparkfun"
-Warning--I didn't find a database entry for "arduino_newping"
+Warning--I didn't find a database entry for "KTSparkFun:201220"
+Warning--I didn't find a database entry for "newping_doc"
 Warning--I didn't find a database entry for "towerpro"
 Warning--I didn't find a database entry for "arduino_servo"
 Warning--I didn't find a database entry for "components101"
+Warning--I didn't find a database entry for "Raj:2026"
 Biblatex version: 3.21
 Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-You've used 15 entries,
+You've used 19 entries,
             6402 wiz_defined-function locations,
-            1312 strings with 13020 characters,
-and the built_in function-call counts, 139999 in all, are:
-= -- 11535
-> -- 1992
-< -- 579
-+ -- 4584
-- -- 886
-* -- 9795
-:= -- 17025
+            1337 strings with 13678 characters,
+and the built_in function-call counts, 155468 in all, are:
+= -- 12509
+> -- 2061
+< -- 701
++ -- 4639
+- -- 765
+* -- 10913
+:= -- 18224
 add.period$ -- 0
-call.type$ -- 15
-change.case$ -- 14
-chr.to.int$ -- 86
-cite$ -- 28
-duplicate$ -- 15326
-empty$ -- 11721
-format.name$ -- 1177
-if$ -- 27323
+call.type$ -- 19
+change.case$ -- 18
+chr.to.int$ -- 62
+cite$ -- 36
+duplicate$ -- 17204
+empty$ -- 13403
+format.name$ -- 1380
+if$ -- 30878
 int.to.chr$ -- 0
-int.to.str$ -- 49
+int.to.str$ -- 58
 missing$ -- 0
-newline$ -- 610
-num.names$ -- 747
-pop$ -- 5542
+newline$ -- 700
+num.names$ -- 938
+pop$ -- 6883
 preamble$ -- 1
-purify$ -- 356
+purify$ -- 421
 quote$ -- 0
-skip$ -- 3028
+skip$ -- 3735
 stack$ -- 0
-substring$ -- 21159
-swap$ -- 2568
-text.length$ -- 527
-text.prefix$ -- 26
+substring$ -- 22510
+swap$ -- 3038
+text.length$ -- 638
+text.prefix$ -- 34
 top$ -- 1
-type$ -- 494
+type$ -- 630
 warning$ -- 0
-while$ -- 2209
+while$ -- 2387
 width$ -- 0
-write$ -- 596
+write$ -- 682
 (There was 1 error message)

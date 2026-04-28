@@ -178,6 +178,29 @@
     \field{year}{2016}
   \endentry
 
+  \entry{ArduinoReference:2024}{misc}{}{}
+    \name{author}{1}{}{%
+      {{hash=A}{%
+         family={Arduino},
+         familyi={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{A1}
+    \strng{fullhash}{A1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Ard24}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{note}{Accessed: 2024-04-26}
+    \field{title}{Arduino Language Reference - pulseIn()}
+    \verb{url}
+    \verb https://www.arduino.cc/reference/en/language/functions/advanced-io/pu
+    \verb lsein/
+    \endverb
+    \field{year}{2024}
+  \endentry
+
   \entry{DIN66025}{misc}{}{}
     \name{author}{1}{}{%
       {{hash=D}{%
@@ -205,6 +228,54 @@
     \field{type}{Norm}
     \field{month}{09}
     \field{year}{1988}
+  \endentry
+
+  \entry{Eckel:2023}{online}{}{}
+    \name{author}{1}{}{%
+      {{hash=ET}{%
+         family={Eckel},
+         familyi={E\bibinitperiod},
+         given={Tim},
+         giveni={T\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{ET1}
+    \strng{fullhash}{ET1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Eck23}
+    \field{sortinit}{E}
+    \field{sortinithash}{E}
+  \field{note}{\textcolor{blue}{\href{../../../MLBib/Sensor/Ultrasonic/LibraryNewPing.pdf}{[pdf]}}}
+    \field{title}{NewPing Library Documentation}
+    \verb{url}
+    \verb playground.arduino.cc/Code/NewPing
+    \endverb
+    \field{year}{2023}
+  \endentry
+
+  \entry{SparkFun:2020}{misc}{}{}
+    \name{author}{1}{}{%
+      {{hash=ES}{%
+         family={Electronics},
+         familyi={E\bibinitperiod},
+         given={SparkFun},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{ES1}
+    \strng{fullhash}{ES1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Ele20}
+    \field{sortinit}{E}
+    \field{sortinithash}{E}
+    \field{note}{Accessed: 2024}
+    \field{title}{Ultrasonic Ranging Module HC - SR04}
+    \verb{url}
+    \verb https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf
+    \endverb
+    \field{year}{2020}
   \endentry
 
   \entry{Farouki:2017}{article}{}{}
@@ -269,6 +340,30 @@
     \field{year}{2002}
   \endentry
 
+  \entry{Fraden:2016}{book}{}{}
+    \name{author}{1}{}{%
+      {{hash=FJ}{%
+         family={Fraden},
+         familyi={F\bibinitperiod},
+         given={Jacob},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Springer}%
+    }
+    \strng{namehash}{FJ1}
+    \strng{fullhash}{FJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Fra16}
+    \field{sortinit}{F}
+    \field{sortinithash}{F}
+    \field{title}{Handbook of Modern Sensors: Physics, Designs, and
+  Applications}
+    \field{year}{2016}
+  \endentry
+
   \entry{Jaklic:2010}{article}{}{}
     \name{author}{5}{}{%
       {{hash=JG}{%
@@ -316,6 +411,28 @@
     \field{year}{2010}
   \endentry
 
+  \entry{KT:2012}{misc}{}{}
+    \name{author}{1}{}{%
+      {{hash=K}{%
+         family={{KT-elektronic}},
+         familyi={K\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{K1}
+    \strng{fullhash}{K1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{{KT-}12}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \field{title}{Ultraschall Messmodul HC-SR04 Beschreibung}
+    \verb{url}
+    \verb https://www.mikrocontroller.net/attachment/218122/HC-SR04_ultraschall
+    \verb modul_beschreibung_3.pdf
+    \endverb
+    \field{year}{2012}
+  \endentry
+
   \entry{Patent3D}{misc}{}{}
     \name{author}{4}{}{%
       {{hash=RD}{%
@@ -353,32 +470,6 @@
     \field{howpublished}{United States Patent, Patent N0.: US 7,291,002 B2}
     \field{title}{Apparatus and Methods for 3D Printing}
     \field{year}{2007}
-  \endentry
-
-  \entry{Raj:2026}{article}{}{}
-    \name{author}{1}{}{%
-      {{hash=SR}{%
-         family={Sawkare},
-         familyi={S\bibinitperiod},
-         given={Raj},
-         giveni={R\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{SR1}
-    \strng{fullhash}{SR1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelalpha}{Saw 1}
-    \field{sortinit}{S}
-    \field{sortinithash}{S}
-    \field{title}{Towerpro SG90 Servo Motor And Its Application}
-    \verb{url}
-    \verb https://vayuyaan.com/blog/towerpro-sg90-servo-motor-and-its-applicati
-    \verb on/
-    \endverb
-    \field{journaltitle}{Blog}
-    \field{year}{03-12-2022}
-    \warn{\item Invalid format of field 'urldate'}
   \endentry
 
   \entry{Wat:2017e}{online}{}{}

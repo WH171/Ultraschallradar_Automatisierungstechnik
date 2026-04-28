@@ -9,130 +9,111 @@
 \contentsline {part}{\numberline {II}Domain Knowledge - Hardware}{19}{part.2}%
 \contentsline {chapter}{\numberline {3}\textcolor {red}{Hardware XY}}{21}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Further Readings}{21}{section.3.1}%
-\contentsline {chapter}{\numberline {4}\textcolor {red}{HC-SR04 Ultraschallsensor}}{23}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Allgemein}{23}{section.4.1}%
-\contentsline {section}{\numberline {4.2}HC-SR04}{23}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Spezifikation}{23}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Bibliothek}{24}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}Beschreibung}{24}{subsection.4.4.1}%
-\contentsline {subsection}{\numberline {4.4.2}Installation}{24}{subsection.4.4.2}%
-\contentsline {subsection}{\numberline {4.4.3}Funktionen}{24}{subsection.4.4.3}%
-\contentsline {section}{\numberline {4.5}Beispiel}{24}{section.4.5}%
-\contentsline {subsection}{\numberline {4.5.1}Aufbau}{25}{subsection.4.5.1}%
-\contentsline {subsection}{\numberline {4.5.2}Beschreibung}{25}{subsection.4.5.2}%
-\contentsline {subsection}{\numberline {4.5.3}Code}{25}{subsection.4.5.3}%
-\contentsline {subsection}{\numberline {4.5.4}Dateien}{25}{subsection.4.5.4}%
-\contentsline {section}{\numberline {4.6}Kalibrierung}{25}{section.4.6}%
-\contentsline {section}{\numberline {4.7}Einfacher Code (ohne Bibliothek)}{26}{section.4.7}%
-\contentsline {section}{\numberline {4.8}Einfache Anwendung}{26}{section.4.8}%
-\contentsline {section}{\numberline {4.9}Tests}{27}{section.4.9}%
-\contentsline {subsection}{\numberline {4.9.1}Einfacher Funktionstest}{27}{subsection.4.9.1}%
-\contentsline {subsection}{\numberline {4.9.2}Alle Funktionen testen}{27}{subsection.4.9.2}%
-\contentsline {section}{\numberline {4.10}Weiterführende Literatur}{27}{section.4.10}%
-\contentsline {chapter}{Bibliography}{29}{chapter*.5}%
-\contentsline {chapter}{\numberline {5}\textcolor {red}{Ultraschallsensor HC-SR04}}{31}{chapter.5}%
+\contentsline {chapter}{\numberline {4}\textcolor {red}{Ultraschallsensor HC-SR04}}{23}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Allgemeines}{23}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Spezifischer Sensor/Aktor}{23}{section.4.2}%
+\contentsline {paragraph}{\nonumberline Datenblattreferenzierung}{24}{paragraph*.5}%
+\contentsline {paragraph}{\nonumberline Schaltplan}{24}{paragraph*.6}%
+\contentsline {section}{\numberline {4.3}Bibliothek}{24}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Beschreibung}{24}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Installation}{24}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Funktionen}{25}{subsection.4.3.3}%
+\contentsline {section}{\numberline {4.4}Beispiel}{25}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Handbuch}{25}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Funktion vom Beispiel}{25}{subsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.4.3}Code}{25}{subsection.4.4.3}%
+\contentsline {subsection}{\numberline {4.4.4}Dateien}{26}{subsection.4.4.4}%
+\contentsline {section}{\numberline {4.5}Kalibrierung}{26}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Einfacher Code}{26}{section.4.6}%
+\contentsline {section}{\numberline {4.7}Einfache Anwendung}{27}{section.4.7}%
+\contentsline {section}{\numberline {4.8}Tests}{27}{section.4.8}%
+\contentsline {subsection}{\numberline {4.8.1}Einfacher Funktionstest}{27}{subsection.4.8.1}%
+\contentsline {subsection}{\numberline {4.8.2}Alle Funktionen testen}{27}{subsection.4.8.2}%
+\contentsline {section}{\numberline {4.9}Weiterführende Literatur}{27}{section.4.9}%
+\contentsline {chapter}{Bibliography}{29}{chapter*.7}%
+\contentsline {chapter}{\numberline {5}\textcolor {red}{SG90 Servomotor}}{31}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Allgemeines}{31}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Spezifischer Sensor/Aktor}{31}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Bibliothek}{32}{section.5.3}%
-\contentsline {subsection}{\numberline {5.3.1}Beschreibung}{32}{subsection.5.3.1}%
-\contentsline {subsection}{\numberline {5.3.2}Installation}{32}{subsection.5.3.2}%
-\contentsline {subsection}{\numberline {5.3.3}Funktionen}{32}{subsection.5.3.3}%
-\contentsline {section}{\numberline {5.4}Beispiel}{33}{section.5.4}%
-\contentsline {subsection}{\numberline {5.4.1}Handbuch}{33}{subsection.5.4.1}%
-\contentsline {subsection}{\numberline {5.4.2}Funktion vom Beispiel}{33}{subsection.5.4.2}%
-\contentsline {subsection}{\numberline {5.4.3}Code}{33}{subsection.5.4.3}%
-\contentsline {subsection}{\numberline {5.4.4}Dateien}{33}{subsection.5.4.4}%
-\contentsline {section}{\numberline {5.5}Kalibrierung}{34}{section.5.5}%
-\contentsline {section}{\numberline {5.6}Einfacher Code}{34}{section.5.6}%
-\contentsline {section}{\numberline {5.7}Einfache Anwendung}{35}{section.5.7}%
-\contentsline {section}{\numberline {5.8}Tests}{35}{section.5.8}%
-\contentsline {subsection}{\numberline {5.8.1}Einfacher Funktionstest}{35}{subsection.5.8.1}%
-\contentsline {subsection}{\numberline {5.8.2}Alle Funktionen testen}{35}{subsection.5.8.2}%
-\contentsline {section}{\numberline {5.9}Weiterführende Literatur}{35}{section.5.9}%
-\contentsline {chapter}{Bibliography}{37}{chapter*.6}%
-\contentsline {chapter}{\numberline {6}\textcolor {red}{SG90 Servomotor}}{39}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Allgemeines}{39}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Spezifischer Aktor}{39}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Spezifikation}{39}{section.6.3}%
-\contentsline {section}{\numberline {6.4}Bibliothek}{40}{section.6.4}%
-\contentsline {subsection}{\numberline {6.4.1}Beschreibung}{40}{subsection.6.4.1}%
-\contentsline {subsection}{\numberline {6.4.2}Installation}{40}{subsection.6.4.2}%
-\contentsline {subsection}{\numberline {6.4.3}Funktionen}{40}{subsection.6.4.3}%
-\contentsline {section}{\numberline {6.5}Beispiel}{41}{section.6.5}%
-\contentsline {subsection}{\numberline {6.5.1}Handbuch}{41}{subsection.6.5.1}%
-\contentsline {subsection}{\numberline {6.5.2}An einem Beispiel}{41}{subsection.6.5.2}%
-\contentsline {subsection}{\numberline {6.5.3}Code}{41}{subsection.6.5.3}%
-\contentsline {subsection}{\numberline {6.5.4}Dateien}{42}{subsection.6.5.4}%
-\contentsline {section}{\numberline {6.6}Kalibrierung}{42}{section.6.6}%
-\contentsline {section}{\numberline {6.7}Einfacher Code (ohne Bibliothek)}{42}{section.6.7}%
-\contentsline {section}{\numberline {6.8}Einfache Anwendung}{43}{section.6.8}%
-\contentsline {section}{\numberline {6.9}Tests}{43}{section.6.9}%
-\contentsline {subsection}{\numberline {6.9.1}Einfacher Funktionstest}{43}{subsection.6.9.1}%
-\contentsline {subsection}{\numberline {6.9.2}Alle Funktionen testen}{43}{subsection.6.9.2}%
-\contentsline {section}{\numberline {6.10}Weiterführende Literatur}{44}{section.6.10}%
-\contentsline {chapter}{Bibliography}{45}{chapter*.9}%
-\contentsline {part}{\numberline {III}Domain Knowledge - Tools}{47}{part.3}%
-\contentsline {chapter}{\numberline {7}\textcolor {red}{Python Tool XY}}{49}{chapter.7}%
-\contentsline {chapter}{\numberline {8}\textcolor {red}{Hardware Tool XY}}{51}{chapter.8}%
-\contentsline {part}{\numberline {IV}Developmenmt}{53}{part.4}%
-\contentsline {chapter}{\numberline {9}\textcolor {red}{Flow Chart Development XY}}{55}{chapter.9}%
-\contentsline {part}{\numberline {V}Monitoring}{57}{part.5}%
-\contentsline {chapter}{\numberline {10}\textcolor {red}{Monitoring XY}}{59}{chapter.10}%
-\contentsline {part}{\numberline {VI}Verification - Evaluation - Conclusion}{61}{part.6}%
-\contentsline {chapter}{\numberline {11}\textcolor {red}{Evaluation/Verification XY}}{63}{chapter.11}%
-\contentsline {chapter}{\numberline {12}\textcolor {red}{To DoX Y}}{65}{chapter.12}%
-\contentsline {chapter}{\numberline {13}\textcolor {red}{Conclusion XY}}{67}{chapter.13}%
-\contentsline {part}{\numberline {VII} Appendix}{69}{part.7}%
-\contentsline {chapter}{\numberline {14}\textcolor {red}{Bill of Material}}{71}{chapter.14}%
-\contentsline {chapter}{\numberline {15}\textcolor {red}{SBOM}}{73}{chapter.15}%
-\contentsline {chapter}{\numberline {16}\textcolor {red}{Package \textcolor {PythonColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-Example}}}}{75}{chapter.16}%
-\contentsline {section}{\numberline {16.1}Introduction}{75}{section.16.1}%
-\contentsline {section}{\numberline {16.2}Description}{75}{section.16.2}%
-\contentsline {section}{\numberline {16.3}Installation}{75}{section.16.3}%
-\contentsline {section}{\numberline {16.4}Example - Manual}{75}{section.16.4}%
-\contentsline {section}{\numberline {16.5}Example}{75}{section.16.5}%
-\contentsline {section}{\numberline {16.6}Example - Code}{75}{section.16.6}%
-\contentsline {section}{\numberline {16.7}Example - Files}{75}{section.16.7}%
-\contentsline {section}{\numberline {16.8}Further Reading}{75}{section.16.8}%
-\contentsline {part}{\numberline {VIII}Hints - Examples for LaTeX - Read, Use and Remove}{77}{part.8}%
-\contentsline {chapter}{\numberline {17}Hints}{79}{chapter.17}%
-\contentsline {section}{\numberline {17.1}Allgemeine mathematische Beschreibung Bézier-Kurve}{80}{section.17.1}%
-\contentsline {chapter}{\numberline {18}Verrundung mit einem Kreisbogen}{83}{chapter.18}%
-\contentsline {section}{\numberline {18.1}Gleichungen}{83}{section.18.1}%
-\contentsline {section}{\numberline {18.2}Bewertung}{85}{section.18.2}%
-\contentsline {section}{\numberline {18.3}Examples}{86}{section.18.3}%
-\contentsline {chapter}{\numberline {19}Maple files}{89}{chapter.19}%
-\contentsline {section}{\numberline {19.1}Geometries with Maple}{89}{section.19.1}%
-\contentsline {section}{\numberline {19.2}Geometry elements used}{89}{section.19.2}%
-\contentsline {section}{\numberline {19.3}Building the data structure}{90}{section.19.3}%
-\contentsline {section}{\numberline {19.4}Structure of a module}{90}{section.19.4}%
-\contentsline {subsection}{\numberline {19.4.1}General structure of a module}{92}{subsection.19.4.1}%
-\contentsline {subsection}{\numberline {19.4.2}Saving a module}{93}{subsection.19.4.2}%
-\contentsline {subsection}{\numberline {19.4.3}Verwendung eines Moduls}{93}{subsection.19.4.3}%
-\contentsline {subsection}{\numberline {19.4.4}Creating a Maple module}{93}{subsection.19.4.4}%
-\contentsline {section}{\numberline {19.5}Functions of the modules}{94}{section.19.5}%
-\contentsline {subsection}{\numberline {19.5.1}Module \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MPoint}}}{94}{subsection.19.5.1}%
-\contentsline {subsection}{\numberline {19.5.2}Module \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MLine}}}{95}{subsection.19.5.2}%
-\contentsline {subsection}{\numberline {19.5.3}Module \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MArc}}}{95}{subsection.19.5.3}%
-\contentsline {subsection}{\numberline {19.5.4}module \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MBezier}}}{96}{subsection.19.5.4}%
-\contentsline {subsection}{\numberline {19.5.5}Module \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MPolygon}}}{96}{subsection.19.5.5}%
-\contentsline {subsection}{\numberline {19.5.6}module \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MGeoList}}}{96}{subsection.19.5.6}%
-\contentsline {subsection}{\numberline {19.5.7}Module \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MHermiteProblem}}}{97}{subsection.19.5.7}%
-\contentsline {subsection}{\numberline {19.5.8}Module \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MHermiteProblemSym}}}{97}{subsection.19.5.8}%
-\contentsline {subsection}{\numberline {19.5.9}Module \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MConstant}}}{98}{subsection.19.5.9}%
-\contentsline {subsection}{\numberline {19.5.10}Module \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MGeneralMath}}}{98}{subsection.19.5.10}%
-\contentsline {subsection}{\numberline {19.5.11}Module \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-Biarc}}}{99}{subsection.19.5.11}%
-\contentsline {subsubsection}{\nonumberline Data Structure}{99}{subsubsection*.17}%
-\contentsline {subsection}{\numberline {19.5.12}Module \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MBiarc}}}{99}{subsection.19.5.12}%
-\contentsline {section}{\numberline {19.6}Programme Flowchart}{100}{section.19.6}%
-\contentsline {subsection}{\numberline {19.6.1}Overall Flow}{100}{subsection.19.6.1}%
-\contentsline {subsection}{\numberline {19.6.2}Verrundung der Kurve}{100}{subsection.19.6.2}%
-\contentsline {chapter}{\numberline {20}Representation of Python Programs}{103}{chapter.20}%
-\contentsline {chapter}{\numberline {21}Representation of Programs written for Arduino Boards}{105}{chapter.21}%
-\contentsline {chapter}{\numberline {22}First Chapter}{107}{chapter.22}%
-\contentsline {chapter}{\numberline {23}CAGD}{109}{chapter.23}%
+\contentsline {section}{\numberline {5.2}Spezifischer Aktor}{31}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Spezifikation}{31}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Bibliothek}{32}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Beschreibung}{32}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}Installation}{32}{subsection.5.4.2}%
+\contentsline {subsection}{\numberline {5.4.3}Funktionen}{32}{subsection.5.4.3}%
+\contentsline {section}{\numberline {5.5}Beispiel}{32}{section.5.5}%
+\contentsline {subsection}{\numberline {5.5.1}Handbuch}{33}{subsection.5.5.1}%
+\contentsline {subsection}{\numberline {5.5.2}An einem Beispiel}{33}{subsection.5.5.2}%
+\contentsline {subsection}{\numberline {5.5.3}Code}{33}{subsection.5.5.3}%
+\contentsline {subsection}{\numberline {5.5.4}Dateien}{34}{subsection.5.5.4}%
+\contentsline {section}{\numberline {5.6}Kalibrierung}{34}{section.5.6}%
+\contentsline {section}{\numberline {5.7}Einfacher Code (ohne Bibliothek)}{34}{section.5.7}%
+\contentsline {section}{\numberline {5.8}Einfache Anwendung}{35}{section.5.8}%
+\contentsline {section}{\numberline {5.9}Tests}{35}{section.5.9}%
+\contentsline {subsection}{\numberline {5.9.1}Einfacher Funktionstest}{35}{subsection.5.9.1}%
+\contentsline {subsection}{\numberline {5.9.2}Alle Funktionen testen}{35}{subsection.5.9.2}%
+\contentsline {section}{\numberline {5.10}Weiterführende Literatur}{35}{section.5.10}%
+\contentsline {chapter}{Bibliography}{37}{chapter*.10}%
+\contentsline {part}{\numberline {III}Domain Knowledge - Tools}{39}{part.3}%
+\contentsline {chapter}{\numberline {6}\textcolor {red}{Python Tool XY}}{41}{chapter.6}%
+\contentsline {chapter}{\numberline {7}\textcolor {red}{Hardware Tool XY}}{43}{chapter.7}%
+\contentsline {part}{\numberline {IV}Developmenmt}{45}{part.4}%
+\contentsline {chapter}{\numberline {8}\textcolor {red}{Flow Chart Development XY}}{47}{chapter.8}%
+\contentsline {part}{\numberline {V}Monitoring}{49}{part.5}%
+\contentsline {chapter}{\numberline {9}\textcolor {red}{Monitoring XY}}{51}{chapter.9}%
+\contentsline {part}{\numberline {VI}Verification - Evaluation - Conclusion}{53}{part.6}%
+\contentsline {chapter}{\numberline {10}\textcolor {red}{Evaluation/Verification XY}}{55}{chapter.10}%
+\contentsline {chapter}{\numberline {11}\textcolor {red}{To DoX Y}}{57}{chapter.11}%
+\contentsline {chapter}{\numberline {12}\textcolor {red}{Conclusion XY}}{59}{chapter.12}%
+\contentsline {part}{\numberline {VII} Appendix}{61}{part.7}%
+\contentsline {chapter}{\numberline {13}\textcolor {red}{Bill of Material}}{63}{chapter.13}%
+\contentsline {chapter}{\numberline {14}\textcolor {red}{SBOM}}{65}{chapter.14}%
+\contentsline {chapter}{\numberline {15}\textcolor {red}{Package \textcolor {PythonColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-Example}}}}{67}{chapter.15}%
+\contentsline {section}{\numberline {15.1}Introduction}{67}{section.15.1}%
+\contentsline {section}{\numberline {15.2}Description}{67}{section.15.2}%
+\contentsline {section}{\numberline {15.3}Installation}{67}{section.15.3}%
+\contentsline {section}{\numberline {15.4}Example - Manual}{67}{section.15.4}%
+\contentsline {section}{\numberline {15.5}Example}{67}{section.15.5}%
+\contentsline {section}{\numberline {15.6}Example - Code}{67}{section.15.6}%
+\contentsline {section}{\numberline {15.7}Example - Files}{67}{section.15.7}%
+\contentsline {section}{\numberline {15.8}Further Reading}{67}{section.15.8}%
+\contentsline {part}{\numberline {VIII}Hints - Examples for LaTeX - Read, Use and Remove}{69}{part.8}%
+\contentsline {chapter}{\numberline {16}Hints}{71}{chapter.16}%
+\contentsline {section}{\numberline {16.1}Allgemeine mathematische Beschreibung Bézier-Kurve}{72}{section.16.1}%
+\contentsline {chapter}{\numberline {17}Verrundung mit einem Kreisbogen}{75}{chapter.17}%
+\contentsline {section}{\numberline {17.1}Gleichungen}{75}{section.17.1}%
+\contentsline {section}{\numberline {17.2}Bewertung}{77}{section.17.2}%
+\contentsline {section}{\numberline {17.3}Examples}{78}{section.17.3}%
+\contentsline {chapter}{\numberline {18}Maple files}{81}{chapter.18}%
+\contentsline {section}{\numberline {18.1}Geometries with Maple}{81}{section.18.1}%
+\contentsline {section}{\numberline {18.2}Geometry elements used}{81}{section.18.2}%
+\contentsline {section}{\numberline {18.3}Building the data structure}{82}{section.18.3}%
+\contentsline {section}{\numberline {18.4}Structure of a module}{82}{section.18.4}%
+\contentsline {subsection}{\numberline {18.4.1}General structure of a module}{84}{subsection.18.4.1}%
+\contentsline {subsection}{\numberline {18.4.2}Saving a module}{85}{subsection.18.4.2}%
+\contentsline {subsection}{\numberline {18.4.3}Verwendung eines Moduls}{85}{subsection.18.4.3}%
+\contentsline {subsection}{\numberline {18.4.4}Creating a Maple module}{85}{subsection.18.4.4}%
+\contentsline {section}{\numberline {18.5}Functions of the modules}{86}{section.18.5}%
+\contentsline {subsection}{\numberline {18.5.1}Module \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MPoint}}}{86}{subsection.18.5.1}%
+\contentsline {subsection}{\numberline {18.5.2}Module \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MLine}}}{87}{subsection.18.5.2}%
+\contentsline {subsection}{\numberline {18.5.3}Module \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MArc}}}{87}{subsection.18.5.3}%
+\contentsline {subsection}{\numberline {18.5.4}module \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MBezier}}}{88}{subsection.18.5.4}%
+\contentsline {subsection}{\numberline {18.5.5}Module \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MPolygon}}}{88}{subsection.18.5.5}%
+\contentsline {subsection}{\numberline {18.5.6}module \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MGeoList}}}{88}{subsection.18.5.6}%
+\contentsline {subsection}{\numberline {18.5.7}Module \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MHermiteProblem}}}{89}{subsection.18.5.7}%
+\contentsline {subsection}{\numberline {18.5.8}Module \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MHermiteProblemSym}}}{89}{subsection.18.5.8}%
+\contentsline {subsection}{\numberline {18.5.9}Module \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MConstant}}}{90}{subsection.18.5.9}%
+\contentsline {subsection}{\numberline {18.5.10}Module \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MGeneralMath}}}{90}{subsection.18.5.10}%
+\contentsline {subsection}{\numberline {18.5.11}Module \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-Biarc}}}{91}{subsection.18.5.11}%
+\contentsline {subsubsection}{\nonumberline Data Structure}{91}{subsubsection*.18}%
+\contentsline {subsection}{\numberline {18.5.12}Module \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MBiarc}}}{91}{subsection.18.5.12}%
+\contentsline {section}{\numberline {18.6}Programme Flowchart}{92}{section.18.6}%
+\contentsline {subsection}{\numberline {18.6.1}Overall Flow}{92}{subsection.18.6.1}%
+\contentsline {subsection}{\numberline {18.6.2}Verrundung der Kurve}{92}{subsection.18.6.2}%
+\contentsline {chapter}{\numberline {19}Representation of Python Programs}{95}{chapter.19}%
+\contentsline {chapter}{\numberline {20}Representation of Programs written for Arduino Boards}{97}{chapter.20}%
+\contentsline {chapter}{\numberline {21}First Chapter}{99}{chapter.21}%
+\contentsline {chapter}{\numberline {22}CAGD}{101}{chapter.22}%
 \def \@chapapp {\appendixname }
-\contentsline {chapter}{\numberline {A}drawings with tikz}{111}{appendix.A}%
-\contentsline {chapter}{\numberline {B}Criteria for a good \LaTeX {} project}{115}{appendix.B}%
-\contentsline {chapter}{\nonumberline Literature}{117}{chapter*.22}%
-\contentsline {chapter}{Index}{119}{chapter*.22}%
+\contentsline {chapter}{\numberline {A}drawings with tikz}{103}{appendix.A}%
+\contentsline {chapter}{\numberline {B}Criteria for a good \LaTeX {} project}{107}{appendix.B}%
+\contentsline {chapter}{\nonumberline Literature}{109}{chapter*.23}%
+\contentsline {chapter}{Index}{111}{chapter*.23}%
