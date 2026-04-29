@@ -17,15 +17,11 @@
 \chapter{\textcolor{red}{Ultraschallsensor HC-SR04}}
 
 \section*{Einleitung}
-Dieses Kapitel befasst sich mit der berührungslosen Abstandsmessung mithilfe von Sensoren. Zunächst wird ein allgemeiner Überblick über gängige Sensortechnologien zur Distanzmessung gegeben. Anschließend wird der in diesem Projekt verwendete Ultraschallsensor HC-SR04 detailliert beschrieben, einschließlich seiner technischen Spezifikationen und der softwareseitigen Implementierung unter Verwendung ausgewählter C++ Bibliotheken.
+Dieses Kapitel befasst sich mit der berührungslosen Abstandsmessung mithilfe von Sensoren. Zunächst wird ein allgemeiner Überblick über Ultraschallsensoren zur Distanzmessung gegeben. Anschließend wird der in diesem Projekt verwendete Ultraschallsensor HC-SR04 detailliert beschrieben, einschließlich seiner technischen Spezifikationen und der softwareseitigen Implementierung unter Verwendung ausgewählter C++ Bibliotheken.
 
 \section{Allgemeines}
-Sensoren zur Abstandsmessung sind wichtige  Komponenten in der modernen Automatisierungstechnik, Robotik und Fahrzeugtechnik \cite{Fraden:2016}. Sie ermöglichen es Systemen, eine Umgebung räumlich zu erfassen. Grundsätzlich lassen sich diese Sensoren in verschiedene Kategorien einteilen:
-\begin{itemize}
-	\item \textbf{Infrarotsensoren:} Nutzen das Reflexionsverhalten von Licht oder messen die Lichtlaufzeit (Time-of-Flight, ToF). Sie sind extrem schnell und präzise, jedoch stark abhängig von den Oberflächeneigenschaften (Farbe, Reflexionsgrad) des Zielobjekts und anfällig für Fremdlichteinstrahlung \cite{Fraden:2016}.
-	\item \textbf{Radarsensoren:} Arbeiten mit elektromagnetischen Wellen im Radio- oder Mikrowellenbereich. Sie sind unempfindlich gegenüber Schmutz, Nebel oder Lichtverhältnissen, jedoch oft komplex in der Auswertung und teurer in der Anschaffung \cite{Fraden:2016}.
-	\item \textbf{Ultraschallsensoren:} Arbeiten nach dem Echo-Lot-Prinzip (Schalllaufzeitmessung). Sie senden Schallwellen aus und messen die Zeit, bis das Echo zurückkehrt \cite{SparkFun:2020}. Sie sind unabhängig von der Farbe oder optischen Transparenz eines Objekts, haben jedoch ihre Grenze bei schallabsorbierenden Materialien (z. B. Schaumstoff) \cite{Fraden:2016}.
-\end{itemize}
+Sensoren zur Abstandsmessung sind wichtige  Komponenten in der modernen Automatisierungstechnik, Robotik und Fahrzeugtechnik \cite{Fraden:2016}. Sie ermöglichen es Systemen, eine Umgebung räumlich zu erfassen. 
+Ultraschallsensoren  arbeiten nach dem Echo-Lot-Prinzip (Schalllaufzeitmessung). Sie senden Schallwellen aus und messen die Zeit, bis das Echo zurückkehrt \cite{SparkFun:2020}. Sie sind unabhängig von der Farbe oder optischen Transparenz eines Objekts, haben jedoch ihre Grenze bei schallabsorbierenden Materialien (z. B. Schaumstoff) \cite{Fraden:2016}.
 
 \section{Ultraschallsensor HC-SR04}
 In diesem Projekt kommt der Ultraschallsensor \textbf{HC-SR04} zum Einsatz. Er wandelt die gemessene Entfernung in ein PWM-Signal um, welches am Ausgang zur Verfügung steht \cite{KT:2012}. Das Auslösen eines Messzyklus geschieht durch eine fallende Flanke am \python{TRIG}-Eingang  für mindestens 10 \textmu s. Das Modul sendet darauf nach ca. 250 \textmu s ein 40 kHz Burst-Signal für die Dauer von 200 \textmu s aus. Danach geht der \python{ECHO}-Ausgang sofort auf HIGH-Pegel und das Modul wartet auf den Empfang des Echos. Wird dieses detektiert, fällt der Ausgang auf LOW-Pegel. Wird kein Echo detektiert, verweilt der Ausgang für insgesamt 200 ms auf HIGH-Pegel und zeigt so eine erfolglose Messung an. Ein vollständiges Messintervall hat eine Dauer von 20 ms, sodass maximal 50 Messungen pro Sekunde durchgeführt werden können \cite{KT:2012}.
@@ -135,7 +131,7 @@ In diesem Abschnitt wird ein einfaches, eigenständiges Codebeispiel beschrieben
 1. Verbinden Sie \python{VCC} und \python{GND} des HC-SR04 mit 5V und GND des Boards. 
 2. Verbinden Sie den \python{TRIG}-Pin mit Pin 12 und den \python{ECHO}-Pin mit Pin 11.
 3. Öffnen Sie die Arduino IDE, kompilieren Sie den Code und laden Sie ihn hoch.
-4. Öffnen Sie den Seriellen Monitor (Baudrate 115200)\cite{SparkFun:2020}.
+4. Öffnen Sie den Seriellen Monitor (Baudrate 115200). Hier werden nun die Messergebnisse ausgegeben\cite{SparkFun:2020}.
 
 \subsection{Funktion vom Beispiel}                                                                                                                                                                                                                                                                                                                                                                                                                                      
 Das Skript bindet die \python{NewPing.h} ein. Über \python{\#define} werden Pins und der maximale Messbereich (200 cm) definiert. In der Hauptschleife (\python{loop()}) stellt \python{delay(50)} sicher, dass zwischen zwei Pings gewartet wird, um Echosüberlappungen zu verhindern \cite{Eckel:2023}. Anschließend wird \python{ping_median(5)} aufgerufen. Der Rückgabewert wird durch \python{US_ROUNDTRIP_CM} geteilt, um Zentimeter zu erhalten \cite{Eckel:2023}.
@@ -149,14 +145,14 @@ Das Skript bindet die \python{NewPing.h} ein. Über \python{\#define} werden Pin
 %\subsection{Dateien}
 
 \section{Kalibrierung}
-Die Ultraschallmessung beruht auf der Ausbreitungsgeschwindigkeit von Schall in der Luft. Die Standardberechnung der Bibliothek geht von einer konstanten Schallgeschwindigkeit von $c \approx 343 \, \text{m/s}$ bei $20\,^\circ\text{C}$ aus \cite{Fraden:2016} . Da die Schallgeschwindigkeit temperaturabhängig ist, ändert sie sich um ca. $0,6 \, \text{m/s}$ pro Grad Celsius \cite{Fraden:2016}. Für hochpräzise Anwendungen muss das System kalibriert werden (z.B. über einen DHT22-Sensor). Die dynamische Berechnung lautet:
+Die Ultraschallmessung beruht auf der Ausbreitungsgeschwindigkeit von Schall in der Luft. Um das System zu überprüfen wird ein Objekt in einem exakt gemessenem Abstand vor dem Sensor aufgestellt und mit der Ausgabe im seriellen Monitor verglichen. Die Standardberechnung der Bibliothek geht von einer konstanten Schallgeschwindigkeit von $c \approx 343 \, \text{m/s}$ bei $20\,^\circ\text{C}$ aus \cite{Fraden:2016} . Da die Schallgeschwindigkeit temperaturabhängig ist, ändert sie sich um ca. $0,6 \, \text{m/s}$ pro Grad Celsius \cite{Fraden:2016}. Für hochpräzise Anwendungen muss das System kalibriert werden (z.B. über einen DHT22-Sensor). Die dynamische Berechnung lautet:
 \[ \text{Distanz} = \frac{\text{Laufzeit}}{2} \times \left(331,3 + 0,606 \times \text{Temperatur in } ^\circ\text{C}\right) \].
 
-\section{Einfacher Code ohne Bibliotheken}
-Der folgende Code demonstriert eine Abstandsmessung ohne Bibliotheken und nutzt \python{pulseIn()}.
+\section{Einfacher Code ohne newPing Bibliothek}
+Der folgende Code demonstriert eine Abstandsmessung ohne Einbindung der \python{NewPing}-Bibliothek und nutzt \python{pulseIn()}.
 
 \begin{center}
-	\captionof{code}{Beispiel Code} 
+	\captionof{code}{Beispiel Code ohne Bibliothekseinbindung} 
 	\label{code: Beispiel2} \ArduinoExternal{}{../../Code/Ultraschallsensor/Beispielcode2/Beispielcode2.ino} 
 \end{center}
 
@@ -198,14 +194,3 @@ Ekbert Hering und Gert Schönfelder, Sensoren in Wissenschaft und Technik – Fu
 \begin{itemize}
 	\item Eine umfassende und aktuelle Einführung in die Grundlagen und Anwendungen von Sensoren in Technik, Biologie und Medizin. Das Buch behandelt neben physikalischen Grundlagen auch Themen wie Schnittstellen, Sicherheit und Signalverarbeitung bei Ultraschallwandlern.
 \end{itemize}
-
-\begin{thebibliography}{9}
-	\bibitem{hcsr04_datasheet} 
-	SparkFun Electronics / ElecFreaks: \textit{HC-SR04 Ultrasonic Sensor Datasheet}. [Online; abgerufen für Spezifikationen und Timing-Diagramme].
-	\bibitem{newping_doc} 
-	Eckel, Tim (2023): \textit{Arduino NewPing Library Documentation}. GitHub/Bitbucket. [Online; abgerufen für API-Befehle und Event-Driven Architecture].
-	\bibitem{arduino_reference} 
-	Arduino LLC (2024): \textit{Arduino Language Reference - pulseIn()}. [Online; abgerufen für native Mikrocontroller-Befehle].
-	\bibitem{physics_sensors}
-	Fraden, Jacob (2016): \textit{Handbook of Modern Sensors: Physics, Designs, and Applications}. Springer. [Abgerufen für akustische Grundlagen und Schallgeschwindigkeit].
-\end{thebibliography}

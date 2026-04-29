@@ -178,29 +178,6 @@
     \field{year}{2016}
   \endentry
 
-  \entry{ArduinoReference:2024}{misc}{}{}
-    \name{author}{1}{}{%
-      {{hash=A}{%
-         family={Arduino},
-         familyi={A\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{A1}
-    \strng{fullhash}{A1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelalpha}{Ard24}
-    \field{sortinit}{A}
-    \field{sortinithash}{A}
-    \field{note}{Accessed: 2024-04-26}
-    \field{title}{Arduino Language Reference - pulseIn()}
-    \verb{url}
-    \verb https://www.arduino.cc/reference/en/language/functions/advanced-io/pu
-    \verb lsein/
-    \endverb
-    \field{year}{2024}
-  \endentry
-
   \entry{DIN66025}{misc}{}{}
     \name{author}{1}{}{%
       {{hash=D}{%
@@ -340,37 +317,6 @@
     \field{year}{2002}
   \endentry
 
-  \entry{Fraden:2010}{book}{}{}
-    \name{author}{1}{}{%
-      {{hash=FJ}{%
-         family={Fraden},
-         familyi={F\bibinitperiod},
-         given={Jacob},
-         giveni={J\bibinitperiod},
-      }}%
-    }
-    \list{publisher}{1}{%
-      {Springer New York}%
-    }
-    \strng{namehash}{FJ1}
-    \strng{fullhash}{FJ1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelalpha}{Fra10}
-    \field{sortinit}{F}
-    \field{sortinithash}{F}
-    \field{isbn}{9781441964663}
-    \field{title}{Handbook of Modern Sensors: Physics, Designs, and
-  Applications}
-    \verb{url}
-    \verb https://link.springer.com/book/10.1007/978-1-4419-6466-3
-    \endverb
-    \field{year}{2010}
-    \field{urlday}{24}
-    \field{urlmonth}{09}
-    \field{urlyear}{2025}
-  \endentry
-
   \entry{Fraden:2016}{book}{}{}
     \name{author}{1}{}{%
       {{hash=FJ}{%
@@ -462,6 +408,31 @@
     \verb modul_beschreibung_3.pdf
     \endverb
     \field{year}{2012}
+  \endentry
+
+  \entry{Raj:2026}{online}{}{}
+    \name{author}{1}{}{%
+      {{hash=RS}{%
+         family={Raj},
+         familyi={R\bibinitperiod},
+         given={Sawkare},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{RS1}
+    \strng{fullhash}{RS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Raj12}
+    \field{sortinit}{R}
+    \field{sortinithash}{R}
+    \field{note}{Geöffnet: 16.04.2026}
+    \field{title}{Towerpro SG90 Servo Motor And Its Application}
+    \verb{url}
+    \verb https://vayuyaan.com/blog/towerpro-sg90-servo-motor-and-its-applicati
+    \verb on/
+    \endverb
+    \field{year}{03.12.2022}
   \endentry
 
   \entry{Patent3D}{misc}{}{}

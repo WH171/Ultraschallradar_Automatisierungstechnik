@@ -4,7 +4,7 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Schematische Darstellung des Ultraschallsensors HC-SR04}}{24}{figure.caption.5}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Schematische Darstellung des Ultraschallsensors HC-SR04}}{23}{figure.caption.5}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
@@ -17,17 +17,17 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {16.1}{\ignorespaces Bernstein polynomial of degree $3$}}{75}{figure.caption.14}%
-\contentsline {figure}{\numberline {16.2}{\ignorespaces Bézier curve for example \ref {KPunkte4Beispiel} }}{76}{figure.caption.15}%
+\contentsline {figure}{\numberline {16.1}{\ignorespaces Bernstein polynomial of degree $3$}}{73}{figure.caption.13}%
+\contentsline {figure}{\numberline {16.2}{\ignorespaces Bézier curve for example \ref {KPunkte4Beispiel} }}{74}{figure.caption.14}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {17.1}{\ignorespaces Smoothing a corner with the help of an arc - triangle}}{77}{figure.caption.16}%
-\contentsline {figure}{\numberline {17.2}{\ignorespaces Angular change with blending arc}}{79}{figure.caption.17}%
-\contentsline {figure}{\numberline {17.3}{\ignorespaces Curvature progression for a blending arc}}{79}{figure.caption.18}%
-\contentsline {figure}{\numberline {17.4}{\ignorespaces Maximum range for a blending arc of a circle - $L(\varepsilon =const, \alpha )$}}{80}{figure.caption.19}%
-\contentsline {figure}{\numberline {17.5}{\ignorespaces Deviation when specifying the distance $L$ when rounding with a circular arc}}{80}{figure.caption.20}%
+\contentsline {figure}{\numberline {17.1}{\ignorespaces Smoothing a corner with the help of an arc - triangle}}{75}{figure.caption.15}%
+\contentsline {figure}{\numberline {17.2}{\ignorespaces Angular change with blending arc}}{77}{figure.caption.16}%
+\contentsline {figure}{\numberline {17.3}{\ignorespaces Curvature progression for a blending arc}}{77}{figure.caption.17}%
+\contentsline {figure}{\numberline {17.4}{\ignorespaces Maximum range for a blending arc of a circle - $L(\varepsilon =const, \alpha )$}}{78}{figure.caption.18}%
+\contentsline {figure}{\numberline {17.5}{\ignorespaces Deviation when specifying the distance $L$ when rounding with a circular arc}}{78}{figure.caption.19}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {18.1}{\ignorespaces Programme flow chart \glqq Corner rounding\grqq }}{95}{figure.caption.22}%
-\contentsline {figure}{\numberline {18.2}{\ignorespaces Programme flowchart \glqq Selection of the rounding strategies\grqq }}{96}{figure.caption.23}%
+\contentsline {figure}{\numberline {18.1}{\ignorespaces Programme flow chart \glqq Corner rounding\grqq }}{93}{figure.caption.21}%
+\contentsline {figure}{\numberline {18.2}{\ignorespaces Programme flowchart \glqq Selection of the rounding strategies\grqq }}{94}{figure.caption.22}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
