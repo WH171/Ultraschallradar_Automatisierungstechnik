@@ -21,7 +21,7 @@ Dieses Kapitel beschreibt den mechanischen Aktor des Systems, den Micro-Servomot
 \section{Allgemeines}
 Ein Servomotor ist ein geschlossenes mechatronisches System (Closed-Loop), das für präzise Winkelpositionierungen eingesetzt wird. Im Gegensatz zu kontinuierlich drehenden Gleichstrommotoren besteht ein Standard-Servo aus einem DC-Motor, einem Untersetzungsgetriebe, einem Potentiometer zur Positionserfassung und einer Steuerelektronik. Der Mikrocontroller sendet ein Pulsweitenmodulations-Signal (\python{PWM}), welches die Steuerelektronik auswertet und den Motor exakt auf den gewünschten Winkel dreht und dort aktiv hält. Servomotoren findet man vor allem im RC-Modellbau (z.B. Lenkung, Ruder, Klappen), in Robotergelenken sowie in Schwenkmechanismen für Kameras oder Sensoren, bei denen wiederholgenaue und stabile Positionen erforderlich sind
 
-\section{Servomotor Towerpro SG90}
+\section{Servomotor TowerPro SG90}
 Der TowerPro SG90 ist einer der weltweit am häufigsten verwendeten Micro-Servomotoren für kleine Projekte. Er zeichnet sich durch sein extrem geringes Gewicht, seine kompakte Bauform und sein Nylon-Zahnradgetriebe aus. Der Aktor verfügt über ein dreipoliges Anschlusskabel: Braun für die Masse (\python{GND}), Rot für die Versorgungsspannung (\python{VCC}) und Orange für das PWM-Steuersignal (\python{Signal}). Der TowerPro SG90 hat einen mechanischen Rotationsspielraum von 180 Grad ($0^\circ$ bis $180^\circ$). Gesteuert wird er über ein 50-Hz-PWM-Signal (20 ms Periodendauer). Eine Pulsweite von 1 ms entspricht theoretisch $0^\circ$, 1,5 ms entsprechen $90^\circ$ (Mittelstellung) und 2 ms entsprechen $180^\circ$.\cite{Raj:2026}  
 
 \section{Spezifikation}
@@ -77,7 +77,7 @@ Das Skript bindet zunächst die Bibliothek ein und erstellt ein Servo-Objekt. In
 
 \subsection{Code}
 \begin{center}
-	 \captionof{code}{Beispiel Code} \label{Nano:RGBLEDTest} \ArduinoExternal{}{../../Code/Servomotor/Servomotor.ino} 
+	 \captionof{code}{Beispiel Code für den TowerPro SG90} \label{Nano:RGBLEDTest} \ArduinoExternal{}{../../Code/Servomotor/Servomotor.ino} 
 \end{center}
 
 \subsection{Dateien}
@@ -87,10 +87,10 @@ Für das Ausführen des Codes wird ausschließlich die Standard-Headerdatei \pyt
 Oftmals weichen günstige SG90-Motoren mechanisch von den theoretischen PWM-Werten ab (1000 µs bis 2000 µs). Wird der Motor mit \python{write(0)} oder \python{write(180)} an seine physischen Grenzen gezwungen, kann er brummen, vibrieren und überhitzen (Stalling). Zur Kalibrierung bietet die \python{attach()}-Funktion optionale Parameter für die minimalen und maximalen Mikrosekunden: \python{radarServo.attach(9, 500, 2400);}. Diese Werte müssen durch iteratives Ausprobieren (mit \python{writeMicroseconds()}) an den individuellen Motor angepasst werden, bis der volle $180^\circ$-Winkel ohne mechanisches Blockieren erreicht ist.
 
 \section{Einfacher Code (ohne Bibliothek)}
-Um zu verdeutlichen, wie die Hardware funktioniert, zeigt dieser Code die Ansteuerung des SG90 durch reine Bit-Manipulation (Blink-Prinzip), ohne die Servo-Bibliothek zu verwenden:
+Dieser Code erzeugt das PWM-Signal für den Servo manuell ohne die Servo-Bibliothek. In \python{setup()} wird Pin 9 als Ausgang konfiguriert. Die \python{loop()}-Funktion generiert ein 50-Hz-Signal: Der Pin ist 1.500 Mikrosekunden HIGH (entspricht $90^\circ$ Servo-Position) und anschlie$ss$end 18.500 Mikrosekunden LOW, um die 20-ms-Periode zu vervollständigen. Diese Methode zeigt, wie die Servo-Bibliothek intern arbeitet, ist jedoch blockierend – für komplexere Anwendungen sollte die Servo-Bibliothek mit Hardware-Timern verwendet werden.
 \begin{center}
-	\captionof{code}{} \label{Nano:RGBLEDTest} 
-	\ArduinoExternal{}{../../Code/Servomotor/Servomotor_ohne_Bib.ino} 
+	\captionof{code}{Code ohne Bibilothek für den TowerPro SG90} \label{Nano:RGBLEDTest} 
+	\ArduinoExternal{}{../../Code/Servomotor/ServomotorohneBib.ino} 
 \end{center}
 
 \section{Einfache Anwendung}

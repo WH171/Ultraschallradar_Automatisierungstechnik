@@ -1,6 +1,9 @@
 This is makeindex, version 2.18 [TeX Live 2026] (kpathsea + Thai support).
-Scanning input file rename.idx....done (22 entries accepted, 0 rejected).
-Sorting entries....done (110 comparisons).
-Generating output file rename.ind....done (39 lines written, 0 warnings).
+Scanning input file rename.idx....done (23 entries accepted, 0 rejected).
+Sorting entries....done (114 comparisons).
+Generating output file rename.ind....
+## Warning (input = rename.idx, line = 19; output = rename.ind, line = 34):
+   -- Conflicting entries: multiple encaps for the same page under same key.
+done (37 lines written, 1 warning).
 Output written in rename.ind.
 Transcript written in rename.ilg.
