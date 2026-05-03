@@ -1,6 +1,6 @@
 [0] Config.pm:328> INFO - This is Biber 2.21
 [0] Config.pm:331> INFO - Logfile is 'Benutzerhandbuch.blg'
-[52] biber-darwin:342> INFO - === Sat Apr 25, 2026, 11:00:52
+[50] biber-darwin:342> INFO - === Sun May  3, 2026, 11:24:15
 [65] Biber.pm:421> INFO - Reading 'Benutzerhandbuch.bcf'
 [140] Biber.pm:1002> INFO - Found 0 citekeys in bib section 0
 [152] bbl.pm:676> INFO - Writing 'Benutzerhandbuch.bbl' with encoding 'UTF-8'
