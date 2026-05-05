@@ -1,10 +1,12 @@
-/**
- * @file    HCSR04_Native_Example.ino
- * @brief   Native Distanzmessung ohne externe Bibliotheken.
- */
+\begin{verbatim}
+// File: Beispielcode2.ino
+// Standalone script for filtered distance measurement with HC-SR04.
+// Uses NewPing library to get a median value from multiple measurements to reduce noise.
+// Author: Wilko Hinrichs
+// Date: 2026-04-27
 
-const int TRIG_PIN = 12; 
-const int ECHO_PIN = 11; 
+const int TRIG_PIN = 12; // Pin for trigger signal
+const int ECHO_PIN = 11; // Pin for echo signal
 
 void setup() {
   pinMode(TRIG_PIN, OUTPUT);
@@ -16,20 +18,22 @@ void loop() {
   digitalWrite(TRIG_PIN, LOW);
   delayMicroseconds(2);
   
-  // 10 Mikrosekunden HIGH-Impuls (Endet mit fallender Flanke)
+  // 10 microseconds HIGH pulse (ends with falling edge)
   digitalWrite(TRIG_PIN, HIGH);
   delayMicroseconds(10); 
   digitalWrite(TRIG_PIN, LOW);
   
-  /** * @brief pulseIn misst die Länge des ECHO-Impulses. */
+  // pulseIn measures the length of the ECHO pulse
   long duration = pulseIn(ECHO_PIN, HIGH);
   
-  // Berechnung der Distanz (Laufzeit in us / 58)
+  // Calculate distance (travel time in us / 58)
   float distance = duration / 58.0; 
   
   Serial.print("Gemessene Distanz: ");
   Serial.print(distance);
   Serial.println(" cm");
   
-  delay(50); // Intervall einhalten (> 20ms)
+  // Keep interval (> 20ms)
+  delay(50); 
 }
+\end{verbatim}

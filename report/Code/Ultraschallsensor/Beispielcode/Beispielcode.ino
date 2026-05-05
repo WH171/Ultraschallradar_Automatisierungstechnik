@@ -1,19 +1,22 @@
+\begin{verbatim}
+// File: Beispielcode.ino
+// Standalone script for filtered distance measurement with HC-SR04.
+// Uses NewPing library to get a median value from multiple measurements to reduce noise.
+// Author: Wilko Hinrichs
+// Date: 2026-04-27
+
 #include <NewPing.h>
 
-/** @brief Digitaler Pin für das Trigger-Signal */
+// Digital pin for trigger signal
 #define TRIGGER_PIN  12  
 
-/** @brief Digitaler Pin für das Echo-Signal */
+// Digital pin for echo signal
 #define ECHO_PIN     11  
 
-/** @brief Maximale Distanz, auf die der Sensor reagieren soll (in cm) */
+// Maximum distance for the sensor (in cm)
 #define MAX_DISTANCE 200 
 
-/** * @brief Initialisierung des NewPing-Objekts.
- * @param TRIGGER_PIN Der konfigurierte Sende-Pin.
- * @param ECHO_PIN Der konfigurierte Empfangs-Pin.
- * @param MAX_DISTANCE Die definierte maximale Reichweite.
- */
+// Initialize NewPing object
 NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE);
 
 void setup() {
@@ -22,9 +25,10 @@ void setup() {
 }
 
 void loop() {
-  delay(50); // Pause zwischen Pings (Sicherer Abstand zum 20ms Intervall)
+  // Wait between pings (min. 29ms recommended)
+  delay(50); 
 
-  /** * @brief Holt den Median aus 5 Messungen (in Mikrosekunden). */
+  // Get median of 5 measurements (in microseconds)
   unsigned int uS = sonar.ping_median(5);
 
   Serial.print("Gefilterte Distanz: ");
@@ -32,8 +36,9 @@ void loop() {
   if (uS == 0) {
     Serial.println("Außerhalb der Reichweite");
   } else {
-    // Umrechnung von Mikrosekunden in Zentimeter
+    // Convert microseconds to centimeters
     Serial.print(uS / US_ROUNDTRIP_CM); 
     Serial.println(" cm");
   }
 }
+\end{verbatim}

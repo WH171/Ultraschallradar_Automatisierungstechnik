@@ -9,7 +9,7 @@
 \contentsline {part}{\numberline {II}Domain Knowledge - Hardware}{19}{part.2}%
 \contentsline {chapter}{\numberline {3}\textcolor {red}{Hardware XY}}{21}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Further Readings}{21}{section.3.1}%
-\contentsline {chapter}{\numberline {4}\textcolor {red}{Ultraschallsensor HC-SR04}}{23}{chapter.4}%
+\contentsline {chapter}{\numberline {4}Ultraschallsensor HC-SR04}{23}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Allgemeines}{23}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Ultraschallsensor HC-SR04}{23}{section.4.2}%
 \contentsline {section}{\numberline {4.3}Spezifikation}{23}{section.4.3}%
@@ -20,16 +20,16 @@
 \contentsline {subsection}{\numberline {4.4.3}Funktionen}{24}{subsection.4.4.3}%
 \contentsline {section}{\numberline {4.5}Beispiel}{25}{section.4.5}%
 \contentsline {subsection}{\numberline {4.5.1}Handbuch}{25}{subsection.4.5.1}%
-\contentsline {subsection}{\numberline {4.5.2}Funktion vom Beispiel}{25}{subsection.4.5.2}%
-\contentsline {subsection}{\numberline {4.5.3}Code}{25}{subsection.4.5.3}%
-\contentsline {section}{\numberline {4.6}Kalibrierung}{26}{section.4.6}%
-\contentsline {section}{\numberline {4.7}Einfacher Code ohne newPing Bibliothek}{26}{section.4.7}%
-\contentsline {section}{\numberline {4.8}Einfache Anwendung}{27}{section.4.8}%
-\contentsline {section}{\numberline {4.9}Tests}{28}{section.4.9}%
-\contentsline {subsection}{\numberline {4.9.1}Einfacher Funktionstest}{28}{subsection.4.9.1}%
+\contentsline {subsection}{\numberline {4.5.2}Funktion vom Beispiel}{26}{subsection.4.5.2}%
+\contentsline {subsection}{\numberline {4.5.3}Code}{26}{subsection.4.5.3}%
+\contentsline {section}{\numberline {4.6}Kalibrierung}{27}{section.4.6}%
+\contentsline {section}{\numberline {4.7}Einfacher Code ohne newPing Bibliothek}{27}{section.4.7}%
+\contentsline {section}{\numberline {4.8}Einfache Anwendung}{28}{section.4.8}%
+\contentsline {section}{\numberline {4.9}Tests}{29}{section.4.9}%
+\contentsline {subsection}{\numberline {4.9.1}Einfacher Funktionstest}{29}{subsection.4.9.1}%
 \contentsline {subsection}{\numberline {4.9.2}Alle Funktionen testen}{29}{subsection.4.9.2}%
-\contentsline {section}{\numberline {4.10}Weiterführende Literatur}{29}{section.4.10}%
-\contentsline {chapter}{\numberline {5}\textcolor {red}{SG90 Servomotor}}{31}{chapter.5}%
+\contentsline {section}{\numberline {4.10}Weiterführende Literatur}{30}{section.4.10}%
+\contentsline {chapter}{\numberline {5}SG90 Servomotor}{31}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Allgemeines}{31}{section.5.1}%
 \contentsline {section}{\numberline {5.2}Servomotor TowerPro SG90}{31}{section.5.2}%
 \contentsline {section}{\numberline {5.3}Spezifikation}{31}{section.5.3}%
