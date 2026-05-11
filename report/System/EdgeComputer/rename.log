@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.24.0 (TeX Live 2026)  (format=lualatex 2026.3.16)  11 MAY 2026 17:54
+This is LuaHBTeX, Version 1.24.0 (TeX Live 2026)  (format=lualatex 2026.3.16)  11 MAY 2026 18:47
  restricted system commands enabled.
 **rename.tex
 (./rename.tex
@@ -3351,75 +3351,108 @@ chapter 13.
 
 ]
 chapter 14.
+
+Overfull \hbox (6.60992pt too wide) in paragraph at lines 32--32
+[]|\T1/lmr/bx/n/10 Stück-
+ []
+
 Missing character: There is no € (U+20AC) in font ec-lmbx10!
 Missing character: There is no € (U+20AC) in font ec-lmbx10!
-<../../Images/BillOfMaterial/HC-SR-04.png, id=1071, 1003.75pt x 743.77875pt>
+<../../Images/BillOfMaterial/ArduinoNano33BLESenseLite.png, id=1071, 1003.75pt 
+x 866.23625pt>
+File: ../../Images/BillOfMaterial/ArduinoNano33BLESenseLite.png Graphic file (t
+ype png)
+<use ../../Images/BillOfMaterial/ArduinoNano33BLESenseLite.png>
+Package luatex.def Info: ../../Images/BillOfMaterial/ArduinoNano33BLESenseLite.
+png  used on input line 38.
+(luatex.def)             Requested size: 59.33408pt x 51.21504pt.
+<../../Images/BillOfMaterial/HC-SR-04.png, id=1073, 1003.75pt x 743.77875pt>
 File: ../../Images/BillOfMaterial/HC-SR-04.png Graphic file (type png)
 <use ../../Images/BillOfMaterial/HC-SR-04.png>
 Package luatex.def Info: ../../Images/BillOfMaterial/HC-SR-04.png  used on inpu
-t line 38.
-(luatex.def)             Requested size: 69.10565pt x 51.21504pt.
+t line 45.
+(luatex.def)             Requested size: 53.74374pt x 39.83368pt.
 
-Overfull \hbox (0.81921pt too wide) in paragraph at lines 38--38
+Underfull \hbox (badness 6658) in paragraph at lines 47--47
+[]|\T1/lmr/m/n/10 Ul-tra-schall-sen-sor HC-
+ []
+
+<../../Images/BillOfMaterial/towerpro-servo-sg90.png, id=1075, 414.04688pt x 30
+1.125pt>
+File: ../../Images/BillOfMaterial/towerpro-servo-sg90.png Graphic file (type pn
+g)
+<use ../../Images/BillOfMaterial/towerpro-servo-sg90.png>
+Package luatex.def Info: ../../Images/BillOfMaterial/towerpro-servo-sg90.png  u
+sed on input line 52.
+(luatex.def)             Requested size: 54.76933pt x 39.83368pt.
+
+Underfull \hbox (badness 3128) in paragraph at lines 54--54
+[]|\T1/lmr/m/n/10 Tow-er-Pro Ser-vo-mo-tor
+ []
+
+<../../Images/BillOfMaterial/Breadboard.png, id=1077, 1828.8325pt x 1028.84375p
+t>
+File: ../../Images/BillOfMaterial/Breadboard.png Graphic file (type png)
+<use ../../Images/BillOfMaterial/Breadboard.png>
+Package luatex.def Info: ../../Images/BillOfMaterial/Breadboard.png  used on in
+put line 59.
+(luatex.def)             Requested size: 70.79675pt x 39.83368pt.
+
+Overfull \hbox (2.51031pt too wide) in paragraph at lines 59--59
 []|[][]| 
  []
 
-File: ../../Images/BillOfMaterial/HC-SR-04.png Graphic file (type png)
-<use ../../Images/BillOfMaterial/HC-SR-04.png>
-Package luatex.def Info: ../../Images/BillOfMaterial/HC-SR-04.png  used on inpu
-t line 54.
-(luatex.def)             Requested size: 53.74374pt x 39.83368pt.
-File: ../../Images/BillOfMaterial/HC-SR-04.png Graphic file (type png)
-<use ../../Images/BillOfMaterial/HC-SR-04.png>
-Package luatex.def Info: ../../Images/BillOfMaterial/HC-SR-04.png  used on inpu
-t line 61.
-(luatex.def)             Requested size: 53.74374pt x 39.83368pt.
-File: ../../Images/BillOfMaterial/HC-SR-04.png Graphic file (type png)
-<use ../../Images/BillOfMaterial/HC-SR-04.png>
-Package luatex.def Info: ../../Images/BillOfMaterial/HC-SR-04.png  used on inpu
-t line 68.
-(luatex.def)             Requested size: 53.74374pt x 39.83368pt.
-File: ../../Images/BillOfMaterial/HC-SR-04.png Graphic file (type png)
-<use ../../Images/BillOfMaterial/HC-SR-04.png>
-Package luatex.def Info: ../../Images/BillOfMaterial/HC-SR-04.png  used on inpu
-t line 75.
-(luatex.def)             Requested size: 57.58804pt x 42.67912pt.
-File: ../../Images/BillOfMaterial/HC-SR-04.png Graphic file (type png)
-<use ../../Images/BillOfMaterial/HC-SR-04.png>
-Package luatex.def Info: ../../Images/BillOfMaterial/HC-SR-04.png  used on inpu
-t line 82.
-(luatex.def)             Requested size: 57.58804pt x 42.67912pt.
+<../../Images/BillOfMaterial/LEDgruen.png, id=1079, 1001.7425pt x 564.1075pt>
+File: ../../Images/BillOfMaterial/LEDgruen.png Graphic file (type png)
+<use ../../Images/BillOfMaterial/LEDgruen.png>
+Package luatex.def Info: ../../Images/BillOfMaterial/LEDgruen.png  used on inpu
+t line 66.
+(luatex.def)             Requested size: 75.78471pt x 42.67912pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 84--84
-[]|\T1/lmr/m/n/10 Kunststoff-Halbschale
+Overfull \hbox (7.49828pt too wide) in paragraph at lines 66--66
+[]|[][]| 
  []
 
-File: ../../Images/BillOfMaterial/HC-SR-04.png Graphic file (type png)
-<use ../../Images/BillOfMaterial/HC-SR-04.png>
-Package luatex.def Info: ../../Images/BillOfMaterial/HC-SR-04.png  used on inpu
-t line 89.
-(luatex.def)             Requested size: 57.58804pt x 42.67912pt.
-File: ../../Images/BillOfMaterial/HC-SR-04.png Graphic file (type png)
-<use ../../Images/BillOfMaterial/HC-SR-04.png>
-Package luatex.def Info: ../../Images/BillOfMaterial/HC-SR-04.png  used on inpu
-t line 96.
-(luatex.def)             Requested size: 57.58804pt x 42.67912pt.
-) [65]
+<../../Images/BillOfMaterial/LEDrot.png, id=1081, 1425.325pt x 800.9925pt>
+File: ../../Images/BillOfMaterial/LEDrot.png Graphic file (type png)
+<use ../../Images/BillOfMaterial/LEDrot.png>
+Package luatex.def Info: ../../Images/BillOfMaterial/LEDrot.png  used on input 
+line 73.
+(luatex.def)             Requested size: 75.92464pt x 42.67912pt.
 
-Package fancyhdr Warning: \headheight is too small (1.0pt): 
-(fancyhdr)                Make it at least 12.0pt, for example:
-(fancyhdr)                \setlength{\headheight}{12.0pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
+Overfull \hbox (7.6382pt too wide) in paragraph at lines 73--73
+[]|[][]| 
+ []
 
-[66
+<../../Images/BillOfMaterial/JumperKabel.png, id=1083, 1505.625pt x 1505.625pt>
+
+File: ../../Images/BillOfMaterial/JumperKabel.png Graphic file (type png)
+<use ../../Images/BillOfMaterial/JumperKabel.png>
+Package luatex.def Info: ../../Images/BillOfMaterial/JumperKabel.png  used on i
+nput line 80.
+(luatex.def)             Requested size: 42.66263pt x 42.67912pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 82--82
+[]|\T1/lmr/m/n/10 Ent-wick-ler-boards -
+ []
+
+
+Underfull \hbox (badness 6396) in paragraph at lines 82--82
+\T1/lmr/m/n/10 Steck-brü-cken-ka-bel 40
+ []
+
+) [65
 Missing character: There is no € (U+20AC) in font ec-lmbx10!
-<../../Images/BillOfMaterial/HC-SR-04.png>]
-(../../Contents/General/RenameSBOMXY.tex
+<../../Images/BillOfMaterial/ArduinoNano33BLESenseLite.png><../../Images/BillOfM
+aterial/HC-SR-04.png><../../Images/BillOfMaterial/towerpro-servo-sg90.png><../..
+/Images/BillOfMaterial/Breadboard.png><../../Images/BillOfMaterial/LEDgruen.png>
+<../../Images/BillOfMaterial/LEDrot.png><../../Images/BillOfMaterial/JumperKabel
+.png>] [66
+
+
+] (../../Contents/General/RenameSBOMXY.tex
 chapter 15.
 ) (../../Contents/General/RenamePackageXY.tex [67
-
-
 
 
 ] [68
@@ -4627,15 +4660,15 @@ Package logreq Info: Writing requests to 'rename.run.xml'.
 )
 
 Here is how much of LuaTeX's memory you used:
- 101255 strings out of 476076
+ 101294 strings out of 476076
  745265,4101490 words of node,token memory allocated
  5410 words of node memory still in use:
    23 hlist, 2 vlist, 10 rule, 1 local_par, 8 glue, 5 kern, 1 penalty, 1 margin_
 kern, 4 glyph, 1381 attribute, 96 glue_spec, 691 attribute_list, 3 write, 16 pdf
 _literal, 27 pdf_action, 16 pdf_colorstack nodes
-   avail lists: 1:16,2:12005,3:2543,4:19809,5:14414,6:145,7:20295,8:152,9:36846,
+   avail lists: 1:16,2:12005,3:2543,4:19809,5:14414,6:142,7:20295,8:152,9:36846,
 10:42,11:1556,12:2
- 121018 multiletter control sequences out of 65536+600000
+ 121060 multiletter control sequences out of 65536+600000
  117 fonts using 8002391 bytes
  108i,16n,131p,11208b,3038s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/local/texlive/2026/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/tex
@@ -4669,10 +4702,10 @@ public/lm/lmsy7.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lm
 sy9.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/
 msam10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbo
 ls/msbm10.pfb>
-Output written on rename.pdf (115 pages, 1496430 bytes).
+Output written on rename.pdf (115 pages, 5468525 bytes).
 
-PDF statistics: 2088 PDF objects out of 2487 (max. 8388607)
- 1902 compressed objects within 20 object streams
+PDF statistics: 2094 PDF objects out of 2487 (max. 8388607)
+ 1901 compressed objects within 20 object streams
  659 named destinations out of 1000 (max. 1048576)
  1090 words of extra memory for PDF output out of 10000 (max. 100000000)
 
