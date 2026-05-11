@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 This is LuaHBTeX, Version 1.24.0 (TeX Live 2026)  (format=lualatex 2026.3.16)  11 MAY 2026 18:47
+=======
+This is LuaHBTeX, Version 1.24.0 (TeX Live 2026)  (format=lualatex 2026.3.27)  11 MAY 2026 18:27
+>>>>>>> Stashed changes
  restricted system commands enabled.
 **rename.tex
 (./rename.tex
@@ -3107,6 +3111,10 @@ Package biblatex Info: Setting label 'refsegment:014' on input line 21.
 Package biblatex Info: Reference segment=15 on input line 24.
 Package biblatex Info: Setting label 'refsegment:015' on input line 24.
 
+LaTeX Warning: Citation 'Components101:2026' on page 31 undefined on input line
+ 25.
+
+
 Overfull \hbox (8.71342pt too wide) in paragraph at lines 25--26
 \T1/lmr/m/n/10 Der Tow-er-Pro SG90 ist ei-ner der welt-weit am häu-figs-ten ver
 -wen-de-ten Micro-Servomotoren
@@ -3114,6 +3122,10 @@ Overfull \hbox (8.71342pt too wide) in paragraph at lines 25--26
 
 Package biblatex Info: Reference segment=16 on input line 27.
 Package biblatex Info: Setting label 'refsegment:016' on input line 27.
+
+LaTeX Warning: Citation 'Components101:2026' on page 31 undefined on input line
+ 29.
+
 [31
 
 
@@ -3130,6 +3142,10 @@ Overfull \hbox (22.11815pt too wide) in paragraph at lines 50--52
 Package biblatex Info: Reference segment=17 on input line 54.
 Package biblatex Info: Setting label 'refsegment:017' on input line 54.
 
+LaTeX Warning: Citation 'ArduinoServoRef' on page 32 undefined on input line 66
+.
+
+
 Package fancyhdr Warning: \headheight is too small (1.0pt): 
 (fancyhdr)                Make it at least 12.0pt, for example:
 (fancyhdr)                \setlength{\headheight}{12.0pt}.
@@ -3141,8 +3157,10 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 LaTeX Warning: Citation 'ArduinoAttach' on page 33 undefined on input line 73.
 
 
-LaTeX Warning: Citation 'ArduinoWriteMicroseconds' on page 33 undefined on inpu
-t line 75.
+LaTeX Warning: Citation 'ArduinoWr' on page 33 undefined on input line 75.
+
+
+LaTeX Warning: Citation 'Arduino' on page 33 undefined on input line 76.
 
 Package biblatex Info: Reference segment=18 on input line 79.
 Package biblatex Info: Setting label 'refsegment:018' on input line 79.
@@ -4622,7 +4640,16 @@ Overfull \hbox (8.4817pt too wide) in paragraph at lines 162--162
 1/fvm/c/sc/10 playground .
  []
 
+<<<<<<< Updated upstream
 [113]
+=======
+
+Overfull \hbox (5.44058pt too wide) in paragraph at lines 162--162
+[]\T1/lmr/m/n/10 A. Li-bra-ri-es. \T1/lmr/m/it/10 Ser-vo.h Ser-vo Li-bra-ry for Ar-dui-no\T1/lmr/m/n/10 . ab-ge-ru-fen am 11.05.2026.
+ []
+
+[111]
+>>>>>>> Stashed changes
 
 Package fancyhdr Warning: \headheight is too small (1.0pt): 
 (fancyhdr)                Make it at least 12.0pt, for example:
@@ -4660,6 +4687,7 @@ Package logreq Info: Writing requests to 'rename.run.xml'.
 )
 
 Here is how much of LuaTeX's memory you used:
+<<<<<<< Updated upstream
  101294 strings out of 476076
  745265,4101490 words of node,token memory allocated
  5410 words of node memory still in use:
@@ -4708,4 +4736,50 @@ PDF statistics: 2094 PDF objects out of 2487 (max. 8388607)
  1901 compressed objects within 20 object streams
  659 named destinations out of 1000 (max. 1048576)
  1090 words of extra memory for PDF output out of 10000 (max. 100000000)
+=======
+ 101203 strings out of 476076
+ 745253,4101490 words of node,token memory allocated
+ 5398 words of node memory still in use:
+   23 hlist, 2 vlist, 10 rule, 1 local_par, 8 glue, 5 kern, 1 penalty, 1 margin_
+kern, 4 glyph, 1379 attribute, 96 glue_spec, 690 attribute_list, 3 write, 16 pdf
+_literal, 26 pdf_action, 16 pdf_colorstack nodes
+   avail lists: 1:15,2:12006,3:2544,4:19809,5:14414,6:143,7:20295,8:152,9:36846,
+10:42,11:1556,12:2
+ 120996 multiletter control sequences out of 65536+600000
+ 117 fonts using 8002391 bytes
+ 108i,16n,131p,11208b,3038s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{c:/texlive/2026/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/texlive/2026/texmf-
+dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/texlive/2026/texmf-dist/fonts/enc/dvip
+s/lm/lm-ec.enc}{c:/texlive/2026/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{c:/
+texlive/2026/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{c:/texlive/2026/texmf-dis
+t/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/texlive/2026/texmf-dist/fonts/enc/dvips/b
+ase/8r.enc}<c:/texlive/2026/texmf-dist/fonts/type1/public/bera/fvmb8a.pfb><c:/te
+xlive/2026/texmf-dist/fonts/type1/public/bera/fvmr8a.pfb><c:/texlive/2026/texmf-
+dist/fonts/type1/public/lm/lmbx10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/pu
+blic/lm/lmbx7.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb>
+<c:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/texlive/2026/te
+xmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/texlive/2026/texmf-dist/fonts/type
+1/public/lm/lmmi7.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmmi9.pf
+b><c:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2026/t
+exmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/texlive/2026/texmf-dist/fonts/type
+1/public/lm/lmr5.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmr6.pfb>
+<c:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/texlive/2026/texm
+f-dist/fonts/type1/public/lm/lmr8.pfb><c:/texlive/2026/texmf-dist/fonts/type1/pu
+blic/lm/lmr9.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c
+:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmri7.pfb><c:/texlive/2026/texmf
+-dist/fonts/type1/public/lm/lmro17.pfb><c:/texlive/2026/texmf-dist/fonts/type1/p
+ublic/lm/lmss17.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmss8.pfb>
+<c:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmss9.pfb><c:/texlive/2026/tex
+mf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/texlive/2026/texmf-dist/fonts/typ
+e1/public/lm/lmsy10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmsy7.
+pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmsy9.pfb><c:/texlive/2026
+/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive/2026/texm
+f-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on rename.pdf (113 pages, 722398 bytes).
+
+PDF statistics: 2052 PDF objects out of 2073 (max. 8388607)
+ 1870 compressed objects within 19 object streams
+ 653 named destinations out of 1000 (max. 1048576)
+ 1082 words of extra memory for PDF output out of 10000 (max. 100000000)
+>>>>>>> Stashed changes
 

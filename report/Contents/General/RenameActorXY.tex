@@ -55,16 +55,16 @@ Der TowerPro SG90 ist einer der weltweit am häufigsten verwendeten Micro-Servom
 
 \subsection{Beschreibung}
 Für die Ansteuerung des SG90 wird in der Arduino-Umgebung die integrierte
-\textit{Servo}-Bibliothek genutzt\cite{ArduinoServo:2026}. Dadurch entfällt für den Programmierer die aufwändige Erzeugung des exakten 50-Hz-PWM-Signals, und der Motor kann bequem über die direkte Vorgabe eines Winkelwertes von 0 bis 180 Grad angesteuert werden.\cite{ArduinoServo:2026}
+\textit{Servo}-Bibliothek genutzt\cite{ArduinoServo:2025}. Dadurch entfällt für den Programmierer die aufwändige Erzeugung des exakten 50-Hz-PWM-Signals, und der Motor kann bequem über die direkte Vorgabe eines Winkelwertes von 0 bis 180 Grad angesteuert werden.\cite{ArduinoServo:2025}
 
 \subsection{Installation}
 \begin{itemize}
 	\item \textbf{Installation:} Die Bibliothek kann in der Arduino IDE über den Bibliotheksverwalter eingebunden werden. Im Programm wird sie anschließend mit \PYTHON{\#include <Servo.h>} importiert.\cite{SparkFun:2026}
 
-	\item \textbf{Data types:} Die Zielwinkel werden als \python{int} (Integer/Ganzzahlen) übergeben. Für präzisere Steuerungen können Pulsweiten in Mikrosekunden ebenfalls als \python{int} übergeben werden (vgl. \cite{ArduinoServo.h:2026}).
+	\item \textbf{Data types:} Die Zielwinkel werden als \python{int} (Integer/Ganzzahlen) übergeben. Für präzisere Steuerungen können Pulsweiten in Mikrosekunden ebenfalls als \python{int} übergeben werden (vgl. \cite{ArduinoServo.h:2025}).
 	\item \textbf{Data structure:} Jeder Servomotor wird im Code als Objekt der Klasse \textit{Servo} deklariert (z.B. \PYTHON{meinServo;}).
 	\item \textbf{Data quantity:} Auf Standard Arduino-Boards unterstützt die Bibliothek bis zu 12 Servos gleichzeitig; auf speziellen Architekturen (wie der Mbed-OS Architektur des Nano 33 BLE) kann dies variieren, reicht jedoch für mehrere Aktoren vollkommen aus.\cite{ArduinoServoRef}
-	\item \textbf{Data quality:} Die Bibliothek arbeitet timer- und interruptbasiert. Die Servosignale werden im Hintergrund mit dem zuletzt über \PYTHON{write()} gesetzten Wert erzeugt, wodurch keine manuelle PWM-Erzeugung mit blockierenden Delay-Schleifen notwendig ist.\cite{ArduinoServo.h:2026}
+	\item \textbf{Data quality:} Die Bibliothek arbeitet timer- und interruptbasiert. Die Servosignale werden im Hintergrund mit dem zuletzt über \PYTHON{write()} gesetzten Wert erzeugt, wodurch keine manuelle PWM-Erzeugung mit blockierenden Delay-Schleifen notwendig ist.\cite{ArduinoServo.h:2025}
 \end{itemize}
 
 \subsection{Funktionen}
@@ -72,8 +72,8 @@ Die wichtigsten Methoden der Bibliothek sind:
 \begin{itemize}
 	\item \PYTHON{attach(pin)}: Verbindet das Servo-Objekt mit einem bestimmten digitalen Pin.\cite{ArduinoAttach}
 	\item \PYTHON{write(angle)}: Dreht den Servo auf den entsprechenden Winkel ($0^\circ$ bis $180^\circ$).
-	\item \PYTHON{writeMicroseconds(uS)}: Feinkontrolle des Servos durch direkte Angabe der Pulsweite in Mikrosekunden.\cite{ArduinoWriteMicroseconds}
-	\item \PYTHON{read()}: Gibt den aktuellen, zuletzt geschriebenen Winkel des Servos zurück.
+	\item \PYTHON{writeMicroseconds(uS)}: Ermöglicht die Ansteuerung über Pulsweiten in Mikrosekunden.\cite{ArduinoWr}
+	\item \PYTHON{read()}: Gibt den zuletzt gesetzten Servo-Winkel zurück.\cite{Arduino}
 \end{itemize}
 
 \section{Beispiel}

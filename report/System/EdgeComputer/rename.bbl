@@ -189,7 +189,7 @@
     \strng{fullhash}{A1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelalpha}{Ard}
+    \field{labelalpha}{Ard26}
     \field{sortinit}{A}
     \field{sortinithash}{A}
     \field{note}{abgerufen am 11.05.2026}
@@ -198,28 +198,7 @@
     \verb https://cdn.sparkfun.com/assets/0/d/8/4/9/DS-15580-Arduino_Nano_33_BL
     \verb E_Sense.pdf
     \endverb
-  \endentry
-
-  \entry{Components101:2026}{misc}{}{}
-    \name{author}{1}{}{%
-      {{hash=C}{%
-         family={Components101},
-         familyi={C\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{C1}
-    \strng{fullhash}{C1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelalpha}{Com17}
-    \field{sortinit}{C}
-    \field{sortinithash}{C}
-    \field{note}{Accessed Date 10.05.2026}
-    \field{title}{Servo Motor SG-90}
-    \verb{url}
-    \verb https://components101.com/motors/servo-motor-basics-pinout-datasheet
-    \endverb
-    \field{year}{2017}
+    \field{year}{2026}
   \endentry
 
   \entry{DIN66025}{misc}{}{}
@@ -249,30 +228,6 @@
     \field{type}{Norm}
     \field{month}{09}
     \field{year}{1988}
-  \endentry
-
-  \entry{ArduinoServoRef}{misc}{}{}
-    \name{author}{1}{}{%
-      {{hash=DA}{%
-         family={Documentation},
-         familyi={D\bibinitperiod},
-         given={Arduino},
-         giveni={A\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{DA1}
-    \strng{fullhash}{DA1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelalpha}{Doc26}
-    \field{sortinit}{D}
-    \field{sortinithash}{D}
-    \field{note}{abgerufen am 11.05.2026}
-    \field{title}{Servo Library}
-    \verb{url}
-    \verb https://www.arduino.cc/reference/en/libraries/servo/
-    \endverb
-    \field{year}{2026}
   \endentry
 
   \entry{Eckel:2023}{online}{}{}
@@ -509,7 +464,7 @@
     \field{year}{2012}
   \endentry
 
-  \entry{ArduinoServo:2026}{misc}{}{}
+  \entry{ArduinoServo:2025}{misc}{}{}
     \name{author}{1}{}{%
       {{hash=LA}{%
          family={Libraries},
@@ -534,7 +489,7 @@
     \field{year}{2025}
   \endentry
 
-  \entry{ArduinoServo.h:2026}{misc}{}{}
+  \entry{ArduinoServo.h:2025}{misc}{}{}
     \name{author}{1}{}{%
       {{hash=LA}{%
          family={Libraries},
@@ -552,7 +507,7 @@
     \field{sortinit}{L}
     \field{sortinithash}{L}
     \field{note}{abgerufen am 11.05.2026}
-    \field{title}{Servo.h -- Servo Library for Arduino}
+    \field{title}{Servo.h Servo Library for Arduino}
     \verb{url}
     \verb https://github.com/arduino-libraries/Servo/blob/master/src/Servo.h
     \endverb
