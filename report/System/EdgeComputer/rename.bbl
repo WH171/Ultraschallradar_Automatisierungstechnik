@@ -178,6 +178,50 @@
     \field{year}{2016}
   \endentry
 
+  \entry{ArduinoNano:2026}{misc}{}{}
+    \name{author}{1}{}{%
+      {{hash=A}{%
+         family={Arduino},
+         familyi={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{A1}
+    \strng{fullhash}{A1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Ard}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{note}{abgerufen am 11.05.2026}
+    \field{title}{Arduino Nano 33 BLE Sense Datasheet}
+    \verb{url}
+    \verb https://cdn.sparkfun.com/assets/0/d/8/4/9/DS-15580-Arduino_Nano_33_BL
+    \verb E_Sense.pdf
+    \endverb
+  \endentry
+
+  \entry{Components101:2026}{misc}{}{}
+    \name{author}{1}{}{%
+      {{hash=C}{%
+         family={Components101},
+         familyi={C\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{C1}
+    \strng{fullhash}{C1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Com17}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{note}{Accessed Date 10.05.2026}
+    \field{title}{Servo Motor SG-90}
+    \verb{url}
+    \verb https://components101.com/motors/servo-motor-basics-pinout-datasheet
+    \endverb
+    \field{year}{2017}
+  \endentry
+
   \entry{DIN66025}{misc}{}{}
     \name{author}{1}{}{%
       {{hash=D}{%
@@ -205,6 +249,30 @@
     \field{type}{Norm}
     \field{month}{09}
     \field{year}{1988}
+  \endentry
+
+  \entry{ArduinoServoRef}{misc}{}{}
+    \name{author}{1}{}{%
+      {{hash=DA}{%
+         family={Documentation},
+         familyi={D\bibinitperiod},
+         given={Arduino},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{DA1}
+    \strng{fullhash}{DA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Doc26}
+    \field{sortinit}{D}
+    \field{sortinithash}{D}
+    \field{note}{abgerufen am 11.05.2026}
+    \field{title}{Servo Library}
+    \verb{url}
+    \verb https://www.arduino.cc/reference/en/libraries/servo/
+    \endverb
+    \field{year}{2026}
   \endentry
 
   \entry{Eckel:2023}{online}{}{}
@@ -341,6 +409,37 @@
     \field{year}{2016}
   \endentry
 
+  \entry{Ekbert:2023}{book}{}{}
+    \name{author}{2}{}{%
+      {{hash=HE}{%
+         family={Hering},
+         familyi={H\bibinitperiod},
+         given={Ekbert},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=SG}{%
+         family={Schönfelder},
+         familyi={S\bibinitperiod},
+         given={Gert},
+         giveni={G\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Springer Vieweg}%
+    }
+    \strng{namehash}{HESG1}
+    \strng{fullhash}{HESG1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{HS23}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{isbn}{9783658394905}
+    \field{title}{Sensoren in Wissenschaft und Technik: Funktionsweise und
+  Einsatzgebiete}
+    \field{year}{2023}
+  \endentry
+
   \entry{Jaklic:2010}{article}{}{}
     \name{author}{5}{}{%
       {{hash=JG}{%
@@ -410,29 +509,101 @@
     \field{year}{2012}
   \endentry
 
-  \entry{Raj:2026}{online}{}{}
+  \entry{ArduinoServo:2026}{misc}{}{}
     \name{author}{1}{}{%
-      {{hash=RS}{%
-         family={Raj},
-         familyi={R\bibinitperiod},
-         given={Sawkare},
+      {{hash=LA}{%
+         family={Libraries},
+         familyi={L\bibinitperiod},
+         given={Arduino},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LA1}
+    \strng{fullhash}{LA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Lib25}
+    \field{extraalpha}{1}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{note}{Latest Version 1.3.0 vom 06.11.2025, abgerufen am 10.05.2026}
+    \field{title}{Servo Library for Arduino}
+    \verb{url}
+    \verb https://github.com/arduino-libraries/Servo
+    \endverb
+    \field{year}{2025}
+  \endentry
+
+  \entry{ArduinoServo.h:2026}{misc}{}{}
+    \name{author}{1}{}{%
+      {{hash=LA}{%
+         family={Libraries},
+         familyi={L\bibinitperiod},
+         given={Arduino},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LA1}
+    \strng{fullhash}{LA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Lib25}
+    \field{extraalpha}{2}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{note}{abgerufen am 11.05.2026}
+    \field{title}{Servo.h -- Servo Library for Arduino}
+    \verb{url}
+    \verb https://github.com/arduino-libraries/Servo/blob/master/src/Servo.h
+    \endverb
+    \field{year}{2025}
+  \endentry
+
+  \entry{SparkFun:2026}{misc}{}{}
+    \name{author}{1}{}{%
+      {{hash=MBJ}{%
+         family={MikeGrusin},
+         familyi={M\bibinitperiod},
+         given={Byron\bibnamedelima J.},
+         giveni={B\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{MBJ1}
+    \strng{fullhash}{MBJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Mik20}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{note}{abgerufen am 10.05.2026}
+    \field{title}{Hobby Servo Tutorial}
+    \verb{url}
+    \verb https://learn.sparkfun.com/tutorials/hobby-servo-tutorial/all
+    \endverb
+    \field{year}{2020}
+  \endentry
+
+  \entry{Elektronik:2026}{misc}{}{}
+    \name{author}{1}{}{%
+      {{hash=PS}{%
+         family={Patrick},
+         familyi={P\bibinitperiod},
+         given={Schnabel},
          giveni={S\bibinitperiod},
       }}%
     }
-    \strng{namehash}{RS1}
-    \strng{fullhash}{RS1}
+    \strng{namehash}{PS1}
+    \strng{fullhash}{PS1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelalpha}{Raj12}
-    \field{sortinit}{R}
-    \field{sortinithash}{R}
-    \field{note}{Geöffnet: 16.04.2026}
-    \field{title}{Towerpro SG90 Servo Motor And Its Application}
+    \field{labelalpha}{Pat}
+    \field{sortinit}{P}
+    \field{sortinithash}{P}
+    \field{note}{Accessed Date 10.05.2026}
+    \field{title}{SG90 - Servomotor}
     \verb{url}
-    \verb https://vayuyaan.com/blog/towerpro-sg90-servo-motor-and-its-applicati
-    \verb on/
+    \verb https://www.elektronik-kompendium.de/sites/praxis/bauteil_sg90.htm
     \endverb
-    \field{year}{03.12.2022}
   \endentry
 
   \entry{Patent3D}{misc}{}{}

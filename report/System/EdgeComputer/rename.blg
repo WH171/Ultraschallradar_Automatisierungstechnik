@@ -21,52 +21,61 @@ Database file #1: rename-blx.bib
 Database file #2: ../../../MLbib/Jetson.bib
 Database file #3: ../../../MLbib/literature.bib
 Database file #4: ../../../MLbib/MyLiterature.bib
-Repeated entry---line 467 of file ../../../MLbib/MyLiterature.bib
+I was expecting a `,' or a `}'---line 487 of file ../../../MLbib/MyLiterature.bib
+ : @article{DroneBot: 
+ :                    2026,
+I'm skipping whatever remains of this entry
+Repeated entry---line 549 of file ../../../MLbib/MyLiterature.bib
  : @misc{Eckel:2023
  :                 ,
 I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "DroneBot:2026"
+Warning--I didn't find a database entry for "ArduinoAttach"
+Warning--I didn't find a database entry for "ArduinoWriteMicroseconds"
+Warning--I didn't find a database entry for "ArduinoServoGitHub"
+Warning--I didn't find a database entry for "ArduinoProjectHubRadar"
 Biblatex version: 3.21
 Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-You've used 19 entries,
+You've used 26 entries,
             6402 wiz_defined-function locations,
-            1329 strings with 13573 characters,
-and the built_in function-call counts, 156207 in all, are:
-= -- 12590
-> -- 2061
-< -- 701
-+ -- 4677
-- -- 765
-* -- 10960
-:= -- 18340
+            1378 strings with 14792 characters,
+and the built_in function-call counts, 190491 in all, are:
+= -- 14795
+> -- 2696
+< -- 953
++ -- 5350
+- -- 982
+* -- 13369
+:= -- 21546
 add.period$ -- 0
-call.type$ -- 19
-change.case$ -- 18
+call.type$ -- 26
+change.case$ -- 25
 chr.to.int$ -- 62
-cite$ -- 36
-duplicate$ -- 17301
-empty$ -- 13450
-format.name$ -- 1381
-if$ -- 31006
+cite$ -- 50
+duplicate$ -- 21092
+empty$ -- 16822
+format.name$ -- 1763
+if$ -- 38293
 int.to.chr$ -- 0
-int.to.str$ -- 58
+int.to.str$ -- 76
 missing$ -- 0
-newline$ -- 702
-num.names$ -- 938
-pop$ -- 6891
+newline$ -- 872
+num.names$ -- 1277
+pop$ -- 9285
 preamble$ -- 1
-purify$ -- 421
+purify$ -- 534
 quote$ -- 0
-skip$ -- 3736
+skip$ -- 5036
 stack$ -- 0
-substring$ -- 22657
-swap$ -- 3044
-text.length$ -- 638
-text.prefix$ -- 34
+substring$ -- 26183
+swap$ -- 3962
+text.length$ -- 862
+text.prefix$ -- 47
 top$ -- 1
-type$ -- 630
+type$ -- 868
 warning$ -- 0
-while$ -- 2405
+while$ -- 2816
 width$ -- 0
-write$ -- 684
-(There was 1 error message)
+write$ -- 847
+(There were 2 error messages)

@@ -36,20 +36,20 @@
 \contentsline {section}{\numberline {5.4}Bibliothek}{32}{section.5.4}%
 \contentsline {subsection}{\numberline {5.4.1}Beschreibung}{32}{subsection.5.4.1}%
 \contentsline {subsection}{\numberline {5.4.2}Installation}{32}{subsection.5.4.2}%
-\contentsline {subsection}{\numberline {5.4.3}Funktionen}{32}{subsection.5.4.3}%
+\contentsline {subsection}{\numberline {5.4.3}Funktionen}{33}{subsection.5.4.3}%
 \contentsline {section}{\numberline {5.5}Beispiel}{33}{section.5.5}%
 \contentsline {subsection}{\numberline {5.5.1}Handbuch}{33}{subsection.5.5.1}%
 \contentsline {subsection}{\numberline {5.5.2}An einem Beispiel}{33}{subsection.5.5.2}%
 \contentsline {subsection}{\numberline {5.5.3}Code}{33}{subsection.5.5.3}%
 \contentsline {subsection}{\numberline {5.5.4}Dateien}{34}{subsection.5.5.4}%
 \contentsline {section}{\numberline {5.6}Kalibrierung}{34}{section.5.6}%
-\contentsline {section}{\numberline {5.7}Einfacher Code (ohne Bibliothek)}{34}{section.5.7}%
-\contentsline {section}{\numberline {5.8}Einfache Anwendung}{35}{section.5.8}%
+\contentsline {section}{\numberline {5.7}Einfacher Code (ohne Bibliothek)}{35}{section.5.7}%
+\contentsline {section}{\numberline {5.8}Einfache Anwendung}{36}{section.5.8}%
 \contentsline {section}{\numberline {5.9}Tests}{36}{section.5.9}%
 \contentsline {subsection}{\numberline {5.9.1}Einfacher Funktionstest}{36}{subsection.5.9.1}%
 \contentsline {subsection}{\numberline {5.9.2}Alle Funktionen testen}{36}{subsection.5.9.2}%
 \contentsline {section}{\numberline {5.10}Weiterführende Literatur}{36}{section.5.10}%
-\contentsline {chapter}{Literatur}{37}{chapter*.12}%
+\contentsline {chapter}{Literatur}{37}{chapter*.13}%
 \contentsline {part}{\numberline {III}Domain Knowledge - Tools}{39}{part.3}%
 \contentsline {chapter}{\numberline {6}\textcolor {red}{Python Tool XY}}{41}{chapter.6}%
 \contentsline {chapter}{\numberline {7}\textcolor {red}{Hardware Tool XY}}{43}{chapter.7}%
@@ -101,7 +101,7 @@
 \contentsline {subsection}{\numberline {18.5.9}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MConstant}}}{94}{subsection.18.5.9}%
 \contentsline {subsection}{\numberline {18.5.10}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MGeneralMath}}}{94}{subsection.18.5.10}%
 \contentsline {subsection}{\numberline {18.5.11}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-Biarc}}}{95}{subsection.18.5.11}%
-\contentsline {subsubsection}{\nonumberline Datenstruktur}{95}{subsubsection*.20}%
+\contentsline {subsubsection}{\nonumberline Datenstruktur}{95}{subsubsection*.21}%
 \contentsline {subsection}{\numberline {18.5.12}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MBiarc}}}{95}{subsection.18.5.12}%
 \contentsline {section}{\numberline {18.6}Programmablaufplan}{96}{section.18.6}%
 \contentsline {subsection}{\numberline {18.6.1}Gesamauf}{96}{subsection.18.6.1}%
@@ -113,5 +113,5 @@
 \def \@chapapp {\appendixname }
 \contentsline {chapter}{\numberline {A}Zeichnungen mit tikz}{107}{appendix.A}%
 \contentsline {chapter}{\numberline {B}Kriterien für eine gutes \LaTeX -Projekt}{109}{appendix.B}%
-\contentsline {chapter}{\nonumberline Literaturverzeichnis}{111}{chapter*.25}%
-\contentsline {chapter}{Index}{113}{chapter*.25}%
+\contentsline {chapter}{\nonumberline Literaturverzeichnis}{111}{chapter*.26}%
+\contentsline {chapter}{Index}{113}{chapter*.26}%
