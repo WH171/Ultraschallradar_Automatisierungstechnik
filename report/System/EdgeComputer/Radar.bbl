@@ -190,6 +190,7 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelalpha}{Ard26}
+    \field{extraalpha}{1}
     \field{sortinit}{A}
     \field{sortinithash}{A}
     \field{note}{abgerufen am 11.05.2026}
@@ -199,6 +200,98 @@
     \verb E_Sense.pdf
     \endverb
     \field{year}{2026}
+  \endentry
+
+  \entry{ArduinoAttach:2026}{misc}{}{}
+    \name{author}{1}{}{%
+      {{hash=A}{%
+         family={ArduinoGetStarted},
+         familyi={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{A2}
+    \strng{fullhash}{A2}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Ard26}
+    \field{extraalpha}{2}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{note}{abgerufen am 12.05.2026}
+    \field{title}{Servo.attach() | Arduino Reference}
+    \verb{url}
+    \verb https://arduinogetstarted.com/reference/library/servo-attach
+    \endverb
+    \field{year}{2026}
+  \endentry
+
+  \entry{ArduinoRead:2026}{misc}{}{}
+    \name{author}{1}{}{%
+      {{hash=A}{%
+         family={ArduinoGetStarted},
+         familyi={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{A2}
+    \strng{fullhash}{A2}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Ard26}
+    \field{extraalpha}{3}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{note}{abgerufen am 11.05.2026}
+    \field{title}{Servo.read() | Arduino Reference}
+    \verb{url}
+    \verb https://arduinogetstarted.com/reference/library/servo-read
+    \endverb
+    \field{year}{2026}
+  \endentry
+
+  \entry{ArduinoWriteMic:2026}{misc}{}{}
+    \name{author}{1}{}{%
+      {{hash=A}{%
+         family={ArduinoGetStarted},
+         familyi={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{A2}
+    \strng{fullhash}{A2}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Ard26}
+    \field{extraalpha}{4}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{note}{abgerufen am 11.05.2026}
+    \field{title}{Servo.writeMicroseconds() | Arduino Reference}
+    \verb{url}
+    \verb https://arduinogetstarted.com/reference/library/servo-writemicrosecon
+    \verb ds
+    \endverb
+    \field{year}{2026}
+  \endentry
+
+  \entry{Components101:2017}{misc}{}{}
+    \name{author}{1}{}{%
+      {{hash=C}{%
+         family={Components101},
+         familyi={C\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{C1}
+    \strng{fullhash}{C1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Com17}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{note}{Accessed Date 10.05.2026}
+    \field{title}{Servo Motor SG-90}
+    \verb{url}
+    \verb https://components101.com/motors/servo-motor-basics-pinout-datasheet
+    \endverb
+    \field{year}{2017}
   \endentry
 
   \entry{DIN66025}{misc}{}{}
@@ -228,6 +321,30 @@
     \field{type}{Norm}
     \field{month}{09}
     \field{year}{1988}
+  \endentry
+
+  \entry{ArduinoServoRef:2026}{misc}{}{}
+    \name{author}{1}{}{%
+      {{hash=DA}{%
+         family={Documentation},
+         familyi={D\bibinitperiod},
+         given={Arduino},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{DA1}
+    \strng{fullhash}{DA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Doc26}
+    \field{sortinit}{D}
+    \field{sortinithash}{D}
+    \field{note}{abgerufen am 11.05.2026}
+    \field{title}{Servo Library}
+    \verb{url}
+    \verb https://www.arduino.cc/reference/en/libraries/servo/
+    \endverb
+    \field{year}{2026}
   \endentry
 
   \entry{Eckel:2023}{online}{}{}
