@@ -1,0 +1,41 @@
+\acswitchoff 
+\babel@toc {ngerman}{}\relax 
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Schematische Darstellung des Ultraschallsensors HC-SR04}}{24}{figure.caption.5}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Schaltplan Ultraschallsensor HC-SR04}}{25}{figure.caption.7}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Schematische Darstellung des Servomotors TowerPro SG90}}{34}{figure.caption.11}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {17.1}{\ignorespaces Bernstein-Polynom vom Grad $3$}}{77}{figure.caption.16}%
+\contentsline {figure}{\numberline {17.2}{\ignorespaces Bézier-Kurve zum Beispiel \ref {KPunkte4Beispiel} }}{78}{figure.caption.17}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {18.1}{\ignorespaces Glättung einer Ecke mit Hilfe eines Kreisbogens - Dreieck}}{79}{figure.caption.18}%
+\contentsline {figure}{\numberline {18.2}{\ignorespaces Winkeländerung bei einer Verrundung mit einem Kreisbogen }}{81}{figure.caption.19}%
+\contentsline {figure}{\numberline {18.3}{\ignorespaces Krümmungsverlauf bei der Verrundung mit einem Kreisbogen}}{81}{figure.caption.20}%
+\contentsline {figure}{\numberline {18.4}{\ignorespaces Maximaler Bereich für die Verrundung mit einem Kreisbogen - $L(\varepsilon =const, \alpha )$}}{82}{figure.caption.21}%
+\contentsline {figure}{\numberline {18.5}{\ignorespaces Abweichung bei Vorgabe des Abstands $L$ bei der Verrundung mit einem Kreisbogen}}{82}{figure.caption.22}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {19.1}{\ignorespaces Programmablaufplan \glqq Eckenverrrundung\grqq }}{101}{figure.caption.24}%
+\contentsline {figure}{\numberline {19.2}{\ignorespaces Programmablaufplan \glqq Auswal der Verrundungsstrategien\grqq }}{102}{figure.caption.25}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\def \@chapapp {\appendixname }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }

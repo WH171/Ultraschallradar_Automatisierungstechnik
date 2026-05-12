@@ -1,0 +1,37 @@
+\begin{theindex}
+
+  \item 3D-Drucker, 109
+  \item 5G, 109
+
+  \indexspace
+
+  \item      Speicherprogrammierbare Steuerung, 107
+  \item  Datei
+    \subitem Blink.ino, 106
+    \subitem Blink.py, 104
+    \subitem PackageExample.py, 71
+    \subitem requirements.txt, 69
+
+  \indexspace
+
+  \item CAGD, 109
+    \subitem Splines, 109
+  \item CNN, 11, 107
+  \item Computerized Numerical Control
+    \subitem  \emph  {siehe} {CNN}, 11, 107
+
+  \indexspace
+
+  \item Example, 71
+    \subitem Description, 71
+    \subitem Installation, 71
+    \subitem Introduction, 71
+
+  \indexspace
+
+  \item Speicherprogrammierbare Steuerung
+    \subitem  \emph  {siehe} SPS, 11, 107
+  \item SPS, 11, 107, 
+		\see{         Speicherprogrammierbare Steuerung}{107}
+
+\end{theindex}

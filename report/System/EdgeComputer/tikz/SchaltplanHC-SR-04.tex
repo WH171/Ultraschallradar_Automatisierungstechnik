@@ -1,0 +1,175 @@
+\begin{tikzpicture}
+	
+	% --- FARBDEFINITIONEN (Nur für den Arduino & Widerstände) ---
+	% Die Farben pcbblue, pincolor, sensorbody und sensorinner wurden ENTFERNT,
+	% damit LaTeX automatisch DEINE Originalfarben aus dem Hauptdokument verwendet!
+	\definecolor{nanoteal}{RGB}{0, 126, 140}
+	\definecolor{arduinoorange}{RGB}{230, 120, 23}
+	\definecolor{pinred}{RGB}{190, 30, 45}
+	\definecolor{arduinogray}{RGB}{180, 180, 180}
+	
+	% Widerstands-Farben
+	\definecolor{resistorbg}{RGB}{240, 225, 180} 
+	\definecolor{brownband}{RGB}{139, 69, 19}
+	\definecolor{goldband}{RGB}{212, 175, 55}
+	
+	% --- WIDERSTANDS-STYLES ---
+	\tikzset{
+		res1k/.style={
+			rectangle, draw=black, fill=resistorbg, minimum width=0.4cm, minimum height=1.2cm, rounded corners=1pt,
+			path picture={
+				\draw[brownband, line width=2pt] ([yshift=0.3cm]path picture bounding box.west) -- ([yshift=0.3cm]path picture bounding box.east);
+				\draw[black, line width=2pt] ([yshift=0.1cm]path picture bounding box.west) -- ([yshift=0.1cm]path picture bounding box.east);
+				\draw[red, line width=2pt] ([yshift=-0.1cm]path picture bounding box.west) -- ([yshift=-0.1cm]path picture bounding box.east);
+				\draw[goldband, line width=2pt] ([yshift=-0.3cm]path picture bounding box.west) -- ([yshift=-0.3cm]path picture bounding box.east);
+			}
+		},
+		res2k/.style={
+			rectangle, draw=black, fill=resistorbg, minimum width=1.2cm, minimum height=0.4cm, rounded corners=1pt,
+			path picture={
+				\draw[red, line width=2pt] ([xshift=-0.3cm]path picture bounding box.north) -- ([xshift=-0.3cm]path picture bounding box.south);
+				\draw[black, line width=2pt] ([xshift=-0.1cm]path picture bounding box.north) -- ([xshift=-0.1cm]path picture bounding box.south);
+				\draw[red, line width=2pt] ([xshift=0.1cm]path picture bounding box.north) -- ([xshift=0.1cm]path picture bounding box.south);
+				\draw[goldband, line width=2pt] ([xshift=0.3cm]path picture bounding box.north) -- ([xshift=0.3cm]path picture bounding box.south);
+			}
+		}
+	}
+	
+	% ==========================================
+	% ARDUINO NANO 33 BLE
+	% ==========================================
+	\begin{scope}[shift={(1.5,-10.5)}] 
+		\draw[fill=nanoteal, rounded corners=1pt] (0,0) rectangle (3.2, 6.5);
+		\draw[fill=arduinogray] (1.1, 6.2) rectangle (2.1, 7.0); % USB
+		\draw[fill=arduinogray!60] (0.4, 0.4) rectangle (2.8, 2.4); % NINA
+		\draw[fill=green!50!black] (0.5, 0.1) rectangle (2.7, 0.4); % Antenne
+		
+		% Pins Links
+		\foreach \y/\txt/\col in {
+			0.5/VIN/pinred, 1.0/GND/black, 1.5/RESET/arduinoorange, 2.0/+5V/pinred, 
+			2.5/A7/arduinoorange!40, 3.0/A6/arduinoorange!40, 3.5/A5/arduinoorange!40,
+			4.0/A4/arduinoorange!40, 4.5/A3/arduinoorange!40, 5.0/A2/arduinoorange!40, 
+			5.5/A1/arduinoorange!40, 6.0/A0/arduinoorange!40} {
+			
+			\draw[fill=white] (0.1, \y) circle (0.1);
+			\node[anchor=east, fill=\col, text=white, font=\sffamily\tiny\bfseries, minimum width=0.7cm, inner sep=1.5pt, rounded corners=1pt] at (-0.4, \y) {\txt};
+			\ifdim \y pt = 2.0pt \coordinate (Nano5V) at (0.1, \y); \fi
+		}
+		
+		% Pins Rechts
+		\foreach \y/\txt/\col in {
+			0.5/TX/arduinoorange, 1.0/RX/arduinoorange, 1.5/RESET/white!80!gray, 2.0/GND/black, 
+			2.5/~D2/arduinoorange, 3.0/~D3/arduinoorange, 3.5/~D4/arduinoorange, 
+			4.0/~D5/arduinoorange, 4.5/~D6/arduinoorange, 5.0/~D7/arduinoorange, 
+			5.5/~D8/arduinoorange, 6.0/~D9/arduinoorange} {
+			
+			\draw[fill=white] (3.1, \y) circle (0.1);
+			\node[anchor=west, fill=\col, text=white, font=\sffamily\tiny\bfseries, minimum width=0.7cm, inner sep=1.5pt, rounded corners=1pt] at (3.6, \y) {\txt};
+			
+			\ifdim \y pt = 2.0pt \coordinate (NanoGND) at (3.1, \y); \fi
+			\ifdim \y pt = 2.5pt \coordinate (NanoD2) at (3.1, \y); \fi
+			\ifdim \y pt = 3.0pt \coordinate (NanoD3) at (3.1, \y); \fi
+		}
+		\node[text=white, font=\sffamily\bfseries\tiny, rotate=90] at (1.6, 4.2) {ARDUINO NANO 33 BLE};
+	\end{scope}
+	
+	% ==========================================
+	% ULTRASCHALLSENSOR HC-SR04 (100% DEIN ORIGINAL-CODE)
+	% ==========================================
+	\begin{scope}[shift={(-0.5,0)}, scale=1.2]
+		
+		% Hauptplatine (PCB)
+		\draw[fill=pcbblue, rounded corners=2pt, draw=black!70] (0,0) rectangle (6, 2.8);
+		
+		% Befestigungslöcher in den Ecken
+		\foreach \x/\y in {0.3/0.3, 5.7/0.3, 0.3/2.5, 5.7/2.5} {
+			\draw[fill=white, draw=gray] (\x, \y) circle (0.15);
+		}
+		
+		% Quarz (Das silberne ovale Bauteil oben mittig)
+		\draw[fill=gray!40, rounded corners=4pt] (2.4, 2.3) rectangle (3.6, 2.6);
+		
+		% Produktname
+		\node[text=white, font=\sffamily\bfseries\small] at (3, 1.8) {HC - SR04};
+		
+		% Die beiden Ultraschallwandler (Sender & Empfänger)
+		\foreach \xpos in {1.3, 4.7} {
+			% Äußerer Ring
+			\draw[fill=white, draw=gray] (\xpos, 1.2) circle (1.0);
+			% Metallgehäuse
+			\draw[fill=sensorbody] (\xpos, 1.2) circle (0.9);
+			% Gitterstruktur Bereich
+			\draw[fill=sensorinner] (\xpos, 1.2) circle (0.7);
+			
+			% Gitter-Muster
+			\begin{scope}
+				\clip (\xpos, 1.2) circle (0.7);
+				\draw[step=0.08, black!30, thin] (\xpos-0.7, 1.2-0.7) grid (\xpos+0.7, 1.2+0.7);
+			\end{scope}
+			
+			% Innerster Kreis (Wandler-Element)
+			\draw[fill=black!60] (\xpos, 1.2) circle (0.35);
+		}
+		
+		% Pins und Beschriftung unten
+		\foreach \i/\txt in {0/Vcc, 1/Trig, 2/Echo, 3/Gnd} {
+			% Die grauen Metall-Pins, die unten aus dem Board herausragen
+			\draw[fill=gray!40, draw=black!50] (2.425 + \i*0.35, 0.1) rectangle (2.525 + \i*0.35, -0.3);
+			
+			% Pin-Lötstelle (kleine Quadrate)
+			\draw[fill=pincolor] (2.35 + \i*0.35, 0.1) rectangle (2.60 + \i*0.35, 0.4);
+			
+			% Beschriftung 
+			\node[text=white, font=\sffamily\tiny, rotate=90, anchor=west] at (2.475 + \i*0.35, 0.45) {\txt};
+			
+			% Koordinate für die Verkabelung erfassen
+			\coordinate (SR\txt) at (2.475 + \i*0.35, -0.3);
+		}
+	\end{scope}
+	
+	% ==========================================
+	% VERBINDUNGEN & SPANNUNGSTEILER
+	% ==========================================
+	\begin{scope}[on background layer]
+		
+		% VCC (Rot) - Geht nach links weg
+		\draw[red, thick] (SRVcc) -- ++(0,-0.5) -| ([xshift=-2.0cm]Nano5V) -- (Nano5V);
+		
+		% 1. GND -> GND (Schwarz)
+		\draw[black, thick] (SRGnd) -- ++(0,-0.4) -| ([xshift=3.5cm]NanoGND) coordinate (GNDDrop) -- (NanoGND);
+		
+		% 2. ECHO -> Spannungsteiler -> ~D3 (Orange)
+		\coordinate (DropD3) at ([xshift=1.5cm]NanoD3);
+		\coordinate (DivTop) at (DropD3 |- 0, -1.8); 
+		
+		\draw[orange, thick] (SREcho) -- ++(0,-0.6) -| (DivTop);
+		
+		% R1 (1k Ohm)
+		\node[res1k, anchor=north] (R1) at (DivTop) {};
+		\node[anchor=west, font=\sffamily\tiny, text=black] at ([xshift=0.1cm]R1.east) {$R_1$ ($1\,\text{k}\Omega$)};
+		
+		\coordinate (DivJunction) at ([yshift=-0.4cm]R1.south);
+		\draw[orange, thick] (R1.south) -- (DivJunction);
+		\draw[orange, thick] (DivJunction) -- (DropD3) -- (NanoD3);
+		\fill[orange] (DivJunction) circle (1.5pt); 
+		
+		% R2 (2k Ohm)
+		\node[res2k, anchor=west] (R2) at ([xshift=0.4cm]DivJunction) {};
+		\draw[orange, thick] (DivJunction) -- (R2.west);
+		
+		% R2 an GND
+		\draw[black, thick] (R2.east) -- (R2.east -| GNDDrop);
+		\fill[black] (R2.east -| GNDDrop) circle (1.5pt); 
+		\node[anchor=north, font=\sffamily\tiny, text=black] at ([yshift=-0.1cm]R2.south) {$R_2$ ($2\,\text{k}\Omega$)};
+		
+		% 3. TRIG -> ~D2 (Blau)
+		\draw[blue, thick] (SRTrig) -- ++(0,-0.8) -| ([xshift=2.5cm]NanoD2) -- (NanoD2);
+		
+		% Hervorhebungs-Box
+		\draw[dashed, draw=gray, rounded corners=3pt] 
+		([xshift=-0.5cm, yshift=0.3cm]R1.north west) rectangle ([xshift=0.3cm, yshift=-0.7cm]R2.south east);
+		\node[font=\sffamily\tiny\bfseries, text=darkgray, anchor=north] at ([xshift=2.8cm, yshift=0.5cm]R1.south) {5V $\rightarrow$ 3.3V};
+		
+	\end{scope}
+	
+\end{tikzpicture}

@@ -1,0 +1,85 @@
+This is BibTeX, Version 0.99e (TeX Live 2026)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: Radar.aux
+The style file: biblatex.bst
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=200001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: Radar-blx.bib
+Database file #2: ../../../MLbib/Jetson.bib
+Database file #3: ../../../MLbib/literature.bib
+Database file #4: ../../../MLbib/MyLiterature.bib
+I was expecting a `,' or a `}'---line 523 of file ../../../MLbib/MyLiterature.bib
+ : @article{DroneBot: 
+ :                    2020,
+I'm skipping whatever remains of this entry
+Repeated entry---line 585 of file ../../../MLbib/MyLiterature.bib
+ : @misc{Eckel:2023
+ :                 ,
+I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "Components101:2026"
+Warning--I didn't find a database entry for "DroneBot:2026"
+Warning--I didn't find a database entry for "ArduinoServoRef"
+Warning--I didn't find a database entry for "ArduinoAttach"
+Warning--I didn't find a database entry for "ArduinoWr"
+Warning--I didn't find a database entry for "Arduino"
+Warning--I didn't find a database entry for "ArduinoServoGitHub"
+Warning--I didn't find a database entry for "ArduinoWriteMicroseconds"
+Warning--I didn't find a database entry for "ArduinoProjectHubRadar"
+Biblatex version: 3.21
+Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+You've used 24 entries,
+            6402 wiz_defined-function locations,
+            1375 strings with 14627 characters,
+and the built_in function-call counts, 182022 in all, are:
+= -- 14296
+> -- 2532
+< -- 889
++ -- 5206
+- -- 926
+* -- 12783
+:= -- 20797
+add.period$ -- 0
+call.type$ -- 24
+change.case$ -- 23
+chr.to.int$ -- 62
+cite$ -- 46
+duplicate$ -- 20134
+empty$ -- 15952
+format.name$ -- 1662
+if$ -- 36472
+int.to.chr$ -- 0
+int.to.str$ -- 72
+missing$ -- 0
+newline$ -- 827
+num.names$ -- 1187
+pop$ -- 8608
+preamble$ -- 1
+purify$ -- 508
+quote$ -- 0
+skip$ -- 4693
+stack$ -- 0
+substring$ -- 25434
+swap$ -- 3720
+text.length$ -- 802
+text.prefix$ -- 43
+top$ -- 1
+type$ -- 800
+warning$ -- 0
+while$ -- 2718
+width$ -- 0
+write$ -- 804
+(There were 2 error messages)
