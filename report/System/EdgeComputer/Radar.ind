@@ -1,37 +1,56 @@
 \begin{theindex}
 
-  \item 3D-Drucker, 107
-  \item 5G, 107
+  \item 3D-Drucker, 119
+  \item 5G, 119
 
   \indexspace
 
-  \item      Speicherprogrammierbare Steuerung, 105
+  \item      Speicherprogrammierbare Steuerung, 117
   \item  Datei
-    \subitem Blink.ino, 104
-    \subitem Blink.py, 102
-    \subitem PackageExample.py, 69
-    \subitem requirements.txt, 67
+    \subitem Blink.ino, 116
+    \subitem Blink.py, 114
+    \subitem Mag\_raw.txt, 30
+    \subitem PackageExample.py, 81
+    \subitem requirements.txt, 79
+  \item  Inertialmesseinheit
+    \subitem  \emph  {siehe} IMU, 11, 26
 
   \indexspace
 
-  \item CAGD, 107
-    \subitem Splines, 107
-  \item CNN, 11, 105
+  \item Acoustic Overload Point
+    \subitem  \emph  {siehe} AOP, 11, 31
+  \item AOP, 11, 31
+
+  \indexspace
+
+  \item CAGD, 119
+    \subitem Splines, 119
+  \item CNN, 11, 117
   \item Computerized Numerical Control
-    \subitem  \emph  {siehe} {CNN}, 11, 105
+    \subitem  \emph  {siehe} {CNN}, 11, 117
 
   \indexspace
 
-  \item Example, 69
-    \subitem Description, 69
-    \subitem Installation, 69
-    \subitem Introduction, 69
+  \item Example, 81
+    \subitem Description, 81
+    \subitem Installation, 81
+    \subitem Introduction, 81
+
+  \indexspace
+
+  \item IMU, 11, 26, 29
+
+  \indexspace
+
+  \item PDM, 11, 31
+  \item Pulse Density Modulation
+    \subitem  \emph  {siehe} PDM, 11, 31
 
   \indexspace
 
   \item Speicherprogrammierbare Steuerung
-    \subitem  \emph  {siehe} SPS, 11, 105
-  \item SPS, 11, 105, 
-		\see{         Speicherprogrammierbare Steuerung}{105}
+    \subitem  \emph  {siehe} SPS, 11, 117
+  \item SPS, 11, 117, 
+		\see{         Speicherprogrammierbare Steuerung}{117}
 
 \end{theindex}

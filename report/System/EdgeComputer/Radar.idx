@@ -1,23 +1,46 @@
+\indexentry{AOP}{11}
+\indexentry{Acoustic Overload Point! \emph  {siehe} AOP}{11}
 \indexentry{CNN}{11}
 \indexentry{Computerized Numerical Control! \emph  {siehe} {CNN}}{11}
+\indexentry{IMU}{11}
+\indexentry{ Inertialmesseinheit! \emph  {siehe} IMU}{11}
+\indexentry{PDM}{11}
+\indexentry{Pulse Density Modulation! \emph  {siehe} PDM}{11}
 \indexentry{SPS}{11}
 \indexentry{Speicherprogrammierbare Steuerung! \emph  {siehe} SPS}{11}
-\indexentry{ Datei!requirements.txt}{67}
-\indexentry{Example}{69}
-\indexentry{Example!Introduction}{69}
-\indexentry{Example!Description}{69}
-\indexentry{Example!Installation}{69}
-\indexentry{ Datei!PackageExample.py}{69}
-\indexentry{ Datei!Blink.py}{102}
-\indexentry{ Datei!Blink.ino}{104}
-\indexentry{Speicherprogrammierbare Steuerung! \emph  {siehe} SPS}{105}
-\indexentry{SPS}{105}
-\indexentry{Computerized Numerical Control! \emph  {siehe} {CNN}}{105}
-\indexentry{CNN}{105}
-\indexentry{SPS}{105}
-\indexentry{     Speicherprogrammierbare Steuerung}{105}
-\indexentry{SPS|see{         Speicherprogrammierbare Steuerung}}{105}
-\indexentry{CAGD}{107}
-\indexentry{CAGD!Splines}{107}
-\indexentry{3D-Drucker}{107}
-\indexentry{5G}{107}
+\indexentry{ Inertialmesseinheit! \emph  {siehe} IMU}{26}
+\indexentry{IMU}{26}
+\indexentry{IMU}{29}
+\indexentry{IMU}{29}
+\indexentry{IMU}{29}
+\indexentry{IMU}{29}
+\indexentry{IMU}{29}
+\indexentry{IMU}{29}
+\indexentry{IMU}{29}
+\indexentry{IMU}{29}
+\indexentry{IMU}{29}
+\indexentry{IMU}{29}
+\indexentry{ Datei!Mag\_raw.txt}{30}
+\indexentry{Acoustic Overload Point! \emph  {siehe} AOP}{31}
+\indexentry{AOP}{31}
+\indexentry{Pulse Density Modulation! \emph  {siehe} PDM}{31}
+\indexentry{PDM}{31}
+\indexentry{ Datei!requirements.txt}{79}
+\indexentry{Example}{81}
+\indexentry{Example!Introduction}{81}
+\indexentry{Example!Description}{81}
+\indexentry{Example!Installation}{81}
+\indexentry{ Datei!PackageExample.py}{81}
+\indexentry{ Datei!Blink.py}{114}
+\indexentry{ Datei!Blink.ino}{116}
+\indexentry{Speicherprogrammierbare Steuerung! \emph  {siehe} SPS}{117}
+\indexentry{SPS}{117}
+\indexentry{Computerized Numerical Control! \emph  {siehe} {CNN}}{117}
+\indexentry{CNN}{117}
+\indexentry{SPS}{117}
+\indexentry{     Speicherprogrammierbare Steuerung}{117}
+\indexentry{SPS|see{         Speicherprogrammierbare Steuerung}}{117}
+\indexentry{CAGD}{119}
+\indexentry{CAGD!Splines}{119}
+\indexentry{3D-Drucker}{119}
+\indexentry{5G}{119}

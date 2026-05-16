@@ -3,16 +3,14 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {code}{\numberline {4.1}{\ignorespaces Beispiel Code}}{27}{code.caption.8}%
-\contentsline {code}{\numberline {4.2}{\ignorespaces Beispiel Code ohne Bibliothekseinbindung}}{28}{code.caption.9}%
-\contentsline {code}{\numberline {4.3}{\ignorespaces Einparkhilfe Beispielcode}}{29}{code.caption.10}%
+\contentsline {code}{\numberline {4.1}{\ignorespaces Simple example using of the builtin microphone of the Arduino Nano 33 BLE Sense}}{32}{code.caption.13}%
 \addvspace {10\p@ }
-\contentsline {code}{\numberline {5.1}{\ignorespaces Beispiel Code für den TowerPro SG90}}{35}{code.caption.12}%
-\contentsline {code}{\numberline {5.2}{\ignorespaces Code ohne Bibilothek für den TowerPro SG90}}{37}{code.caption.13}%
+\contentsline {code}{\numberline {5.1}{\ignorespaces Beispiel Code}}{39}{code.caption.17}%
+\contentsline {code}{\numberline {5.2}{\ignorespaces Beispiel Code ohne Bibliothekseinbindung}}{40}{code.caption.18}%
+\contentsline {code}{\numberline {5.3}{\ignorespaces Einparkhilfe Beispielcode}}{41}{code.caption.19}%
 \addvspace {10\p@ }
-\addvspace {10\p@ }
-\addvspace {10\p@ }
-\addvspace {10\p@ }
+\contentsline {code}{\numberline {6.1}{\ignorespaces Beispiel Code für den TowerPro SG90}}{47}{code.caption.21}%
+\contentsline {code}{\numberline {6.2}{\ignorespaces Code ohne Bibilothek für den TowerPro SG90}}{49}{code.caption.22}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
@@ -24,9 +22,13 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {code}{\numberline {20.1}{\ignorespaces \glqq Hello World\grqq {} in Python -- Variant 1}}{102}{code.caption.25}%
 \addvspace {10\p@ }
-\contentsline {code}{\numberline {21.1}{\ignorespaces \glqq Hello World\grqq {} in Python -- Variant 1}}{104}{code.caption.26}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {code}{\numberline {21.1}{\ignorespaces \glqq Hello World\grqq {} in Python -- Variant 1}}{114}{code.caption.34}%
+\addvspace {10\p@ }
+\contentsline {code}{\numberline {22.1}{\ignorespaces \glqq Hello World\grqq {} in Python -- Variant 1}}{116}{code.caption.35}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \def \@chapapp {\appendixname }

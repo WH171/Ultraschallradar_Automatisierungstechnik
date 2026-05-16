@@ -954,5 +954,28 @@
   Industrial IoT Use Case}
     \field{year}{2020}
   \endentry
+
+  \entry{ArduinoProjectHubRadar:2025}{misc}{}{}
+    \name{author}{1}{}{%
+      {{hash=d}{%
+         family={diegogalvan_1294},
+         familyi={d\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{d1}
+    \strng{fullhash}{d1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{die25}
+    \field{sortinit}{D}
+    \field{sortinithash}{D}
+    \field{note}{abgerufen am 12.05.2026}
+    \field{title}{Building an Ultrasonic Radar using Arduino and Processing}
+    \verb{url}
+    \verb https://projecthub.arduino.cc/diegogalvan_1294/building-an-ultrasonic
+    \verb -radar-using-arduino-and-processing-59053e
+    \endverb
+    \field{year}{2025}
+  \endentry
 \enddatalist
 \endinput

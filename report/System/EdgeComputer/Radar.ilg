@@ -1,9 +1,9 @@
 This is makeindex, version 2.18 [TeX Live 2026] (kpathsea + Thai support).
-Scanning input file Radar.idx....done (23 entries accepted, 0 rejected).
-Sorting entries....done (114 comparisons).
+Scanning input file Radar.idx....done (46 entries accepted, 0 rejected).
+Sorting entries....done (283 comparisons).
 Generating output file Radar.ind....
-## Warning (input = Radar.idx, line = 19; output = Radar.ind, line = 34):
+## Warning (input = Radar.idx, line = 42; output = Radar.ind, line = 53):
    -- Conflicting entries: multiple encaps for the same page under same key.
-done (37 lines written, 1 warning).
+done (56 lines written, 1 warning).
 Output written in Radar.ind.
 Transcript written in Radar.ilg.
