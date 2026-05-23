@@ -9,7 +9,7 @@
   \item  Datei
     \subitem Blink.ino, 116
     \subitem Blink.py, 114
-    \subitem Mag\_raw.txt, 30
+    \subitem Mag\_raw.txt, 29
     \subitem PackageExample.py, 81
     \subitem requirements.txt, 79
   \item  Inertialmesseinheit
@@ -38,7 +38,7 @@
 
   \indexspace
 
-  \item IMU, 11, 26, 29
+  \item IMU, 11, 26, 28, 29
 
   \indexspace
 

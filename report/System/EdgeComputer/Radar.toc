@@ -13,22 +13,22 @@
 \contentsline {chapter}{\numberline {4}Arduino Tiny Machine Learning Kit}{23}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Arduino Nano 33 BLE Sense Lite}{23}{section.4.1}%
 \contentsline {subsection}{\numberline {4.1.1}Pinbelegung}{23}{subsection.4.1.1}%
-\contentsline {subsection}{\numberline {4.1.2}Mechanik}{25}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.2}Mechanik}{24}{subsection.4.1.2}%
 \contentsline {subsection}{\numberline {4.1.3}Elektronik}{25}{subsection.4.1.3}%
 \contentsline {subsection}{\numberline {4.1.4}Verbaute Sonsoren}{25}{subsection.4.1.4}%
 \contentsline {section}{\numberline {4.2}On-Board Sensor Description}{26}{section.4.2}%
 \contentsline {subsection}{\numberline {4.2.1}Gesture, Proximity, and Color Detection Sensor ADPS-9960}{28}{subsection.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}Accelerometer, Gyroscope, and Magnetometre Sensor LSM9DS1}{29}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.2}Accelerometer, Gyroscope, and Magnetometre Sensor LSM9DS1}{28}{subsection.4.2.2}%
 \contentsline {subsubsection}{\nonumberline Calibration of an IMU}{29}{subsubsection*.10}%
-\contentsline {subsubsection}{\nonumberline Low and High Limit Method}{30}{subsubsection*.11}%
-\contentsline {subsubsection}{\nonumberline Magneto V1.2}{30}{subsubsection*.12}%
+\contentsline {subsubsection}{\nonumberline Low and High Limit Method}{29}{subsubsection*.11}%
+\contentsline {subsubsection}{\nonumberline Magneto V1.2}{29}{subsubsection*.12}%
 \contentsline {subsection}{\numberline {4.2.3}Pressure Sensor LPS22HB}{30}{subsection.4.2.3}%
-\contentsline {subsection}{\numberline {4.2.4}Relative Humidity and Temperature Sensor HTS221}{31}{subsection.4.2.4}%
+\contentsline {subsection}{\numberline {4.2.4}Relative Humidity and Temperature Sensor HTS221}{30}{subsection.4.2.4}%
 \contentsline {subsection}{\numberline {4.2.5}Digital Microphone MP34DT05-A}{31}{subsection.4.2.5}%
-\contentsline {subsection}{\numberline {4.2.6}Bluetooth Module nRF52840}{33}{subsection.4.2.6}%
+\contentsline {subsection}{\numberline {4.2.6}Bluetooth Module nRF52840}{31}{subsection.4.2.6}%
 \contentsline {section}{\numberline {4.3}Bluetooth Module INA B306}{33}{section.4.3}%
 \contentsline {section}{\numberline {4.4}Arduino Nano 33 BLE Pin Configuration}{33}{section.4.4}%
-\contentsline {section}{\numberline {4.5}\textcolor {red}{Was fehlt}}{34}{section.4.5}%
+\contentsline {section}{\numberline {4.5}\textcolor {red}{Was fehlt}}{33}{section.4.5}%
 \contentsline {section}{\numberline {4.6}Further Readings}{34}{section.4.6}%
 \contentsline {chapter}{\numberline {5}Ultraschallsensor HC-SR04}{35}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Allgemeines}{35}{section.5.1}%
