@@ -178,6 +178,75 @@
     \field{year}{2016}
   \endentry
 
+  \entry{Arduino:2025}{online}{}{}
+    \name{editor}{1}{}{%
+      {{hash=A}{%
+         family={{Arduino}},
+         familyi={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{A1}
+    \strng{fullhash}{A1}
+    \field{labelnamesource}{editor}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{{Ard}21}
+    \field{extraalpha}{1}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{title}{Arduino MKR WAN 1310}
+    \verb{url}
+    \verb https://store.arduino.cc/products/arduino-mkr-wan-1310
+    \endverb
+    \field{year}{2021}
+    \warn{\item Invalid format of field 'date' \item Invalid format of field
+  'date'}
+  \endentry
+
+  \entry{Arduino:2021}{online}{}{}
+    \name{editor}{1}{}{%
+      {{hash=A}{%
+         family={{Arduino}},
+         familyi={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{A1}
+    \strng{fullhash}{A1}
+    \field{labelnamesource}{editor}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{{Ard}21}
+    \field{extraalpha}{2}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{title}{Arduino Nano 33 BLE Sense Rev2 with headers}
+    \verb{url}
+    \verb https://store.arduino.cc/products/nano-33-ble-sense-rev2-with-headers
+    \endverb
+    \field{year}{2021}
+    \warn{\item Invalid format of field 'date' \item Invalid format of field
+  'date'}
+  \endentry
+
+  \entry{Arduino:2021b}{online}{}{}
+    \name{editor}{1}{}{%
+      {{hash=A}{%
+         family={Arduino},
+         familyi={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{A2}
+    \strng{fullhash}{A2}
+    \field{labelnamesource}{editor}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Ard21}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{title}{Check out Arduino Docs!}
+    \verb{url}
+    \verb https://www.arduino.cc/en/Guide
+    \endverb
+    \field{year}{2021}
+  \endentry
+
   \entry{ArduinoNano:2026}{misc}{}{}
     \name{author}{1}{}{%
       {{hash=A}{%
@@ -185,8 +254,8 @@
          familyi={A\bibinitperiod},
       }}%
     }
-    \strng{namehash}{A1}
-    \strng{fullhash}{A1}
+    \strng{namehash}{A2}
+    \strng{fullhash}{A2}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelalpha}{Ard26}
@@ -196,8 +265,8 @@
     \field{note}{abgerufen am 11.05.2026}
     \field{title}{Arduino Nano 33 BLE Sense Datasheet}
     \verb{url}
-    \verb https://cdn.sparkfun.com/assets/0/d/8/4/9/DS-15580-Arduino_Nano_33_BL
-    \verb E_Sense.pdf
+    \verb https://cdn.sparkfun.com/assets/0/d/8/4/9/DS-15580-ArduinoNano33BLESe
+    \verb nse.pdf
     \endverb
     \field{year}{2026}
   \endentry
@@ -209,8 +278,8 @@
          familyi={A\bibinitperiod},
       }}%
     }
-    \strng{namehash}{A2}
-    \strng{fullhash}{A2}
+    \strng{namehash}{A3}
+    \strng{fullhash}{A3}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelalpha}{Ard26}
@@ -232,8 +301,8 @@
          familyi={A\bibinitperiod},
       }}%
     }
-    \strng{namehash}{A2}
-    \strng{fullhash}{A2}
+    \strng{namehash}{A3}
+    \strng{fullhash}{A3}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelalpha}{Ard26}
@@ -255,8 +324,8 @@
          familyi={A\bibinitperiod},
       }}%
     }
-    \strng{namehash}{A2}
-    \strng{fullhash}{A2}
+    \strng{namehash}{A3}
+    \strng{fullhash}{A3}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelalpha}{Ard26}
@@ -393,6 +462,36 @@
     \verb https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf
     \endverb
     \field{year}{2020}
+  \endentry
+
+  \entry{Filipi:2022}{online}{}{}
+    \name{author}{2}{}{%
+      {{hash=FP}{%
+         family={Filipi},
+         familyi={F\bibinitperiod},
+         given={Petr},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=D}{%
+         family={Dozie},
+         familyi={D\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{FPD1}
+    \strng{fullhash}{FPD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{FD22}
+    \field{sortinit}{F}
+    \field{sortinithash}{F}
+    \field{note}{\href{../../../MLbib/Arduino/DifferenceNanoLite.pdf}{[pdf]}}
+    \field{title}{A Difference between Arduino Nano 33 BLE Sense vs. Arduino
+  Nano 33 BLE Sense Lite}
+    \verb{url}
+    \verb https://forum.arduino.cc/t/a-difference-between-a-n-33-ble-sense-vs-s
+    \verb ense-lite/1030305
+    \endverb
+    \field{year}{2022}
   \endentry
 
   \entry{Farouki:2017}{article}{}{}
@@ -575,8 +674,8 @@
     \field{sortinithash}{K}
     \field{title}{Ultraschall Messmodul HC-SR04 Beschreibung}
     \verb{url}
-    \verb https://www.mikrocontroller.net/attachment/218122/HC-SR04_ultraschall
-    \verb modul_beschreibung_3.pdf
+    \verb https://www.mikrocontroller.net/attachment/218122/HC-SR04ultraschallm
+    \verb odulbeschreibung3.pdf
     \endverb
     \field{year}{2012}
   \endentry
@@ -631,6 +730,29 @@
     \field{year}{2025}
   \endentry
 
+  \entry{Mallon:2015}{online}{}{}
+    \name{author}{1}{}{%
+      {{hash=M}{%
+         family={{Mallon, Edward and Beddows, Patricia}},
+         familyi={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{M1}
+    \strng{fullhash}{M1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{{Mal}15}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{note}{accessed date 19.05.2022}
+    \field{title}{How to calibrate a compass (and accelerometer) with Arduino}
+    \verb{url}
+    \verb https://thecavepearlproject.org/2015/05/22/calibrating-any-compass-or
+    \verb -accelerometer-for-arduino/
+    \endverb
+    \field{year}{2015}
+  \endentry
+
   \entry{SparkFun:2026}{misc}{}{}
     \name{author}{1}{}{%
       {{hash=MBJ}{%
@@ -674,7 +796,7 @@
     \field{note}{Accessed Date 10.05.2026}
     \field{title}{SG90 - Servomotor}
     \verb{url}
-    \verb https://www.elektronik-kompendium.de/sites/praxis/bauteil_sg90.htm
+    \verb https://www.elektronik-kompendium.de/sites/praxis/bauteilsg90.htm
     \endverb
   \endentry
 
@@ -715,6 +837,46 @@
     \field{howpublished}{United States Patent, Patent N0.: US 7,291,002 B2}
     \field{title}{Apparatus and Methods for 3D Printing}
     \field{year}{2007}
+  \endentry
+
+  \entry{STMicroelectronics:2015}{misc}{}{}
+    \list{publisher}{1}{%
+      {{STMicroelectronics International NV}}%
+    }
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Stm}
+    \field{extraalpha}{1}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{title}{LSM9DS1 Data Sheets}
+    \verb{url}
+    \verb https://www.st.com/resource/en/datasheet/lsm9ds1.pdf
+    \endverb
+    \field{year}{2015}
+    \field{urlday}{11}
+    \field{urlmonth}{06}
+    \field{urlyear}{2022}
+  \endentry
+
+  \entry{STMicroelectronics:2021}{misc}{}{}
+    \list{publisher}{1}{%
+      {{STMicroelectronics International NV}}%
+    }
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Stm}
+    \field{extraalpha}{2}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{note}{\href{../../../MLbib/Sensor/MP34DT06J.pdf}{[pdf]}}
+    \field{title}{MP34DT06J -- MEMS audio sensor omnidirectional digital
+  microphone}
+    \verb{url}
+    \verb https://www.st.com/resource/en/datasheet/mp34dt06j.pdf
+    \endverb
+    \field{year}{2021}
+    \field{urlday}{23}
+    \field{urlmonth}{06}
+    \field{urlyear}{2023}
   \endentry
 
   \entry{Wat:2017e}{online}{}{}
@@ -958,7 +1120,7 @@
   \entry{ArduinoProjectHubRadar:2025}{misc}{}{}
     \name{author}{1}{}{%
       {{hash=d}{%
-         family={diegogalvan_1294},
+         family={diegogalvan1294},
          familyi={d\bibinitperiod},
       }}%
     }
@@ -972,8 +1134,8 @@
     \field{note}{abgerufen am 12.05.2026}
     \field{title}{Building an Ultrasonic Radar using Arduino and Processing}
     \verb{url}
-    \verb https://projecthub.arduino.cc/diegogalvan_1294/building-an-ultrasonic
-    \verb -radar-using-arduino-and-processing-59053e
+    \verb https://projecthub.arduino.cc/diegogalvan1294/building-an-ultrasonic-
+    \verb radar-using-arduino-and-processing-59053e
     \endverb
     \field{year}{2025}
   \endentry
