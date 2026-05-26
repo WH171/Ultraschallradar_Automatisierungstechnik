@@ -3,18 +3,16 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Arduino Nano 33 BLE Sense Rev. 2, see \href {https://store.arduino.cc/arduino-nano-33-ble-sense}{Arduino Store}}}{26}{figure.caption.5}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Arduino Nano 33 BLE Sense Rev. 2, see \href {https://store.arduino.cc/arduino-nano-33-ble-sense}{Arduino Store}}}{28}{figure.caption.5}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Arduino Nano 33 BLE Sense Architektur}}{29}{figure.caption.6}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces \relax }}{31}{figure.caption.7}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Pin assignment of the Arduino Nano 33 BLE Sense}}{32}{figure.caption.9}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Arduino Nano 33 BLE Sense Architektur}}{31}{figure.caption.6}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces \relax }}{33}{figure.caption.7}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Pin assignment of the Arduino Nano 33 BLE Sense}}{34}{figure.caption.9}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Schematische Darstellung des Ultraschallsensors HC-SR04}}{40}{figure.caption.14}%
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Schaltplan Ultraschallsensor HC-SR04}}{41}{figure.caption.16}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Schematische Darstellung des Ultraschallsensors HC-SR04}}{42}{figure.caption.14}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Schaltplan Ultraschallsensor HC-SR04}}{43}{figure.caption.16}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces Schematische Darstellung des Servomotors TowerPro SG90}}{50}{figure.caption.20}%
-\addvspace {10\p@ }
-\addvspace {10\p@ }
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Schematische Darstellung des Servomotors TowerPro SG90}}{52}{figure.caption.20}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
@@ -24,17 +22,19 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {17.1}{\ignorespaces Bernstein-Polynom vom Grad $3$}}{89}{figure.caption.24}%
-\contentsline {figure}{\numberline {17.2}{\ignorespaces Bézier-Kurve zum Beispiel \ref {KPunkte4Beispiel} }}{90}{figure.caption.25}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {18.1}{\ignorespaces Glättung einer Ecke mit Hilfe eines Kreisbogens - Dreieck}}{91}{figure.caption.26}%
-\contentsline {figure}{\numberline {18.2}{\ignorespaces Winkeländerung bei einer Verrundung mit einem Kreisbogen }}{93}{figure.caption.27}%
-\contentsline {figure}{\numberline {18.3}{\ignorespaces Krümmungsverlauf bei der Verrundung mit einem Kreisbogen}}{93}{figure.caption.28}%
-\contentsline {figure}{\numberline {18.4}{\ignorespaces Maximaler Bereich für die Verrundung mit einem Kreisbogen - $L(\varepsilon =const, \alpha )$}}{94}{figure.caption.29}%
-\contentsline {figure}{\numberline {18.5}{\ignorespaces Abweichung bei Vorgabe des Abstands $L$ bei der Verrundung mit einem Kreisbogen}}{94}{figure.caption.30}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {19.1}{\ignorespaces Programmablaufplan \glqq Eckenverrrundung\grqq }}{113}{figure.caption.32}%
-\contentsline {figure}{\numberline {19.2}{\ignorespaces Programmablaufplan \glqq Auswal der Verrundungsstrategien\grqq }}{114}{figure.caption.33}%
+\contentsline {figure}{\numberline {17.1}{\ignorespaces Bernstein-Polynom vom Grad $3$}}{91}{figure.caption.24}%
+\contentsline {figure}{\numberline {17.2}{\ignorespaces Bézier-Kurve zum Beispiel \ref {KPunkte4Beispiel} }}{92}{figure.caption.25}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {18.1}{\ignorespaces Glättung einer Ecke mit Hilfe eines Kreisbogens - Dreieck}}{93}{figure.caption.26}%
+\contentsline {figure}{\numberline {18.2}{\ignorespaces Winkeländerung bei einer Verrundung mit einem Kreisbogen }}{95}{figure.caption.27}%
+\contentsline {figure}{\numberline {18.3}{\ignorespaces Krümmungsverlauf bei der Verrundung mit einem Kreisbogen}}{95}{figure.caption.28}%
+\contentsline {figure}{\numberline {18.4}{\ignorespaces Maximaler Bereich für die Verrundung mit einem Kreisbogen - $L(\varepsilon =const, \alpha )$}}{96}{figure.caption.29}%
+\contentsline {figure}{\numberline {18.5}{\ignorespaces Abweichung bei Vorgabe des Abstands $L$ bei der Verrundung mit einem Kreisbogen}}{96}{figure.caption.30}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {19.1}{\ignorespaces Programmablaufplan \glqq Eckenverrrundung\grqq }}{115}{figure.caption.32}%
+\contentsline {figure}{\numberline {19.2}{\ignorespaces Programmablaufplan \glqq Auswal der Verrundungsstrategien\grqq }}{116}{figure.caption.33}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
