@@ -134,5 +134,4 @@
 \def \@chapapp {\appendixname }
 \contentsline {chapter}{\numberline {A}Zeichnungen mit tikz}{121}{appendix.A}%
 \contentsline {chapter}{\numberline {B}Kriterien für eine gutes \LaTeX -Projekt}{123}{appendix.B}%
-\contentsline {chapter}{\nonumberline Literaturverzeichnis}{125}{chapter*.36}%
-\contentsline {chapter}{Index}{127}{chapter*.36}%
+\contentsline {chapter}{Index}{125}{appendix.B}%
