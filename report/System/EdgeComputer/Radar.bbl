@@ -178,6 +178,70 @@
     \field{year}{2016}
   \endentry
 
+  \entry{ArduinoDP:2026}{misc}{}{}
+    \list{organization}{1}{%
+      {Arduino}%
+    }
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Ard}
+    \field{extraalpha}{1}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{note}{Zugriff am 29.05.2026}
+    \field{title}{Digital Pins}
+    \verb{url}
+    \verb https://docs.arduino.cc/learn/microcontrollers/digital-pins
+    \endverb
+  \endentry
+
+  \entry{ArduinoGS:2026}{online}{}{}
+    \list{organization}{1}{%
+      {Arduino}%
+    }
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Ard}
+    \field{extraalpha}{2}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{note}{Zugriff am 29.05.2026}
+    \field{title}{Getting Started with Arduino}
+    \verb{url}
+    \verb https://docs.arduino.cc/learn/starting-guide/getting-started-arduino/
+    \endverb
+  \endentry
+
+  \entry{ArduinoPWM:2026}{online}{}{}
+    \list{organization}{1}{%
+      {Arduino}%
+    }
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Ard}
+    \field{extraalpha}{3}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{note}{Zugriff am 29.05.2026}
+    \field{title}{Pulse Width Modulation}
+    \verb{url}
+    \verb https://docs.arduino.cc/learn/microcontrollers/analog-output
+    \endverb
+  \endentry
+
+  \entry{ArduinoSP:2026}{misc}{}{}
+    \list{organization}{1}{%
+      {Arduino}%
+    }
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Ard}
+    \field{extraalpha}{4}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{note}{Zugriff am 29.05.2026}
+    \field{title}{Servo Motor Basics with Arduino}
+    \verb{url}
+    \verb https://docs.arduino.cc/learn/electronics/servo-motors/
+    \endverb
+  \endentry
+
   \entry{Arduino:2025}{online}{}{}
     \name{editor}{1}{}{%
       {{hash=A}{%
@@ -185,8 +249,8 @@
          familyi={A\bibinitperiod},
       }}%
     }
-    \strng{namehash}{A1}
-    \strng{fullhash}{A1}
+    \strng{namehash}{A2}
+    \strng{fullhash}{A2}
     \field{labelnamesource}{editor}
     \field{labeltitlesource}{title}
     \field{labelalpha}{{Ard}21}
@@ -209,8 +273,8 @@
          familyi={A\bibinitperiod},
       }}%
     }
-    \strng{namehash}{A1}
-    \strng{fullhash}{A1}
+    \strng{namehash}{A2}
+    \strng{fullhash}{A2}
     \field{labelnamesource}{editor}
     \field{labeltitlesource}{title}
     \field{labelalpha}{{Ard}21}
@@ -233,8 +297,8 @@
          familyi={A\bibinitperiod},
       }}%
     }
-    \strng{namehash}{A2}
-    \strng{fullhash}{A2}
+    \strng{namehash}{A3}
+    \strng{fullhash}{A3}
     \field{labelnamesource}{editor}
     \field{labeltitlesource}{title}
     \field{labelalpha}{Ard21}
@@ -254,8 +318,8 @@
          familyi={A\bibinitperiod},
       }}%
     }
-    \strng{namehash}{A2}
-    \strng{fullhash}{A2}
+    \strng{namehash}{A1}
+    \strng{fullhash}{A1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelalpha}{Ard26}
@@ -265,8 +329,7 @@
     \field{note}{abgerufen am 11.05.2026}
     \field{title}{Arduino Nano 33 BLE Sense Datasheet}
     \verb{url}
-    \verb https://cdn.sparkfun.com/assets/0/d/8/4/9/DS-15580-ArduinoNano33BLESe
-    \verb nse.pdf
+    \verb https://docs.arduino.cc/resources/datasheets/ABX00031-datasheet.pdf
     \endverb
     \field{year}{2026}
   \endentry
@@ -278,8 +341,8 @@
          familyi={A\bibinitperiod},
       }}%
     }
-    \strng{namehash}{A3}
-    \strng{fullhash}{A3}
+    \strng{namehash}{A4}
+    \strng{fullhash}{A4}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelalpha}{Ard26}
@@ -301,8 +364,8 @@
          familyi={A\bibinitperiod},
       }}%
     }
-    \strng{namehash}{A3}
-    \strng{fullhash}{A3}
+    \strng{namehash}{A4}
+    \strng{fullhash}{A4}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelalpha}{Ard26}
@@ -324,8 +387,8 @@
          familyi={A\bibinitperiod},
       }}%
     }
-    \strng{namehash}{A3}
-    \strng{fullhash}{A3}
+    \strng{namehash}{A4}
+    \strng{fullhash}{A4}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelalpha}{Ard26}
@@ -339,6 +402,32 @@
     \verb ds
     \endverb
     \field{year}{2026}
+  \endentry
+
+  \entry{Bri:2026}{misc}{}{}
+    \name{author}{1}{}{%
+      {{hash=BH}{%
+         family={Bri},
+         familyi={B\bibinitperiod},
+         given={Huang},
+         giveni={H\bibinitperiod},
+      }}%
+    }
+    \list{organization}{1}{%
+      {SparkFun}%
+    }
+    \strng{namehash}{BH1}
+    \strng{fullhash}{BH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Bri}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{note}{Zugriff am 29.05.2026}
+    \field{title}{Logic Levels}
+    \verb{url}
+    \verb https://learn.sparkfun.com/tutorials/logic-levels/all
+    \endverb
   \endentry
 
   \entry{Components101:2017}{misc}{}{}
@@ -656,6 +745,32 @@
   {P}ythagorean-{H}odograph {S}pline {C}urves}
     \field{journaltitle}{Mathematics of Computation}
     \field{year}{2010}
+  \endentry
+
+  \entry{Jimblom:2026}{misc}{}{}
+    \name{author}{1}{}{%
+      {{hash=JuhnZoS}{%
+         family={Jimblom},
+         familyi={J\bibinitperiod},
+         suffix={organization =\bibnamedelima {SparkFun}},
+         suffixi={o\bibinitperiod\bibinitdelim \bibinitperiod\bibinitdelim
+  S\bibinitperiod},
+         given={url =
+  {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}
+  note =\bibnamedelima {Zugriff am 29.05.2026}},
+         giveni={u\bibinitperiod\bibinitdelim \bibinitperiod\bibinitdelim
+  h\bibinitperiod\bibinitdelim n\bibinitperiod\bibinitdelim
+  \bibinitperiod\bibinitdelim Z\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{JoSuhnZ1}
+    \strng{fullhash}{JoSuhnZ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Jim}
+    \field{sortinit}{J}
+    \field{sortinithash}{J}
+    \field{title}{Using the Logic Level Converter}
   \endentry
 
   \entry{KT:2012}{misc}{}{}

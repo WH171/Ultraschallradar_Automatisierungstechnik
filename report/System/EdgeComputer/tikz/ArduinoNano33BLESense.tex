@@ -1,0 +1,169 @@
+% TikZ-Zeichnung: Arduino Nano 33 BLE Sense
+% Eigene schematische Darstellung, angelehnt an das Pinout im Arduino-Datenblatt.
+% Kompilierbar als eigenständige Datei.
+
+
+\begin{tikzpicture}[
+	font=\sffamily,
+	board/.style={
+		rounded corners=2.5mm,
+		fill=teal!65!black,
+		draw=teal!25!black,
+		line width=0.9pt
+	},
+	part/.style={
+		rounded corners=1mm,
+		fill=black!80,
+		draw=black,
+		line width=0.4pt
+	},
+	module/.style={
+		rounded corners=1mm,
+		fill=gray!25,
+		draw=gray!70!black,
+		line width=0.4pt
+	},
+	sensor/.style={
+		rounded corners=0.8mm,
+		fill=orange!25,
+		draw=orange!70!black,
+		line width=0.35pt
+	},
+	pin/.style={
+		circle,
+		fill=black!85,
+		draw=white,
+		line width=0.25pt,
+		minimum size=2.1mm,
+		inner sep=0pt
+	},
+	pinlabel/.style={
+		font=\scriptsize\sffamily,
+		text=black
+	},
+	powerlabel/.style={
+		font=\scriptsize\sffamily,
+		text=red!75!black
+	},
+	analoglabel/.style={
+		font=\scriptsize\sffamily,
+		text=blue!75!black
+	},
+	digitallabel/.style={
+		font=\scriptsize\sffamily,
+		text=violet!80!black
+	},
+	commlabel/.style={
+		font=\scriptsize\sffamily,
+		text=green!45!black
+	},
+	whitetext/.style={
+		font=\scriptsize\sffamily,
+		text=white
+	}
+]
+
+% --------------------------------------------------------------------
+% Grundform
+% --------------------------------------------------------------------
+\draw[board, blur shadow={shadow blur steps=5, shadow xshift=0.8mm, shadow yshift=-0.8mm}]
+	(-2.35,-5.8) rectangle (2.35,5.8);
+
+% USB-Buchse
+\draw[rounded corners=0.8mm, fill=gray!35, draw=gray!70!black, line width=0.6pt]
+	(-0.85,5.8) rectangle (0.85,6.35);
+\draw[rounded corners=0.4mm, fill=black!75, draw=black]
+	(-0.55,5.92) rectangle (0.55,6.22);
+\node[font=\tiny\sffamily, text=black] at (0,6.52) {Micro-USB};
+
+% Pinleisten
+\foreach \y in {5.05,4.35,3.65,2.95,2.25,1.55,0.85,0.15,-0.55,-1.25,-1.95,-2.65,-3.35,-4.05,-4.75} {
+	\node[pin] at (-2.05,\y) {};
+	\node[pin] at (2.05,\y) {};
+}
+
+% Bauteile auf dem Board
+\draw[module] (-1.25,2.55) rectangle (1.25,3.75);
+\node[font=\scriptsize\sffamily, align=center] at (0,3.15) {NINA-B306\\nRF52840};
+
+\draw[part] (-0.95,0.85) rectangle (0.95,1.55);
+\node[whitetext, align=center] at (0,1.20) {Cortex-M4F\\64 MHz};
+
+\draw[sensor] (-1.35,-0.05) rectangle (-0.25,0.55);
+\node[font=\tiny\sffamily, align=center] at (-0.80,0.25) {IMU};
+
+\draw[sensor] (0.25,-0.05) rectangle (1.35,0.55);
+\node[font=\tiny\sffamily, align=center] at (0.80,0.25) {APDS};
+
+\draw[sensor] (-1.35,-1.00) rectangle (-0.25,-0.40);
+\node[font=\tiny\sffamily, align=center] at (-0.80,-0.70) {LPS};
+
+\draw[sensor] (0.25,-1.00) rectangle (1.35,-0.40);
+\node[font=\tiny\sffamily, align=center] at (0.80,-0.70) {HTS};
+
+\draw[part] (-0.60,-2.00) rectangle (0.60,-1.35);
+\node[whitetext, align=center] at (0,-1.68) {MIC};
+
+\draw[part] (-1.05,-3.20) rectangle (1.05,-2.55);
+\node[whitetext, align=center] at (0,-2.88) {3.3 V Regler};
+
+\draw[fill=yellow!80!orange, draw=yellow!60!black] (-0.38,-4.15) rectangle (0.38,-3.55);
+\node[font=\tiny\sffamily] at (0,-3.85) {LED};
+
+% Board-Beschriftung
+\node[font=\bfseries\small\sffamily, text=white, align=center] at (0,4.55) {Arduino Nano\\33 BLE Sense};
+\node[font=\tiny\sffamily, text=white] at (0,-5.35) {3.3 V I/O \quad | \quad nicht 5-V-tolerant};
+
+% --------------------------------------------------------------------
+% Pinbeschriftungen links
+% --------------------------------------------------------------------
+\node[digitallabel, anchor=east] at (-2.28,5.05) {D13 / SCK / LED};
+\node[powerlabel,  anchor=east] at (-2.28,4.35) {+3V3};
+\node[analoglabel, anchor=east] at (-2.28,3.65) {AREF};
+\node[analoglabel, anchor=east] at (-2.28,2.95) {A0};
+\node[analoglabel, anchor=east] at (-2.28,2.25) {A1};
+\node[analoglabel, anchor=east] at (-2.28,1.55) {A2};
+\node[analoglabel, anchor=east] at (-2.28,0.85) {A3};
+\node[commlabel,  anchor=east] at (-2.28,0.15) {A4 / SDA};
+\node[commlabel,  anchor=east] at (-2.28,-0.55) {A5 / SCL};
+\node[analoglabel, anchor=east] at (-2.28,-1.25) {A6};
+\node[analoglabel, anchor=east] at (-2.28,-1.95) {A7};
+\node[powerlabel,  anchor=east] at (-2.28,-2.65) {VUSB / 5V*};
+\node[pinlabel,    anchor=east] at (-2.28,-3.35) {RST};
+\node[powerlabel,  anchor=east] at (-2.28,-4.05) {GND};
+\node[powerlabel,  anchor=east] at (-2.28,-4.75) {VIN};
+
+% --------------------------------------------------------------------
+% Pinbeschriftungen rechts
+% --------------------------------------------------------------------
+\node[commlabel,    anchor=west] at (2.28,5.05) {D12 / MISO};
+\node[commlabel,    anchor=west] at (2.28,4.35) {D11 / MOSI};
+\node[digitallabel, anchor=west] at (2.28,3.65) {D10 / PWM};
+\node[digitallabel, anchor=west] at (2.28,2.95) {D9 / PWM};
+\node[digitallabel, anchor=west] at (2.28,2.25) {D8};
+\node[digitallabel, anchor=west] at (2.28,1.55) {D7};
+\node[digitallabel, anchor=west] at (2.28,0.85) {D6 / PWM};
+\node[digitallabel, anchor=west] at (2.28,0.15) {D5 / PWM};
+\node[digitallabel, anchor=west] at (2.28,-0.55) {D4};
+\node[digitallabel, anchor=west] at (2.28,-1.25) {D3 / PWM};
+\node[digitallabel, anchor=west] at (2.28,-1.95) {D2};
+\node[powerlabel,   anchor=west] at (2.28,-2.65) {GND};
+\node[pinlabel,     anchor=west] at (2.28,-3.35) {RST};
+\node[commlabel,    anchor=west] at (2.28,-4.05) {RX / D0};
+\node[commlabel,    anchor=west] at (2.28,-4.75) {TX / D1};
+
+% --------------------------------------------------------------------
+% Legende
+% --------------------------------------------------------------------
+\begin{scope}[shift={(0,-6.65)}]
+	\node[font=\scriptsize\sffamily] at (-3.35,0) {\textcolor{red!75!black}{Power}};
+	\node[font=\scriptsize\sffamily] at (-2.10,0) {\textcolor{blue!75!black}{Analog}};
+	\node[font=\scriptsize\sffamily] at (-0.75,0) {\textcolor{violet!80!black}{Digital/PWM}};
+	\node[font=\scriptsize\sffamily] at (1.00,0) {\textcolor{green!45!black}{Kommunikation}};
+	\node[font=\tiny\sffamily, align=center] at (0,-0.45)
+		{* VUSB/5V ist abhängig von der VUSB-Lötbrücke und der USB-Versorgung. I/O-Pins bleiben 3,3-V-Pins.};
+\end{scope}
+
+\end{tikzpicture}
+
+\end{document}

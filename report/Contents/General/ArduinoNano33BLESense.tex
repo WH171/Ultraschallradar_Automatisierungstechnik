@@ -7,59 +7,108 @@
 %
 %%%%%%%%%%%%%%%
 
-\chapter{Arduino Nano 33 BLE Sense Lite}
+\chapter{Arduino Nano 33 BLE Sense}
 
+\section{Allgemeine Beschreibung}
 
-Arduino ist eine Open-Source-Elektronikplattform, die auf leicht zugänglicher Hardware und Software basiert. Sie stellt Mikrocontroller- und Mikroprozessorkits bereit, mit denen sich sowohl digitale als auch analoge Anwendungen realisieren lassen. Der Mikrocontroller – oft als eingebetteter Mini-Computer auf dem Arduino-Board bezeichnet – benötigt üblicherweise zusätzliche elektronische Bauteile wie Dioden, Widerstände, Kondensatoren oder Transistoren, um Spannungen und Ströme korrekt zu steuern.\\
+Der Arduino Nano 33 BLE Sense ist ein kompaktes Mikrocontrollerboard aus der Arduino-Nano-Serie. Es eignet sich für eingebettete Anwendungen, bei denen Sensoren ausgelesen, Aktoren angesteuert und Messdaten verarbeitet werden müssen. Durch seine kleine Bauform kann das Board gut in Versuchsaufbauten, Prototypen und mobile Systeme integriert werden.
 
-Das Arduino-Team hat jedoch eine benutzerfreundliche Umgebung geschaffen, die viele dieser elektronischen Komplexitäten abstrahiert. Statt komplexer Schaltungen genügt es, das Board mit der vorgesehenen Spannung zu versorgen, das gewünschte Programm zu schreiben und es innerhalb weniger Sekunden auf den Mikrocontroller zu übertragen. Dadurch wird die gesamte Hardwarefunktionalität durch Softwaresteuerung zugänglich gemacht, ohne tiefgreifende Elektronikkenntnisse zu erfordern.\\
+Wie andere Arduino-Boards dient der Nano 33 BLE Sense als programmierbare Steuereinheit. Er kann digitale und analoge Signale verarbeiten, zeitabhängige Abläufe steuern und über Schnittstellen mit externen Bauteilen kommunizieren. Dadurch kann er in vielen mechatronischen Anwendungen als Bindeglied zwischen Software, Sensorik und Aktorik eingesetzt werden.
 
-Durch den technologischen Fortschritt in der Halbleiter- und Elektronikindustrie lassen sich viele Steuerungsaufgaben heute mithilfe kompakter Mikrocontroller lösen – anstelle mechanischer oder elektromechanischer Schalter. Allen Arduino-Boards ist gemeinsam, dass sie einen Mikrocontroller enthalten – einen kleinen, programmierbaren Rechner, der sich ideal für Anwendungen im Bereich des Edge Computings eignet
-%\cite{Arduino:2021b}.
-
-
-\section{Arduino Nano 33 BLE Sense}
-
-Die Arduino Nano-Familie umfasst eine Reihe kompakter Boards mit vielfältigen Funktionen – vom preisgünstigen Einstiegsmodell bis hin zu leistungsfähigeren Varianten wie dem Nano 33 BLE Sense oder dem Nano RP2040 Connect, die mit integrierten Bluetooth- bzw. Wi-Fi-Modulen ausgestattet sind. Darüber hinaus verfügen diese Boards über eine Reihe eingebetteter Sensoren, etwa für Temperatur, Luftfeuchtigkeit, Luftdruck, Gestenerkennung, Geräuscherfassung und weitere Umgebungsparameter. Sie unterstützen sowohl die Programmierung in C/C++ als auch in MicroPython und ermöglichen die Einbindung von Machine-Learning-Anwendungen.\\
-
-Das Arduino Nano 33 BLE Sense ist ein leistungsfähiges Modell dieser Serie. Es kombiniert Bluetooth Low Energy (BLE) Kommunikation mit einer umfangreichen Sensorausstattung und basiert auf dem NINA B306 Modul, das für BLE- und Bluetooth 5.0-Verbindungen ausgelegt ist – dem aktuellen Standard für energiesparende drahtlose Kommunikation. Als zentraler Mikrocontroller kommt ein Nordic nRF52840 zum Einsatz, ausgestattet mit einem Cortex-M4F-Prozessor. Aufgrund seiner kompakten Bauform, der reduzierten Leistungsaufnahme und seiner umfangreichen Sensorik eignet sich das Board besonders für energieeffiziente, interaktive und tragbare Anwendungen.\\
-
-Die Modellbezeichnung Arduino Nano 33 BLE Sense verweist bereits auf zentrale Eigenschaften: Die Bezeichnung „Nano“ beschreibt das kompakte Format des Boards, „33“ steht für die Betriebsspannung von 3,3 Volt, „BLE“ kennzeichnet die integrierte Bluetooth-Low-Energy-Funktionalität, und „Sense“ weist auf die Vielzahl integrierter Sensoren hin, darunter Beschleunigungs-, Lage-, Magnetfeld-, Temperatur-, Feuchtigkeits- und Luftdrucksensoren, ein Näherungs-, Farb- und Gestensensor sowie ein eingebettetes Mikrofon.\\
-
-Für Anwendungen im Bereich Objekterkennung, Farbanalyse oder Gestensteuerung kann das Arduino Nano 33 BLE Sense mit dem Kamera-Shield Arducam OV2640 kombiniert werden. Dieses Kameramodul erweitert die Sensorik des Boards um Bildverarbeitungsfunktionen und eignet sich besonders für KI- und Machine-Learning-Anwendungen. Durch die Installation geeigneter Bibliotheken lassen sich alle Sensoren und das Kameramodul direkt über die Arduino-Entwicklungsumgebung ansprechen und in intelligente Systeme integrieren.
-
-
-%Abbildung noch mal kontrollieren!!!
-Die folgende Abbildung ~\ref{ArduinoNano33} zeigt einen Arduino Nano 33 BLE Sense Revision 2, zu sehen ist die kompackte Bauform.
-
-\begin{center}
-	
-	    %\includegraphics[width=0.9\linewidth]{Arduino/ArduinoNano33BLESense}
-	    %\includegraphics[width=0.45\linewidth]{Nano33BLESense/ArduinoNano33BLESenseTopology}
-	
-	
-	%\begin{tikzpicture}
-	%	\ArduinoNanoBLESenseRev
-	%\end{tikzpicture}
-	
-	    
-	 %\includegraphics[width=0.45\linewidth]{Arduino/ArduinoNano33BLESense2}
-	
-	
-	
-	\captionof{figure}{Arduino Nano 33 BLE Sense Rev. 2, see \href{https://store.arduino.cc/arduino-nano-33-ble-sense}{Arduino Store}} 
-	\label{ArduinoNano33}
-\end{center}
-
-
-Das kompakte und zuverlässige Arduino Nano 33 BLE Sense Board basiert auf dem NINA B306 Modul, das für Bluetooth Low Energy (BLE) und Bluetooth 5 Kommunikation ausgelegt ist. Dieses Modul wiederum verwendet den Nordic nRF52840 Prozessor, der mit einem leistungsfähigen Cortex-M4F-Kern ausgestattet ist. Die Architektur des Boards ist vollständig kompatibel mit der Arduino IDE, sowohl in der Online- als auch in der Offline-Version. Das Arduino Nano 33 BLE Sense integriert eine Vielzahl von Sensoren auf kleinstem Raum und eignet sich daher hervorragend für kompakte, sensorbasierte Anwendungen
-%\cite{Arduino:2021}.\\
-
-Zu den auf dem Board verbauten Sensoren gehören der ADPS-9960, der Umgebungslicht, RGB-Farbe, Näherung und Gesten erfassen kann, sowie der LSM9DS1, der als System-in-Package eine dreiachsige Beschleunigungserfassung, ein Gyroskop und ein Magnetometer kombiniert. Der LPS22HB misst den Luftdruck und die Umgebungstemperatur, während der HTS221 für die Erfassung der relativen Luftfeuchtigkeit zuständig ist. Zusätzlich ist mit dem MP34DT05-A ein digitales Mikrofon integriert, das Audiosignale erfassen kann. Die Bluetooth-Kommunikation wird über das bereits erwähnte NINA B306 Modul abgewickelt, wodurch drahtlose Datenübertragung mit geringem Energieverbrauch möglich wird. Mit dieser umfangreichen Ausstattung lassen sich komplexe IoT- und KI-Projekte auf kleinstem Raum realisieren.\\
+Obwohl der Arduino Nano 33 BLE Sense mehrere integrierte Sensoren besitzt, muss ein Projekt diese nicht zwingend verwenden. Das Board kann auch ausschlie\ss lich zur Ansteuerung externer Komponenten eingesetzt werden. In diesem Fall stehen vor allem die Rechenleistung des Mikrocontrollers, die digitalen Ein- und Ausgänge, die Zeitmessung, die PWM-Ausgabe und die serielle Kommunikation im Vordergrund.
 
 
 
-\subsection{Arduino Nano 33 BLE Sense Lite}
+
+\section{Mikrocontroller und Leistungsdaten}
+
+Der Arduino Nano 33 BLE Sense basiert auf dem Nordic nRF52840 Mikrocontroller. Dieser enthält einen Arm Cortex-M4F-Prozessor mit einer Taktfrequenz von 64~MHz. Laut Arduino-Datenblatt besitzt das Board 1~MB Flash-Speicher und 256~KB SRAM \cite{ArduinoNano:2026}. Damit verfügt das Board über ausreichend Leistung für typische Steuerungs-, Mess- und Auswertungsaufgaben.
+
+Der Flash-Speicher dient zur Speicherung des Programmcodes. Der SRAM wird während der Programmausführung für Variablen, Messwerte und Zwischenergebnisse verwendet. Für Anwendungen wie das Einlesen eines Sensors, das Erzeugen eines Steuersignals oder das Berechnen einfacher physikalischer Größen ist die vorhandene Rechenleistung in der Regel ausreichend.
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{ll}
+		\textbf{Eigenschaft} & \textbf{Wert/ Bedeutung} \\
+		\hline
+		Mikrocontroller & Nordic nRF52840 \\
+		Prozessorkern & Arm Cortex-M4F \\
+		Taktfrequenz & 64~MHz \\
+		Flash-Speicher & 1~MB für Programmcode \\
+		SRAM & 256~KB für Variablen und Zwischenspeicher \\
+		Betriebsspannung & 3,3~V Logikspannung \\
+		Digitale Ein- und Ausgänge & Anschluss externer Sensoren und Aktoren \\
+		USB & Programmierung und serielle Kommunikation \\
+	\end{tabular}
+	\caption{Wichtige Kenndaten des Arduino Nano 33 BLE Sense}
+	\label{tab:arduinoKenndaten}
+\end{table}
+
+\section{Betriebsspannung und Logikpegel}
+
+Ein wichtiger Punkt bei der Verwendung des Arduino Nano 33 BLE Sense ist die Betriebsspannung der Ein- und Ausgänge. Das Board arbeitet mit einer Logikspannung von 3,3~V und ist laut Arduino-Datenblatt nicht 5-V-tolerant \cite{ArduinoNano:2026}. Das bedeutet, dass an den digitalen und analogen Eingangspins maximal 3,3~V anliegen dürfen. Höhere Spannungen, wie sie beispielsweise bei vielen 5-V-Sensoren oder älteren Arduino-Modulen auftreten, können den Mikrocontroller beschädigen\cite{Bri:2026}.
+
+Dies ist insbesondere bei der Kombination mit externen Sensoren und Aktoren relevant. Viele elektronische Module werden mit 5~V betrieben und geben ihre Ausgangssignale ebenfalls mit einem Pegel von 5~V aus. Vor dem Anschluss solcher Komponenten muss daher geprüft werden, ob deren Signalpegel mit dem Arduino Nano 33 BLE Sense kompatibel sind.
+
+Falls ein Ausgangssignal eines externen Moduls oberhalb von 3,3~V liegt, ist eine Pegelanpassung erforderlich. Diese kann beispielsweise mit einem Spannungsteiler oder einem Pegelwandler umgesetzt werden. Ein Spannungsteiler reduziert die Eingangsspannung mithilfe zweier Widerstände auf einen für den Mikrocontroller zulässigen Wert. Ein Pegelwandler eignet sich insbesondere dann, wenn Signale bidirektional übertragen werden oder eine robustere Anpassung zwischen unterschiedlichen Logikspannungen erforderlich ist\cite{Jimblom:2026}.
+
+Die Berücksichtigung der Logikpegel ist somit sowohl für die Funktionsfähigkeit der Schaltung als auch für den Schutz des Mikrocontrollers von Bedeutung. 
+
+\section{Digitale Ein- und Ausgänge}
+
+Die digitalen Anschlüsse des Arduino Nano 33 BLE Sense können je nach Anwendung als Eingang oder Ausgang verwendet werden. Wird ein Pin als Ausgang konfiguriert, kann der Mikrocontroller darüber ein digitales Signal ausgeben, das entweder den Zustand High oder Low besitzt. Bei einer Konfiguration als Eingang kann der Mikrocontroller den anliegenden Signalzustand erfassen und auswerten.\cite{ArduinoDP:2026}
+
+Auf diese Weise lassen sich verschiedene externe Komponenten mit dem Arduino verbinden. Digitale Eingänge können beispielsweise zum Einlesen von Tastern oder Sensorsignalen genutzt werden. Digitale Ausgänge eignen sich hingegen zur Ansteuerung von LEDs, Treiberschaltungen oder anderen elektronischen Baugruppen\cite{ArduinoDP:2026}.
+
+Neben dem einfachen Erfassen von High- und Low-Zuständen kann der Mikrocontroller auch zeitabhängige digitale Signale auswerten. Dabei wird nicht nur erkannt, ob ein Signal anliegt, sondern auch, wie lange ein bestimmter Signalzustand andauert. Diese Funktion ist besonders bei Sensoren relevant, die ihre Messinformation über die Dauer eines Impulses ausgeben\cite{ArduinoDP:2026}.
+
+Ein Beispiel dafür ist der Ultraschallsensor HC-SR04. Bei diesem Sensor wird die Messung durch einen kurzen Trigger-Impuls gestartet. Laut Datenblatt reicht dafür ein Impuls mit einer Dauer von 10~\textmu s aus. Anschlie\ss end gibt der Sensor am Echo-Ausgang ein Signal aus, dessen Impulsdauer von der Entfernung zum reflektierenden Objekt abhängt.
+
+
+\section{PWM und Servo-Ansteuerung}
+
+Neben der Verarbeitung einfacher digitaler Signale kann der Arduino Nano 33 BLE Sense auch pulsweitenmodulierte Signale ausgeben. Bei der Pulsweitenmodulation wird ein digitales Signal in regelmä\ss igen Zeitabständen ein- und ausgeschaltet. Dabei ist nicht nur die Periodendauer des Signals entscheidend, sondern vor allem die Dauer des High-Zustands innerhalb einer Periode. Dieses Verhältnis wird als Tastgrad bezeichnet und kann zur Ansteuerung verschiedener elektronischer Komponenten genutzt werden\cite{ArduinoPWM:2026}.
+
+Ein typisches Anwendungsbeispiel für pulsweitenmodulierte Signale ist die Ansteuerung von Servomotoren. Der Tower Pro SG90 ist ein kompakter Modellbau-Servomotor, dessen Winkelposition über eine Signalleitung vorgegeben wird. Dazu erhält der Servo ein periodisches Steuersignal mit einer Periodendauer von etwa 20~ms. Die gewünschte Position wird über die Breite des High-Impulses bestimmt. Ein kurzer Impuls von ungefähr 1~ms führt zu einer Endposition, ein Impuls von etwa 1{,}5~ms zur Mittelstellung und ein Impuls von ungefähr 2~ms zur gegenüberliegenden Endposition.
+
+
+Der Arduino kann diese Steuersignale über einen geeigneten digitalen Ausgang erzeugen und den Servomotor dadurch auf unterschiedliche Winkelpositionen einstellen. Dadurch lassen sich einfache Bewegungsabläufe realisieren, beispielsweise das Schwenken eines Sensors oder das Positionieren kleiner mechanischer Bauteile. Da ein Servomotor beim Anlaufen oder unter Last deutlich mehr Strom benötigt als ein Mikrocontroller-Pin bereitstellen kann, darf die Versorgung des Motors nicht direkt über einen digitalen Ausgang erfolgen. Der Ausgangspin dient nur zur Signalübertragung, während die Stromversorgung des Servos separat ausreichend dimensioniert werden muss\cite{ArduinoSP:2026}.
+
+\section{Zeitmessung und Ablaufsteuerung}
+
+Eine wichtige Aufgabe von Mikrocontrollern ist die zeitliche Steuerung von Abläufen. Der Arduino kann Signale zu bestimmten Zeitpunkten ausgeben, kurze Impulse erzeugen und die Dauer externer Signale messen. Dadurch lassen sich Sensorabfragen, Bewegungsabläufe und Berechnungen in einer festen Reihenfolge ausführen.
+
+Bei Anwendungen mit Sensoren und Aktoren ist die Reihenfolge besonders wichtig. Wird beispielsweise ein Sensor mechanisch bewegt, sollte die Messung erst dann erfolgen, wenn die gewünschte Position erreicht ist. Andernfalls können die Messwerte ungenau oder schwer interpretierbar werden. Ebenso benötigen manche Sensoren einen Mindestabstand zwischen zwei Messungen. Beim HC-SR04 wird im Datenblatt ein Messzyklus von mehr als 60~ms empfohlen, um eine gegenseitige Beeinflussung der Signale zu vermeiden.
+
+Ein allgemeiner Ablauf für eine kombinierte Sensor-Aktor-Anwendung kann daher aus mehreren Schritten bestehen:
+
+\begin{enumerate}
+	\item Aktor auf eine gewünschte Position stellen.
+	\item Kurze Wartezeit einhalten, bis die Bewegung abgeschlossen ist.
+	\item Sensorabfrage auslösen.
+	\item Eingangssignal messen.
+	\item Messwert berechnen oder auswerten.
+	\item Ergebnis speichern oder über eine Schnittstelle ausgeben.
+\end{enumerate}
+
+\section{USB, Programmierung und serielle Kommunikation}
+
+Der Arduino Nano 33 BLE Sense wird über eine USB-Verbindung mit dem Computer verbunden. Diese Verbindung dient einerseits zur Spannungsversorgung des Boards und andererseits zur Übertragung des Programms auf den Mikrocontroller. In der Arduino IDE wird dazu das passende Board sowie der zugehörige Anschluss ausgewählt. Anschlie\ss end kann der Quellcode kompiliert und auf das Board geladen werden \cite{ArduinoGS:2026}.
+
+Neben der Programmübertragung kann die USB-Verbindung auch für die serielle Kommunikation zwischen Mikrocontroller und Computer genutzt werden. Dafür stellt Arduino die serielle Schnittstelle zur Verfügung. Über Befehle wie \PYTHON{Serial.begin()} und \PYTHON{Serial.println()} können Daten vom Mikrocontroller an den Computer gesendet und im seriellen Monitor angezeigt werden \cite{ArduinoGS:2026}.
+
+Die serielle Ausgabe ist insbesondere während der Entwicklung und Inbetriebnahme eines Versuchsaufbaus hilfreich. Über den seriellen Monitor können beispielsweise Rohdaten, berechnete Messwerte oder Statusmeldungen ausgegeben werden. Dadurch lässt sich überprüfen, ob angeschlossene Sensoren plausible Werte liefern, ob Steuersignale korrekt erzeugt werden und ob die Verarbeitung der Messdaten im Programm wie vorgesehen abläuft.
+
+\section{Integrierte Funktionen und Sensorik}
+
+Der Arduino Nano 33 BLE Sense verfügt neben den allgemeinen Mikrocontrollerfunktionen über mehrere integrierte Sensoren sowie eine Bluetooth-Low-Energy-Schnittstelle. Zur Sensorik des Boards gehören eine Inertialmesseinheit zur Erfassung von Beschleunigung, Winkelgeschwindigkeit und Magnetfeld, ein Umgebungslicht-, Farb-, Gesten- und Näherungssensor, ein barometrischer Drucksensor, ein Temperatur- und Feuchtigkeitssensor sowie ein digitales Mikrofon \cite{ArduinoNano:2026}.
+
+
+Diese integrierten Komponenten erweitern die Einsatzmöglichkeiten des Boards deutlich. Sie ermöglichen beispielsweise Anwendungen in den Bereichen Bewegungserkennung, Umgebungsüberwachung, Gestensteuerung, Audioverarbeitung und drahtlose Datenübertragung. Gleichzeitig müssen nicht alle vorhandenen Funktionen in jedem Projekt genutzt werden. Welche Sensoren oder Schnittstellen relevant sind, hängt vom jeweiligen Aufbau und der Zielsetzung der Anwendung ab.
+
+
+
+
 
 \chapter{Arduino Tiny Machine Learning Kit}
 Das Arduino Tiny Machine Learning Kit ist eine leistungsfähige Entwicklungsplattform, die es ermöglicht, Machine-Learning-Modelle direkt auf energieeffizienter Mikrocontroller-Hardware auszuführen. Im Mittelpunkt des Kits steht das Arduino Nano 33 BLE Sense Lite Board, das eine Vielzahl integrierter Sensoren für Beschleunigung, Temperatur, Luftdruck, Geräusche, Gesten und vieles mehr beinhaltet. %\cite{Reichelt_ArduinoKit:2025} \\

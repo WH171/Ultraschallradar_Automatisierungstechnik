@@ -8,39 +8,39 @@
 \indexentry{Pulse Density Modulation! \emph  {siehe} PDM}{11}
 \indexentry{SPS}{11}
 \indexentry{Speicherprogrammierbare Steuerung! \emph  {siehe} SPS}{11}
-\indexentry{ Inertialmesseinheit! \emph  {siehe} IMU}{34}
-\indexentry{IMU}{34}
+\indexentry{ Inertialmesseinheit! \emph  {siehe} IMU}{36}
 \indexentry{IMU}{36}
-\indexentry{IMU}{37}
-\indexentry{IMU}{37}
-\indexentry{IMU}{37}
-\indexentry{IMU}{37}
-\indexentry{IMU}{37}
-\indexentry{IMU}{37}
-\indexentry{IMU}{37}
-\indexentry{IMU}{37}
-\indexentry{IMU}{37}
-\indexentry{ Datei!Mag\_raw.txt}{37}
-\indexentry{Acoustic Overload Point! \emph  {siehe} AOP}{39}
-\indexentry{AOP}{39}
-\indexentry{Pulse Density Modulation! \emph  {siehe} PDM}{39}
-\indexentry{PDM}{39}
-\indexentry{ Datei!requirements.txt}{85}
-\indexentry{Example}{87}
-\indexentry{Example!Introduction}{87}
-\indexentry{Example!Description}{87}
-\indexentry{Example!Installation}{87}
-\indexentry{ Datei!PackageExample.py}{87}
-\indexentry{ Datei!Blink.py}{120}
-\indexentry{ Datei!Blink.ino}{122}
-\indexentry{Speicherprogrammierbare Steuerung! \emph  {siehe} SPS}{123}
-\indexentry{SPS}{123}
-\indexentry{Computerized Numerical Control! \emph  {siehe} {CNN}}{123}
-\indexentry{CNN}{123}
-\indexentry{SPS}{123}
-\indexentry{     Speicherprogrammierbare Steuerung}{123}
-\indexentry{SPS|see{         Speicherprogrammierbare Steuerung}}{123}
-\indexentry{CAGD}{125}
-\indexentry{CAGD!Splines}{125}
-\indexentry{3D-Drucker}{125}
-\indexentry{5G}{125}
+\indexentry{IMU}{38}
+\indexentry{IMU}{39}
+\indexentry{IMU}{39}
+\indexentry{IMU}{39}
+\indexentry{IMU}{39}
+\indexentry{IMU}{39}
+\indexentry{IMU}{39}
+\indexentry{IMU}{39}
+\indexentry{IMU}{39}
+\indexentry{IMU}{39}
+\indexentry{ Datei!Mag\_raw.txt}{39}
+\indexentry{Acoustic Overload Point! \emph  {siehe} AOP}{41}
+\indexentry{AOP}{41}
+\indexentry{Pulse Density Modulation! \emph  {siehe} PDM}{41}
+\indexentry{PDM}{41}
+\indexentry{ Datei!requirements.txt}{87}
+\indexentry{Example}{89}
+\indexentry{Example!Introduction}{89}
+\indexentry{Example!Description}{89}
+\indexentry{Example!Installation}{89}
+\indexentry{ Datei!PackageExample.py}{89}
+\indexentry{ Datei!Blink.py}{122}
+\indexentry{ Datei!Blink.ino}{124}
+\indexentry{Speicherprogrammierbare Steuerung! \emph  {siehe} SPS}{125}
+\indexentry{SPS}{125}
+\indexentry{Computerized Numerical Control! \emph  {siehe} {CNN}}{125}
+\indexentry{CNN}{125}
+\indexentry{SPS}{125}
+\indexentry{     Speicherprogrammierbare Steuerung}{125}
+\indexentry{SPS|see{         Speicherprogrammierbare Steuerung}}{125}
+\indexentry{CAGD}{127}
+\indexentry{CAGD!Splines}{127}
+\indexentry{3D-Drucker}{127}
+\indexentry{5G}{127}

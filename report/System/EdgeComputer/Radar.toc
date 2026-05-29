@@ -16,130 +16,136 @@
 \contentsline {subsection}{\numberline {2.2.2}Das Ultraschallradar-Programm}{22}{subsection.2.2.2}%
 \contentsline {subsection}{\numberline {2.2.3}Quellcode der Processing-Anwendung}{23}{subsection.2.2.3}%
 \contentsline {part}{\numberline {III}Domain Knowledge - Hardware}{27}{part.3}%
-\contentsline {chapter}{\numberline {3}Arduino Nano 33 BLE Sense Lite}{29}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Arduino Nano 33 BLE Sense}{29}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Arduino Nano 33 BLE Sense Lite}{30}{subsection.3.1.1}%
-\contentsline {chapter}{\numberline {4}Arduino Tiny Machine Learning Kit}{31}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Arduino Nano 33 BLE Sense Lite}{31}{section.4.1}%
-\contentsline {subsection}{\numberline {4.1.1}Pinbelegung}{31}{subsection.4.1.1}%
-\contentsline {subsection}{\numberline {4.1.2}Mechanik}{32}{subsection.4.1.2}%
-\contentsline {subsection}{\numberline {4.1.3}Elektronik}{33}{subsection.4.1.3}%
-\contentsline {subsection}{\numberline {4.1.4}Verbaute Sonsoren}{33}{subsection.4.1.4}%
-\contentsline {section}{\numberline {4.2}On-Board Sensor Description}{34}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Gesture, Proximity, and Color Detection Sensor ADPS-9960}{36}{subsection.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}Accelerometer, Gyroscope, and Magnetometre Sensor LSM9DS1}{36}{subsection.4.2.2}%
-\contentsline {subsubsection}{\nonumberline Calibration of an IMU}{37}{subsubsection*.10}%
-\contentsline {subsubsection}{\nonumberline Low and High Limit Method}{37}{subsubsection*.11}%
-\contentsline {subsubsection}{\nonumberline Magneto V1.2}{37}{subsubsection*.12}%
-\contentsline {subsection}{\numberline {4.2.3}Pressure Sensor LPS22HB}{38}{subsection.4.2.3}%
-\contentsline {subsection}{\numberline {4.2.4}Relative Humidity and Temperature Sensor HTS221}{38}{subsection.4.2.4}%
-\contentsline {subsection}{\numberline {4.2.5}Digital Microphone MP34DT05-A}{39}{subsection.4.2.5}%
-\contentsline {subsection}{\numberline {4.2.6}Bluetooth Module nRF52840}{39}{subsection.4.2.6}%
-\contentsline {section}{\numberline {4.3}Bluetooth Module INA B306}{41}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Arduino Nano 33 BLE Pin Configuration}{41}{section.4.4}%
-\contentsline {section}{\numberline {4.5}\textcolor {red}{Was fehlt}}{41}{section.4.5}%
-\contentsline {section}{\numberline {4.6}Further Readings}{42}{section.4.6}%
-\contentsline {chapter}{\numberline {5}Ultraschallsensor HC-SR04}{43}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Allgemeines}{43}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Ultraschallsensor HC-SR04}{43}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Spezifikation}{43}{section.5.3}%
-\contentsline {paragraph}{\nonumberline Schaltplan}{44}{paragraph*.15}%
-\contentsline {section}{\numberline {5.4}Bibliothek}{44}{section.5.4}%
-\contentsline {subsection}{\numberline {5.4.1}Beschreibung}{44}{subsection.5.4.1}%
-\contentsline {subsection}{\numberline {5.4.2}Installation}{44}{subsection.5.4.2}%
-\contentsline {subsection}{\numberline {5.4.3}Funktionen}{44}{subsection.5.4.3}%
-\contentsline {section}{\numberline {5.5}Beispiel}{46}{section.5.5}%
-\contentsline {subsection}{\numberline {5.5.1}Handbuch}{46}{subsection.5.5.1}%
-\contentsline {subsection}{\numberline {5.5.2}Funktion vom Beispiel}{47}{subsection.5.5.2}%
-\contentsline {subsection}{\numberline {5.5.3}Code}{47}{subsection.5.5.3}%
-\contentsline {section}{\numberline {5.6}Kalibrierung}{48}{section.5.6}%
-\contentsline {section}{\numberline {5.7}Einfacher Code ohne newPing Bibliothek}{48}{section.5.7}%
-\contentsline {section}{\numberline {5.8}Einfache Anwendung}{49}{section.5.8}%
-\contentsline {section}{\numberline {5.9}Tests}{50}{section.5.9}%
-\contentsline {subsection}{\numberline {5.9.1}Einfacher Funktionstest}{50}{subsection.5.9.1}%
-\contentsline {subsection}{\numberline {5.9.2}Alle Funktionen testen}{50}{subsection.5.9.2}%
-\contentsline {section}{\numberline {5.10}Weiterführende Literatur}{51}{section.5.10}%
-\contentsline {chapter}{\numberline {6}SG90 Servomotor}{53}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Allgemeines}{53}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Servomotor TowerPro SG90}{53}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Spezifikation}{53}{section.6.3}%
-\contentsline {section}{\numberline {6.4}Bibliothek}{54}{section.6.4}%
-\contentsline {subsection}{\numberline {6.4.1}Beschreibung}{54}{subsection.6.4.1}%
-\contentsline {subsection}{\numberline {6.4.2}Installation}{54}{subsection.6.4.2}%
-\contentsline {subsection}{\numberline {6.4.3}Funktionen}{55}{subsection.6.4.3}%
-\contentsline {section}{\numberline {6.5}Beispiel}{55}{section.6.5}%
-\contentsline {subsection}{\numberline {6.5.1}Handbuch}{55}{subsection.6.5.1}%
-\contentsline {subsection}{\numberline {6.5.2}An einem Beispiel}{55}{subsection.6.5.2}%
-\contentsline {subsection}{\numberline {6.5.3}Code}{55}{subsection.6.5.3}%
-\contentsline {subsection}{\numberline {6.5.4}Dateien}{56}{subsection.6.5.4}%
-\contentsline {section}{\numberline {6.6}Kalibrierung}{56}{section.6.6}%
-\contentsline {section}{\numberline {6.7}Einfacher Code (ohne Bibliothek)}{57}{section.6.7}%
-\contentsline {section}{\numberline {6.8}Einfache Anwendung}{58}{section.6.8}%
-\contentsline {section}{\numberline {6.9}Tests}{58}{section.6.9}%
-\contentsline {subsection}{\numberline {6.9.1}Einfacher Funktionstest}{58}{subsection.6.9.1}%
-\contentsline {subsection}{\numberline {6.9.2}Alle Funktionen testen}{58}{subsection.6.9.2}%
-\contentsline {section}{\numberline {6.10}Weiterführende Literatur}{58}{section.6.10}%
-\contentsline {part}{\numberline {IV}Domain Knowledge - Tools}{59}{part.4}%
-\contentsline {chapter}{\numberline {7}\textcolor {red}{Python Tool XY}}{61}{chapter.7}%
-\contentsline {chapter}{\numberline {8}\textcolor {red}{Hardware Tool XY}}{63}{chapter.8}%
-\contentsline {part}{\numberline {V}Developmenmt}{65}{part.5}%
-\contentsline {chapter}{\numberline {9}\textcolor {red}{Flow Chart Development XY}}{67}{chapter.9}%
-\contentsline {part}{\numberline {VI}Monitoring}{69}{part.6}%
-\contentsline {chapter}{\numberline {10}\textcolor {red}{Monitoring XY}}{71}{chapter.10}%
-\contentsline {part}{\numberline {VII}Verification - Evaluation - Conclusion}{73}{part.7}%
-\contentsline {chapter}{\numberline {11}\textcolor {red}{Evaluation/Verification XY}}{75}{chapter.11}%
-\contentsline {chapter}{\numberline {12}\textcolor {red}{To DoX Y}}{77}{chapter.12}%
-\contentsline {chapter}{\numberline {13}\textcolor {red}{Conclusion XY}}{79}{chapter.13}%
-\contentsline {part}{\numberline {VIII} Anhang}{81}{part.8}%
-\contentsline {chapter}{\numberline {14}Bill Of Material}{83}{chapter.14}%
-\contentsline {chapter}{\numberline {15}\textcolor {red}{SBOM}}{85}{chapter.15}%
-\contentsline {chapter}{\numberline {16}\textcolor {red}{Package \textcolor {PythonColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-Example}}}}{87}{chapter.16}%
-\contentsline {section}{\numberline {16.1}Introduction}{87}{section.16.1}%
-\contentsline {section}{\numberline {16.2}Description}{87}{section.16.2}%
-\contentsline {section}{\numberline {16.3}Installation}{87}{section.16.3}%
-\contentsline {section}{\numberline {16.4}Example - Manual}{87}{section.16.4}%
-\contentsline {section}{\numberline {16.5}Example}{87}{section.16.5}%
-\contentsline {section}{\numberline {16.6}Example - Code}{87}{section.16.6}%
-\contentsline {section}{\numberline {16.7}Example - Files}{87}{section.16.7}%
-\contentsline {section}{\numberline {16.8}Further Reading}{87}{section.16.8}%
-\contentsline {part}{\numberline {IX}Hints - Examples for LaTeX - Read, Use and Remove}{89}{part.9}%
-\contentsline {chapter}{\numberline {17}Hinweise}{91}{chapter.17}%
-\contentsline {section}{\numberline {17.1}Allgemeine mathematische Beschreibung Bézier-Kurve}{92}{section.17.1}%
-\contentsline {chapter}{\numberline {18}Verrundung mit einem Kreisbogen}{95}{chapter.18}%
-\contentsline {section}{\numberline {18.1}Gleichungen}{95}{section.18.1}%
-\contentsline {section}{\numberline {18.2}Bewertung}{97}{section.18.2}%
-\contentsline {section}{\numberline {18.3}Beispiele}{99}{section.18.3}%
-\contentsline {chapter}{\numberline {19}Maple-Dateien}{103}{chapter.19}%
-\contentsline {section}{\numberline {19.1}Geometrien mit Maple}{103}{section.19.1}%
-\contentsline {section}{\numberline {19.2}Verwendete Geometrieelemente}{103}{section.19.2}%
-\contentsline {section}{\numberline {19.3}Aufbau der Datenstruktur}{104}{section.19.3}%
-\contentsline {section}{\numberline {19.4}Struktur eines Moduls}{104}{section.19.4}%
-\contentsline {subsection}{\numberline {19.4.1}Genereller Aufbau eines Moduls}{106}{subsection.19.4.1}%
-\contentsline {subsection}{\numberline {19.4.2}Sicherung eines Moduls}{108}{subsection.19.4.2}%
-\contentsline {subsection}{\numberline {19.4.3}Verwendung eines Moduls}{108}{subsection.19.4.3}%
-\contentsline {subsection}{\numberline {19.4.4}Erstellung eines Maple-Moduls}{108}{subsection.19.4.4}%
-\contentsline {section}{\numberline {19.5}Funktionen der Module}{109}{section.19.5}%
-\contentsline {subsection}{\numberline {19.5.1}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MPoint}}}{109}{subsection.19.5.1}%
-\contentsline {subsection}{\numberline {19.5.2}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MLine}}}{110}{subsection.19.5.2}%
-\contentsline {subsection}{\numberline {19.5.3}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MArc}}}{111}{subsection.19.5.3}%
-\contentsline {subsection}{\numberline {19.5.4}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MBezier}}}{111}{subsection.19.5.4}%
-\contentsline {subsection}{\numberline {19.5.5}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MPolygon}}}{112}{subsection.19.5.5}%
-\contentsline {subsection}{\numberline {19.5.6}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MGeoList}}}{112}{subsection.19.5.6}%
-\contentsline {subsection}{\numberline {19.5.7}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MHermiteProblem}}}{113}{subsection.19.5.7}%
-\contentsline {subsection}{\numberline {19.5.8}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MHermiteProblemSym}}}{113}{subsection.19.5.8}%
-\contentsline {subsection}{\numberline {19.5.9}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MConstant}}}{114}{subsection.19.5.9}%
-\contentsline {subsection}{\numberline {19.5.10}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MGeneralMath}}}{114}{subsection.19.5.10}%
-\contentsline {subsection}{\numberline {19.5.11}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-Biarc}}}{115}{subsection.19.5.11}%
-\contentsline {subsubsection}{\nonumberline Datenstruktur}{115}{subsubsection*.31}%
-\contentsline {subsection}{\numberline {19.5.12}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MBiarc}}}{115}{subsection.19.5.12}%
-\contentsline {section}{\numberline {19.6}Programmablaufplan}{116}{section.19.6}%
-\contentsline {subsection}{\numberline {19.6.1}Gesamauf}{116}{subsection.19.6.1}%
-\contentsline {subsection}{\numberline {19.6.2}Verrundung der Kurve}{116}{subsection.19.6.2}%
-\contentsline {chapter}{\numberline {20}Representation of Python Programs}{119}{chapter.20}%
-\contentsline {chapter}{\numberline {21}Representation of Programs written for Arduino Boards}{121}{chapter.21}%
-\contentsline {chapter}{\numberline {22}Erstes Kapitel}{123}{chapter.22}%
-\contentsline {chapter}{\numberline {23}CAGD}{125}{chapter.23}%
+\contentsline {chapter}{\numberline {3}Arduino Nano 33 BLE Sense}{29}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Allgemeine Beschreibung}{29}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Mikrocontroller und Leistungsdaten}{29}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Betriebsspannung und Logikpegel}{30}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Digitale Ein- und Ausgänge}{30}{section.3.4}%
+\contentsline {section}{\numberline {3.5}PWM und Servo-Ansteuerung}{30}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Zeitmessung und Ablaufsteuerung}{31}{section.3.6}%
+\contentsline {section}{\numberline {3.7}USB, Programmierung und serielle Kommunikation}{31}{section.3.7}%
+\contentsline {section}{\numberline {3.8}Integrierte Funktionen und Sensorik}{32}{section.3.8}%
+\contentsline {chapter}{\numberline {4}Arduino Tiny Machine Learning Kit}{33}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Arduino Nano 33 BLE Sense Lite}{33}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Pinbelegung}{33}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Mechanik}{34}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.3}Elektronik}{35}{subsection.4.1.3}%
+\contentsline {subsection}{\numberline {4.1.4}Verbaute Sonsoren}{35}{subsection.4.1.4}%
+\contentsline {section}{\numberline {4.2}On-Board Sensor Description}{36}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Gesture, Proximity, and Color Detection Sensor ADPS-9960}{38}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Accelerometer, Gyroscope, and Magnetometre Sensor LSM9DS1}{38}{subsection.4.2.2}%
+\contentsline {subsubsection}{\nonumberline Calibration of an IMU}{39}{subsubsection*.10}%
+\contentsline {subsubsection}{\nonumberline Low and High Limit Method}{39}{subsubsection*.11}%
+\contentsline {subsubsection}{\nonumberline Magneto V1.2}{39}{subsubsection*.12}%
+\contentsline {subsection}{\numberline {4.2.3}Pressure Sensor LPS22HB}{40}{subsection.4.2.3}%
+\contentsline {subsection}{\numberline {4.2.4}Relative Humidity and Temperature Sensor HTS221}{40}{subsection.4.2.4}%
+\contentsline {subsection}{\numberline {4.2.5}Digital Microphone MP34DT05-A}{41}{subsection.4.2.5}%
+\contentsline {subsection}{\numberline {4.2.6}Bluetooth Module nRF52840}{41}{subsection.4.2.6}%
+\contentsline {section}{\numberline {4.3}Bluetooth Module INA B306}{43}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Arduino Nano 33 BLE Pin Configuration}{43}{section.4.4}%
+\contentsline {section}{\numberline {4.5}\textcolor {red}{Was fehlt}}{43}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Further Readings}{44}{section.4.6}%
+\contentsline {chapter}{\numberline {5}Ultraschallsensor HC-SR04}{45}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Allgemeines}{45}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Ultraschallsensor HC-SR04}{45}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Spezifikation}{45}{section.5.3}%
+\contentsline {paragraph}{\nonumberline Schaltplan}{46}{paragraph*.15}%
+\contentsline {section}{\numberline {5.4}Bibliothek}{46}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Beschreibung}{46}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}Installation}{46}{subsection.5.4.2}%
+\contentsline {subsection}{\numberline {5.4.3}Funktionen}{46}{subsection.5.4.3}%
+\contentsline {section}{\numberline {5.5}Beispiel}{48}{section.5.5}%
+\contentsline {subsection}{\numberline {5.5.1}Handbuch}{48}{subsection.5.5.1}%
+\contentsline {subsection}{\numberline {5.5.2}Funktion vom Beispiel}{49}{subsection.5.5.2}%
+\contentsline {subsection}{\numberline {5.5.3}Code}{49}{subsection.5.5.3}%
+\contentsline {section}{\numberline {5.6}Kalibrierung}{50}{section.5.6}%
+\contentsline {section}{\numberline {5.7}Einfacher Code ohne newPing Bibliothek}{50}{section.5.7}%
+\contentsline {section}{\numberline {5.8}Einfache Anwendung}{51}{section.5.8}%
+\contentsline {section}{\numberline {5.9}Tests}{52}{section.5.9}%
+\contentsline {subsection}{\numberline {5.9.1}Einfacher Funktionstest}{52}{subsection.5.9.1}%
+\contentsline {subsection}{\numberline {5.9.2}Alle Funktionen testen}{52}{subsection.5.9.2}%
+\contentsline {section}{\numberline {5.10}Weiterführende Literatur}{53}{section.5.10}%
+\contentsline {chapter}{\numberline {6}SG90 Servomotor}{55}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Allgemeines}{55}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Servomotor TowerPro SG90}{55}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Spezifikation}{55}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Bibliothek}{56}{section.6.4}%
+\contentsline {subsection}{\numberline {6.4.1}Beschreibung}{56}{subsection.6.4.1}%
+\contentsline {subsection}{\numberline {6.4.2}Installation}{56}{subsection.6.4.2}%
+\contentsline {subsection}{\numberline {6.4.3}Funktionen}{57}{subsection.6.4.3}%
+\contentsline {section}{\numberline {6.5}Beispiel}{57}{section.6.5}%
+\contentsline {subsection}{\numberline {6.5.1}Handbuch}{57}{subsection.6.5.1}%
+\contentsline {subsection}{\numberline {6.5.2}An einem Beispiel}{57}{subsection.6.5.2}%
+\contentsline {subsection}{\numberline {6.5.3}Code}{57}{subsection.6.5.3}%
+\contentsline {subsection}{\numberline {6.5.4}Dateien}{58}{subsection.6.5.4}%
+\contentsline {section}{\numberline {6.6}Kalibrierung}{58}{section.6.6}%
+\contentsline {section}{\numberline {6.7}Einfacher Code (ohne Bibliothek)}{59}{section.6.7}%
+\contentsline {section}{\numberline {6.8}Einfache Anwendung}{60}{section.6.8}%
+\contentsline {section}{\numberline {6.9}Tests}{60}{section.6.9}%
+\contentsline {subsection}{\numberline {6.9.1}Einfacher Funktionstest}{60}{subsection.6.9.1}%
+\contentsline {subsection}{\numberline {6.9.2}Alle Funktionen testen}{60}{subsection.6.9.2}%
+\contentsline {section}{\numberline {6.10}Weiterführende Literatur}{60}{section.6.10}%
+\contentsline {part}{\numberline {IV}Domain Knowledge - Tools}{61}{part.4}%
+\contentsline {chapter}{\numberline {7}\textcolor {red}{Python Tool XY}}{63}{chapter.7}%
+\contentsline {chapter}{\numberline {8}\textcolor {red}{Hardware Tool XY}}{65}{chapter.8}%
+\contentsline {part}{\numberline {V}Developmenmt}{67}{part.5}%
+\contentsline {chapter}{\numberline {9}\textcolor {red}{Flow Chart Development XY}}{69}{chapter.9}%
+\contentsline {part}{\numberline {VI}Monitoring}{71}{part.6}%
+\contentsline {chapter}{\numberline {10}\textcolor {red}{Monitoring XY}}{73}{chapter.10}%
+\contentsline {part}{\numberline {VII}Verification - Evaluation - Conclusion}{75}{part.7}%
+\contentsline {chapter}{\numberline {11}\textcolor {red}{Evaluation/Verification XY}}{77}{chapter.11}%
+\contentsline {chapter}{\numberline {12}\textcolor {red}{To DoX Y}}{79}{chapter.12}%
+\contentsline {chapter}{\numberline {13}\textcolor {red}{Conclusion XY}}{81}{chapter.13}%
+\contentsline {part}{\numberline {VIII} Anhang}{83}{part.8}%
+\contentsline {chapter}{\numberline {14}Bill Of Material}{85}{chapter.14}%
+\contentsline {chapter}{\numberline {15}\textcolor {red}{SBOM}}{87}{chapter.15}%
+\contentsline {chapter}{\numberline {16}\textcolor {red}{Package \textcolor {PythonColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-Example}}}}{89}{chapter.16}%
+\contentsline {section}{\numberline {16.1}Introduction}{89}{section.16.1}%
+\contentsline {section}{\numberline {16.2}Description}{89}{section.16.2}%
+\contentsline {section}{\numberline {16.3}Installation}{89}{section.16.3}%
+\contentsline {section}{\numberline {16.4}Example - Manual}{89}{section.16.4}%
+\contentsline {section}{\numberline {16.5}Example}{89}{section.16.5}%
+\contentsline {section}{\numberline {16.6}Example - Code}{89}{section.16.6}%
+\contentsline {section}{\numberline {16.7}Example - Files}{89}{section.16.7}%
+\contentsline {section}{\numberline {16.8}Further Reading}{89}{section.16.8}%
+\contentsline {part}{\numberline {IX}Hints - Examples for LaTeX - Read, Use and Remove}{91}{part.9}%
+\contentsline {chapter}{\numberline {17}Hinweise}{93}{chapter.17}%
+\contentsline {section}{\numberline {17.1}Allgemeine mathematische Beschreibung Bézier-Kurve}{94}{section.17.1}%
+\contentsline {chapter}{\numberline {18}Verrundung mit einem Kreisbogen}{97}{chapter.18}%
+\contentsline {section}{\numberline {18.1}Gleichungen}{97}{section.18.1}%
+\contentsline {section}{\numberline {18.2}Bewertung}{99}{section.18.2}%
+\contentsline {section}{\numberline {18.3}Beispiele}{101}{section.18.3}%
+\contentsline {chapter}{\numberline {19}Maple-Dateien}{105}{chapter.19}%
+\contentsline {section}{\numberline {19.1}Geometrien mit Maple}{105}{section.19.1}%
+\contentsline {section}{\numberline {19.2}Verwendete Geometrieelemente}{105}{section.19.2}%
+\contentsline {section}{\numberline {19.3}Aufbau der Datenstruktur}{106}{section.19.3}%
+\contentsline {section}{\numberline {19.4}Struktur eines Moduls}{106}{section.19.4}%
+\contentsline {subsection}{\numberline {19.4.1}Genereller Aufbau eines Moduls}{108}{subsection.19.4.1}%
+\contentsline {subsection}{\numberline {19.4.2}Sicherung eines Moduls}{110}{subsection.19.4.2}%
+\contentsline {subsection}{\numberline {19.4.3}Verwendung eines Moduls}{110}{subsection.19.4.3}%
+\contentsline {subsection}{\numberline {19.4.4}Erstellung eines Maple-Moduls}{110}{subsection.19.4.4}%
+\contentsline {section}{\numberline {19.5}Funktionen der Module}{111}{section.19.5}%
+\contentsline {subsection}{\numberline {19.5.1}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MPoint}}}{111}{subsection.19.5.1}%
+\contentsline {subsection}{\numberline {19.5.2}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MLine}}}{112}{subsection.19.5.2}%
+\contentsline {subsection}{\numberline {19.5.3}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MArc}}}{113}{subsection.19.5.3}%
+\contentsline {subsection}{\numberline {19.5.4}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MBezier}}}{113}{subsection.19.5.4}%
+\contentsline {subsection}{\numberline {19.5.5}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MPolygon}}}{114}{subsection.19.5.5}%
+\contentsline {subsection}{\numberline {19.5.6}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MGeoList}}}{114}{subsection.19.5.6}%
+\contentsline {subsection}{\numberline {19.5.7}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MHermiteProblem}}}{115}{subsection.19.5.7}%
+\contentsline {subsection}{\numberline {19.5.8}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MHermiteProblemSym}}}{115}{subsection.19.5.8}%
+\contentsline {subsection}{\numberline {19.5.9}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MConstant}}}{116}{subsection.19.5.9}%
+\contentsline {subsection}{\numberline {19.5.10}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MGeneralMath}}}{116}{subsection.19.5.10}%
+\contentsline {subsection}{\numberline {19.5.11}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-Biarc}}}{117}{subsection.19.5.11}%
+\contentsline {subsubsection}{\nonumberline Datenstruktur}{117}{subsubsection*.31}%
+\contentsline {subsection}{\numberline {19.5.12}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MBiarc}}}{117}{subsection.19.5.12}%
+\contentsline {section}{\numberline {19.6}Programmablaufplan}{118}{section.19.6}%
+\contentsline {subsection}{\numberline {19.6.1}Gesamauf}{118}{subsection.19.6.1}%
+\contentsline {subsection}{\numberline {19.6.2}Verrundung der Kurve}{118}{subsection.19.6.2}%
+\contentsline {chapter}{\numberline {20}Representation of Python Programs}{121}{chapter.20}%
+\contentsline {chapter}{\numberline {21}Representation of Programs written for Arduino Boards}{123}{chapter.21}%
+\contentsline {chapter}{\numberline {22}Erstes Kapitel}{125}{chapter.22}%
+\contentsline {chapter}{\numberline {23}CAGD}{127}{chapter.23}%
 \def \@chapapp {\appendixname }
-\contentsline {chapter}{\numberline {A}Zeichnungen mit tikz}{127}{appendix.A}%
-\contentsline {chapter}{\numberline {B}Kriterien für eine gutes \LaTeX -Projekt}{129}{appendix.B}%
-\contentsline {chapter}{Index}{131}{appendix.B}%
+\contentsline {chapter}{\numberline {A}Zeichnungen mit tikz}{129}{appendix.A}%
+\contentsline {chapter}{\numberline {B}Kriterien für eine gutes \LaTeX -Projekt}{131}{appendix.B}%
+\contentsline {chapter}{Index}{133}{appendix.B}%
