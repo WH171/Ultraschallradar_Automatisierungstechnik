@@ -3,14 +3,12 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {code}{\numberline {4.1}{\ignorespaces Simple example using of the builtin microphone of the Arduino Nano 33 BLE Sense}}{42}{code.caption.13}%
+\contentsline {code}{\numberline {4.1}{\ignorespaces Beispiel Code}}{37}{code.caption.9}%
+\contentsline {code}{\numberline {4.2}{\ignorespaces Beispiel Code ohne Bibliothekseinbindung}}{38}{code.caption.10}%
+\contentsline {code}{\numberline {4.3}{\ignorespaces Einparkhilfe Beispielcode}}{39}{code.caption.11}%
 \addvspace {10\p@ }
-\contentsline {code}{\numberline {5.1}{\ignorespaces Beispiel Code}}{49}{code.caption.17}%
-\contentsline {code}{\numberline {5.2}{\ignorespaces Beispiel Code ohne Bibliothekseinbindung}}{50}{code.caption.18}%
-\contentsline {code}{\numberline {5.3}{\ignorespaces Einparkhilfe Beispielcode}}{51}{code.caption.19}%
-\addvspace {10\p@ }
-\contentsline {code}{\numberline {6.1}{\ignorespaces Beispiel Code für den TowerPro SG90}}{57}{code.caption.21}%
-\contentsline {code}{\numberline {6.2}{\ignorespaces Code ohne Bibilothek für den TowerPro SG90}}{59}{code.caption.22}%
+\contentsline {code}{\numberline {5.1}{\ignorespaces Beispiel Code für den TowerPro SG90}}{45}{code.caption.13}%
+\contentsline {code}{\numberline {5.2}{\ignorespaces Code ohne Bibilothek für den TowerPro SG90}}{47}{code.caption.14}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
@@ -25,9 +23,9 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {code}{\numberline {20.1}{\ignorespaces \glqq Hello World\grqq {} in Python -- Variant 1}}{122}{code.caption.34}%
+\contentsline {code}{\numberline {19.1}{\ignorespaces \glqq Hello World\grqq {} in Python -- Variant 1}}{110}{code.caption.26}%
 \addvspace {10\p@ }
-\contentsline {code}{\numberline {21.1}{\ignorespaces \glqq Hello World\grqq {} in Python -- Variant 1}}{124}{code.caption.35}%
+\contentsline {code}{\numberline {20.1}{\ignorespaces \glqq Hello World\grqq {} in Python -- Variant 1}}{112}{code.caption.27}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \def \@chapapp {\appendixname }
