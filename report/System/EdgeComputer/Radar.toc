@@ -18,19 +18,19 @@
 \contentsline {part}{\numberline {III}Domain Knowledge - Hardware}{27}{part.3}%
 \contentsline {chapter}{\numberline {3}Arduino Nano 33 BLE Sense}{29}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Allgemeine Beschreibung}{29}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Mikrocontroller und Leistungsdaten}{29}{section.3.2}%
+\contentsline {section}{\numberline {3.2}Mikrocontroller und Leistungsdaten}{30}{section.3.2}%
 \contentsline {section}{\numberline {3.3}Betriebsspannung und Logikpegel}{30}{section.3.3}%
 \contentsline {section}{\numberline {3.4}Digitale Ein- und Ausgänge}{30}{section.3.4}%
-\contentsline {section}{\numberline {3.5}PWM und Servo-Ansteuerung}{30}{section.3.5}%
+\contentsline {section}{\numberline {3.5}PWM und Servo-Ansteuerung}{31}{section.3.5}%
 \contentsline {section}{\numberline {3.6}Zeitmessung und Ablaufsteuerung}{31}{section.3.6}%
-\contentsline {section}{\numberline {3.7}USB, Programmierung und serielle Kommunikation}{31}{section.3.7}%
+\contentsline {section}{\numberline {3.7}USB, Programmierung und serielle Kommunikation}{32}{section.3.7}%
 \contentsline {section}{\numberline {3.8}Integrierte Funktionen und Sensorik}{32}{section.3.8}%
 \contentsline {section}{\numberline {3.9}Further Readings}{32}{section.3.9}%
 \contentsline {chapter}{\numberline {4}Ultraschallsensor HC-SR04}{33}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Allgemeines}{33}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Ultraschallsensor HC-SR04}{33}{section.4.2}%
 \contentsline {section}{\numberline {4.3}Spezifikation}{33}{section.4.3}%
-\contentsline {paragraph}{\nonumberline Schaltplan}{34}{paragraph*.7}%
+\contentsline {paragraph}{\nonumberline Schaltplan}{34}{paragraph*.8}%
 \contentsline {section}{\numberline {4.4}Bibliothek}{34}{section.4.4}%
 \contentsline {subsection}{\numberline {4.4.1}Beschreibung}{34}{subsection.4.4.1}%
 \contentsline {subsection}{\numberline {4.4.2}Installation}{34}{subsection.4.4.2}%
@@ -117,7 +117,7 @@
 \contentsline {subsection}{\numberline {18.5.9}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MConstant}}}{104}{subsection.18.5.9}%
 \contentsline {subsection}{\numberline {18.5.10}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MGeneralMath}}}{104}{subsection.18.5.10}%
 \contentsline {subsection}{\numberline {18.5.11}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-Biarc}}}{105}{subsection.18.5.11}%
-\contentsline {subsubsection}{\nonumberline Datenstruktur}{105}{subsubsection*.23}%
+\contentsline {subsubsection}{\nonumberline Datenstruktur}{105}{subsubsection*.24}%
 \contentsline {subsection}{\numberline {18.5.12}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MBiarc}}}{105}{subsection.18.5.12}%
 \contentsline {section}{\numberline {18.6}Programmablaufplan}{106}{section.18.6}%
 \contentsline {subsection}{\numberline {18.6.1}Gesamauf}{106}{subsection.18.6.1}%

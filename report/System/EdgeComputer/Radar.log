@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.24.0 (TeX Live 2026)  (format=lualatex 2026.3.27)  2 JUN 2026 16:35
+This is LuaHBTeX, Version 1.24.0 (TeX Live 2026)  (format=lualatex 2026.3.27)  3 JUN 2026 11:08
  restricted system commands enabled.
 **Radar.tex
 (./Radar.tex
@@ -3096,21 +3096,32 @@ Package scrkbase Info: You've told me to use the font selection of the element
 chapter 3.
 Package biblatex Info: Reference segment=3 on input line 12.
 Package biblatex Info: Setting label 'refsegment:03' on input line 12.
-Package biblatex Info: Reference segment=4 on input line 23.
-Package biblatex Info: Setting label 'refsegment:04' on input line 23.
-Package biblatex Info: Reference segment=5 on input line 47.
-Package biblatex Info: Setting label 'refsegment:05' on input line 47.
-
-Underfull \vbox (badness 1527) has occurred while \output is active []
-
+(./tikz/arduino_nano33ble_tikz.tex)
+Package biblatex Info: Reference segment=4 on input line 28.
+Package biblatex Info: Setting label 'refsegment:04' on input line 28.
  [29
 
 
+
+Missing character: There is no ; (U+003B) in font nullfont!
+Missing character: There is no ; (U+003B) in font nullfont!
+Missing character: There is no ; (U+003B) in font nullfont!
+Missing character: There is no ; (U+003B) in font nullfont!
+Missing character: There is no ; (U+003B) in font nullfont!
+Missing character: There is no ; (U+003B) in font nullfont!
+Missing character: There is no ; (U+003B) in font nullfont!
+Missing character: There is no ; (U+003B) in font nullfont!
+Missing character: There is no ; (U+003B) in font nullfont!
+Missing character: There is no ; (U+003B) in font nullfont!
+Missing character: There is no ; (U+003B) in font nullfont!
+Missing character: There is no ; (U+003B) in font nullfont!
+Missing character: There is no ; (U+003B) in font nullfont!
+Missing character: There is no ; (U+003B) in font nullfont!
 ]
-Package biblatex Info: Reference segment=6 on input line 57.
-Package biblatex Info: Setting label 'refsegment:06' on input line 57.
-Package biblatex Info: Reference segment=7 on input line 68.
-Package biblatex Info: Setting label 'refsegment:07' on input line 68.
+Package biblatex Info: Reference segment=5 on input line 52.
+Package biblatex Info: Setting label 'refsegment:05' on input line 52.
+Package biblatex Info: Reference segment=6 on input line 62.
+Package biblatex Info: Setting label 'refsegment:06' on input line 62.
 
 
 Package fancyhdr Warning: \headheight is too small (1.0pt): 
@@ -3120,12 +3131,11 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
 [30]
-Package biblatex Info: Reference segment=8 on input line 77.
-Package biblatex Info: Setting label 'refsegment:08' on input line 77.
-Package biblatex Info: Reference segment=9 on input line 94.
-Package biblatex Info: Setting label 'refsegment:09' on input line 94.
-Package cleveref Info: loaded `ngerman' language definitions on input line 101.
-
+Package biblatex Info: Reference segment=7 on input line 73.
+Package biblatex Info: Setting label 'refsegment:07' on input line 73.
+Package biblatex Info: Reference segment=8 on input line 82.
+Package biblatex Info: Setting label 'refsegment:08' on input line 82.
+Package cleveref Info: loaded `ngerman' language definitions on input line 87.
 
 
 Package fancyhdr Warning: \headheight is too small (1.0pt): 
@@ -3135,8 +3145,10 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
 [31]
-Package biblatex Info: Reference segment=10 on input line 102.
-Package biblatex Info: Setting label 'refsegment:010' on input line 102.
+Package biblatex Info: Reference segment=9 on input line 99.
+Package biblatex Info: Setting label 'refsegment:09' on input line 99.
+Package biblatex Info: Reference segment=10 on input line 107.
+Package biblatex Info: Setting label 'refsegment:010' on input line 107.
 ) (../../Contents/General/UltraschallsensorHC-SR-04.tex
 Package biblatex Info: Reference segment=11 on input line 15.
 Package biblatex Info: Setting label 'refsegment:011' on input line 15.
@@ -3458,7 +3470,7 @@ Overfull \hbox (6.60992pt too wide) in paragraph at lines 29--29
 
 Missing character: There is no € (U+20AC) in font ec-lmbx10!
 Missing character: There is no € (U+20AC) in font ec-lmbx10!
-<../../Images/BillOfMaterial/ArduinoNano33BLESenseLite.png, id=1586, 1003.75pt 
+<../../Images/BillOfMaterial/ArduinoNano33BLESenseLite.png, id=1588, 1003.75pt 
 x 866.23625pt>
 File: ../../Images/BillOfMaterial/ArduinoNano33BLESenseLite.png Graphic file (t
 ype png)
@@ -3466,7 +3478,7 @@ ype png)
 Package luatex.def Info: ../../Images/BillOfMaterial/ArduinoNano33BLESenseLite.
 png  used on input line 35.
 (luatex.def)             Requested size: 59.33408pt x 51.21504pt.
-<../../Images/BillOfMaterial/HC-SR-04.png, id=1588, 1003.75pt x 743.77875pt>
+<../../Images/BillOfMaterial/HC-SR-04.png, id=1590, 1003.75pt x 743.77875pt>
 File: ../../Images/BillOfMaterial/HC-SR-04.png Graphic file (type png)
 <use ../../Images/BillOfMaterial/HC-SR-04.png>
 Package luatex.def Info: ../../Images/BillOfMaterial/HC-SR-04.png  used on inpu
@@ -3477,7 +3489,7 @@ Underfull \hbox (badness 6658) in paragraph at lines 44--44
 []|\T1/lmr/m/n/10 Ul-tra-schall-sen-sor HC-
  []
 
-<../../Images/BillOfMaterial/towerpro-servo-sg90.png, id=1590, 414.04688pt x 30
+<../../Images/BillOfMaterial/towerpro-servo-sg90.png, id=1592, 414.04688pt x 30
 1.125pt>
 File: ../../Images/BillOfMaterial/towerpro-servo-sg90.png Graphic file (type pn
 g)
@@ -3490,7 +3502,7 @@ Underfull \hbox (badness 3128) in paragraph at lines 51--51
 []|\T1/lmr/m/n/10 Tow-er-Pro Ser-vo-mo-tor
  []
 
-<../../Images/BillOfMaterial/Breadboard.png, id=1592, 1828.8325pt x 1028.84375p
+<../../Images/BillOfMaterial/Breadboard.png, id=1594, 1828.8325pt x 1028.84375p
 t>
 File: ../../Images/BillOfMaterial/Breadboard.png Graphic file (type png)
 <use ../../Images/BillOfMaterial/Breadboard.png>
@@ -3502,7 +3514,7 @@ Overfull \hbox (2.51031pt too wide) in paragraph at lines 56--56
 []|[][]| 
  []
 
-<../../Images/BillOfMaterial/LEDgruen.png, id=1594, 1001.7425pt x 564.1075pt>
+<../../Images/BillOfMaterial/LEDgruen.png, id=1596, 1001.7425pt x 564.1075pt>
 File: ../../Images/BillOfMaterial/LEDgruen.png Graphic file (type png)
 <use ../../Images/BillOfMaterial/LEDgruen.png>
 Package luatex.def Info: ../../Images/BillOfMaterial/LEDgruen.png  used on inpu
@@ -3513,7 +3525,7 @@ Overfull \hbox (7.49828pt too wide) in paragraph at lines 63--63
 []|[][]| 
  []
 
-<../../Images/BillOfMaterial/LEDrot.png, id=1596, 1425.325pt x 800.9925pt>
+<../../Images/BillOfMaterial/LEDrot.png, id=1598, 1425.325pt x 800.9925pt>
 File: ../../Images/BillOfMaterial/LEDrot.png Graphic file (type png)
 <use ../../Images/BillOfMaterial/LEDrot.png>
 Package luatex.def Info: ../../Images/BillOfMaterial/LEDrot.png  used on input 
@@ -3524,7 +3536,7 @@ Overfull \hbox (7.6382pt too wide) in paragraph at lines 70--70
 []|[][]| 
  []
 
-<../../Images/BillOfMaterial/JumperKabel.png, id=1598, 1505.625pt x 1505.625pt>
+<../../Images/BillOfMaterial/JumperKabel.png, id=1600, 1505.625pt x 1505.625pt>
 
 File: ../../Images/BillOfMaterial/JumperKabel.png Graphic file (type png)
 <use ../../Images/BillOfMaterial/JumperKabel.png>
@@ -3541,13 +3553,13 @@ Underfull \hbox (badness 6396) in paragraph at lines 79--79
 \T1/lmr/m/n/10 Steck-brü-cken-ka-bel 40
  []
 
-<../../Images/BillOfMaterial/MicroUSBKabel.png, id=1600, 321.2pt x 321.2pt>
+<../../Images/BillOfMaterial/MicroUSBKabel.png, id=1602, 321.2pt x 321.2pt>
 File: ../../Images/BillOfMaterial/MicroUSBKabel.png Graphic file (type png)
 <use ../../Images/BillOfMaterial/MicroUSBKabel.png>
 Package luatex.def Info: ../../Images/BillOfMaterial/MicroUSBKabel.png  used on
  input line 84.
 (luatex.def)             Requested size: 42.67886pt x 42.67912pt.
-<../../Images/BillOfMaterial/Widerstand.png, id=1602, 803.0pt x 803.0pt>
+<../../Images/BillOfMaterial/Widerstand.png, id=1604, 803.0pt x 803.0pt>
 File: ../../Images/BillOfMaterial/Widerstand.png Graphic file (type png)
 <use ../../Images/BillOfMaterial/Widerstand.png>
 Package luatex.def Info: ../../Images/BillOfMaterial/Widerstand.png  used on in
@@ -4773,16 +4785,16 @@ Package logreq Info: Writing requests to 'Radar.run.xml'.
 )
 
 Here is how much of LuaTeX's memory you used:
- 102122 strings out of 476076
- 745245,4101490 words of node,token memory allocated
+ 102360 strings out of 476076
+ 931565,4101490 words of node,token memory allocated
  5165 words of node memory still in use:
    23 hlist, 2 vlist, 10 rule, 1 local_par, 8 glue, 5 kern, 1 penalty, 1 margin_
 kern, 4 glyph, 1341 attribute, 95 glue_spec, 671 attribute_list, 3 write, 16 pdf
 _literal, 7 pdf_action, 16 pdf_colorstack nodes
-   avail lists: 1:20,2:12034,3:3596,4:19815,5:14414,6:156,7:20357,8:154,9:36846,
-10:42,11:1571,12:2
- 121420 multiletter control sequences out of 65536+600000
- 119 fonts using 8147215 bytes
+   avail lists: 1:17,2:59430,3:29426,4:19809,5:14414,6:156,7:20357,8:152,9:36846
+,10:42,11:1571,12:2
+ 121651 multiletter control sequences out of 65536+600000
+ 120 fonts using 8229895 bytes
  108i,16n,131p,11207b,3038s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 warning  (pdf backend): unreferenced destination with name 'cite.0@Zafeiropoulos
@@ -4901,10 +4913,10 @@ live/2026/texmf-dist/fonts/type1/public/lm/lmsy5.pfb><c:/texlive/2026/texmf-dist
 lm/lmsy9.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msa
 m10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.p
 fb>
-Output written on Radar.pdf (121 pages, 5668288 bytes).
+Output written on Radar.pdf (121 pages, 5713702 bytes).
 
-PDF statistics: 2628 PDF objects out of 2984 (max. 8388607)
- 2419 compressed objects within 25 object streams
- 1092 named destinations out of 1200 (max. 1048576)
+PDF statistics: 2630 PDF objects out of 2984 (max. 8388607)
+ 2421 compressed objects within 25 object streams
+ 1093 named destinations out of 1200 (max. 1048576)
  1202 words of extra memory for PDF output out of 10000 (max. 100000000)
 
