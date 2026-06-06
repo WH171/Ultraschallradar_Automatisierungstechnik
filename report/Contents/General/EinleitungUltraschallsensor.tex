@@ -1,0 +1,22 @@
+%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% $Autor: Wings $
+% $Datum: 2020-07-24 09:05:07Z $
+% $Pfad: GDV/Vortraege/latex - Ausarbeitung/Kapitel/Einleitung.tex $
+% $Version: 4732 $
+%
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\part{Einleitung} 
+
+\chapter{Einführung}
+
+Die Umgebungserfassung und die präzise Detektion von Hindernissen sind fundamentale Bestandteile moderner Automatisierungs-, Automobil- und Robotiksysteme. Ein klassisches, aber nach wie vor anschauliches Anwendungsbeispiel hierfür ist das Radar-Prinzip beziehungsweise das hier adaptierte Prinzip des Sonars (Sound Navigation and Ranging). 
+
+Im Rahmen dieses Projekts wird ein voll funktionsfähiges Ultraschallradar konzipiert, mechanisch konstruiert und informationstechnisch implementiert. Ziel der Arbeit ist es, das komplexe Zusammenspiel von Mikrocontroller-Hardware, Sensorik, Aktuatorik und einer grafischen Benutzeroberfläche an einem praxisnahen, mechatronischen System zu demonstrieren.
+
+Als zentrale Steuereinheit des Systems dient ein Arduino Nano 33 BLE Sense. Die mechanische Scan-Bewegung wird durch einen 180\textdegree{}-Servomotor vom Typ SG90 realisiert, auf dessen Rotationsachse ein HC-SR04 Ultraschallsensor montiert ist. Um eine stabile und exakt ausgerichtete Plattform für diese Komponenten zu gewährleisten, wurde im Zuge des Projekts ein ma\ss geschneidertes Gehäuse im 3D-Druck-Verfahren gefertigt. 
+
+Auf der Software-Seite gliedert sich das Projekt in zwei Hauptbereiche: Die hardwarenahe Programmierung des Mikrocontrollers (Embedded C/C++) über die Arduino IDE sowie die Entwicklung eines Benutzeroberfläche am PC. Letzteres wird mithilfe der auf Java basierenden Umgebung Processing umgesetzt. Diese Software empfängt die seriellen Sensordaten des Arduinos (Winkel und Distanz) in Echtzeit und übersetzt sie in eine dynamische, visuell ansprechende Radar-Anzeige, welche erkannte Objekte und Systemzustände unmittelbar visualisiert.
+
+Der vorliegende Bericht dokumentiert den gesamten Entwicklungsprozess dieses Systems. Er erläutert zunächst die verwendeten Hardwarekomponenten, die mechanische Konstruktion sowie den elektronischen Schaltungsaufbau. Anschließend wird detailliert auf die Programmierung und Implementierung der Steuerungs- sowie Visualisierungssoftware eingegangen.

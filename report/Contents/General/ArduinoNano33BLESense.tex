@@ -109,5 +109,8 @@ Die serielle Ausgabe ist insbesondere während der Entwicklung und Inbetriebnahm
 Der Arduino Nano 33 BLE Sense verfügt neben den allgemeinen Mikrocontrollerfunktionen über mehrere integrierte Sensoren sowie eine Bluetooth-Low-Energy-Schnittstelle. Zur Sensorik des Boards gehören eine Inertialmesseinheit zur Erfassung von Beschleunigung, Winkelgeschwindigkeit und Magnetfeld, ein Umgebungslicht-, Farb-, Gesten- und Näherungssensor, ein barometrischer Drucksensor, ein Temperatur- und Feuchtigkeitssensor sowie ein digitales Mikrofon \cite{ArduinoNano:2026}.
 
 
-Diese integrierten Komponenten erweitern die Einsatzmöglichkeiten des Boards deutlich. Sie ermöglichen beispielsweise Anwendungen in den Bereichen Bewegungserkennung, Umgebungsüberwachung, Gestensteuerung, Audioverarbeitung und drahtlose Datenübertragung. Gleichzeitig müssen nicht alle vorhandenen Funktionen in jedem Projekt genutzt werden. Welche Sensoren oder Schnittstellen relevant sind, hängt vom jeweiligen Aufbau und der Zielsetzung der Anwendung ab.
+Diese integrierten Komponenten erweitern die Einsatzmöglichkeiten des Boards deutlich. Sie ermöglichen beispielsweise Anwendungen in den Bereichen Bewegungserkennung, Umgebungsüberwachung, Gestensteuerung, Audioverarbeitung und drahtlose Datenübertragung. Welche Sensoren oder Schnittstellen tatsächlich genutzt werden, hängt jedoch vom jeweiligen Aufbau und der Zielsetzung der Anwendung ab.
+
+
+Im Rahmen dieses Projekts werden die Onboard-Sensoren des Arduino Nano 33 BLE Sense nicht verwendet. Stattdessen dient das Board als zentrale Steuereinheit für externe Komponenten. Dazu zählen der Ultraschallsensor HC-SR04 zur Entfernungsmessung und der Servomotor Tower Pro SG90 zur Ausrichtung des Sensors. Im Vordergrund stehen daher nicht die integrierte Sensorik des Boards, sondern die digitalen Ein- und Ausgänge, die Zeitmessung, die Signalverarbeitung sowie die Ansteuerung des Servomotors.
 
