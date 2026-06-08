@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.24.0 (TeX Live 2026)  (format=lualatex 2026.3.27)  3 JUN 2026 15:17
+This is LuaHBTeX, Version 1.24.0 (TeX Live 2026)  (format=lualatex 2026.3.27)  6 JUN 2026 12:40
  restricted system commands enabled.
 **Radar.tex
 (./Radar.tex
@@ -4923,7 +4923,7 @@ live/2026/texmf-dist/fonts/type1/public/lm/lmsy5.pfb><c:/texlive/2026/texmf-dist
 lm/lmsy9.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msa
 m10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.p
 fb>
-Output written on Radar.pdf (123 pages, 5715079 bytes).
+Output written on Radar.pdf (123 pages, 5714756 bytes).
 
 PDF statistics: 2642 PDF objects out of 2984 (max. 8388607)
  2431 compressed objects within 25 object streams
