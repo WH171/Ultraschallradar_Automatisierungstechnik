@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.24.0 (TeX Live 2026)  (format=lualatex 2026.3.27)  6 JUN 2026 12:40
+This is LuaHBTeX, Version 1.24.0 (TeX Live 2026)  (format=lualatex 2026.3.27)  9 JUN 2026 12:41
  restricted system commands enabled.
 **Radar.tex
 (./Radar.tex
@@ -2808,19 +2808,8 @@ Overfull \hbox (5.09927pt too wide) detected at line 80
 \T1/lmss/bx/n/12 VIII. 
  []
 
-
-Package tocbasic Warning: number width of subsection toc entries should be incr
-eased!
-(tocbasic)                Currently used number width = 33.33327pt,
-(tocbasic)                Wanted number separation    = 3.99994pt,
-(tocbasic)                Reserved number width       = 31.99997pt on input lin
-e 118.
-
-
-Overfull \hbox (1.3333pt too wide) detected at line 118
-\T1/lmr/m/n/10 18.5.10. 
- []
-
+Missing character: There is no – (U+2013) in font ec-lmssbx10!
+Missing character: There is no – (U+2013) in font ec-lmssbx10!
 
 Package tocbasic Warning: number width of subsection toc entries should be incr
 eased!
@@ -2831,6 +2820,19 @@ e 119.
 
 
 Overfull \hbox (1.3333pt too wide) detected at line 119
+\T1/lmr/m/n/10 18.5.10. 
+ []
+
+
+Package tocbasic Warning: number width of subsection toc entries should be incr
+eased!
+(tocbasic)                Currently used number width = 33.33327pt,
+(tocbasic)                Wanted number separation    = 3.99994pt,
+(tocbasic)                Reserved number width       = 31.99997pt on input lin
+e 120.
+
+
+Overfull \hbox (1.3333pt too wide) detected at line 120
 \T1/lmr/m/n/10 18.5.11. 
  []
 
@@ -2840,16 +2842,16 @@ eased!
 (tocbasic)                Currently used number width = 33.33327pt,
 (tocbasic)                Wanted number separation    = 3.99994pt,
 (tocbasic)                Reserved number width       = 31.99997pt on input lin
-e 121.
+e 122.
 
 
-Overfull \hbox (1.3333pt too wide) detected at line 121
+Overfull \hbox (1.3333pt too wide) detected at line 122
 \T1/lmr/m/n/10 18.5.12. 
  []
 
 Package babel Info: 'ngerman' activates 'german' shorthands.
-(babel)             Reported on input line 124.
-Package cleveref Info: loaded `ngerman' language definitions on input line 124.
+(babel)             Reported on input line 125.
+Package cleveref Info: loaded `ngerman' language definitions on input line 125.
 
 
 Package fancyhdr Warning: \headheight is too small (1.0pt): 
@@ -2858,12 +2860,9 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[5]
-Overfull \hbox (0.99997pt too wide) detected at line 125
- []\T1/lmss/bx/n/10 111
- []
-
-
+[5
+Missing character: There is no – (U+2013) in font ec-lmssbx10!
+]
 Overfull \hbox (0.99997pt too wide) detected at line 126
  []\T1/lmss/bx/n/10 113
  []
@@ -2879,7 +2878,7 @@ Overfull \hbox (0.99997pt too wide) detected at line 128
  []
 
 
-Overfull \hbox (0.99997pt too wide) detected at line 130
+Overfull \hbox (0.99997pt too wide) detected at line 129
  []\T1/lmss/bx/n/10 119
  []
 
@@ -2891,6 +2890,11 @@ Overfull \hbox (0.99997pt too wide) detected at line 131
 
 Overfull \hbox (0.99997pt too wide) detected at line 132
  []\T1/lmss/bx/n/10 123
+ []
+
+
+Overfull \hbox (0.99997pt too wide) detected at line 133
+ []\T1/lmss/bx/n/10 125
  []
 
 )
@@ -3135,7 +3139,7 @@ Package biblatex Info: Reference segment=7 on input line 73.
 Package biblatex Info: Setting label 'refsegment:07' on input line 73.
 Package biblatex Info: Reference segment=8 on input line 82.
 Package biblatex Info: Setting label 'refsegment:08' on input line 82.
-Package cleveref Info: loaded `ngerman' language definitions on input line 87.
+Package cleveref Info: loaded `ngerman' language definitions on input line 89.
 
 
 Package fancyhdr Warning: \headheight is too small (1.0pt): 
@@ -3480,7 +3484,7 @@ Overfull \hbox (6.60992pt too wide) in paragraph at lines 29--29
 
 Missing character: There is no € (U+20AC) in font ec-lmbx10!
 Missing character: There is no € (U+20AC) in font ec-lmbx10!
-<../../Images/BillOfMaterial/ArduinoNano33BLESenseLite.png, id=1600, 1003.75pt 
+<../../Images/BillOfMaterial/ArduinoNano33BLESenseLite.png, id=1602, 1003.75pt 
 x 866.23625pt>
 File: ../../Images/BillOfMaterial/ArduinoNano33BLESenseLite.png Graphic file (t
 ype png)
@@ -3488,7 +3492,7 @@ ype png)
 Package luatex.def Info: ../../Images/BillOfMaterial/ArduinoNano33BLESenseLite.
 png  used on input line 35.
 (luatex.def)             Requested size: 59.33408pt x 51.21504pt.
-<../../Images/BillOfMaterial/HC-SR-04.png, id=1602, 1003.75pt x 743.77875pt>
+<../../Images/BillOfMaterial/HC-SR-04.png, id=1604, 1003.75pt x 743.77875pt>
 File: ../../Images/BillOfMaterial/HC-SR-04.png Graphic file (type png)
 <use ../../Images/BillOfMaterial/HC-SR-04.png>
 Package luatex.def Info: ../../Images/BillOfMaterial/HC-SR-04.png  used on inpu
@@ -3499,7 +3503,7 @@ Underfull \hbox (badness 6658) in paragraph at lines 44--44
 []|\T1/lmr/m/n/10 Ul-tra-schall-sen-sor HC-
  []
 
-<../../Images/BillOfMaterial/towerpro-servo-sg90.png, id=1604, 414.04688pt x 30
+<../../Images/BillOfMaterial/towerpro-servo-sg90.png, id=1606, 414.04688pt x 30
 1.125pt>
 File: ../../Images/BillOfMaterial/towerpro-servo-sg90.png Graphic file (type pn
 g)
@@ -3512,7 +3516,7 @@ Underfull \hbox (badness 3128) in paragraph at lines 51--51
 []|\T1/lmr/m/n/10 Tow-er-Pro Ser-vo-mo-tor
  []
 
-<../../Images/BillOfMaterial/Breadboard.png, id=1606, 1828.8325pt x 1028.84375p
+<../../Images/BillOfMaterial/Breadboard.png, id=1608, 1828.8325pt x 1028.84375p
 t>
 File: ../../Images/BillOfMaterial/Breadboard.png Graphic file (type png)
 <use ../../Images/BillOfMaterial/Breadboard.png>
@@ -3524,7 +3528,7 @@ Overfull \hbox (2.51031pt too wide) in paragraph at lines 56--56
 []|[][]| 
  []
 
-<../../Images/BillOfMaterial/LEDgruen.png, id=1608, 1001.7425pt x 564.1075pt>
+<../../Images/BillOfMaterial/LEDgruen.png, id=1610, 1001.7425pt x 564.1075pt>
 File: ../../Images/BillOfMaterial/LEDgruen.png Graphic file (type png)
 <use ../../Images/BillOfMaterial/LEDgruen.png>
 Package luatex.def Info: ../../Images/BillOfMaterial/LEDgruen.png  used on inpu
@@ -3535,7 +3539,7 @@ Overfull \hbox (7.49828pt too wide) in paragraph at lines 63--63
 []|[][]| 
  []
 
-<../../Images/BillOfMaterial/LEDrot.png, id=1610, 1425.325pt x 800.9925pt>
+<../../Images/BillOfMaterial/LEDrot.png, id=1612, 1425.325pt x 800.9925pt>
 File: ../../Images/BillOfMaterial/LEDrot.png Graphic file (type png)
 <use ../../Images/BillOfMaterial/LEDrot.png>
 Package luatex.def Info: ../../Images/BillOfMaterial/LEDrot.png  used on input 
@@ -3546,7 +3550,7 @@ Overfull \hbox (7.6382pt too wide) in paragraph at lines 70--70
 []|[][]| 
  []
 
-<../../Images/BillOfMaterial/JumperKabel.png, id=1612, 1505.625pt x 1505.625pt>
+<../../Images/BillOfMaterial/JumperKabel.png, id=1614, 1505.625pt x 1505.625pt>
 
 File: ../../Images/BillOfMaterial/JumperKabel.png Graphic file (type png)
 <use ../../Images/BillOfMaterial/JumperKabel.png>
@@ -3563,13 +3567,13 @@ Underfull \hbox (badness 6396) in paragraph at lines 79--79
 \T1/lmr/m/n/10 Steck-brü-cken-ka-bel 40
  []
 
-<../../Images/BillOfMaterial/MicroUSBKabel.png, id=1614, 321.2pt x 321.2pt>
+<../../Images/BillOfMaterial/MicroUSBKabel.png, id=1616, 321.2pt x 321.2pt>
 File: ../../Images/BillOfMaterial/MicroUSBKabel.png Graphic file (type png)
 <use ../../Images/BillOfMaterial/MicroUSBKabel.png>
 Package luatex.def Info: ../../Images/BillOfMaterial/MicroUSBKabel.png  used on
  input line 84.
 (luatex.def)             Requested size: 42.67886pt x 42.67912pt.
-<../../Images/BillOfMaterial/Widerstand.png, id=1616, 803.0pt x 803.0pt>
+<../../Images/BillOfMaterial/Widerstand.png, id=1618, 803.0pt x 803.0pt>
 File: ../../Images/BillOfMaterial/Widerstand.png Graphic file (type png)
 <use ../../Images/BillOfMaterial/Widerstand.png>
 Package luatex.def Info: ../../Images/BillOfMaterial/Widerstand.png  used on in
@@ -3588,7 +3592,7 @@ put line 105.
 
 LaTeX Warning: Float too large for page by 17.0204pt on input line 117.
 
-) [75
+) (../../Contents/General/Keywords.tex [75
 
 
 
@@ -3608,14 +3612,23 @@ aterial/HC-SR-04.png><../../Images/BillOfMaterial/towerpro-servo-sg90.png><../..
 /Images/BillOfMaterial/Breadboard.png><../../Images/BillOfMaterial/LEDgruen.png>
 <../../Images/BillOfMaterial/LEDrot.png><../../Images/BillOfMaterial/JumperKabel
 .png><../../Images/BillOfMaterial/MicroUSBKabel.png><../../Images/BillOfMaterial
-/Widerstand.png>] (../../Contents/General/RenameSBOMXY.tex
-chapter 14.
-) (../../Contents/General/RenamePackageXY.tex [77
+/Widerstand.png>]
+Missing character: There is no – (U+2013) in font ec-lmssbx10!
+Missing character: There is no – (U+2013) in font ec-lmssbx10!
+) [77
 
 
 
-
+Missing character: There is no – (U+2013) in font ec-lmssbx10!
 ] [78
+
+
+] (../../Contents/General/RenameSBOMXY.tex
+chapter 14.
+) (../../Contents/General/RenamePackageXY.tex [79
+
+
+] [80
 
 
 ]
@@ -3685,7 +3698,7 @@ Package biblatex Info: Setting label 'refsegment:041' on input line 46.
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/lmr/m/sc/10'.
 (microtype)             Ignoring protrusion settings for this character.
-) [79] [80
+) [81] [82
 
 
 ]
@@ -3693,9 +3706,9 @@ part IX.
 Package scrkbase Info: You've told me to use the font selection of the element
 (scrkbase)             `partprefix' that is an alias of element `partnumber'
 (scrkbase)              on input line 125.
-[81] [82] (../../Contents/General/de/Hints.tex
+[83] [84] (../../Contents/General/de/Hints.tex
 chapter 16.
-) [83
+) [85
 
 
 ] (../../Contents/General/de/Bezier.tex
@@ -3733,7 +3746,7 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[84]
+[86]
 Overfull \hbox (6.79999pt too wide) in paragraph at lines 182--183
 [][][][] 
  []
@@ -3749,7 +3762,7 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[85] (../../Contents/General/de/ArcStrategy.tex
+[87] (../../Contents/General/de/ArcStrategy.tex
 
 Package fancyhdr Warning: \headheight is too small (1.0pt): 
 (fancyhdr)                Make it at least 12.0pt, for example:
@@ -3757,15 +3770,15 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[86]
+[88]
 chapter 17.
 Package biblatex Info: Reference segment=43 on input line 17.
 Package biblatex Info: Setting label 'refsegment:043' on input line 17.
 
-LaTeX Warning: Reference `StrategySymmetricDefStandardHP' on page 87 undefined 
+LaTeX Warning: Reference `StrategySymmetricDefStandardHP' on page 89 undefined 
 on input line 19.
 
-[87
+[89
 
 
 ]
@@ -3785,7 +3798,7 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[88]
+[90]
 Overfull \hbox (6.79999pt too wide) in paragraph at lines 281--282
 [][][][] 
  []
@@ -3801,7 +3814,7 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[89]
+[91]
 Package biblatex Info: Reference segment=45 on input line 406.
 Package biblatex Info: Setting label 'refsegment:045' on input line 406.
 
@@ -3820,7 +3833,7 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[90]
+[92]
 Overfull \hbox (6.79999pt too wide) in paragraph at lines 463--464
 [][][][] 
  []
@@ -3843,7 +3856,7 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[91]
+[93]
 Overfull \hbox (6.79999pt too wide) in paragraph at lines 516--517
 [][][][] 
  []
@@ -3869,7 +3882,7 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[92]
+[94]
 Overfull \hbox (6.79999pt too wide) in paragraph at lines 605--606
 [][][][] 
  []
@@ -3885,7 +3898,7 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[93] (../../Contents/General/de/MapleFiles.tex [94
+[95] (../../Contents/General/de/MapleFiles.tex [96
 
 
 ]
@@ -3894,12 +3907,12 @@ Package biblatex Info: Reference segment=46 on input line 16.
 Package biblatex Info: Setting label 'refsegment:046' on input line 16.
 Package biblatex Info: Reference segment=47 on input line 27.
 Package biblatex Info: Setting label 'refsegment:047' on input line 27.
-[95]
+[97]
 Package biblatex Info: Reference segment=48 on input line 46.
 Package biblatex Info: Setting label 'refsegment:048' on input line 46.
 
 
-LaTeX Warning: Reference `ListeKennung' on page 96 undefined on input line 48.
+LaTeX Warning: Reference `ListeKennung' on page 98 undefined on input line 48.
 
 Package biblatex Info: Reference segment=49 on input line 90.
 Package biblatex Info: Setting label 'refsegment:049' on input line 90.
@@ -3910,7 +3923,7 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[96]
+[98]
 Package cleveref Info: loaded `ngerman' language definitions on input line 161.
 
 
@@ -3921,7 +3934,7 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[97]
+[99]
 LaTeX Font Info:    Font shape `T1/fvm/m/n' will be
 (Font)              scaled to size 6.29996pt on input line 215.
 LaTeX Font Info:    External font `lmex10' loaded for size
@@ -3934,7 +3947,7 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[98]
+[100]
 Package cleveref Info: loaded `ngerman' language definitions on input line 243.
 
 
@@ -3945,7 +3958,7 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[99]
+[101]
 
 Package fancyhdr Warning: \headheight is too small (1.0pt): 
 (fancyhdr)                Make it at least 12.0pt, for example:
@@ -3953,7 +3966,7 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[100]
+[102]
 Package biblatex Info: Reference segment=50 on input line 315.
 Package biblatex Info: Setting label 'refsegment:050' on input line 315.
 LaTeX Font Info:    Font shape `T1/fvm/b/n' will be
@@ -4026,7 +4039,7 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[101]
+[103]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\fontdimen' on input line 362.
@@ -4132,7 +4145,7 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[102]
+[104]
 Underfull \hbox (badness 10000) in paragraph at lines 411--425
 
  []
@@ -4239,7 +4252,7 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[103]
+[105]
 Underfull \hbox (badness 10000) in paragraph at lines 475--489
 
  []
@@ -4314,7 +4327,7 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[104]
+[106]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\fontdimen' on input line 523.
@@ -4430,7 +4443,7 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[105]
+[107]
 Underfull \hbox (badness 3179) in paragraph at lines 568--569
 []|\T1/lmr/m/n/10 Da-ten-struk-tur für ein Sym-me-tri-sches Hermite-
  []
@@ -4550,7 +4563,7 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[106]
+[108]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\fontdimen' on input line 636.
@@ -4657,7 +4670,7 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[107]
+[109]
 Package biblatex Info: Reference segment=51 on input line 690.
 Package biblatex Info: Setting label 'refsegment:051' on input line 690.
 
@@ -4678,7 +4691,7 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[108]
+[110]
 Package cleveref Info: loaded `ngerman' language definitions on input line 138.
 
 
@@ -4689,7 +4702,7 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[109]
+[111]
 
 Package fancyhdr Warning: \headheight is too small (1.0pt): 
 (fancyhdr)                Make it at least 12.0pt, for example:
@@ -4697,14 +4710,14 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[110] (../../Contents/General/de/CodePython.tex
+[112] (../../Contents/General/de/CodePython.tex
 chapter 19.
 (c:/texlive/2026/texmf-dist/tex/latex/tools/.tex
 Overfull \hbox (27.518pt too wide) in paragraph at lines 21--22
 [][][][] 
  []
 
-)) [111
+)) [113
 
 
 ]
@@ -4715,13 +4728,13 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[112] (../../Contents/General/de/CodeArduino.tex
+[114] (../../Contents/General/de/CodeArduino.tex
 chapter 20.
 (../../Code/Arduino/Blink/Blink.ino)
 
 LaTeX Warning: Float too large for page by 96.16306pt on input line 21.
 
-) [113
+) [115
 
 
 ]
@@ -4732,25 +4745,25 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[114] (../../Contents/General/de/FirstChapter.tex
+[116] (../../Contents/General/de/FirstChapter.tex
 chapter 21.
-[115
+[117
 
 
-] [116
+] [118
 
 
 ]
 chapter 22.
-) [117] [118
+) [119] [120
 
 
 ] (../../Contents/General/de/AppendixTikz.tex
 chapter A.
-) [119
+) [121
 
 
-] [120
+] [122
 
 
 ] (../../Contents/General/de/Appendix.tex
@@ -4761,14 +4774,18 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <14.4> on input line 13.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <12> on input line 13.
-) [121
+) [123
 
 
-] [122
+] [124
 
 
-] (./Radar.ind [123
+] (./Radar.ind
+Overfull \hbox (0.25317pt too wide) in paragraph at lines 117--118
+[]| \T1/lmr/m/n/10 Mon-ta-ge-po-si-ti-on Ul-tra-schall-sen-sor, 77 
+ []
 
+[125
 
 ]) (./Radar.aux
 Package cleveref Info: loaded `ngerman' language definitions on input line 23.
@@ -4795,15 +4812,15 @@ Package logreq Info: Writing requests to 'Radar.run.xml'.
 )
 
 Here is how much of LuaTeX's memory you used:
- 102360 strings out of 476076
- 931565,4101490 words of node,token memory allocated
+ 102375 strings out of 476076
+ 931495,4101490 words of node,token memory allocated
  5165 words of node memory still in use:
    23 hlist, 2 vlist, 10 rule, 1 local_par, 8 glue, 5 kern, 1 penalty, 1 margin_
 kern, 4 glyph, 1341 attribute, 95 glue_spec, 671 attribute_list, 3 write, 16 pdf
 _literal, 7 pdf_action, 16 pdf_colorstack nodes
-   avail lists: 1:17,2:59430,3:29426,4:19809,5:14414,6:156,7:20357,8:152,9:36846
+   avail lists: 1:19,2:59431,3:29426,4:19809,5:14414,6:156,7:20357,8:152,9:36846
 ,10:42,11:1571,12:2
- 121649 multiletter control sequences out of 65536+600000
+ 121655 multiletter control sequences out of 65536+600000
  120 fonts using 8229895 bytes
  108i,16n,131p,11207b,3038s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
@@ -4923,10 +4940,10 @@ live/2026/texmf-dist/fonts/type1/public/lm/lmsy5.pfb><c:/texlive/2026/texmf-dist
 lm/lmsy9.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msa
 m10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.p
 fb>
-Output written on Radar.pdf (123 pages, 5714756 bytes).
+Output written on Radar.pdf (125 pages, 5716841 bytes).
 
-PDF statistics: 2642 PDF objects out of 2984 (max. 8388607)
- 2431 compressed objects within 25 object streams
- 1095 named destinations out of 1200 (max. 1048576)
- 1202 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 2659 PDF objects out of 2984 (max. 8388607)
+ 2446 compressed objects within 25 object streams
+ 1098 named destinations out of 1200 (max. 1048576)
+ 1210 words of extra memory for PDF output out of 10000 (max. 100000000)
 

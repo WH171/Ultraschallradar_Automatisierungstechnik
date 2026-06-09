@@ -81,9 +81,10 @@ Der Arduino kann diese Steuersignale über einen geeigneten digitalen Ausgang er
 
 \section{Zeitmessung und Ablaufsteuerung}
 
-Eine wichtige Aufgabe von Mikrocontrollern ist die zeitliche Steuerung von Abläufen. Der Arduino kann Signale zu bestimmten Zeitpunkten ausgeben, kurze Impulse erzeugen und die Dauer externer Signale messen. Dadurch lassen sich Sensorabfragen, Bewegungsabläufe und Berechnungen in einer festen Reihenfolge ausführen.
+Eine wichtige Aufgabe von Mikrocontrollern ist die zeitliche Steuerung von Abläufen. Der Arduino kann Signale zu definierten Zeitpunkten ausgeben, kurze Impulse erzeugen und die Dauer externer Signale messen. Dadurch lassen sich Sensorabfragen, Bewegungsabläufe und Berechnungen in einer festgelegten Reihenfolge ausführen.
 
-Bei Anwendungen mit Sensoren und Aktoren ist die Reihenfolge besonders wichtig. Wird beispielsweise ein Sensor mechanisch bewegt, sollte die Messung erst dann erfolgen, wenn die gewünschte Position erreicht ist. Andernfalls können die Messwerte ungenau oder schwer interpretierbar werden. Ebenso benötigen manche Sensoren einen Mindestabstand zwischen zwei Messungen. Beim HC-SR04 wird im Datenblatt ein Messzyklus von mehr als 60~ms empfohlen, um eine gegenseitige Beeinflussung der Signale zu vermeiden.
+
+Bei Anwendungen mit Sensoren und Aktoren ist diese zeitliche Reihenfolge besonders wichtig. Wird beispielsweise ein Sensor mechanisch bewegt, sollte die Messung erst erfolgen, nachdem die gewünschte Position erreicht wurde. Andernfalls können die Messwerte ungenau oder schwer interpretierbar sein. Ebenso benötigen manche Sensoren einen Mindestabstand zwischen zwei Messungen, damit sich aufeinanderfolgende Messvorgänge nicht gegenseitig beeinflussen.
 
 Ein allgemeiner Ablauf für eine kombinierte Sensor-Aktor-Anwendung kann daher aus mehreren Schritten bestehen:
 
@@ -95,7 +96,6 @@ Ein allgemeiner Ablauf für eine kombinierte Sensor-Aktor-Anwendung kann daher a
 	\item Messwert berechnen oder auswerten.
 	\item Ergebnis speichern oder über eine Schnittstelle ausgeben.
 \end{enumerate}
-
 \section{USB, Programmierung und serielle Kommunikation}
 
 Der Arduino Nano 33 BLE Sense wird über eine USB-Verbindung mit dem Computer verbunden. Diese Verbindung dient einerseits zur Spannungsversorgung des Boards und andererseits zur Übertragung des Programms auf den Mikrocontroller. In der Arduino IDE wird dazu das passende Board sowie der zugehörige Anschluss ausgewählt. Anschlie\ss end kann der Quellcode kompiliert und auf das Board geladen werden \cite{ArduinoGS:2026}.

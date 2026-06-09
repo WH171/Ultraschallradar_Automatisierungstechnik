@@ -20,17 +20,17 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {16.1}{\ignorespaces Bernstein-Polynom vom Grad $3$}}{85}{figure.caption.17}%
-\contentsline {figure}{\numberline {16.2}{\ignorespaces Bézier-Kurve zum Beispiel \ref {KPunkte4Beispiel} }}{86}{figure.caption.18}%
+\contentsline {figure}{\numberline {16.1}{\ignorespaces Bernstein-Polynom vom Grad $3$}}{87}{figure.caption.18}%
+\contentsline {figure}{\numberline {16.2}{\ignorespaces Bézier-Kurve zum Beispiel \ref {KPunkte4Beispiel} }}{88}{figure.caption.19}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {17.1}{\ignorespaces Glättung einer Ecke mit Hilfe eines Kreisbogens - Dreieck}}{87}{figure.caption.19}%
-\contentsline {figure}{\numberline {17.2}{\ignorespaces Winkeländerung bei einer Verrundung mit einem Kreisbogen }}{89}{figure.caption.20}%
-\contentsline {figure}{\numberline {17.3}{\ignorespaces Krümmungsverlauf bei der Verrundung mit einem Kreisbogen}}{89}{figure.caption.21}%
-\contentsline {figure}{\numberline {17.4}{\ignorespaces Maximaler Bereich für die Verrundung mit einem Kreisbogen - $L(\varepsilon =const, \alpha )$}}{90}{figure.caption.22}%
-\contentsline {figure}{\numberline {17.5}{\ignorespaces Abweichung bei Vorgabe des Abstands $L$ bei der Verrundung mit einem Kreisbogen}}{90}{figure.caption.23}%
+\contentsline {figure}{\numberline {17.1}{\ignorespaces Glättung einer Ecke mit Hilfe eines Kreisbogens - Dreieck}}{89}{figure.caption.20}%
+\contentsline {figure}{\numberline {17.2}{\ignorespaces Winkeländerung bei einer Verrundung mit einem Kreisbogen }}{91}{figure.caption.21}%
+\contentsline {figure}{\numberline {17.3}{\ignorespaces Krümmungsverlauf bei der Verrundung mit einem Kreisbogen}}{91}{figure.caption.22}%
+\contentsline {figure}{\numberline {17.4}{\ignorespaces Maximaler Bereich für die Verrundung mit einem Kreisbogen - $L(\varepsilon =const, \alpha )$}}{92}{figure.caption.23}%
+\contentsline {figure}{\numberline {17.5}{\ignorespaces Abweichung bei Vorgabe des Abstands $L$ bei der Verrundung mit einem Kreisbogen}}{92}{figure.caption.24}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {18.1}{\ignorespaces Programmablaufplan \glqq Eckenverrrundung\grqq }}{109}{figure.caption.25}%
-\contentsline {figure}{\numberline {18.2}{\ignorespaces Programmablaufplan \glqq Auswal der Verrundungsstrategien\grqq }}{110}{figure.caption.26}%
+\contentsline {figure}{\numberline {18.1}{\ignorespaces Programmablaufplan \glqq Eckenverrrundung\grqq }}{111}{figure.caption.26}%
+\contentsline {figure}{\numberline {18.2}{\ignorespaces Programmablaufplan \glqq Auswal der Verrundungsstrategien\grqq }}{112}{figure.caption.27}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
