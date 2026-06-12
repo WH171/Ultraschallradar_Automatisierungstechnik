@@ -51,9 +51,9 @@ Die folgende Abbildung ~\ref{ArduinoNano33} zeigt einen Arduino Nano 33 BLE Sens
 %    \includegraphics[width=0.45\linewidth]{Nano33BLESense/ArduinoNano33BLESenseTopology}
    
 
-\begin{tikzpicture}
-  \ArduinoNanoBLESenseRev
-\end{tikzpicture}
+%\begin{tikzpicture}
+%  \ArduinoNanoBLESenseRev
+%\end{tikzpicture}
     
 %    
 %    \includegraphics[width=0.45\linewidth]{Arduino/ArduinoNano33BLESense2}
@@ -84,11 +84,10 @@ Enthalten sind:
 	\item USB-A-auf-USB-Micro-Verbindungskabel
 \end{itemize}
 
-\begin{center}
-	\includegraphics[width=0.75\textwidth]{Nano33BLESense/TinyMLKit/TinyMachineLearningKit.png}
-	\captionof{figure}{Arduino Tiny Machine Learning Kit\cite{Reichelt_ArduinoKit:2025}}
-	\label{ArduinoKit}
-\end{center}
+%\begin{center}
+%	%\includegraphics[width=0.75\textwidth]{Nano33BLESense/TinyMLKit/%	\captionof{figure}{Arduino Tiny Machine Learning %Kit\cite{Reichelt_ArduinoKit:2025}}
+%	\label{ArduinoKit}
+%\end{center}
 
 \section{Arduino Nano 33 BLE Sense Lite}
 \label{chap:ArduinoNano33BLESenseLite}
@@ -102,7 +101,7 @@ Die exakte Zuordnung der verfügbaren Pins des Arduino Nano 33 BLE Sense wird in
 \begin{center}
 	\begin{tikzpicture}
 		
-		\ArduinoNanoBLESenseRev
+		%\ArduinoNanoBLESenseRev
 		
 		\node[rotate=90,right] (Pin1) at (11.2,4.9) {(1) \; D1/TX};
 		\node[rotate=90,right] (Pin2) at (10.5,4.9) {(2) \; D0/RX};
@@ -264,7 +263,7 @@ um bis zu +/- 5 Prozent variieren.
 \\
 \begin{center}
 	\begin{tikzpicture}
-		\ArduinoNanoBLESenseOne
+		%\ArduinoNanoBLESenseOne
 		
 		\node[right](LEDPower) at (0.5,5.4){\textcolor{red}{\tiny Power LED}};
 		\draw[line width=1pt,red]  (0.7,5.25) -- (0.7,4.25);
@@ -331,9 +330,9 @@ The figure~\ref{ArduinoNano33OneLite} presents the  layout of the Arduino Nano 3
 	%    \includegraphics[width=0.45\linewidth]{Nano33BLESense/ArduinoNano33BLESenseTopology}
 	
 	
-    \begin{tikzpicture}
-		\ArduinoNanoBLESenseLLite
-	\end{tikzpicture}
+ %   \begin{tikzpicture}
+	%	\ArduinoNanoBLESenseLLite
+%	\end{tikzpicture}
 	
 	
 	%\begin{tikzpicture}
@@ -371,7 +370,7 @@ The figure \ref{ArduinoNano33BLESenseArchitecture} show the embed sensors on the
 
 \begin{center}
   \begin{tikzpicture}
-    \ArduinoNanoBLESenseOne
+    %\ArduinoNanoBLESenseOne
 
     \node[right](LEDPower) at (0.5,5.4){\textcolor{red}{\tiny Power LED}};
     \draw[line width=1pt,red]  (0.7,5.25) -- (0.7,4.25);
@@ -446,7 +445,7 @@ Another point to bear in mind is the overall 'trueness' of sensor readings based
 \begin{center}
   \begin{tikzpicture}
       
-    \ArduinoNanoBLESenseRev
+    %\ArduinoNanoBLESenseRev
 
     \node[rotate=90,right] (Pin1) at (11.2,4.9) {(1) \; D1/TX};
     \node[rotate=90,right] (Pin2) at (10.5,4.9) {(2) \; D0/RX};
@@ -633,7 +632,7 @@ For the following Applications the sensor is in use:
 \end{itemize}
 
 \begin{figure}[h]
-  \includegraphics[width=16cm]{Microphon/MikrophonCP}
+ % \includegraphics[width=16cm]{Microphon/MikrophonCP}
   \caption[Circuit diagram microphone]{Circuit diagram microphone \cite{STMicroelectronics:2021}}
 \end{figure}
 
@@ -717,7 +716,7 @@ The module is a Bluetooth Low Energy (BLE). The connection with our smartphone i
 
 \begin{center}
     \label{Figure:TestBluetoothConnect}
-    \includegraphics[width=10cm]{Bluetooth/connectionBLE.png}
+    %\includegraphics[width=10cm]{Bluetooth/connectionBLE.png}
     \captionof{figure}{Connection with BLE and smartphone}
 \end{center}		
 
@@ -725,7 +724,7 @@ We can use for example to share Arduino batterie on smartphone, \ref{Code:TestBl
 
 \begin{center}
     \captionof{figure}{Simple sketch to seen Arduino battery }
-    \ArduinoExternal{}{../../Code/Nano33BLESense/Bluetooth/bluetooth.ino}
+    %\ArduinoExternal{}{../../Code/Nano33BLESense/Bluetooth/bluetooth.ino}
     \label{Code:TestBluetoothBattery}
 \end{center}
 
@@ -752,7 +751,7 @@ Arduino Nano 33 BLE is an advanced version of Arduino Nano board that is based o
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.5\linewidth]{Nano33BLESense/Schnittstellen}
+    %\includegraphics[width=0.5\linewidth]{Nano33BLESense/Schnittstellen}
     \caption{Arduino Nano 33 BLE Pin Configuration}
     \label{Schnittstellen}
 \end{figure}
