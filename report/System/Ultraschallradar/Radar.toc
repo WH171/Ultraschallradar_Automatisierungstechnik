@@ -7,68 +7,68 @@
 \contentsline {chapter}{\numberline {1}Einführung}{15}{chapter.1}%
 \contentsline {part}{\numberline {II}Domain Knowledge - Application}{17}{part.2}%
 \contentsline {chapter}{\numberline {2}Applikationen}{19}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Mikrocontroller-Programmierung mit der Arduino IDE}{19}{section.2.1}%
-\contentsline {subsection}{\numberline {2.1.1}Allgemeines zur Arduino IDE}{19}{subsection.2.1.1}%
-\contentsline {subsection}{\numberline {2.1.2}Das Steuerungsprogramm des Ultraschallradars}{19}{subsection.2.1.2}%
-\contentsline {subsection}{\numberline {2.1.3}Quellcode der Arduino-Steuerung}{20}{subsection.2.1.3}%
-\contentsline {section}{\numberline {2.2}Benutzeroberfläche und Visualisierung mit Processing}{22}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}Allgemeines zu Processing}{22}{subsection.2.2.1}%
-\contentsline {subsection}{\numberline {2.2.2}Das Ultraschallradar-Programm}{22}{subsection.2.2.2}%
-\contentsline {subsection}{\numberline {2.2.3}Quellcode der Processing-Anwendung}{23}{subsection.2.2.3}%
-\contentsline {part}{\numberline {III}Domain Knowledge - Hardware}{27}{part.3}%
-\contentsline {chapter}{\numberline {3}Arduino Nano 33 BLE Sense}{29}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Allgemeine Beschreibung}{29}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Mikrocontroller und Leistungsdaten}{30}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Betriebsspannung und Logikpegel}{30}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Digitale Ein- und Ausgänge}{30}{section.3.4}%
-\contentsline {section}{\numberline {3.5}PWM und Servo-Ansteuerung}{31}{section.3.5}%
-\contentsline {section}{\numberline {3.6}Zeitmessung und Ablaufsteuerung}{31}{section.3.6}%
-\contentsline {section}{\numberline {3.7}USB, Programmierung und serielle Kommunikation}{32}{section.3.7}%
-\contentsline {section}{\numberline {3.8}Integrierte Funktionen und Sensorik}{32}{section.3.8}%
-\contentsline {section}{\numberline {3.9}Further Readings}{33}{section.3.9}%
-\contentsline {chapter}{\numberline {4}Ultraschallsensor HC-SR04}{35}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Allgemeines}{35}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Ultraschallsensor HC-SR04}{35}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Spezifikation}{35}{section.4.3}%
-\contentsline {paragraph}{\nonumberline Schaltplan}{36}{paragraph*.8}%
-\contentsline {section}{\numberline {4.4}Bibliothek}{36}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}Beschreibung}{36}{subsection.4.4.1}%
-\contentsline {subsection}{\numberline {4.4.2}Installation}{36}{subsection.4.4.2}%
-\contentsline {subsection}{\numberline {4.4.3}Funktionen}{36}{subsection.4.4.3}%
-\contentsline {section}{\numberline {4.5}Beispiel}{38}{section.4.5}%
-\contentsline {subsection}{\numberline {4.5.1}Handbuch}{38}{subsection.4.5.1}%
-\contentsline {subsection}{\numberline {4.5.2}Funktion vom Beispiel}{39}{subsection.4.5.2}%
-\contentsline {subsection}{\numberline {4.5.3}Code}{39}{subsection.4.5.3}%
-\contentsline {section}{\numberline {4.6}Kalibrierung}{40}{section.4.6}%
-\contentsline {section}{\numberline {4.7}Einfacher Code ohne newPing Bibliothek}{40}{section.4.7}%
-\contentsline {section}{\numberline {4.8}Einfache Anwendung}{41}{section.4.8}%
-\contentsline {section}{\numberline {4.9}Tests}{42}{section.4.9}%
-\contentsline {subsection}{\numberline {4.9.1}Einfacher Funktionstest}{42}{subsection.4.9.1}%
-\contentsline {subsection}{\numberline {4.9.2}Alle Funktionen testen}{42}{subsection.4.9.2}%
-\contentsline {section}{\numberline {4.10}Weiterführende Literatur}{43}{section.4.10}%
-\contentsline {chapter}{\numberline {5}SG90 Servomotor}{45}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Allgemeines}{45}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Servomotor TowerPro SG90}{45}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Spezifikation}{45}{section.5.3}%
-\contentsline {section}{\numberline {5.4}Bibliothek}{46}{section.5.4}%
-\contentsline {subsection}{\numberline {5.4.1}Beschreibung}{46}{subsection.5.4.1}%
-\contentsline {subsection}{\numberline {5.4.2}Installation}{46}{subsection.5.4.2}%
-\contentsline {subsection}{\numberline {5.4.3}Funktionen}{47}{subsection.5.4.3}%
-\contentsline {section}{\numberline {5.5}Beispiel}{47}{section.5.5}%
-\contentsline {subsection}{\numberline {5.5.1}Handbuch}{47}{subsection.5.5.1}%
-\contentsline {subsection}{\numberline {5.5.2}An einem Beispiel}{47}{subsection.5.5.2}%
-\contentsline {subsection}{\numberline {5.5.3}Code}{47}{subsection.5.5.3}%
-\contentsline {subsection}{\numberline {5.5.4}Dateien}{48}{subsection.5.5.4}%
-\contentsline {section}{\numberline {5.6}Kalibrierung}{48}{section.5.6}%
-\contentsline {section}{\numberline {5.7}Einfacher Code (ohne Bibliothek)}{49}{section.5.7}%
-\contentsline {section}{\numberline {5.8}Einfache Anwendung}{50}{section.5.8}%
-\contentsline {section}{\numberline {5.9}Tests}{50}{section.5.9}%
-\contentsline {subsection}{\numberline {5.9.1}Einfacher Funktionstest}{50}{subsection.5.9.1}%
-\contentsline {subsection}{\numberline {5.9.2}Alle Funktionen testen}{50}{subsection.5.9.2}%
-\contentsline {section}{\numberline {5.10}Weiterführende Literatur}{50}{section.5.10}%
-\contentsline {part}{\numberline {IV}Domain Knowledge - Tools}{51}{part.4}%
-\contentsline {chapter}{\numberline {6}\textcolor {red}{Python Tool XY}}{53}{chapter.6}%
-\contentsline {chapter}{\numberline {7}\textcolor {red}{Hardware Tool XY}}{55}{chapter.7}%
+\contentsline {part}{\numberline {III}Domain Knowledge - Hardware}{21}{part.3}%
+\contentsline {chapter}{\numberline {3}Arduino Nano 33 BLE Sense}{23}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Allgemeine Beschreibung}{23}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Mikrocontroller und Leistungsdaten}{24}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Betriebsspannung und Logikpegel}{24}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Digitale Ein- und Ausgänge}{24}{section.3.4}%
+\contentsline {section}{\numberline {3.5}PWM und Servo-Ansteuerung}{25}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Zeitmessung und Ablaufsteuerung}{25}{section.3.6}%
+\contentsline {section}{\numberline {3.7}USB, Programmierung und serielle Kommunikation}{26}{section.3.7}%
+\contentsline {section}{\numberline {3.8}Integrierte Funktionen und Sensorik}{26}{section.3.8}%
+\contentsline {section}{\numberline {3.9}Further Readings}{27}{section.3.9}%
+\contentsline {chapter}{\numberline {4}Ultraschallsensor HC-SR04}{29}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Allgemeines}{29}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Ultraschallsensor HC-SR04}{29}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Spezifikation}{29}{section.4.3}%
+\contentsline {paragraph}{\nonumberline Schaltplan}{30}{paragraph*.8}%
+\contentsline {section}{\numberline {4.4}Bibliothek}{30}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Beschreibung}{30}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Installation}{30}{subsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.4.3}Funktionen}{30}{subsection.4.4.3}%
+\contentsline {section}{\numberline {4.5}Beispiel}{32}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Handbuch}{32}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}Funktion vom Beispiel}{33}{subsection.4.5.2}%
+\contentsline {subsection}{\numberline {4.5.3}Code}{33}{subsection.4.5.3}%
+\contentsline {section}{\numberline {4.6}Kalibrierung}{34}{section.4.6}%
+\contentsline {section}{\numberline {4.7}Einfacher Code ohne newPing Bibliothek}{34}{section.4.7}%
+\contentsline {section}{\numberline {4.8}Einfache Anwendung}{35}{section.4.8}%
+\contentsline {section}{\numberline {4.9}Tests}{36}{section.4.9}%
+\contentsline {subsection}{\numberline {4.9.1}Einfacher Funktionstest}{36}{subsection.4.9.1}%
+\contentsline {subsection}{\numberline {4.9.2}Alle Funktionen testen}{36}{subsection.4.9.2}%
+\contentsline {section}{\numberline {4.10}Weiterführende Literatur}{37}{section.4.10}%
+\contentsline {chapter}{\numberline {5}SG90 Servomotor}{39}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Allgemeines}{39}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Servomotor TowerPro SG90}{39}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Spezifikation}{39}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Bibliothek}{40}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Beschreibung}{40}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}Installation}{40}{subsection.5.4.2}%
+\contentsline {subsection}{\numberline {5.4.3}Funktionen}{41}{subsection.5.4.3}%
+\contentsline {section}{\numberline {5.5}Beispiel}{41}{section.5.5}%
+\contentsline {subsection}{\numberline {5.5.1}Handbuch}{41}{subsection.5.5.1}%
+\contentsline {subsection}{\numberline {5.5.2}An einem Beispiel}{41}{subsection.5.5.2}%
+\contentsline {subsection}{\numberline {5.5.3}Code}{41}{subsection.5.5.3}%
+\contentsline {subsection}{\numberline {5.5.4}Dateien}{42}{subsection.5.5.4}%
+\contentsline {section}{\numberline {5.6}Kalibrierung}{42}{section.5.6}%
+\contentsline {section}{\numberline {5.7}Einfacher Code (ohne Bibliothek)}{43}{section.5.7}%
+\contentsline {section}{\numberline {5.8}Einfache Anwendung}{44}{section.5.8}%
+\contentsline {section}{\numberline {5.9}Tests}{44}{section.5.9}%
+\contentsline {subsection}{\numberline {5.9.1}Einfacher Funktionstest}{44}{subsection.5.9.1}%
+\contentsline {subsection}{\numberline {5.9.2}Alle Funktionen testen}{44}{subsection.5.9.2}%
+\contentsline {section}{\numberline {5.10}Weiterführende Literatur}{44}{section.5.10}%
+\contentsline {part}{\numberline {IV}Domain Knowledge - Tools}{45}{part.4}%
+\contentsline {chapter}{\numberline {6}\textcolor {red}{Python Tool XY}}{47}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Mikrocontroller-Programmierung mit der Arduino IDE}{47}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}Allgemeines zur Arduino IDE}{47}{subsection.6.1.1}%
+\contentsline {subsection}{\numberline {6.1.2}Das Steuerungsprogramm des Ultraschallradars}{47}{subsection.6.1.2}%
+\contentsline {subsection}{\numberline {6.1.3}Quellcode der Arduino-Steuerung}{48}{subsection.6.1.3}%
+\contentsline {chapter}{\numberline {7}\textcolor {red}{Hardware Tool XY}}{51}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Benutzeroberfläche und Visualisierung mit Processing}{51}{section.7.1}%
+\contentsline {subsection}{\numberline {7.1.1}Allgemeines zu Processing}{51}{subsection.7.1.1}%
+\contentsline {subsection}{\numberline {7.1.2}Das Ultraschallradar-Programm}{51}{subsection.7.1.2}%
+\contentsline {subsection}{\numberline {7.1.3}Quellcode der Processing-Anwendung}{52}{subsection.7.1.3}%
 \contentsline {part}{\numberline {V}Developmenmt}{57}{part.5}%
 \contentsline {chapter}{\numberline {8}\textcolor {red}{Flow Chart Development XY}}{59}{chapter.8}%
 \contentsline {part}{\numberline {VI}Monitoring}{61}{part.6}%

@@ -1,0 +1,78 @@
+\indexentry{CNN}{11}
+\indexentry{Computerized Numerical Control! \emph  {siehe} {CNN}}{11}
+\indexentry{SPS}{11}
+\indexentry{Speicherprogrammierbare Steuerung! \emph  {siehe} SPS}{11}
+\indexentry{Arduino Nano 33 BLE Sense}{77}
+\indexentry{Arduino Nano 33 BLE Sense!Nano 33 BLE}{77}
+\indexentry{Arduino Nano 33 BLE Sense!BLE Sense Board}{77}
+\indexentry{Arduino Nano 33 BLE Sense!Stromversorgung Nano 33 BLE Sense}{77}
+\indexentry{Arduino Nano 33 BLE Sense!Arduino IDE Konfiguration}{77}
+\indexentry{Arduino Nano 33 BLE Sense!Board Manager Eintrag}{77}
+\indexentry{Arduino Nano 33 BLE Sense!Bibliotheken Arduino Nano 33 BLE Sense}{77}
+\indexentry{nRF52840 Mikrocontroller}{77}
+\indexentry{Bluetooth Low Energy}{77}
+\indexentry{eingebaute Sensoren}{77}
+\indexentry{IMU Sensor}{77}
+\indexentry{Temperatur- und Feuchtigkeitssensor}{77}
+\indexentry{Barometer}{77}
+\indexentry{Onboard Mikrofon}{77}
+\indexentry{Arduino Mbed OS}{77}
+\indexentry{Ultraschallsensor HC-SR04}{77}
+\indexentry{HC-SR04}{77}
+\indexentry{Ultraschallsensor}{77}
+\indexentry{Ultraschallsensor!Entfernungsmessung Ultraschall}{77}
+\indexentry{Ultraschallsensor!Echo Pin}{77}
+\indexentry{Ultraschallsensor!Trigger Pin}{77}
+\indexentry{Ultraschallsensor!Messbereich HC-SR04}{77}
+\indexentry{Ultraschallsensor!Zeit-zu-Distanz-Berechnung}{77}
+\indexentry{Ultraschallsensor!Ansteuerung HC-SR04 mit Arduino}{77}
+\indexentry{Ultraschallsensor!Messfehler Ultraschallsensor}{77}
+\indexentry{Ultraschallsensor!Montageposition Ultraschallsensor}{77}
+\indexentry{Ultraschallsensor!Versorgungsspannung HC-SR04}{77}
+\indexentry{Ultraschallsensor!Störquellen Ultraschall}{77}
+\indexentry{Servomotor TowerPro SG90}{77}
+\indexentry{TowerPro SG90}{77}
+\indexentry{SG90 Servomotor}{77}
+\indexentry{Servomotor!PWM-Signal Servo}{77}
+\indexentry{Servomotor!Stellwinkel Servo}{77}
+\indexentry{Servomotor!Positionsregelung Servo}{77}
+\indexentry{Servomotor!Drehbereich SG90}{77}
+\indexentry{Servomotor!Servoansteuerung mit Arduino}{77}
+\indexentry{Servomotor!Servostromaufnahme}{77}
+\indexentry{Servomotor!mechanische Befestigung Servo}{77}
+\indexentry{Servomotor!Servohorn}{77}
+\indexentry{Servomotor!Getriebe Servo}{77}
+\indexentry{Applikation auf dem Arduino}{77}
+\indexentry{Radar-Applikation}{77}
+\indexentry{Distanzmessung mit Servo}{77}
+\indexentry{scannender Ultraschall-Radar}{77}
+\indexentry{Messzyklus Arduino}{77}
+\indexentry{Interrupts und Timer}{77}
+\indexentry{Datenverarbeitung auf dem Arduino}{77}
+\indexentry{Serial Plotter Ausgabe}{77}
+\indexentry{Visualisierung Radardaten}{77}
+\indexentry{State Machine Applikation}{77}
+\indexentry{Softwarearchitektur Radar}{77}
+\indexentry{Domain Knowledge Application}{77}
+\indexentry{Monitoring der Messdaten}{77}
+\indexentry{Verification und Evaluation}{77}
+\indexentry{Abschluss und Fazit der Applikation}{77}
+\indexentry{ Datei!requirements.txt}{79}
+\indexentry{Example}{81}
+\indexentry{Example!Introduction}{81}
+\indexentry{Example!Description}{81}
+\indexentry{Example!Installation}{81}
+\indexentry{ Datei!PackageExample.py}{81}
+\indexentry{ Datei!Blink.py}{114}
+\indexentry{ Datei!Blink.ino}{116}
+\indexentry{Speicherprogrammierbare Steuerung! \emph  {siehe} SPS}{117}
+\indexentry{SPS}{117}
+\indexentry{Computerized Numerical Control! \emph  {siehe} {CNN}}{117}
+\indexentry{CNN}{117}
+\indexentry{SPS}{117}
+\indexentry{     Speicherprogrammierbare Steuerung}{117}
+\indexentry{SPS|see{         Speicherprogrammierbare Steuerung}}{117}
+\indexentry{CAGD}{119}
+\indexentry{CAGD!Splines}{119}
+\indexentry{3D-Drucker}{119}
+\indexentry{5G}{119}
