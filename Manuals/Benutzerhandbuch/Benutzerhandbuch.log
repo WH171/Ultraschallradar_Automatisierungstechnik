@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.24.0 (TeX Live 2026)  (format=lualatex 2026.3.27)  9 JUN 2026 15:49
+This is LuaHBTeX, Version 1.24.0 (TeX Live 2026)  (format=lualatex 2026.3.16)  17 JUN 2026 12:39
  restricted system commands enabled.
 **Benutzerhandbuch.tex
 (./Benutzerhandbuch.tex
@@ -8,11 +8,11 @@ Lua module: luaotfload 2024-12-03 v3.29 Lua based OpenType font support
 Lua module: lualibs 2023-07-13 v2.76 ConTeXt Lua standard libraries.
 Lua module: lualibs-extended 2023-07-13 v2.76 ConTeXt Lua libraries -- extended 
 collection.
-luaotfload | conf : Root cache directory is "C:/Users/Simon Müller/.texlive2026
-/texmf-var/luatex-cache/generic/names".
+luaotfload | conf : Root cache directory is "/Users/wilkohinrichs/Library/texliv
+e/2026/texmf-var/luatex-cache/generic/names".
 luaotfload | init : Loading fontloader "fontloader-2023-12-28.lua" from kpse-res
-olved path "c:/texlive/2026/texmf-dist/tex/luatex/luaotfload/fontloader-2023-12-
-28.lua".
+olved path "/usr/local/texlive/2026/texmf-dist/tex/luatex/luaotfload/fontloader-
+2023-12-28.lua".
 Lua-only attribute luaotfload@noligature = 1
 luaotfload | init : Context OpenType loader version 3.134
 Inserting `luaotfload.node_processor' in `pre_linebreak_filter'.
@@ -20,8 +20,8 @@ Inserting `luaotfload.node_processor' in `hpack_filter'.
 Inserting `luaotfload.glyph_stream' in `glyph_stream_provider'.
 Inserting `luaotfload.define_font' in `define_font'.
 Lua-only attribute luaotfload_color_attribute = 2
-luaotfload | conf : Root cache directory is "C:/Users/Simon Müller/.texlive2026
-/texmf-var/luatex-cache/generic/names".
+luaotfload | conf : Root cache directory is "/Users/wilkohinrichs/Library/texliv
+e/2026/texmf-var/luatex-cache/generic/names".
 Inserting `luaotfload.harf.strip_prefix' in `find_opentype_file'.
 Inserting `luaotfload.harf.strip_prefix' in `find_truetype_file'.
 Removing  `luaotfload.glyph_stream' from `glyph_stream_provider'.
@@ -39,28 +39,28 @@ Inserting `luaotfload.aux.fixup_fontdata' in `luaotfload.patch_font_unsafe'.
 Inserting `luaotfload.aux.set_capheight' in `luaotfload.patch_font'.
 Inserting `luaotfload.aux.set_xheight' in `luaotfload.patch_font'.
 Inserting `luaotfload.rewrite_fontname' in `luaotfload.patch_font'.
-Inserting `tracingstacklevels' in `input_level_string'. (c:/texlive/2026/texmf-
-dist/tex/latex/koma-script/scrbook.cls
+Inserting `tracingstacklevels' in `input_level_string'. (/usr/local/texlive/202
+6/texmf-dist/tex/latex/koma-script/scrbook.cls
 Document Class: scrbook 2026/02/02 v3.49.2 KOMA-Script document class (book)
-(c:/texlive/2026/texmf-dist/tex/latex/koma-script/scrkbase.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/koma-script/scrkbase.sty
 Package: scrkbase 2026/02/02 v3.49.2 KOMA-Script package (KOMA-Script-dependent
  basics and keyval usage)
 
-(c:/texlive/2026/texmf-dist/tex/latex/koma-script/scrbase.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/koma-script/scrbase.sty
 Package: scrbase 2026/02/02 v3.49.2 KOMA-Script package (KOMA-Script-independen
 t basics and keyval usage)
 
-(c:/texlive/2026/texmf-dist/tex/latex/koma-script/scrlfile.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/koma-script/scrlfile.sty
 Package: scrlfile 2026/02/02 v3.49.2 KOMA-Script package (file load hooks)
 
-(c:/texlive/2026/texmf-dist/tex/latex/koma-script/scrlfile-hook.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/koma-script/scrlfile-hook.sty
 Package: scrlfile-hook 2026/02/02 v3.49.2 KOMA-Script package (using LaTeX hook
 s)
 
-(c:/texlive/2026/texmf-dist/tex/latex/koma-script/scrlogo.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/koma-script/scrlogo.sty
 Package: scrlogo 2026/02/02 v3.49.2 KOMA-Script package (logo)
 )))
-(c:/texlive/2026/texmf-dist/tex/latex/graphics/keyval.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
 \KV@toks@=\toks17
 )
@@ -68,7 +68,7 @@ Applying: [2021/05/01] Usage of raw or classic option list on input line 254.
 Already applied: [0000/00/00] Usage of raw or classic option list on input line
  370.
 ))
-(c:/texlive/2026/texmf-dist/tex/latex/koma-script/tocbasic.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/koma-script/tocbasic.sty
 Package: tocbasic 2026/02/02 v3.49.2 KOMA-Script package (handling toc-files)
 \scr@dte@tocline@numberwidth=\skip49
 \scr@dte@tocline@numbox=\box53
@@ -85,12 +85,12 @@ Package scrbook Info: You've used standard option `12pt'.
 Class scrbook Info: File `scrsize12pt.clo' used to setup font sizes on input li
 ne 2713.
 
-(c:/texlive/2026/texmf-dist/tex/latex/koma-script/scrsize12pt.clo
+(/usr/local/texlive/2026/texmf-dist/tex/latex/koma-script/scrsize12pt.clo
 File: scrsize12pt.clo 2026/02/02 v3.49.2 KOMA-Script font size class option (12
 pt)
-luaotfload | db : Font names database loaded from C:/Users/Simon Müller/.texliv
-e2026/texmf-var/luatex-cache/generic/names/luaotfload-names.luc.gz)
-(c:/texlive/2026/texmf-dist/tex/latex/koma-script/typearea.sty
+luaotfload | db : Font names database loaded from /Users/wilkohinrichs/Library/t
+exlive/2026/texmf-var/luatex-cache/generic/names/luaotfload-names.luc.gz)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/koma-script/typearea.sty
 Package: typearea 2026/02/02 v3.49.2 KOMA-Script package (type area)
 \ta@bcor=\skip50
 \ta@div=\count273
@@ -181,69 +181,70 @@ Class scrbook Info: Redefining `\numberline' on input line 7426.
 LaTeX Warning: \include should only be used after \begin{document} on input lin
 e 23.
 
-(./General/Packages.tex (c:/texlive/2026/texmf-dist/tex/latex/base/inputenc.sty
+(./General/Packages.tex
+(/usr/local/texlive/2026/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2024/02/08 v1.3d Input encoding file
 \inpenc@prehook=\toks18
 \inpenc@posthook=\toks19
 
+
 Package inputenc Warning: inputenc package ignored with utf8 based engines.
 
-) (c:/texlive/2026/texmf-dist/tex/latex/base/fontenc.sty
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2025/07/18 v2.1d Standard LaTeX package
 LaTeX Font Info:    Trying to load font information for T1+lmr on input line 11
 6.
 
-(c:/texlive/2026/texmf-dist/tex/latex/lm/t1lmr.fd
+(/usr/local/texlive/2026/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ))
-(c:/texlive/2026/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
-(c:/texlive/2026/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
-(c:/texlive/2026/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.te
+x
 \pgfutil@everybye=\toks20
 \pgfutil@tempdima=\dimen148
 \pgfutil@tempdimb=\dimen149
 )
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
 \pgfutil@abb=\box55
-)
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/pgf.revision.tex)
+) (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/pgf.revision.tex)
 Package: pgfrcs 2025-08-29 v3.1.11a (3.1.11a)
 ))
 Package: pgf 2025-08-29 v3.1.11a (3.1.11a)
 
-(c:/texlive/2026/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
-(c:/texlive/2026/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
 
-(c:/texlive/2026/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
 
-(c:/texlive/2026/texmf-dist/tex/latex/graphics/trig.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
 )
-(c:/texlive/2026/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: luatex.def on input line 106.
 
-(c:/texlive/2026/texmf-dist/tex/latex/graphics-def/luatex.def
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics-def/luatex.def
 File: luatex.def 2025/09/29 v1.2f Graphics/color driver for luatex
 ))
 \Gin@req@height=\dimen150
 \Gin@req@width=\dimen151
 )
-(c:/texlive/2026/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
 Package: pgfsys 2025-08-29 v3.1.11a (3.1.11a)
-
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
 \pgfkeys@pathtoks=\toks21
 \pgfkeys@temptoks=\toks22
 
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfiltered.co
-de.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfil
+tered.code.tex
 \pgfkeys@tmptoks=\toks23
 ))
 \pgf@x=\dimen152
@@ -266,33 +267,38 @@ de.tex
 \t@pgf@tokb=\toks25
 \t@pgf@tokc=\toks26
 \pgf@sys@id@count=\count287
- (c:/texlive/2026/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
 File: pgf.cfg 2025-08-29 v3.1.11a (3.1.11a)
 )
 Driver file for pgf: pgfsys-luatex.def
 
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-luatex.def
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-luatex.d
+ef
 File: pgfsys-luatex.def 2025-08-29 v3.1.11a (3.1.11a)
 
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-p
+df.def
 File: pgfsys-common-pdf.def 2025-08-29 v3.1.11a (3.1.11a)
 )))
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.
+code.tex
 File: pgfsyssoftpath.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgfsyssoftpath@smallbuffer@items=\count288
 \pgfsyssoftpath@bigbuffer@items=\count289
 )
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.
+code.tex
 File: pgfsysprotocol.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-)) (c:/texlive/2026/texmf-dist/tex/latex/xcolor/xcolor.sty
+)) (/usr/local/texlive/2026/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
 
-(c:/texlive/2026/texmf-dist/tex/latex/graphics-cfg/color.cfg
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package xcolor Info: Driver file: luatex.def on input line 274.
 
-(c:/texlive/2026/texmf-dist/tex/latex/graphics/mathcolor.ltx)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/mathcolor.ltx)
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1349.
 Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1353.
 Package xcolor Info: Model `RGB' extended on input line 1365.
@@ -303,12 +309,11 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1370.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1371.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
 )
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
 Package: pgfcore 2025-08-29 v3.1.11a (3.1.11a)
-
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
 \pgfmath@dimen=\dimen162
 \pgfmath@count=\count290
 \pgfmath@box=\box56
@@ -316,29 +321,30 @@ Package: pgfcore 2025-08-29 v3.1.11a (3.1.11a)
 \pgfmath@stack@operand=\toks28
 \pgfmath@stack@operation=\toks29
 )
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex)
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.te
-x)
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonometric
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.
+tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic
 .code.tex)
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.code.t
-ex)
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison.co
-de.tex)
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex
-)
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.te
-x)
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex
-)
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithm
-etics.code.tex)
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex)
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigo
+nometric.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.rando
+m.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.compa
+rison.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.
+code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round
+.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.
+code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integ
+erarithmetics.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
 \c@pgfmathroundto@lastzeros=\count291
-))
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
+)) (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.co
+de.tex
 File: pgfcorepoints.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgf@picminx=\dimen163
 \pgf@picmaxx=\dimen164
@@ -355,108 +361,124 @@ File: pgfcorepoints.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgf@zx=\dimen175
 \pgf@zy=\dimen176
 )
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.cod
-e.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconst
+ruct.code.tex
 File: pgfcorepathconstruct.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgf@path@lastx=\dimen177
 \pgf@path@lasty=\dimen178
 )
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code.te
-x
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage
+.code.tex
 File: pgfcorepathusage.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgf@shorten@end@additional=\dimen179
 \pgf@shorten@start@additional=\dimen180
 )
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.co
+de.tex
 File: pgfcorescopes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgfpic=\box57
 \pgf@hbox=\box58
 \pgf@layerbox@main=\box59
 \pgf@picture@serial@count=\count292
 )
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code
-.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicst
+ate.code.tex
 File: pgfcoregraphicstate.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgflinewidth=\dimen181
 )
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformations.c
-ode.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransform
+ations.code.tex
 File: pgfcoretransformations.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgf@pt@x=\dimen182
 \pgf@pt@y=\dimen183
 \pgf@pt@temp=\dimen184
 )
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.cod
+e.tex
 File: pgfcorequick.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.c
+ode.tex
 File: pgfcoreobjects.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing.co
-de.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathproce
+ssing.code.tex
 File: pgfcorepathprocessing.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.co
+de.tex
 File: pgfcorearrows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgfarrowsep=\dimen185
 )
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.cod
+e.tex
 File: pgfcoreshade.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgf@max=\dimen186
 \pgf@sys@shading@range@num=\count293
 \pgf@shadingcount=\count294
 )
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.cod
+e.tex
 File: pgfcoreimage.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.
+code.tex
 File: pgfcoreexternal.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgfexternal@startupbox=\box60
-) (c:/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex
+)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.co
+de.tex
 File: pgfcorelayers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.code
-.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretranspare
+ncy.code.tex
 File: pgfcoretransparency.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.
+code.tex
 File: pgfcorepatterns.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-) (c:/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex
+)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.
+tex
 File: pgfcorerdf.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-))) (c:/texlive/2026/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.te
-x
+)))
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.cod
+e.tex
 File: pgfmoduleshapes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgfnodeparttextbox=\box61
 )
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.
+tex
 File: pgfmoduleplot.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
-(c:/texlive/2026/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.st
-y
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
+-0-65.sty
 Package: pgfcomp-version-0-65 2025-08-29 v3.1.11a (3.1.11a)
 \pgf@nodesepstart=\dimen187
 \pgf@nodesepend=\dimen188
 )
-(c:/texlive/2026/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.st
-y
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
+-1-18.sty
 Package: pgfcomp-version-1-18 2025-08-29 v3.1.11a (3.1.11a)
-)) (c:/texlive/2026/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
-(c:/texlive/2026/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex))
-(c:/texlive/2026/texmf-dist/tex/latex/pgf/math/pgfmath.sty
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex))
+ (/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
 Package: pgffor 2025-08-29 v3.1.11a (3.1.11a)
 \pgffor@iter=\dimen189
 \pgffor@skip=\dimen190
 \pgffor@stack=\toks30
 \pgffor@toks=\toks31
 ))
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.cod
+e.tex
 Package: tikz 2025-08-29 v3.1.11a (3.1.11a)
 
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.co
-de.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothan
+dlers.code.tex
 File: pgflibraryplothandlers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgf@plot@mark@count=\count295
 \pgfplotmarksize=\dimen191
@@ -478,7 +500,8 @@ File: pgflibraryplothandlers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \tikznumberofcurrentchild=\count298
 \tikz@fig@count=\count299
 
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.cod
+e.tex
 File: pgfmodulematrix.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgfmatrixcurrentrow=\count300
 \pgfmatrixcurrentcolumn=\count301
@@ -486,38 +509,39 @@ File: pgfmodulematrix.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
 \tikz@expandcount=\count303
 
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
-brarytopaths.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )))
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
-brarypositioning.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibrarypositioning.code.tex
 File: tikzlibrarypositioning.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
-braryshapes.geometric.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibraryshapes.geometric.code.tex
 File: tikzlibraryshapes.geometric.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.g
-eometric.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibrary
+shapes.geometric.code.tex
 File: pgflibraryshapes.geometric.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 ))
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.meta.cod
-e.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.
+meta.code.tex
 File: pgflibraryarrows.meta.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgfarrowinset=\dimen256
 \pgfarrowlength=\dimen257
 \pgfarrowwidth=\dimen258
 \pgfarrowlinewidth=\dimen259
 )
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
-brarycalc.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibrarycalc.code.tex
 File: tikzlibrarycalc.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-) (c:/texlive/2026/texmf-dist/tex/generic/babel/babel.sty
+)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/babel/babel.sty
 Package: babel 2026/02/14 v26.3 The multilingual framework for LuaLaTeX, pdfLaT
 eX and XeLaTeX
 
-(c:/texlive/2026/texmf-dist/tex/generic/babel/luababel.def
+(/usr/local/texlive/2026/texmf-dist/tex/generic/babel/luababel.def
 \bbl@readstream=\read3
 \l@dumylang=\language2
 Package babel Info: Non-standard hyphenation setup on input line 118.
@@ -631,41 +655,43 @@ on input line 2111.
 \U@D=\dimen260
 \l@unhyphenated=\language92
 
-(c:/texlive/2026/texmf-dist/tex/generic/babel/luababel.def
+(/usr/local/texlive/2026/texmf-dist/tex/generic/babel/luababel.def
 \bbl@attr@locale=\attribute4
 )
-(c:/texlive/2026/texmf-dist/tex/generic/babel/locale/invalid/babel-ngerman.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/babel/locale/invalid/babel-nger
+man.tex)
 Package babel Info: Importing font and identification data for ngerman
 (babel)             from babel-de.ini. Reported on input line 4330.
-(c:/texlive/2026/texmf-dist/tex/generic/babel-german/ngerman.ldf
+
+(/usr/local/texlive/2026/texmf-dist/tex/generic/babel-german/ngerman.ldf
 Language: ngerman 
 
-(c:/texlive/2026/texmf-dist/tex/generic/babel-german/babel-german.def
+(/usr/local/texlive/2026/texmf-dist/tex/generic/babel-german/babel-german.def
 Package babel Info: Making " an active character on input line 470.
 
-(c:/texlive/2026/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-de-1996.tex
-UTF-8 German hyphenation patterns (reformed orthography)
-(c:/texlive/2026/texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-de-1996.tex
-
+(/usr/local/texlive/2026/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-de-
+1996.tex UTF-8 German hyphenation patterns (reformed orthography)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-de-
+1996.tex
 German Hyphenation Patterns (Reformed Orthography, 2006) `dehyphn-x' 2024-02-28
- (WL)))))) (c:/texlive/2026/texmf-dist/tex/latex/amsmath/amsmath.sty
+ (WL)))))) (/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2025/07/09 v2.17z AMS math features
 \@mathmargin=\skip66
 
 For additional information on amsmath, use the `?' option.
-(c:/texlive/2026/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2024/11/17 v2.01 AMS text
 
-(c:/texlive/2026/texmf-dist/tex/latex/amsmath/amsgen.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks32
 \ex@=\dimen261
 ))
-(c:/texlive/2026/texmf-dist/tex/latex/amsmath/amsbsy.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen262
 )
-(c:/texlive/2026/texmf-dist/tex/latex/amsmath/amsopn.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
 \inf@bad=\count305
@@ -716,7 +742,7 @@ LaTeX Info: Redefining \Relbar on input line 970.
 LaTeX Info: Redefining \[ on input line 2950.
 LaTeX Info: Redefining \] on input line 2951.
 )
-(c:/texlive/2026/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSa=\mathgroup4
 \symAMSb=\mathgroup5
@@ -724,32 +750,32 @@ LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 )
-(c:/texlive/2026/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
 )
-(c:/texlive/2026/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2026-01-29 v7.01p Hypertext links for LaTeX
 
-(c:/texlive/2026/texmf-dist/tex/generic/iftex/iftex.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2024/12/12 v1.0g TeX engine tests
 )
-(c:/texlive/2026/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
 Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
 )
-(c:/texlive/2026/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
 )
-(c:/texlive/2026/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pdfescape/pdfescape.sty
 Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
 
-(c:/texlive/2026/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
 Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
 )
-(c:/texlive/2026/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
 Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
 )
 
-(c:/texlive/2026/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/infwarerr/infwarerr.sty
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 )
 Package pdftexcmds Info: \pdf@primitive is available.
@@ -757,28 +783,28 @@ Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
 \pdftexcmds@toks=\toks37
 ))
-(c:/texlive/2026/texmf-dist/tex/latex/hycolor/hycolor.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/hycolor/hycolor.sty
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
 )
-(c:/texlive/2026/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2026-01-29 v2.58 Cross-referencing by name of section
 
-(c:/texlive/2026/texmf-dist/tex/latex/refcount/refcount.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/refcount/refcount.sty
 Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 )
-(c:/texlive/2026/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/gettitlestring/gettitlestring.s
+ty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
-
-(c:/texlive/2026/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+ (/usr/local/texlive/2026/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 ))
 \c@section@level=\count317
 )
-(c:/texlive/2026/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
 \etb@tempcnta=\count318
 )
-(c:/texlive/2026/texmf-dist/tex/generic/stringenc/stringenc.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/stringenc/stringenc.sty
 Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
 )
 )
@@ -786,15 +812,15 @@ Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
 \Hy@linkcounter=\count319
 \Hy@pagecounter=\count320
 
-(c:/texlive/2026/texmf-dist/tex/latex/hyperref/pd1enc.def
+(/usr/local/texlive/2026/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2026-01-29 v7.01p Hyperref: PDFDocEncoding definition (HO)
 )
-(c:/texlive/2026/texmf-dist/tex/generic/intcalc/intcalc.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
 \Hy@SavedSpaceFactor=\count321
 
-(c:/texlive/2026/texmf-dist/tex/latex/hyperref/puenc.def
+(/usr/local/texlive/2026/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2026-01-29 v7.01p Hyperref: PDF Unicode definition (HO)
 )
 Package hyperref Info: Hyper figures OFF on input line 4201.
@@ -806,17 +832,17 @@ Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4468.
 \c@Hy@tempcnt=\count322
 
-(c:/texlive/2026/texmf-dist/tex/latex/url/url.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip18
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 4807.
 \XeTeXLinkMargin=\dimen271
 
-(c:/texlive/2026/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 
-(c:/texlive/2026/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
@@ -836,26 +862,25 @@ Package hyperref Info: PDF/A mode OFF on input line 6114.
 )
 Package hyperref Info: Driver (autodetected): hluatex.
 
-(c:/texlive/2026/texmf-dist/tex/latex/hyperref/hluatex.def
+(/usr/local/texlive/2026/texmf-dist/tex/latex/hyperref/hluatex.def
 File: hluatex.def 2026-01-29 v7.01p Hyperref driver for luaTeX
 \Fld@listcount=\count327
 \c@bookmark@seq@number=\count328
 
-(c:/texlive/2026/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 Package: rerunfilecheck 2025-06-21 v1.11 Rerun checks for auxiliary files (HO)
 
-(c:/texlive/2026/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
 Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 84.
 )
 \Hy@SectionHShift=\skip69
-)
-(c:/texlive/2026/texmf-dist/tex/latex/blindtext/blindtext.sty
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/blindtext/blindtext.sty
 Package: blindtext 2012/01/06 V2.0 blindtext-Package
 
-(c:/texlive/2026/texmf-dist/tex/latex/tools/xspace.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/tools/xspace.sty
 Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 )
 \c@blindtext=\count329
@@ -877,17 +902,17 @@ Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 \c@blind@pangramcount=\count345
 \c@blind@pangrammax=\count346
 )
-(c:/texlive/2026/texmf-dist/tex/latex/was/upgreek.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/was/upgreek.sty
 Package: upgreek 2003/02/12 v2.0 (WaS)
 Package upgreek Info: Using Euler Roman for upright Greek on input line 31.
 \symugrf@m=\mathgroup6
 LaTeX Font Info:    Overwriting symbol font `ugrf@m' in version `bold'
 (Font)                  U/eur/m/n --> U/eur/b/n on input line 38.
 )
-(c:/texlive/2026/texmf-dist/tex/latex/tools/tabularx.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/tools/tabularx.sty
 Package: tabularx 2023/12/11 v2.12a `tabularx' package (DPC)
 
-(c:/texlive/2026/texmf-dist/tex/latex/tools/array.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/tools/array.sty
 Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
 \col@sep=\dimen274
 \ar@mcellbox=\box68
@@ -905,7 +930,7 @@ Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
 \TX@cols=\count347
 \TX@ftn=\toks39
 )
-(c:/texlive/2026/texmf-dist/tex/latex/listings/listings.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/listings/listings.sty
 \lst@mode=\count348
 \lst@gtempboxa=\box70
 \lst@token=\toks40
@@ -919,16 +944,16 @@ Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
 \lst@lineno=\count353
 \lst@maxwidth=\dimen284
 
-(c:/texlive/2026/texmf-dist/tex/latex/listings/lstpatch.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/listings/lstpatch.sty
 File: lstpatch.sty 2025/11/14 1.11b (Carsten Heinz)
 )
-(c:/texlive/2026/texmf-dist/tex/latex/listings/lstmisc.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2025/11/14 1.11b (Carsten Heinz)
 \c@lstnumber=\count354
 \lst@skipnumbers=\count355
 \lst@framebox=\box71
 )
-(c:/texlive/2026/texmf-dist/tex/latex/listings/listings.cfg
+(/usr/local/texlive/2026/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2025/11/14 1.11b listings configuration
 ))
 Package: listings 2025/11/14 1.11b (Carsten Heinz)
@@ -939,7 +964,7 @@ Package: listings 2025/11/14 1.11b (Carsten Heinz)
     but found:
         2025/11/14 1.11b (Carsten Heinz)
     so I'm assuming it got fixed.
-(c:/texlive/2026/texmf-dist/tex/latex/enumitem/enumitem.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/enumitem/enumitem.sty
 Package: enumitem 2025/02/06 v3.11 Customized lists
 \labelindent=\skip72
 \enit@outerparindent=\dimen285
@@ -950,10 +975,10 @@ Package: enumitem 2025/02/06 v3.11 Customized lists
 )
 \enitdp@todolist=\count358
 
-(c:/texlive/2026/texmf-dist/tex/generic/soul/soul.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/soul/soul.sty
 Package: soul 2023-06-14 v3.1 Permit use of UTF-8 characters in soul (HO)
 
-(c:/texlive/2026/texmf-dist/tex/generic/soul/soul-ori.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/soul/soul-ori.sty
 Package: soul-ori 2023-06-14 v3.1 letterspacing/underlining (mf)
 \SOUL@word=\toks42
 \SOUL@lasttoken=\toks43
@@ -976,25 +1001,24 @@ Package: soul-ori 2023-06-14 v3.1 letterspacing/underlining (mf)
 \SOUL@uldp=\dimen293
 \SOUL@ulht=\dimen294
 )
-(c:/texlive/2026/texmf-dist/tex/generic/etexcmds/etexcmds.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/etexcmds/etexcmds.sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 ))
-(c:/texlive/2026/texmf-dist/tex/latex/base/alltt.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/base/alltt.sty
 Package: alltt 2024/07/07 v2.0g defines alltt environment
 )
-(c:/texlive/2026/texmf-dist/tex/latex/acro/acro.sty
-(c:/texlive/2026/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
-(c:/texlive/2026/texmf-dist/tex/latex/l3kernel/expl3.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/acro/acro.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/l3kernel/expl3.sty
 Package: expl3 2026-01-19 L3 programming layer (loader) 
 
-(c:/texlive/2026/texmf-dist/tex/latex/l3backend/l3backend-luatex.def
+(/usr/local/texlive/2026/texmf-dist/tex/latex/l3backend/l3backend-luatex.def
 File: l3backend-luatex.def 2025-10-09 L3 backend support: PDF output (LuaTeX)
 \l__color_backend_stack_int=\count363
 Inserting `l3color' in `luaotfload.parse_color'.))
 Package: l3keys2e 2025-10-09 LaTeX2e option processing using LaTeX3 keys
 )
 Package: acro 2022/04/01 v3.8 typeset acronyms and other abbreviations (CN)
-
 
 Package acro Warning: Unknown option `tooltip'
 (acro)                I don't know the option `tooltip'. Please make sure
@@ -1023,7 +1047,7 @@ Loading module `list' ...
 Loading module `pages' ...
 \l__acro_pages_seq_threshold_int=\count373
 Loading module `locale' ...
-(c:/texlive/2026/texmf-dist/tex/latex/translations/translations.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/translations/translations.sty
 Package: translations 2022/02/05 v1.12 internationalization of LaTeX2e packages
  (CN)
 )
@@ -1033,10 +1057,10 @@ Loading module `definitions' ...
 Loading module `upgrade' ...
 )
 ==> First Aid for acro.sty applied!
-(c:/texlive/2026/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
 
-(c:/texlive/2026/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 )
 \Gm@cnth=\count374
@@ -1052,17 +1076,17 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 \Gm@layoutvoffset=\dimen302
 \Gm@dimlist=\toks48
 )
-(c:/texlive/2026/texmf-dist/tex/latex/biblatex/biblatex.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/biblatex.sty
 Package: biblatex 2025/07/10 v3.21 programmable bibliographies (PK/MW)
 
-(c:/texlive/2026/texmf-dist/tex/latex/logreq/logreq.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/logreq/logreq.sty
 Package: logreq 2010/08/04 v1.0 xml request logger
 \lrq@indent=\count377
 
-(c:/texlive/2026/texmf-dist/tex/latex/logreq/logreq.def
+(/usr/local/texlive/2026/texmf-dist/tex/latex/logreq/logreq.def
 File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
 ))
-(c:/texlive/2026/texmf-dist/tex/latex/base/ifthen.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
 )
 \c@tabx@nest=\count378
@@ -1125,7 +1149,7 @@ Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
 Package biblatex Info: Trying to load biblatex default data model...
 Package biblatex Info: ... file 'blx-dm.def' found.
 
-(c:/texlive/2026/texmf-dist/tex/latex/biblatex/blx-dm.def
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/blx-dm.def
 File: blx-dm.def 2025/07/10 v3.21 biblatex datamodel (PK/MW)
 )
 Package biblatex Info: Trying to load biblatex style data model...
@@ -1217,17 +1241,17 @@ Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
 Package biblatex Info: Trying to load enhanced support for Unicode engines...
 Package biblatex Info: ... file 'blx-unicode.def' found.
 
-(c:/texlive/2026/texmf-dist/tex/latex/biblatex/blx-unicode.def)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/blx-unicode.def)
 Package biblatex Info: Trying to load compatibility code...
 Package biblatex Info: ... file 'blx-compat.def' found.
 
-(c:/texlive/2026/texmf-dist/tex/latex/biblatex/blx-compat.def
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/blx-compat.def
 File: blx-compat.def 2025/07/10 v3.21 biblatex compatibility (PK/MW)
 )
 Package biblatex Info: Trying to load generic definitions...
 Package biblatex Info: ... file 'biblatex.def' found.
 
-(c:/texlive/2026/texmf-dist/tex/latex/biblatex/biblatex.def
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/biblatex.def
 File: biblatex.def 2025/07/10 v3.21 biblatex compatibility (PK/MW)
 \c@textcitecount=\count492
 \c@textcitetotal=\count493
@@ -1246,27 +1270,26 @@ File: biblatex.def 2025/07/10 v3.21 biblatex compatibility (PK/MW)
 Package biblatex Info: Trying to load bibliography style 'ieee-alphabetic'...
 Package biblatex Info: ... file 'ieee-alphabetic.bbx' found.
 
-(c:/texlive/2026/texmf-dist/tex/latex/biblatex-ieee/ieee-alphabetic.bbx
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex-ieee/ieee-alphabetic.bbx
 File: ieee-alphabetic.bbx 2025-08-01 v1.4f biblatex bibliography style
 Package biblatex Info: Trying to load bibliography style 'ieee'...
 Package biblatex Info: ... file 'ieee.bbx' found.
-
-(c:/texlive/2026/texmf-dist/tex/latex/biblatex-ieee/ieee.bbx
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex-ieee/ieee.bbx
 File: ieee.bbx 2025-08-01 v1.4f biblatex bibliography style
 Package biblatex Info: Trying to load bibliography style 'numeric-comp'...
 Package biblatex Info: ... file 'numeric-comp.bbx' found.
 
-(c:/texlive/2026/texmf-dist/tex/latex/biblatex/bbx/numeric-comp.bbx
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/bbx/numeric-comp.bbx
 File: numeric-comp.bbx 2025/07/10 v3.21 biblatex bibliography style (PK/MW)
 Package biblatex Info: Trying to load bibliography style 'numeric'...
 Package biblatex Info: ... file 'numeric.bbx' found.
 
-(c:/texlive/2026/texmf-dist/tex/latex/biblatex/bbx/numeric.bbx
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/bbx/numeric.bbx
 File: numeric.bbx 2025/07/10 v3.21 biblatex bibliography style (PK/MW)
 Package biblatex Info: Trying to load bibliography style 'standard'...
 Package biblatex Info: ... file 'standard.bbx' found.
 
-(c:/texlive/2026/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
 File: standard.bbx 2025/07/10 v3.21 biblatex bibliography style (PK/MW)
 \c@bbx:relatedcount=\count501
 \c@bbx:relatedtotal=\count502
@@ -1274,12 +1297,11 @@ File: standard.bbx 2025/07/10 v3.21 biblatex bibliography style (PK/MW)
 Package biblatex Info: Trying to load citation style 'ieee-alphabetic'...
 Package biblatex Info: ... file 'ieee-alphabetic.cbx' found.
 
-(c:/texlive/2026/texmf-dist/tex/latex/biblatex-ieee/ieee-alphabetic.cbx
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex-ieee/ieee-alphabetic.cbx
 File: ieee-alphabetic.cbx 2025-08-01 v1.4f biblatex citation style
 Package biblatex Info: Trying to load citation style 'alphabetic'...
 Package biblatex Info: ... file 'alphabetic.cbx' found.
-
-(c:/texlive/2026/texmf-dist/tex/latex/biblatex/cbx/alphabetic.cbx
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/cbx/alphabetic.cbx
 File: alphabetic.cbx 2025/07/10 v3.21 biblatex citation style (PK/MW)
 Package biblatex Info: Redefining '\cite'.
 Package biblatex Info: Redefining '\parencite'.
@@ -1295,7 +1317,7 @@ Package biblatex Info: Redefining '\smartcites'.
 Package biblatex Info: Trying to load configuration file...
 Package biblatex Info: ... file 'biblatex.cfg' found.
 
-(c:/texlive/2026/texmf-dist/tex/latex/biblatex/biblatex.cfg
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/biblatex.cfg
 File: biblatex.cfg 
 )
 Package biblatex Info: LuaTeX detected.
@@ -1306,13 +1328,13 @@ Package biblatex Info: ... and expl3
 (biblatex)             is new enough (at least 2020/04/06),
 (biblatex)             setting 'casechanger=expl3'.
 
-(c:/texlive/2026/texmf-dist/tex/latex/biblatex/blx-case-expl3.sty
-(c:/texlive/2026/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/blx-case-expl3.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
 Package: xparse 2025-10-09 L3 Experimental document command parser
 )
 Package: blx-case-expl3 2025/07/10 v3.21 expl3 case changing code for biblatex
 ))
-(c:/texlive/2026/texmf-dist/tex/latex/base/makeidx.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/base/makeidx.sty
 Package: makeidx 2021/10/04 v1.0m Standard LaTeX package
 )
 \@indexfile=\write5
@@ -1320,14 +1342,14 @@ Package: makeidx 2021/10/04 v1.0m Standard LaTeX package
 \openout5 = Benutzerhandbuch.idx
 
 Writing index file Benutzerhandbuch.idx
-(c:/texlive/2026/texmf-dist/tex/latex/nomencl/nomencl.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/nomencl/nomencl.sty
 Package: nomencl 2021/11/10 v5.6 Nomenclature package
 
-(c:/texlive/2026/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/xkeyval/xkeyval.sty
 Package: xkeyval 2025/11/04 v2.10 package option processing (HA)
 
-(c:/texlive/2026/texmf-dist/tex/generic/xkeyval/xkeyval.tex
-(c:/texlive/2026/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/xkeyval/xkvutils.tex
 \XKV@toks=\toks49
 \XKV@tempa@toks=\toks50
 \XKV@tempb@toks=\toks51
@@ -1351,20 +1373,19 @@ ine 72.
 LaTeX Warning: \include should only be used after \begin{document} on input lin
 e 24.
 
-(./General/Commands.tex
+(./General/commands.tex
 \c@fehlernummer=\count504
 )
 
 LaTeX Warning: \include should only be used after \begin{document} on input lin
 e 25.
 
-(./General/TikzDefs.tex
-(c:/texlive/2026/texmf-dist/tex/latex/pgfplots/pgfplots.sty
-(c:/texlive/2026/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex)
+(./General/tikzdefs.tex
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgfplots/pgfplots.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex)
 Package: pgfplots 2025/08/14 v1.18.2 Data Visualization (1.18.2)
-
-(c:/texlive/2026/texmf-dist/tex/generic/pgfplots/pgfplots.code.tex
-(c:/texlive/2026/texmf-dist/tex/generic/pgfplots/pgfplotscore.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/pgfplots.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/pgfplotscore.code.tex
 Package pgfplots info on input line 124: Initializing with LUA version Lua 5.3
 \pgfplots@luabackend@table=\catcodetable17
 \t@pgfplots@toka=\toks52
@@ -1374,68 +1395,83 @@ Package pgfplots info on input line 124: Initializing with LUA version Lua 5.3
 \c@pgfplots@coordindex=\count505
 \c@pgfplots@scanlineindex=\count506
 
-(c:/texlive/2026/texmf-dist/tex/generic/pgfplots/sys/pgfplotssysgeneric.code.te
-x))
-(c:/texlive/2026/texmf-dist/tex/generic/pgfplots/libs/pgfplotslibrary.code.tex)
-(c:/texlive/2026/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfs
-upp_loader.code.tex
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu.code.tex)
-(c:/texlive/2026/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfs
-upp_pgfutil-common-lists.tex)
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/libraries/luamath/pgflibraryluamath
-.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/sys/pgfplotssysgeneric
+.code.tex))
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/libs/pgfplotslibrary.c
+ode.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplot
+soldpgfsupp_loader.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu.cod
+e.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplot
+soldpgfsupp_pgfutil-common-lists.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/libraries/luamath/pgflibrar
+yluamath.code.tex)
 Package pgfplots info on input line 292: luamath library shipped with pgf 3.1.1
 1a is up-to-date
 )
-(c:/texlive/2026/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.code
+.tex
 Package pgfplots info on input line 82: Found new luatex: initializing lua comm
 ands instead of write18 (shell-escape)
 
-(c:/texlive/2026/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsliststru
-cture.code.tex)
-(c:/texlive/2026/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsliststru
-ctureext.code.tex)
-(c:/texlive/2026/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsarray.co
-de.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/liststructure/pgfplots
+liststructure.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/liststructure/pgfplots
+liststructureext.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/liststructure/pgfplots
+array.code.tex
 \c@pgfplotsarray@tmp=\count507
 )
-(c:/texlive/2026/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsmatrix.c
-ode.tex)
-(c:/texlive/2026/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstableshared.c
-ode.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/liststructure/pgfplots
+matrix.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstable
+shared.code.tex
 \c@pgfplotstable@counta=\count508
 \t@pgfplotstable@a=\toks55
 )
-(c:/texlive/2026/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsdeque.co
-de.tex)
-(c:/texlive/2026/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.code.tex
-(c:/texlive/2026/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.data.code.
-tex))
-(c:/texlive/2026/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.verb.code.te
-x)
-(c:/texlive/2026/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplots.surfsh
-ading.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/liststructure/pgfplots
+deque.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.co
+de.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.da
+ta.code.tex))
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.verb
+.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplot
+s.surfshading.code.tex
 \c@pgfplotslibrarysurf@no=\count509
 
-(c:/texlive/2026/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots.surfsha
-ding.pgfsys-luatex.def)))
-(c:/texlive/2026/texmf-dist/tex/generic/pgfplots/util/pgfplotscolormap.code.tex
-(c:/texlive/2026/texmf-dist/tex/generic/pgfplots/util/pgfplotscolor.code.tex))
-(c:/texlive/2026/texmf-dist/tex/generic/pgfplots/pgfplotsstackedplots.code.tex) (c:/texlive/2026/texmf-dist/tex/generic/pgfplots/pgfplotsplothandlers.code.tex
-(c:/texlive/2026/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplothandler.code.t
-ex
-(c:/texlive/2026/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplotimage.code.tex
-))) (c:/texlive/2026/texmf-dist/tex/generic/pgfplots/pgfplots.scaling.code.tex)
-(c:/texlive/2026/texmf-dist/tex/generic/pgfplots/pgfplotscoordprocessing.code.t
-ex)
-(c:/texlive/2026/texmf-dist/tex/generic/pgfplots/pgfplots.errorbars.code.tex)
-(c:/texlive/2026/texmf-dist/tex/generic/pgfplots/pgfplots.markers.code.tex)
-(c:/texlive/2026/texmf-dist/tex/generic/pgfplots/pgfplotsticks.code.tex)
-(c:/texlive/2026/texmf-dist/tex/generic/pgfplots/pgfplots.paths.code.tex)
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
-brarydecorations.code.tex
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.code.t
-ex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots
+.surfshading.pgfsys-luatex.def)))
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/util/pgfplotscolormap.
+code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/util/pgfplotscolor.cod
+e.tex))
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/pgfplotsstackedplots.c
+ode.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/pgfplotsplothandlers.c
+ode.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplothandle
+r.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplotimage.
+code.tex)))
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/pgfplots.scaling.code.
+tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/pgfplotscoordprocessin
+g.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/pgfplots.errorbars.cod
+e.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/pgfplots.markers.code.
+tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/pgfplotsticks.code.tex
+)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/pgfplots.paths.code.te
+x)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibrarydecorations.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/modules/pgfmoduledecoration
+s.code.tex
 \pgfdecoratedcompleteddistance=\dimen306
 \pgfdecoratedremainingdistance=\dimen307
 \pgfdecoratedinputsegmentcompleteddistance=\dimen308
@@ -1447,16 +1483,16 @@ ex
 )
 \tikz@lib@dec@box=\box73
 )
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
-brarydecorations.pathmorphing.code.tex
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydec
-orations.pathmorphing.code.tex))
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
-brarydecorations.pathreplacing.code.tex
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydec
-orations.pathreplacing.code.tex))
-(c:/texlive/2026/texmf-dist/tex/generic/pgfplots/libs/tikzlibrarypgfplots.conto
-urlua.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibrarydecorations.pathmorphing.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/libraries/decorations/pgfli
+brarydecorations.pathmorphing.code.tex))
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibrarydecorations.pathreplacing.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/libraries/decorations/pgfli
+brarydecorations.pathreplacing.code.tex))
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/libs/tikzlibrarypgfplo
+ts.contourlua.code.tex)
 \pgfplots@numplots=\count511
 \pgfplots@xmin@reg=\dimen313
 \pgfplots@xmax@reg=\dimen314
@@ -1465,55 +1501,56 @@ urlua.code.tex)
 \pgfplots@zmin@reg=\dimen317
 \pgfplots@zmax@reg=\dimen318
 )
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
-braryplotmarks.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibraryplotmarks.code.tex
 File: tikzlibraryplotmarks.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmarks.code.
-tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmar
+ks.code.tex
 File: pgflibraryplotmarks.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-))) (c:/texlive/2026/texmf-dist/tex/latex/jknapltx/mathrsfs.sty
+)))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/jknapltx/mathrsfs.sty
 Package: mathrsfs 1996/01/01 Math RSFS package v1.0 (jk)
 \symrsfs=\mathgroup7
 )
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
-braryshapes.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibraryshapes.code.tex
 File: tikzlibraryshapes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
-braryshapes.misc.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibraryshapes.misc.code.tex
 File: tikzlibraryshapes.misc.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.m
-isc.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibrary
+shapes.misc.code.tex
 File: pgflibraryshapes.misc.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 ))
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
-braryshapes.symbols.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibraryshapes.symbols.code.tex
 File: tikzlibraryshapes.symbols.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.s
-ymbols.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibrary
+shapes.symbols.code.tex
 File: pgflibraryshapes.symbols.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 ))
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
-braryshapes.arrows.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibraryshapes.arrows.code.tex
 File: tikzlibraryshapes.arrows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.a
-rrows.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibrary
+shapes.arrows.code.tex
 File: pgflibraryshapes.arrows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 ))
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
-braryshapes.callouts.code.tex
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.c
-allouts.code.tex))
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
-braryshapes.multipart.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibraryshapes.callouts.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibrary
+shapes.callouts.code.tex))
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibraryshapes.multipart.code.tex
 File: tikzlibraryshapes.multipart.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.m
-ultipart.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibrary
+shapes.multipart.code.tex
 File: pgflibraryshapes.multipart.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgfnodepartlowerbox=\box74
 \pgfnodeparttwobox=\box75
@@ -1536,36 +1573,37 @@ File: pgflibraryshapes.multipart.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgfnodepartsixbox=\box92
 \pgfnodepartfivebox=\box93
 )))
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
-braryarrows.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibraryarrows.code.tex
 File: tikzlibraryarrows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.
+code.tex
 File: pgflibraryarrows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \arrowsize=\dimen319
 ))
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
-braryangles.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibraryangles.code.tex
 File: tikzlibraryangles.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
-braryquotes.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibraryquotes.code.tex
 File: tikzlibraryquotes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
-brarybabel.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibrarybabel.code.tex
 File: tikzlibrarybabel.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
-brarymath.code.tex
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
-braryfpu.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibrarymath.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibraryfpu.code.tex)
 \tikz@math@for@depth=\count512
 \tikz@math@dimen=\dimen320
 \tikz@math@toks=\toks56
 )
-(c:/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
-brarybackgrounds.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibrarybackgrounds.code.tex
 File: tikzlibrarybackgrounds.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgf@layerbox@background=\box94
 \pgf@layerboxsaved@background=\box95
@@ -1631,7 +1669,7 @@ File: tikzlibrarybackgrounds.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \c@g@acro@vpu@int=\count571
 )
 (./General/Hyphenations.tex
-(c:/texlive/2026/texmf-dist/tex/latex/microtype/microtype.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/microtype/microtype.sty
 Package: microtype 2026/03/01 v3.2d Micro-typographical refinements (RS)
 \MT@toks=\toks57
 \MT@tempbox=\box96
@@ -1646,7 +1684,7 @@ LaTeX Info: Redefining \microtypecontext on input line 2053.
 LaTeX Info: Redefining \textmicrotypecontext on input line 2070.
 \MT@listname@count=\count573
 
-(c:/texlive/2026/texmf-dist/tex/latex/microtype/microtype-luatex.def
+(/usr/local/texlive/2026/texmf-dist/tex/latex/microtype/microtype-luatex.def
 File: microtype-luatex.def 2026/03/01 v3.2d Definitions specific to luatex (RS)
 
 Lua module: microtype 2026/03/01 v3.2d microtype module.
@@ -1657,7 +1695,7 @@ LaTeX Info: Redefining \lslig on input line 779.
 )
 Package microtype Info: Loading configuration file microtype.cfg.
 
-(c:/texlive/2026/texmf-dist/tex/latex/microtype/microtype.cfg
+(/usr/local/texlive/2026/texmf-dist/tex/latex/microtype/microtype.cfg
 File: microtype.cfg 2026/03/01 v3.2d microtype main configuration file (RS)
 )
 LaTeX Info: Redefining \microtypesetup on input line 3065.
@@ -1671,10 +1709,10 @@ Class scrbook Info: loading recommended package `bookmark'.
 (scrbook)             \usepackage{bookmark}
 (scrbook)           before \begin{document} on input line 33.
 
-(c:/texlive/2026/texmf-dist/tex/latex/bookmark/bookmark.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/bookmark/bookmark.sty
 Package: bookmark 2023-12-10 v1.31 PDF bookmarks (HO)
 
-(c:/texlive/2026/texmf-dist/tex/latex/bookmark/bkm-pdftex.def
+(/usr/local/texlive/2026/texmf-dist/tex/latex/bookmark/bkm-pdftex.def
 File: bkm-pdftex.def 2023-12-10 v1.31 bookmark driver for pdfTeX and luaTeX (HO
 )
 \BKM@id=\count574
@@ -1716,7 +1754,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 33.
 LaTeX Font Info:    ... okay on input line 33.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 33.
 LaTeX Font Info:    ... okay on input line 33.
- (c:/texlive/2026/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+ (/usr/local/texlive/2026/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count577
 \scratchdimen=\dimen322
@@ -1729,12 +1767,12 @@ LaTeX Font Info:    ... okay on input line 33.
 \MPnumerator=\count581
 \makeMPintoPDFobject=\count582
 \everyMPtoPDFconversion=\toks60
-) (c:/texlive/2026/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
 
-(c:/texlive/2026/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+(/usr/local/texlive/2026/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
@@ -1743,8 +1781,8 @@ Package hyperref Info: Link coloring OFF on input line 33.
 Package tocbasic Info: setting babel extension for `lol' on input line 33.
 \scr@dte@lstlisting@maxnumwidth=\skip98
 
-(c:/texlive/2026/texmf-dist/tex/latex/translations/translations-basic-dictionar
-y-german.trsl
+(/usr/local/texlive/2026/texmf-dist/tex/latex/translations/translations-basic-d
+ictionary-german.trsl
 File: translations-basic-dictionary-german.trsl (german translation file `trans
 lations-basic-dictionary')
 )
@@ -1788,18 +1826,18 @@ or `german'. on input line 33.
 
 Package biblatex Info: Trying to load language 'ngerman'...
 Package biblatex Info: ... file 'ngerman.lbx' found.
-(c:/texlive/2026/texmf-dist/tex/latex/biblatex/lbx/ngerman.lbx
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/lbx/ngerman.lbx
 File: ngerman.lbx 2025/07/10 v3.21 biblatex localization (PK/MW)
 Package biblatex Info: Trying to load language 'german'...
 Package biblatex Info: ... file 'german.lbx' found.
 
-(c:/texlive/2026/texmf-dist/tex/latex/biblatex/lbx/german.lbx
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/lbx/german.lbx
 File: german.lbx 2025/07/10 v3.21 biblatex localization (PK/MW)
 )
 Package biblatex Info: Trying to load language 'german'...
 Package biblatex Info: ... file 'german.lbx' found.
 
-(c:/texlive/2026/texmf-dist/tex/latex/biblatex/lbx/german.lbx
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/lbx/german.lbx
 File: german.lbx 2025/07/10 v3.21 biblatex localization (PK/MW)
 ))
 Package biblatex Info: LuaTeX detected.
@@ -1839,13 +1877,13 @@ Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of spacing.
 Package microtype Info: No adjustment of kerning.
 Package microtype Info: Redefining babel's language switching commands.
-(c:/texlive/2026/texmf-dist/tex/latex/microtype/mt-cmr.cfg
+(/usr/local/texlive/2026/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
 \g__cctab_next_cctab=\catcodetable18
 
-(./Chapters/de/TitlePage.tex
+(./Chapters/de/Titlepage.tex
 <General/Logo.png, id=7, 228.855pt x 77.088pt>
 File: General/Logo.png Graphic file (type png)
 <use General/Logo.png>
@@ -1853,7 +1891,8 @@ Package luatex.def Info: General/Logo.png  used on input line 13.
 (luatex.def)             Requested size: 199.16928pt x 67.0907pt.
 LaTeX Font Info:    Trying to load font information for T1+lmss on input line 2
 1.
- (c:/texlive/2026/texmf-dist/tex/latex/lm/t1lmss.fd
+
+(/usr/local/texlive/2026/texmf-dist/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 Package microtype Info: Loading generic protrusion settings for font family
@@ -1862,34 +1901,35 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Trying to load font information for U+msa on input line 42.
 
- (c:/texlive/2026/texmf-dist/tex/latex/amsfonts/umsa.fd
+
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-(c:/texlive/2026/texmf-dist/tex/latex/microtype/mt-msa.cfg
+(/usr/local/texlive/2026/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 42.
 
 
-(c:/texlive/2026/texmf-dist/tex/latex/amsfonts/umsb.fd
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-(c:/texlive/2026/texmf-dist/tex/latex/microtype/mt-msb.cfg
+(/usr/local/texlive/2026/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-(c:/texlive/2026/texmf-dist/tex/latex/microtype/mt-eur.cfg
+(/usr/local/texlive/2026/texmf-dist/tex/latex/microtype/mt-eur.cfg
 File: mt-eur.cfg 2006/07/31 v1.1 microtype config. file: AMS Euler Roman (RS)
 )
 LaTeX Font Info:    Trying to load font information for U+rsfs on input line 42
 .
 
-(c:/texlive/2026/texmf-dist/tex/latex/jknapltx/ursfs.fd
+(/usr/local/texlive/2026/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 4
 7.
 
-(c:/texlive/2026/texmf-dist/tex/latex/lm/t1lmtt.fd
+(/usr/local/texlive/2026/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 Package microtype Info: Loading generic protrusion settings for font family
@@ -1900,8 +1940,8 @@ Package microtype Info: Loading generic protrusion settings for font family
 
 
 
-{c:/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map}<./General/Logo.pn
-g>])
+{/usr/local/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map}<./General
+/Logo.png>])
 Package tocbasic Info: character protrusion at toc deactivated on input line 41
 .
 
@@ -1992,13 +2032,13 @@ chapter 4.
 chapter 5.
 [9]
 <General/BenutzeroberflaecheBilder/BenutzeroberflaecheSystemFaehrtHoch.png, id=
-170, 1000.73875pt x 598.235pt>
+168, 1000.73875pt x 598.235pt>
 File: General/BenutzeroberflaecheBilder/BenutzeroberflaecheSystemFaehrtHoch.png
  Graphic file (type png)
 <use General/BenutzeroberflaecheBilder/BenutzeroberflaecheSystemFaehrtHoch.png>
 
 Package luatex.def Info: General/BenutzeroberflaecheBilder/BenutzeroberflaecheS
-ystemFaehrtHoch.png  used on input line 55.
+ystemFaehrtHoch.png  used on input line 52.
 (luatex.def)             Requested size: 345.98685pt x 206.82945pt.
 ) (./Chapters/de/Functions.tex
 Package babel Info: 'ngerman' activates 'german' shorthands.
@@ -2030,7 +2070,7 @@ chapter 8.
 ]
 chapter 9.
 (./General/FlussdiagrammFehlermeldungen.tex)
-<General/BenutzeroberflaecheBilder/BenutzeroberflaecheSystemFehler.png, id=208,
+<General/BenutzeroberflaecheBilder/BenutzeroberflaecheSystemFehler.png, id=206,
  1000.73875pt x 598.235pt>
 File: General/BenutzeroberflaecheBilder/BenutzeroberflaecheSystemFehler.png Gra
 phic file (type png)
@@ -2045,7 +2085,7 @@ strom-los ma-chen (USB-Verbindung
  []
 
 [17]) (./Chapters/de/AddOns.tex [18<./General/BenutzeroberflaecheBilder/Benutzer
-oberflaecheSystemfehler.png>]
+oberflaecheSystemFehler.png>]
 chapter 10.
 ) [19
 
@@ -2072,35 +2112,37 @@ Package logreq Info: Writing requests to 'Benutzerhandbuch.run.xml'.
 )
 
 Here is how much of LuaTeX's memory you used:
- 61556 strings out of 476076
+ 61555 strings out of 476076
  100000,2848258 words of node,token memory allocated
  758 words of node memory still in use:
    8 hlist, 2 vlist, 2 rule, 1 local_par, 4 glue, 5 kern, 1 penalty, 4 glyph, 31
  attribute, 77 glue_spec, 16 attribute_list, 5 write nodes
-   avail lists: 2:6428,3:2146,4:630,5:231,6:80,7:3750,8:65,9:419,10:14,11:378,12
+   avail lists: 2:6428,3:2146,4:628,5:245,6:80,7:3729,8:27,9:419,10:14,11:398,12
 :2
- 82459 multiletter control sequences out of 65536+600000
+ 82458 multiletter control sequences out of 65536+600000
  68 fonts using 4347767 bytes
  117i,10n,106p,11218b,2481s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{c:/texlive/2026/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/texlive/2026/texmf-
-dist/fonts/enc/dvips/lm/lm-ts1.enc}<c:/texlive/2026/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmmi12.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmr12.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.
-pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/tex
-live/2026/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/texlive/2026/texmf-dis
-t/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2026/texmf-dist/fonts/type1/publi
-c/lm/lmr10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/t
-exlive/2026/texmf-dist/fonts/type1/public/lm/lmri12.pfb><c:/texlive/2026/texmf-d
-ist/fonts/type1/public/lm/lmro12.pfb><c:/texlive/2026/texmf-dist/fonts/type1/pub
-lic/lm/lmro17.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmss10.pfb><
-c:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmss12.pfb><c:/texlive/2026/tex
-mf-dist/fonts/type1/public/lm/lmss17.pfb><c:/texlive/2026/texmf-dist/fonts/type1
-/public/lm/lmssbx10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmtt10
-.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
-Output written on Benutzerhandbuch.pdf (27 pages, 448564 bytes).
+{/usr/local/texlive/2026/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/tex
+live/2026/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}</usr/local/texlive/2026/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2026/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2026/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2026/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2026/texmf-dist/fon
+ts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/pu
+blic/lm/lmbx12.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmr
+10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr
+/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/local/texl
+ive/2026/texmf-dist/fonts/type1/public/lm/lmro12.pfb></usr/local/texlive/2026/te
+xmf-dist/fonts/type1/public/lm/lmro17.pfb></usr/local/texlive/2026/texmf-dist/fo
+nts/type1/public/lm/lmss10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/p
+ublic/lm/lmss12.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lm
+ss17.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb>
+</usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/local
+/texlive/2026/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
+Output written on Benutzerhandbuch.pdf (27 pages, 445796 bytes).
 
-PDF statistics: 375 PDF objects out of 1000 (max. 8388607)
- 319 compressed objects within 4 object streams
+PDF statistics: 373 PDF objects out of 1000 (max. 8388607)
+ 317 compressed objects within 4 object streams
  72 named destinations out of 1000 (max. 1048576)
  232 words of extra memory for PDF output out of 10000 (max. 100000000)
 

@@ -2,58 +2,138 @@ import processing.serial.*;
 
 /**
  * @file RadarVisualisierung.pde
- * @brief High-End Radarbild exakt kalibriert auf einen Schwenkbereich von 120 Grad (30° bis 150°).
+ * @brief Ausfallsicheres Radar-UI mit Live-Watchdog gegen Kabelbruch und Trennung im Betrieb.
  */
 
 Serial myPort;
-String systemState = "TESTING";
-String errorMessage = "";
+String systemState = "BOOT";        
+String errorMessage = "";           
+String portName = "/dev/cu.usbserial-A106PYCP"; 
 
 float angle = 90;
 float distance = 0;
 
-int radarRadius = 400;
+int radarRadius;                    
 int maxDistanceCm = 40;
-
 float[] radarWerte = new float[181]; 
 
+int lastConnectionCheck = 0;        
+int lastReconnectAttempt = 0;       
+int lastDataReceivedTime = 0;       ///< Zeitstempel des letzten gültigen Datenpakets (Watchdog)
+
 void setup() {
-  size(1000, 650); 
+  fullScreen();
   smooth();
+  
+  radarRadius = int(height * 0.65);
   for (int i = 0; i <= 180; i++) { radarWerte[i] = 0; }
   
+  connectSerial();
+}
+
+void connectSerial() {
   try {
-    String portName = "/dev/cu.usbserial-A106PYCP"; 
     myPort = new Serial(this, portName, 9600);
     myPort.bufferUntil('\n');
+    systemState = "BOOT"; 
+    lastDataReceivedTime = millis(); // Watchdog beim Verbinden zurücksetzen
   } catch (Exception e) {
     systemState = "ERR_PORT";
-    errorMessage = "Port nicht gefunden!";
+    errorMessage = "Sicherstellen, dass der Computer mit dem Radarsystem verbunden ist!";
   }
 }
 
 void draw() {
+  // ==========================================
+  // LIVE-WATCHDOG: Wenn im Zustand OK länger als 500ms keine Daten kommen -> Verbindungsverlust!
+  // ==========================================
+  if (systemState.equals("OK") && (millis() - lastDataReceivedTime > 500)) {
+    systemState = "ERR_PORT";
+    try {
+      myPort.stop(); // Alten, toten Port sauber schließen
+    } catch (Exception e) {}
+  }
+
+  // ==========================================
+  // SCREEN 1 & 2: PORT-FEHLER ODER HARDWARE-FEHLER (ROTER SCREEN)
+  // ==========================================
+  if (systemState.equals("ERR_PORT") || systemState.equals("ERR_SENSOR")) {
+    background(130, 0, 0); 
+    textAlign(CENTER, CENTER);
+    
+    fill(255);
+    textSize(height * 0.07); 
+    text("SYSTEMFEHLER", width/2, height * 0.35);
+    
+    textSize(height * 0.035);
+    if (systemState.equals("ERR_PORT")) {
+      text("Sicherstellen, dass der Computer mit dem Radarsystem verbunden ist!", width/2, height * 0.52);
+      
+      // Versuche alle 2 Sekunden im Hintergrund neu zu verbinden
+      if (millis() - lastReconnectAttempt > 2000) {
+        connectSerial();
+        lastReconnectAttempt = millis();
+      }
+    } else {
+      text("Ultraschallsensor liefert keine Echosignale!", width/2, height * 0.52);
+    }
+    
+    fill(255, 255, 0); 
+    textSize(height * 0.032);
+    text("Anlage überprüfen und Arduino neustarten.", width/2, height * 0.65);
+    return; 
+  }
+
+  // ==========================================
+  // SCREEN 3: VERBINDUNGSAUFBAU & HARDWARE-HOCHFAHREN (GRAUER SCREEN)
+  // ==========================================
+  if (systemState.equals("BOOT") || systemState.equals("TESTING")) {
+    background(30, 30, 30); 
+    textAlign(CENTER, CENTER);
+    
+    fill(255, 200, 0); 
+    textSize(height * 0.06);
+    text("System fährt hoch...", width/2, height * 0.45);
+    
+    fill(255, 180, 0, 180);
+    textSize(height * 0.035);
+    text("Hardware-Selbsttest wird durchgeführt.", width/2, height * 0.55);
+    
+    if (systemState.equals("BOOT") && millis() - lastConnectionCheck > 200) {
+      try {
+        myPort.write("P:START\n");
+      } catch (Exception e) {
+        systemState = "ERR_PORT";
+      }
+      lastConnectionCheck = millis();
+    }
+    return; 
+  }
+
+  // ==========================================
+  // SCREEN 4: DER NORMALE LIVE-RADAR-MODUS (GRÜNER SCREEN)
+  // ==========================================
   background(6, 12, 6); 
+  textAlign(LEFT, BASELINE); 
   
   pushMatrix();
-  translate(width/2, height - 70);
+  translate(width/2, height - 80);
   
-  // 1. Grid-Kreise zeichnen & beschriften (Exakt im 120-Grad-Bogen)
+  // Grid-Kreise zeichnen & beschriften
   strokeWeight(1);
-  for (int r = 100; r <= radarRadius; r += 100) {
+  for (int r = int(radarRadius*0.25); r <= radarRadius; r += int(radarRadius*0.25)) {
     stroke(0, 100, 0, 150);
     noFill();
-    // Bogen mathematisch begrenzt von 30° bis 150°
-    arc(0, 0, r*2, r*2, radians(30 - 180), radians(155 - 180)); 
+    arc(0, 0, r*2, r*2, radians(30 - 180), radians(150 - 180)); 
     
     fill(0, 180, 0);
-    textSize(12);
+    textSize(13);
     int cmText = int(map(r, 0, radarRadius, 0, maxDistanceCm));
     text(cmText + " cm", 10, -r + 5);
   }
   
-  // 2. Winkel-Linien & Grad-Beschriftungen zeichnen (Kalibriert auf den 120°-Ausschnitt)
-  int[] winkelCheck = {30, 60, 90, 120, 150}; // Äußere Grenzen bei 30° und 150°
+  // Winkel-Linien & Grad-Beschriftungen
+  int[] winkelCheck = {30, 60, 90, 120, 150}; 
   for (int w : winkelCheck) {
     stroke(0, 80, 0, 100);
     float rad = radians(w - 180);
@@ -61,15 +141,15 @@ void draw() {
     float ly = radarRadius * sin(rad);
     line(0, 0, lx, ly);
     
-    float tx = (radarRadius + 25) * cos(rad);
-    float ty = (radarRadius + 25) * sin(rad);
+    float tx = (radarRadius + 30) * cos(rad);
+    float ty = (radarRadius + 30) * sin(rad);
     fill(0, 230, 0);
     textAlign(CENTER, CENTER);
     text(w + "°", tx, ty);
   }
   textAlign(LEFT, BASELINE); 
   
-  // 3. INTELLIGENTE KANTENERKENNUNG (Bereich angepasst auf 30° bis 150°)
+  // Kantenerkennung und Cluster-Darstellung
   boolean inObject = false;
   int startAngle = 0;
   float sumDistance = 0;
@@ -78,7 +158,6 @@ void draw() {
   
   for (int i = 30; i <= 150; i++) {
     float d = radarWerte[i];
-    
     if (d > 2 && d <= maxDistanceCm) {
       if (!inObject) {
         inObject = true;
@@ -87,7 +166,6 @@ void draw() {
         countPins = 1;
         lastValidDistance = d;
       } else {
-        // Trennung bei abrupten Distanzsprüngen (> 3.5 cm)
         if (abs(d - lastValidDistance) > 3.5) {
           drawCompensatedObject(startAngle, i - 1, sumDistance / countPins);
           startAngle = i;
@@ -106,12 +184,10 @@ void draw() {
       }
     }
   }
-  if (inObject) {
-    drawCompensatedObject(startAngle, 150, sumDistance / countPins);
-  }
+  if (inObject) { drawCompensatedObject(startAngle, 150, sumDistance / countPins); }
   
-  // 4. Aktueller Radarstrahl (Zeiger)
-  strokeWeight(3);
+  // Aktueller Abtaststrahl
+  strokeWeight(4);
   stroke(0, 255, 0, 220); 
   float pointerX = radarRadius * cos(radians(angle - 180));
   float pointerY = radarRadius * sin(radians(angle - 180));
@@ -119,32 +195,19 @@ void draw() {
   
   popMatrix();
   
-  // 5. Status-Dashboard
+  // Dashboard im Vordergrund
   fill(10, 30, 10, 220);
   stroke(0, 255, 0, 80);
-  rect(15, 15, 260, 110, 8);
+  rect(30, 30, 280, 110, 8);
   
   fill(0, 255, 0);
+  textSize(16);
+  text("RADAR-SYSTEM AKTIV", 45, 60);
   textSize(15);
-  text("RADAR-STATUS: " + systemState, 30, 40);
-  
-  if (systemState.equals("OK")) {
-    text("Winkel: " + int(angle) + "°", 30, 70);
-    text("Entfernung: " + int(distance) + " cm", 30, 100);
-  } else if (systemState.equals("TESTING")) {
-    fill(255, 220, 0);
-    text("Selbsttest läuft...", 30, 70);
-    text("LEDs & Sensor prüfen.", 30, 100);
-  } else {
-    fill(255, 50, 50);
-    text("HARDWARE FEHLER!", 30, 70);
-    text(errorMessage, 30, 100);
-  }
+  text("Winkel: " + int(angle) + "°", 45, 90);
+  text("Entfernung: " + int(distance) + " cm", 45, 115);
 }
 
-/**
- * @brief Zeichnet das gefilterte Objekt auf dem Sonar-Display.
- */
 void drawCompensatedObject(int startA, int endA, float avgDist) {
   int objectWidthDegrees = endA - startA;
   if (objectWidthDegrees < 2) return;
@@ -158,18 +221,13 @@ void drawCompensatedObject(int startA, int endA, float avgDist) {
   if (objectWidthDegrees <= 7) {
     float x = r * cos(radians(centerAngle - 180));
     float y = r * sin(radians(centerAngle - 180));
-    ellipse(x, y, 7, 7);
+    ellipse(x, y, 8, 8);
   } else {
-    strokeWeight(4);
+    strokeWeight(5);
     noFill();
     arc(0, 0, r*2, r*2, radians(startA - 180), radians(endA - 180));
     strokeWeight(1); 
   }
-  
-  float cx = r * cos(radians(centerAngle - 180));
-  float cy = r * sin(radians(centerAngle - 180));
-  stroke(255, 0, 0, 40);
-  line(cx, cy, 0, 0);
 }
 
 void serialEvent(Serial p) {
@@ -178,18 +236,20 @@ void serialEvent(Serial p) {
     if (inString != null) {
       inString = trim(inString);
       
+      // JEDES Mal, wenn IRGENDWELCHE Daten kommen, setzen wir den Watchdog zurück!
+      lastDataReceivedTime = millis(); 
+      
       if (inString.startsWith("S:")) {
-        systemState = inString.substring(2);
-        if (systemState.equals("ERR_SENSOR")) {
-          errorMessage = "Sensor-Echo fehlt!";
-        }
+        String state = inString.substring(2);
+        if (state.equals("TESTING")) systemState = "TESTING";
+        else if (state.equals("OK")) systemState = "OK";
+        else if (state.equals("ERR_SENSOR")) systemState = "ERR_SENSOR";
       } 
       else if (inString.startsWith("D:") && systemState.equals("OK")) {
         String[] data = split(inString.substring(2), ',');
         if (data.length == 2) {
           angle = float(data[0]);
           distance = float(data[1]);
-          
           int index = int(angle);
           if (index >= 0 && index <= 180) {
             radarWerte[index] = distance;
@@ -198,6 +258,6 @@ void serialEvent(Serial p) {
       }
     }
   } catch (Exception e) {
-    println("Fehler: " + e.getMessage());
+    systemState = "ERR_PORT";
   }
 }
