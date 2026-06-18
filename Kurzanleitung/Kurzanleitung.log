@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.24.0 (TeX Live 2026)  (format=lualatex 2026.3.16)  17 JUN 2026 16:00
+This is LuaHBTeX, Version 1.24.0 (TeX Live 2026)  (format=lualatex 2026.3.16)  18 JUN 2026 19:56
  restricted system commands enabled.
 **Kurzanleitung.tex
 (./Kurzanleitung.tex
@@ -373,24 +373,20 @@ LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 5
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-Missing character: There is no „ (U+201E) in font ec-lmri10!
-Missing character: There is no “ (U+201C) in font ec-lmri10!
-Missing character: There is no „ (U+201E) in font ec-lmri10!
-Missing character: There is no “ (U+201C) in font ec-lmri10!
-Missing character: There is no „ (U+201E) in font ec-lmri10!
-Missing character: There is no “ (U+201C) in font ec-lmri10!
-[1
+) [1
 
 {/usr/local/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map}<../Manual
 s/Benutzerhandbuch/Bilder/GesamtsystemUltraschallradar.png>]
+Missing character: There is no „ (U+201E) in font ec-lmri10!
+Missing character: There is no “ (U+201C) in font ec-lmri10!
+Missing character: There is no „ (U+201E) in font ec-lmri10!
+Missing character: There is no “ (U+201C) in font ec-lmri10!
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 67.
+(Font)              <10.95> on input line 68.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 67.
+(Font)              <8> on input line 68.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 67.
-
+(Font)              <6> on input line 68.
 Missing character: There is no „ (U+201E) in font ec-lmri10!
 Missing character: There is no “ (U+201C) in font ec-lmri10!
 Missing character: There is no „ (U+201E) in font ec-lmri10!
@@ -433,7 +429,7 @@ Here is how much of LuaTeX's memory you used:
  458 words of node memory still in use:
    4 hlist, 1 vlist, 1 rule, 5 glue, 3 kern, 1 glyph, 9 attribute, 50 glue_spec,
  5 attribute_list, 1 write nodes
-   avail lists: 2:415,3:152,4:7,5:346,6:42,7:5966,8:2,9:180,10:6,11:598
+   avail lists: 2:436,3:154,4:8,5:332,6:44,7:5928,8:2,9:184,10:6,11:606
  26915 multiletter control sequences out of 65536+600000
  36 fonts using 2233639 bytes
  57i,6n,62p,505b,246s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -445,7 +441,7 @@ ype1/public/lm/lmbx12.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public
 /lm/lmr10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmr12.pf
 b></usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/loc
 al/texlive/2026/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
-Output written on Kurzanleitung.pdf (2 pages, 1424970 bytes).
+Output written on Kurzanleitung.pdf (2 pages, 1424312 bytes).
 
 PDF statistics: 44 PDF objects out of 1000 (max. 8388607)
  31 compressed objects within 1 object stream
