@@ -16,8 +16,47 @@ Die Umgebungserfassung und die präzise Detektion von Hindernissen sind fundamen
 
 Im Rahmen dieses Projekts wird ein voll funktionsfähiges Ultraschallradar konzipiert, mechanisch konstruiert und informationstechnisch implementiert. Ziel der Arbeit ist es, das komplexe Zusammenspiel von Mikrocontroller-Hardware, Sensorik, Aktuatorik und einer grafischen Benutzeroberfläche an einem praxisnahen, mechatronischen System zu demonstrieren.
 
-Als zentrale Steuereinheit des Systems dient ein Arduino Nano 33 BLE Sense. Die mechanische Scan-Bewegung wird durch einen 180\textdegree{}-Servomotor vom Typ SG90 realisiert, auf dessen Rotationsachse ein HC-SR04 Ultraschallsensor montiert ist. Um eine stabile und exakt ausgerichtete Plattform für diese Komponenten zu gewährleisten, wurde im Zuge des Projekts ein ma\ss geschneidertes Gehäuse im 3D-Druck-Verfahren gefertigt. 
+Als zentrale Steuereinheit des Systems dient ein Arduino Nano 33 BLE Sense. Die mechanische Scan-Bewegung wird durch einen 180\textdegree{}-Servomotor vom Typ SG90 realisiert, auf dessen Rotationsachse ein HC-SR-04 Ultraschallsensor montiert ist. Um eine stabile und exakt ausgerichtete Plattform für diese Komponenten zu gewährleisten, wurde im Zuge des Projekts ein ma\ss geschneidertes Gehäuse im 3D-Druck-Verfahren gefertigt. 
 
 Auf der Software-Seite gliedert sich das Projekt in zwei Hauptbereiche: Die hardwarenahe Programmierung des Mikrocontrollers (Embedded C/C++) über die Arduino IDE sowie die Entwicklung eines Benutzeroberfläche am PC. Letzteres wird mithilfe der auf Java basierenden Umgebung Processing umgesetzt. Diese Software empfängt die seriellen Sensordaten des Arduinos (Winkel und Distanz) in Echtzeit und übersetzt sie in eine dynamische, visuell ansprechende Radar-Anzeige, welche erkannte Objekte und Systemzustände unmittelbar visualisiert.
 
 Der vorliegende Bericht dokumentiert den gesamten Entwicklungsprozess dieses Systems. Er erläutert zunächst die verwendeten Hardwarekomponenten, die mechanische Konstruktion sowie den elektronischen Schaltungsaufbau. Anschließend wird detailliert auf die Programmierung und Implementierung der Steuerungs- sowie Visualisierungssoftware eingegangen.
+
+\chapter{Aufgabenstellung}
+
+	Im Rahmen der Veranstaltung Automatisierungstechnik soll eine Applikation entwickelt werden, die die Leistungsfähigkeit des Arduino Nano 33 BLE Sense Lite sowie ausgewählter Sensoren und Aktoren demonstriert. Die vorliegende Arbeit befasst sich mit der Realisierung eines Systems zur Umgebungserfassung mittels eines Ultraschall-Abstandssensors, der auf einem Servomotor montiert ist und von einem Arduino Nano 33 BLE Sense Lite angesteuert wird. Ziel ist die Umsetzung eines radarartigen Scans der Umgebung und die Visualisierung der gemessenen Distanzen in Form einer geeigneten Darstellung auf dem PC.
+	
+	Konkret umfasst die Aufgabenstellung die Integration eines Ultraschall-Abstandssensors (HC-SR-04) und eines Servomotors (Tower Pro SG90) in die vorhandene Hardwareplattform. Der Servomotor soll den Sensor in einem definierten Winkelbereich schwenken, während der Mikrocontroller in vorgegebenen Winkelinkrementen Entfernungswerte aufnimmt und diesen Messdaten einen eindeutigen Winkel zuordnet. Auf Basis dieser Messwerte ist eine Auswertung zu konzipieren, die eine übersichtliche Darstellung der Umgebung ermöglicht.
+	
+	Neben der reinen Funktionserfüllung werden weitere Anforderungen an die
+	Applikation gestellt. Dazu gehören eine strukturierte und modular aufgebaute Firmware, die Verwendung geeigneter Bibliotheken zur Ansteuerung von Sensor und Aktor. Au\ss erdem sind Verfahren zur Visualisierung der Live-Daten auf einem PC zu entwickeln und zu implementieren, sodass die resultierende Umgebungskarte in Echtzeit nachvollzogen werden kann.
+	
+	Die Aufgabenstellung umfasst weiterhin die Erstellung einer Entwickler- und Service-Dokumentation. Diese beinhaltet neben der Projektbeschreibung eine detaillierte Beschreibung der Hardware des Arduino Nano 33 BLE Sense Lite und der eingesetzten Komponenten, die Spezifikation und Durchführung von Tests, eine Darstellung der Softwarearchitektur sowie Angaben zu Bezugsquellen und Stückliste (Bill of Materials).
+	
+\chapter{Stand der Technik}
+
+	Ultraschall-Abstandssensoren werden seit vielen Jahren in der Automatisierungstechnik, Robotik und Fahrzeugtechnik zur berührungslosen Distanzmessung eingesetzt. Sie arbeiten in der Regel nach dem Laufzeitmessprinzip, bei dem ein kurzer Ultraschallimpuls ausgesendet und die Zeit bis zum Empfang des reflektierten Echos gemessen wird. Aus der Schalllaufzeit lässt sich unter Annahme einer bekannten Schallgeschwindigkeit der Abstand zu einem Hindernis bestimmen. Im Niedrigkostenbereich haben sich dafür Sensormodule wie der HC-SR-04 etabliert, die eine einfache Anbindung an Mikrocontroller über Trigger- und Echo-Signale erlauben.
+	
+	Für die mechanische Ausrichtung von Sensoren und leichten Lasten werden in zahlreichen Anwendungen kompakte RC-Servomotoren eingesetzt. Diese enthalten neben einem Gleichstrommotor ein Getriebe sowie eine integrierte Positionsregelung, die über ein Pulsweitenmodulationssignal (PWM) angesteuert wird. Miniaturservos wie der Tower Pro SG90 sind insbesondere im Modellbau und in edukativen Projekten weit verbreitet und werden häufig zur Positionierung von Sensoren in einem begrenzten Winkelbereich verwendet.
+	
+	Die Kombination aus Ultraschall-Abstandssensor und Servomotor ermöglicht die Realisierung kostengünstiger Systeme zur zweidimensionalen Umgebungserfassung. Durch das sequenzielle Abtasten verschiedener Winkelpositionen kann ein Scan der Umgebung erzeugt werden. In frei verfügbaren Projekten und Tutorials wird dieses Prinzip typischerweise mithilfe eines Ultraschallmoduls des Typs HC-SR-04, eines SG90-Servos und eines Arduino Uno oder Arduino Nano umgesetzt. (vgl. \cite{projehocam:2015}) Die gemessenen Distanzen werden dabei entweder auf einem seriell angebundenen PC visualisiert oder direkt auf einem Display dargestellt. Derartige Beispiele dienen häufig als Einführung in die Sensordatenerfassung und -visualisierung mit einfachen Mikrocontrollersystemen.
+	
+
+
+\chapter{Einbettung des Projektes}
+
+
+Das in diesem Projekt realisierte System knüpft an den beschriebenen Stand der Technik an, indem es die etablierte Kombination aus Ultraschall-Abstandssensor HC-04 und Tower Pro SG90-Servomotor zur Umgebungserfassung verwendet. Der Ultraschallsensor ist auf dem Servomotor montiert und wird in einem definierten Winkelbereich geschwenkt, sodass in diskreten Winkelpositionen Entfernungswerte aufgenommen und zu einem Umgebungsbild zusammengeführt werden.
+
+Viele veröffentlichte Beispielprojekte setzen noch auf Arduino-Boards mit 8‑Bit‑Mikrocontrollern.\cite{Kaparthi:2021} In der vorliegenden Applikation kommt dagegen der Arduino Nano 33 BLE Sense als Steuerplattform zum Einsatz. Diese Hardwarebasis ermöglicht eine strukturierte Implementierung der Mess- und Auswertealgorithmen sowie die Erweiterung des klassischen Ultraschall-Radar-Konzepts um weitergehende Funktionen, etwa eine flexible Visualisierung der Messdaten auf einem PC.
+
+Durch diese Ausgestaltung ordnet sich das Projekt in die Gruppe kostengünstiger Ultraschall-Radar-Systeme ein, entwickelt diese jedoch durch den Einsatz moderner Hardware und eine systematische Softwarestruktur weiter. Es dient damit sowohl als Demonstrator für die Sensordatenerfassung mit dem Arduino Nano 33 BLE Sense als auch als Grundlage für weiterführende Anwendungen in der Automatisierungstechnik.
+
+\chapter{Besondere Herausforderung}
+Möglichst kompackt Bauen
+Kabel im Gehäuse 
+Betriebssystem = Anwendung erstellen die man über den USB-Stick dierekt öffen kann und die auf jeden betriebssystem funktioniert
+Objekte wurden zu Groß angezeit auf der Oberfläche => filtern welche Punkte er genau anzeigt
+\section{Lösung der Herausforderung}
+
+\chapter{Inhalte der folgenden Kapitel}
