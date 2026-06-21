@@ -35,9 +35,9 @@ Der vorliegende Bericht dokumentiert den gesamten Entwicklungsprozess dieses Sys
 	
 \chapter{Stand der Technik}
 
-	Ultraschall-Abstandssensoren werden seit vielen Jahren in der Automatisierungstechnik, Robotik und Fahrzeugtechnik zur berührungslosen Distanzmessung eingesetzt. Sie arbeiten in der Regel nach dem Laufzeitmessprinzip, bei dem ein kurzer Ultraschallimpuls ausgesendet und die Zeit bis zum Empfang des reflektierten Echos gemessen wird. Aus der Schalllaufzeit lässt sich unter Annahme einer bekannten Schallgeschwindigkeit der Abstand zu einem Hindernis bestimmen. Im Niedrigkostenbereich haben sich dafür Sensormodule wie der HC-SR-04 etabliert, die eine einfache Anbindung an Mikrocontroller über Trigger- und Echo-Signale erlauben.
+	Ultraschall-Abstandssensoren werden seit vielen Jahren in der Automatisierungstechnik, Robotik und Fahrzeugtechnik zur berührungslosen Distanzmessung eingesetzt.\cite{leuze:2026} Sie arbeiten in der Regel nach dem Laufzeitmessprinzip, bei dem ein kurzer Ultraschallimpuls ausgesendet und die Zeit bis zum Empfang des reflektierten Echos gemessen wird. Aus der Schalllaufzeit lässt sich unter Annahme einer bekannten Schallgeschwindigkeit der Abstand zu einem Hindernis bestimmen. Im Niedrigkostenbereich haben sich dafür Sensormodule wie der HC-SR-04 etabliert, die eine einfache Anbindung an Mikrocontroller über Trigger- und Echo-Signale erlauben.
 	
-	Für die mechanische Ausrichtung von Sensoren und leichten Lasten werden in zahlreichen Anwendungen kompakte RC-Servomotoren eingesetzt. Diese enthalten neben einem Gleichstrommotor ein Getriebe sowie eine integrierte Positionsregelung, die über ein Pulsweitenmodulationssignal (PWM) angesteuert wird. Miniaturservos wie der Tower Pro SG90 sind insbesondere im Modellbau und in edukativen Projekten weit verbreitet und werden häufig zur Positionierung von Sensoren in einem begrenzten Winkelbereich verwendet.
+	Für die mechanische Ausrichtung von Sensoren und leichten Lasten werden in zahlreichen Anwendungen kompakte RC‑Servomotoren eingesetzt. Diese enthalten neben einem Gleichstrommotor ein Getriebe sowie eine integrierte Positionsregelung, die über ein Pulsweitenmodulationssignal (PWM) angesteuert wird. Miniaturservos wie der Tower Pro SG90 sind vor allem in ferngesteuerten Modellen wie Flugzeugen und Helikoptern verbreitet, wo sie etwa Ruderflächen oder andere bewegliche Komponenten präzise ansteuern.\cite{kts:2026} In technischen Lehr- und Demonstrationsaufbauten werden derartige Servos zudem häufig genutzt, um Sensoren in einem begrenzten Winkelbereich gezielt zu positionieren.
 	
 	Die Kombination aus Ultraschall-Abstandssensor und Servomotor ermöglicht die Realisierung kostengünstiger Systeme zur zweidimensionalen Umgebungserfassung. Durch das sequenzielle Abtasten verschiedener Winkelpositionen kann ein Scan der Umgebung erzeugt werden. In frei verfügbaren Projekten und Tutorials wird dieses Prinzip typischerweise mithilfe eines Ultraschallmoduls des Typs HC-SR-04, eines SG90-Servos und eines Arduino Uno oder Arduino Nano umgesetzt. (vgl. \cite{projehocam:2015}) Die gemessenen Distanzen werden dabei entweder auf einem seriell angebundenen PC visualisiert oder direkt auf einem Display dargestellt. Derartige Beispiele dienen häufig als Einführung in die Sensordatenerfassung und -visualisierung mit einfachen Mikrocontrollersystemen.
 	
@@ -46,17 +46,23 @@ Der vorliegende Bericht dokumentiert den gesamten Entwicklungsprozess dieses Sys
 \chapter{Einbettung des Projektes}
 
 
-Das in diesem Projekt realisierte System knüpft an den beschriebenen Stand der Technik an, indem es die etablierte Kombination aus Ultraschall-Abstandssensor HC-04 und Tower Pro SG90-Servomotor zur Umgebungserfassung verwendet. Der Ultraschallsensor ist auf dem Servomotor montiert und wird in einem definierten Winkelbereich geschwenkt, sodass in diskreten Winkelpositionen Entfernungswerte aufgenommen und zu einem Umgebungsbild zusammengeführt werden.
-
-Viele veröffentlichte Beispielprojekte setzen noch auf Arduino-Boards mit 8‑Bit‑Mikrocontrollern.\cite{Kaparthi:2021} In der vorliegenden Applikation kommt dagegen der Arduino Nano 33 BLE Sense als Steuerplattform zum Einsatz. Diese Hardwarebasis ermöglicht eine strukturierte Implementierung der Mess- und Auswertealgorithmen sowie die Erweiterung des klassischen Ultraschall-Radar-Konzepts um weitergehende Funktionen, etwa eine flexible Visualisierung der Messdaten auf einem PC.
-
-Durch diese Ausgestaltung ordnet sich das Projekt in die Gruppe kostengünstiger Ultraschall-Radar-Systeme ein, entwickelt diese jedoch durch den Einsatz moderner Hardware und eine systematische Softwarestruktur weiter. Es dient damit sowohl als Demonstrator für die Sensordatenerfassung mit dem Arduino Nano 33 BLE Sense als auch als Grundlage für weiterführende Anwendungen in der Automatisierungstechnik.
+	Das in diesem Projekt realisierte System knüpft an den beschriebenen Stand der Technik an, indem es die etablierte Kombination aus Ultraschall-Abstandssensor HC-04 und Tower Pro SG90-Servomotor zur Umgebungserfassung verwendet. Der Ultraschallsensor ist auf dem Servomotor montiert und wird in einem definierten Winkelbereich geschwenkt, sodass in diskreten Winkelpositionen Entfernungswerte aufgenommen und zu einem Umgebungsbild zusammengeführt werden.
+	
+	Viele veröffentlichte Beispielprojekte setzen noch auf Arduino-Boards mit 8‑Bit‑Mikrocontrollern.\cite{Kaparthi:2021} In der vorliegenden Applikation kommt dagegen der Arduino Nano 33 BLE Sense als Steuerplattform zum Einsatz. Diese Hardwarebasis ermöglicht eine strukturierte Implementierung der Mess- und Auswertealgorithmen sowie die Erweiterung des klassischen Ultraschall-Radar-Konzepts um weitergehende Funktionen, etwa eine flexible Visualisierung der Messdaten auf einem PC.
+	
+	Durch diese Ausgestaltung ordnet sich das Projekt in die Gruppe kostengünstiger Ultraschall-Radar-Systeme ein, entwickelt diese jedoch durch den Einsatz moderner Hardware und eine systematische Softwarestruktur weiter.\cite{Kaparthi:2021} Es dient damit sowohl als Demonstrator für die Sensordatenerfassung mit dem Arduino Nano 33 BLE Sense als auch als Grundlage für weiterführende Anwendungen in der Automatisierungstechnik.
 
 \chapter{Besondere Herausforderung}
-Möglichst kompackt Bauen
-Kabel im Gehäuse 
-Betriebssystem = Anwendung erstellen die man über den USB-Stick dierekt öffen kann und die auf jeden betriebssystem funktioniert
-Objekte wurden zu Groß angezeit auf der Oberfläche => filtern welche Punkte er genau anzeigt
+
+	Im Rahmen der Entwicklung der Applikation traten mehrere besondere Herausforderungen auf, die sowohl die mechanische Konstruktion als auch die Softwaregestaltung betrafen. Ein zentrales Ziel war der möglichst kompakte Aufbau des Systems. Dabei musste das Gehäuse so dimensioniert und gestaltet werden, dass alle Komponenten, insbesondere der Ultraschallsensor, der Servomotor und das Arduino‑Board, platzsparend integriert werden konnten, ohne die Funktionalität oder Zugänglichkeit zu beeinträchtigen. Eine zusätzliche Herausforderung bestand in der geordneten Führung und Platzierung der Anschlusskabel im Inneren des Gehäuses, um mechanische Kollisionen, Kabelbrüche sowie Beeinflussungen der Sensorik durch bewegte Leitungen zu vermeiden.
+	
+	Auf der Softwareseite ergaben sich weitere Anforderungen aus der gewünschten Plattformunabhängigkeit der Benutzerschnittstelle. Es sollte eine Anwendung bereitgestellt werden, die sich direkt von einem USB ‑ Stick starten lässt und möglichst ohne zusätzliche Installation auf unterschiedlichen Betriebssystemen lauffähig ist. Dies erforderte eine sorgfältige Auswahl der eingesetzten Technologien und Bibliotheken, um Abhängigkeiten zu reduzieren und eine robuste Ausführung zu ermöglichen.
+	
+	Schlie\ss lich zeigte sich im Verlauf der Entwicklung, dass die Visualisierung der Messdaten auf der Benutzeroberfläche zunächst zu überdimensioniert und unübersichtlich war. Einzelne Objekte wurden zu gro\ss dargestellt, sodass die eigentlichen strukturellen Informationen der Umgebung nur eingeschränkt erkennbar waren.
+	
+	
 \section{Lösung der Herausforderung}
 
+
 \chapter{Inhalte der folgenden Kapitel}
+

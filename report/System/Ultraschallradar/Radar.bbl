@@ -696,6 +696,26 @@
     \field{year}{2012}
   \endentry
 
+  \entry{leuze:2026}{online}{}{}
+    \list{organization}{1}{%
+      {Leuze electronic}%
+    }
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Leu}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{note}{Schaltende Ultraschallsensoren für industrielle Anwendungen}
+    \field{title}{Ultraschallsensoren}
+    \verb{url}
+    \verb https://www.leuze.com/de-de/produkte/schaltende-sensoren/ultraschalls
+    \verb ensoren
+    \endverb
+    \field{year}{2026}
+    \field{urlday}{21}
+    \field{urlmonth}{06}
+    \field{urlyear}{2026}
+  \endentry
+
   \entry{ArduinoServo:2025}{misc}{}{}
     \name{author}{1}{}{%
       {{hash=LA}{%
@@ -791,6 +811,34 @@
     \verb{url}
     \verb https://www.elektronik-kompendium.de/sites/praxis/bauteilsg90.htm
     \endverb
+  \endentry
+
+  \entry{Kaparthi:2021}{online}{}{}
+    \name{author}{1}{}{%
+      {{hash=RK}{%
+         family={Rithik},
+         familyi={R\bibinitperiod},
+         given={Kaparthi},
+         giveni={K\bibinitperiod},
+      }}%
+    }
+    \list{organization}{1}{%
+      {Hackster.io}%
+    }
+    \strng{namehash}{RK1}
+    \strng{fullhash}{RK1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Rit21}
+    \field{sortinit}{R}
+    \field{sortinithash}{R}
+    \field{note}{Zugriff am 20.06.2026}
+    \field{title}{Radar System Using Ultrasonic Sensor}
+    \verb{url}
+    \verb https://www.hackster.io/rithikkaparthi/radar-system-using-ultrasonic-
+    \verb sensor-6c71fa
+    \endverb
+    \field{year}{2021}
   \endentry
 
   \entry{Patent3D}{misc}{}{}
@@ -1091,6 +1139,31 @@
     \verb radar-using-arduino-and-processing-59053e
     \endverb
     \field{year}{2025}
+  \endentry
+
+  \entry{projehocam:2015}{online}{}{}
+    \name{author}{1}{}{%
+      {{hash=p}{%
+         family={projehocam},
+         familyi={p\bibinitperiod},
+      }}%
+    }
+    \list{organization}{1}{%
+      {Autodesk Instructables}%
+    }
+    \strng{namehash}{p1}
+    \strng{fullhash}{p1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{pro15}
+    \field{sortinit}{P}
+    \field{sortinithash}{P}
+    \field{note}{Zugriff am 20.06.2026}
+    \field{title}{Arduino Ultrasonic Radar Project}
+    \verb{url}
+    \verb https://www.instructables.com/Arduino-Ultrasonic-Radar-Project/
+    \endverb
+    \field{year}{2015}
   \endentry
 \enddatalist
 \endinput
