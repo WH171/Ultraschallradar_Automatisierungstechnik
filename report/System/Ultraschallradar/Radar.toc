@@ -1,139 +1,165 @@
 \acswitchoff 
 \babel@toc {ngerman}{}\relax 
 \contentsline {chapter}{Inhaltsverzeichnis}{3}{chapter*.1}%
-\contentsline {chapter}{Abbildungsverzeichnis}{7}{chapter*.2}%
-\contentsline {chapter}{ Liste des Listings}{9}{chapter*.3}%
-\contentsline {part}{\numberline {I}Einleitung}{13}{part.1}%
-\contentsline {chapter}{\numberline {1}Einführung}{15}{chapter.1}%
-\contentsline {chapter}{\numberline {2}Aufgabenstellung}{17}{chapter.2}%
-\contentsline {chapter}{\numberline {3}Stand der Technik}{19}{chapter.3}%
-\contentsline {chapter}{\numberline {4}Einbettung des Projektes}{21}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Besondere Herausforderung}{23}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Lösung der Herausforderung}{23}{section.5.1}%
-\contentsline {chapter}{\numberline {6}Inhalte der folgenden Kapitel}{25}{chapter.6}%
-\contentsline {part}{\numberline {II}Domain Knowledge - Application}{27}{part.2}%
-\contentsline {chapter}{\numberline {7}Applikationen}{29}{chapter.7}%
-\contentsline {part}{\numberline {III}Domain Knowledge - Hardware}{31}{part.3}%
-\contentsline {chapter}{\numberline {8}Arduino Nano 33 BLE Sense}{33}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Allgemeine Beschreibung}{33}{section.8.1}%
-\contentsline {section}{\numberline {8.2}Mikrocontroller und Leistungsdaten}{34}{section.8.2}%
-\contentsline {section}{\numberline {8.3}Betriebsspannung und Logikpegel}{34}{section.8.3}%
-\contentsline {section}{\numberline {8.4}Digitale Ein- und Ausgänge}{34}{section.8.4}%
-\contentsline {section}{\numberline {8.5}PWM und Servo-Ansteuerung}{35}{section.8.5}%
-\contentsline {section}{\numberline {8.6}Zeitmessung und Ablaufsteuerung}{35}{section.8.6}%
-\contentsline {section}{\numberline {8.7}USB, Programmierung und serielle Kommunikation}{36}{section.8.7}%
-\contentsline {section}{\numberline {8.8}Integrierte Funktionen und Sensorik}{36}{section.8.8}%
-\contentsline {section}{\numberline {8.9}Further Readings}{37}{section.8.9}%
-\contentsline {chapter}{\numberline {9}Ultraschallsensor HC-SR04}{39}{chapter.9}%
-\contentsline {section}{\numberline {9.1}Allgemeines}{39}{section.9.1}%
-\contentsline {section}{\numberline {9.2}Ultraschallsensor HC-SR04}{39}{section.9.2}%
-\contentsline {section}{\numberline {9.3}Spezifikation}{39}{section.9.3}%
-\contentsline {paragraph}{\nonumberline Schaltplan}{40}{paragraph*.8}%
-\contentsline {section}{\numberline {9.4}Bibliothek}{40}{section.9.4}%
-\contentsline {subsection}{\numberline {9.4.1}Beschreibung}{40}{subsection.9.4.1}%
-\contentsline {subsection}{\numberline {9.4.2}Installation}{40}{subsection.9.4.2}%
-\contentsline {subsection}{\numberline {9.4.3}Funktionen}{40}{subsection.9.4.3}%
-\contentsline {section}{\numberline {9.5}Beispiel}{42}{section.9.5}%
-\contentsline {subsection}{\numberline {9.5.1}Handbuch}{42}{subsection.9.5.1}%
-\contentsline {subsection}{\numberline {9.5.2}Funktion vom Beispiel}{43}{subsection.9.5.2}%
-\contentsline {subsection}{\numberline {9.5.3}Code}{43}{subsection.9.5.3}%
-\contentsline {section}{\numberline {9.6}Kalibrierung}{44}{section.9.6}%
-\contentsline {section}{\numberline {9.7}Einfacher Code ohne newPing Bibliothek}{44}{section.9.7}%
-\contentsline {section}{\numberline {9.8}Einfache Anwendung}{45}{section.9.8}%
-\contentsline {section}{\numberline {9.9}Tests}{46}{section.9.9}%
-\contentsline {subsection}{\numberline {9.9.1}Einfacher Funktionstest}{46}{subsection.9.9.1}%
-\contentsline {subsection}{\numberline {9.9.2}Alle Funktionen testen}{46}{subsection.9.9.2}%
-\contentsline {section}{\numberline {9.10}Weiterführende Literatur}{47}{section.9.10}%
-\contentsline {chapter}{\numberline {10}SG90 Servomotor}{49}{chapter.10}%
-\contentsline {section}{\numberline {10.1}Allgemeines}{49}{section.10.1}%
-\contentsline {section}{\numberline {10.2}Servomotor TowerPro SG90}{49}{section.10.2}%
-\contentsline {section}{\numberline {10.3}Spezifikation}{49}{section.10.3}%
-\contentsline {section}{\numberline {10.4}Bibliothek}{50}{section.10.4}%
-\contentsline {subsection}{\numberline {10.4.1}Beschreibung}{50}{subsection.10.4.1}%
-\contentsline {subsection}{\numberline {10.4.2}Installation}{50}{subsection.10.4.2}%
-\contentsline {subsection}{\numberline {10.4.3}Funktionen}{51}{subsection.10.4.3}%
-\contentsline {section}{\numberline {10.5}Beispiel}{51}{section.10.5}%
-\contentsline {subsection}{\numberline {10.5.1}Handbuch}{51}{subsection.10.5.1}%
-\contentsline {subsection}{\numberline {10.5.2}An einem Beispiel}{51}{subsection.10.5.2}%
-\contentsline {subsection}{\numberline {10.5.3}Code}{51}{subsection.10.5.3}%
-\contentsline {subsection}{\numberline {10.5.4}Dateien}{52}{subsection.10.5.4}%
-\contentsline {section}{\numberline {10.6}Kalibrierung}{52}{section.10.6}%
-\contentsline {section}{\numberline {10.7}Einfacher Code (ohne Bibliothek)}{53}{section.10.7}%
-\contentsline {section}{\numberline {10.8}Einfache Anwendung}{54}{section.10.8}%
-\contentsline {section}{\numberline {10.9}Tests}{54}{section.10.9}%
-\contentsline {subsection}{\numberline {10.9.1}Einfacher Funktionstest}{54}{subsection.10.9.1}%
-\contentsline {subsection}{\numberline {10.9.2}Alle Funktionen testen}{54}{subsection.10.9.2}%
-\contentsline {section}{\numberline {10.10}Weiterführende Literatur}{54}{section.10.10}%
-\contentsline {part}{\numberline {IV}Domain Knowledge - Tools}{55}{part.4}%
-\contentsline {chapter}{\numberline {11}\textcolor {red}{Python Tool XY}}{57}{chapter.11}%
-\contentsline {section}{\numberline {11.1}Mikrocontroller-Programmierung mit der Arduino IDE}{57}{section.11.1}%
-\contentsline {subsection}{\numberline {11.1.1}Allgemeines zur Arduino IDE}{57}{subsection.11.1.1}%
-\contentsline {subsection}{\numberline {11.1.2}Das Steuerungsprogramm des Ultraschallradars}{57}{subsection.11.1.2}%
-\contentsline {subsection}{\numberline {11.1.3}Quellcode der Arduino-Steuerung}{58}{subsection.11.1.3}%
-\contentsline {chapter}{\numberline {12}\textcolor {red}{Hardware Tool XY}}{61}{chapter.12}%
-\contentsline {section}{\numberline {12.1}Benutzeroberfläche und Visualisierung mit Processing}{61}{section.12.1}%
-\contentsline {subsection}{\numberline {12.1.1}Allgemeines zu Processing}{61}{subsection.12.1.1}%
-\contentsline {subsection}{\numberline {12.1.2}Das Ultraschallradar-Programm}{61}{subsection.12.1.2}%
-\contentsline {subsection}{\numberline {12.1.3}Quellcode der Processing-Anwendung}{62}{subsection.12.1.3}%
-\contentsline {part}{\numberline {V}Developmenmt}{67}{part.5}%
-\contentsline {chapter}{\numberline {13}\textcolor {red}{Flow Chart Development XY}}{69}{chapter.13}%
-\contentsline {part}{\numberline {VI}Monitoring}{71}{part.6}%
-\contentsline {chapter}{\numberline {14}\textcolor {red}{Monitoring XY}}{73}{chapter.14}%
-\contentsline {part}{\numberline {VII}Verification - Evaluation - Conclusion}{75}{part.7}%
-\contentsline {chapter}{\numberline {15}\textcolor {red}{Evaluation/Verification XY}}{77}{chapter.15}%
-\contentsline {chapter}{\numberline {16}\textcolor {red}{To DoX Y}}{79}{chapter.16}%
-\contentsline {chapter}{\numberline {17}\textcolor {red}{Conclusion XY}}{81}{chapter.17}%
-\contentsline {part}{\numberline {VIII} Anhang}{83}{part.8}%
-\contentsline {chapter}{\numberline {18}Bill Of Material}{85}{chapter.18}%
-\contentsline {chapter}{Stichwortverzeichnis – Keywords}{87}{chapter*.17}%
-\contentsline {chapter}{\numberline {19}\textcolor {red}{SBOM}}{89}{chapter.19}%
-\contentsline {chapter}{\numberline {20}\textcolor {red}{Package \textcolor {PythonColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-Example}}}}{91}{chapter.20}%
-\contentsline {section}{\numberline {20.1}Introduction}{91}{section.20.1}%
-\contentsline {section}{\numberline {20.2}Description}{91}{section.20.2}%
-\contentsline {section}{\numberline {20.3}Installation}{91}{section.20.3}%
-\contentsline {section}{\numberline {20.4}Example - Manual}{91}{section.20.4}%
-\contentsline {section}{\numberline {20.5}Example}{91}{section.20.5}%
-\contentsline {section}{\numberline {20.6}Example - Code}{91}{section.20.6}%
-\contentsline {section}{\numberline {20.7}Example - Files}{91}{section.20.7}%
-\contentsline {section}{\numberline {20.8}Further Reading}{91}{section.20.8}%
-\contentsline {part}{\numberline {IX}Hints - Examples for LaTeX - Read, Use and Remove}{93}{part.9}%
-\contentsline {chapter}{\numberline {21}Hinweise}{95}{chapter.21}%
-\contentsline {section}{\numberline {21.1}Allgemeine mathematische Beschreibung Bézier-Kurve}{96}{section.21.1}%
-\contentsline {chapter}{\numberline {22}Verrundung mit einem Kreisbogen}{99}{chapter.22}%
-\contentsline {section}{\numberline {22.1}Gleichungen}{99}{section.22.1}%
-\contentsline {section}{\numberline {22.2}Bewertung}{101}{section.22.2}%
-\contentsline {section}{\numberline {22.3}Beispiele}{103}{section.22.3}%
-\contentsline {chapter}{\numberline {23}Maple-Dateien}{107}{chapter.23}%
-\contentsline {section}{\numberline {23.1}Geometrien mit Maple}{107}{section.23.1}%
-\contentsline {section}{\numberline {23.2}Verwendete Geometrieelemente}{107}{section.23.2}%
-\contentsline {section}{\numberline {23.3}Aufbau der Datenstruktur}{108}{section.23.3}%
-\contentsline {section}{\numberline {23.4}Struktur eines Moduls}{108}{section.23.4}%
-\contentsline {subsection}{\numberline {23.4.1}Genereller Aufbau eines Moduls}{110}{subsection.23.4.1}%
-\contentsline {subsection}{\numberline {23.4.2}Sicherung eines Moduls}{112}{subsection.23.4.2}%
-\contentsline {subsection}{\numberline {23.4.3}Verwendung eines Moduls}{112}{subsection.23.4.3}%
-\contentsline {subsection}{\numberline {23.4.4}Erstellung eines Maple-Moduls}{112}{subsection.23.4.4}%
-\contentsline {section}{\numberline {23.5}Funktionen der Module}{113}{section.23.5}%
-\contentsline {subsection}{\numberline {23.5.1}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MPoint}}}{113}{subsection.23.5.1}%
-\contentsline {subsection}{\numberline {23.5.2}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MLine}}}{114}{subsection.23.5.2}%
-\contentsline {subsection}{\numberline {23.5.3}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MArc}}}{115}{subsection.23.5.3}%
-\contentsline {subsection}{\numberline {23.5.4}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MBezier}}}{115}{subsection.23.5.4}%
-\contentsline {subsection}{\numberline {23.5.5}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MPolygon}}}{116}{subsection.23.5.5}%
-\contentsline {subsection}{\numberline {23.5.6}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MGeoList}}}{116}{subsection.23.5.6}%
-\contentsline {subsection}{\numberline {23.5.7}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MHermiteProblem}}}{117}{subsection.23.5.7}%
-\contentsline {subsection}{\numberline {23.5.8}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MHermiteProblemSym}}}{117}{subsection.23.5.8}%
-\contentsline {subsection}{\numberline {23.5.9}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MConstant}}}{118}{subsection.23.5.9}%
-\contentsline {subsection}{\numberline {23.5.10}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MGeneralMath}}}{118}{subsection.23.5.10}%
-\contentsline {subsection}{\numberline {23.5.11}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-Biarc}}}{119}{subsection.23.5.11}%
-\contentsline {subsubsection}{\nonumberline Datenstruktur}{119}{subsubsection*.25}%
-\contentsline {subsection}{\numberline {23.5.12}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MBiarc}}}{119}{subsection.23.5.12}%
-\contentsline {section}{\numberline {23.6}Programmablaufplan}{120}{section.23.6}%
-\contentsline {subsection}{\numberline {23.6.1}Gesamauf}{120}{subsection.23.6.1}%
-\contentsline {subsection}{\numberline {23.6.2}Verrundung der Kurve}{120}{subsection.23.6.2}%
-\contentsline {chapter}{\numberline {24}Representation of Python Programs}{123}{chapter.24}%
-\contentsline {chapter}{\numberline {25}Representation of Programs written for Arduino Boards}{125}{chapter.25}%
-\contentsline {chapter}{\numberline {26}Erstes Kapitel}{127}{chapter.26}%
-\contentsline {chapter}{\numberline {27}CAGD}{129}{chapter.27}%
+\contentsline {chapter}{Abbildungsverzeichnis}{9}{chapter*.2}%
+\contentsline {chapter}{ Liste des Listings}{11}{chapter*.3}%
+\contentsline {part}{\numberline {I}Einleitung}{15}{part.1}%
+\contentsline {chapter}{\numberline {1}Einführung}{17}{chapter.1}%
+\contentsline {chapter}{\numberline {2}Aufgabenstellung}{19}{chapter.2}%
+\contentsline {chapter}{\numberline {3}Stand der Technik}{21}{chapter.3}%
+\contentsline {chapter}{\numberline {4}Einbettung des Projektes}{23}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Besondere Herausforderung}{25}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Lösung der Herausforderung}{25}{section.5.1}%
+\contentsline {chapter}{\numberline {6}Inhalte der folgenden Kapitel}{27}{chapter.6}%
+\contentsline {part}{\numberline {II}Domain Knowledge - Application}{29}{part.2}%
+\contentsline {chapter}{\numberline {7}Applikationen}{31}{chapter.7}%
+\contentsline {part}{\numberline {III}Domain Knowledge - Hardware}{33}{part.3}%
+\contentsline {chapter}{\numberline {8}Arduino Nano 33 BLE Sense}{35}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Allgemeine Beschreibung}{35}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Mikrocontroller und Leistungsdaten}{36}{section.8.2}%
+\contentsline {section}{\numberline {8.3}Betriebsspannung und Logikpegel}{36}{section.8.3}%
+\contentsline {section}{\numberline {8.4}Digitale Ein- und Ausgänge}{36}{section.8.4}%
+\contentsline {section}{\numberline {8.5}PWM und Servo-Ansteuerung}{37}{section.8.5}%
+\contentsline {section}{\numberline {8.6}Zeitmessung und Ablaufsteuerung}{37}{section.8.6}%
+\contentsline {section}{\numberline {8.7}USB, Programmierung und serielle Kommunikation}{38}{section.8.7}%
+\contentsline {section}{\numberline {8.8}Integrierte Funktionen und Sensorik}{38}{section.8.8}%
+\contentsline {section}{\numberline {8.9}Further Readings}{39}{section.8.9}%
+\contentsline {chapter}{\numberline {9}Ultraschallsensor HC-SR04}{41}{chapter.9}%
+\contentsline {section}{\numberline {9.1}Allgemeines}{41}{section.9.1}%
+\contentsline {section}{\numberline {9.2}Ultraschallsensor HC-SR04}{41}{section.9.2}%
+\contentsline {section}{\numberline {9.3}Spezifikation}{41}{section.9.3}%
+\contentsline {paragraph}{\nonumberline Schaltplan}{42}{paragraph*.8}%
+\contentsline {section}{\numberline {9.4}Bibliothek}{42}{section.9.4}%
+\contentsline {subsection}{\numberline {9.4.1}Beschreibung}{42}{subsection.9.4.1}%
+\contentsline {subsection}{\numberline {9.4.2}Installation}{42}{subsection.9.4.2}%
+\contentsline {subsection}{\numberline {9.4.3}Funktionen}{42}{subsection.9.4.3}%
+\contentsline {section}{\numberline {9.5}Beispiel}{44}{section.9.5}%
+\contentsline {subsection}{\numberline {9.5.1}Handbuch}{44}{subsection.9.5.1}%
+\contentsline {subsection}{\numberline {9.5.2}Funktion vom Beispiel}{45}{subsection.9.5.2}%
+\contentsline {subsection}{\numberline {9.5.3}Code}{45}{subsection.9.5.3}%
+\contentsline {section}{\numberline {9.6}Kalibrierung}{46}{section.9.6}%
+\contentsline {section}{\numberline {9.7}Einfacher Code ohne newPing Bibliothek}{46}{section.9.7}%
+\contentsline {section}{\numberline {9.8}Einfache Anwendung}{47}{section.9.8}%
+\contentsline {section}{\numberline {9.9}Tests}{48}{section.9.9}%
+\contentsline {subsection}{\numberline {9.9.1}Einfacher Funktionstest}{48}{subsection.9.9.1}%
+\contentsline {subsection}{\numberline {9.9.2}Alle Funktionen testen}{48}{subsection.9.9.2}%
+\contentsline {section}{\numberline {9.10}Weiterführende Literatur}{49}{section.9.10}%
+\contentsline {chapter}{\numberline {10}SG90 Servomotor}{51}{chapter.10}%
+\contentsline {section}{\numberline {10.1}Allgemeines}{51}{section.10.1}%
+\contentsline {section}{\numberline {10.2}Servomotor TowerPro SG90}{51}{section.10.2}%
+\contentsline {section}{\numberline {10.3}Spezifikation}{51}{section.10.3}%
+\contentsline {section}{\numberline {10.4}Bibliothek}{52}{section.10.4}%
+\contentsline {subsection}{\numberline {10.4.1}Beschreibung}{52}{subsection.10.4.1}%
+\contentsline {subsection}{\numberline {10.4.2}Installation}{52}{subsection.10.4.2}%
+\contentsline {subsection}{\numberline {10.4.3}Funktionen}{53}{subsection.10.4.3}%
+\contentsline {section}{\numberline {10.5}Beispiel}{53}{section.10.5}%
+\contentsline {subsection}{\numberline {10.5.1}Handbuch}{53}{subsection.10.5.1}%
+\contentsline {subsection}{\numberline {10.5.2}An einem Beispiel}{53}{subsection.10.5.2}%
+\contentsline {subsection}{\numberline {10.5.3}Code}{53}{subsection.10.5.3}%
+\contentsline {subsection}{\numberline {10.5.4}Dateien}{54}{subsection.10.5.4}%
+\contentsline {section}{\numberline {10.6}Kalibrierung}{54}{section.10.6}%
+\contentsline {section}{\numberline {10.7}Einfacher Code (ohne Bibliothek)}{55}{section.10.7}%
+\contentsline {section}{\numberline {10.8}Einfache Anwendung}{56}{section.10.8}%
+\contentsline {section}{\numberline {10.9}Tests}{56}{section.10.9}%
+\contentsline {subsection}{\numberline {10.9.1}Einfacher Funktionstest}{56}{subsection.10.9.1}%
+\contentsline {subsection}{\numberline {10.9.2}Alle Funktionen testen}{56}{subsection.10.9.2}%
+\contentsline {section}{\numberline {10.10}Weiterführende Literatur}{56}{section.10.10}%
+\contentsline {part}{\numberline {IV}Domain Knowledge - Tools}{57}{part.4}%
+\contentsline {chapter}{\numberline {11}Mikrocontroller-Programmierung mit der Arduino IDE}{59}{chapter.11}%
+\contentsline {section}{\numberline {11.1}Allgemeines zur Arduino IDE}{59}{section.11.1}%
+\contentsline {section}{\numberline {11.2}Das Steuerungsprogramm des Ultraschallradars}{59}{section.11.2}%
+\contentsline {subsection}{\numberline {11.2.1}Quellcode der Arduino-Steuerung}{60}{subsection.11.2.1}%
+\contentsline {chapter}{\numberline {12}Arduino IDE 2.3.6}{63}{chapter.12}%
+\contentsline {section}{\numberline {12.1}Arduino IDE Beschreibung}{63}{section.12.1}%
+\contentsline {section}{\numberline {12.2}Installation der Arduino IDE}{64}{section.12.2}%
+\contentsline {subsection}{\numberline {12.2.1}Download oder Arduino IDE}{64}{subsection.12.2.1}%
+\contentsline {subsection}{\numberline {12.2.2}Anforderungen Betriebssystem}{65}{subsection.12.2.2}%
+\contentsline {subsection}{\numberline {12.2.3}Installation auf Windows}{65}{subsection.12.2.3}%
+\contentsline {subsection}{\numberline {12.2.4}Installation (MacOS)}{68}{subsection.12.2.4}%
+\contentsline {section}{\numberline {12.3}Übersicht der Eigenschaften}{69}{section.12.3}%
+\contentsline {subsection}{\numberline {12.3.1}Sketchbook}{70}{subsection.12.3.1}%
+\contentsline {subsection}{\numberline {12.3.2}Boards Manager}{71}{subsection.12.3.2}%
+\contentsline {subsection}{\numberline {12.3.3}Library Manager}{71}{subsection.12.3.3}%
+\contentsline {section}{\numberline {12.4}Integration und Verwendung einer benutzerdefinierten Bibliothek in der Arduino IDE}{72}{section.12.4}%
+\contentsline {subsection}{\numberline {12.4.1}Erstellen der Bibliotheksdateien}{72}{subsection.12.4.1}%
+\contentsline {subsection}{\numberline {12.4.2}Installation und Integration der Arduino IDE}{72}{subsection.12.4.2}%
+\contentsline {subsection}{\numberline {12.4.3}Verwendung symbolischer Verknüpfungen zur Bibliotheksintegration}{73}{subsection.12.4.3}%
+\contentsline {subsection}{\numberline {12.4.4}Windows-Tool \textcolor {ShellColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-mklink}} zum Erstellen symbolischer Verknüpfungen}{73}{subsection.12.4.4}%
+\contentsline {subsection}{\numberline {12.4.5}Überprüfen der Verfügbarkeit der Bibliothek in der Arduino IDE}{74}{subsection.12.4.5}%
+\contentsline {subsection}{\numberline {12.4.6}Serieller Monitor}{75}{subsection.12.4.6}%
+\contentsline {subsection}{\numberline {12.4.7}Serieller Plotter}{75}{subsection.12.4.7}%
+\contentsline {section}{\numberline {12.5}Beispiele}{76}{section.12.5}%
+\contentsline {section}{\numberline {12.6}Debuggen}{76}{section.12.6}%
+\contentsline {section}{\numberline {12.7}Autovervollständigung}{77}{section.12.7}%
+\contentsline {section}{\numberline {12.8}Bibliotheken und Modularität}{78}{section.12.8}%
+\contentsline {chapter}{\numberline {13}Processing 4.3}{79}{chapter.13}%
+\contentsline {section}{\numberline {13.1}Processing Beschreibung}{79}{section.13.1}%
+\contentsline {section}{\numberline {13.2}Installation von Processing}{80}{section.13.2}%
+\contentsline {subsection}{\numberline {13.2.1}Download von Processing}{80}{subsection.13.2.1}%
+\contentsline {subsection}{\numberline {13.2.2}Anforderungen Betriebssystem}{81}{subsection.13.2.2}%
+\contentsline {subsection}{\numberline {13.2.3}Installation auf Windows}{81}{subsection.13.2.3}%
+\contentsline {subsection}{\numberline {13.2.4}Installation auf macOS}{81}{subsection.13.2.4}%
+\contentsline {section}{\numberline {13.3}Übersicht der Eigenschaften und Contribution Manager}{82}{section.13.3}%
+\contentsline {subsection}{\numberline {13.3.1}Die serielle Schnittstelle (Serial-Bibliothek)}{83}{subsection.13.3.1}%
+\contentsline {part}{\numberline {V}Developmenmt}{85}{part.5}%
+\contentsline {chapter}{\numberline {14}\textcolor {red}{Flow Chart Development XY}}{87}{chapter.14}%
+\contentsline {part}{\numberline {VI}Monitoring}{89}{part.6}%
+\contentsline {chapter}{\numberline {15}\textcolor {red}{Monitoring XY}}{91}{chapter.15}%
+\contentsline {part}{\numberline {VII}Verification - Evaluation - Conclusion}{93}{part.7}%
+\contentsline {chapter}{\numberline {16}\textcolor {red}{Evaluation/Verification XY}}{95}{chapter.16}%
+\contentsline {chapter}{\numberline {17}\textcolor {red}{To DoX Y}}{97}{chapter.17}%
+\contentsline {chapter}{\numberline {18}\textcolor {red}{Conclusion XY}}{99}{chapter.18}%
+\contentsline {part}{\numberline {VIII} Anhang}{101}{part.8}%
+\contentsline {chapter}{\numberline {19}Bill Of Material}{103}{chapter.19}%
+\contentsline {chapter}{Stichwortverzeichnis – Keywords}{105}{chapter*.37}%
+\contentsline {chapter}{\numberline {20}\textcolor {red}{SBOM}}{107}{chapter.20}%
+\contentsline {chapter}{\numberline {21}\textcolor {red}{Package \textcolor {PythonColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-Example}}}}{109}{chapter.21}%
+\contentsline {section}{\numberline {21.1}Introduction}{109}{section.21.1}%
+\contentsline {section}{\numberline {21.2}Description}{109}{section.21.2}%
+\contentsline {section}{\numberline {21.3}Installation}{109}{section.21.3}%
+\contentsline {section}{\numberline {21.4}Example - Manual}{109}{section.21.4}%
+\contentsline {section}{\numberline {21.5}Example}{109}{section.21.5}%
+\contentsline {section}{\numberline {21.6}Example - Code}{109}{section.21.6}%
+\contentsline {section}{\numberline {21.7}Example - Files}{109}{section.21.7}%
+\contentsline {section}{\numberline {21.8}Further Reading}{109}{section.21.8}%
+\contentsline {part}{\numberline {IX}Hints - Examples for LaTeX - Read, Use and Remove}{111}{part.9}%
+\contentsline {chapter}{\numberline {22}Hinweise}{113}{chapter.22}%
+\contentsline {section}{\numberline {22.1}Allgemeine mathematische Beschreibung Bézier-Kurve}{114}{section.22.1}%
+\contentsline {chapter}{\numberline {23}Verrundung mit einem Kreisbogen}{117}{chapter.23}%
+\contentsline {section}{\numberline {23.1}Gleichungen}{117}{section.23.1}%
+\contentsline {section}{\numberline {23.2}Bewertung}{119}{section.23.2}%
+\contentsline {section}{\numberline {23.3}Beispiele}{121}{section.23.3}%
+\contentsline {chapter}{\numberline {24}Maple-Dateien}{125}{chapter.24}%
+\contentsline {section}{\numberline {24.1}Geometrien mit Maple}{125}{section.24.1}%
+\contentsline {section}{\numberline {24.2}Verwendete Geometrieelemente}{125}{section.24.2}%
+\contentsline {section}{\numberline {24.3}Aufbau der Datenstruktur}{126}{section.24.3}%
+\contentsline {section}{\numberline {24.4}Struktur eines Moduls}{126}{section.24.4}%
+\contentsline {subsection}{\numberline {24.4.1}Genereller Aufbau eines Moduls}{128}{subsection.24.4.1}%
+\contentsline {subsection}{\numberline {24.4.2}Sicherung eines Moduls}{130}{subsection.24.4.2}%
+\contentsline {subsection}{\numberline {24.4.3}Verwendung eines Moduls}{130}{subsection.24.4.3}%
+\contentsline {subsection}{\numberline {24.4.4}Erstellung eines Maple-Moduls}{130}{subsection.24.4.4}%
+\contentsline {section}{\numberline {24.5}Funktionen der Module}{131}{section.24.5}%
+\contentsline {subsection}{\numberline {24.5.1}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MPoint}}}{131}{subsection.24.5.1}%
+\contentsline {subsection}{\numberline {24.5.2}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MLine}}}{132}{subsection.24.5.2}%
+\contentsline {subsection}{\numberline {24.5.3}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MArc}}}{133}{subsection.24.5.3}%
+\contentsline {subsection}{\numberline {24.5.4}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MBezier}}}{133}{subsection.24.5.4}%
+\contentsline {subsection}{\numberline {24.5.5}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MPolygon}}}{134}{subsection.24.5.5}%
+\contentsline {subsection}{\numberline {24.5.6}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MGeoList}}}{134}{subsection.24.5.6}%
+\contentsline {subsection}{\numberline {24.5.7}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MHermiteProblem}}}{135}{subsection.24.5.7}%
+\contentsline {subsection}{\numberline {24.5.8}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MHermiteProblemSym}}}{135}{subsection.24.5.8}%
+\contentsline {subsection}{\numberline {24.5.9}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MConstant}}}{136}{subsection.24.5.9}%
+\contentsline {subsection}{\numberline {24.5.10}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MGeneralMath}}}{136}{subsection.24.5.10}%
+\contentsline {subsection}{\numberline {24.5.11}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-Biarc}}}{137}{subsection.24.5.11}%
+\contentsline {subsubsection}{\nonumberline Datenstruktur}{137}{subsubsection*.45}%
+\contentsline {subsection}{\numberline {24.5.12}Modul \textcolor {MapleColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-MBiarc}}}{137}{subsection.24.5.12}%
+\contentsline {section}{\numberline {24.6}Programmablaufplan}{138}{section.24.6}%
+\contentsline {subsection}{\numberline {24.6.1}Gesamauf}{138}{subsection.24.6.1}%
+\contentsline {subsection}{\numberline {24.6.2}Verrundung der Kurve}{138}{subsection.24.6.2}%
+\contentsline {chapter}{\numberline {25}Representation of Python Programs}{141}{chapter.25}%
+\contentsline {chapter}{\numberline {26}Representation of Programs written for Arduino Boards}{143}{chapter.26}%
+\contentsline {chapter}{\numberline {27}Erstes Kapitel}{145}{chapter.27}%
+\contentsline {chapter}{\numberline {28}CAGD}{147}{chapter.28}%
 \def \@chapapp {\appendixname }
-\contentsline {chapter}{\numberline {A}Zeichnungen mit tikz}{131}{appendix.A}%
-\contentsline {chapter}{\numberline {B}Kriterien für eine gutes \LaTeX -Projekt}{133}{appendix.B}%
-\contentsline {chapter}{Index}{135}{appendix.B}%
+\contentsline {chapter}{\numberline {A}Zeichnungen mit tikz}{149}{appendix.A}%
+\contentsline {chapter}{\numberline {B}Kriterien für eine gutes \LaTeX -Projekt}{151}{appendix.B}%
+\contentsline {chapter}{Index}{153}{appendix.B}%

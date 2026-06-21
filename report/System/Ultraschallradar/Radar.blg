@@ -17,7 +17,7 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated field_info (elt_size=4) to 10740 items from 5000.
+Reallocated field_info (elt_size=4) to 11020 items from 5000.
 Database file #1: Radar-blx.bib
 Database file #2: ../../../MLbib/Jetson.bib
 Database file #3: ../../../MLbib/literature.bib
@@ -29,6 +29,10 @@ I'm skipping whatever remains of this entry
 Repeated entry---line 677 of file ../../../MLbib/MyLiterature.bib
  : @misc{Eckel:2023
  :                 ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 751 of file ../../../MLbib/MyLiterature.bib
+ : @article{Fezari:2018
+ :                     ,
 I'm skipping whatever remains of this entry
 I was expecting a `,' or a `}'---line 1057 of file ../../../MLbib/MyLiterature.bib
  : 
@@ -144,45 +148,45 @@ Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https:/
 while executing---line 2816 of file biblatex.bst
 Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
 while executing---line 2816 of file biblatex.bst
-You've used 39 entries,
+You've used 41 entries,
             6402 wiz_defined-function locations,
-            1437 strings with 16606 characters,
-and the built_in function-call counts, 247896 in all, are:
-= -- 18383
-> -- 3751
-< -- 1445
-+ -- 6280
-- -- 1470
-* -- 17429
-:= -- 26205
+            1449 strings with 16827 characters,
+and the built_in function-call counts, 261352 in all, are:
+= -- 19391
+> -- 3976
+< -- 1532
++ -- 6577
+- -- 1546
+* -- 18418
+:= -- 27572
 add.period$ -- 0
-call.type$ -- 39
-change.case$ -- 48
-chr.to.int$ -- 86
-cite$ -- 86
-duplicate$ -- 26684
-empty$ -- 23073
-format.name$ -- 2193
-if$ -- 50741
+call.type$ -- 41
+change.case$ -- 50
+chr.to.int$ -- 92
+cite$ -- 90
+duplicate$ -- 28009
+empty$ -- 24330
+format.name$ -- 2316
+if$ -- 53572
 int.to.chr$ -- 0
-int.to.str$ -- 117
+int.to.str$ -- 122
 missing$ -- 0
-newline$ -- 1150
-num.names$ -- 1763
-pop$ -- 13607
+newline$ -- 1201
+num.names$ -- 1870
+pop$ -- 14311
 preamble$ -- 1
-purify$ -- 767
+purify$ -- 813
 quote$ -- 0
-skip$ -- 7206
+skip$ -- 7634
 stack$ -- 0
-substring$ -- 32748
-swap$ -- 5612
-text.length$ -- 1234
-text.prefix$ -- 68
+substring$ -- 34633
+swap$ -- 5898
+text.length$ -- 1302
+text.prefix$ -- 71
 top$ -- 1
-type$ -- 1310
+type$ -- 1378
 warning$ -- 0
-while$ -- 3287
+while$ -- 3444
 width$ -- 0
-write$ -- 1112
-(There were 55 error messages)
+write$ -- 1161
+(There were 56 error messages)

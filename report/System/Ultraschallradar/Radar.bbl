@@ -484,6 +484,33 @@
     \field{year}{2020}
   \endentry
 
+  \entry{Fezari:2018}{article}{}{}
+    \name{author}{2}{}{%
+      {{hash=FM}{%
+         family={Fezari},
+         familyi={F\bibinitperiod},
+         given={Mohamed},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=ADA}{%
+         family={Al\bibnamedelima Dahoud},
+         familyi={A\bibinitperiod\bibinitdelim D\bibinitperiod},
+         given={Ali},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{FMADA1}
+    \strng{fullhash}{FMADA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{FAD18}
+    \field{sortinit}{F}
+    \field{sortinithash}{F}
+    \field{title}{Integrated Development Environment ``IDE'' For Arduino}
+    \field{month}{10}
+    \field{year}{2018}
+  \endentry
+
   \entry{Farouki:2017}{article}{}{}
     \name{author}{2}{}{%
       {{hash=FR}{%
@@ -878,6 +905,30 @@
     \field{howpublished}{United States Patent, Patent N0.: US 7,291,002 B2}
     \field{title}{Apparatus and Methods for 3D Printing}
     \field{year}{2007}
+  \endentry
+
+  \entry{Smith:2011}{book}{}{}
+    \name{author}{1}{}{%
+      {{hash=SAG}{%
+         family={Smith},
+         familyi={S\bibinitperiod},
+         given={Alan\bibnamedelima G.},
+         giveni={A\bibinitperiod\bibinitdelim G\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SAG1}
+    \strng{fullhash}{SAG1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Smi11}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{isbn}{978-1463698348}
+    \field{title}{Introduction to Arduino: A Piece of Cake!}
+    \list{location}{1}{%
+      {Self-published}%
+    }
+    \field{year}{2011}
   \endentry
 
   \entry{Wat:2017e}{online}{}{}

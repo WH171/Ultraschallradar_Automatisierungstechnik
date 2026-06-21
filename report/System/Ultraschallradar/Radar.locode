@@ -8,14 +8,12 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {code}{\numberline {9.1}{\ignorespaces Beispiel Code}}{43}{code.caption.10}%
-\contentsline {code}{\numberline {9.2}{\ignorespaces Beispiel Code ohne Bibliothekseinbindung}}{44}{code.caption.11}%
-\contentsline {code}{\numberline {9.3}{\ignorespaces Einparkhilfe Beispielcode}}{45}{code.caption.12}%
+\contentsline {code}{\numberline {9.1}{\ignorespaces Beispiel Code}}{45}{code.caption.10}%
+\contentsline {code}{\numberline {9.2}{\ignorespaces Beispiel Code ohne Bibliothekseinbindung}}{46}{code.caption.11}%
+\contentsline {code}{\numberline {9.3}{\ignorespaces Einparkhilfe Beispielcode}}{47}{code.caption.12}%
 \addvspace {10\p@ }
-\contentsline {code}{\numberline {10.1}{\ignorespaces Beispiel Code für den TowerPro SG90}}{51}{code.caption.14}%
-\contentsline {code}{\numberline {10.2}{\ignorespaces Code ohne Bibilothek für den TowerPro SG90}}{53}{code.caption.15}%
-\addvspace {10\p@ }
-\addvspace {10\p@ }
+\contentsline {code}{\numberline {10.1}{\ignorespaces Beispiel Code für den TowerPro SG90}}{53}{code.caption.14}%
+\contentsline {code}{\numberline {10.2}{\ignorespaces Code ohne Bibilothek für den TowerPro SG90}}{55}{code.caption.15}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
@@ -28,9 +26,12 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {code}{\numberline {24.1}{\ignorespaces \glqq Hello World\grqq {} in Python -- Variant 1}}{124}{code.caption.28}%
 \addvspace {10\p@ }
-\contentsline {code}{\numberline {25.1}{\ignorespaces \glqq Hello World\grqq {} in Python -- Variant 1}}{126}{code.caption.29}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {code}{\numberline {25.1}{\ignorespaces \glqq Hello World\grqq {} in Python -- Variant 1}}{142}{code.caption.48}%
+\addvspace {10\p@ }
+\contentsline {code}{\numberline {26.1}{\ignorespaces \glqq Hello World\grqq {} in Python -- Variant 1}}{144}{code.caption.49}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \def \@chapapp {\appendixname }
