@@ -1,53 +1,6 @@
-%%%
-%
-% $Autor: Müller, Hinrichs $
-% $Datum: 2026-06-09 14:18:35Z $
-% $Pfad: Radar.tex
-% $Version: 1 $
-%
-% Project: 
-%
-%%%
-
-
-\chapter{Mikrocontroller-Programmierung mit der Arduino IDE}
-
-\section{Allgemeines zur Arduino IDE}
-Die Arduino Integrated Development Environment (IDE) ist eine plattformunabhängige Open-Source-Entwicklungsumgebung, die speziell für die Programmierung von Mikrocontrollern entworfen wurde. Sie basiert im Kern auf der Programmiersprache C/C++, verbirgt jedoch viele komplexe hardwarenahe Konfigurationen hinter einer stark vereinfachten Syntax und einer umfangreichen Standardbibliothek. 
-
-Ein klassisches Arduino-Programm (auch ,,Sketch`` genannt) ist strukturell immer in zwei wesentliche Hauptfunktionen unterteilt: Die \PYTHON{setup()}-Funktion, welche genau einmal beim Systemstart ausgeführt wird und für die Initialisierung von Pins und Schnittstellen zuständig ist, sowie die \PYTHON{loop()}-Funktion, welche im Anschluss als Endlosschleife die eigentliche Arbeitslogik des Mikrocontrollers abarbeitet. Die fertigen Programme werden direkt aus der IDE heraus kompiliert und über eine serielle USB-Verbindung auf den Flash-Speicher des Mikrocontrollers übertragen.
-
-\section{Das Steuerungsprogramm des Ultraschallradars}
-Der Quellcode für den Arduino Nano 33 BLE übernimmt die direkte Hardwaresteuerung der Sensorik, der Aktuatorik sowie der visuellen Statusanzeigen (LEDs). Bevor das System in den regulären Betriebsmodus wechselt, durchläuft es in der \PYTHON{setup()}-Phase einen sogenannten Power-On Self-Test (POST). Hierbei teilt der Mikrocontroller der verbundenen Processing-Software zunächst den Status \texttt{S:TESTING} mit. Daraufhin werden die LEDs auf Funktion geprüft, der Servomotor absolviert eine Testdrehung und der Ultraschallsensor führt eine initiale Referenzmessung durch. 
-
-Nur wenn diese Testmessung valide Werte (zwischen 1\,cm und 400\,cm) liefert, wird das System freigegeben, die grüne Status-LED aktiviert und das Signal \texttt{S:OK} an den Computer gesendet. Tritt ein Fehler auf, beispielsweise durch einen Verbindungsabbruch zum Sensor (Timeout), leuchtet die rote LED auf, das System blockiert aus Sicherheitsgründen den weiteren Betrieb und meldet \texttt{S:ERR\_SENSOR}.
-
-Im laufenden und fehlerfreien Betrieb (\texttt{loop}) iteriert das System kontinuierlich durch die Positionen des Servomotors (0\textdegree{} bis 180\textdegree{} und zurück). Nach jedem Positionsschritt pausiert das System kurz, um die mechanische Trägheit des Motors auszugleichen. Anschließend feuert der HC-SR04-Sensor einen 10\,µs langen Ultraschall-Impuls ab und misst die Zeit bis zum Eintreffen des Echos. Aus dieser Laufzeit errechnet der Mikrocontroller unter Einbeziehung der Schallgeschwindigkeit die genaue Distanz. 
-
-Abschließend formatiert der Arduino diese Wertepaare in das speziell für dieses Projekt definierte Kommunikationsprotokoll (\texttt{D:Winkel,Distanz}) und übermittelt sie in Echtzeit an die serielle Schnittstelle zur weiteren grafischen Auswertung.
-
-\newpage
-\subsection{Quellcode der Arduino-Steuerung}
-
-% HINWEIS ZUM PFAD: 
-% Passe diesen Pfad genau wie bei der Processing-Datei an deine Ordnerstruktur an!
-% Beispiel: \lstinputlisting[...]{../../Code/Arduino/RadarControl.ino}
-
-\lstinputlisting[
-language=C++, 
-caption={Arduino Steuerungscode mit Doxygen-Dokumentation}, 
-label={lst:arduino_radar}, 
-numbers=left, 
-frame=single, 
-basicstyle=\footnotesize\ttfamily, 
-keywordstyle=\color{blue}, 
-commentstyle=\color{teal}, 
-stringstyle=\color{red}
-]{../../Code/Ultraschallradar/UltraschallradarArduinoIDEMitDoxygen/UltraschallradarArduinoIDEMitDoxygen.ino}
-
 %%% 
 % 
-% $Autor: Gruppe 02 $
+% $Autor: Hinrichs, Mueller $
 % $Datum: 2025-06 $
 % $Projekt: Rundenzaehler fuer die Carrera-Bahn
 % $Kurzbeschreibung: Funktionsbeschreibung der Arduino IDE
@@ -132,7 +85,7 @@ Die fünf Schaltflächen am oberen Bildschirmrand sind wie folgt:
 \subsection{Download oder Arduino IDE} 
 Der Arduino Nano 33 BLE Sense wird über die Arduino Integrated Development Environment (IDE) programmiert, die als Standardumgebung für sämtliche Arduino-Boards etabliert ist. Sie zählt zu den am weitesten verbreiteten Entwicklungsplattformen im Bereich der Mikrocontroller-Programmierung. Die IDE ist sowohl als Offline-Variante zur lokalen Installation als auch als Online-Editor verfügbar. Als Open-Source-Software ist sie darauf ausgelegt, den Programmierprozess möglichst zugänglich zu gestalten – vom Schreiben des Codes bis hin zum Hochladen auf das jeweilige Board. 
 \\\\ 
-Für alle gängigen Betriebssysteme – einschließlich macOS, Linux und Windows – stehen passende Versionen zur Verfügung. Die Installation ist unkompliziert und wird durch die breite Unterstützung der Arduino-Community zusätzlich erleichtert. Neben der Desktop-Version bietet Arduino auch eine cloudbasierte Entwicklungsumgebung an: den Online-Arduino-Editor. Diese moderne Webanwendung ermöglicht das plattformunabhängige Programmieren, Speichern und Verwalten von Sketchen direkt im Browser. Sie enthält alle gängigen Bibliotheken und bietet sofortige Unterstützung für aktuelle Arduino-Boards, einschließlich des Nano 33 BLE Sense. 
+Für alle gängigen Betriebssysteme – einschlie\ss lich macOS, Linux und Windows – stehen passende Versionen zur Verfügung. Die Installation ist unkompliziert und wird durch die breite Unterstützung der Arduino-Community zusätzlich erleichtert. Neben der Desktop-Version bietet Arduino auch eine cloudbasierte Entwicklungsumgebung an: den Online-Arduino-Editor. Diese moderne Webanwendung ermöglicht das plattformunabhängige Programmieren, Speichern und Verwalten von Sketchen direkt im Browser. Sie enthält alle gängigen Bibliotheken und bietet sofortige Unterstützung für aktuelle Arduino-Boards, einschlie\ss lich des Nano 33 BLE Sense. 
 \\\\ 
 Zugriff auf die verschiedenen Softwarepakete erhalten Sie über die offizielle Website der Arduino-Entwickler: \HREF{https://www.arduino.cc/en/software}{Arduino-Software}. Dort finden sich stets die neuesten Versionen der IDE sowie weiterführende Informationen. Eine Übersicht der verfügbaren Downloadoptionen ist in Abbildung~\ref{fig:Download_Installation_2.3.6} dargestellt. 
 
@@ -174,7 +127,7 @@ Im Folgenden sind die Systemanforderungen und Varianten der verfügbaren Downloa
 \subsection{Installation auf Windows} 
 Die Installation der Arduino IDE auf einem Windows-System wird im folgenden Abschnitt Schritt für Schritt erläutert. Im Anschluss daran folgt eine Einführung in zentrale Funktionen der Umgebung, darunter der Board-Manager, der Bibliotheks-Manager, das Sketchbook sowie weitere essentielle Werkzeuge der Benutzeroberfläche. 
 \\\\ 
-Um die Arduino IDE auf einem Windows-Computer zu installieren, laden Sie zunächst die entsprechende Installationsdatei von der offiziellen Website unter \HREF{https://www.arduino.cc/en/software}{Arduino-Software} herunter. Starten Sie anschließend die heruntergeladene Datei und folgen Sie den angezeigten Installationsanweisungen. Diese beinhalten in der Regel die Auswahl des Installationsverzeichnisses sowie optionaler Komponenten wie Verknüpfungen. Sobald der Vorgang abgeschlossen ist, steht die Entwicklungsumgebung zur sofortigen Nutzung bereit. 
+Um die Arduino IDE auf einem Windows-Computer zu installieren, laden Sie zunächst die entsprechende Installationsdatei von der offiziellen Website unter \HREF{https://www.arduino.cc/en/software}{Arduino-Software} herunter. Starten Sie anschlie\ss end die heruntergeladene Datei und folgen Sie den angezeigten Installationsanweisungen. Diese beinhalten in der Regel die Auswahl des Installationsverzeichnisses sowie optionaler Komponenten wie Verknüpfungen. Sobald der Vorgang abgeschlossen ist, steht die Entwicklungsumgebung zur sofortigen Nutzung bereit. 
 
 \begin{center}\centering 
 	
@@ -186,7 +139,7 @@ Um die Arduino IDE auf einem Windows-Computer zu installieren, laden Sie zunäch
 
 Nachdem der Download der Arduino IDE abgeschlossen wurde, erscheint im nächsten Schritt das Fenster mit den Lizenzbedingungen. Diese sollten aufmerksam durchgelesen werden, bevor mit der Installation fortgefahren wird. Um die Installation zu starten, müssen alle Lizenzbedingungen akzeptiert werden. Dies geschieht durch einen Klick auf die Schaltfläche \menu{Annehmen}, wie in Abbildung~\ref{fig:Lizenz} dargestellt.
 
-Im Anschluss wird der Benutzer aufgefordert, ein Zielverzeichnis für die Installation auszuwählen. Standardmäßig ist ein Pfad vorgegeben, dieser kann jedoch bei Bedarf individuell angepasst werden. Nachdem das gewünschte Verzeichnis ausgewählt wurde, wird der Installationsvorgang durch einen Klick auf \menu{Installieren} gestartet, siehe Abbildung~\ref{fig:Zielverzeichnis}. 
+Im Anschluss wird der Benutzer aufgefordert, ein Zielverzeichnis für die Installation auszuwählen. Standardmä\ss ig ist ein Pfad vorgegeben, dieser kann jedoch bei Bedarf individuell angepasst werden. Nachdem das gewünschte Verzeichnis ausgewählt wurde, wird der Installationsvorgang durch einen Klick auf \menu{Installieren} gestartet, siehe Abbildung~\ref{fig:Zielverzeichnis}. 
 
 
 
@@ -227,7 +180,7 @@ Aus der oben dargestellten Abbildung ~\ref{fig:Startfenster} geht hervor, dass d
 Der zweite Teil des Sketches ist die Funktion \PYTHON{void loop()}, in der der Hauptcode geschrieben wird. Funktionen, die wiederholt ausgeführt werden sollen, werden hier definiert und laufen fortlaufend in der Schleife. Diese Funktionen sind ebenfalls zwischen geschweiften Klammern \PYTHON{\{\}} eingefasst. Jede Funktion in Arduino hat einen Rückgabewert – in diesem Fall handelt es sich um den Rückgabetyp void, was bedeutet, dass die Funktion keinen Wert zurückgibt. 
 
 \subsection{Installation (MacOS)} 
-Um die Arduino IDE zu installieren, beginnen Sie mit dem Herunterladen der neuesten Version von der offiziellen Arduino-Website unter \HREF{https://www.arduino.cc/en/software}{Arduino-Software}. Wählen Sie die Version, die mit Ihrem Betriebssystem kompatibel ist. In diesem Beispiel wird die Version Arduino 2.6.3 für macOS (Sonoma 14.4.1) verwendet. Die Setup-Datei trägt den Namen „Arduino-Software“ und hat eine Größe von etwa 193.600 KB. Diese Datei ist im Zip-Format. 
+Um die Arduino IDE zu installieren, beginnen Sie mit dem Herunterladen der neuesten Version von der offiziellen Arduino-Website unter \HREF{https://www.arduino.cc/en/software}{Arduino-Software}. Wählen Sie die Version, die mit Ihrem Betriebssystem kompatibel ist. In diesem Beispiel wird die Version Arduino 2.6.3 für macOS (Sonoma 14.4.1) verwendet. Die Setup-Datei trägt den Namen „Arduino-Software“ und hat eine Grö\ss e von etwa 193.600 KB. Diese Datei ist im Zip-Format. 
 \\\\ 
 Für Nutzer, die die Arduino IDE 2.3.6 mit Safari herunterladen, wird die Datei nach Abschluss des Downloads automatisch entpackt. Andere Browser hingegen erfordern möglicherweise eine manuelle Entpackung. Die folgende Abbildung~\ref{fig:Arduino_IDE_macOS} zeigt die neueste Offline-Version der Arduino IDE 2.3.6, die ebenfalls mit allen gängigen Betriebssystemen kompatibel ist. 
 \\\\ 
@@ -320,7 +273,7 @@ Durch die Verwendung des Boards Managers wird sichergestellt, dass die richtigen
 \subsection{Library Manager}
 Der Library Manager kann in der Arduino IDE über folgende Schritte aufgerufen werden: \menu{Tools > Manage Libraries}.
 
-Der Bibliotheksverwalter ermöglicht es Nutzerinnen und Nutzern, eine große Auswahl an Bibliotheken zu durchsuchen und zu installieren. 
+Der Bibliotheksverwalter ermöglicht es Nutzerinnen und Nutzern, eine gro\ss e Auswahl an Bibliotheken zu durchsuchen und zu installieren. 
 Bibliotheken erweitern die Grundfunktionen von Arduino und erleichtern Aufgaben wie: 
 
 \begin{itemize}
@@ -392,7 +345,7 @@ Um eine benutzerdefinierte Bibliothek in der Arduino IDE zu installieren, befolg
 
 \subsection{Verwendung symbolischer Verknüpfungen zur Bibliotheksintegration}
 
-In manchen Fällen kann es bequemer oder notwendig sein, die Bibliotheksdateien außerhalb des Standardbibliotheksverzeichnisses zu speichern. 
+In manchen Fällen kann es bequemer oder notwendig sein, die Bibliotheksdateien au\ss erhalb des Standardbibliotheksverzeichnisses zu speichern. 
 Zum Beispiel, wenn die Bibliotheken in einem GitHub-Repository gespeichert sind oder zur besseren Versionskontrolle, kann der Befehl \menu{mklink} verwendet werden, um eine symbolische Verknüpfung zu erstellen. 
 
 Dies ermöglicht es der Arduino IDE, auf die Bibliotheksdateien zuzugreifen, als ob sie sich im Standardverzeichnis befinden, ohne dass die Dateien dupliziert werden müssen. 
@@ -458,7 +411,7 @@ Um sicherzustellen, dass die benutzerdefinierte Bibliothek erfolgreich integrier
 	
 	\item Arduino IDE neu starten:
 	Falls die Arduino IDE während der Installation der Bibliothek oder nach dem Erstellen der symbolischen Verknüpfung geöffnet war, 
-	schließen und öffnen Sie sie erneut. Dadurch wird die Liste der verfügbaren Bibliotheken neu geladen. 
+	schlie\ss en und öffnen Sie sie erneut. Dadurch wird die Liste der verfügbaren Bibliotheken neu geladen. 
 	
 	\item Bibliotheksmenü überprüfen: 
 	Navigieren Sie zu \menu{Sketch} gehen Sie zu \menu{Include Library} und wählen Sie die Bibliothek Nano33BLESenseLED aus, wie in \ref{fig:OwnLibrary} gezeigt.
@@ -538,7 +491,7 @@ um Probleme wie Logikfehler oder falsche Variablenwerte zu identifizieren.
 Der Debugger ermöglicht es, die Ausführung an bestimmten Punkten im Programm anzuhalten, um das Verhalten des Programms und den Speicherzustand im Detail zu untersuchen. 
 
 Diese Funktion verbessert den Entwicklungsprozess, 
-indem sie es erleichtert, Fehler zur Laufzeit zu finden und zu beheben, anstatt sich ausschließlich auf print-Anweisungen oder Versuch-und-Irrtum zu verlassen ~\ref{Debugging}.
+indem sie es erleichtert, Fehler zur Laufzeit zu finden und zu beheben, anstatt sich ausschlie\ss lich auf print-Anweisungen oder Versuch-und-Irrtum zu verlassen ~\ref{Debugging}.
 
 \begin{center}
 	\includegraphics[width=0.75\linewidth]{../Images/ArdiunoIDE2/de/BeispielDebuggen}
@@ -570,7 +523,7 @@ Die Arduino IDE erlaubt es, Funktionen in Bibliotheken auszulagern und wiederzuv
 \medskip
 
 
-Die Verwendung von Bibliotheksfunktionen ermöglicht es, größere Programme in modulare Teilfunktionen zu gliedern und dadurch Struktur sowie Wartbarkeit deutlich zu verbessern.
+Die Verwendung von Bibliotheksfunktionen ermöglicht es, grö\ss ere Programme in modulare Teilfunktionen zu gliedern und dadurch Struktur sowie Wartbarkeit deutlich zu verbessern.
 So kann beispielsweise mit der Funktion \PYTHON{BLE.setLocalName()} ein Bluetooth-Name für die Applikation festgelegt werden, ohne dass die zugrunde liegenden Befehle und Abläufe im Detail bekannt sein müssen.
 
 

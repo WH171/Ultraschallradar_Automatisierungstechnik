@@ -17,176 +17,72 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated field_info (elt_size=4) to 11020 items from 5000.
+Reallocated field_info (elt_size=4) to 11860 items from 5000.
 Database file #1: Radar-blx.bib
 Database file #2: ../../../MLbib/Jetson.bib
 Database file #3: ../../../MLbib/literature.bib
 Database file #4: ../../../MLbib/MyLiterature.bib
-I was expecting a `,' or a `}'---line 615 of file ../../../MLbib/MyLiterature.bib
+I was expecting a `,' or a `}'---line 641 of file ../../../MLbib/MyLiterature.bib
  : @article{DroneBot: 
  :                    2020,
 I'm skipping whatever remains of this entry
-Repeated entry---line 677 of file ../../../MLbib/MyLiterature.bib
+Repeated entry---line 703 of file ../../../MLbib/MyLiterature.bib
  : @misc{Eckel:2023
  :                 ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 751 of file ../../../MLbib/MyLiterature.bib
+Repeated entry---line 783 of file ../../../MLbib/MyLiterature.bib
  : @article{Fezari:2018
  :                     ,
 I'm skipping whatever remains of this entry
-I was expecting a `,' or a `}'---line 1057 of file ../../../MLbib/MyLiterature.bib
- : 
- : @misc{Johnson:2023,
-(Error may have been on previous line)
+Repeated entry---line 801 of file ../../../MLbib/MyLiterature.bib
+ : @book{Fraden:2010
+ :                  ,
 I'm skipping whatever remains of this entry
 Warning--I didn't find a database entry for "kts:2026"
 Warning--I didn't find a database entry for "Dr"
+Warning--I didn't find a database entry for "P"
 Biblatex version: 3.21
 Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2700 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2700 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2700 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2700 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2700 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2700 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2700 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2700 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2700 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2700 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2700 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2700 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2700 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2700 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2700 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2700 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2704 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2704 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2704 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2710 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2710 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2710 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2714 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2714 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2714 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2714 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2714 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2714 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2718 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2718 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2718 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2724 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2724 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2724 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2728 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2728 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2728 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2728 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2728 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2728 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2768 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2768 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2768 of file biblatex.bst
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2816 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2816 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2816 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2816 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2816 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2816 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2816 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2816 of file biblatex.bst
-Too many commas in name 1 of "Jimblom, organization = {SparkFun}, url = {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}, note = {Zugriff am 29.05.2026}" for entry Jimblom:2026
-while executing---line 2816 of file biblatex.bst
-You've used 41 entries,
+You've used 46 entries,
             6402 wiz_defined-function locations,
-            1449 strings with 16827 characters,
-and the built_in function-call counts, 261352 in all, are:
-= -- 19391
-> -- 3976
-< -- 1532
-+ -- 6577
-- -- 1546
-* -- 18418
-:= -- 27572
+            1487 strings with 17469 characters,
+and the built_in function-call counts, 281056 in all, are:
+= -- 20217
+> -- 4830
+< -- 1820
++ -- 7388
+- -- 1945
+* -- 19145
+:= -- 29162
 add.period$ -- 0
-call.type$ -- 41
-change.case$ -- 50
-chr.to.int$ -- 92
-cite$ -- 90
-duplicate$ -- 28009
-empty$ -- 24330
-format.name$ -- 2316
-if$ -- 53572
+call.type$ -- 46
+change.case$ -- 55
+chr.to.int$ -- 125
+cite$ -- 100
+duplicate$ -- 31195
+empty$ -- 25912
+format.name$ -- 2603
+if$ -- 57570
 int.to.chr$ -- 0
-int.to.str$ -- 122
+int.to.str$ -- 142
 missing$ -- 0
-newline$ -- 1201
-num.names$ -- 1870
-pop$ -- 14311
+newline$ -- 1347
+num.names$ -- 2224
+pop$ -- 16017
 preamble$ -- 1
-purify$ -- 813
+purify$ -- 993
 quote$ -- 0
-skip$ -- 7634
+skip$ -- 8988
 stack$ -- 0
-substring$ -- 34633
-swap$ -- 5898
-text.length$ -- 1302
-text.prefix$ -- 71
+substring$ -- 34306
+swap$ -- 6745
+text.length$ -- 1476
+text.prefix$ -- 80
 top$ -- 1
-type$ -- 1378
+type$ -- 1548
 warning$ -- 0
-while$ -- 3444
+while$ -- 3773
 width$ -- 0
-write$ -- 1161
-(There were 56 error messages)
+write$ -- 1302
+(There were 4 error messages)

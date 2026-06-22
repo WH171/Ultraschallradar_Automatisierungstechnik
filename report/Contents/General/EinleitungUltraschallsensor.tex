@@ -20,7 +20,7 @@ Als zentrale Steuereinheit des Systems dient ein Arduino Nano. Die mechanische S
 
 Auf der Software-Seite gliedert sich das Projekt in zwei Hauptbereiche: Die Programmierung des Mikrocontrollers (Embedded C/C++) über die Arduino IDE sowie die Entwicklung einer Benutzeroberfläche für den Computer. Letzteres wird mithilfe der auf Java basierenden Umgebung Processing umgesetzt. Diese Software empfängt die seriellen Sensordaten des Arduinos (Winkel und Distanz) kontinuierlich und übersetzt sie in eine dynamische, visuell ansprechende Radar-Anzeige, welche erkannte Objekte und Systemzustände visualisiert.
 
-Der vorliegende Bericht dokumentiert den gesamten Entwicklungsprozess dieses Systems. Er erläutert zunächst die verwendeten Hardwarekomponenten, die mechanische Konstruktion sowie den elektronischen Schaltungsaufbau. Anschließend wird detailliert auf die Programmierung und Implementierung der Steuerungs- sowie Visualisierungssoftware eingegangen.
+Der vorliegende Bericht dokumentiert den gesamten Entwicklungsprozess dieses Systems. Er erläutert zunächst die verwendeten Hardwarekomponenten, die mechanische Konstruktion sowie den elektronischen Schaltungsaufbau. Anschlie\ss end wird detailliert auf die Programmierung und Implementierung der Steuerungs- sowie Visualisierungssoftware eingegangen.
 
 \chapter{Aufgabenstellung}
 
@@ -52,17 +52,45 @@ Der vorliegende Bericht dokumentiert den gesamten Entwicklungsprozess dieses Sys
 	
 	Durch diese Ausgestaltung ordnet sich das Projekt in die Gruppe kostengünstiger Ultraschall-Radar-Systeme ein, entwickelt diese jedoch durch den Einsatz moderner Hardware und eine systematische Softwarestruktur weiter.\cite{Kaparthi:2021} Es dient damit sowohl als Demonstrator für die Sensordatenerfassung mit dem Arduino Nano 33 BLE Sense als auch als Grundlage für weiterführende Anwendungen in der Automatisierungstechnik.
 
-\chapter{Besondere Herausforderung}
 
-	Im Rahmen der Entwicklung der Applikation traten mehrere besondere Herausforderungen auf, die sowohl die mechanische Konstruktion als auch die Softwaregestaltung betrafen. Ein zentrales Ziel war der möglichst kompakte Aufbau des Systems. Dabei musste das Gehäuse so dimensioniert und gestaltet werden, dass alle Komponenten, insbesondere der Ultraschallsensor, der Servomotor und das Arduino‑Board, platzsparend integriert werden konnten, ohne die Funktionalität oder Zugänglichkeit zu beeinträchtigen. Eine zusätzliche Herausforderung bestand in der Unterbringung der Jumper-Kabel im Inneren des Gehäuses, um mechanische Kollisionen, Kabelbrüche sowie Beeinflussungen der Sensorik durch bewegte Leitungen zu vermeiden.
-	
-	Auf der Softwareseite ergaben sich weitere Anforderungen aus der gewünschten Plattformunabhängigkeit der Benutzerschnittstelle. Es sollte eine Anwendung bereitgestellt werden, die sich direkt von einem USB ‑ Stick starten lässt und möglichst ohne zusätzliche Installation auf unterschiedlichen Betriebssystemen lauffähig ist. Dies erforderte eine genaue Auswahl der eingesetzten Entwicklungsumgebung, um Abhängigkeiten zu reduzieren und eine robuste Ausführung zu ermöglichen.
-	
-	Im Verlauf der Entwicklung zeigte sich zudem, dass die Visualisierung der Messdaten auf der Benutzeroberfläche zunächst zu grob und unübersichtlich war. Einzelne Objekte wurden zu gro\ss dargestellt, sodass die eigentlichen Objektdimensionen anhand des Ultraschallradars nur eingeschränkt erkennbar waren.
-	
-	
-\section{Lösung der Herausforderung}
+\chapter{Bessondere Herausforderungen und Lösungsansätze}
+\label{chap:Besondere_Herausforderungen}
+
+Im Rahmen der Systemintegration traten sowohl auf der hardwareseitigen mechatronischen Ebene als auch bei der softwareseitigen Signalverarbeitung spezifische Herausforderungen auf. Diese ergaben sich primär aus der geometrischen Bauform des kompakten Gehäuses sowie den physikalischen Eigenschaften der Ultraschall-Messtechnik.
+
+\section{Analyse der Problemstellungen}
+\label{sec:Analyse_Herausforderungen}
+
+\subsection{Mechanischer Bauraum und Kabel-Interferenz}
+Das primäre konstruktive Ziel bestand in der Entwicklung eines möglichst kompakten, geschlossenen Gehäuses zur Aufnahme des Arduino-Mikrocontrollers, des SG90-Servomotors und des HC-SR04-Ultraschallsensors. Aufgrund des kleinen Gehäuses war im Innenraum nur begrenzt Platz. 
+
+Die besondere Herausforderung lag in der Dynamik des Systems: Da der Ultraschallsensor eine kontinuierliche Schwenkbewegung von 120$^\circ$ vollführt, wird der angeschlossene Kabelstrang einer permanenten Belastung ausgesetzt. Es bestand das akute Risiko, dass sich starr verlegte Kabel im Betrieb mit den rotierenden Bauteilen verkeilen, die Bewegung des Servomotors blockieren, mechanische Kollisionen verursachen oder sich durch die Zugbelastung von den GPIO-Pins lösen.
+
+\subsection{Virtuelle Objektverbreiterung durch Schallkegel-Divergenz}
+Auf der Softwareseite zeigte sich in der ersten Entwicklungsphase ein unpräzises, visuell verrauschtes Radarbild. Bedingt durch den physikalischen Öffnungswinkel des HC-SR04-Sensors von rund 15$^\circ$ (Divergenz) erfasst der Sensor Hindernisse bereits weit vor und nach der eigentlichen orthogonalen Ausrichtung. 
+
+In der Benutzeroberfläche führte dies ohne softwareseitige Kompensation dazu, dass schmale Objekte (wie beispielsweise dünne Stäbe) winkelmä\ss ig massiv verbreitert  dargestellt wurden. Eine präzise Differenzierung von Objektgeometrien oder das Erkennen von Durchgängen (Lücken von weniger als 10~cm) war dadurch unmöglich.
+
+\section{Realisierung der Lösungsansätze}
+\label{sec:Loesung_Herausforderungen}
+
+\subsection{Geometrische Bauteilplatzierung und dynamisches Kabelmanagement}
+Zur Behebung der mechanischen Kollisionsprobleme wurde eine gezielte räumliche Platzierung der stationären und rotierenden Komponenten im Gehäuse vorgenommen. Der Servomotor wurde direkt am Gehäusedeckel montiert und axial so ausgerichtet, dass keine sich bewegenden Jumperkabel kollidieren. 
+
+Durch diese hängende Anordnung konnte der Kabelbaum des Ultraschallsensors so nach oben weggeführt werden, dass er sich exakt im Rotationszentrum der Drehachse befindet. Die Kabellängen wurden exakt so dimensioniert, dass die elastische Biegespannung der Leitungen die Rotationsbewegung unterstützt, anstatt sie zu hemmen. Unbewegte Kabel wurden im unteren Gehäuseteil so platziert, dass eine physische Berührung mit der rotierenden Sensoreinheit deutlich minimiert und die funktionale Betriebssicherheit dauerhaft garantiert werden konnte.
+
+\subsection{Algorithmische Signalfilterung und Hysterese-Clusterbildung}
+Die Kompensation der physikalischen Schallkegel-Aufweitung wurde direkt auf Software-Ebene innerhalb der Processing-Applikation gelöst. Hierzu wurde eine dynamische Filter- und Hystereseschicht implementiert, welche die eingehenden Datenströme kontinuierlich mathematisch analysiert.
+
+Der entwickelte Algorithmus prüft die Distanzwerte aufeinanderfolgender Winkelschritte auf ihre mathematische Kohärenz. Mittels einer definierten Abbruch-Hysterese von:
+\begin{equation}
+	\Delta d > 3{,}5\text{ cm}
+\end{equation}
+erkennt das Programm sprunghafte Änderungen der Entfernungswerte und identifiziert somit die realen geometrischen Au\ss enkanten eines Hindernisses. 
+
+Mehrere zusammenhängende Messpunkte werden zu einem separaten Objekt-Cluster zusammengefasst und über eine Mittelwertbildung komprimiert. Zudem filtert eine softwareseitige Winkelsperre extrem schmale Signalfragmente (unter 2$^\circ$) als Rauschen aus. Das Ergebnis ist eine bereinigte Benutzeroberfläche, welche die tatsächlichen Objektdimensionen deutlich besser abbildet und  nebeneinander platzierte Objekte bis zu einer bestimmten Nähe visuell trennen kann.
 
 
 \chapter{Inhalte der folgenden Kapitel}
+
 

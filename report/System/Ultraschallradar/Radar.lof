@@ -15,52 +15,37 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {10.1}{\ignorespaces Schematische Darstellung des Servomotors TowerPro SG90}}{52}{figure.caption.13}%
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {11.1}{\ignorespaces Arduino IDE 2.3.6 }}{61}{figure.caption.16}%
+\contentsline {figure}{\numberline {11.2}{\ignorespaces Arduino IDE Downloadoptionen}}{62}{figure.caption.17}%
+\contentsline {figure}{\numberline {11.3}{\ignorespaces Lizenzbestätigung Installation}}{63}{figure.caption.18}%
+\contentsline {figure}{\numberline {11.4}{\ignorespaces Wahl Zielverzeichnis}}{63}{figure.caption.19}%
+\contentsline {figure}{\numberline {11.5}{\ignorespaces Startfenster Arduino-IDE}}{64}{figure.caption.20}%
+\contentsline {figure}{\numberline {11.6}{\ignorespaces ArduinoIDE macOS}}{65}{figure.caption.21}%
+\contentsline {figure}{\numberline {11.7}{\ignorespaces Überblick}}{66}{figure.caption.22}%
+\contentsline {figure}{\numberline {11.8}{\ignorespaces Sketchbook}}{66}{figure.caption.23}%
+\contentsline {figure}{\numberline {11.9}{\ignorespaces Boards Manager}}{67}{figure.caption.24}%
+\contentsline {figure}{\numberline {11.10}{\ignorespaces Library Manager}}{68}{figure.caption.25}%
+\contentsline {figure}{\numberline {11.11}{\ignorespaces Eingabeaufforderung mit Administrator Rechten}}{69}{figure.caption.26}%
+\contentsline {figure}{\numberline {11.12}{\ignorespaces Eingabeaufforderung}}{70}{figure.caption.27}%
+\contentsline {figure}{\numberline {11.13}{\ignorespaces Einbinden der Nano33BLESenseLED Bibliothek}}{71}{figure.caption.28}%
+\contentsline {figure}{\numberline {11.14}{\ignorespaces Serieller Monitor}}{71}{figure.caption.29}%
+\contentsline {figure}{\numberline {11.15}{\ignorespaces Beispiele}}{72}{figure.caption.30}%
+\contentsline {figure}{\numberline {11.16}{\ignorespaces Beispiel Debuggen}}{73}{figure.caption.31}%
+\contentsline {figure}{\numberline {11.17}{\ignorespaces Autovervollständigung}}{73}{figure.caption.32}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {12.1}{\ignorespaces Arduino IDE 2.3.6 }}{65}{figure.caption.16}%
-\contentsline {figure}{\numberline {12.2}{\ignorespaces Arduino IDE Downloadoptionen}}{66}{figure.caption.17}%
-\contentsline {figure}{\numberline {12.3}{\ignorespaces Lizenzbestätigung Installation}}{67}{figure.caption.18}%
-\contentsline {figure}{\numberline {12.4}{\ignorespaces Wahl Zielverzeichnis}}{67}{figure.caption.19}%
-\contentsline {figure}{\numberline {12.5}{\ignorespaces Startfenster Arduino-IDE}}{68}{figure.caption.20}%
-\contentsline {figure}{\numberline {12.6}{\ignorespaces ArduinoIDE macOS}}{69}{figure.caption.21}%
-\contentsline {figure}{\numberline {12.7}{\ignorespaces Überblick}}{70}{figure.caption.22}%
-\contentsline {figure}{\numberline {12.8}{\ignorespaces Sketchbook}}{70}{figure.caption.23}%
-\contentsline {figure}{\numberline {12.9}{\ignorespaces Boards Manager}}{71}{figure.caption.24}%
-\contentsline {figure}{\numberline {12.10}{\ignorespaces Library Manager}}{72}{figure.caption.25}%
-\contentsline {figure}{\numberline {12.11}{\ignorespaces Eingabeaufforderung mit Administrator Rechten}}{73}{figure.caption.26}%
-\contentsline {figure}{\numberline {12.12}{\ignorespaces Eingabeaufforderung}}{74}{figure.caption.27}%
-\contentsline {figure}{\numberline {12.13}{\ignorespaces Einbinden der Nano33BLESenseLED Bibliothek}}{75}{figure.caption.28}%
-\contentsline {figure}{\numberline {12.14}{\ignorespaces Serieller Monitor}}{75}{figure.caption.29}%
-\contentsline {figure}{\numberline {12.15}{\ignorespaces Beispiele}}{76}{figure.caption.30}%
-\contentsline {figure}{\numberline {12.16}{\ignorespaces Beispiel Debuggen}}{77}{figure.caption.31}%
-\contentsline {figure}{\numberline {12.17}{\ignorespaces Autovervollständigung}}{77}{figure.caption.32}%
+\contentsline {figure}{\numberline {12.1}{\ignorespaces Processing Downloadverzeichnis}}{77}{figure.caption.33}%
+\contentsline {figure}{\numberline {12.2}{\ignorespaces Startfenster der Processing-IDE}}{78}{figure.caption.34}%
+\contentsline {figure}{\numberline {12.3}{\ignorespaces Processing Contribution Manager}}{79}{figure.caption.35}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {13.1}{\ignorespaces Processing Downloadverzeichnis}}{81}{figure.caption.33}%
-\contentsline {figure}{\numberline {13.2}{\ignorespaces Startfenster der Processing-IDE}}{82}{figure.caption.34}%
-\contentsline {figure}{\numberline {13.3}{\ignorespaces Processing Contribution Manager}}{83}{figure.caption.35}%
-\addvspace {10\p@ }
-\addvspace {10\p@ }
-\addvspace {10\p@ }
-\addvspace {10\p@ }
-\addvspace {10\p@ }
-\addvspace {10\p@ }
-\addvspace {10\p@ }
-\addvspace {10\p@ }
-\addvspace {10\p@ }
-\contentsline {figure}{\numberline {22.1}{\ignorespaces Bernstein-Polynom vom Grad $3$}}{115}{figure.caption.38}%
-\contentsline {figure}{\numberline {22.2}{\ignorespaces Bézier-Kurve zum Beispiel \ref {KPunkte4Beispiel} }}{116}{figure.caption.39}%
-\addvspace {10\p@ }
-\contentsline {figure}{\numberline {23.1}{\ignorespaces Glättung einer Ecke mit Hilfe eines Kreisbogens - Dreieck}}{117}{figure.caption.40}%
-\contentsline {figure}{\numberline {23.2}{\ignorespaces Winkeländerung bei einer Verrundung mit einem Kreisbogen }}{119}{figure.caption.41}%
-\contentsline {figure}{\numberline {23.3}{\ignorespaces Krümmungsverlauf bei der Verrundung mit einem Kreisbogen}}{119}{figure.caption.42}%
-\contentsline {figure}{\numberline {23.4}{\ignorespaces Maximaler Bereich für die Verrundung mit einem Kreisbogen - $L(\varepsilon =const, \alpha )$}}{120}{figure.caption.43}%
-\contentsline {figure}{\numberline {23.5}{\ignorespaces Abweichung bei Vorgabe des Abstands $L$ bei der Verrundung mit einem Kreisbogen}}{120}{figure.caption.44}%
-\addvspace {10\p@ }
-\contentsline {figure}{\numberline {24.1}{\ignorespaces Programmablaufplan \glqq Eckenverrrundung\grqq }}{139}{figure.caption.46}%
-\contentsline {figure}{\numberline {24.2}{\ignorespaces Programmablaufplan \glqq Auswal der Verrundungsstrategien\grqq }}{140}{figure.caption.47}%
+\contentsline {figure}{\numberline {13.1}{\ignorespaces Parametrische CAD-Baugruppe in SolidWorks: Invertierte Servomontage und zweiteiliges Gehäusedesign}}{84}{figure.caption.36}%
+\contentsline {figure}{\numberline {13.2}{\ignorespaces Ultraschallradarsystem mit integrierten Status-LEDs und verschraubten Gehäusekomponenten}}{85}{figure.caption.37}%
+\contentsline {figure}{\numberline {13.3}{\ignorespaces Innenansicht der Sensoraufnahme: Passgenaue HC-SR04-Aufnahme}}{86}{figure.caption.38}%
+\contentsline {figure}{\numberline {13.4}{\ignorespaces Programmablaufplan (Flowchart) der eingebetteten Firmware auf dem Arduino Nano}}{87}{figure.caption.39}%
+\contentsline {figure}{\numberline {13.5}{\ignorespaces Programmablaufplan (Flowchart) der Visualisierungs- und Watchdog-Logik in Processing}}{88}{figure.caption.40}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\def \@chapapp {\appendixname }
+\addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

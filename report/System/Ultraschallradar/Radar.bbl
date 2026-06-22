@@ -573,6 +573,37 @@
     \field{year}{2002}
   \endentry
 
+  \entry{Fraden:2010}{book}{}{}
+    \name{author}{1}{}{%
+      {{hash=FJ}{%
+         family={Fraden},
+         familyi={F\bibinitperiod},
+         given={Jacob},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Springer New York}%
+    }
+    \strng{namehash}{FJ1}
+    \strng{fullhash}{FJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Fra10}
+    \field{sortinit}{F}
+    \field{sortinithash}{F}
+    \field{isbn}{9781441964663}
+    \field{title}{Handbook of Modern Sensors: Physics, Designs, and
+  Applications}
+    \verb{url}
+    \verb https://link.springer.com/book/10.1007/978-1-4419-6466-3
+    \endverb
+    \field{year}{2010}
+    \field{urlday}{24}
+    \field{urlmonth}{09}
+    \field{urlyear}{2025}
+  \endentry
+
   \entry{Fraden:2016}{book}{}{}
     \name{author}{1}{}{%
       {{hash=FJ}{%
@@ -677,28 +708,27 @@
 
   \entry{Jimblom:2026}{misc}{}{}
     \name{author}{1}{}{%
-      {{hash=JuhnZoS}{%
+      {{hash=J}{%
          family={Jimblom},
          familyi={J\bibinitperiod},
-         suffix={organization =\bibnamedelima {SparkFun}},
-         suffixi={o\bibinitperiod\bibinitdelim \bibinitperiod\bibinitdelim
-  S\bibinitperiod},
-         given={url =
-  {https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-converter}
-  note =\bibnamedelima {Zugriff am 29.05.2026}},
-         giveni={u\bibinitperiod\bibinitdelim \bibinitperiod\bibinitdelim
-  h\bibinitperiod\bibinitdelim n\bibinitperiod\bibinitdelim
-  \bibinitperiod\bibinitdelim Z\bibinitperiod},
       }}%
     }
-    \strng{namehash}{JoSuhnZ1}
-    \strng{fullhash}{JoSuhnZ1}
+    \list{organization}{1}{%
+      {SparkFun}%
+    }
+    \strng{namehash}{J1}
+    \strng{fullhash}{J1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelalpha}{Jim}
     \field{sortinit}{J}
     \field{sortinithash}{J}
+    \field{note}{Zugriff am 29.05.2026}
     \field{title}{Using the Logic Level Converter}
+    \verb{url}
+    \verb https://learn.sparkfun.com/tutorials/retired---using-the-logic-level-
+    \verb converter
+    \endverb
   \endentry
 
   \entry{KT:2012}{misc}{}{}
@@ -720,6 +750,63 @@
     \verb https://www.mikrocontroller.net/attachment/218122/HC-SR04ultraschallm
     \verb odulbeschreibung3.pdf
     \endverb
+    \field{year}{2012}
+  \endentry
+
+  \entry{Klemenz:2019}{book}{}{}
+    \name{author}{1}{}{%
+      {{hash=KT}{%
+         family={Klemenz},
+         familyi={K\bibinitperiod},
+         given={Thomas},
+         giveni={T\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {VDE Verlag}%
+    }
+    \strng{namehash}{KT1}
+    \strng{fullhash}{KT1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Kle19}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \field{isbn}{978-3-8007-49wh-x}
+    \field{title}{Ultraschallsensorik in der Industrie: Grundlagen, Anwendungen
+  und Auswahlkriterien}
+    \list{location}{1}{%
+      {Berlin}%
+    }
+    \field{year}{2019}
+  \endentry
+
+  \entry{Lerch:2012}{book}{}{}
+    \name{author}{1}{}{%
+      {{hash=LR}{%
+         family={Lerch},
+         familyi={L\bibinitperiod},
+         given={Reinhard},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Springer-Verlag}%
+    }
+    \strng{namehash}{LR1}
+    \strng{fullhash}{LR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Ler12}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{edition}{6.}
+    \field{isbn}{978-3-642-22608-3}
+    \field{title}{Elektrische Messtechnik: Analoge, digitale und
+  computergestützte Verfahren}
+    \list{location}{1}{%
+      {Berlin Heidelberg}%
+    }
     \field{year}{2012}
   \endentry
 
@@ -817,6 +904,33 @@
     \field{year}{2020}
   \endentry
 
+  \entry{Parisi:2014}{book}{}{}
+    \name{author}{1}{}{%
+      {{hash=PA}{%
+         family={Parisi},
+         familyi={P\bibinitperiod},
+         given={Alessandro},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Packt Publishing}%
+    }
+    \strng{namehash}{PA1}
+    \strng{fullhash}{PA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Par14}
+    \field{sortinit}{P}
+    \field{sortinithash}{P}
+    \field{isbn}{978-1-84951-794-2}
+    \field{title}{Processing 2: Creative Programming Cookbook}
+    \list{location}{1}{%
+      {Birmingham}%
+    }
+    \field{year}{2014}
+  \endentry
+
   \entry{Elektronik:2026}{misc}{}{}
     \name{author}{1}{}{%
       {{hash=PS}{%
@@ -838,6 +952,37 @@
     \verb{url}
     \verb https://www.elektronik-kompendium.de/sites/praxis/bauteilsg90.htm
     \endverb
+  \endentry
+
+  \entry{Reas:2014}{misc}{}{}
+    \name{author}{2}{}{%
+      {{hash=RC}{%
+         family={Reas},
+         familyi={R\bibinitperiod},
+         given={Casey},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=FB}{%
+         family={Fry},
+         familyi={F\bibinitperiod},
+         given={Ben},
+         giveni={B\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{RCFB1}
+    \strng{fullhash}{RCFB1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{RF14}
+    \field{sortinit}{R}
+    \field{sortinithash}{R}
+    \field{title}{Processing: A Programming Handbook for Visual Designers and
+  Artists}
+    \verb{url}
+    \verb https://processing.org/books/
+    \endverb
+    \field{year}{2014}
+    \warn{\item Invalid format of field 'urldate'}
   \endentry
 
   \entry{Kaparthi:2021}{online}{}{}

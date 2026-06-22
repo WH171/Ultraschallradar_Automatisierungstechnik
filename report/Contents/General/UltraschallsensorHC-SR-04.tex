@@ -17,7 +17,7 @@
 \chapter{Ultraschallsensor HC-SR04}
 
 \section*{Einleitung}
-Dieses Kapitel befasst sich mit der berührungslosen Abstandsmessung mithilfe von Sensoren. Zunächst wird ein allgemeiner Überblick über Ultraschallsensoren zur Distanzmessung gegeben. Anschlie\ss end wird der in diesem Projekt verwendete Ultraschallsensor HC-SR04 detailliert beschrieben, einschließlich seiner technischen Spezifikationen und der softwareseitigen Implementierung unter Verwendung ausgewählter C++ Bibliotheken.
+Dieses Kapitel befasst sich mit der berührungslosen Abstandsmessung mithilfe von Sensoren. Zunächst wird ein allgemeiner Überblick über Ultraschallsensoren zur Distanzmessung gegeben. Anschlie\ss end wird der in diesem Projekt verwendete Ultraschallsensor HC-SR04 detailliert beschrieben, einschlie\ss lich seiner technischen Spezifikationen und der softwareseitigen Implementierung unter Verwendung ausgewählter C++ Bibliotheken.
 
 \section{Allgemeines}
 Sensoren zur Abstandsmessung sind wichtige  Komponenten in der modernen Automatisierungstechnik, Robotik und Fahrzeugtechnik \cite{Fraden:2016}. Sie ermöglichen es Systemen, eine Umgebung räumlich zu erfassen. 
@@ -73,7 +73,7 @@ Für die Ansteuerung des Sensors wird die externe C++ Bibliothek \textbf{NewPing
 \subsection{Installation}                                                                                            
 Die Bibliothek kann direkt über den internen Bibliotheksverwalter der Arduino IDE installiert werden \cite{Eckel:2023}.
 \begin{itemize}                                                                                                                                                                                   
-	\item \textbf{Data types:} Messzeiten in Mikrosekunden und Distanzen in Zentimetern werden als \PYTHON{unsigned int} deklariert, um Speicherplatz zu sparen und negative Distanzen auszuschließen.
+	\item \textbf{Data types:} Messzeiten in Mikrosekunden und Distanzen in Zentimetern werden als \PYTHON{unsigned int} deklariert, um Speicherplatz zu sparen und negative Distanzen auszuschlie\ss en.
 	\item \textbf{Data structure:} Der Sensor wird als Objekt der Klasse \PYTHON{NewPing} instanziiert.                                                                                                                                                            
 	\item \textbf{Data quantity:} Das Softwaredesign ist ressourcenschonend konzipiert. Es können bis zu 15 Ultraschallsensoren gleichzeitig und asynchron über ein einziges Board betrieben werden, bei einer Abtastrate von bis zu 30 Pings pro Sekunde je Sensor.
 	\item \textbf{Data quality:} Die Bibliothek bietet integrierte digitale Filter. Die Funktion \PYTHON{pingmedian} verarbeitet mehrere Messwerte zu einem Median, was Rauschen und fehlerhafte Echos effektiv aus dem Datensatz entfernt.

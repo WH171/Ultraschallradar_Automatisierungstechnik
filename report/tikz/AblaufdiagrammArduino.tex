@@ -1,0 +1,37 @@
+\shorthandoff{"}
+\begin{tikzpicture}[
+	node distance=1.0cm,
+	startstop/.style={rectangle, rounded corners=10pt, minimum width=3cm, minimum height=0.8cm, text width=3.5cm, align=center, draw=black, fill=gray!15, font=\sffamily\small},
+	process/.style={rectangle, minimum width=3.5cm, minimum height=0.8cm, text width=3.8cm, align=center, draw=black, fill=blue!10, font=\sffamily\small},
+	decision/.style={diamond, aspect=2, minimum width=3.5cm, minimum height=0.8cm, text width=2.8cm, align=center, draw=black, fill=yellow!15, font=\sffamily\small},
+	errorbox/.style={rectangle, minimum width=3.5cm, minimum height=0.8cm, text width=3.8cm, align=center, draw=black, fill=red!15, font=\sffamily\small},
+	arrow/.style={->, >=Stealth, thick}
+	]
+	
+	% Knoten Definitionen
+	\node (start) [startstop] {Start: Firmware Boot};
+	\node (init) [process, below=of start] {Setup(): Initialisierung\\ \textbf{Rote LED = AN}};
+	\node (dec1) [decision, below=of init] {Token \texttt{"P:START"} \\ empfangen?};
+	\node (test) [process, below=of dec1] {\texttt{"S:TESTING"} senden\\ \textbf{Beide LEDs = AN}};
+	\node (servo) [process, below=of test] {Servo auf 90$^\circ$ fahren\\ Testmessung auslösen};
+	\node (dec2) [decision, below=of servo] {Messwert valide?\\ ($0 < d < 400\text{ cm}$)};
+	\node (err) [errorbox, left=1.0cm of dec2] {Zustand \texttt{"S:ERR\_SENSOR"}\\ \textbf{Rote LED = AN}\\ \textit{Endlosschleife (Halt)}};
+	\node (ok) [process, below=of dec2] {\texttt{"S:OK"} senden\\ \textbf{Grüne LED = AN}};
+	\node (scan) [process, below=of ok] {loop(): Inkrementeller\\ Servo-Sweep (30$^\circ$--150$^\circ$)};
+	\node (send) [process, below=of scan] {Telemetrie via UART:\\ \texttt{"D:Winkel,Distanz"}};
+	
+	% Pfeilverbindungen
+	\draw [arrow] (start) -- (init);
+	\draw [arrow] (init) -- (dec1);
+	\draw [arrow] (dec1) -- node[anchor=west] {Ja} (test);
+	\draw [arrow] (dec1.west) -- ++(-0.5,0) -- ++(0,1.5) -- node[anchor=south] {Nein} (init.west);
+	\draw [arrow] (test) -- (servo);
+	\draw [arrow] (servo) -- (dec2);
+	\draw [arrow] (dec2) -- node[anchor=south] {Nein} (err);
+	\draw [arrow] (dec2) -- node[anchor=west] {Ja} (ok);
+	\draw [arrow] (ok) -- (scan);
+	\draw [arrow] (scan) -- (send);
+	\draw [arrow] (send.east) -- ++(0.5,0) -- ++(0,1.5) |- (scan.east);
+	
+\end{tikzpicture}
+\shorthandon{"}

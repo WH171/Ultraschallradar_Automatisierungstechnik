@@ -1,0 +1,40 @@
+\shorthandoff{"}
+\begin{tikzpicture}[
+	node distance=1.0cm,
+	startstop/.style={rectangle, rounded corners=10pt, minimum width=3cm, minimum height=0.8cm, text width=3.5cm, align=center, draw=black, fill=gray!15, font=\sffamily\small},
+	process/.style={rectangle, minimum width=3.5cm, minimum height=0.8cm, text width=3.8cm, align=center, draw=black, fill=green!10, font=\sffamily\small},
+	decision/.style={diamond, aspect=2, minimum width=3.5cm, minimum height=0.8cm, text width=2.8cm, align=center, draw=black, fill=yellow!15, font=\sffamily\small},
+	errorbox/.style={rectangle, minimum width=3.5cm, minimum height=0.8cm, text width=3.8cm, align=center, draw=black, fill=red!15, font=\sffamily\small},
+	bootbox/.style={rectangle, minimum width=3.5cm, minimum height=0.8cm, text width=3.8cm, align=center, draw=black, fill=orange!15, font=\sffamily\small},
+	arrow/.style={->, >=Stealth, thick}
+	]
+	
+	% Knoten Definitionen
+	\node (start) [startstop] {Start: Applikationsaufruf};
+	\node (setup) [process, below=of start] {setup(): OS prüfen \&\\ COM-Ports auflisten};
+	\node (dec1) [decision, below=of setup] {USB/COM Port\\ verfügbar?};
+	\node (err) [errorbox, left=1.0cm of dec1] {\textbf{SYSTEMFEHLER}\\ Roter Warn-Screen\\ (Hintergrund-Polling)};
+	\node (conn) [process, below=of dec1] {Port öffnen. Zyklisch\\ Token \texttt{"P:START"} senden};
+	\node (dec2) [decision, below=of conn] {Eingehender\\ System-Status?};
+	\node (boot) [bootbox, left=1.0cm of dec2] {Grauer Boot-Screen:\\ \textit{"System fährt hoch..."}};
+	\node (live) [process, below=of dec2] {Status = \texttt{"OK"}\\ Radar HUD zeichnen\\ (Grid, Strahl, Text)};
+	\node (watch) [decision, below=of live] {Watchdog aktiv:\\ Latenz $> 500$ ms?};
+	\node (parse) [process, below=of watch] {\texttt{serialEvent()}: Parse Data\\ Hysteresefilter \&\\ Clusterbildung};
+	
+	% Pfeilverbindungen
+	\draw [arrow] (start) -- (setup);
+	\draw [arrow] (setup) -- (dec1);
+	\draw [arrow] (dec1) -- node[anchor=west] {Ja} (conn);
+	\draw [arrow] (dec1) -- node[anchor=south] {Nein} (err);
+	\draw [arrow] (err) |- (setup);
+	\draw [arrow] (conn) -- (dec2);
+	\draw [arrow] (dec2) -- node[anchor=south] {\texttt{"TESTING"}} (boot);
+	\draw [arrow] (boot.north) -- ++(0,1.5) |- (dec2.north);
+	\draw [arrow] (dec2) -- node[anchor=west] {\texttt{"OK"}} (live);
+	\draw [arrow] (live) -- (watch);
+	\draw [arrow] (watch) -- node[anchor=west] {Nein} (parse);
+	\draw [arrow] (watch.east) -- ++(0.5,0) |- (dec1.east) node[near end, anchor=south west, xshift=2pt] {Ja};
+	\draw [arrow] (parse.west) -- ++(-0.5,0) -- ++(0,3.2) |- (live.west);
+	
+\end{tikzpicture}
+\shorthandon{"}

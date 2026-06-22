@@ -1,136 +1,116 @@
 \begin{theindex}
 
-  \item 3D-Drucker, 147
-  \item 5G, 147
-
-  \indexspace
-
-  \item      Speicherprogrammierbare Steuerung, 145
   \item  Datei
-    \subitem Blink.ino, 144
-    \subitem Blink.py, 142
-    \subitem C:/Programme/, 81
-    \subitem libraries, 73, 74
-    \subitem Nano33BLESenseLED, 74
-    \subitem PackageExample.py, 109
-    \subitem processing-4.3-windows-x64.zip, 81
-    \subitem Processing.app, 81
-    \subitem processing.exe, 81
-    \subitem Programme, 81
-    \subitem requirements.txt, 107
+    \subitem C:/Programme/, 77
+    \subitem libraries, 69, 70
+    \subitem Nano33BLESenseLED, 70
+    \subitem PackageExample.py, 121
+    \subitem processing-4.3-windows-x64.zip, 77
+    \subitem Processing.app, 77
+    \subitem processing.exe, 77
+    \subitem Programme, 77
+    \subitem requirements.txt, 119
 
   \indexspace
 
-  \item Abschluss und Fazit der Applikation, 105
-  \item Applikation auf dem Arduino, 105
-  \item Arduino Mbed OS, 105
-  \item Arduino Nano 33 BLE Sense, 105
-    \subitem Arduino IDE Konfiguration, 105
-    \subitem Bibliotheken Arduino Nano 33 BLE Sense, 105
-    \subitem BLE Sense Board, 105
-    \subitem Board Manager Eintrag, 105
-    \subitem Nano 33 BLE, 105
-    \subitem Stromversorgung Nano 33 BLE Sense, 105
+  \item Abschluss und Fazit der Applikation, 117
+  \item Applikation auf dem Arduino, 117
+  \item Arduino Mbed OS, 117
+  \item Arduino Nano 33 BLE Sense, 117
+    \subitem Arduino IDE Konfiguration, 117
+    \subitem Bibliotheken Arduino Nano 33 BLE Sense, 117
+    \subitem BLE Sense Board, 117
+    \subitem Board Manager Eintrag, 117
+    \subitem Nano 33 BLE, 117
+    \subitem Stromversorgung Nano 33 BLE Sense, 117
 
   \indexspace
 
-  \item Barometer, 105
-  \item Bluetooth Low Energy, 105
+  \item Barometer, 117
+  \item Bluetooth Low Energy, 117
 
   \indexspace
 
-  \item CAGD, 147
-    \subitem Splines, 147
-  \item CNN, 13, 145
-  \item Computerized Numerical Control
-    \subitem  \emph  {siehe} {CNN}, 13, 145
+  \item Datenverarbeitung auf dem Arduino, 117
+  \item Distanzmessung mit Servo, 117
+  \item Domain Knowledge Application, 117
 
   \indexspace
 
-  \item Datenverarbeitung auf dem Arduino, 105
-  \item Distanzmessung mit Servo, 105
-  \item Domain Knowledge Application, 105
+  \item eingebaute Sensoren, 117
+  \item Example, 121
+    \subitem Description, 121
+    \subitem Installation, 121
+    \subitem Introduction, 121
 
   \indexspace
 
-  \item eingebaute Sensoren, 105
-  \item Example, 109
-    \subitem Description, 109
-    \subitem Installation, 109
-    \subitem Introduction, 109
+  \item HC-SR04, 117
 
   \indexspace
 
-  \item HC-SR04, 105
+  \item IMU Sensor, 117
+  \item Interrupts und Timer, 117
 
   \indexspace
 
-  \item IMU Sensor, 105
-  \item Interrupts und Timer, 105
+  \item Messzyklus Arduino, 117
+  \item Monitoring der Messdaten, 117
 
   \indexspace
 
-  \item Messzyklus Arduino, 105
-  \item Monitoring der Messdaten, 105
+  \item nRF52840 Mikrocontroller, 117
 
   \indexspace
 
-  \item nRF52840 Mikrocontroller, 105
+  \item Onboard Mikrofon, 117
 
   \indexspace
 
-  \item Onboard Mikrofon, 105
+  \item Radar-Applikation, 117
 
   \indexspace
 
-  \item Radar-Applikation, 105
-
-  \indexspace
-
-  \item scannender Ultraschall-Radar, 105
-  \item Serial Plotter Ausgabe, 105
+  \item scannender Ultraschall-Radar, 117
+  \item Serial Plotter Ausgabe, 117
   \item Servomotor
-    \subitem Drehbereich SG90, 105
-    \subitem Getriebe Servo, 105
-    \subitem mechanische Befestigung Servo, 105
-    \subitem Positionsregelung Servo, 105
-    \subitem PWM-Signal Servo, 105
-    \subitem Servoansteuerung mit Arduino, 105
-    \subitem Servohorn, 105
-    \subitem Servostromaufnahme, 105
-    \subitem Stellwinkel Servo, 105
-  \item Servomotor TowerPro SG90, 105
-  \item SG90 Servomotor, 105
-  \item Softwarearchitektur Radar, 105
-  \item Speicherprogrammierbare Steuerung
-    \subitem  \emph  {siehe} SPS, 13, 145
-  \item SPS, 13, 145, 
-		\see{         Speicherprogrammierbare Steuerung}{145}
-  \item State Machine Applikation, 105
+    \subitem Drehbereich SG90, 117
+    \subitem Getriebe Servo, 117
+    \subitem mechanische Befestigung Servo, 117
+    \subitem Positionsregelung Servo, 117
+    \subitem PWM-Signal Servo, 117
+    \subitem Servoansteuerung mit Arduino, 117
+    \subitem Servohorn, 117
+    \subitem Servostromaufnahme, 117
+    \subitem Stellwinkel Servo, 117
+  \item Servomotor TowerPro SG90, 117
+  \item SG90 Servomotor, 117
+  \item Softwarearchitektur Radar, 117
+  \item State Machine Applikation, 117
 
   \indexspace
 
-  \item Temperatur- und Feuchtigkeitssensor, 105
-  \item TowerPro SG90, 105
+  \item Temperatur- und Feuchtigkeitssensor, 117
+  \item TowerPro SG90, 117
 
   \indexspace
 
-  \item Ultraschallsensor, 105
-    \subitem Ansteuerung HC-SR04 mit Arduino, 105
-    \subitem Echo Pin, 105
-    \subitem Entfernungsmessung Ultraschall, 105
-    \subitem Messbereich HC-SR04, 105
-    \subitem Messfehler Ultraschallsensor, 105
-    \subitem Montageposition Ultraschallsensor, 105
-    \subitem Störquellen Ultraschall, 105
-    \subitem Trigger Pin, 105
-    \subitem Versorgungsspannung HC-SR04, 105
-    \subitem Zeit-zu-Distanz-Berechnung, 105
-  \item Ultraschallsensor HC-SR04, 105
+  \item Ultraschallsensor, 117
+    \subitem Ansteuerung HC-SR04 mit Arduino, 117
+    \subitem Echo Pin, 117
+    \subitem Entfernungsmessung Ultraschall, 117
+    \subitem Messbereich HC-SR04, 117
+    \subitem Messfehler Ultraschallsensor, 117
+    \subitem Montageposition Ultraschallsensor, 117
+    \subitem Störquellen Ultraschall, 117
+    \subitem Trigger Pin, 117
+    \subitem Versorgungsspannung HC-SR04, 117
+    \subitem Zeit-zu-Distanz-Berechnung, 117
+  \item Ultraschallsensor HC-SR04, 117
 
   \indexspace
 
-  \item Verification und Evaluation, 105
-  \item Visualisierung Radardaten, 105
+  \item Verification und Evaluation, 117
+  \item Visualisierung Radardaten, 117
 
 \end{theindex}
