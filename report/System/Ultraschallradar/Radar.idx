@@ -1,71 +1,71 @@
-\indexentry{ Datei!libraries}{69}
-\indexentry{ Datei!libraries}{69}
-\indexentry{ Datei!libraries}{70}
-\indexentry{ Datei!libraries}{70}
-\indexentry{ Datei!Nano33BLESenseLED}{70}
-\indexentry{ Datei!processing-4.3-windows-x64.zip}{77}
-\indexentry{ Datei!C:/Programme/}{77}
-\indexentry{ Datei!processing.exe}{77}
-\indexentry{ Datei!Processing.app}{77}
-\indexentry{ Datei!Programme}{77}
-\indexentry{Arduino Nano 33 BLE Sense}{117}
-\indexentry{Arduino Nano 33 BLE Sense!Nano 33 BLE}{117}
-\indexentry{Arduino Nano 33 BLE Sense!BLE Sense Board}{117}
-\indexentry{Arduino Nano 33 BLE Sense!Stromversorgung Nano 33 BLE Sense}{117}
-\indexentry{Arduino Nano 33 BLE Sense!Arduino IDE Konfiguration}{117}
-\indexentry{Arduino Nano 33 BLE Sense!Board Manager Eintrag}{117}
-\indexentry{Arduino Nano 33 BLE Sense!Bibliotheken Arduino Nano 33 BLE Sense}{117}
-\indexentry{nRF52840 Mikrocontroller}{117}
-\indexentry{Bluetooth Low Energy}{117}
-\indexentry{eingebaute Sensoren}{117}
-\indexentry{IMU Sensor}{117}
-\indexentry{Temperatur- und Feuchtigkeitssensor}{117}
-\indexentry{Barometer}{117}
-\indexentry{Onboard Mikrofon}{117}
-\indexentry{Arduino Mbed OS}{117}
-\indexentry{Ultraschallsensor HC-SR04}{117}
-\indexentry{HC-SR04}{117}
-\indexentry{Ultraschallsensor}{117}
-\indexentry{Ultraschallsensor!Entfernungsmessung Ultraschall}{117}
-\indexentry{Ultraschallsensor!Echo Pin}{117}
-\indexentry{Ultraschallsensor!Trigger Pin}{117}
-\indexentry{Ultraschallsensor!Messbereich HC-SR04}{117}
-\indexentry{Ultraschallsensor!Zeit-zu-Distanz-Berechnung}{117}
-\indexentry{Ultraschallsensor!Ansteuerung HC-SR04 mit Arduino}{117}
-\indexentry{Ultraschallsensor!Messfehler Ultraschallsensor}{117}
-\indexentry{Ultraschallsensor!Montageposition Ultraschallsensor}{117}
-\indexentry{Ultraschallsensor!Versorgungsspannung HC-SR04}{117}
-\indexentry{Ultraschallsensor!Störquellen Ultraschall}{117}
-\indexentry{Servomotor TowerPro SG90}{117}
-\indexentry{TowerPro SG90}{117}
-\indexentry{SG90 Servomotor}{117}
-\indexentry{Servomotor!PWM-Signal Servo}{117}
-\indexentry{Servomotor!Stellwinkel Servo}{117}
-\indexentry{Servomotor!Positionsregelung Servo}{117}
-\indexentry{Servomotor!Drehbereich SG90}{117}
-\indexentry{Servomotor!Servoansteuerung mit Arduino}{117}
-\indexentry{Servomotor!Servostromaufnahme}{117}
-\indexentry{Servomotor!mechanische Befestigung Servo}{117}
-\indexentry{Servomotor!Servohorn}{117}
-\indexentry{Servomotor!Getriebe Servo}{117}
-\indexentry{Applikation auf dem Arduino}{117}
-\indexentry{Radar-Applikation}{117}
-\indexentry{Distanzmessung mit Servo}{117}
-\indexentry{scannender Ultraschall-Radar}{117}
-\indexentry{Messzyklus Arduino}{117}
-\indexentry{Interrupts und Timer}{117}
-\indexentry{Datenverarbeitung auf dem Arduino}{117}
-\indexentry{Serial Plotter Ausgabe}{117}
-\indexentry{Visualisierung Radardaten}{117}
-\indexentry{State Machine Applikation}{117}
-\indexentry{Softwarearchitektur Radar}{117}
-\indexentry{Domain Knowledge Application}{117}
-\indexentry{Monitoring der Messdaten}{117}
-\indexentry{Verification und Evaluation}{117}
-\indexentry{Abschluss und Fazit der Applikation}{117}
-\indexentry{ Datei!requirements.txt}{119}
-\indexentry{Example}{121}
-\indexentry{Example!Introduction}{121}
-\indexentry{Example!Description}{121}
-\indexentry{Example!Installation}{121}
-\indexentry{ Datei!PackageExample.py}{121}
+\indexentry{ Datei!libraries}{71}
+\indexentry{ Datei!libraries}{71}
+\indexentry{ Datei!libraries}{72}
+\indexentry{ Datei!libraries}{72}
+\indexentry{ Datei!Nano33BLESenseLED}{72}
+\indexentry{ Datei!processing-4.3-windows-x64.zip}{79}
+\indexentry{ Datei!C:/Programme/}{79}
+\indexentry{ Datei!processing.exe}{79}
+\indexentry{ Datei!Processing.app}{79}
+\indexentry{ Datei!Programme}{79}
+\indexentry{Arduino Nano 33 BLE Sense}{119}
+\indexentry{Arduino Nano 33 BLE Sense!Nano 33 BLE}{119}
+\indexentry{Arduino Nano 33 BLE Sense!BLE Sense Board}{119}
+\indexentry{Arduino Nano 33 BLE Sense!Stromversorgung Nano 33 BLE Sense}{119}
+\indexentry{Arduino Nano 33 BLE Sense!Arduino IDE Konfiguration}{119}
+\indexentry{Arduino Nano 33 BLE Sense!Board Manager Eintrag}{119}
+\indexentry{Arduino Nano 33 BLE Sense!Bibliotheken Arduino Nano 33 BLE Sense}{119}
+\indexentry{nRF52840 Mikrocontroller}{119}
+\indexentry{Bluetooth Low Energy}{119}
+\indexentry{eingebaute Sensoren}{119}
+\indexentry{IMU Sensor}{119}
+\indexentry{Temperatur- und Feuchtigkeitssensor}{119}
+\indexentry{Barometer}{119}
+\indexentry{Onboard Mikrofon}{119}
+\indexentry{Arduino Mbed OS}{119}
+\indexentry{Ultraschallsensor HC-SR04}{119}
+\indexentry{HC-SR04}{119}
+\indexentry{Ultraschallsensor}{119}
+\indexentry{Ultraschallsensor!Entfernungsmessung Ultraschall}{119}
+\indexentry{Ultraschallsensor!Echo Pin}{119}
+\indexentry{Ultraschallsensor!Trigger Pin}{119}
+\indexentry{Ultraschallsensor!Messbereich HC-SR04}{119}
+\indexentry{Ultraschallsensor!Zeit-zu-Distanz-Berechnung}{119}
+\indexentry{Ultraschallsensor!Ansteuerung HC-SR04 mit Arduino}{119}
+\indexentry{Ultraschallsensor!Messfehler Ultraschallsensor}{119}
+\indexentry{Ultraschallsensor!Montageposition Ultraschallsensor}{119}
+\indexentry{Ultraschallsensor!Versorgungsspannung HC-SR04}{119}
+\indexentry{Ultraschallsensor!Störquellen Ultraschall}{119}
+\indexentry{Servomotor TowerPro SG90}{119}
+\indexentry{TowerPro SG90}{119}
+\indexentry{SG90 Servomotor}{119}
+\indexentry{Servomotor!PWM-Signal Servo}{119}
+\indexentry{Servomotor!Stellwinkel Servo}{119}
+\indexentry{Servomotor!Positionsregelung Servo}{119}
+\indexentry{Servomotor!Drehbereich SG90}{119}
+\indexentry{Servomotor!Servoansteuerung mit Arduino}{119}
+\indexentry{Servomotor!Servostromaufnahme}{119}
+\indexentry{Servomotor!mechanische Befestigung Servo}{119}
+\indexentry{Servomotor!Servohorn}{119}
+\indexentry{Servomotor!Getriebe Servo}{119}
+\indexentry{Applikation auf dem Arduino}{119}
+\indexentry{Radar-Applikation}{119}
+\indexentry{Distanzmessung mit Servo}{119}
+\indexentry{scannender Ultraschall-Radar}{119}
+\indexentry{Messzyklus Arduino}{119}
+\indexentry{Interrupts und Timer}{119}
+\indexentry{Datenverarbeitung auf dem Arduino}{119}
+\indexentry{Serial Plotter Ausgabe}{119}
+\indexentry{Visualisierung Radardaten}{119}
+\indexentry{State Machine Applikation}{119}
+\indexentry{Softwarearchitektur Radar}{119}
+\indexentry{Domain Knowledge Application}{119}
+\indexentry{Monitoring der Messdaten}{119}
+\indexentry{Verification und Evaluation}{119}
+\indexentry{Abschluss und Fazit der Applikation}{119}
+\indexentry{ Datei!requirements.txt}{121}
+\indexentry{Example}{123}
+\indexentry{Example!Introduction}{123}
+\indexentry{Example!Description}{123}
+\indexentry{Example!Installation}{123}
+\indexentry{ Datei!PackageExample.py}{123}

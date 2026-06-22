@@ -19,10 +19,10 @@ Dieses Kapitel beschreibt den mechanischen Aktor des Systems, den Micro-Servomot
 
 
 \section{Allgemeines}
-Ein Servomotor ist ein geschlossenes mechatronisches System (Closed-Loop), das für präzise Winkelpositionierungen eingesetzt wird. Im Gegensatz zu kontinuierlich drehenden Gleichstrommotoren besteht ein Standard-Servo aus einem DC-Motor, einem Untersetzungsgetriebe, einem Potentiometer zur Positionserfassung und einer Steuerelektronik. Der Mikrocontroller sendet ein Pulsweitenmodulations-Signal (\textit{PWM}), welches die Steuerelektronik auswertet und den Motor exakt auf den gewünschten Winkel dreht und dort aktiv hält. Servomotoren findet man vor allem im RC-Modellbau (z.B. Lenkung, Ruder, Klappen), in Robotergelenken sowie in Schwenkmechanismen für Kameras oder Sensoren, bei denen wiederholgenaue und stabile Positionen erforderlich sind.\cite{SparkFun:2026}
+Ein Servomotor ist ein geschlossenes mechatronisches System (Closed-Loop), das für präzise Winkelpositionierungen eingesetzt wird. Im Gegensatz zu kontinuierlich drehenden Gleichstrommotoren besteht ein Standard-Servo aus einem DC-Motor, einem Untersetzungsgetriebe, einem Potentiometer zur Positionserfassung und einer Steuerelektronik. Der Mikrocontroller sendet ein Pulsweitenmodulations-Signal (PWM), welches die Steuerelektronik auswertet und den Motor exakt auf den gewünschten Winkel dreht und dort aktiv hält. Servomotoren findet man vor allem im RC-Modellbau (z.B. Lenkung, Ruder, Klappen), in Robotergelenken sowie in Schwenkmechanismen für Kameras oder Sensoren, bei denen wiederholgenaue und stabile Positionen erforderlich sind.\cite{SparkFun:2026}
 
 \section{Servomotor TowerPro SG90}
-Der TowerPro SG90 ist einer der weltweit am häufigsten verwendeten Micro-Servomotoren für kleine Projekte. Er zeichnet sich durch sein extrem geringes Gewicht, seine kompakte Bauform und sein Nylon-Zahnradgetriebe aus. Der Aktor verfügt über ein dreipoliges Anschlusskabel: Braun für die Masse (\textit{GND}), Rot für die Versorgungsspannung (\textit{VCC}) und Orange für das PWM-Steuersignal (\python{Signal}). Der TowerPro SG90 hat einen mechanischen Rotationsspielraum von 180 Grad ($0^\circ$ bis $180^\circ$). Gesteuert wird er über ein 50-Hz-PWM-Signal (20 ms Periodendauer). Eine Pulsweite von 1 ms entspricht theoretisch $0^\circ$, 1,5 ms entsprechen $90^\circ$ (Mittelstellung) und 2 ms entsprechen $180^\circ$.\cite{Elektronik:2026,Components101:2017}  
+Der TowerPro SG90 ist einer der weltweit am häufigsten verwendeten Micro-Servomotoren für kleine Projekte. Er zeichnet sich durch sein extrem geringes Gewicht, seine kompakte Bauform und sein Nylon-Zahnradgetriebe aus. Der Aktor verfügt über ein dreipoliges Anschlusskabel: Braun für die Masse (GND), Rot für die Versorgungsspannung (VCC) und Orange für das PWM-Steuersignal (Signal). Der TowerPro SG90 hat einen mechanischen Rotationsspielraum von 180 Grad ($0^\circ$ bis $180^\circ$). Gesteuert wird er über ein 50-Hz-PWM-Signal (20 ms Periodendauer). Eine Pulsweite von 1 ms entspricht theoretisch $0^\circ$, 1,5 ms entsprechen $90^\circ$ (Mittelstellung) und 2 ms entsprechen $180^\circ$.\cite{Elektronik:2026,Components101:2017}  
 
 \section{Spezifikation}
 \begin{itemize}
@@ -45,7 +45,7 @@ Der TowerPro SG90 ist einer der weltweit am häufigsten verwendeten Micro-Servom
 		\label{fig:sg90_tikz}
 	\end{figure}
 	
-	\item \textbf{Schaltplan:} Das rote Kabel (\textit{VCC}) des SG90 wird mit dem 5V-Ausgang (\textit{VUSB}) des Systems verbunden, um ausreichend Leistung für den Motor bereitzustellen. Das braune Kabel (\textit{GND}) wird mit der gemeinsamen Masse verbunden. Das orange Kabel (\textit{Signal}) wird an einen digitalen PWM-fähigen Pin (z.B. Pin 9) des Mikrocontrollers angeschlossen.\cite{Elektronik:2026} 
+	\item \textbf{Schaltplan:} Das rote Kabel (VCC) des SG90 wird mit dem 5V-Ausgang (VUSB) des Systems verbunden, um ausreichend Leistung für den Motor bereitzustellen. Das braune Kabel (GND) wird mit der gemeinsamen Masse verbunden. Das orange Kabel (Signal) wird an einen digitalen PWM-fähigen Pin (z.B. Pin 9) des Mikrocontrollers angeschlossen.\cite{Elektronik:2026} 
 	
 	\textit{Hinweis:} Der Arduino Nano 33 BLE Sense arbeitet mit 3,3V-I/O-Pegeln und ist nicht 5V-tolerant.\cite{ArduinoNano:2026} 
 	Viele Servomotoren können jedoch ein 3,3V-PWM-Steuersignal verarbeiten, sofern der Servo selbst mit einer geeigneten Versorgungsspannung betrieben wird und eine gemeinsame Masse vorhanden ist.\cite{Dr}
@@ -55,14 +55,14 @@ Der TowerPro SG90 ist einer der weltweit am häufigsten verwendeten Micro-Servom
 
 \subsection{Beschreibung}
 Für die Ansteuerung des SG90 wird in der Arduino-Umgebung die integrierte
-\textit{Servo}-Bibliothek genutzt\cite{ArduinoServo:2025}. Dadurch entfällt für den Programmierer die aufwändige Erzeugung des exakten 50-Hz-PWM-Signals, und der Motor kann bequem über die direkte Vorgabe eines Winkelwertes von 0 bis 180 Grad angesteuert werden.\cite{ArduinoServo:2025}
+Servo-Bibliothek genutzt\cite{ArduinoServo:2025}. Dadurch entfällt für den Programmierer die aufwändige Erzeugung des exakten 50-Hz-PWM-Signals, und der Motor kann bequem über die direkte Vorgabe eines Winkelwertes von 0 bis 180 Grad angesteuert werden.\cite{ArduinoServo:2025}
 
 \subsection{Installation}
 \begin{itemize}
 	\item \textbf{Installation:} Die Bibliothek kann in der Arduino IDE über den Bibliotheksverwalter eingebunden werden. Im Programm wird sie anschlie\ss end mit \PYTHON{\#include <Servo.h>} importiert.\cite{SparkFun:2026}
 
-	\item \textbf{Data types:} Die Zielwinkel werden als \python{int} (Integer/Ganzzahlen) übergeben. Für präzisere Steuerungen können Pulsweiten in Mikrosekunden ebenfalls als \python{int} übergeben werden (vgl. \cite{ArduinoServo.h:2025}).
-	\item \textbf{Data structure:} Jeder Servomotor wird im Code als Objekt der Klasse \textit{Servo} deklariert (z.B. \PYTHON{meinServo;}).
+	\item \textbf{Data types:} Die Zielwinkel werden als \PYTHON{int} (Integer/Ganzzahlen) übergeben. Für präzisere Steuerungen können Pulsweiten in Mikrosekunden ebenfalls als \PYTHON{int} übergeben werden (vgl. \cite{ArduinoServo.h:2025}).
+	\item \textbf{Data structure:} Jeder Servomotor wird im Code als Objekt der Klasse Servo deklariert (z.B. \PYTHON{meinServo;}).
 	\item \textbf{Data quantity:} Auf Standard Arduino-Boards unterstützt die Bibliothek bis zu 12 Servos gleichzeitig; auf speziellen Architekturen (wie der Mbed-OS Architektur des Nano 33 BLE) kann dies variieren, reicht jedoch für mehrere Aktoren vollkommen aus.\cite{ArduinoServoRef:2026}
 	\item \textbf{Data quality:} Die Bibliothek arbeitet timer- und interruptbasiert. Die Servosignale werden im Hintergrund mit dem zuletzt über \PYTHON{write()} gesetzten Wert erzeugt, wodurch keine manuelle PWM-Erzeugung mit blockierenden Delay-Schleifen notwendig ist.\cite{ArduinoServo.h:2025}
 \end{itemize}
@@ -83,9 +83,9 @@ Dieser Abschnitt zeigt ein elementares Beispiel "`Sweep"', bei dem der Servo kon
 Schlie\ss en Sie das rote Kabel an 5V, das braune an GND und das orange Signalkabel an Pin 9 des Arduinos an. Kompilieren Sie das Programm und laden Sie es auf das Board. Der Arm des Servomotors sollte nun anfangen, langsam und gleichmä\ss ig hin und her zu wischen.
 
 \subsection{An einem Beispiel}
-Das Skript in \ref{BeispielCode} bindet zunächst die Bibliothek \PYTHON{Servo.h} ein und erstellt mit \PYTHON{radarServo} ein Servo-Objekt. Zusätzlich wird die Variable \PYTHON{pos} zur Speicherung der aktuellen Winkelposition verwendet. In der \textit{setup()}-Routine wird der Motor über \PYTHON{radarServo.attach(9)} an den digitalen Pin 9 gebunden.
+Das Skript in \ref{BeispielCode} bindet zunächst die Bibliothek \PYTHON{Servo.h} ein und erstellt mit \PYTHON{radarServo} ein Servo-Objekt. Zusätzlich wird die Variable \PYTHON{pos} zur Speicherung der aktuellen Winkelposition verwendet. In der setup()-Routine wird der Motor über \PYTHON{radarServo.attach(9)} an den digitalen Pin 9 gebunden.
 
-In der \textit{loop()}-Schleife sorgen zwei \PYTHON{for}-Schleifen für die kontinuierliche Schwenkbewegung des Servomotors. Die erste Schleife erhöht den Winkel schrittweise von 0° auf 180°. Dabei wird mit \PYTHON{radarServo.write(pos)} jeweils eine absolute Zielposition angefahren. Nach jeder Winkeländerung folgt mit \PYTHON{delay(15)} eine kurze Pause von 15 ms, damit der Motor die physikalische Position erreichen kann. Die zweite Schleife führt anschlie\ss end die Rückwärtsbewegung von 180° zurück auf 0° aus. Dadurch entsteht eine fortlaufende Hin- und Herbewegung des Servomotors.
+In der \PYTHON{loop()}-Schleife sorgen zwei \PYTHON{for}-Schleifen für die kontinuierliche Schwenkbewegung des Servomotors. Die erste Schleife erhöht den Winkel schrittweise von 0° auf 180°. Dabei wird mit \PYTHON{radarServo.write(pos)} jeweils eine absolute Zielposition angefahren. Nach jeder Winkeländerung folgt mit \PYTHON{delay(15)} eine kurze Pause von 15 ms, damit der Motor die physikalische Position erreichen kann. Die zweite Schleife führt anschlie\ss end die Rückwärtsbewegung von $180^\circ$ zurück auf $0^\circ$ aus. Dadurch entsteht eine fortlaufende Hin- und Herbewegung des Servomotors.
 
 \subsection{Code}
 \begin{center}
@@ -93,13 +93,13 @@ In der \textit{loop()}-Schleife sorgen zwei \PYTHON{for}-Schleifen für die kont
 \end{center}
 
 \subsection{Dateien}
-Für das Ausführen des Codes wird ausschlie\ss lich die Standard-Headerdatei \python{Servo.h} benötigt, welche in der Arduino IDE vorinstalliert ist.
+Für das Ausführen des Codes wird ausschlie\ss lich die Standard-Headerdatei \PYTHON{Servo.h} benötigt, welche in der Arduino IDE vorinstalliert ist.
 
 \section{Kalibrierung}
-Bei Servomotoren können die praktisch nutzbaren Endpositionen von den theoretischen PWM-Werten abweichen. Wird der Motor mit zu kleinen oder zu gro\ss en Pulsweiten an seine mechanischen Grenzen gefahren, kann dies zu Brummen, Vibrationen oder mechanischer Belastung führen\cite{ArduinoWriteMic:2026}. Zur Kalibrierung bietet die \python{attach()}-Funktion optionale Parameter für die minimalen und maximalen Mikrosekunden: \PYTHON{radarServo.attach(9, 500, 2400);}. Diese Werte können durch iteratives Ausprobieren mit \PYTHON{writeMicroseconds()} an den individuellen Motor angepasst werden, bis der gewünschte Winkelbereich ohne mechanisches Blockieren erreicht ist.
+Bei Servomotoren können die praktisch nutzbaren Endpositionen von den theoretischen PWM-Werten abweichen. Wird der Motor mit zu kleinen oder zu gro\ss en Pulsweiten an seine mechanischen Grenzen gefahren, kann dies zu Brummen, Vibrationen oder mechanischer Belastung führen\cite{ArduinoWriteMic:2026}. Zur Kalibrierung bietet die \PYTHON{attach()}-Funktion optionale Parameter für die minimalen und maximalen Mikrosekunden: \PYTHON{radarServo.attach(9, 500, 2400);}. Diese Werte können durch iteratives Ausprobieren mit \PYTHON{writeMicroseconds()} an den individuellen Motor angepasst werden, bis der gewünschte Winkelbereich ohne mechanisches Blockieren erreicht ist.
 
 \section{Einfacher Code (ohne Bibliothek)}
-Der Code in \ref{CodeohneBib} erzeugt das PWM-Signal für den Servo manuell ohne die Verwendung der Servo-Bibliothek. In der \textit{setup()}-Routine wird Pin 9 mit \PYTHON{pinMode(9, OUTPUT)} als Ausgang konfiguriert. Die \textit{loop()}-Funktion generiert anschlie\ss end ein 50-Hz-Signal. Dazu wird der Pin mit \PYTHON{digitalWrite(9, HIGH)} für 1500~\textmu s auf HIGH gesetzt, was ungefähr einer Servo-Position von $90^\circ$ entspricht. Danach wird der Pin mit \PYTHON{digitalWrite(9, LOW)} für 18500~\textmu s auf LOW gesetzt, sodass eine vollständige Periodendauer von 20~ms entsteht.
+Der Code in \ref{CodeohneBib} erzeugt das PWM-Signal für den Servo manuell ohne die Verwendung der Servo-Bibliothek. In der \PYTHON{setup()}-Routine wird Pin 9 mit \PYTHON{pinMode(9, OUTPUT)} als Ausgang konfiguriert. Die \PYTHON{loop()}-Funktion generiert anschlie\ss end ein 50-Hz-Signal. Dazu wird der Pin mit \PYTHON{digitalWrite(9, HIGH)} für 1500~\textmu s auf HIGH gesetzt, was ungefähr einer Servo-Position von $90^\circ$ entspricht. Danach wird der Pin mit \PYTHON{digitalWrite(9, LOW)} für 18500~\textmu s auf LOW gesetzt, sodass eine vollständige Periodendauer von 20~ms entsteht.
 
 Diese Methode zeigt vereinfacht, wie die Ansteuerung eines Servomotors über ein PWM-Signal funktioniert. Da der Ablauf jedoch durch die verwendeten Verzögerungen blockierend ist, eignet sich diese Variante nur eingeschränkt für komplexere Anwendungen. In solchen Fällen sollte die Servo-Bibliothek verwendet werden, da diese mit Timern arbeitet und die Ansteuerung komfortabler übernimmt.
 
@@ -128,3 +128,14 @@ Ein vollständiger Systemtest umfasst:
 
 \section{Weiterführende Literatur}
 
+Zaitronics (2026): SG90 Servo Arduino Guide, Verfügbar unter: \url{https://zaitronics.com.au/blogs/guides/sg90-servo-arduino-guide} [abgerufen am 10.06.2026]
+
+\begin{itemize}
+	\item Diese praxisorientierte Anleitung beschreibt die Ansteuerung des TowerPro SG90 mit Arduino, inklusive elektrischer Verschaltung, typischer Pulsweiten für den Stellbereich sowie Hinweisen zur Auslegung von Versorgung und Lastmoment.
+\end{itemize}
+
+Manfred Schulze, Elektrische Servoantriebe – Baugruppen mechatronischer Systeme, Hanser, 2008, ISBN: 9783446414594 \cite{Schulze:2008}
+
+\begin{itemize}
+	\item Dieses Fachbuch behandelt Aufbau, Funktionsweise und Auslegung elektrischer Servoantriebe als Aktoren in mechatronischen Systemen. Es erläutert die Schnittstelle zwischen elektronischer Steuerung und mechanischer Bewegung, beschreibt typische Regelungsstrukturen und Kennlinien und zeigt anhand praxisnaher Beispiele, wie Servoantriebe für präzise Positionieraufgaben ausgewählt und ausgelegt werden können.
+\end{itemize}
