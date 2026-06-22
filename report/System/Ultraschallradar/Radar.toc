@@ -25,10 +25,10 @@
 \contentsline {part}{\numberline {III}Domain Knowledge - Hardware}{33}{part.3}%
 \contentsline {chapter}{\numberline {8}Arduino Nano 33 BLE Sense}{35}{chapter.8}%
 \contentsline {section}{\numberline {8.1}Allgemeine Beschreibung}{35}{section.8.1}%
-\contentsline {section}{\numberline {8.2}Mikrocontroller und Leistungsdaten}{36}{section.8.2}%
+\contentsline {section}{\numberline {8.2}Mikrocontroller und Leistungsdaten}{35}{section.8.2}%
 \contentsline {section}{\numberline {8.3}Betriebsspannung und Logikpegel}{36}{section.8.3}%
 \contentsline {section}{\numberline {8.4}Digitale Ein- und Ausgänge}{36}{section.8.4}%
-\contentsline {section}{\numberline {8.5}PWM und Servo-Ansteuerung}{37}{section.8.5}%
+\contentsline {section}{\numberline {8.5}PWM und Servo-Ansteuerung}{36}{section.8.5}%
 \contentsline {section}{\numberline {8.6}Zeitmessung und Ablaufsteuerung}{37}{section.8.6}%
 \contentsline {section}{\numberline {8.7}USB, Programmierung und serielle Kommunikation}{38}{section.8.7}%
 \contentsline {section}{\numberline {8.8}Integrierte Funktionen und Sensorik}{38}{section.8.8}%

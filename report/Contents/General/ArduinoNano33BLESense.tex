@@ -18,12 +18,6 @@ Wie andere Arduino-Boards dient der Nano 33 BLE Sense als programmierbare Steuer
 Obwohl der Arduino Nano 33 BLE Sense mehrere integrierte Sensoren besitzt, muss ein Projekt diese nicht zwingend verwenden. Das Board kann auch ausschlie\ss lich zur Ansteuerung externer Komponenten eingesetzt werden. In diesem Fall stehen vor allem die Rechenleistung des Mikrocontrollers, die digitalen Ein- und Ausgänge, die Zeitmessung, die PWM-Ausgabe und die serielle Kommunikation im Vordergrund.
 
 
-\begin{figure}[h]
-	\centering
-	\input{tikz/arduinonano33bletikz.tex}
-	\caption{Arduino Nano 33 BLE Sense -- Pinbelegung}
-	\label{fig:arduino}
-\end{figure}
 
 \section{Mikrocontroller und Leistungsdaten}
 
@@ -81,21 +75,24 @@ Der Arduino kann diese Steuersignale über einen geeigneten digitalen Ausgang er
 
 \section{Zeitmessung und Ablaufsteuerung}
 
-Eine wichtige Aufgabe von Mikrocontrollern ist die zeitliche Steuerung von Abläufen. Der Arduino kann Signale zu definierten Zeitpunkten ausgeben, kurze Impulse erzeugen und die Dauer externer Signale messen. Dadurch lassen sich Sensorabfragen, Bewegungsabläufe und Berechnungen in einer festgelegten Reihenfolge ausführen.
+Zeitmessung und Ablaufsteuerung sind eng miteinander verknüpfte Kernaufgaben von Mikrocontrollern. Eine zentrale Rolle spielt dabei die Zeitbasis des Systems, mit der der Mikrocontroller Zeitdauern erfassen und Ereignisse zu definierten Zeitpunkten auslösen kann. Statt den Programmfluss mit blockierenden Funktionen wie \PYTHON{delay()} zu unterbrechen, kann er mit der Funktion  \PYTHON{millis()} die vergangene Zeit kontinuierlich messen, Zeitabstände berechnen und anhand dieser Information entscheiden, wann der nächste Verarbeitungsschritt ausgeführt werden soll. Auf diese Weise lassen sich Sensorabfragen, Bewegungsabläufe und Berechnungen in einer zeitlich deterministischen Reihenfolge ausführen, während der Mikrocontroller gleichzeitig weitere Aufgaben bearbeitet.\cite{Hermann:2026}
+
+Gerade in Anwendungen mit Sensoren und Aktoren ist eine solche zeitbasierte Ablaufsteuerung von besonderer Bedeutung. Wird beispielsweise ein Sensor mechanisch bewegt, wird der Zeitpunkt des Bewegungsbeginns mit \PYTHON{millis()} festgehalten und anschließend kontinuierlich überprüft, ob die geplante Wartezeit für das Einschwingen verstrichen ist. Erst wenn die Differenz zwischen der aktuellen Zeit und dem gespeicherten Startzeitpunkt grö\ss er als die gewünschte Einschwingzeit ist, wird das Messfenster geöffnet und die Sensorabfrage durchgeführt. Erfolgt die Abfrage zu früh, können die Messwerte ungenau oder schwer interpretierbar sein. Ebenso lassen sich definierte „Dead Times"' zwischen zwei Messungen realisieren, indem der Zeitpunkt der letzten Messung gespeichert und die nächste Messung erst gestartet wird, wenn ein vorgegebenes Mindestintervall überschritten ist.
 
 
-Bei Anwendungen mit Sensoren und Aktoren ist diese zeitliche Reihenfolge besonders wichtig. Wird beispielsweise ein Sensor mechanisch bewegt, sollte die Messung erst erfolgen, nachdem die gewünschte Position erreicht wurde. Andernfalls können die Messwerte ungenau oder schwer interpretierbar sein. Ebenso benötigen manche Sensoren einen Mindestabstand zwischen zwei Messungen, damit sich aufeinanderfolgende Messvorgänge nicht gegenseitig beeinflussen.
-
-Ein allgemeiner Ablauf für eine kombinierte Sensor-Aktor-Anwendung kann daher aus mehreren Schritten bestehen:
+Ein allgemeiner Ablauf für eine kombinierte Sensor‑Aktor‑Anwendung, bei der Zeitmessung und Ablaufsteuerung zusammenwirken, kann daher aus mehreren Schritten bestehen:
 
 \begin{enumerate}
-	\item Aktor auf eine gewünschte Position stellen.
-	\item Kurze Wartezeit einhalten, bis die Bewegung abgeschlossen ist.
-	\item Sensorabfrage auslösen.
-	\item Eingangssignal messen.
-	\item Messwert berechnen oder auswerten.
-	\item Ergebnis speichern oder über eine Schnittstelle ausgeben.
+	\item Aktor auf eine gewünschte Position stellen und den Startzeitpunkt der Bewegung mit \PYTHON{millis()} speichern.
+	\item Über die Systemzeit eine kurze Wartezeit überwachen, bis die Bewegung abgeschlossen ist, indem fortlaufend die Differenz zwischen aktueller Zeit und gespeichertem Startzeitpunkt geprüft wird, ohne den Programmablauf zu blockieren.
+	\item Nach Ablauf der geplanten Wartezeit das Messfenster öffnen und die Sensorabfrage auslösen.
+	\item Eingangssignal erfassen und bei Bedarf dessen Dauer oder zeitliche Lage messen, indem Start- und Endzeitpunkte des Signals über die Zeitbasis bestimmt werden.
+	\item Messwert berechnen oder auswerten, beispielsweise unter Berücksichtigung von Messfenster, Dead Time und Signaldauer.
+	\item Ergebnis speichern oder über eine Schnittstelle ausgeben und den Zeitpunkt dieser Ausgabe bei Bedarf wiederum zur Planung nachfolgender Aktionen heranziehen.
 \end{enumerate}
+
+Durch diese Kombination aus präziser Zeitmessung mit \PYTHON{millis()} und strukturierter Ablaufsteuerung entsteht eine klar definierte Steuerkette, in der sowohl die Reihenfolge der Schritte als auch ihre zeitlichen Abstände gezielt vorgegeben und vom Mikrocontroller zuverlässig eingehalten werden.
+
 \section{USB, Programmierung und serielle Kommunikation}
 
 Der Arduino Nano 33 BLE Sense wird über eine USB-Verbindung mit dem Computer verbunden. Diese Verbindung dient einerseits zur Spannungsversorgung des Boards und andererseits zur Übertragung des Programms auf den Mikrocontroller. In der Arduino IDE wird dazu das passende Board sowie der zugehörige Anschluss ausgewählt. Anschlie\ss end kann der Quellcode kompiliert und auf das Board geladen werden \cite{ArduinoGS:2026}.

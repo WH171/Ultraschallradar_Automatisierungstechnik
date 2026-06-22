@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.24.0 (TeX Live 2026)  (format=lualatex 2026.3.27)  22 JUN 2026 19:13
+This is LuaHBTeX, Version 1.24.0 (TeX Live 2026)  (format=lualatex 2026.3.27)  22 JUN 2026 23:55
  restricted system commands enabled.
 **Radar.tex
 (./Radar.tex
@@ -2371,6 +2371,13 @@ Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
 (./Radar.aux
 Package babel Info: 'ngerman' activates 'german' shorthands.
 (babel)             Reported on input line 23.
+
+
+LaTeX Warning: Label `fig:sg90_tikz' multiply defined.
+
+
+LaTeX Warning: Label `fig:sg90_tikz@cref' multiply defined.
+
 )
 \openout1 = Radar.aux
 
@@ -3111,6 +3118,22 @@ Overfull \hbox (11.7137pt too wide) in paragraph at lines 54--55
 s-se kos-ten-güns-ti-ger Ultraschall‑Scan-
  []
 
+(./tikz/SystemUltraschallsensor.tex
+LaTeX Font Info:    Trying to load font information for TS1+lmss on input line 
+67.
+
+(c:/texlive/2026/texmf-dist/tex/latex/lm/ts1lmss.fd
+File: ts1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `lmss' (encoding: TS1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+)
+Overfull \hbox (24.41565pt too wide) in paragraph at lines 318--59
+ [][] 
+ []
+
 [21
 Missing character: There is no ‑ (U+2011) in font ec-lmr10!
 Missing character: There is no ‑ (U+2011) in font ec-lmr10!
@@ -3119,17 +3142,25 @@ Missing character: There is no ‑ (U+2011) in font ec-lmr10!
 Missing character: There is no ‑ (U+2011) in font ec-lmr10!
 Missing character: There is no ‑ (U+2011) in font ec-lmr10!
 Missing character: There is no ‑ (U+2011) in font ec-lmr10!
-] [22
+]
+
+Package fancyhdr Warning: \headheight is too small (1.0pt): 
+(fancyhdr)                Make it at least 12.0pt, for example:
+(fancyhdr)                \setlength{\headheight}{12.0pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
+
+[22]
+chapter 5.
+Package biblatex Info: Reference segment=1 on input line 68.
+Package biblatex Info: Setting label 'refsegment:01' on input line 68.
+Package biblatex Info: Reference segment=2 on input line 81.
+Package biblatex Info: Setting label 'refsegment:02' on input line 81.
+[23
 
 
 ]
-chapter 5.
-Package biblatex Info: Reference segment=1 on input line 62.
-Package biblatex Info: Setting label 'refsegment:01' on input line 62.
-Package biblatex Info: Reference segment=2 on input line 75.
-Package biblatex Info: Setting label 'refsegment:02' on input line 75.
-[23]
-Overfull \hbox (0.70232pt too wide) in paragraph at lines 84--85
+Overfull \hbox (0.70232pt too wide) in paragraph at lines 90--91
 \T1/lmr/m/n/10 Die Kom-pen-sa-ti-on der phy-si-ka-li-schen Schallkegel-Aufweitun
 g wur-de di-rekt auf Software-
  []
@@ -3236,32 +3267,21 @@ Package scrkbase Info: You've told me to use the font selection of the element
 chapter 8.
 Package biblatex Info: Reference segment=7 on input line 12.
 Package biblatex Info: Setting label 'refsegment:07' on input line 12.
-(./tikz/arduinonano33bletikz.tex)
-Package biblatex Info: Reference segment=8 on input line 28.
-Package biblatex Info: Setting label 'refsegment:08' on input line 28.
+Package biblatex Info: Reference segment=8 on input line 22.
+Package biblatex Info: Setting label 'refsegment:08' on input line 22.
+Package biblatex Info: Reference segment=9 on input line 46.
+Package biblatex Info: Setting label 'refsegment:09' on input line 46.
+
+Underfull \vbox (badness 1527) has occurred while \output is active []
+
  [35
 
 
-
-Missing character: There is no ; (U+003B) in font nullfont!
-Missing character: There is no ; (U+003B) in font nullfont!
-Missing character: There is no ; (U+003B) in font nullfont!
-Missing character: There is no ; (U+003B) in font nullfont!
-Missing character: There is no ; (U+003B) in font nullfont!
-Missing character: There is no ; (U+003B) in font nullfont!
-Missing character: There is no ; (U+003B) in font nullfont!
-Missing character: There is no ; (U+003B) in font nullfont!
-Missing character: There is no ; (U+003B) in font nullfont!
-Missing character: There is no ; (U+003B) in font nullfont!
-Missing character: There is no ; (U+003B) in font nullfont!
-Missing character: There is no ; (U+003B) in font nullfont!
-Missing character: There is no ; (U+003B) in font nullfont!
-Missing character: There is no ; (U+003B) in font nullfont!
 ]
-Package biblatex Info: Reference segment=9 on input line 52.
-Package biblatex Info: Setting label 'refsegment:09' on input line 52.
-Package biblatex Info: Reference segment=10 on input line 62.
-Package biblatex Info: Setting label 'refsegment:010' on input line 62.
+Package biblatex Info: Reference segment=10 on input line 56.
+Package biblatex Info: Setting label 'refsegment:010' on input line 56.
+Package biblatex Info: Reference segment=11 on input line 67.
+Package biblatex Info: Setting label 'refsegment:011' on input line 67.
 
 
 Package fancyhdr Warning: \headheight is too small (1.0pt): 
@@ -3271,12 +3291,21 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
 [36]
-Package biblatex Info: Reference segment=11 on input line 73.
-Package biblatex Info: Setting label 'refsegment:011' on input line 73.
-Package biblatex Info: Reference segment=12 on input line 82.
-Package biblatex Info: Setting label 'refsegment:012' on input line 82.
-Package cleveref Info: loaded `ngerman' language definitions on input line 89.
+Package biblatex Info: Reference segment=12 on input line 76.
+Package biblatex Info: Setting label 'refsegment:012' on input line 76.
 
+Missing character: There is no „ (U+201E) in font ec-lmr10!
+Missing character: There is no „ (U+201E) in font ec-lmr10!
+Missing character: There is no „ (U+201E) in font ec-lmr10!
+Missing character: There is no ‑ (U+2011) in font ec-lmr10!
+Missing character: There is no ‑ (U+2011) in font ec-lmr10!
+Missing character: There is no ‑ (U+2011) in font ec-lmr10!
+Missing character: There is no ‑ (U+2011) in font ec-lmr10!
+Missing character: There is no ‑ (U+2011) in font ec-lmr10!
+Missing character: There is no ‑ (U+2011) in font ec-lmr10!
+Missing character: There is no ‑ (U+2011) in font ec-lmr10!
+Missing character: There is no ‑ (U+2011) in font ec-lmr10!
+Package cleveref Info: loaded `ngerman' language definitions on input line 91.
 
 Package fancyhdr Warning: \headheight is too small (1.0pt): 
 (fancyhdr)                Make it at least 12.0pt, for example:
@@ -3284,13 +3313,17 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
-[37]
-Package biblatex Info: Reference segment=13 on input line 99.
-Package biblatex Info: Setting label 'refsegment:013' on input line 99.
-Package biblatex Info: Reference segment=14 on input line 107.
-Package biblatex Info: Setting label 'refsegment:014' on input line 107.
-Package biblatex Info: Reference segment=15 on input line 117.
-Package biblatex Info: Setting label 'refsegment:015' on input line 117.
+[37
+Missing character: There is no „ (U+201E) in font ec-lmr10!
+Missing character: There is no ‑ (U+2011) in font ec-lmr10!
+Missing character: There is no ‑ (U+2011) in font ec-lmr10!
+]
+Package biblatex Info: Reference segment=13 on input line 96.
+Package biblatex Info: Setting label 'refsegment:013' on input line 96.
+Package biblatex Info: Reference segment=14 on input line 104.
+Package biblatex Info: Setting label 'refsegment:014' on input line 104.
+Package biblatex Info: Reference segment=15 on input line 114.
+Package biblatex Info: Setting label 'refsegment:015' on input line 114.
 
 
 Package fancyhdr Warning: \headheight is too small (1.0pt): 
@@ -3639,14 +3672,14 @@ Missing character: There is no “ (U+201C) in font ec-lmr10!
 Missing character: There is no „ (U+201E) in font ec-lmr10!
 Missing character: There is no “ (U+201C) in font ec-lmr10!
 ]
-<../../Images/../Images/ArdiunoIDE2/menuboard.png, id=1215, 959.585pt x 51.6931
+<../../Images/../Images/ArdiunoIDE2/menuboard.png, id=1217, 959.585pt x 51.6931
 3pt>
 File: ../../Images/../Images/ArdiunoIDE2/menuboard.png Graphic file (type png)
 <use ../../Images/../Images/ArdiunoIDE2/menuboard.png>
 Package luatex.def Info: ../../Images/../Images/ArdiunoIDE2/menuboard.png  used
  on input line 39.
 (luatex.def)             Requested size: 369.88583pt x 19.92596pt.
-<../../Images/../Images/ArdiunoIDE2/MenuButton.png, id=1216, 758.835pt x 28.908
+<../../Images/../Images/ArdiunoIDE2/MenuButton.png, id=1218, 758.835pt x 28.908
 pt>
 File: ../../Images/../Images/ArdiunoIDE2/MenuButton.png Graphic file (type png)
 
@@ -3700,7 +3733,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 86--91
 
  []
 
-<../../Images/../Images/ArdiunoIDE2/de/DownloadInstallation.png, id=1224, 678.2
+<../../Images/../Images/ArdiunoIDE2/de/DownloadInstallation.png, id=1226, 678.2
 8406pt x 432.86719pt>
 File: ../../Images/../Images/ArdiunoIDE2/de/DownloadInstallation.png Graphic fi
 le (type png)
@@ -3789,7 +3822,7 @@ Missing character: There is no – (U+2013) in font ec-lmr10!
 Missing character: There is no „ (U+201E) in font ec-lmr10!
 Missing character: There is no “ (U+201C) in font ec-lmr10!
 <../../Images/../Images/ArdiunoIDE2/de/DownloadInstallation.png>]
-<../../Images/../Images/ArdiunoIDE2/de/Downloadoptionen.png, id=1246, 673.76718
+<../../Images/../Images/ArdiunoIDE2/de/Downloadoptionen.png, id=1248, 673.76718
 pt x 431.36156pt>
 File: ../../Images/../Images/ArdiunoIDE2/de/Downloadoptionen.png Graphic file (
 type png)
@@ -3798,7 +3831,7 @@ Package luatex.def Info: ../../Images/../Images/ArdiunoIDE2/de/Downloadoptionen
 .png  used on input line 134.
 (luatex.def)             Requested size: 341.43306pt x 218.59608pt.
 <../../Images/../Images/ArdiunoIDE2/de/LizenzbestaetigungInstallation.png, id=1
-249, 545.78906pt x 425.33907pt>
+251, 545.78906pt x 425.33907pt>
 File: ../../Images/../Images/ArdiunoIDE2/de/LizenzbestaetigungInstallation.png 
 Graphic file (type png)
 <use ../../Images/../Images/ArdiunoIDE2/de/LizenzbestaetigungInstallation.png>
@@ -3817,7 +3850,7 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-11.0pt}.
 
 [64<../../Images/../Images/ArdiunoIDE2/de/Downloadoptionen.png>]
-<../../Images/../Images/ArdiunoIDE2/de/WahlZielverzeichnis.png, id=1257, 711.40
+<../../Images/../Images/ArdiunoIDE2/de/WahlZielverzeichnis.png, id=1259, 711.40
 78pt x 572.1375pt>
 File: ../../Images/../Images/ArdiunoIDE2/de/WahlZielverzeichnis.png Graphic fil
 e (type png)
@@ -3825,7 +3858,7 @@ e (type png)
 Package luatex.def Info: ../../Images/../Images/ArdiunoIDE2/de/WahlZielverzeich
 nis.png  used on input line 158.
 (luatex.def)             Requested size: 341.43306pt x 274.59668pt.
-<../../Images/../Images/ArdiunoIDE2/de/StartfensterArduinoIDE.png, id=1259, 492
+<../../Images/../Images/ArdiunoIDE2/de/StartfensterArduinoIDE.png, id=1261, 492
 .6405pt x 265.59225pt>
 File: ../../Images/../Images/ArdiunoIDE2/de/StartfensterArduinoIDE.png Graphic 
 file (type png)
@@ -3871,7 +3904,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 183--188
 
  []
 
-<../../Images/../Images/ArdiunoIDE2/de/ArduinoIDEmacOS.png, id=1272, 682.04813p
+<../../Images/../Images/ArdiunoIDE2/de/ArduinoIDEmacOS.png, id=1274, 682.04813p
 t x 435.12563pt>
 File: ../../Images/../Images/ArdiunoIDE2/de/ArduinoIDEmacOS.png Graphic file (t
 ype png)
@@ -3904,7 +3937,7 @@ Missing character: There is no „ (U+201E) in font ec-lmr10!
 Missing character: There is no “ (U+201C) in font ec-lmr10!
 Missing character: There is no „ (U+201E) in font ec-lmr10!
 Missing character: There is no “ (U+201C) in font ec-lmr10!
-<../../Images/../Images/ArdiunoIDE2/ide2Overview.png, id=1281, 893.3375pt x 502
+<../../Images/../Images/ArdiunoIDE2/ide2Overview.png, id=1283, 893.3375pt x 502
 .87875pt>
 File: ../../Images/../Images/ArdiunoIDE2/ide2Overview.png Graphic file (type pn
 g)
@@ -3925,7 +3958,7 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 Missing character: There is no „ (U+201E) in font ec-lmr10!
 Missing character: There is no “ (U+201C) in font ec-lmr10!
 <../../Images/../Images/ArdiunoIDE2/de/ArduinoIDEmacOS.png>]
-<../../Images/../Images/ArdiunoIDE2/localSketchbook.png, id=1290, 893.3375pt x 
+<../../Images/../Images/ArdiunoIDE2/localSketchbook.png, id=1292, 893.3375pt x 
 501.875pt>
 File: ../../Images/../Images/ArdiunoIDE2/localSketchbook.png Graphic file (type
  png)
@@ -3943,7 +3976,7 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 
 [68<../../Images/../Images/ArdiunoIDE2/ide2Overview.png><../../Images/../Images/
 ArdiunoIDE2/localSketchbook.png>]
-<../../Images/../Images/ArdiunoIDE2/boardManager.png, id=1300, 893.3375pt x 502
+<../../Images/../Images/ArdiunoIDE2/boardManager.png, id=1302, 893.3375pt x 502
 .87875pt>
 File: ../../Images/../Images/ArdiunoIDE2/boardManager.png Graphic file (type pn
 g)
@@ -3959,7 +3992,7 @@ Overfull \hbox (8.72128pt too wide) in paragraph at lines 287--288
  []
 
 Missing character: There is no – (U+2013) in font ec-lmr10!
-<../../Images/../Images/ArdiunoIDE2/libraryManager.png, id=1302, 893.3375pt x 5
+<../../Images/../Images/ArdiunoIDE2/libraryManager.png, id=1304, 893.3375pt x 5
 02.87875pt>
 File: ../../Images/../Images/ArdiunoIDE2/libraryManager.png Graphic file (type 
 png)
@@ -4042,7 +4075,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 365--366
 
  []
 
-<../../Images/../Images/ArdiunoIDE2/mklinkCmd.png, id=1319, 447.6725pt x 366.36
+<../../Images/../Images/ArdiunoIDE2/mklinkCmd.png, id=1321, 447.6725pt x 366.36
 874pt>
 File: ../../Images/../Images/ArdiunoIDE2/mklinkCmd.png Graphic file (type png)
 <use ../../Images/../Images/ArdiunoIDE2/mklinkCmd.png>
@@ -4073,7 +4106,7 @@ Overfull \hbox (17.76886pt too wide) in paragraph at lines 384--385
 rt/Code/Na-no33BLE-Sen-se/Na-
  []
 
-<../../Images/../Images/ArdiunoIDE2/cmdSynthax.png, id=1332, 672.01062pt x 224.
+<../../Images/../Images/ArdiunoIDE2/cmdSynthax.png, id=1334, 672.01062pt x 224.
 33812pt>
 File: ../../Images/../Images/ArdiunoIDE2/cmdSynthax.png Graphic file (type png)
 
@@ -4099,7 +4132,7 @@ Package fancyhdr Warning: \headheight is too small (1.0pt):
 [72
 Missing character: There is no – (U+2013) in font ec-lmr10!
 <../../Images/../Images/ArdiunoIDE2/cmdSynthax.png>]
-<../../Images/../Images/ArdiunoIDE2/includelibrary.png, id=1345, 823.57687pt x 
+<../../Images/../Images/ArdiunoIDE2/includelibrary.png, id=1347, 823.57687pt x 
 456.70625pt>
 File: ../../Images/../Images/ArdiunoIDE2/includelibrary.png Graphic file (type 
 png)
@@ -4113,7 +4146,7 @@ Overfull \hbox (0.46432pt too wide) in paragraph at lines 442--443
 ru-fen wer-den: []  [] 
  []
 
-<../../Images/../Images/ArdiunoIDE2/serialMonitor.png, id=1347, 893.3375pt x 50
+<../../Images/../Images/ArdiunoIDE2/serialMonitor.png, id=1349, 893.3375pt x 50
 1.875pt>
 File: ../../Images/../Images/ArdiunoIDE2/serialMonitor.png Graphic file (type p
 ng)
@@ -4142,7 +4175,7 @@ Missing character: There is no – (U+2013) in font ec-lmr10!
 Missing character: There is no – (U+2013) in font ec-lmr10!
 Missing character: There is no – (U+2013) in font ec-lmr10!
 Missing character: There is no – (U+2013) in font ec-lmr10!
-<../../Images/../Images/ArdiunoIDE2/examplesketches.png, id=1358, 446.66875pt x
+<../../Images/../Images/ArdiunoIDE2/examplesketches.png, id=1360, 446.66875pt x
  289.58188pt>
 File: ../../Images/../Images/ArdiunoIDE2/examplesketches.png Graphic file (type
  png)
@@ -4152,7 +4185,7 @@ Package luatex.def Info: ../../Images/../Images/ArdiunoIDE2/examplesketches.png
 (luatex.def)             Requested size: 258.91895pt x 167.8648pt.
 Package biblatex Info: Reference segment=43 on input line 484.
 Package biblatex Info: Setting label 'refsegment:043' on input line 484.
-<../../Images/../Images/ArdiunoIDE2/de/BeispielDebuggen.jpg, id=1360, 599.99156
+<../../Images/../Images/ArdiunoIDE2/de/BeispielDebuggen.jpg, id=1362, 599.99156
 pt x 712.91344pt>
 File: ../../Images/../Images/ArdiunoIDE2/de/BeispielDebuggen.jpg Graphic file (
 type jpg)
@@ -4173,7 +4206,7 @@ Missing character: There is no – (U+2013) in font ec-lmr10!
 <../../Images/../Images/ArdiunoIDE2/examplesketches.png>]
 Package biblatex Info: Reference segment=44 on input line 501.
 Package biblatex Info: Setting label 'refsegment:044' on input line 501.
-<../../Images/../Images/ArdiunoIDE2/autocomplete.png, id=1369, 893.3375pt x 501
+<../../Images/../Images/ArdiunoIDE2/autocomplete.png, id=1371, 893.3375pt x 501
 .875pt>
 File: ../../Images/../Images/ArdiunoIDE2/autocomplete.png Graphic file (type pn
 g)
@@ -4237,7 +4270,7 @@ Missing character: There is no “ (U+201C) in font ec-lmr10!
 Missing character: There is no „ (U+201E) in font ec-lmr10!
 Missing character: There is no “ (U+201C) in font ec-lmr10!
 ]
-<../../Images/../Images/Processing/menuboard_processing.png, id=1397, 1284.8pt 
+<../../Images/../Images/Processing/menuboard_processing.png, id=1399, 1284.8pt 
 x 803.0pt>
 File: ../../Images/../Images/Processing/menuboard_processing.png Graphic file (
 type png)
@@ -4245,7 +4278,7 @@ type png)
 Package luatex.def Info: ../../Images/../Images/Processing/menuboard_processing
 .png  used on input line 28.
 (luatex.def)             Requested size: 369.88583pt x 231.17316pt.
-<../../Images/../Images/Processing/MenuButton_Run.png, id=1398, 42.1575pt x 40.
+<../../Images/../Images/Processing/MenuButton_Run.png, id=1400, 42.1575pt x 40.
 15pt>
 File: ../../Images/../Images/Processing/MenuButton_Run.png Graphic file (type p
 ng)
@@ -4253,7 +4286,7 @@ ng)
 Package luatex.def Info: ../../Images/../Images/Processing/MenuButton_Run.png  
 used on input line 33.
 (luatex.def)             Requested size: 11.99977pt x 12.0pt.
-<../../Images/../Images/Processing/MenuButton_Stop.png, id=1400, 42.1575pt x 45
+<../../Images/../Images/Processing/MenuButton_Stop.png, id=1402, 42.1575pt x 45
 .16875pt>
 File: ../../Images/../Images/Processing/MenuButton_Stop.png Graphic file (type 
 png)
@@ -4267,7 +4300,7 @@ Package biblatex Info: Setting label 'refsegment:047' on input line 39.
 
 LaTeX Warning: Citation 'P' on page 78 undefined on input line 43.
 
-<../../Images/../Images/Processing/DownloadProcessing.png, id=1404, 1284.8pt x 
+<../../Images/../Images/Processing/DownloadProcessing.png, id=1406, 1284.8pt x 
 803.0pt>
 File: ../../Images/../Images/Processing/DownloadProcessing.png Graphic file (ty
 pe png)
@@ -4313,7 +4346,7 @@ Missing character: There is no “ (U+201C) in font ec-lmr10!
 Missing character: There is no „ (U+201E) in font ec-lmr10!
 Missing character: There is no “ (U+201C) in font ec-lmr10!
 <../../Images/../Images/Processing/DownloadProcessing.png>]
-<../../Images/../Images/Processing/StartfensterProcessing.png, id=1424, 1284.8p
+<../../Images/../Images/Processing/StartfensterProcessing.png, id=1426, 1284.8p
 t x 803.0pt>
 File: ../../Images/../Images/Processing/StartfensterProcessing.png Graphic file
  (type png)
@@ -4323,7 +4356,7 @@ ng.png  used on input line 69.
 (luatex.def)             Requested size: 369.88583pt x 231.17316pt.
 Package biblatex Info: Reference segment=48 on input line 79.
 Package biblatex Info: Setting label 'refsegment:048' on input line 79.
-<../../Images/../Images/Processing/contributionManager.png, id=1426, 1284.8pt x
+<../../Images/../Images/Processing/contributionManager.png, id=1428, 1284.8pt x
  803.0pt>
 File: ../../Images/../Images/Processing/contributionManager.png Graphic file (t
 ype png)
@@ -4366,7 +4399,7 @@ Package biblatex Info: Reference segment=49 on input line 18.
 Package biblatex Info: Setting label 'refsegment:049' on input line 18.
 Package biblatex Info: Reference segment=50 on input line 32.
 Package biblatex Info: Setting label 'refsegment:050' on input line 32.
-<../../Images/../Images/CAD/UltraschallradarCAD.PNG, id=1460, 1445.4pt x 813.03
+<../../Images/../Images/CAD/UltraschallradarCAD.PNG, id=1462, 1445.4pt x 813.03
 75pt>
 File: ../../Images/../Images/CAD/UltraschallradarCAD.PNG Graphic file (type png
 )
@@ -4380,7 +4413,7 @@ ed on input line 39.
 ]
 Package biblatex Info: Reference segment=51 on input line 53.
 Package biblatex Info: Setting label 'refsegment:051' on input line 53.
-<../../Images/../Images/Fertigung/Ultraschallradarsystem.PNG, id=1468, 3035.34p
+<../../Images/../Images/Fertigung/Ultraschallradarsystem.PNG, id=1470, 3035.34p
 t x 4047.12pt>
 File: ../../Images/../Images/Fertigung/Ultraschallradarsystem.PNG Graphic file 
 (type png)
@@ -4388,7 +4421,7 @@ File: ../../Images/../Images/Fertigung/Ultraschallradarsystem.PNG Graphic file
 Package luatex.def Info: ../../Images/../Images/Fertigung/Ultraschallradarsyste
 m.PNG  used on input line 60.
 (luatex.def)             Requested size: 369.88583pt x 493.16743pt.
-<../../Images/../Images/Fertigung/InnenansichtSensoraufnahme.PNG, id=1469, 3392
+<../../Images/../Images/Fertigung/InnenansichtSensoraufnahme.PNG, id=1471, 3392
 .675pt x 2811.50375pt>
 File: ../../Images/../Images/Fertigung/InnenansichtSensoraufnahme.PNG Graphic f
 ile (type png)
@@ -4654,7 +4687,7 @@ Overfull \hbox (6.60992pt too wide) in paragraph at lines 29--29
 
 Missing character: There is no € (U+20AC) in font ec-lmbx10!
 Missing character: There is no € (U+20AC) in font ec-lmbx10!
-<../../Images/BillOfMaterial/ArduinoNano33BLESenseLite.png, id=2155, 1003.75pt 
+<../../Images/BillOfMaterial/ArduinoNano33BLESenseLite.png, id=2157, 1003.75pt 
 x 866.23625pt>
 File: ../../Images/BillOfMaterial/ArduinoNano33BLESenseLite.png Graphic file (t
 ype png)
@@ -4662,7 +4695,7 @@ ype png)
 Package luatex.def Info: ../../Images/BillOfMaterial/ArduinoNano33BLESenseLite.
 png  used on input line 35.
 (luatex.def)             Requested size: 59.33408pt x 51.21504pt.
-<../../Images/BillOfMaterial/HC-SR-04.png, id=2157, 1003.75pt x 743.77875pt>
+<../../Images/BillOfMaterial/HC-SR-04.png, id=2159, 1003.75pt x 743.77875pt>
 File: ../../Images/BillOfMaterial/HC-SR-04.png Graphic file (type png)
 <use ../../Images/BillOfMaterial/HC-SR-04.png>
 Package luatex.def Info: ../../Images/BillOfMaterial/HC-SR-04.png  used on inpu
@@ -4673,7 +4706,7 @@ Underfull \hbox (badness 6658) in paragraph at lines 44--44
 []|\T1/lmr/m/n/10 Ul-tra-schall-sen-sor HC-
  []
 
-<../../Images/BillOfMaterial/towerpro-servo-sg90.png, id=2159, 414.04688pt x 30
+<../../Images/BillOfMaterial/towerpro-servo-sg90.png, id=2161, 414.04688pt x 30
 1.125pt>
 File: ../../Images/BillOfMaterial/towerpro-servo-sg90.png Graphic file (type pn
 g)
@@ -4686,7 +4719,7 @@ Underfull \hbox (badness 3128) in paragraph at lines 51--51
 []|\T1/lmr/m/n/10 Tow-er-Pro Ser-vo-mo-tor
  []
 
-<../../Images/BillOfMaterial/Breadboard.png, id=2161, 1828.8325pt x 1028.84375p
+<../../Images/BillOfMaterial/Breadboard.png, id=2163, 1828.8325pt x 1028.84375p
 t>
 File: ../../Images/BillOfMaterial/Breadboard.png Graphic file (type png)
 <use ../../Images/BillOfMaterial/Breadboard.png>
@@ -4698,7 +4731,7 @@ Overfull \hbox (2.51031pt too wide) in paragraph at lines 56--56
 []|[][]| 
  []
 
-<../../Images/BillOfMaterial/LEDgruen.png, id=2163, 1001.7425pt x 564.1075pt>
+<../../Images/BillOfMaterial/LEDgruen.png, id=2165, 1001.7425pt x 564.1075pt>
 File: ../../Images/BillOfMaterial/LEDgruen.png Graphic file (type png)
 <use ../../Images/BillOfMaterial/LEDgruen.png>
 Package luatex.def Info: ../../Images/BillOfMaterial/LEDgruen.png  used on inpu
@@ -4709,7 +4742,7 @@ Overfull \hbox (7.49828pt too wide) in paragraph at lines 63--63
 []|[][]| 
  []
 
-<../../Images/BillOfMaterial/LEDrot.png, id=2165, 1425.325pt x 800.9925pt>
+<../../Images/BillOfMaterial/LEDrot.png, id=2167, 1425.325pt x 800.9925pt>
 File: ../../Images/BillOfMaterial/LEDrot.png Graphic file (type png)
 <use ../../Images/BillOfMaterial/LEDrot.png>
 Package luatex.def Info: ../../Images/BillOfMaterial/LEDrot.png  used on input 
@@ -4720,7 +4753,7 @@ Overfull \hbox (7.6382pt too wide) in paragraph at lines 70--70
 []|[][]| 
  []
 
-<../../Images/BillOfMaterial/JumperKabel.png, id=2167, 1505.625pt x 1505.625pt>
+<../../Images/BillOfMaterial/JumperKabel.png, id=2169, 1505.625pt x 1505.625pt>
 
 File: ../../Images/BillOfMaterial/JumperKabel.png Graphic file (type png)
 <use ../../Images/BillOfMaterial/JumperKabel.png>
@@ -4737,13 +4770,13 @@ Underfull \hbox (badness 6396) in paragraph at lines 79--79
 \T1/lmr/m/n/10 Steck-brü-cken-ka-bel 40
  []
 
-<../../Images/BillOfMaterial/MicroUSBKabel.png, id=2169, 321.2pt x 321.2pt>
+<../../Images/BillOfMaterial/MicroUSBKabel.png, id=2171, 321.2pt x 321.2pt>
 File: ../../Images/BillOfMaterial/MicroUSBKabel.png Graphic file (type png)
 <use ../../Images/BillOfMaterial/MicroUSBKabel.png>
 Package luatex.def Info: ../../Images/BillOfMaterial/MicroUSBKabel.png  used on
  input line 84.
 (luatex.def)             Requested size: 42.67886pt x 42.67912pt.
-<../../Images/BillOfMaterial/Widerstand.png, id=2171, 803.0pt x 803.0pt>
+<../../Images/BillOfMaterial/Widerstand.png, id=2173, 803.0pt x 803.0pt>
 File: ../../Images/BillOfMaterial/Widerstand.png Graphic file (type png)
 <use ../../Images/BillOfMaterial/Widerstand.png>
 Package luatex.def Info: ../../Images/BillOfMaterial/Widerstand.png  used on in
@@ -4899,6 +4932,9 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 LaTeX Warning: There were undefined references.
 
 
+LaTeX Warning: There were multiply-defined labels.
+
+
 Package biblatex Warning: Please (re)run BibTeX on the file(s):
 (biblatex)                Radar
 (biblatex)                and rerun LaTeX afterwards.
@@ -4909,16 +4945,16 @@ Package logreq Info: Writing requests to 'Radar.run.xml'.
 )
 
 Here is how much of LuaTeX's memory you used:
- 101177 strings out of 476076
- 1164301,4101490 words of node,token memory allocated
+ 101047 strings out of 476076
+ 931545,4101490 words of node,token memory allocated
  1716 words of node memory still in use:
    24 hlist, 2 vlist, 10 rule, 1 local_par, 4 glue, 5 kern, 1 penalty, 4 glyph, 
 187 attribute, 95 glue_spec, 94 attribute_list, 3 write, 16 pdf_literal, 13 pdf_
 action, 16 pdf_colorstack nodes
-   avail lists: 1:26,2:61226,3:29425,4:25438,5:19916,6:155,7:28491,8:78,9:50236,
-10:42,11:1892,12:2
- 120407 multiletter control sequences out of 65536+600000
- 95 fonts using 6662087 bytes
+   avail lists: 1:12,2:14509,3:4806,4:25438,5:19916,6:159,7:28491,8:78,9:50236,1
+0:42,11:1892,12:2
+ 120272 multiletter control sequences out of 65536+600000
+ 96 fonts using 6724767 bytes
  108i,15n,131p,11207b,3038s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 warning  (pdf backend): unreferenced destination with name 'cite.0@Reas:2014'
@@ -5020,29 +5056,30 @@ texlive/2026/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{c:/texlive/2026/texmf-dis
 t/fonts/enc/dvips/base/8r.enc}<c:/texlive/2026/texmf-dist/fonts/type1/public/ber
 a/fvmb8a.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/bera/fvmr8a.pfb><c:/
 texlive/2026/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/texlive/2026/texmf-
-dist/fonts/type1/public/lm/lmbx7.pfb><c:/texlive/2026/texmf-dist/fonts/type1/pub
-lic/lm/lmcsc10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmmi10.pfb>
-<c:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmmi5.pfb><c:/texlive/2026/tex
-mf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/texlive/2026/texmf-dist/fonts/type1/
-public/lm/lmmi9.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmr10.pfb>
-<c:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/texlive/2026/tex
-mf-dist/fonts/type1/public/lm/lmr5.pfb><c:/texlive/2026/texmf-dist/fonts/type1/p
-ublic/lm/lmr7.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:
-/texlive/2026/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/texlive/2026/texmf-d
-ist/fonts/type1/public/lm/lmri10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/pub
-lic/lm/lmri7.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmro17.pfb><c
-:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmss17.pfb><c:/texlive/2026/texm
-f-dist/fonts/type1/public/lm/lmss8.pfb><c:/texlive/2026/texmf-dist/fonts/type1/p
-ublic/lm/lmss9.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmssbx10.pf
-b><c:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmsso9.pfb><c:/texlive/2026/
-texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2026/texmf-dist/fonts/ty
-pe1/public/lm/lmsy5.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmsy6.
-pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmsy7.pfb><c:/texlive/2026
-/texmf-dist/fonts/type1/public/lm/lmsy9.pfb>
-Output written on Radar.pdf (125 pages, 40811275 bytes).
+dist/fonts/type1/public/lm/lmbx5.pfb><c:/texlive/2026/texmf-dist/fonts/type1/pub
+lic/lm/lmbx7.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><
+c:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/texlive/2026/tex
+mf-dist/fonts/type1/public/lm/lmmi5.pfb><c:/texlive/2026/texmf-dist/fonts/type1/
+public/lm/lmmi7.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmmi9.pfb>
+<c:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2026/tex
+mf-dist/fonts/type1/public/lm/lmr12.pfb><c:/texlive/2026/texmf-dist/fonts/type1/
+public/lm/lmr5.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c
+:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/texlive/2026/texmf-
+dist/fonts/type1/public/lm/lmr9.pfb><c:/texlive/2026/texmf-dist/fonts/type1/publ
+ic/lm/lmri10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmri7.pfb><c:
+/texlive/2026/texmf-dist/fonts/type1/public/lm/lmro17.pfb><c:/texlive/2026/texmf
+-dist/fonts/type1/public/lm/lmss17.pfb><c:/texlive/2026/texmf-dist/fonts/type1/p
+ublic/lm/lmss8.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmss9.pfb><
+c:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/texlive/2026/t
+exmf-dist/fonts/type1/public/lm/lmsso9.pfb><c:/texlive/2026/texmf-dist/fonts/typ
+e1/public/lm/lmsy10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmsy5.
+pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/lm/lmsy6.pfb><c:/texlive/2026
+/texmf-dist/fonts/type1/public/lm/lmsy7.pfb><c:/texlive/2026/texmf-dist/fonts/ty
+pe1/public/lm/lmsy9.pfb>
+Output written on Radar.pdf (125 pages, 40810385 bytes).
 
-PDF statistics: 2796 PDF objects out of 2984 (max. 8388607)
- 2526 compressed objects within 26 object streams
+PDF statistics: 2802 PDF objects out of 2984 (max. 8388607)
+ 2531 compressed objects within 26 object streams
  1110 named destinations out of 1200 (max. 1048576)
  1352 words of extra memory for PDF output out of 10000 (max. 100000000)
 

@@ -1,243 +1,318 @@
-\begin{tikzpicture}[scale=0.85, every node/.style={font=\small}]
+\begin{tikzpicture}
 	
-	% ============================================================
-	% 1. ARDUINO NANO 33 BLE SENSE (aus arduinonano33bletikz.tex)
-	% ============================================================
-	\begin{scope}[xshift=0cm, yshift=0cm]
-		% Hauptplatine - Farbe c0f7391 (15,115,145)
-		\definecolor{arduinoBlue}{RGB}{15,115,145}
-		\draw[fill=arduinoBlue, draw=arduinoBlue!30!black, thick, rounded corners=2pt] 
-		(0,0) rectangle (4.5,6.5);
+	% --- FARBDEFINITIONEN ---
+	% HC-SR04 Farben
+	\definecolor{pcbblue}{RGB}{0,50,120}
+	\definecolor{sensorbody}{RGB}{180,180,180}
+	\definecolor{sensorinner}{RGB}{220,220,220}   % <-- Hier war ein Tippfehler! (fehlendes \)
+	\definecolor{pincolor}{RGB}{247,189,19}
+	
+	% Arduino Nano 33 BLE Sense Farben
+	\definecolor{nanoteal}{RGB}{0, 126, 140}
+	\definecolor{arduinoorange}{RGB}{230, 120, 23}
+	\definecolor{pinred}{RGB}{190, 30, 45}
+	\definecolor{arduinogray}{RGB}{180, 180, 180}
+	
+	% Servo Farben
+	\definecolor{servoblue}{RGB}{0,40,80}
+	
+	% Widerstands-Farben
+	\definecolor{resistorbg}{RGB}{240, 225, 180} 
+	\definecolor{brownband}{RGB}{139, 69, 19}
+	\definecolor{goldband}{RGB}{212, 175, 55}
+	
+	% --- WIDERSTANDS-STYLES ---
+	\tikzset{
+		res1k/.style={
+			rectangle, draw=black, fill=resistorbg, minimum width=0.4cm, minimum height=1.0cm, rounded corners=1pt,
+			path picture={
+				\draw[brownband, line width=2pt] ([yshift=0.25cm]path picture bounding box.west) -- ([yshift=0.25cm]path picture bounding box.east);
+				\draw[black, line width=2pt] ([yshift=0.08cm]path picture bounding box.west) -- ([yshift=0.08cm]path picture bounding box.east);
+				\draw[red, line width=2pt] ([yshift=-0.08cm]path picture bounding box.west) -- ([yshift=-0.08cm]path picture bounding box.east);
+				\draw[goldband, line width=2pt] ([yshift=-0.25cm]path picture bounding box.west) -- ([yshift=-0.25cm]path picture bounding box.east);
+			}
+		},
+		res2k/.style={
+			rectangle, draw=black, fill=resistorbg, minimum width=1.0cm, minimum height=0.35cm, rounded corners=1pt,
+			path picture={
+				\draw[red, line width=2pt] ([xshift=-0.25cm]path picture bounding box.north) -- ([xshift=-0.25cm]path picture bounding box.south);
+				\draw[black, line width=2pt] ([xshift=-0.08cm]path picture bounding box.north) -- ([xshift=-0.08cm]path picture bounding box.south);
+				\draw[red, line width=2pt] ([xshift=0.08cm]path picture bounding box.north) -- ([xshift=0.08cm]path picture bounding box.south);
+				\draw[goldband, line width=2pt] ([xshift=0.25cm]path picture bounding box.north) -- ([xshift=0.25cm]path picture bounding box.south);
+			}
+		}
+	}
+	
+	% ==========================================
+	% ARDUINO NANO 33 BLE SENSE
+	% ==========================================
+	\begin{scope}[shift={(0,0)}] 
+		% Hauptplatine
+		\draw[fill=nanoteal, rounded corners=2pt, draw=black!50, thick] 
+		(0,0) rectangle (3.8, 7.0);
 		
-		% Name
-		\node[text=white, font=\bfseries\small] at (2.25,6.1) {Arduino Nano 33 BLE Sense};
+		% USB-Buchse
+		\draw[fill=arduinogray, draw=black!50, thick] 
+		(1.2, 6.7) rectangle (2.6, 7.3);
 		
-		% USB-Buchse (vereinfacht)
-		\draw[fill=gray!40, draw=gray!60, thick, rounded corners=1pt] 
-		(1.8,6.2) rectangle (2.7,6.5);
+		% NINA-Modul
+		\draw[fill=arduinogray!60, draw=black!50, thick, rounded corners=1pt] 
+		(0.4, 0.4) rectangle (3.4, 2.2);
 		
-		% Linke Pins (D13-D0) - Farbe c333333 (51,51,51)
-		\definecolor{pinColor}{RGB}{51,51,51}
-		\foreach \i/\label in {0/D13, 1/D12, 2/D11, 3/D10, 4/D9, 5/D8, 
-			6/D7, 7/D6, 8/D5, 9/D4, 10/D3, 11/D2, 12/GND, 13/RESET, 14/RX}
-		{
-			\pgfmathsetmacro{\y}{5.7 - \i*0.35}
-			\draw[fill=cf7bd13, draw=black!50] (0.1,\y-0.1) rectangle (0.3,\y+0.1);
-			\node[text=white, font=\tiny, anchor=east] at (0.05,\y) {\label};
+		% Antenne
+		\draw[fill=green!50!black, draw=black!50, thick, rounded corners=1pt] 
+		(0.6, 0.1) rectangle (3.2, 0.4);
+		
+		% Arduino Logo
+		\node[text=white, font=\sffamily\bfseries\tiny] at (1.9, 0.6) {ARDUINO\textregistered};
+		\node[text=white, font=\sffamily\bfseries\tiny] at (1.9, 0.3) {NANO 33 BLE SENSE};
+		
+		% Linke Pins
+		\foreach \y/\txt in {
+			0.8/VIN, 1.3/GND, 1.8/RESET, 2.3/+5V, 
+			2.8/A7, 3.3/A6, 3.8/A5,
+			4.3/A4, 4.8/A3, 5.3/A2, 5.8/A1, 6.3/A0} {
+			
+			\draw[fill=white, draw=black!50] (0.1,\y-0.08) rectangle (0.25,\y+0.08);
+			\node[anchor=east, text=white, font=\sffamily\tiny\bfseries, fill=black!60, inner sep=1pt, rounded corners=1pt] at (-0.1, \y) {\txt};
+			
+			\ifdim \y pt = 2.3pt \coordinate (Nano5V) at (0.17, \y); \fi
+			\ifdim \y pt = 1.3pt \coordinate (NanoGNDL) at (0.17, \y); \fi
 		}
 		
-		% Rechte Pins (3V3-TX) - Farbe c333333
-		\foreach \i/\label in {0/+3V3, 1/AREF, 2/A0, 3/A1, 4/A2, 5/A3, 
-			6/A4, 7/A5, 8/A6, 9/A7, 10/+5V, 11/GND, 12/VIN, 13/RESET, 14/TX}
-		{
-			\pgfmathsetmacro{\y}{5.7 - \i*0.35}
-			\draw[fill=cf7bd13, draw=black!50] (4.2,\y-0.1) rectangle (4.4,\y+0.1);
-			\node[text=white, font=\tiny, anchor=west] at (4.45,\y) {\label};
+		% Rechte Pins
+		\foreach \y/\txt in {
+			0.8/TX, 1.3/RX, 1.8/RESET, 2.3/GND, 
+			2.8/~D2, 3.3/~D3, 3.8/~D4,
+			4.3/~D5, 4.8/~D6, 5.3/~D7, 5.8/~D8, 6.3/~D9} {
+			
+			\draw[fill=white, draw=black!50] (3.55,\y-0.08) rectangle (3.7,\y+0.08);
+			\node[anchor=west, text=white, font=\sffamily\tiny\bfseries, fill=black!60, inner sep=1pt, rounded corners=1pt] at (3.85, \y) {\txt};
+			
+			\ifdim \y pt = 2.3pt \coordinate (NanoGNDR) at (3.62, \y); \fi
+			\ifdim \y pt = 2.8pt \coordinate (NanoD2) at (3.62, \y); \fi
+			\ifdim \y pt = 3.3pt \coordinate (NanoD3) at (3.62, \y); \fi
+			\ifdim \y pt = 6.3pt \coordinate (NanoD9) at (3.62, \y); \fi
 		}
 		
-		% Prozessor (nRF52840)
-		\draw[fill=black!80, draw=black, thick, rounded corners=1pt] 
-		(1.5,2.5) rectangle (3.0,4.5);
-		\node[text=white, font=\tiny] at (2.25,3.5) {nRF52840};
+		% Prozessor-Beschriftung
+		\node[text=white, font=\tiny\bfseries] at (1.9, 1.3) {nRF52840};
 		
 		% LEDs
-		\draw[fill=green!60!black, draw=black] (1.2,1.2) circle (0.12);
-		\draw[fill=red!60!black, draw=black] (1.6,1.2) circle (0.12);
-		\draw[fill=orange!60!black, draw=black] (2.0,1.2) circle (0.12);
+		\draw[fill=green!60!black, draw=black!50] (0.6, 1.4) circle (0.08);
+		\draw[fill=red!60!black, draw=black!50] (1.0, 1.4) circle (0.08);
+		\draw[fill=orange!60!black, draw=black!50] (1.4, 1.4) circle (0.08);
 		
-		% Arduino Logo (vereinfacht)
-		\node[text=white, font=\tiny] at (2.25,0.5) {ARDUINO\textregistered};
+		% Beschriftung LEDs
+		\node[text=white, font=\tiny] at (0.6, 1.2) {L};
+		\node[text=white, font=\tiny] at (1.0, 1.2) {PWR};
 	\end{scope}
 	
-	% ============================================================
-	% 2. SERVO (SG90) - aus AktorBild.tex
-	% ============================================================
-	\begin{scope}[xshift=7cm, yshift=3.5cm]
-		% Hauptgehäuse - Farbe blue!70!black
+	% ==========================================
+	% ULTRASCHALLSENSOR HC-SR04
+	% ==========================================
+	\begin{scope}[shift={(4.0, 4.2)}, scale=1.2]
+		
+		% Hauptplatine (PCB)
+		\draw[fill=pcbblue, rounded corners=2pt, draw=black!70, thick] 
+		(0,0) rectangle (5.5, 2.8);
+		
+		% Befestigungslöcher
+		\foreach \x/\y in {0.3/0.3, 5.2/0.3, 0.3/2.5, 5.2/2.5} {
+			\draw[fill=white, draw=gray] (\x, \y) circle (0.12);
+		}
+		
+		% Quarz
+		\draw[fill=gray!40, rounded corners=3pt, draw=black!50] 
+		(2.0, 2.3) rectangle (3.5, 2.6);
+		
+		% Produktname
+		\node[text=white, font=\sffamily\bfseries\small] at (2.75, 1.8) {HC - SR04};
+		
+		% Ultraschallwandler
+		\foreach \xpos in {1.1, 4.4} {
+			\draw[fill=white, draw=gray] (\xpos, 1.2) circle (0.9);
+			\draw[fill=sensorbody] (\xpos, 1.2) circle (0.8);
+			\draw[fill=sensorinner] (\xpos, 1.2) circle (0.6);
+			\begin{scope}
+				\clip (\xpos, 1.2) circle (0.6);
+				\draw[step=0.07, black!30, thin] (\xpos-0.6, 1.2-0.6) grid (\xpos+0.6, 1.2+0.6);
+			\end{scope}
+			\draw[fill=black!60] (\xpos, 1.2) circle (0.3);
+		}
+		
+		% Beschriftung
+		\node[text=white, font=\tiny, anchor=north] at (1.1,0.0) {Sender};
+		\node[text=white, font=\tiny, anchor=north] at (4.4,0.0) {Empfänger};
+		
+		% Pins
+		\foreach \i/\txt in {0/Vcc, 1/Trig, 2/Echo, 3/Gnd} {
+			\draw[fill=gray!40, draw=black!50] (2.15 + \i*0.35, 0.1) rectangle (2.25 + \i*0.35, -0.25);
+			\draw[fill=pincolor] (2.07 + \i*0.35, 0.05) rectangle (2.33 + \i*0.35, 0.35);
+			\node[text=white, font=\sffamily\tiny, rotate=90, anchor=west] at (2.20 + \i*0.35, 0.40) {\txt};
+			\coordinate (SR\txt) at (2.20 + \i*0.35, -0.25);
+		}
+	\end{scope}
+	
+	% ==========================================
+	% SERVO SG90 
+	% ==========================================
+	\begin{scope}[shift={(4.0, 0.8)}, scale=0.9]
+		
+		% Hauptgehäuse
 		\draw[fill=blue!70!black, draw=blue!30!black, thick, rounded corners=2pt]
-		(0,0) rectangle (2.0,2.2);
+		(0,0) rectangle (2.0,2.0);
 		
 		% Transparente Innenfläche
 		\draw[fill=blue!45, draw=blue!20!black, opacity=0.35]
-		(0.15,0.15) rectangle (1.85,2.05);
+		(0.15,0.15) rectangle (1.85,1.85);
 		
-		% Befestigungslaschen oben
+		% Befestigungslaschen
 		\draw[fill=blue!75!black, draw=blue!30!black, thick, rounded corners=1pt]
-		(-0.3,1.6) rectangle (0,1.8);
+		(-0.3,1.4) rectangle (0,1.6);
 		\draw[fill=blue!75!black, draw=blue!30!black, thick, rounded corners=1pt]
-		(2.0,1.6) rectangle (2.3,1.8);
+		(2.0,1.4) rectangle (2.3,1.6);
 		
-		% Oberes Getriebegehäuse
+		% Getriebegehäuse
 		\draw[fill=blue!80!black, draw=blue!30!black, thick, rounded corners=2pt]
-		(0.6,2.2) rectangle (1.4,2.4);
+		(0.6,2.0) rectangle (1.4,2.2);
 		
 		% Servoarm
 		\draw[fill=gray!60, draw=gray!40!black, thick, rounded corners=2pt]
-		(0.2,2.4) rectangle (1.8,2.55);
-		
-		% Zentrale Verdickung
+		(0.2,2.2) rectangle (1.8,2.35);
 		\draw[fill=gray!70, draw=gray!40!black, thick, rounded corners=1pt]
-		(0.9,2.38) rectangle (1.3,2.57);
+		(0.9,2.18) rectangle (1.3,2.37);
 		
-		% Frontlabel - Farbe black!85, yellow!70!black
-		\draw[fill=black!85, draw=yellow!70!black, line width=0.7pt]
-		(0.4,0.5) rectangle (1.6,1.4);
-		\draw[draw=yellow!80!black, line width=0.4pt]
-		(0.45,0.55) rectangle (1.55,1.35);
-		\node[text=yellow!80!white, font=\tiny\bfseries] at (1.0,1.1) {TowerPro};
-		\node[text=white, font=\tiny] at (1.0,0.85) {Micro Servo};
-		\node[text=white, font=\tiny] at (1.0,0.65) {SG90};
+		% Label
+		\draw[fill=black!85, draw=yellow!70!black, line width=0.6pt]
+		(0.4,0.4) rectangle (1.6,1.2);
+		\draw[draw=yellow!80!black, line width=0.3pt]
+		(0.45,0.45) rectangle (1.55,1.15);
+		\node[text=yellow!80!white, font=\tiny\bfseries] at (1.0,1.0) {TowerPro};
+		\node[text=white, font=\tiny] at (1.0,0.75) {Micro Servo};
+		\node[text=white, font=\tiny] at (1.0,0.55) {SG90};
 		
-		% Gehäusekanten
-		\draw[blue!20!white, line width=0.5pt, opacity=0.75]
-		(0.15,0.15) -- (0.15,2.05);
-		\draw[blue!20!white, line width=0.5pt, opacity=0.75]
-		(1.85,0.15) -- (1.85,2.05);
-		
-		% Kabelausgang links unten
+		% Kabelausgang
 		\draw[fill=black!85, draw=black, thick, rounded corners=1pt]
-		(0,0.2) rectangle (-0.25,0.7);
+		(0,0.15) rectangle (-0.25,0.6);
 		
-		% Kabel (Orange=Signal, Rot=VCC, Braun=GND)
-		\draw[brown, line width=2pt] (-0.25,0.3) -- (-1.5,0.3);
-		\draw[red, line width=2pt] (-0.25,0.45) -- (-1.5,0.45);
-		\draw[orange, line width=2pt] (-0.25,0.6) -- (-1.5,0.6);
+		% Kabel (nach links)
+		\draw[brown, line width=1.8pt] (-0.25,0.25) -- (-2.0,0.25);
+		\draw[red, line width=1.8pt] (-0.25,0.38) -- (-2.0,0.38);
+		\draw[orange, line width=1.8pt] (-0.25,0.50) -- (-2.0,0.50);
 		
-		% Stecker links
+		% Stecker
 		\draw[fill=black!85, draw=black, thick, rounded corners=1pt]
-		(-2.0,0.1) rectangle (-1.5,0.8);
+		(-2.5,0.1) rectangle (-2.0,0.7);
 		
-		% Kontakte am Stecker
-		\draw[fill=yellow!70!white, draw=yellow!50!black] (-1.85,0.25) circle (0.05);
-		\draw[fill=yellow!70!white, draw=yellow!50!black] (-1.85,0.45) circle (0.05);
-		\draw[fill=yellow!70!white, draw=yellow!50!black] (-1.85,0.65) circle (0.05);
+		% Kontakte
+		\draw[fill=yellow!70!white, draw=yellow!50!black] (-2.35,0.2) circle (0.05);
+		\draw[fill=yellow!70!white, draw=yellow!50!black] (-2.35,0.38) circle (0.05);
+		\draw[fill=yellow!70!white, draw=yellow!50!black] (-2.35,0.55) circle (0.05);
 		
-		% Kabelbeschriftung
-		\node[font=\tiny, anchor=east] at (-2.1,0.25) {GND};
-		\node[font=\tiny, anchor=east] at (-2.1,0.45) {VCC};
-		\node[font=\tiny, anchor=east] at (-2.1,0.65) {Signal};
-		endscope
+		% Beschriftung
+		\node[font=\tiny, anchor=east] at (-2.6,0.2) {GND};
+		\node[font=\tiny, anchor=east] at (-2.6,0.38) {VCC};
+		\node[font=\tiny, anchor=east] at (-2.6,0.55) {Signal};
 		
-		% ============================================================
-		% 3. ULTRASCHALLSENSOR (HC-SR04) - aus TikzUltraschallsensor.tex
-		% ============================================================
-		\begin{scope}[xshift=6.5cm, yshift=-1.5cm, scale=0.9]
-			% Farben aus der Vorlage
-			\definecolor{pcbblue}{RGB}{0,50,120}
-			\definecolor{sensorbody}{RGB}{180,180,180}
-			\definecolor{sensorinner}{RGB}{220,220,220}
-			\definecolor{pincolor}{RGB}{247,189,19}
-			
-			% Hauptplatine
-			\draw[fill=pcbblue, rounded corners=2pt, draw=black!70] 
-			(0,0) rectangle (5.0,2.5);
-			
-			% Befestigungslöcher
-			\foreach \x/\y in {0.25/0.25, 4.75/0.25, 0.25/2.25, 4.75/2.25} {
-				\draw[fill=white, draw=gray] (\x,\y) circle (0.12);
-			}
-			
-			% Quarz
-			\draw[fill=gray!40, rounded corners=3pt] (1.8,2.1) rectangle (3.2,2.35);
-			
-			% Produktname
-			\node[text=white, font=\sffamily\bfseries\small] at (2.5,1.6) {HC - SR04};
-			
-			% Sender & Empfänger
-			\foreach \xpos in {1.1, 3.9} {
-				% Äußerer Ring
-				\draw[fill=white, draw=gray] (\xpos,1.0) circle (0.85);
-				% Metallgehäuse
-				\draw[fill=sensorbody] (\xpos,1.0) circle (0.75);
-				% Gitterbereich
-				\draw[fill=sensorinner] (\xpos,1.0) circle (0.6);
-				% Gitter-Muster
-				\begin{scope}
-					\clip (\xpos,1.0) circle (0.6);
-					\draw[step=0.06, black!30, thin] (\xpos-0.6,1.0-0.6) grid (\xpos+0.6,1.0+0.6);
-				\end{scope}
-				% Innerster Kreis
-				\draw[fill=black!60] (\xpos,1.0) circle (0.3);
-			}
-			
-			% Beschriftung
-			\node[text=white, font=\tiny, anchor=north] at (1.1,0.05) {Sender};
-			\node[text=white, font=\tiny, anchor=north] at (3.9,0.05) {Empfänger};
-			
-			% Pins
-			\foreach \i/\txt in {0/Vcc, 1/Trig, 2/Echo, 3/Gnd} {
-				\draw[fill=gray!40, draw=black!50] (2.0 + \i*0.35, 0.08) rectangle (2.1 + \i*0.35, -0.25);
-				\draw[fill=pincolor] (1.9 + \i*0.35, 0.05) rectangle (2.2 + \i*0.35, 0.3);
-				\node[text=white, font=\tiny, rotate=90, anchor=west] at (2.05 + \i*0.35, 0.35) {\txt};
-			}
-			endscope
-			
-			% ============================================================
-			% 4. VERBINDUNGEN
-			% ============================================================
-			
-			% --- Verbindung: Arduino +5V -> Servo VCC (rot) ---
-			\draw[red, line width=2pt] (4.45,1.75) -- (5.2,1.75) -- (5.2,5.45) -- (5.5,5.45);
-			\node[text=red, font=\tiny, anchor=south] at (5.2,5.55) {+5V};
-			
-			% --- Verbindung: Arduino GND (links) -> Servo GND (braun) ---
-			\draw[brown, line width=2pt] (0.25,2.35) -- (0.25,6.0) -- (5.5,6.0);
-			\node[text=brown, font=\tiny, anchor=south] at (2.5,6.1) {GND};
-			
-			% --- Verbindung: Arduino D9 (PWM) -> Servo Signal (orange) ---
-			\draw[orange, line width=2pt] (0.25,3.75) -- (0.25,5.7) -- (5.5,5.7);
-			\node[text=orange, font=\tiny, anchor=south] at (2.0,5.8) {D9 (PWM)};
-			
-			% --- Verbindung: Arduino +5V -> HC-SR04 Vcc ---
-			\draw[red!70!black, line width=2pt, dashed] (4.45,1.2) -- (5.8,1.2) -- (5.8,0.3) -- (6.2,0.3);
-			\node[text=red!70!black, font=\tiny, anchor=south] at (5.0,1.3) {+5V};
-			
-			% --- Verbindung: Arduino GND (rechts) -> HC-SR04 Gnd ---
-			\draw[brown!70!black, line width=2pt, dashed] (4.45,2.0) -- (5.8,2.0) -- (5.8,-0.1) -- (6.2,-0.1);
-			\node[text=brown!70!black, font=\tiny, anchor=south] at (5.0,2.1) {GND};
-			
-			% --- Verbindung: Arduino D10 -> HC-SR04 Trig ---
-			\draw[blue!60!white, line width=2pt, dashed] (0.25,4.1) -- (-0.5,4.1) -- (-0.5,-0.1) -- (6.1,-0.1);
-			\node[text=blue!60!white, font=\tiny, anchor=east] at (-0.6,4.1) {D10 (Trig)};
-			
-			% --- Verbindung: Arduino D11 -> HC-SR04 Echo ---
-			\draw[green!60!black, line width=2pt, dashed] (0.25,4.45) -- (-0.5,4.45) -- (-0.5,0.1) -- (6.1,0.1);
-			\node[text=green!60!black, font=\tiny, anchor=east] at (-0.6,4.45) {D11 (Echo)};
-			
-			% ============================================================
-			% 5. LEGENDE mit den originalen Farben
-			% ============================================================
-			\begin{scope}[xshift=0cm, yshift=-3.0cm]
-				\draw[fill=white!90!black, draw=black!50, rounded corners=2pt] 
-				(0,0) rectangle (12,1.8);
-				
-				\node[font=\bfseries] at (0.5,1.4) {Legende:};
-				
-				% Servo - mit den Farben aus AktorBild.tex
-				\draw[red, line width=2pt] (1.5,1.3) -- (2.0,1.3);
-				\node[anchor=west] at (2.1,1.3) {VCC (+5V)};
-				
-				\draw[brown, line width=2pt] (3.8,1.3) -- (4.3,1.3);
-				\node[anchor=west] at (4.4,1.3) {GND};
-				
-				\draw[orange, line width=2pt] (6.1,1.3) -- (6.6,1.3);
-				\node[anchor=west] at (6.7,1.3) {Signal (PWM)};
-				
-				% HC-SR04 - mit den Farben aus TikzUltraschallsensor.tex
-				\draw[red!70!black, line width=2pt, dashed] (1.5,0.8) -- (2.0,0.8);
-				\node[anchor=west] at (2.1,0.8) {+5V};
-				
-				\draw[brown!70!black, line width=2pt, dashed] (3.8,0.8) -- (4.3,0.8);
-				\node[anchor=west] at (4.4,0.8) {GND};
-				
-				\draw[blue!60!white, line width=2pt, dashed] (6.1,0.8) -- (6.6,0.8);
-				\node[anchor=west] at (6.7,0.8) {Trig (D10)};
-				
-				\draw[green!60!black, line width=2pt, dashed] (8.5,0.8) -- (9.0,0.8);
-				\node[anchor=west] at (9.1,0.8) {Echo (D11)};
-				
-				% Zusätzliche Info
-				\node[font=\tiny, text=gray] at (6.0,0.3) {Verbindungen: durchgezogen = Servo, gestrichelt = HC-SR04};
-				endscope
-				
-			\end{tikzpicture}
+		% Koordinaten
+		\coordinate (ServoGND) at (-2.35,0.2);
+		\coordinate (ServoVCC) at (-2.35,0.38);
+		\coordinate (ServoSig) at (-2.35,0.55);
+	\end{scope}
+	
+	% ==========================================
+	% VERBINDUNGEN
+	% ==========================================
+	\begin{scope}[on background layer]
+		
+		% ===== HC-SR04 -> Arduino =====
+		
+		% VCC (Rot)
+		\draw[red, thick] (SRVcc) -- ++(0,-0.5) -| ([xshift=-1.0cm]Nano5V) -- (Nano5V);
+		
+		% GND (Schwarz)
+		\draw[black, thick] (SRGnd) -- ++(0,-0.4) -| ([xshift=2.5cm]NanoGNDL) coordinate (GNDDrop) -- (NanoGNDL);
+		
+		% TRIG -> D2 (Blau)
+		\draw[blue, thick] (SRTrig) -- ++(0,-0.7) -| ([xshift=1.5cm]NanoD2) -- (NanoD2);
+		
+		% ECHO -> Spannungsteiler -> D3 (Orange)
+		\coordinate (DropD3) at ([xshift=1.0cm]NanoD3);
+		\coordinate (DivTop) at (DropD3 |- 0, -1.0); 
+		
+		\draw[orange, thick] (SREcho) -- ++(0,-0.5) -| (DivTop);
+		
+		% R1 (1k Ohm)
+		\node[res1k, anchor=north] (R1) at (DivTop) {};
+		\node[anchor=west, font=\sffamily\tiny, text=black] at ([xshift=0.2cm]R1.east) {$R_1$};
+		
+		\coordinate (DivJunction) at ([yshift=-0.35cm]R1.south);
+		\draw[orange, thick] (R1.south) -- (DivJunction);
+		\draw[orange, thick] (DivJunction) -- (DropD3) -- (NanoD3);
+		\fill[orange] (DivJunction) circle (1.5pt); 
+		
+		% R2 (2k Ohm)
+		\node[res2k, anchor=west] (R2) at ([xshift=0.3cm]DivJunction) {};
+		\draw[orange, thick] (DivJunction) -- (R2.west);
+		\draw[black, thick] (R2.east) -- (R2.east -| GNDDrop);
+		\fill[black] (R2.east -| GNDDrop) circle (1.5pt); 
+		\node[anchor=north, font=\sffamily\tiny, text=black] at ([yshift=-0.1cm]R2.south) {$R_2$};
+		
+		% ===== SERVO -> Arduino =====
+		
+		% Servo VCC -> +5V (rot)
+		\draw[red, thick] (ServoVCC) -- ++(-1.5,0) -- ([xshift=1.0cm]Nano5V) -- (Nano5V);
+		
+		% Servo GND -> GND (braun)
+		\draw[brown, thick] (ServoGND) -- ++(-1.5,0) -- ([xshift=-1.0cm, yshift=1.0cm]NanoGNDR) -- (NanoGNDR);
+		
+		% Servo Signal -> D9 (orange)
+		\draw[orange, thick] (ServoSig) -- ++(-1.5,0) -- ([xshift=0.5cm]NanoD9) -- (NanoD9);
+		
+	\end{scope}
+	
+	% ==========================================
+	% LEGENDE
+	% ==========================================
+	\begin{scope}[shift={(0,-7.8)}]
+		\draw[fill=white!90!black, draw=black!50, rounded corners=3pt, thick] 
+		(0,0) rectangle (13,2.2);
+		
+		\node[font=\bfseries] at (0.5,1.8) {Legende:};
+		
+		% HC-SR04
+		\draw[red, thick] (1.5,1.7) -- (2.0,1.7);
+		\node[anchor=west, font=\tiny] at (2.1,1.7) {HC-SR04 VCC};
+		
+		\draw[black, thick] (3.8,1.7) -- (4.3,1.7);
+		\node[anchor=west, font=\tiny] at (4.4,1.7) {HC-SR04 GND};
+		
+		\draw[blue, thick] (6.1,1.7) -- (6.6,1.7);
+		\node[anchor=west, font=\tiny] at (6.7,1.7) {Trig (D2)};
+		
+		\draw[orange, thick] (8.5,1.7) -- (9.0,1.7);
+		\node[anchor=west, font=\tiny] at (9.1,1.7) {Echo (D3)};
+		
+		% Servo
+		\draw[red, thick] (1.5,1.0) -- (2.0,1.0);
+		\node[anchor=west, font=\tiny] at (2.1,1.0) {Servo VCC};
+		
+		\draw[brown, thick] (3.8,1.0) -- (4.3,1.0);
+		\node[anchor=west, font=\tiny] at (4.4,1.0) {Servo GND};
+		
+		\draw[orange, thick] (6.1,1.0) -- (6.6,1.0);
+		\node[anchor=west, font=\tiny] at (6.7,1.0) {Servo Signal (D9)};
+		
+		% Spannungsteiler Info
+		\draw[dashed, draw=gray!70, thick] (9.5,0.2) rectangle (12.8,2.0);
+		\node[font=\tiny\bfseries, anchor=north west] at (9.6,1.8) {Spannungsteiler:};
+		\node[font=\tiny, anchor=north west] at (9.6,1.4) {$R_1 = 1\,\text{k}\Omega$};
+		\node[font=\tiny, anchor=north west] at (9.6,1.1) {$R_2 = 2\,\text{k}\Omega$};
+		\node[font=\tiny\bfseries, anchor=north west, text=red] at (9.6,0.6) {5V $\rightarrow$ 3.3V};
+		
+		% Titel
+		\node[font=\tiny\bfseries, anchor=east] at (13,2.0) {System: Ultraschall + Servo};
+	\end{scope}
+	
+\end{tikzpicture}
