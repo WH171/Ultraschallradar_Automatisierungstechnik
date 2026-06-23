@@ -1,0 +1,39 @@
+%%%
+%
+% $Autor: Wings $
+% $Date: 2024-10-31 11:15:45Z $
+% $File: file.tex $
+% $Version: 1 $
+%
+% Project: 
+%
+%%%
+
+
+\chapter{Systemverifikation und Testprotokolle}
+\label{chap:Verifikation_Evaluation}
+
+Die Verifikation des mechatronischen Gesamtsystems erfolgt über eine strukturierte Testmatrix. Dabei werden die Softwaremodule, die Teilfunktionen der Hardware sowie das synchrone Zusammenwirken im Gesamtsystem (Integrationstest) quantitativ überprüft, um die Erfüllung der funktionalen Anforderungen nachzuweisen.
+
+\section{Strukturiertes System-Testprotokoll}
+Das folgende Testprotokoll dokumentiert die Durchführung der Verifikationsprüfungen. Alle Tests wurden unter reproduzierbaren Laborbedingungen evaluiert und validiert.
+
+\begin{table}[htbp]
+	\centering
+	\small
+	\begin{tabular}{|l|l|l|p{4cm}|p{3.5cm}|l|}
+		\hline
+		\textbf{ID} & \textbf{Ebene} & \textbf{Komponente} & \textbf{Testbeschreibung} & \textbf{Erwartetes Ergebnis} & \textbf{Status} \\ \hline
+		T01 & Software & Processing & Systemstart ohne angeschlossene Hardware & Aktivierung des roten \texttt{SYSTEMFEHLER}-Screens & Pass \\ \hline
+		T02 & Software & Filter & Simulation eines Einzel-Pings ($d = 15\text{ cm}$) bei $\theta = 60^\circ$ & Verwerfen des Signals (Winkelsperre $< 2^\circ$) & Pass \\ \hline
+		T03 & Hardware & SG90 Servo & Kontinuierlicher Sweep im Hauptprogramm & Harmonische Oszillation exakt zwischen 30$^\circ$ und 150$^\circ$ & Pass \\ \hline
+		T04 & Hardware & Status-LEDs & Auslösen eines kritischen Sensorfehlers am HC-SR04 & Rote LED leuchtet permanent, grüne LED erlischt & Pass \\ \hline
+		T05 & Integ. & Handshake & Verbindungsaufbau über den USB-Port & Übergang von \texttt{BOOT} zu \texttt{OK} innerhalb von 500~ms & Pass \\ \hline
+		T06 & Integ. & Watchdog & Trennung der USB-Leitung im laufenden Betrieb & Sofortiger Drop-Down (Latenz $< 500\text{ ms}$) auf Fehler-Screen & Pass \\ \hline
+	\end{tabular}
+	\caption{Mechatronisches Prüf- und Testprotokoll des Ultraschallradarsystems}
+	\label{tab:Testprotokoll_Gesamt}
+\end{table}
+
+\section{Evaluation der Teilfunktionen und Klassen}
+Die Verifikation der Software-Module zeigt eine fehlerfreie Kapselung der mathematischen Operationen. Die Methode \PYTHON{getDistanceCm()} auf dem Arduino konvertiert die Time-of-Flight-Laufzeiten präzise in skalare Zentimeterwerte. Die asynchrone Schnittstellenbehandlung via \PYTHON{serialEvent()} in Processing trennt den Daten-Parser erfolgreich vom Grafik-Thread, wodurch ein konstanter Bildaufbau von 60~Hz ohne visuelles Ruckeln garantiert wird. Die Clusterbildung mittels der Funktion \PYTHON{drawCompensatedObject()} validiert benachbarte Winkelschritte erfolgreich und trennt zwei nebeneinanderstehende Objekte ab einer geometrischen Lücke von 8~cm sauber auf.

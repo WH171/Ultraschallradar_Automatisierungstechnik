@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.24.0 (TeX Live 2026)  (format=lualatex 2026.3.16)  17 JUN 2026 15:16
+This is LuaHBTeX, Version 1.24.0 (TeX Live 2026)  (format=lualatex 2026.3.16)  23 JUN 2026 11:11
  restricted system commands enabled.
 **Benutzerhandbuch.tex
 (./Benutzerhandbuch.tex
@@ -1884,13 +1884,14 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman
 \g__cctab_next_cctab=\catcodetable18
 
 (./Chapters/de/Titlepage.tex
-<General/Logo.png, id=7, 228.855pt x 77.088pt>
-File: General/Logo.png Graphic file (type png)
-<use General/Logo.png>
-Package luatex.def Info: General/Logo.png  used on input line 13.
-(luatex.def)             Requested size: 199.16928pt x 67.0907pt.
+<General/UltraschallradarTitelbild.png, id=7, 1054.94125pt x 898.35625pt>
+File: General/UltraschallradarTitelbild.png Graphic file (type png)
+<use General/UltraschallradarTitelbild.png>
+Package luatex.def Info: General/UltraschallradarTitelbild.png  used on input l
+ine 13.
+(luatex.def)             Requested size: 227.62204pt x 193.82822pt.
 LaTeX Font Info:    Trying to load font information for T1+lmss on input line 2
-1.
+2.
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
@@ -1899,7 +1900,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmss' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 42.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 43.
 
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/umsa.fd
@@ -1908,7 +1909,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (/usr/local/texlive/2026/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 42.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 43.
 
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -1920,14 +1921,14 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 (/usr/local/texlive/2026/texmf-dist/tex/latex/microtype/mt-eur.cfg
 File: mt-eur.cfg 2006/07/31 v1.1 microtype config. file: AMS Euler Roman (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 42
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 43
 .
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 4
-7.
+8.
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
@@ -1941,11 +1942,10 @@ Package microtype Info: Loading generic protrusion settings for font family
 
 
 {/usr/local/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map}<./General
-/Logo.png>])
+/UltraschallradarTitelbild.png>])
 Package tocbasic Info: character protrusion at toc deactivated on input line 41
 .
-
-(./Benutzerhandbuch.toc)
+ (./Benutzerhandbuch.toc)
 \tf@toc=\write7
 
 \openout7 = Benutzerhandbuch.toc
@@ -1962,7 +1962,8 @@ Package tocbasic Info: character protrusion at lof deactivated on input line 45
 \tf@lof=\write8
 
 \openout8 = Benutzerhandbuch.lof
- [3
+
+[3
 
 
 ] [4
@@ -1971,8 +1972,7 @@ Package tocbasic Info: character protrusion at lof deactivated on input line 45
 ]
 Package tocbasic Info: character protrusion at lot deactivated on input line 49
 .
-
-(./Benutzerhandbuch.lot)
+ (./Benutzerhandbuch.lot)
 \tf@lot=\write9
 
 \openout9 = Benutzerhandbuch.lot
@@ -2032,7 +2032,7 @@ chapter 4.
 chapter 5.
 [9]
 <General/BenutzeroberflaecheBilder/BenutzeroberflaecheSystemFaehrtHoch.png, id=
-168, 1000.73875pt x 598.235pt>
+167, 1000.73875pt x 598.235pt>
 File: General/BenutzeroberflaecheBilder/BenutzeroberflaecheSystemFaehrtHoch.png
  Graphic file (type png)
 <use General/BenutzeroberflaecheBilder/BenutzeroberflaecheSystemFaehrtHoch.png>
@@ -2070,7 +2070,7 @@ chapter 8.
 ]
 chapter 9.
 (./General/FlussdiagrammFehlermeldungen.tex)
-<General/BenutzeroberflaecheBilder/BenutzeroberflaecheSystemFehler.png, id=206,
+<General/BenutzeroberflaecheBilder/BenutzeroberflaecheSystemFehler.png, id=205,
  1000.73875pt x 598.235pt>
 File: General/BenutzeroberflaecheBilder/BenutzeroberflaecheSystemFehler.png Gra
 phic file (type png)
@@ -2117,7 +2117,7 @@ Here is how much of LuaTeX's memory you used:
  758 words of node memory still in use:
    8 hlist, 2 vlist, 2 rule, 1 local_par, 4 glue, 5 kern, 1 penalty, 4 glyph, 31
  attribute, 77 glue_spec, 16 attribute_list, 5 write nodes
-   avail lists: 2:6428,3:2146,4:628,5:245,6:80,7:3729,8:27,9:419,10:14,11:398,12
+   avail lists: 2:6428,3:2146,4:628,5:247,6:80,7:3717,8:27,9:420,10:14,11:398,12
 :2
  82458 multiletter control sequences out of 65536+600000
  68 fonts using 4347767 bytes
@@ -2139,9 +2139,9 @@ ublic/lm/lmss12.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lm
 ss17.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb>
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/local
 /texlive/2026/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
-Output written on Benutzerhandbuch.pdf (27 pages, 445796 bytes).
+Output written on Benutzerhandbuch.pdf (27 pages, 1696188 bytes).
 
-PDF statistics: 373 PDF objects out of 1000 (max. 8388607)
+PDF statistics: 372 PDF objects out of 1000 (max. 8388607)
  317 compressed objects within 4 object streams
  72 named destinations out of 1000 (max. 1048576)
  232 words of extra memory for PDF output out of 10000 (max. 100000000)

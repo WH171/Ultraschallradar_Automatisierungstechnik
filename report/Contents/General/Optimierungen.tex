@@ -1,0 +1,31 @@
+%%%
+%
+% $Autor: Wings $
+% $Date: 2024-10-31 11:15:45Z $
+% $File: file.tex $
+% $Version: 1 $
+%
+% Project: 
+%
+%%%
+
+
+\chapter{Systemeinschränkungen und zukünftige Optimierungen (To-dos)}
+\label{chap:Constraints_ToDos}
+
+Obwohl das entwickelte Ultraschallradarsystem die funktionalen Anforderungen der Umfelderfassung vollständig erfüllt, ergeben sich aus den physikalischen und mechanischen Randbedingungen der verwendeten Komponenten spezifische Einschränkungen. Diese definieren die Ansatzpunkte für zukünftige Optimierungen (To-dos).
+
+\section{Analyse der Systemeinschränkungen}
+\begin{itemize}
+	\item \textbf{Geometrische Restriktion (2D-Ebene):} Das System erfasst die Umgebung rein zweidimensional auf einer fixen horizontalen Schnittebene. Objekte, die sich oberhalb oder unterhalb des akustischen Sendekegels befinden, werden sensorisch nicht erfasst.
+	\item \textbf{Verschlei\ss der Getriebekinematik:} Der TowerPro SG90 Servomotor verfügt über ein Kunststoffgetriebe. Im dauerhaften Betrieb führen die permanenten Richtungswechsel zu mechanischem Zahnflankenspiel, was die Winkelpräzision langfristig verringert.
+	\item \textbf{Temperaturabhängigkeit:} Die Schallgeschwindigkeit ist direkt an die Umgebungstemperatur gekoppelt. Da die Firmware mit einer konstanten Schallgeschwindigkeit von $343\text{ m/s}$ rechnet, entstehen bei extremen Raumtemperaturschwankungen systematische Messungenauigkeiten.
+\end{itemize}
+
+\section{Zukünftige Erweiterungen (To-do-Liste)}
+Für eine Weiterentwicklung des Systems werden folgende Arbeitspakete definiert:
+\begin{enumerate}
+	\item \textbf{Implementierung einer 3D-Kinematik:} Erweiterung der Sensoraufhängung um eine vertikale Achse mittels eines zweiten Servomotors, um eine dreidimensionale Punktwolke der Umgebung aufzunehmen.
+	\item \textbf{Dynamische Temperaturkompensation:} Integration eines digitalen Temperatursensors (z.\,B. DHT11 oder über die Onboard-Sensorik des Arduino Nano 33 BLE Sense) zur kontinuierlichen mathematischen Anpassung der Schallgeschwindigkeits-Konstante im Algorithmus.
+	\item \textbf{Stochastische Signalfilterung:} Ersatz des empirischen Hysteresefilters durch einen mathematischen Kalman-Filter im Processing-Frontend, um statistische Messausrei\ss er und Signalrauschen noch effizienter zu eliminieren.
+\end{enumerate}
