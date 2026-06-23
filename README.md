@@ -1,24 +1,61 @@
-# Ultraschallradar Projekt: Umgebungs-Scan mittels Ultraschall und Servo-Motor
-**Automatisierungssysteme | Prof. Dr. Wings**
+# Ultraschallradar
+## Autonomes mechatronisches System zur Umfelderfassung
+### Kursarbeit Automatisierungstechnik (SoSe 2025)
 
----
+![Projekt Logo](report/Images/General/ProjektLogo.png)
 
-## 📝 Projektbeschreibung
-Dieses Projekt realisiert ein automatisiertes Radarsystem auf Basis des **Arduino Nano 33 BLE Sense**. Ein Servomotor rotiert einen Ultraschallsensor kontinuierlich in einem Bereich von 180°, um Hindernisse in der Umgebung zu erfassen. Die gemessenen Distanzwerte werden in Echtzeit verarbeitet und zur grafischen Darstellung an eine Benutzerpberfläche übermittelt. 
+--
 
-Das Ziel ist ein autonomer Scanvorgang zur digitalen Abbildung des unmittelbaren Umfelds.
+## Inhaltsverzeichnis
+- [Projektbeschreibung](#projektbeschreibung)
+- [Systemarchitektur](#systemarchitektur)
+- [Verzeichnisstruktur](#verzeichnisstruktur)
+- [Installation und Start](#installation-und-start)
 
-## 🛠 Hardware-Komponenten
-Für den Aufbau wurden folgende Komponenten verwendet:
-* **Mikrocontroller:** Arduino Nano 33 BLE Sense Lite
-* **Aktorik:** Servomotor SG90
-* **Sensorik:** Ultraschallsensor HC-SR04
-* **Erweiterung:** Spannungsteiler, Jumperkabel
-* **Gehäuse/Montage:** Eigens entwickeltes Gehäuse mit drehbarem Aufsatz in dem der Ultraschallsensor integriert ist
+--
 
-## 💻 Software & Abhängigkeiten
-Die Software ist modular aufgebaut und befindet sich im Ordner `Code`.
-* **Entwicklungsumgebung:** Arduino IDE
-* **Bibliotheken:** * `Servo.h` (Standardbibliothek)
-  * `Ultrasonic.h` (für Grove-Sensorik)
-* **Visualisierung:** Eine über Processing entwickelte Anwendung
+## Projektbeschreibung
+Das Projekt umfasst die Entwicklung und Realisierung eines **autonomen Radarsystems zur digitalen Umfelderfassung**. In der modernen Automatisierungstechnik ist eine verlässliche Nahbereichserfassung essenziell. Da optische Sensoren bei Staub, Nebel oder transparenten Oberflächen versagen, nutzt dieses System das akustische **Echo-Laufzeitverfahren (Time-of-Flight)**. 
+
+Ein Ultraschallsensor vollführt eine kontinuierliche Schwenkbewegung und scannt die Umgebung in einem horizontalen Bereich. Die erfassten Polarkoordinaten werden in Echtzeit an eine PC-Anwendung übertragen, mathematisch gefiltert, zu Clustern zusammengefasst und visuell auf einem Radar-Bildschirm projiziert.
+
+### Kernmerkmale des Systems:
+- **Präzise Kinematik:** Kontinuierlicher 120°-Sweep zur vollständigen Sektorenüberwachung.
+- **Algorithmische Signalfilterung:** Kompensation der physikalischen Schallkegelaufweitung zur Vermeidung künstlicher Objektverbreiterungen.
+- **Echtzeit-Überwachung:** Integrierter Software-Watchdog zur sofortigen Erkennung von Verbindungsabbrüchen (Hot-Plugging-Schutz).
+
+--
+
+## Systemarchitektur
+
+### Hardware-Komponenten
+- **Zentrale Steuerungseinheit:** Arduino Nano 33 BLE Sense Mikrocontroller
+- **Sensorik:** HC-SR04 Ultraschall-Abstandssensor
+- **Aktorik:** TowerPro SG90 Servomotor
+- **Signalisierung:** Zweifarbige LED-Statusanzeige (Rot/Grün) für die Betriebszustände
+
+### Software-Umgebung
+- **Firmware:** Embedded C++ (Arduino IDE), strukturiert nach dem Doxygen-Dokumentationsstandard.
+- **Frontend-Applikation:** Java-basierte Desktop-Anwendung (Processing 4.3) zur grafischen Darstellung des taktischen HUDs.
+
+--
+
+## Verzeichnisstruktur
+
+- **`code/`**: Enthält die vollständigen Quellcodedateien.
+  - `Arduino/`: Firmware für die eingebettete Hardware-Steuerung.
+  - `Processing/`: Programmcode für das grafische Benutzerinterface (UI).
+- **`report/`**: Beinhaltet das vollständige LaTeX-Projekt der Entwicklerdokumentation.
+  - `Contents/General/`: Inhaltliche Fachkapitel (Domain Knowledge, Umsetzung, Testprotokolle).
+  - `Images/General/`: Zentrales Bildverzeichnis für CAD-Modelle, Schaltungen und Fotos.
+  - `tikz/`: Ausgelagerte Quelltexte der normgerechten Programmablaufpläne (PAP).
+
+--
+
+## Installation und Start
+
+### 1. Repository klonen
+Laden Sie das gesamte Projektarchiv über die Konsole in Ihren lokalen Arbeitsbereich herunter:
+
+```bash
+git clone [https://github.com/WH171/UltraschallradarAutomatisierungstechnik.git](https://github.com/WH171/UltraschallradarAutomatisierungstechnik.git)

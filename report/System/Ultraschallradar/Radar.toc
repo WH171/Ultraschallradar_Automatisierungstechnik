@@ -8,7 +8,7 @@
 \contentsline {chapter}{\numberline {2}Aufgabenstellung}{17}{chapter.2}%
 \contentsline {chapter}{\numberline {3}Stand der Technik}{19}{chapter.3}%
 \contentsline {chapter}{\numberline {4}Einbettung des Projektes}{21}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Bessondere Herausforderungen und Lösungsansätze}{23}{chapter.5}%
+\contentsline {chapter}{\numberline {5}Besondere Herausforderungen und Lösungsansätze}{23}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Analyse der Problemstellungen}{23}{section.5.1}%
 \contentsline {subsection}{\numberline {5.1.1}Mechanischer Bauraum und Kabel-Interferenz}{23}{subsection.5.1.1}%
 \contentsline {subsection}{\numberline {5.1.2}Virtuelle Objektverbreiterung durch Schallkegel-Divergenz}{23}{subsection.5.1.2}%
@@ -29,14 +29,15 @@
 \contentsline {section}{\numberline {8.3}Betriebsspannung und Logikpegel}{36}{section.8.3}%
 \contentsline {section}{\numberline {8.4}Digitale Ein- und Ausgänge}{36}{section.8.4}%
 \contentsline {section}{\numberline {8.5}PWM und Servo-Ansteuerung}{36}{section.8.5}%
-\contentsline {section}{\numberline {8.6}USB, Programmierung und serielle Kommunikation}{37}{section.8.6}%
-\contentsline {section}{\numberline {8.7}Integrierte Funktionen und Sensorik}{38}{section.8.7}%
-\contentsline {section}{\numberline {8.8}Weiterführende Literatur}{38}{section.8.8}%
+\contentsline {section}{\numberline {8.6}Zeitmessung und Ablaufsteuerung}{37}{section.8.6}%
+\contentsline {section}{\numberline {8.7}USB, Programmierung und serielle Kommunikation}{38}{section.8.7}%
+\contentsline {section}{\numberline {8.8}Integrierte Funktionen und Sensorik}{38}{section.8.8}%
+\contentsline {section}{\numberline {8.9}Weiterführende Literatur}{39}{section.8.9}%
 \contentsline {chapter}{\numberline {9}Ultraschallsensor HC-SR04}{41}{chapter.9}%
 \contentsline {section}{\numberline {9.1}Allgemeines}{41}{section.9.1}%
 \contentsline {section}{\numberline {9.2}Ultraschallsensor HC-SR04}{41}{section.9.2}%
 \contentsline {section}{\numberline {9.3}Spezifikation}{41}{section.9.3}%
-\contentsline {paragraph}{\nonumberline Schaltplan}{42}{paragraph*.8}%
+\contentsline {paragraph}{\nonumberline Schaltplan}{42}{paragraph*.7}%
 \contentsline {section}{\numberline {9.4}Bibliothek}{42}{section.9.4}%
 \contentsline {subsection}{\numberline {9.4.1}Beschreibung}{42}{subsection.9.4.1}%
 \contentsline {subsection}{\numberline {9.4.2}Installation}{42}{subsection.9.4.2}%
@@ -105,7 +106,7 @@
 \contentsline {subsection}{\numberline {12.2.4}Installation auf macOS}{79}{subsection.12.2.4}%
 \contentsline {section}{\numberline {12.3}Übersicht der Eigenschaften und Contribution Manager}{80}{section.12.3}%
 \contentsline {subsection}{\numberline {12.3.1}Die serielle Schnittstelle (Serial-Bibliothek)}{81}{subsection.12.3.1}%
-\contentsline {part}{\numberline {V}Developmenmt}{83}{part.5}%
+\contentsline {part}{\numberline {V}Development}{83}{part.5}%
 \contentsline {chapter}{\numberline {13}Mechatronische Systementwicklung und Implementierung}{85}{chapter.13}%
 \contentsline {section}{\numberline {13.1}Systemarchitektur}{85}{section.13.1}%
 \contentsline {section}{\numberline {13.2}Konstruktive Auslegung und CAD-Entwicklung (SolidWorks)}{85}{section.13.2}%
@@ -131,6 +132,6 @@
 \contentsline {chapter}{\numberline {17}Schlussfolgerung und Fazit}{113}{chapter.17}%
 \contentsline {part}{\numberline {VIII} Anhang}{115}{part.8}%
 \contentsline {chapter}{\numberline {18}Bill Of Material}{117}{chapter.18}%
-\contentsline {chapter}{Stichwortverzeichnis – Keywords}{119}{chapter*.45}%
+\contentsline {chapter}{Stichwortverzeichnis – Keywords}{119}{chapter*.44}%
 \contentsline {chapter}{\numberline {19}Software Bill of Materials}{121}{chapter.19}%
-\contentsline {chapter}{Index}{123}{table.caption.46}%
+\contentsline {chapter}{Index}{123}{table.caption.45}%

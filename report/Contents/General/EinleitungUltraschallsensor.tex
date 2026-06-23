@@ -12,10 +12,16 @@
 
 \chapter{Einführung}
 
-	Die zuverlässige Erfassung der Umgebung und die Detektion von Hindernissenspielen in modernen Automatisierungs- und Robotiksystemen eine zentrale Rolle. Neben optischen Verfahren kommen hierfür seit vielen Jahren auch Ultraschall‑basierte Abstandssensoren zum Einsatz, die eine berührungslose Messung von Distanzen ermöglichen.
+	Die zuverlässige Erfassung der Umgebung und die Detektion von Hindernissen
+	spielen in modernen Automatisierungs- und Robotiksystemen eine zentrale Rolle.
+	Neben optischen Verfahren kommen hierfür seit vielen Jahren auch
+	Ultraschall‑basierte Abstandssensoren zum Einsatz, die eine berührungslose
+	Messung von Distanzen ermöglichen.
 	
 	Im Rahmen der vorliegenden Arbeit wird dieses Prinzip in Form eines
-	kompakten Demonstrators aufgegriffen. An einem mechatronischen Aufbau wird exemplarisch gezeigt, wie Sensordaten erfasst, ausgewertet und für den Benutzer visualisiert werden können.
+	kompakten Demonstrators aufgegriffen. An einem mechatronischen Aufbau
+	wird exemplarisch gezeigt, wie Sensordaten erfasst, ausgewertet und für
+	den Benutzer visualisiert werden können.
 
 \chapter{Aufgabenstellung}
 
@@ -24,32 +30,32 @@
 	Konkret umfasst die Aufgabenstellung die Integration eines Ultraschall-Abstandssensors (HC-SR-04) und eines Servomotors (Tower Pro SG90) in die vorhandene Hardwareplattform. Der Servomotor soll den Sensor in einem definierten Winkelbereich schwenken, während der Mikrocontroller in vorgegebenen Winkelinkrementen Entfernungswerte aufnimmt und diesen Messdaten einen eindeutigen Winkel zuordnet. Auf Basis dieser Messwerte ist eine Auswertung zu konzipieren, die eine übersichtliche Darstellung der Umgebung ermöglicht.
 	
 	Neben der reinen Funktionserfüllung werden weitere Anforderungen an die
-	Applikation gestellt. Dazu gehören eine strukturierte und modular aufgebaute Firmware, die Verwendung geeigneter Bibliotheken zur Ansteuerung von Sensor und Aktor. Au\ss erdem sind Verfahren zur Visualisierung der Live-Daten auf einem PC zu entwickeln und zu implementieren, sodass die resultierende Umgebungskarte in Echtzeit nachvollzogen werden kann.
+	Applikation gestellt. Dazu gehören eine strukturierte und modular aufgebaute Firmware, die Verwendung geeigneter Bibliotheken zur Ansteuerung von Sensor und Aktor. Au\ss erdem sind Verfahren zur Visualisierung der Live-Daten auf einem PC zu entwickeln und zu implementieren, sodass die resultierende Umgebungskarte kontinuierlich dargestellt werden kann.
 	
 	Die Aufgabenstellung umfasst weiterhin die Erstellung einer Entwickler- und Service-Dokumentation. Diese beinhaltet neben der Projektbeschreibung eine detaillierte Beschreibung der Hardware des Arduino Nano 33 BLE Sense Lite und der eingesetzten Komponenten, die Spezifikation und Durchführung von Tests, eine Darstellung der Softwarearchitektur sowie Angaben zu Bezugsquellen und Stückliste (Bill of Materials).
 	
 
 \chapter{Stand der Technik}
 
-	Für die mechanische Ausrichtung von Sensoren und leichten Lasten werden in zahlreichen Anwendungen kompakte RC‑Servomotoren eingesetzt. Diese integrieren einen Gleichstrommotor mit einem Untersetzungsgetriebe sowie einer eingebauten Positionsregelung, die über ein Pulsweitenmodulationssignal (PWM) geführt wird. Miniaturservos wie der Tower Pro SG90 finden vor allem im Bereich ferngesteuerter Modelle (z.\,B. Flugzeuge und Helikopter) Verwendung, wo sie Ruderflächen oder andere bewegliche Komponenten ansteuern.\cite{kst:2026} In technischen Lehr- und Demonstrationsaufbauten werden derartige Servos häufig eingesetzt, um Sensoren innerhalb eines begrenzten Winkelbereichs reproduzierbar zu positionieren
+	Für die mechanische Ausrichtung von Sensoren und leichten Lasten werden in zahlreichen Anwendungen kompakte RC‑Servomotoren eingesetzt. Diese integrieren einen Gleichstrommotor mit einem Untersetzungsgetriebe sowie einer eingebauten Positionsregelung, die über ein Pulsweitenmodulationssignal (PWM) geführt wird. Miniaturservos wie der Tower Pro SG90 finden vor allem im Bereich ferngesteuerter Modelle (z.\,B. Flugzeuge und Helikopter) Verwendung, wo sie Ruderflächen oder andere bewegliche Komponenten ansteuern.\cite{kts:2026} In technischen Lehr- und Demonstrationsaufbauten werden derartige Servos häufig eingesetzt, um Sensoren innerhalb eines begrenzten Winkelbereichs reproduzierbar zu positionieren.
 	
-	Ultraschall-Abstandssensoren kommen seit vielen Jahren in Automatisierungsanlagen, mobilen Robotersystemen und in der Fahrzeugtechnik zur berührungslosen Distanzbestimmung zum Einsatz. Üblicherweise wird dabei das Laufzeitmessprinzip verwendet. Ein kurzer Ultraschallimpuls wird ausgesendet, und aus der Zeitspanne bis zum Eintreffen des reflektierten Echos wird bei angenommener, bekannter Schallgeschwindigkeit der Abstand zum Objekt berechnet.\cite{leuze:2026} Im Niedrigkostenbereich haben sich hierfür insbesondere Module des Typs HC-SR04 etabliert, die über dedizierte Trigger- und Echo-Pins eine einfache Anbindung an Mikrocontroller ermöglichen.
+	Ultraschall-Abstandssensoren kommen seit vielen Jahren in Automatisierungsanlagen, mobilen Robotersystemen und in der Fahrzeugtechnik zur berührungslosen Distanzbestimmung zum Einsatz. Üblicherweise wird dabei das Laufzeitmessprinzip verwendet. Ein kurzer Ultraschallimpuls wird ausgesendet, und aus der Zeitspanne bis zum Eintreffen des reflektierten Echos wird bei angenommener, bekannter Schallgeschwindigkeit der Abstand zum Objekt berechnet. Im Niedrigkostenbereich haben sich hierfür insbesondere Module des Typs HC-SR04 etabliert, die über dedizierte Trigger- und Echo-Pins eine einfache Anbindung an Mikrocontroller ermöglichen.
 	
-	Die Kombination eines solchen Ultraschall-Abstandssensors mit einem Servomotor erlaubt die Realisierung einfacher Systeme zur zweidimensionalen Umgebungserfassung. Durch das sequenzielle Anfahren verschiedener Winkelpositionen und die jeweils durchgeführte Distanzmessung entsteht ein diskretes Scanbild der Umgebung. In frei verfügbaren Projekten und Online-Tutorials wird dieses Konzept typischerweise mit einem HC-SR04-Ultraschallmodul, einem SG90-Servomotor und einem Arduino Uno oder Arduino Nano umgesetzt.\,(vgl. \cite{projehocam:2015}) Die gemessenen Distanzen werden dabei entweder seriell an einen PC übertragen und dort visualisiert oder direkt auf einem Display ausgegeben, sodass solche Beispiele häufig als Einstieg in die Sensordatenerfassung und -visualisierung mit einfachen Mikrocontrollersystemen dienen.
+	Die Kombination eines solchen Ultraschall-Abstandssensors mit einem Servomotor erlaubt die Realisierung einfacher Systeme zur zweidimensionalen Umgebungserfassung. Durch das sequenzielle Anfahren verschiedener Winkelpositionen und die jeweils durchgeführte Distanzmessung entsteht ein Scanbild der Umgebung. In frei verfügbaren Projekten und Online-Tutorials wird dieses Konzept typischerweise mit einem HC-SR04-Ultraschallmodul, einem SG90-Servomotor und einem Arduino Uno oder Arduino Nano umgesetzt.\,(vgl. \cite{projehocam:2015}) Die gemessenen Distanzen werden dabei entweder seriell an einen PC übertragen und dort visualisiert oder direkt auf einem Display ausgegeben, sodass solche Beispiele häufig als Einstieg in die Sensordatenerfassung und -visualisierung mit einfachen Mikrocontrollersystemen dienen.
 
 
 \chapter{Einbettung des Projektes}
 
 
-	Das vorliegende Projekt greift dieses etablierte Konzept auf und realisiert ein kompaktes Umgebungs­scansystem auf Basis eines Ultraschall-Abstandssensors und eines Servomotors. Der verwendete Sensor HC‑SR04 ist auf einem Tower Pro SG90 montiert, der den Sensor über einen festgelegten Winkelbereich schwenkt. In jeder definierten Winkelposition werden Messwerte erfasst und anschließend zu einem Umgebungsprofil zusammengeführt, das die räumliche Verteilung von Hindernissen im Scanbereich wiedergibt.
+	Das vorliegende Projekt greift dieses etablierte Konzept auf und realisiert ein kompaktes Umgebungs­scansystem auf Basis eines Ultraschall-Abstandssensors und eines Servomotors. Der verwendete Sensor HC‑SR04 ist auf einem Tower Pro SG90 montiert, der den Sensor über einen festgelegten Winkelbereich schwenkt. In jeder definierten Winkelposition werden Messwerte erfasst und anschlie\ss end zu einem Umgebungsprofil zusammengeführt, das die räumliche Verteilung von Hindernissen im Scanbereich wiedergibt.
 	
 	Im Unterschied zu vielen bekannten Beispielaufbauten, die auf 8‑Bit‑Arduino‑Plattformen beruhen, wird in dieser Applikation der Arduino Nano 33 BLE Sense als zentrale Recheneinheit eingesetzt.\cite{Kaparthi:2021} Durch den leistungsfähigeren 32‑Bit‑Mikrocontroller und die zusätzlichen Kommunikations- und Sensorfunktionen bietet die Plattform erweiterte Möglichkeiten für strukturierte Messabläufe, Datenaufbereitung und Visualisierung. Die Mess- und Auswertealgorithmen können dadurch klar modularisiert werden, und die aufbereiteten Daten lassen sich flexibel auf einem PC darstellen.
 	
-	Insgesamt ordnet sich die entwickelte Lösung in die Klasse kostengünstiger Ultraschall‑Scan­systeme ein, nutzt jedoch eine modernere Hardwarebasis und eine stärker systematisch aufgebaute Softwarearchitektur.\cite{Kaparthi:2021} Das System dient somit nicht nur als funktionaler Demonstrator für die Sensordatenerfassung mit dem Arduino Nano 33 BLE Sense, sondern auch als Ausgangspunkt für weiterführende Anwendungen und Erweiterungen in der Automatisierungstechnik.
+	Insgesamt ordnet sich die entwickelte Lösung in die Klasse kostengünstiger Ultraschallradar-Systeme ein, nutzt jedoch eine modernere Hardwarebasis und eine stärker systematisch aufgebaute Softwarearchitektur.\cite{Kaparthi:2021} Das System dient somit nicht nur als funktionaler Demonstrator für die Sensordatenerfassung mit dem Arduino Nano 33 BLE Sense, sondern auch als Ausgangspunkt für weiterführende Anwendungen und Erweiterungen in der Automatisierungstechnik.
 
 
 
-\chapter{Bessondere Herausforderungen und Lösungsansätze}
+\chapter{Besondere Herausforderungen und Lösungsansätze}
 \label{chap:Besondere_Herausforderungen}
 
 Im Rahmen der Systemintegration traten sowohl auf der hardwareseitigen mechatronischen Ebene als auch bei der softwareseitigen Signalverarbeitung spezifische Herausforderungen auf. Diese ergaben sich primär aus der geometrischen Bauform des kompakten Gehäuses sowie den physikalischen Eigenschaften der Ultraschall-Messtechnik.
@@ -63,7 +69,7 @@ Das primäre konstruktive Ziel bestand in der Entwicklung eines möglichst kompa
 Die besondere Herausforderung lag in der Dynamik des Systems: Da der Ultraschallsensor eine kontinuierliche Schwenkbewegung von 120$^\circ$ vollführt, wird der angeschlossene Kabelstrang einer permanenten Belastung ausgesetzt. Es bestand das akute Risiko, dass sich starr verlegte Kabel im Betrieb mit den rotierenden Bauteilen verkeilen, die Bewegung des Servomotors blockieren, mechanische Kollisionen verursachen oder sich durch die Zugbelastung von den GPIO-Pins lösen.
 
 \subsection{Virtuelle Objektverbreiterung durch Schallkegel-Divergenz}
-Auf der Softwareseite zeigte sich in der ersten Entwicklungsphase ein unpräzises, visuell verrauschtes Radarbild. Bedingt durch den physikalischen Öffnungswinkel des HC-SR04-Sensors von rund 15$^\circ$ (Divergenz) erfasst der Sensor Hindernisse bereits weit vor und nach der eigentlichen orthogonalen Ausrichtung. 
+Auf der Softwareseite zeigte sich in der ersten Entwicklungsphase ein visuell verrauschtes Radarbild. Bedingt durch den physikalischen Öffnungswinkel des HC-SR04-Sensors von rund 15$^\circ$ (Divergenz) erfasst der Sensor Hindernisse bereits weit vor und nach der eigentlichen Ausrichtung. 
 
 In der Benutzeroberfläche führte dies ohne softwareseitige Kompensation dazu, dass schmale Objekte (wie beispielsweise dünne Stäbe) winkelmä\ss ig massiv verbreitert  dargestellt wurden. Eine präzise Differenzierung von Objektgeometrien oder das Erkennen von Durchgängen (Lücken von weniger als 10~cm) war dadurch unmöglich.
 
@@ -71,9 +77,9 @@ In der Benutzeroberfläche führte dies ohne softwareseitige Kompensation dazu, 
 \label{sec:Loesung_Herausforderungen}
 
 \subsection{Geometrische Bauteilplatzierung und dynamisches Kabelmanagement}
-Zur Behebung der mechanischen Kollisionsprobleme wurde eine gezielte räumliche Platzierung der stationären und rotierenden Komponenten im Gehäuse vorgenommen. Der Servomotor wurde direkt am Gehäusedeckel montiert und axial so ausgerichtet, dass keine sich bewegenden Jumperkabel kollidieren. 
+Zur Behebung der mechanischen Kollisionsprobleme wurde eine strukturierte Platzierung der stationären und rotierenden Komponenten im Gehäuse vorgenommen. Der Servomotor wurde direkt am Gehäusedeckel montiert und axial so ausgerichtet, dass keine sich bewegenden Jumperkabel kollidieren. 
 
-Durch diese hängende Anordnung konnte der Kabelbaum des Ultraschallsensors so nach oben weggeführt werden, dass er sich exakt im Rotationszentrum der Drehachse befindet. Die Kabellängen wurden exakt so dimensioniert, dass die elastische Biegespannung der Leitungen die Rotationsbewegung unterstützt, anstatt sie zu hemmen. Unbewegte Kabel wurden im unteren Gehäuseteil so platziert, dass eine physische Berührung mit der rotierenden Sensoreinheit deutlich minimiert und die funktionale Betriebssicherheit dauerhaft garantiert werden konnte.
+Durch diese hängende Anordnung konnte der Kabelbaum des Ultraschallsensors so nach oben weggeführt werden, dass er sich exakt im Rotationskreis der Drehachse befindet. Die Kabellängen wurden exakt so dimensioniert, dass die elastische Biegespannung der Leitungen die Rotationsbewegung unterstützt, anstatt sie zu hemmen. Unbewegte Kabel wurden im unteren Gehäuseteil so platziert, dass eine physische Berührung mit der rotierenden Sensoreinheit deutlich minimiert und die funktionale Betriebssicherheit dauerhaft garantiert werden konnte.
 
 \subsection{Algorithmische Signalfilterung und Hysterese-Clusterbildung}
 Die Kompensation der physikalischen Schallkegel-Aufweitung wurde direkt auf Software-Ebene innerhalb der Processing-Applikation gelöst. Hierzu wurde eine dynamische Filter- und Hystereseschicht implementiert, welche die eingehenden Datenströme kontinuierlich mathematisch analysiert.
@@ -89,18 +95,14 @@ Mehrere zusammenhängende Messpunkte werden zu einem separaten Objekt-Cluster zu
 
 \chapter{Inhalte der folgenden Kapitel}
 
-Zu Beginn werden die theoretischen Grundlagen der akustischen Ortungs- und Visualisierungstechnik herausgearbeitet. Behandelt werden das Echo‑Laufzeitverfahren (Time‑of‑Flight), die temperaturabhängige Schallgeschwindigkeit, trigonometrische Transformationen von Polarkoordinaten in Bildschirmkoordinaten sowie physikalische Effekte wie Divergenz und gerichtete Reflexion. Darauf aufbauend wird gezeigt, in welchen industriellen Applikationen Ultraschallsensorik zur Umgebungserfassung eingesetzt wird und welche Anforderungen sich daraus für das Projektsystem ergeben.
+Die nachfolgenden Kapitel führen von den eingesetzten Komponenten über die verwendeten Entwicklungsumgebungen bis hin zur vollständigen Umsetzung und Bewertung des Ultraschallradarsystems. 
 
+Zunächst werden die theoretischen Grundlagen der akustischen Ortungs- und Visualisierungstechnik herausgearbeitet. Behandelt werden das Echo‑Laufzeitverfahren (Time‑of‑Flight), die temperaturabhängige Schallgeschwindigkeit, trigonometrische Transformationen von Polarkoordinaten in Bildschirmkoordinaten sowie physikalische Effekte wie Divergenz und gerichtete Reflexion. Darauf aufbauend wird gezeigt, in welchen industriellen Applikationen Ultraschallsensorik zur Umgebungserfassung eingesetzt wird und welche Anforderungen sich daraus für das Projektsystem ergeben. 
 
-Anschließend werden die Hardware-Grundlagen eingeführt. Dazu gehört eine detaillierte Beschreibung des Arduino Nano 33 BLE Sense als zentralem Mikrocontrollerboard, seiner Leistungsdaten, Ein- und Ausgänge, Logikpegel und typischen Betriebsarten. Ergänzend werden der Ultraschallsensor HC-SR04 und der Servomotor Tower Pro SG90 vorgestellt. Beide Bauteile werden hinsichtlich Funktionsprinzip, elektrischer Kenndaten, Verschaltung und Ansteuerung analysiert und durch Beispielcode, Kalibrierungsverfahren und Tests ergänzt. Die Hardwareauswahl und ‑kosten werden in einer Bill of Materials übersichtlich zusammengefasst.
+Im Anschluss werden die Hardware-Grundlagen eingeführt. Dazu gehört eine detaillierte Beschreibung des Arduino Nano 33 BLE Sense als zentralem Mikrocontrollerboard, seiner Leistungsdaten, Ein- und Ausgänge, Logikpegel und typischen Betriebsarten. Ergänzend werden der Ultraschallsensor HC-SR04 und der Servomotor Tower Pro SG90 vorgestellt. Beide Bauteile werden hinsichtlich Funktionsprinzip, elektrischer Kenndaten, Verschaltung und Ansteuerung analysiert und durch Beispielcode, Kalibrierungsverfahren und Tests ergänzt. Die Hardwareauswahl und ‑kosten werden in einer Bill of Materials übersichtlich zusammengefasst. 
 
+Darauf aufbauend widmet sich ein weiterer Teil der Dokumentation den verwendeten Softwarewerkzeugen. Die Arduino IDE wird als Entwicklungsumgebung für die Mikrocontroller-Firmware beschrieben – von Installation und Konfiguration über die grundlegende Bedienung bis zur Einbindung externer Bibliotheken. Parallel dazu wird die Umgebung Processing 4.3 als Plattform für die PC‑seitige Visualisierung eingeführt. Neben den grafischen Möglichkeiten stehen hier die serielle Datenanbindung, der Aufbau von Sketchen und der Einsatz der Serial‑Bibliothek im Vordergrund. 
 
-Darauf aufbauend widmet sich ein weiterer Teil der Dokumentation den verwendeten Softwarewerkzeugen. Die Arduino IDE wird als Entwicklungsumgebung für die Mikrocontroller-Firmware beschrieben, wobei von der Installation und Konfiguration über die grundlegende Bedienung bis hin zur Einbindung externer Bibliotheken alle wesentlichen Aspekte abgedeckt werden. Parallel dazu wird die Umgebung Processing 4.3 als Plattform für die PC‑seitige Visualisierung eingeführt. Neben den grafischen Möglichkeiten stehen hier die serielle Datenanbindung, der Aufbau von Sketchen und der Einsatz der Serial‑Bibliothek im Vordergrund.
+Ein weiterer Schwerpunkt liegt auf der mechatronischen Systementwicklung und Implementierung. Beschrieben werden die Systemarchitektur mit Aufteilung in Sensorik, Aktorik, Steuerung und Visualisierung, die konstruktive Auslegung des Gehäuses in der CAD-Umgebung, der mechatronische Aufbau mit Verbindungstechnik und Kabelmanagement sowie die softwareseitige Struktur. Programmablaufpläne für Mikrocontroller und Visualisierungssoftware illustrieren den Datenfluss und die Zustandsmaschinen des Gesamtsystems. 
 
-
-Ein weiterer Schwerpunkt liegt auf der mechatronischen Systementwicklung und Implementierung. Beschrieben werden die Systemarchitektur mit Aufteilung in Sensorik, Aktorik, Steuerung und Visualisierung, die konstruktive Auslegung des Gehäuses in der CAD-Umgebung, der mechatronische Aufbau mit Verbindungstechnik und Kabelmanagement sowie die softwareseitige Struktur. Programmablaufpläne für Mikrocontroller und Visualisierungssoftware illustrieren den Datenfluss und die Zustandsmaschinen des Gesamtsystems.
-
-
-Darüber hinaus werden die fertige Applikation, deren spezifische Algorithmen zur Signalverarbeitung und Objektfilterung sowie die grafische Benutzeroberfläche vorgestellt. Ergänzend dazu wird das Systemmonitoring behandelt, das die kontinuierliche Überwachung der Betriebszustände und Telemetriedaten per UART sicherstellt sowie durch einen Watchdog-Mechanismus bei Verbindungsabbrüchen automatisch in einen gesicherten Fehlerzustand wechselt und die Wiederherstellung der Verbindung autonom einleitet. Die Systemverifikation prüft anschließend alle Software- und Hardwarekomponenten sowie das Gesamtsystem anhand einer strukturierten Testmatrix unter Laborbedingungen. Die Tests bestätigen unter anderem die korrekte Fehlerbehandlung, den präzisen Servo-Sweep, den zuverlässigen Verbindungsaufbau sowie die saubere Objekttrennung ab einer geometrischen Lücke von 8 cm.
-
-Abschließend werden die Systemeinschränkungen analysiert und Ansätze für zukünftige Optimierungen aufgezeigt. Zu den identifizierten Grenzen zählen die rein zweidimensionale Erfassung der Umgebung, der mechanische Verschleiß des Kunststoffgetriebes im Servomotor sowie temperaturbedingte Messungenauigkeiten durch eine fest kodierte Schallgeschwindigkeit. Als Weiterentwicklungen werden eine 3D-Kinematik mit einem zweiten Servomotor, eine dynamische Temperaturkompensation über einen integrierten Temperatursensor sowie der Einsatz eines Kalman-Filters zur verbesserten Signalfilterung vorgeschlagen.
+Abschlie\ss end werden die fertige Applikation, deren spezifische Algorithmen zur Signalverarbeitung und Objektfilterung sowie die grafische Benutzeroberfläche vorgestellt.
