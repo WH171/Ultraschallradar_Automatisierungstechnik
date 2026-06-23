@@ -21,7 +21,7 @@
 \contentsline {section}{\numberline {7.1}Das akustische Echo-Laufzeitverfahren (Time-of-Flight)}{29}{section.7.1}%
 \contentsline {section}{\numberline {7.2}Trigonometrische Koordinatentransformation für die Raumprojektion}{29}{section.7.2}%
 \contentsline {section}{\numberline {7.3}Physikalische Grenzflächeneffekte und geometrische Divergenz}{30}{section.7.3}%
-\contentsline {section}{\numberline {7.4}Industrielle Relevanz und Applikationsdomänen}{31}{section.7.4}%
+\contentsline {section}{\numberline {7.4}Industrielle Relevanz und Applikationsdomänen}{30}{section.7.4}%
 \contentsline {part}{\numberline {III}Domain Knowledge - Hardware}{33}{part.3}%
 \contentsline {chapter}{\numberline {8}Arduino Nano 33 BLE Sense}{35}{chapter.8}%
 \contentsline {section}{\numberline {8.1}Allgemeine Beschreibung}{35}{section.8.1}%
@@ -134,4 +134,7 @@
 \contentsline {chapter}{\numberline {18}Bill Of Material}{117}{chapter.18}%
 \contentsline {chapter}{Stichwortverzeichnis – Keywords}{119}{chapter*.44}%
 \contentsline {chapter}{\numberline {19}Software Bill of Materials}{121}{chapter.19}%
-\contentsline {chapter}{Index}{123}{table.caption.45}%
+\contentsline {chapter}{Literaturverzeichnis}{121}{table.caption.45}%
+\contentsline {chapter}{\nonumberline Literaturverzeichnis}{123}{chapter*.46}%
+\contentsline {chapter}{ Stichwortverzeichnis}{126}{chapter*.46}%
+\contentsline {chapter}{Index}{127}{chapter*.46}%

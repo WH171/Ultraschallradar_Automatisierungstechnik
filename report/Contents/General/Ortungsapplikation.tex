@@ -2,7 +2,7 @@
 %
 % $Autor: Müller, Hinrichs $
 % $Datum: 2026-06-09 14:18:35Z $
-% $Pfad: Radar.tex
+% $Pfad: UltraschallradarAutomatisierungstechnik/report/Contents/General/Ortungsapplikation.tex $
 % $Version: 1 $
 %
 % Project: 
@@ -18,26 +18,26 @@ Dieses Kapitel befasst sich mit den theoretischen und mathematischen Grundlagen 
 \section{Das akustische Echo-Laufzeitverfahren (Time-of-Flight)}
 \label{sec:Time_of_Flight_Theorie}
 
-Die Bestimmung geometrischer Abstände zwischen einer Sensorplattform und einer reflektierenden Grenzfläche basiert in der akustischen Ortungstechnik primär auf dem Prinzip des Echo-Laufzeitverfahrens, im internationalen Sprachgebrauch als \text{Time-of-Flight (ToF)} definiert \cite{Lerch:2012}. Ein elektroakustischer Wandler emittiert hierbei einen transienten, hochfrequenten Schallimpuls, welcher das umgebende Medium durchschreitet. Trifft diese Wellenfront auf ein Hindernis mit abweichender akustischer Impedanz, wird ein Teil der Schallenergie reflektiert und als Echo an den Wandler zurückgesendet.
+Die Bestimmung geometrischer Abstände zwischen einem Sensor und einer reflektierenden Fläche basiert in der akustischen Ortungstechnik primär auf dem Prinzip des Echo-Laufzeitverfahrens, im internationalen Sprachgebrauch als \text{Time-of-Flight (ToF)} definiert \cite{Lerch:2012}. Ein elektroakustischer Wandler emittiert hierbei einen hochfrequenten Schallimpuls, welcher das umgebende Medium (Luft) durchschreitet. Treffen diese Schallwellen auf ein Hindernis mit harter Oberfläche, wird ein Teil der Schallenergie reflektiert und als Echo an den Wandler zurückgesendet.
 
-Die raumzeitliche Distanz $d$ berechnet sich deterministisch aus der gemessenen Totalzeit $t_{total}$, welche das Signal für den Hin- und Rückweg benötigt, sowie der temperaturabhängigen Schallgeschwindigkeit $v_c$ innerhalb des gasförmigen Mediums \cite{Fraden:2010}:
+Die raumzeitliche Distanz $d$ berechnet sich aus der gemessenen Totalzeit $t_{total}$, welche das Signal für den Hin- und Rückweg benötigt, sowie der temperaturabhängigen Schallgeschwindigkeit $v_c$ innerhalb des gasförmigen Mediums \cite{Fraden:2010}:
 
 \begin{equation}
 	d = \frac{v_c \cdot t_{total}}{2}
 \end{equation}
 
-Für präzise mesSstechnische Anwendungen im Bereich des Maschinenbaus ist zu berücksichtigen, dass die Schallgeschwindigkeit in Luft ma\ss geblich von der thermodynamischen Temperatur $T$ in Grad Celsius ($^\circ$C) beeinflusst wird. Die Linearisierung der zugrundeliegenden Zustandsgleichung für ideale Gase ergibt für den praxisrelevanten Temperaturbereich die Approximation \cite{Lerch:2012}:
+Für präzise messtechnische Anwendungen im Bereich des Maschinenbaus ist zu berücksichtigen, dass die Schallgeschwindigkeit in Luft ma\ss geblich von der Temperatur $T$ in Grad Celsius ($^\circ$C) beeinflusst wird. Die Linearisierung der zugrundeliegenden Zustandsgleichung für ideale Gase ergibt für den praxisrelevanten Temperaturbereich die Approximation \cite{Lerch:2012}:
 
 \begin{equation}
 	v_c(T) \approx 331{,}5 \text{ m/s} + 0{,}6 \cdot T
 \end{equation}
 
-Systembedingte Latenzen, wie das Ausschwingverhalten der piezokeramischen Membranen (Blindzone) sowie elektronische Signalaufbereitungszeiten, limitieren dabei die minimale und maximale Detektionsreichweite auf软件ebene.
+Systembedingte Latenzen, wie das Ausschwingverhalten der piezokeramischen Membranen (Blindzone) sowie elektronische Signalaufbereitungszeiten, limitieren dabei die minimale und maximale Detektionsreichweite.
 
 \section{Trigonometrische Koordinatentransformation für die Raumprojektion}
 \label{sec:Koordinatentransformation}
 
-Die sensorisch erfassten Rohdaten liegen nativ als diskrete Polarkoordinatenpaare vor, bestehend aus der skalaren Entfernung $r$ (äquivalent zu $d$) und dem mechanisch eingestellten Azimutwinkel $\theta$, welcher durch die Winkelstellung des Aktors vorgegeben wird. Für die Überführung dieser polaren Datensätze in ein computergestütztes, zweidimensionales Pixel-Raster (Grafik-Bildschirm) ist eine kontinuierliche Koordinatentransformation in ein kartesisches System erforderlich.
+Die sensorisch erfassten Rohdaten liegen als Polarkoordinatenpaare vor, bestehend aus der Entfernung $r$ (äquivalent zu $d$) und dem mechanisch eingestellten Winkel $\theta$, welcher durch die Winkelstellung des Aktors vorgegeben wird. Für die Überführung dieser polaren Datensätze in eine computergestützte zweidimensionale Benutzeroberfläche ist eine kontinuierliche Koordinatentransformation in ein kartesisches System erforderlich.
 
 Die Transformation eines Punktes im euklidischen Raum erfolgt über die trigonometrischen Grundgleichungen:
 
@@ -48,7 +48,7 @@ Die Transformation eines Punktes im euklidischen Raum erfolgt über die trigonom
 	y_{radial} = r \cdot \sin(\theta)
 \end{equation}
 
-Da computergestützte Visualisierungsumgebungen (wie Processing) ihren mathematischen Koordinatenursprung $(0,0)$ standardmä\ss ig in der linken oberen Bildschirmecke definieren und die vertikale Ordonnate ($Y$-Achse) nach unten gerichtet ist, muss eine translationale und spiegelnde Matrix-Transformation stattfinden. Soll der physische Drehpunkt des Radarsystems im unteren Zentrum des Bildschirms bei den Pixelkoordinaten $(x_0, y_0)$ liegen, lauten die modifizierten Abbildungsgleichungen für das Display-Raster \cite{Parisi:2014}:
+Da computergestützte Visualisierungsumgebungen (Processing) ihren mathematischen Koordinatenursprung $(0,0)$ standardmä\ss ig in der linken oberen Bildschirmecke definieren und die vertikale Ordonnate ($Y$-Achse) nach unten gerichtet ist, muss eine translationale und spiegelnde Matrix-Transformation stattfinden. Soll der physische Drehpunkt des Radarsystems im unteren Zentrum des Bildschirms bei den Pixelkoordinaten $(x_0, y_0)$ liegen, lauten die modifizierten Abbildungsgleichungen für das Display-Raster \cite{Parisi:2014}:
 
 \begin{equation}
 	x_{screen} = x_0 + r \cdot \cos(\theta)
@@ -57,7 +57,7 @@ Da computergestützte Visualisierungsumgebungen (wie Processing) ihren mathemati
 	y_{screen} = y_0 - r \cdot \sin(\theta)
 \end{equation}
 
-Diese mathematische Anpassung stellt sicher, dass der dynamische Abtaststrahl eine exakt synchrone Bewegung zur realen mechanischen Ausrichtung des Sensors vollführt.
+Diese mathematische Anpassung stellt sicher, dass der dynamische Abtaststrahl eine synchrone Bewegung zur realen mechanischen Ausrichtung des Sensors durchführt.
 
 \section{Physikalische Grenzflächeneffekte und geometrische Divergenz}
 \label{sec:Physikalische_Restriktionen}
