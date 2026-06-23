@@ -29,10 +29,9 @@
 \contentsline {section}{\numberline {8.3}Betriebsspannung und Logikpegel}{36}{section.8.3}%
 \contentsline {section}{\numberline {8.4}Digitale Ein- und Ausgänge}{36}{section.8.4}%
 \contentsline {section}{\numberline {8.5}PWM und Servo-Ansteuerung}{36}{section.8.5}%
-\contentsline {section}{\numberline {8.6}Zeitmessung und Ablaufsteuerung}{37}{section.8.6}%
-\contentsline {section}{\numberline {8.7}USB, Programmierung und serielle Kommunikation}{38}{section.8.7}%
-\contentsline {section}{\numberline {8.8}Integrierte Funktionen und Sensorik}{39}{section.8.8}%
-\contentsline {section}{\numberline {8.9}Weiterführende Literatur}{39}{section.8.9}%
+\contentsline {section}{\numberline {8.6}USB, Programmierung und serielle Kommunikation}{37}{section.8.6}%
+\contentsline {section}{\numberline {8.7}Integrierte Funktionen und Sensorik}{38}{section.8.7}%
+\contentsline {section}{\numberline {8.8}Weiterführende Literatur}{38}{section.8.8}%
 \contentsline {chapter}{\numberline {9}Ultraschallsensor HC-SR04}{41}{chapter.9}%
 \contentsline {section}{\numberline {9.1}Allgemeines}{41}{section.9.1}%
 \contentsline {section}{\numberline {9.2}Ultraschallsensor HC-SR04}{41}{section.9.2}%
@@ -119,22 +118,19 @@
 \contentsline {subsection}{\numberline {13.6.1}Detaillierte Analyse der Processing-Benutzeroberfläche}{92}{subsection.13.6.1}%
 \contentsline {subsection}{\numberline {13.6.2}Detaillierte Analyse der Arduino-Firmware}{98}{subsection.13.6.2}%
 \contentsline {part}{\numberline {VI}Monitoring}{103}{part.6}%
-\contentsline {chapter}{\numberline {14}\textcolor {red}{Monitoring XY}}{105}{chapter.14}%
+\contentsline {chapter}{\numberline {14}Prozessüberwachung und Telemetrie-Monitoring}{105}{chapter.14}%
+\contentsline {section}{\numberline {14.1}Asynchrones Telemetrie- und Daten-Monitoring}{105}{section.14.1}%
+\contentsline {section}{\numberline {14.2}Runtime-Watchdog und Hot-Plug-Überwachung}{105}{section.14.2}%
 \contentsline {part}{\numberline {VII}Verification - Evaluation - Conclusion}{107}{part.7}%
-\contentsline {chapter}{\numberline {15}\textcolor {red}{Evaluation/Verification XY}}{109}{chapter.15}%
-\contentsline {chapter}{\numberline {16}\textcolor {red}{To DoX Y}}{111}{chapter.16}%
-\contentsline {chapter}{\numberline {17}\textcolor {red}{Conclusion XY}}{113}{chapter.17}%
+\contentsline {chapter}{\numberline {15}Systemverifikation und Testprotokolle}{109}{chapter.15}%
+\contentsline {section}{\numberline {15.1}Strukturiertes System-Testprotokoll}{109}{section.15.1}%
+\contentsline {section}{\numberline {15.2}Evaluation der Teilfunktionen und Klassen}{109}{section.15.2}%
+\contentsline {chapter}{\numberline {16}Systemeinschränkungen und zukünftige Optimierungen (To-dos)}{111}{chapter.16}%
+\contentsline {section}{\numberline {16.1}Analyse der Systemeinschränkungen}{111}{section.16.1}%
+\contentsline {section}{\numberline {16.2}Zukünftige Erweiterungen (To-do-Liste)}{111}{section.16.2}%
+\contentsline {chapter}{\numberline {17}Schlussfolgerung und Fazit}{113}{chapter.17}%
 \contentsline {part}{\numberline {VIII} Anhang}{115}{part.8}%
 \contentsline {chapter}{\numberline {18}Bill Of Material}{117}{chapter.18}%
-\contentsline {chapter}{Stichwortverzeichnis – Keywords}{119}{chapter*.44}%
-\contentsline {chapter}{\numberline {19}\textcolor {red}{SBOM}}{121}{chapter.19}%
-\contentsline {chapter}{\numberline {20}\textcolor {red}{Package \textcolor {PythonColor}{\texttt {\fontdimen 2\font =0.4em\fontdimen 3\font =0.2em\fontdimen 4\font =0.1em\fontdimen 7\font =0.1em\hyphenchar \font =`\-Example}}}}{123}{chapter.20}%
-\contentsline {section}{\numberline {20.1}Introduction}{123}{section.20.1}%
-\contentsline {section}{\numberline {20.2}Description}{123}{section.20.2}%
-\contentsline {section}{\numberline {20.3}Installation}{123}{section.20.3}%
-\contentsline {section}{\numberline {20.4}Example - Manual}{123}{section.20.4}%
-\contentsline {section}{\numberline {20.5}Example}{123}{section.20.5}%
-\contentsline {section}{\numberline {20.6}Example - Code}{123}{section.20.6}%
-\contentsline {section}{\numberline {20.7}Example - Files}{123}{section.20.7}%
-\contentsline {section}{\numberline {20.8}Further Reading}{123}{section.20.8}%
-\contentsline {chapter}{Index}{125}{section.20.8}%
+\contentsline {chapter}{Stichwortverzeichnis – Keywords}{119}{chapter*.45}%
+\contentsline {chapter}{\numberline {19}Software Bill of Materials}{121}{chapter.19}%
+\contentsline {chapter}{Index}{123}{table.caption.46}%

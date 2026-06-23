@@ -73,25 +73,6 @@ Ein typisches Anwendungsbeispiel für pulsweitenmodulierte Signale ist die Anste
 
 Der Arduino kann diese Steuersignale über einen geeigneten digitalen Ausgang erzeugen und den Servomotor dadurch auf unterschiedliche Winkelpositionen einstellen. Dadurch lassen sich einfache Bewegungsabläufe realisieren, beispielsweise das Schwenken eines Sensors oder das Positionieren kleiner mechanischer Bauteile. Da ein Servomotor beim Anlaufen oder unter Last deutlich mehr Strom benötigt als ein Mikrocontroller-Pin bereitstellen kann, darf die Versorgung des Motors nicht direkt über einen digitalen Ausgang erfolgen. Der Ausgangspin dient nur zur Signalübertragung, während die Stromversorgung des Servos separat ausreichend dimensioniert werden muss\cite{ArduinoSP:2026}.
 
-\section{Zeitmessung und Ablaufsteuerung}
-
-Zeitmessung und Ablaufsteuerung sind eng miteinander verknüpfte Kernaufgaben von Mikrocontrollern. Eine zentrale Rolle spielt dabei die Zeitbasis des Systems, mit der der Mikrocontroller Zeitdauern erfassen und Ereignisse zu definierten Zeitpunkten auslösen kann. Statt den Programmfluss mit blockierenden Funktionen wie \PYTHON{delay()} zu unterbrechen, kann er mit der Funktion  \PYTHON{millis()} die vergangene Zeit kontinuierlich messen, Zeitabstände berechnen und anhand dieser Information entscheiden, wann der nächste Verarbeitungsschritt ausgeführt werden soll. Auf diese Weise lassen sich Sensorabfragen, Bewegungsabläufe und Berechnungen in einer zeitlich deterministischen Reihenfolge ausführen, während der Mikrocontroller gleichzeitig weitere Aufgaben bearbeitet.\cite{Hermann:2026}
-
-Gerade in Anwendungen mit Sensoren und Aktoren ist eine solche zeitbasierte Ablaufsteuerung von besonderer Bedeutung. Wird beispielsweise ein Sensor mechanisch bewegt, wird der Zeitpunkt des Bewegungsbeginns mit \PYTHON{millis()} festgehalten und anschließend kontinuierlich überprüft, ob die geplante Wartezeit für das Einschwingen verstrichen ist. Erst wenn die Differenz zwischen der aktuellen Zeit und dem gespeicherten Startzeitpunkt grö\ss er als die gewünschte Einschwingzeit ist, wird das Messfenster geöffnet und die Sensorabfrage durchgeführt. Erfolgt die Abfrage zu früh, können die Messwerte ungenau oder schwer interpretierbar sein. Ebenso lassen sich definierte „Dead Times"' zwischen zwei Messungen realisieren, indem der Zeitpunkt der letzten Messung gespeichert und die nächste Messung erst gestartet wird, wenn ein vorgegebenes Mindestintervall überschritten ist.
-
-
-Ein allgemeiner Ablauf für eine kombinierte Sensor‑Aktor‑Anwendung, bei der Zeitmessung und Ablaufsteuerung zusammenwirken, kann daher aus mehreren Schritten bestehen:
-
-\begin{enumerate}
-	\item Aktor auf eine gewünschte Position stellen und den Startzeitpunkt der Bewegung mit \PYTHON{millis()} speichern.
-	\item Über die Systemzeit eine kurze Wartezeit überwachen, bis die Bewegung abgeschlossen ist, indem fortlaufend die Differenz zwischen aktueller Zeit und gespeichertem Startzeitpunkt geprüft wird, ohne den Programmablauf zu blockieren.
-	\item Nach Ablauf der geplanten Wartezeit das Messfenster öffnen und die Sensorabfrage auslösen.
-	\item Eingangssignal erfassen und bei Bedarf dessen Dauer oder zeitliche Lage messen, indem Start- und Endzeitpunkte des Signals über die Zeitbasis bestimmt werden.
-	\item Messwert berechnen oder auswerten, beispielsweise unter Berücksichtigung von Messfenster, Dead Time und Signaldauer.
-	\item Ergebnis speichern oder über eine Schnittstelle ausgeben und den Zeitpunkt dieser Ausgabe bei Bedarf wiederum zur Planung nachfolgender Aktionen heranziehen.
-\end{enumerate}
-
-Durch diese Kombination aus präziser Zeitmessung mit \PYTHON{millis()} und strukturierter Ablaufsteuerung entsteht eine klar definierte Steuerkette, in der sowohl die Reihenfolge der Schritte als auch ihre zeitlichen Abstände gezielt vorgegeben und vom Mikrocontroller zuverlässig eingehalten werden.
 
 \section{USB, Programmierung und serielle Kommunikation}
 
