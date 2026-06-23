@@ -3,20 +3,20 @@
 	node distance=2cm and 2cm,
 	startstop/.style={rectangle, rounded corners, minimum width=3cm, minimum height=1cm, align=center, draw=black, fill=red!20, thick},
 	process/.style={rectangle, minimum width=3cm, minimum height=1cm, align=center, draw=black, fill=blue!10, thick},
-	decision/.style={diamond, aspect=2.5, minimum width=3cm, minimum height=1cm, align=center, draw=black, fill=yellow!20, thick},
+	decision/.style={diamond, aspect=2.5, minimum width=3cm, minimum height=2cm, align=center, draw=black, fill=yellow!20, thick},
 	arrow/.style={thick, -Latex}
 	]
 	
 	\node (start) [startstop] {\textbf{Störung / Fehlerbildschirm}};
 	\node (dec1) [decision, below=of start] {Leuchtet die\\rote LED dauerhaft?};
-	\node (proc1) [process, right=of dec1, xshift=0.5cm] {Verkabelung prüfen\\  auf Beschädigungen \& USB-Kabel neu verbinden};
+	\node (proc1) [process, right=of dec1, xshift=0.5cm] {USB-Kabel prüfen auf \\ Beschädigungen und Verbindung \& neu verbinden};
 	\node (proc2) [process, below=of dec1, yshift=-0.5cm] {Benutzeroberfläche\\neu starten};
 	\node (proc3) [process, below=of proc1] {Mit Hersteller in Verbindung setzen};
 	
 	\draw [arrow] (start) -- (dec1);
 	\draw [arrow] (dec1) -- node[anchor=south] {\textbf{Ja (Hardwarefehler)}} (proc1);
 	\draw [arrow] (dec1) -- node[anchor=east] {\textbf{Nein (Softwarehänger)}} (proc2);
-	\draw [arrow] (proc1) -- (proc3);
+	\draw [arrow] (proc1) -- node[anchor=east] {\textbf{Fehler immernoch da}} (proc3);
 	
 \end{tikzpicture}
 }

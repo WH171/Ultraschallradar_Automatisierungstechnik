@@ -1,0 +1,28 @@
+%%%
+%
+% $Autor: Wings $
+% $Date: 2024-10-31 11:15:45Z $
+% $File: file.tex $
+% $Version: 1 $
+%
+% Project: 
+%
+%%%
+
+
+\chapter{Prozessüberwachung und Telemetrie-Monitoring}
+\label{chap:Monitoring_System}
+
+Dieses Kapitel dokumentiert die Mechanismen zur kontinuierlichen Überwachung (Monitoring) der Systemvariablen und Betriebszustände des Ultraschallradars. In der Automatisierungstechnik ist die funktionale Überwachung der Kommunikation sowie der Integrität der Sensordaten im laufenden Betrieb elementar, um Fehlfunktionen verzögerungsfrei zu detektieren und zu signalisieren.
+
+\section{Asynchrones Telemetrie- und Daten-Monitoring}
+Das System realisiert ein kontinuierliches Monitoring über das strukturierte UART-Protokoll. Der Datenstrom wird im Sekundentakt auf zwei logischen Ebenen überwacht:
+\begin{itemize}
+	\item \textbf{Status-Monitoring (System-Ebene):} Über die Präfixe \texttt{S:STARTING}, \texttt{S:TESTING} und \texttt{S:OK} überwacht das System den Fortschritt des Mikrocontrollers aus dem Boot-Block bis in den zyklischen Scanmodus.
+	\item \textbf{Messdaten-Monitoring (Prozess-Ebene):} Die Telemetriedaten werden in Form von Zeichenketten des Typs \texttt{D:[Winkel],[Distanz]} asynchron an den Host-Computer übertragen. Das Monitoring im Processing-Frontend liest diese Daten über den seriellen Interrupt \texttt{serialEvent()} ein und mappt sie ohne Verzögerung des Haupt-Render-Threads in den flüchtigen Speicher (\texttt{radarWerte[]}).
+\end{itemize}
+
+\section{Runtime-Watchdog und Hot-Plug-Überwachung}
+Zur Gewährleistung der Betriebssicherheit verfügt das System über eine aktive Software-Überwachung der Schnittstellen-Latenz. Da das System im Live-Modus dauerhaft Daten emittiert, wird bei jedem Eintreffen eines Datenpakets der Zeitstempel \texttt{lastDataReceivedTime} aktualisiert. 
+
+Tritt aufgrund eines mechanischen Defekts (z.\,B. Leitungsbruch durch Torsion) oder eines manuellen Absteckens der USB-Verbindung eine Kommunikationspause von mehr als 500~ms auf, schlägt der Watchdog an. Das System schaltet augenblicklich in den Zustand \texttt{ERR\_PORT}, stoppt die verwaisten Datenströme und sperrt die Radar-Visualisierung, um die Anzeige veralteter oder korrumpierter Messdaten zu verhindern. Zeitgleich startet im Hintergrund ein zyklisches Polling-Monitoring, das alle 2000~ms autonom versucht, die Verbindung wiederherzustellen.
