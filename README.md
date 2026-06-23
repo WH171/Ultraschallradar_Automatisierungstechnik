@@ -9,7 +9,6 @@
 - [Projektbeschreibung](#projektbeschreibung)
 - [Systemarchitektur](#systemarchitektur)
 - [Verzeichnisstruktur](#verzeichnisstruktur)
-- [Installation und Start](#installation-und-start)
 
 
 ## Projektbeschreibung
