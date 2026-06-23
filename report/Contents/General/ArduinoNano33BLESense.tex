@@ -99,7 +99,15 @@ Der Arduino Nano 33 BLE Sense wird über eine USB-Verbindung mit dem Computer ve
 
 Neben der Programmübertragung kann die USB-Verbindung auch für die serielle Kommunikation zwischen Mikrocontroller und Computer genutzt werden. Dafür stellt Arduino die serielle Schnittstelle zur Verfügung. Über Befehle wie \PYTHON{Serial.begin()} und \PYTHON{Serial.println()} können Daten vom Mikrocontroller an den Computer gesendet und im seriellen Monitor angezeigt werden \cite{ArduinoGS:2026}.
 
+Als einfaches Beispiel für die Initialisierung der seriellen Schnittstelle und eine erste Ausgabe dient das in Listing~\ref{code:HelloWorld} gezeigte Programm. Nach dem Hochladen auf das Board und dem Öffnen des seriellen Monitors erscheint einmalig die Textausgabe „Hello World“.
+
+ \begin{center}
+ 	\captionof{code}{Hello World Beispiel Code} \label{code:HelloWorld} \ArduinoExternal{}{../../Code/HelloWorld/HelloWorld/HelloWorld.ino} 
+ \end{center}
+ 
 Die serielle Ausgabe ist insbesondere während der Entwicklung und Inbetriebnahme eines Versuchsaufbaus hilfreich. Über den seriellen Monitor können beispielsweise Rohdaten, berechnete Messwerte oder Statusmeldungen ausgegeben werden. Dadurch lässt sich überprüfen, ob angeschlossene Sensoren plausible Werte liefern, ob Steuersignale korrekt erzeugt werden und ob die Verarbeitung der Messdaten im Programm wie vorgesehen abläuft.
+
+
 
 \section{Integrierte Funktionen und Sensorik}
 

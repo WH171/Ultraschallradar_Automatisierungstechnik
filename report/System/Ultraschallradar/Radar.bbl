@@ -667,6 +667,25 @@
     \field{year}{2019}
   \endentry
 
+  \entry{kst:2026}{online}{}{}
+    \list{organization}{1}{%
+      {AVN-Security GmbH}%
+    }
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Kst}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \field{note}{Online-Shop für KST High-Performance Servos im Modellbau}
+    \field{title}{KST Servos -- High-Performance Servos}
+    \verb{url}
+    \verb https://www.kst-servo-shop.de/
+    \endverb
+    \field{year}{2026}
+    \field{urlday}{21}
+    \field{urlmonth}{06}
+    \field{urlyear}{2026}
+  \endentry
+
   \entry{Kuehnel:2024}{book}{}{}
     \name{author}{1}{}{%
       {{hash=KC}{%

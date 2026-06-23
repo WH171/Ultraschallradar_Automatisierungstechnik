@@ -9,38 +9,38 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {9.1}{\ignorespaces Schematische Darstellung des Ultraschallsensors HC-SR04}}{42}{figure.caption.6}%
-\contentsline {figure}{\numberline {9.2}{\ignorespaces Schaltplan Ultraschallsensor HC-SR04}}{43}{figure.caption.8}%
+\contentsline {figure}{\numberline {9.1}{\ignorespaces Schematische Darstellung des Ultraschallsensors HC-SR04}}{42}{figure.caption.7}%
+\contentsline {figure}{\numberline {9.2}{\ignorespaces Schaltplan Ultraschallsensor HC-SR04}}{43}{figure.caption.9}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {10.1}{\ignorespaces Schematische Darstellung des Servomotors TowerPro SG90}}{52}{figure.caption.12}%
+\contentsline {figure}{\numberline {10.1}{\ignorespaces Schematische Darstellung des Servomotors TowerPro SG90}}{52}{figure.caption.13}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {11.1}{\ignorespaces Arduino IDE 2.3.6 }}{63}{figure.caption.15}%
-\contentsline {figure}{\numberline {11.2}{\ignorespaces Arduino IDE Downloadoptionen}}{64}{figure.caption.16}%
-\contentsline {figure}{\numberline {11.3}{\ignorespaces Lizenzbestätigung Installation}}{65}{figure.caption.17}%
-\contentsline {figure}{\numberline {11.4}{\ignorespaces Wahl Zielverzeichnis}}{65}{figure.caption.18}%
-\contentsline {figure}{\numberline {11.5}{\ignorespaces Startfenster Arduino-IDE}}{66}{figure.caption.19}%
-\contentsline {figure}{\numberline {11.6}{\ignorespaces ArduinoIDE macOS}}{67}{figure.caption.20}%
-\contentsline {figure}{\numberline {11.7}{\ignorespaces Überblick}}{68}{figure.caption.21}%
-\contentsline {figure}{\numberline {11.8}{\ignorespaces Sketchbook}}{68}{figure.caption.22}%
-\contentsline {figure}{\numberline {11.9}{\ignorespaces Boards Manager}}{69}{figure.caption.23}%
-\contentsline {figure}{\numberline {11.10}{\ignorespaces Library Manager}}{70}{figure.caption.24}%
-\contentsline {figure}{\numberline {11.11}{\ignorespaces Eingabeaufforderung mit Administrator Rechten}}{71}{figure.caption.25}%
-\contentsline {figure}{\numberline {11.12}{\ignorespaces Eingabeaufforderung}}{72}{figure.caption.26}%
-\contentsline {figure}{\numberline {11.13}{\ignorespaces Einbinden der Nano33BLESenseLED Bibliothek}}{73}{figure.caption.27}%
-\contentsline {figure}{\numberline {11.14}{\ignorespaces Serieller Monitor}}{73}{figure.caption.28}%
-\contentsline {figure}{\numberline {11.15}{\ignorespaces Beispiele}}{74}{figure.caption.29}%
-\contentsline {figure}{\numberline {11.16}{\ignorespaces Beispiel Debuggen}}{75}{figure.caption.30}%
-\contentsline {figure}{\numberline {11.17}{\ignorespaces Autovervollständigung}}{75}{figure.caption.31}%
+\contentsline {figure}{\numberline {11.1}{\ignorespaces Arduino IDE 2.3.6 }}{63}{figure.caption.16}%
+\contentsline {figure}{\numberline {11.2}{\ignorespaces Arduino IDE Downloadoptionen}}{64}{figure.caption.17}%
+\contentsline {figure}{\numberline {11.3}{\ignorespaces Lizenzbestätigung Installation}}{65}{figure.caption.18}%
+\contentsline {figure}{\numberline {11.4}{\ignorespaces Wahl Zielverzeichnis}}{65}{figure.caption.19}%
+\contentsline {figure}{\numberline {11.5}{\ignorespaces Startfenster Arduino-IDE}}{66}{figure.caption.20}%
+\contentsline {figure}{\numberline {11.6}{\ignorespaces ArduinoIDE macOS}}{67}{figure.caption.21}%
+\contentsline {figure}{\numberline {11.7}{\ignorespaces Überblick}}{68}{figure.caption.22}%
+\contentsline {figure}{\numberline {11.8}{\ignorespaces Sketchbook}}{68}{figure.caption.23}%
+\contentsline {figure}{\numberline {11.9}{\ignorespaces Boards Manager}}{69}{figure.caption.24}%
+\contentsline {figure}{\numberline {11.10}{\ignorespaces Library Manager}}{70}{figure.caption.25}%
+\contentsline {figure}{\numberline {11.11}{\ignorespaces Eingabeaufforderung mit Administrator Rechten}}{71}{figure.caption.26}%
+\contentsline {figure}{\numberline {11.12}{\ignorespaces Eingabeaufforderung}}{72}{figure.caption.27}%
+\contentsline {figure}{\numberline {11.13}{\ignorespaces Einbinden der Nano33BLESenseLED Bibliothek}}{73}{figure.caption.28}%
+\contentsline {figure}{\numberline {11.14}{\ignorespaces Serieller Monitor}}{73}{figure.caption.29}%
+\contentsline {figure}{\numberline {11.15}{\ignorespaces Beispiele}}{74}{figure.caption.30}%
+\contentsline {figure}{\numberline {11.16}{\ignorespaces Beispiel Debuggen}}{75}{figure.caption.31}%
+\contentsline {figure}{\numberline {11.17}{\ignorespaces Autovervollständigung}}{75}{figure.caption.32}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {12.1}{\ignorespaces Processing Downloadverzeichnis}}{79}{figure.caption.32}%
-\contentsline {figure}{\numberline {12.2}{\ignorespaces Startfenster der Processing-IDE}}{80}{figure.caption.33}%
-\contentsline {figure}{\numberline {12.3}{\ignorespaces Processing Contribution Manager}}{81}{figure.caption.34}%
+\contentsline {figure}{\numberline {12.1}{\ignorespaces Processing Downloadverzeichnis}}{79}{figure.caption.33}%
+\contentsline {figure}{\numberline {12.2}{\ignorespaces Startfenster der Processing-IDE}}{80}{figure.caption.34}%
+\contentsline {figure}{\numberline {12.3}{\ignorespaces Processing Contribution Manager}}{81}{figure.caption.35}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {13.1}{\ignorespaces Parametrische CAD-Baugruppe in SolidWorks: Invertierte Servomontage und zweiteiliges Gehäusedesign}}{86}{figure.caption.35}%
-\contentsline {figure}{\numberline {13.2}{\ignorespaces Ultraschallradarsystem mit integrierten Status-LEDs und verschraubten Gehäusekomponenten}}{87}{figure.caption.36}%
-\contentsline {figure}{\numberline {13.3}{\ignorespaces Innenansicht der Sensoraufnahme: Passgenaue HC-SR04-Aufnahme}}{88}{figure.caption.37}%
-\contentsline {figure}{\numberline {13.4}{\ignorespaces Programmablaufplan (Flowchart) der eingebetteten Firmware auf dem Arduino Nano}}{89}{figure.caption.38}%
-\contentsline {figure}{\numberline {13.5}{\ignorespaces Programmablaufplan (Flowchart) der Visualisierungs- und Watchdog-Logik in Processing}}{90}{figure.caption.39}%
+\contentsline {figure}{\numberline {13.1}{\ignorespaces Parametrische CAD-Baugruppe in SolidWorks: Invertierte Servomontage und zweiteiliges Gehäusedesign}}{86}{figure.caption.36}%
+\contentsline {figure}{\numberline {13.2}{\ignorespaces Ultraschallradarsystem mit integrierten Status-LEDs und verschraubten Gehäusekomponenten}}{87}{figure.caption.37}%
+\contentsline {figure}{\numberline {13.3}{\ignorespaces Innenansicht der Sensoraufnahme: Passgenaue HC-SR04-Aufnahme}}{88}{figure.caption.38}%
+\contentsline {figure}{\numberline {13.4}{\ignorespaces Programmablaufplan (Flowchart) der eingebetteten Firmware auf dem Arduino Nano}}{89}{figure.caption.39}%
+\contentsline {figure}{\numberline {13.5}{\ignorespaces Programmablaufplan (Flowchart) der Visualisierungs- und Watchdog-Logik in Processing}}{90}{figure.caption.40}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
