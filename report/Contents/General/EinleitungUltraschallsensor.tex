@@ -34,14 +34,14 @@
 	
 	Die Aufgabenstellung umfasst weiterhin die Erstellung einer Entwickler- und Service-Dokumentation. Diese beinhaltet neben der Projektbeschreibung eine detaillierte Beschreibung der Hardware des Arduino Nano 33 BLE Sense Lite und der eingesetzten Komponenten, die Spezifikation und Durchführung von Tests, eine Darstellung der Softwarearchitektur sowie Angaben zu Bezugsquellen und Stückliste (Bill of Materials).
 	
+
 \chapter{Stand der Technik}
 
-	Ultraschall-Abstandssensoren werden seit vielen Jahren in der Automatisierungstechnik, Robotik und Fahrzeugtechnik zur berührungslosen Distanzmessung eingesetzt.\cite{leuze:2026} Sie arbeiten in der Regel nach dem Laufzeitmessprinzip, bei dem ein kurzer Ultraschallimpuls ausgesendet und die Zeit bis zum Empfang des reflektierten Echos gemessen wird. Aus der Schalllaufzeit lässt sich unter Annahme einer bekannten Schallgeschwindigkeit der Abstand zu einem Hindernis bestimmen. Im Niedrigkostenbereich haben sich dafür Sensormodule wie der HC-SR-04 etabliert, die eine einfache Anbindung an Mikrocontroller über Trigger- und Echo-Signale erlauben.
+	Für die mechanische Ausrichtung von Sensoren und leichten Lasten werden in zahlreichen Anwendungen kompakte RC‑Servomotoren eingesetzt. Diese integrieren einen Gleichstrommotor mit einem Untersetzungsgetriebe sowie einer eingebauten Positionsregelung, die über ein Pulsweitenmodulationssignal (PWM) geführt wird. Miniaturservos wie der Tower Pro SG90 finden vor allem im Bereich ferngesteuerter Modelle (z.\,B. Flugzeuge und Helikopter) Verwendung, wo sie Ruderflächen oder andere bewegliche Komponenten ansteuern.\cite{kts:2026} In technischen Lehr- und Demonstrationsaufbauten werden derartige Servos häufig eingesetzt, um Sensoren innerhalb eines begrenzten Winkelbereichs reproduzierbar zu positionieren.
 	
-	Für die mechanische Ausrichtung von Sensoren und leichten Lasten werden in zahlreichen Anwendungen kompakte RC‑ Servomotoren eingesetzt. Diese enthalten neben einem Gleichstrommotor ein Getriebe sowie eine integrierte Positionsregelung, die über ein Pulsweitenmodulationssignal (PWM) angesteuert wird. Miniaturservos wie der Tower Pro SG90 sind vor allem in ferngesteuerten Modellen wie Flugzeugen und Helikoptern verbreitet, wo sie etwa Ruderflächen oder andere bewegliche Komponenten ansteuern.\cite{kts:2026} In technischen Lehr- und Demonstrationsaufbauten werden derartige Servos zudem häufig genutzt, um Sensoren in einem begrenzten Winkelbereich zu positionieren.
+	Ultraschall-Abstandssensoren kommen seit vielen Jahren in Automatisierungsanlagen, mobilen Robotersystemen und in der Fahrzeugtechnik zur berührungslosen Distanzbestimmung zum Einsatz. Üblicherweise wird dabei das Laufzeitmessprinzip verwendet. Ein kurzer Ultraschallimpuls wird ausgesendet, und aus der Zeitspanne bis zum Eintreffen des reflektierten Echos wird bei angenommener, bekannter Schallgeschwindigkeit der Abstand zum Objekt berechnet. Im Niedrigkostenbereich haben sich hierfür insbesondere Module des Typs HC-SR04 etabliert, die über dedizierte Trigger- und Echo-Pins eine einfache Anbindung an Mikrocontroller ermöglichen.
 	
-	Die Kombination aus Ultraschall-Abstandssensor und Servomotor ermöglicht die Realisierung von Systemen zur zweidimensionalen Umgebungserfassung. Durch das sequenzielle Abtasten verschiedener Winkelpositionen kann ein Scan der Umgebung erzeugt werden. In frei verfügbaren Projekten und Tutorials wird dieses Prinzip typischerweise mithilfe eines Ultraschallmoduls des Typs HC-SR-04, eines SG90-Servos und eines Arduino Uno oder Arduino Nano umgesetzt. (vgl. \cite{projehocam:2015}) Die gemessenen Distanzen werden dabei entweder auf einem seriell angebundenen PC visualisiert oder direkt auf einem Display dargestellt. Derartige Beispiele dienen häufig als Einführung in die Sensordatenerfassung und -visualisierung mit einfachen Mikrocontrollersystemen.
-	
+	Die Kombination eines solchen Ultraschall-Abstandssensors mit einem Servomotor erlaubt die Realisierung einfacher Systeme zur zweidimensionalen Umgebungserfassung. Durch das sequenzielle Anfahren verschiedener Winkelpositionen und die jeweils durchgeführte Distanzmessung entsteht ein diskretes Scanbild der Umgebung. In frei verfügbaren Projekten und Online-Tutorials wird dieses Konzept typischerweise mit einem HC-SR04-Ultraschallmodul, einem SG90-Servomotor und einem Arduino Uno oder Arduino Nano umgesetzt.\,(vgl. \cite{projehocam:2015}) Die gemessenen Distanzen werden dabei entweder seriell an einen PC übertragen und dort visualisiert oder direkt auf einem Display ausgegeben, sodass solche Beispiele häufig als Einstieg in die Sensordatenerfassung und -visualisierung mit einfachen Mikrocontrollersystemen dienen.
 
 
 \chapter{Einbettung des Projektes}
@@ -53,12 +53,7 @@
 	
 	Insgesamt ordnet sich die entwickelte Lösung in die Klasse kostengünstiger Ultraschall‑Scan­systeme ein, nutzt jedoch eine modernere Hardwarebasis und eine stärker systematisch aufgebaute Softwarearchitektur.\cite{Kaparthi:2021} Das System dient somit nicht nur als funktionaler Demonstrator für die Sensordatenerfassung mit dem Arduino Nano 33 BLE Sense, sondern auch als Ausgangspunkt für weiterführende Anwendungen und Erweiterungen in der Automatisierungstechnik.
 
-	\begin{figure}[htbp]
-	\centering
-	\input{tikz/SystemUltraschallsensor.tex}
-	\caption{Schematische Darstellung des Servomotors TowerPro SG90}
-	\label{fig:sg90_tikz}
-\end{figure}
+
 
 \chapter{Bessondere Herausforderungen und Lösungsansätze}
 \label{chap:Besondere_Herausforderungen}

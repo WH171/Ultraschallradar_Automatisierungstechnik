@@ -568,6 +568,30 @@
     \field{year}{2023}
   \endentry
 
+  \entry{Hermann:2026}{online}{}{}
+    \name{author}{1}{}{%
+      {{hash=HS}{%
+         family={Hermann},
+         familyi={H\bibinitperiod},
+         given={Stefan},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{HS1}
+    \strng{fullhash}{HS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{HeroJ}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{note}{abgerufen am 22.06.2026}
+    \field{title}{Timer mit Arduino -- Alternative zu Delays}
+    \verb{url}
+    \verb https://starthardware.org/timer-mit-arduino-alternative-zu-delays/
+    \endverb
+    \field{year}{o.\,J.}
+  \endentry
+
   \entry{Jimblom:2026}{misc}{}{}
     \name{author}{1}{}{%
       {{hash=J}{%
