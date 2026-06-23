@@ -1,33 +1,34 @@
 /**
  * @file HelloWorld.ino
- * @brief Minimalbeispiel zur Initialisierung der seriellen Schnittstelle
- *        und zur Ausgabe einer Testnachricht.
- * @details Das Programm dient zur Veranschaulichung der Verwendung von
- *          Serial.begin() und Serial.println() auf dem Arduino Nano 33 BLE Sense.
- *          Nach dem Start des Mikrocontrollers wird die serielle Schnittstelle
- *          initialisiert und einmalig die Zeichenkette "Hello World" im
- *          seriellen Monitor ausgegeben.
+ * @brief Minimal example for initializing the serial interface
+ *        and printing a test message.
+ * @details This program demonstrates the use of Serial.begin()
+ *          and Serial.println() on the Arduino Nano 33 BLE Sense.
+ *          After the microcontroller starts, the serial interface
+ *          is initialized and the string "Hello World" is printed
+ *          once to the serial monitor.
  * @author Simon Müller
  * @date 2026-06-23
  */
 
+
 /**
- * @brief Initialisiert die serielle Schnittstelle und sendet eine Testausgabe.
+ * @brief Initializes the serial interface and sends a test message.
  */
 void setup() {
   Serial.begin(9600);
   while (!Serial) {
-    ; ///< Wartet, bis die serielle Schnittstelle bereit ist.
+    ; ///< Wait until the serial interface is ready.
   }
   Serial.println("Hello World");
 }
 
+
 /**
- * @brief Enthält den zyklisch ausgeführten Programmteil.
- * @details In diesem Beispiel bleibt die Hauptschleife leer, da keine
- *          wiederkehrende Verarbeitung erforderlich ist.
+ * @brief Contains the cyclic part of the program.
+ * @details In this example, the main loop is empty because no
+ *          recurring processing is required.
  */
 void loop() {
-  // keine wiederkehrende Verarbeitung
+  // no recurring processing
 }
-\end{lstlisting}
